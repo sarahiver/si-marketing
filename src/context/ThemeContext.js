@@ -61,6 +61,27 @@ export const themes = {
       border: '#E5E0D8',
     },
   },
+  // Gold is an alias for video theme (used by marketing components)
+  gold: {
+    id: 'gold',
+    name: 'Gold',
+    fonts: {
+      heading: "'Cormorant Garamond', Georgia, serif",
+      body: "'Montserrat', sans-serif",
+      script: "'Cormorant Garamond', Georgia, serif",
+    },
+    colors: {
+      bg: '#FAF8F5',
+      bgDark: '#1A1814',
+      bgAlt: '#F5F2ED',
+      text: '#1A1814',
+      textLight: '#8B8680',
+      textOnDark: '#FFFFFF',
+      accent: '#C9A962',
+      accentLight: '#D4BC7C',
+      border: '#E5E0D8',
+    },
+  },
   botanical: {
     id: 'botanical',
     name: 'Botanical',
@@ -125,7 +146,7 @@ export const themes = {
   },
 };
 
-export const themeOrder = ['video', 'editorial', 'botanical', 'contemporary', 'luxe', 'neon'];
+export const themeOrder = ['video', 'gold', 'editorial', 'botanical', 'contemporary', 'luxe', 'neon'];
 
 export const ThemeProvider = ({ children }) => {
   const [currentTheme, setCurrentThemeState] = useState('video');
@@ -154,6 +175,7 @@ export const ThemeProvider = ({ children }) => {
   const value = {
     currentTheme,
     setCurrentTheme,
+    switchTheme: setCurrentTheme,  // Alias für Marketing-Komponenten
     theme,
     themes,
     themeOrder,
