@@ -1,7 +1,7 @@
 // About Section - Multi-Theme (Contemporary, Editorial & Video)
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 // Cloudinary About Image - für alle Themes
 const ABOUT_IMAGE_URL = 'https://res.cloudinary.com/si-weddings/image/upload/v1769078167/si_comming_soon_about_pbqwny.jpg';

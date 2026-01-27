@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { addToWaitlist } from '../config/supabase';
+import { addToWaitlist } from '../../config/supabase';
 
 const WaitlistForm = ({ currentTheme }) => {
   const [email, setEmail] = useState('');

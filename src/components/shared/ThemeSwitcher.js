@@ -1,7 +1,7 @@
 // Eleganter Theme Switcher - Premium Design
 import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { themes, themeOrder, isDarkTheme } from '../themes/themeDefinitions';
+import { themes, themeOrder, isDarkTheme } from '../../themes/themeDefinitions';
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(-10px); }

@@ -1,7 +1,7 @@
 // Hero Section - Multi-Theme (Contemporary, Editorial & Video)
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 // ============================================
 // VIDEO BACKGROUND URL - HIER CLOUDINARY URL EINTRAGEN

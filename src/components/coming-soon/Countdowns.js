@@ -1,7 +1,7 @@
 // Countdown Komponenten - EXAKT wie in den Wedding Website Themes
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { useCountdown, formatNumber } from '../hooks/useCountdown';
+import { useCountdown, formatNumber } from '../../hooks/useCountdown';
 
 // ============================================
 // SHARED KEYFRAMES

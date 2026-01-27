@@ -1,7 +1,7 @@
 // Footer mit Social Links und Legal Modals - Multi-Theme
 import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const fadeIn = keyframes`
   from { opacity: 0; }

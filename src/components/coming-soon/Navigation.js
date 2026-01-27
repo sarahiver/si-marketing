@@ -1,7 +1,7 @@
 // Navigation mit Theme Switcher
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(-20px); }

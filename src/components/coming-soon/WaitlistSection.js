@@ -1,7 +1,7 @@
 // Waitlist Section - Multi-Theme (Contemporary, Editorial & Video)
 import React, { useState, useRef } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const fadeInUp = keyframes`
   from { opacity: 0; transform: translateY(30px); }
