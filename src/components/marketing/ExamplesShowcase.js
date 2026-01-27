@@ -39,7 +39,7 @@ const luxeReveal = keyframes`
 // THEME DATA - Die 6 Demo-Themes
 // ============================================
 // UPDATED: All external URLs now point to multi-theme app
-const MULTI_THEME_BASE = 'https://si-wedding-themes.vercel.app'; // TODO: Change to https://siwedding.de after deployment
+const MULTI_THEME_BASE = 'https://siwedding.de'; // TODO: Change to https://siwedding.de after deployment
 
 const themeExamples = [
   {
