@@ -1,676 +1,1232 @@
 // src/components/marketing/USPSection.js
-import React, { useEffect, useRef, useState } from 'react';
+// "Warum S&I." - 6 verschiedene Layout-Logiken:
+// Editorial: Magazin-Style mit großen Nummern und alternierenden Spalten
+// Botanical: Schwebende Glassmorphism-Karten mit Parallax-Effekt
+// Contemporary: Masonry/Bento-Grid mit unterschiedlichen Kartengrößen
+// Luxe: Elegante horizontale Scroll-Cards (Carousel-artig)
+// Neon: Cyber-Dashboard mit Stats und Glitch-Effekten
+// Video: Minimalistische Icon-Liste mit Hover-Reveal
+import React, { useState, useRef, useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
-// Animations
+// ============================================
+// CONTENT DATA
+// ============================================
+const USPS = [
+  {
+    icon: '✨',
+    title: 'Handgefertigt – so einzigartig wie eure Liebe',
+    desc: 'Jede Website wird individuell für euch gestaltet. Keine Massenlösungen, keine austauschbaren Templates – sondern ein Design, das eure Geschichte widerspiegelt.',
+    short: 'Individuell gestaltet, keine Templates',
+  },
+  {
+    icon: '🎨',
+    title: 'Ihr wählt den Stil. Wir perfektionieren den Rest.',
+    desc: 'Wählt aus 6 kuratierten Premium-Themes – wir passen Farben, Details, Komponenten und Inhalte so an, dass eure Website wie maßgeschneidert wirkt.',
+    short: '6 Premium-Themes zur Auswahl',
+  },
+  {
+    icon: '💬',
+    title: 'Persönlich statt anonym',
+    desc: 'Ihr sprecht direkt mit uns – Sarah & Iver. Kein Callcenter. Kein Ticketsystem. Keine Standard-Antworten. Sondern echte Beratung, ehrliches Feedback und eine Zusammenarbeit auf Augenhöhe.',
+    short: 'Direkter Kontakt zu Sarah & Iver',
+  },
+  {
+    icon: '💍',
+    title: 'Eine Website, die sich wie ein Zuhause anfühlt',
+    desc: 'Wir gestalten nicht einfach nur eine Hochzeitswebsite – wir erschaffen ein digitales Zuhause für eure Hochzeit: für eure Geschichte, eure Gäste, eure Erinnerungen und euren großen Tag.',
+    short: 'Ein digitales Zuhause für eure Hochzeit',
+  },
+  {
+    icon: '🕊️',
+    title: 'So wenig Aufwand wie möglich für euch',
+    desc: 'Ihr müsst nichts bauen, nichts programmieren, nichts kompliziert organisieren. Ihr liefert die Inhalte – wir übernehmen den Rest. Einfach, entspannt, stressfrei.',
+    short: 'Ihr liefert Inhalte, wir den Rest',
+  },
+  {
+    icon: '⚡',
+    title: 'Schnell. Hochwertig. Eindrucksvoll.',
+    desc: 'In der Regel ist eure Website innerhalb von 5–7 Werktagen live – hochwertig umgesetzt, emotional gestaltet und bereit, eure Gäste zu begeistern.',
+    short: '5-7 Werktage bis zur fertigen Website',
+  },
+];
+
+const RSVP_FEATURE = {
+  icon: '📋',
+  title: 'RSVP & Gästemanagement inklusive',
+  desc: 'Behaltet den Überblick über alle Zusagen, Absagen und Sonderwünsche – direkt in eurem persönlichen Dashboard. Exportiert eure Gästeliste jederzeit als Excel für Catering, Sitzplan oder Einlasskontrolle. Alles an einem Ort, immer aktuell, komplett stressfrei.',
+  short: 'Dashboard, Export, volle Kontrolle',
+};
+
+const CTA_TEXT = {
+  headline: 'Bereit für eine Hochzeitswebsite, die so besonders ist wie eure Liebe?',
+  button: 'Wählt euren Stil',
+  subline: 'S&I. – Premium Hochzeitswebsites für Paare mit Anspruch.',
+};
+
+// ============================================
+// ANIMATIONS
+// ============================================
+const fadeInUp = keyframes`
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
 const float = keyframes`
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 `;
 
-const leafFloat = keyframes`
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(5deg); }
-`;
-
-const drawLine = keyframes`
-  from { width: 0; }
-  to { width: 100%; }
-`;
-
-const drawLineGold = keyframes`
-  from { width: 0; }
-  to { width: 80px; }
-`;
-
-const neonPulse = keyframes`
-  0%, 100% { box-shadow: 0 0 5px rgba(0,255,255,0.3); }
-  50% { box-shadow: 0 0 20px rgba(0,255,255,0.6), 0 0 40px rgba(0,255,255,0.3); }
-`;
-
-const typing = keyframes`
-  from { width: 0; }
-  to { width: 100%; }
-`;
-
-const blink = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-`;
-
-const progressFill = keyframes`
-  from { width: 0; }
-  to { width: var(--progress); }
-`;
-
-const goldShimmer = keyframes`
+const shimmer = keyframes`
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
 `;
 
-const bounce = keyframes`
-  0% { transform: translateY(30px) scale(0.9); opacity: 0; }
-  60% { transform: translateY(-5px) scale(1.02); }
-  100% { transform: translateY(0) scale(1); opacity: 1; }
+const glitch = keyframes`
+  0%, 90%, 100% { transform: translate(0); }
+  92% { transform: translate(-2px, 1px); }
+  94% { transform: translate(2px, -1px); }
+  96% { transform: translate(-1px, 2px); }
+  98% { transform: translate(1px, -2px); }
 `;
 
-// USP Data
-const usps = [
-  { icon: '✨', title: 'Handgemacht mit Liebe', desc: 'Jede Website wird individuell für euch erstellt – keine Templates, nur einzigartiges Design.', progress: 95 },
-  { icon: '📱', title: 'Perfekt auf allen Geräten', desc: 'Responsive Design, das auf Desktop, Tablet und Smartphone gleichermaßen beeindruckt.', progress: 100 },
-  { icon: '🎨', title: '6 einzigartige Themes', desc: 'Von minimalistisch bis dramatisch – findet den Stil, der zu euch passt.', progress: 92 },
-  { icon: '🔒', title: 'DSGVO-konform', desc: 'Sichere Datenverarbeitung, gehostet in Deutschland. Eure Daten sind geschützt.', progress: 100 },
-  { icon: '💬', title: 'Persönlicher Support', desc: 'Direkter Kontakt zu uns – keine Callcenter, echte Menschen die helfen.', progress: 98 },
-  { icon: '⚡', title: 'Schnell online', desc: 'In der Regel ist eure Website innerhalb von 5-7 Werktagen fertig und online.', progress: 88 }
-];
+const scanline = keyframes`
+  0% { top: -100%; }
+  100% { top: 100%; }
+`;
 
-function USPSection() {
-  const { currentTheme } = useTheme();
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+// ============================================
+// EDITORIAL - Magazin-Style mit großen Nummern
+// ============================================
+const EditorialSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FAFAFA;
+`;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.15 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+const EditorialContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+`;
 
-  const renderContent = () => {
-    switch(currentTheme) {
-      case 'editorial': return <EditorialLayout usps={usps} isVisible={isVisible} />;
-      case 'contemporary': return <ContemporaryLayout usps={usps} isVisible={isVisible} />;
-      case 'botanical': return <BotanicalLayout usps={usps} isVisible={isVisible} />;
-      case 'neon': return <NeonLayout usps={usps} isVisible={isVisible} />;
-      case 'video': return <VideoLayout usps={usps} isVisible={isVisible} />;
-      case 'luxe': return <LuxeLayout usps={usps} isVisible={isVisible} />;
-      default: return <EditorialLayout usps={usps} isVisible={isVisible} />;
+const EditorialHeader = styled.div`
+  text-align: center;
+  margin-bottom: 5rem;
+`;
+
+const EditorialEyebrow = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #C41E3A;
+  margin-bottom: 1rem;
+`;
+
+const EditorialTitle = styled.h2`
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0A0A0A;
+`;
+
+const EditorialGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+`;
+
+const EditorialRow = styled.div`
+  display: grid;
+  grid-template-columns: ${p => p.$reverse ? '1fr 100px' : '100px 1fr'};
+  gap: 3rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid #E5E5E5;
+  align-items: start;
+  
+  &:last-child { border-bottom: none; }
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+`;
+
+const EditorialNum = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  color: rgba(196, 30, 58, 0.15);
+  line-height: 1;
+  text-align: ${p => p.$reverse ? 'left' : 'right'};
+  order: ${p => p.$reverse ? 2 : 1};
+  
+  @media (max-width: 600px) {
+    font-size: 3rem;
+    text-align: left;
+    order: 1;
+  }
+`;
+
+const EditorialContent = styled.div`
+  order: ${p => p.$reverse ? 1 : 2};
+  
+  @media (max-width: 600px) {
+    order: 2;
+  }
+`;
+
+const EditorialIcon = styled.span`
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+`;
+
+const EditorialItemTitle = styled.h3`
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  margin-bottom: 0.75rem;
+`;
+
+const EditorialItemDesc = styled.p`
+  font-family: 'Source Serif 4', serif;
+  font-size: 1rem;
+  color: #525252;
+  line-height: 1.8;
+`;
+
+const EditorialRSVP = styled.div`
+  margin-top: 4rem;
+  padding: 3rem;
+  background: #0A0A0A;
+  text-align: center;
+`;
+
+const EditorialRSVPTitle = styled.h3`
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #C41E3A;
+  margin-bottom: 1rem;
+`;
+
+const EditorialRSVPDesc = styled.p`
+  font-family: 'Source Serif 4', serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+`;
+
+// ============================================
+// BOTANICAL - Schwebende Glassmorphism-Karten
+// ============================================
+const BotanicalSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: transparent;
+  position: relative;
+  z-index: 10;
+`;
+
+const BotanicalContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const BotanicalHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const BotanicalEyebrow = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1rem;
+`;
+
+const BotanicalTitle = styled.h2`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.95);
+`;
+
+const BotanicalGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const BotanicalCard = styled.div`
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 2rem;
+  transition: all 0.5s ease;
+  animation: ${float} ${p => 6 + p.$i * 0.5}s ease-in-out infinite;
+  animation-delay: ${p => p.$i * 0.2}s;
+  
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+  }
+`;
+
+const BotanicalCardIcon = styled.div`
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+`;
+
+const BotanicalCardTitle = styled.h3`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+`;
+
+const BotanicalCardDesc = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+`;
+
+const BotanicalRSVP = styled.div`
+  margin-top: 3rem;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 2.5rem;
+  text-align: center;
+`;
+
+// ============================================
+// CONTEMPORARY - Bento/Masonry Grid
+// ============================================
+const ContemporarySection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FAFAFA;
+`;
+
+const ContemporaryContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+`;
+
+const ContemporaryHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const ContemporaryEyebrow = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #FF6B6B;
+  margin-bottom: 0.5rem;
+`;
+
+const ContemporaryTitle = styled.h2`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+`;
+
+const BENTO_COLORS = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5', '#0D0D0D', '#FF6B6B'];
+
+const ContemporaryBento = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 1rem;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ContemporaryCard = styled.div`
+  background: #fff;
+  border: 3px solid #0D0D0D;
+  padding: 1.5rem;
+  box-shadow: 5px 5px 0 ${p => BENTO_COLORS[p.$i % 6]};
+  transition: all 0.3s ease;
+  
+  grid-column: ${p => {
+    if (p.$i === 0) return 'span 2';
+    if (p.$i === 3) return 'span 2';
+    return 'span 1';
+  }};
+  
+  @media (max-width: 500px) {
+    grid-column: span 1;
+  }
+  
+  &:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 ${p => BENTO_COLORS[p.$i % 6]};
+  }
+`;
+
+const ContemporaryCardIcon = styled.div`
+  font-size: 2rem;
+  margin-bottom: 1rem;
+`;
+
+const ContemporaryCardTitle = styled.h3`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  margin-bottom: 0.5rem;
+`;
+
+const ContemporaryCardDesc = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: #525252;
+  line-height: 1.6;
+`;
+
+const ContemporaryRSVP = styled.div`
+  margin-top: 2rem;
+  background: #0D0D0D;
+  border: 3px solid #0D0D0D;
+  padding: 2rem;
+  box-shadow: 6px 6px 0 #FFE66D;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+const ContemporaryRSVPIcon = styled.div`
+  font-size: 3rem;
+  flex-shrink: 0;
+`;
+
+const ContemporaryRSVPContent = styled.div`
+  flex: 1;
+`;
+
+const ContemporaryRSVPTitle = styled.h3`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FFE66D;
+  margin-bottom: 0.5rem;
+`;
+
+const ContemporaryRSVPDesc = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+`;
+
+// ============================================
+// LUXE - Horizontale Scroll-Cards
+// ============================================
+const LuxeSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) 0;
+  background: #0A0A0A;
+  overflow: hidden;
+`;
+
+const LuxeHeader = styled.div`
+  text-align: center;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  margin-bottom: 4rem;
+`;
+
+const LuxeEyebrow = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #C9A962;
+  margin-bottom: 1rem;
+`;
+
+const LuxeTitle = styled.h2`
+  font-family: 'Cormorant', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #F8F6F3;
+`;
+
+const LuxeScroller = styled.div`
+  display: flex;
+  gap: 2rem;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const LuxeCard = styled.div`
+  flex: 0 0 350px;
+  scroll-snap-align: start;
+  border: 1px solid rgba(201, 169, 98, 0.2);
+  padding: 2.5rem;
+  transition: all 0.5s ease;
+  
+  &:hover {
+    border-color: #C9A962;
+    background: rgba(201, 169, 98, 0.05);
+  }
+  
+  @media (max-width: 500px) {
+    flex: 0 0 300px;
+  }
+`;
+
+const LuxeCardIcon = styled.div`
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+`;
+
+const LuxeCardTitle = styled.h3`
+  font-family: 'Cormorant', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #F8F6F3;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+`;
+
+const LuxeCardDesc = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(248,246,243,0.5);
+  line-height: 1.8;
+`;
+
+const LuxeRSVP = styled.div`
+  margin: 4rem clamp(1.5rem, 5vw, 4rem) 0;
+  padding: 3rem;
+  border-top: 1px solid rgba(201, 169, 98, 0.2);
+  border-bottom: 1px solid rgba(201, 169, 98, 0.2);
+  text-align: center;
+`;
+
+const LuxeRSVPTitle = styled.h3`
+  font-family: 'Cormorant', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #C9A962;
+  margin-bottom: 1rem;
+`;
+
+const LuxeRSVPDesc = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(248,246,243,0.6);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+`;
+
+// ============================================
+// NEON - Cyber Dashboard
+// ============================================
+const NeonSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #0a0a0f;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 10% 20%, rgba(0,255,255,0.05) 0%, transparent 40%),
+      radial-gradient(ellipse at 90% 80%, rgba(255,0,255,0.05) 0%, transparent 40%);
+    pointer-events: none;
+  }
+`;
+
+const NeonContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+`;
+
+const NeonHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const NeonEyebrow = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ff00ff;
+  text-shadow: 0 0 10px rgba(255,0,255,0.5);
+  margin-bottom: 0.5rem;
+`;
+
+const NeonTitle = styled.h2`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+`;
+
+const NeonDashboard = styled.div`
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+const NeonDashboardHeader = styled.div`
+  background: rgba(0,255,255,0.1);
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid rgba(0,255,255,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const NeonDashboardTitle = styled.span`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  color: #00ffff;
+  letter-spacing: 0.1em;
+`;
+
+const NeonDashboardStatus = styled.span`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  color: #00ff88;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff88;
+  }
+`;
+
+const NeonGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const NeonCell = styled.div`
+  padding: 1.5rem;
+  border-right: 1px solid rgba(0,255,255,0.1);
+  border-bottom: 1px solid rgba(0,255,255,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &:nth-child(3n) { border-right: none; }
+  
+  @media (max-width: 800px) {
+    &:nth-child(3n) { border-right: 1px solid rgba(0,255,255,0.1); }
+    &:nth-child(2n) { border-right: none; }
+  }
+  
+  @media (max-width: 500px) {
+    border-right: none;
+  }
+  
+  &:hover {
+    background: rgba(0,255,255,0.05);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(transparent, rgba(0,255,255,0.1), transparent);
+      animation: ${scanline} 1s ease-out;
     }
+  }
+`;
+
+const NeonCellIcon = styled.div`
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+`;
+
+const NeonCellTitle = styled.h3`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #00ffff;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 5px rgba(0,255,255,0.5);
+`;
+
+const NeonCellDesc = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+`;
+
+const NeonRSVP = styled.div`
+  padding: 1.5rem;
+  background: rgba(255,0,255,0.05);
+  border-top: 1px solid rgba(255,0,255,0.2);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+const NeonRSVPIcon = styled.div`
+  font-size: 2.5rem;
+  animation: ${glitch} 3s ease-in-out infinite;
+`;
+
+const NeonRSVPContent = styled.div`
+  flex: 1;
+`;
+
+const NeonRSVPTitle = styled.h3`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ff00ff;
+  text-shadow: 0 0 10px rgba(255,0,255,0.5);
+  margin-bottom: 0.5rem;
+`;
+
+const NeonRSVPDesc = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+`;
+
+// ============================================
+// VIDEO - Icon-Liste mit Hover-Reveal
+// ============================================
+const VideoSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #0A0A0A;
+`;
+
+const VideoContainer = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+`;
+
+const VideoHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const VideoEyebrow = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6B8CAE;
+  margin-bottom: 1rem;
+`;
+
+const VideoTitle = styled.h2`
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #FFFFFF;
+`;
+
+const VideoList = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const VideoItem = styled.div`
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(107, 140, 174, 0.05);
+  }
+`;
+
+const VideoItemHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+`;
+
+const VideoItemIcon = styled.div`
+  font-size: 1.5rem;
+  width: 50px;
+  text-align: center;
+  flex-shrink: 0;
+`;
+
+const VideoItemTitle = styled.h3`
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  flex: 1;
+`;
+
+const VideoItemArrow = styled.span`
+  font-size: 1.2rem;
+  color: #6B8CAE;
+  transition: transform 0.3s ease;
+  transform: rotate(${p => p.$open ? '90deg' : '0'});
+`;
+
+const VideoItemContent = styled.div`
+  max-height: ${p => p.$open ? '200px' : '0'};
+  opacity: ${p => p.$open ? 1 : 0};
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding: ${p => p.$open ? '0 0 1.5rem 4.5rem' : '0 0 0 4.5rem'};
+`;
+
+const VideoItemDesc = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #B0B0B0;
+  line-height: 1.7;
+`;
+
+const VideoRSVP = styled.div`
+  margin-top: 3rem;
+  padding: 2.5rem;
+  border: 1px solid rgba(107, 140, 174, 0.3);
+  text-align: center;
+`;
+
+const VideoRSVPTitle = styled.h3`
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #6B8CAE;
+  margin-bottom: 1rem;
+`;
+
+const VideoRSVPDesc = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #B0B0B0;
+  line-height: 1.7;
+`;
+
+// ============================================
+// SHARED CTA
+// ============================================
+const CTABox = styled.div`
+  margin-top: clamp(4rem, 10vh, 6rem);
+  text-align: center;
+  padding: 0 1rem;
+`;
+
+const CTAHeadline = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+`;
+
+const CTAButton = styled.button`
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+`;
+
+const CTASubline = styled.p`
+  font-size: 0.75rem;
+  margin-top: 1.5rem;
+`;
+
+// ============================================
+// MAIN COMPONENT
+// ============================================
+const USPSection = () => {
+  const { currentTheme } = useTheme();
+  const [openItem, setOpenItem] = useState(0);
+
+  const scrollToThemes = () => {
+    document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  return (
-    <Section ref={sectionRef} $themeId={currentTheme}>
-      {renderContent()}
-    </Section>
-  );
-}
+  // ==========================================
+  // EDITORIAL - Magazin-Style
+  // ==========================================
+  if (currentTheme === 'editorial') {
+    return (
+      <EditorialSection id="features">
+        <EditorialContainer>
+          <EditorialHeader>
+            <EditorialEyebrow>— Warum S&I. —</EditorialEyebrow>
+            <EditorialTitle>Was uns besonders macht</EditorialTitle>
+          </EditorialHeader>
+          
+          <EditorialGrid>
+            {USPS.map((usp, i) => (
+              <EditorialRow key={i} $reverse={i % 2 === 1}>
+                <EditorialNum $reverse={i % 2 === 1}>0{i + 1}</EditorialNum>
+                <EditorialContent $reverse={i % 2 === 1}>
+                  <EditorialIcon>{usp.icon}</EditorialIcon>
+                  <EditorialItemTitle>{usp.title}</EditorialItemTitle>
+                  <EditorialItemDesc>{usp.desc}</EditorialItemDesc>
+                </EditorialContent>
+              </EditorialRow>
+            ))}
+          </EditorialGrid>
+          
+          <EditorialRSVP>
+            <EditorialRSVPTitle>{RSVP_FEATURE.icon} {RSVP_FEATURE.title}</EditorialRSVPTitle>
+            <EditorialRSVPDesc>{RSVP_FEATURE.desc}</EditorialRSVPDesc>
+          </EditorialRSVP>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', color: '#525252' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToThemes}
+              style={{ fontFamily: "'Oswald', sans-serif", color: '#FAFAFA', background: '#C41E3A', border: 'none' }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Inter', sans-serif", color: '#999' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </EditorialContainer>
+      </EditorialSection>
+    );
+  }
 
-// ============================================
-// EDITORIAL LAYOUT - Horizontal Lines Reveal
-// ============================================
-const EditorialLayout = ({ usps, isVisible }) => (
-  <EditorialContainer>
-    <EditorialHeader $visible={isVisible}>
-      <EditorialEyebrow>— Warum S&I —</EditorialEyebrow>
-      <EditorialTitle>Was uns besonders macht</EditorialTitle>
-    </EditorialHeader>
-    <EditorialList>
-      {usps.map((usp, i) => (
-        <EditorialItem key={usp.title} $visible={isVisible} $delay={0.2 + i * 0.1}>
-          <EditorialItemIcon>{usp.icon}</EditorialItemIcon>
-          <EditorialItemContent>
-            <EditorialItemTitle>{usp.title}</EditorialItemTitle>
-            <EditorialItemLine $visible={isVisible} $delay={0.4 + i * 0.1} />
-            <EditorialItemDesc>{usp.desc}</EditorialItemDesc>
-          </EditorialItemContent>
-        </EditorialItem>
-      ))}
-    </EditorialList>
-  </EditorialContainer>
-);
+  // ==========================================
+  // BOTANICAL - Schwebende Karten
+  // ==========================================
+  if (currentTheme === 'botanical') {
+    return (
+      <BotanicalSection id="features">
+        <BotanicalContainer>
+          <BotanicalHeader>
+            <BotanicalEyebrow>Warum S&I.</BotanicalEyebrow>
+            <BotanicalTitle>Was uns besonders macht</BotanicalTitle>
+          </BotanicalHeader>
+          
+          <BotanicalGrid>
+            {USPS.map((usp, i) => (
+              <BotanicalCard key={i} $i={i}>
+                <BotanicalCardIcon>{usp.icon}</BotanicalCardIcon>
+                <BotanicalCardTitle>{usp.title}</BotanicalCardTitle>
+                <BotanicalCardDesc>{usp.desc}</BotanicalCardDesc>
+              </BotanicalCard>
+            ))}
+          </BotanicalGrid>
+          
+          <BotanicalRSVP>
+            <BotanicalCardIcon style={{ marginBottom: '1rem' }}>{RSVP_FEATURE.icon}</BotanicalCardIcon>
+            <BotanicalCardTitle style={{ textAlign: 'center' }}>{RSVP_FEATURE.title}</BotanicalCardTitle>
+            <BotanicalCardDesc style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>{RSVP_FEATURE.desc}</BotanicalCardDesc>
+          </BotanicalRSVP>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", color: 'rgba(255,255,255,0.8)' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToThemes}
+              style={{ fontFamily: "'Montserrat', sans-serif", color: '#040604', background: 'rgba(255,255,255,0.95)', border: 'none', borderRadius: '50px' }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Montserrat', sans-serif", color: 'rgba(255,255,255,0.4)' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </BotanicalContainer>
+      </BotanicalSection>
+    );
+  }
 
-// ============================================
-// CONTEMPORARY LAYOUT - Bouncy Staggered Grid
-// ============================================
-const ContemporaryLayout = ({ usps, isVisible }) => {
-  const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#FF6B6B', '#4ECDC4', '#FFE66D'];
-  return (
-    <ContemporaryContainer>
-      <ContemporaryShapes>
-        <ContemporaryCircle $top="5%" $left="3%" $size="80px" $color="#FF6B6B" />
-        <ContemporaryCircle $top="40%" $right="5%" $size="50px" $color="#4ECDC4" />
-        <ContemporaryDiamond $bottom="20%" $left="8%" $size="40px" $color="#FFE66D" />
-        <ContemporarySquare $bottom="10%" $right="10%" $size="35px" />
-      </ContemporaryShapes>
-      <ContemporaryHeader $visible={isVisible}>
-        <ContemporaryBadge>WARUM WIR?</ContemporaryBadge>
-        <ContemporaryTitle>WAS UNS BESONDERS MACHT.</ContemporaryTitle>
-      </ContemporaryHeader>
-      <ContemporaryGrid>
-        {usps.map((usp, i) => (
-          <ContemporaryCard key={usp.title} $visible={isVisible} $delay={0.1 + i * 0.08} $color={colors[i]}>
-            <ContemporaryCardIcon>{usp.icon}</ContemporaryCardIcon>
-            <ContemporaryCardTitle>{usp.title}</ContemporaryCardTitle>
-            <ContemporaryCardLine $color={colors[i]} />
-            <ContemporaryCardDesc>{usp.desc}</ContemporaryCardDesc>
-          </ContemporaryCard>
-        ))}
-      </ContemporaryGrid>
-    </ContemporaryContainer>
-  );
-};
+  // ==========================================
+  // CONTEMPORARY - Bento Grid
+  // ==========================================
+  if (currentTheme === 'contemporary') {
+    return (
+      <ContemporarySection id="features">
+        <ContemporaryContainer>
+          <ContemporaryHeader>
+            <ContemporaryEyebrow>💎 Warum S&I.</ContemporaryEyebrow>
+            <ContemporaryTitle>Das macht uns aus</ContemporaryTitle>
+          </ContemporaryHeader>
+          
+          <ContemporaryBento>
+            {USPS.map((usp, i) => (
+              <ContemporaryCard key={i} $i={i}>
+                <ContemporaryCardIcon>{usp.icon}</ContemporaryCardIcon>
+                <ContemporaryCardTitle>{usp.short}</ContemporaryCardTitle>
+                <ContemporaryCardDesc>{usp.desc}</ContemporaryCardDesc>
+              </ContemporaryCard>
+            ))}
+          </ContemporaryBento>
+          
+          <ContemporaryRSVP>
+            <ContemporaryRSVPIcon>{RSVP_FEATURE.icon}</ContemporaryRSVPIcon>
+            <ContemporaryRSVPContent>
+              <ContemporaryRSVPTitle>{RSVP_FEATURE.title}</ContemporaryRSVPTitle>
+              <ContemporaryRSVPDesc>{RSVP_FEATURE.desc}</ContemporaryRSVPDesc>
+            </ContemporaryRSVPContent>
+          </ContemporaryRSVP>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, color: '#0D0D0D' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToThemes}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#FAFAFA', background: '#FF6B6B', border: '3px solid #0D0D0D', boxShadow: '4px 4px 0 #0D0D0D' }}
+            >
+              {CTA_TEXT.button} →
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#525252' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </ContemporaryContainer>
+      </ContemporarySection>
+    );
+  }
 
-// ============================================
-// BOTANICAL LAYOUT - Floating Cards with Parallax Leaves
-// ============================================
-const BotanicalLayout = ({ usps, isVisible }) => (
-  <BotanicalContainer>
-    <BotanicalLeaves>
-      <BotanicalLeaf $top="0%" $left="5%" $delay="0s" $size="3rem">🌿</BotanicalLeaf>
-      <BotanicalLeaf $top="20%" $right="3%" $delay="0.5s" $size="2.5rem">🍃</BotanicalLeaf>
-      <BotanicalLeaf $top="50%" $left="2%" $delay="1s" $size="2rem">🌱</BotanicalLeaf>
-      <BotanicalLeaf $bottom="30%" $right="8%" $delay="1.5s" $size="2.8rem">🌸</BotanicalLeaf>
-      <BotanicalLeaf $bottom="10%" $left="10%" $delay="2s" $size="2.2rem">🍃</BotanicalLeaf>
-      <BotanicalLeaf $bottom="5%" $right="15%" $delay="0.8s" $size="1.8rem">🌿</BotanicalLeaf>
-    </BotanicalLeaves>
-    <BotanicalHeader $visible={isVisible}>
-      <BotanicalEyebrow>✿ Warum S&I ✿</BotanicalEyebrow>
-      <BotanicalTitle>Was uns besonders macht</BotanicalTitle>
-    </BotanicalHeader>
-    <BotanicalGrid>
-      {usps.map((usp, i) => (
-        <BotanicalCard key={usp.title} $visible={isVisible} $delay={0.15 + i * 0.1} $float={i % 2 === 0}>
-          <BotanicalCardIcon>{usp.icon}</BotanicalCardIcon>
-          <BotanicalCardTitle>{usp.title}</BotanicalCardTitle>
-          <BotanicalCardDesc>{usp.desc}</BotanicalCardDesc>
-        </BotanicalCard>
-      ))}
-    </BotanicalGrid>
-  </BotanicalContainer>
-);
-
-// ============================================
-// NEON LAYOUT - Terminal with Progress Bars
-// ============================================
-const NeonLayout = ({ usps, isVisible }) => (
-  <NeonContainer>
-    <NeonTerminal $visible={isVisible}>
-      <NeonTerminalHeader>
-        <NeonDot $color="#ff5f56" />
-        <NeonDot $color="#ffbd2e" />
-        <NeonDot $color="#27ca40" />
-        <NeonTerminalTitle>system_benefits.exe</NeonTerminalTitle>
-      </NeonTerminalHeader>
-      <NeonTerminalBody>
-        <NeonTypingLine $visible={isVisible} $delay="0.3s">
-          <span>&gt;</span> SCANNING SYSTEM FEATURES...
-        </NeonTypingLine>
-        <NeonTypingLine $visible={isVisible} $delay="0.8s">
-          <span>&gt;</span> ANALYZING BENEFITS...
-        </NeonTypingLine>
+  // ==========================================
+  // LUXE - Horizontale Scroll-Cards
+  // ==========================================
+  if (currentTheme === 'luxe') {
+    return (
+      <LuxeSection id="features">
+        <LuxeHeader>
+          <LuxeEyebrow>Warum S&I.</LuxeEyebrow>
+          <LuxeTitle>Was uns auszeichnet</LuxeTitle>
+        </LuxeHeader>
         
-        <NeonFeatureList>
-          {usps.map((usp, i) => (
-            <NeonFeature key={usp.title} $visible={isVisible} $delay={1.2 + i * 0.25}>
-              <NeonFeatureHeader>
-                <NeonFeatureIndex>[0{i + 1}]</NeonFeatureIndex>
-                <NeonFeatureTitle>{usp.title.toUpperCase().replace(/ /g, '_')}</NeonFeatureTitle>
-              </NeonFeatureHeader>
-              <NeonProgressContainer>
-                <NeonProgressBar $visible={isVisible} $delay={1.4 + i * 0.25} $progress={usp.progress} />
-                <NeonProgressValue>{usp.progress}%</NeonProgressValue>
-              </NeonProgressContainer>
-              <NeonFeatureDesc>&gt; {usp.desc}</NeonFeatureDesc>
-            </NeonFeature>
+        <LuxeScroller>
+          {USPS.map((usp, i) => (
+            <LuxeCard key={i}>
+              <LuxeCardIcon>{usp.icon}</LuxeCardIcon>
+              <LuxeCardTitle>{usp.title}</LuxeCardTitle>
+              <LuxeCardDesc>{usp.desc}</LuxeCardDesc>
+            </LuxeCard>
           ))}
-        </NeonFeatureList>
+        </LuxeScroller>
         
-        <NeonTypingLine $visible={isVisible} $delay="3.5s">
-          <span>&gt;</span> ALL SYSTEMS OPTIMAL. READY FOR WEDDING_MODE<NeonCursor>_</NeonCursor>
-        </NeonTypingLine>
-      </NeonTerminalBody>
-    </NeonTerminal>
-  </NeonContainer>
-);
+        <LuxeRSVP>
+          <LuxeRSVPTitle>{RSVP_FEATURE.icon} {RSVP_FEATURE.title}</LuxeRSVPTitle>
+          <LuxeRSVPDesc>{RSVP_FEATURE.desc}</LuxeRSVPDesc>
+        </LuxeRSVP>
+        
+        <CTABox style={{ padding: '0 clamp(1.5rem, 5vw, 4rem)' }}>
+          <CTAHeadline style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic', color: 'rgba(248,246,243,0.8)' }}>
+            {CTA_TEXT.headline}
+          </CTAHeadline>
+          <CTAButton 
+            onClick={scrollToThemes}
+            style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: '0.3em', color: '#0A0A0A', background: '#C9A962', border: 'none' }}
+          >
+            {CTA_TEXT.button}
+          </CTAButton>
+          <CTASubline style={{ fontFamily: "'Outfit', sans-serif", color: 'rgba(248,246,243,0.4)' }}>
+            {CTA_TEXT.subline}
+          </CTASubline>
+        </CTABox>
+      </LuxeSection>
+    );
+  }
 
-// ============================================
-// VIDEO LAYOUT - Elegant Horizontal Cards with Gold Lines
-// ============================================
-const VideoLayout = ({ usps, isVisible }) => (
-  <VideoContainer>
-    <VideoHeader $visible={isVisible}>
-      <VideoEyebrow>— Warum S&I —</VideoEyebrow>
-      <VideoTitle>Was uns besonders macht</VideoTitle>
-    </VideoHeader>
-    <VideoList>
-      {usps.map((usp, i) => (
-        <VideoCard key={usp.title} $visible={isVisible} $delay={0.2 + i * 0.12}>
-          <VideoCardIcon>{usp.icon}</VideoCardIcon>
-          <VideoCardContent>
-            <VideoCardTitle>{usp.title}</VideoCardTitle>
-            <VideoCardLine $visible={isVisible} $delay={0.4 + i * 0.12} />
-            <VideoCardDesc>{usp.desc}</VideoCardDesc>
-          </VideoCardContent>
-        </VideoCard>
-      ))}
-    </VideoList>
-    <VideoFooterLine $visible={isVisible} />
-  </VideoContainer>
-);
+  // ==========================================
+  // NEON - Cyber Dashboard
+  // ==========================================
+  if (currentTheme === 'neon') {
+    return (
+      <NeonSection id="features">
+        <NeonContainer>
+          <NeonHeader>
+            <NeonEyebrow>// features.list()</NeonEyebrow>
+            <NeonTitle>System Capabilities</NeonTitle>
+          </NeonHeader>
+          
+          <NeonDashboard>
+            <NeonDashboardHeader>
+              <NeonDashboardTitle>S&I_FEATURES.dashboard</NeonDashboardTitle>
+              <NeonDashboardStatus>ACTIVE</NeonDashboardStatus>
+            </NeonDashboardHeader>
+            
+            <NeonGrid>
+              {USPS.map((usp, i) => (
+                <NeonCell key={i}>
+                  <NeonCellIcon>{usp.icon}</NeonCellIcon>
+                  <NeonCellTitle>{usp.short}</NeonCellTitle>
+                  <NeonCellDesc>{usp.desc}</NeonCellDesc>
+                </NeonCell>
+              ))}
+            </NeonGrid>
+            
+            <NeonRSVP>
+              <NeonRSVPIcon>{RSVP_FEATURE.icon}</NeonRSVPIcon>
+              <NeonRSVPContent>
+                <NeonRSVPTitle>{RSVP_FEATURE.title}</NeonRSVPTitle>
+                <NeonRSVPDesc>{RSVP_FEATURE.desc}</NeonRSVPDesc>
+              </NeonRSVPContent>
+            </NeonRSVP>
+          </NeonDashboard>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'rgba(255,255,255,0.8)' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToThemes}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#00ff88', background: 'transparent', border: '1px solid #00ff88', boxShadow: '0 0 15px rgba(0,255,136,0.3)' }}
+            >
+              select.theme()
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'rgba(255,255,255,0.4)' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </NeonContainer>
+      </NeonSection>
+    );
+  }
 
-// ============================================
-// LUXE LAYOUT - Gold Shimmer Accordion
-// ============================================
-const LuxeLayout = ({ usps, isVisible }) => {
-  const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+  // ==========================================
+  // VIDEO - Icon-Liste mit Hover-Reveal (Default)
+  // ==========================================
   return (
-    <LuxeContainer>
-      <LuxeHeader $visible={isVisible}>
-        <LuxeDiamond>✦</LuxeDiamond>
-        <LuxeEyebrow>WARUM S&I</LuxeEyebrow>
-        <LuxeTitle>Was uns besonders macht</LuxeTitle>
-      </LuxeHeader>
-      <LuxeList>
-        {usps.map((usp, i) => (
-          <React.Fragment key={usp.title}>
-            <LuxeDivider $visible={isVisible} $delay={0.2 + i * 0.1} />
-            <LuxeItem $visible={isVisible} $delay={0.3 + i * 0.1}>
-              <LuxeItemNumber>
-                <span>✦</span> {romanNumerals[i]} <span>✦</span>
-              </LuxeItemNumber>
-              <LuxeItemIcon>{usp.icon}</LuxeItemIcon>
-              <LuxeItemContent>
-                <LuxeItemTitle>{usp.title.toUpperCase()}</LuxeItemTitle>
-                <LuxeItemDesc>{usp.desc}</LuxeItemDesc>
-              </LuxeItemContent>
-            </LuxeItem>
-          </React.Fragment>
-        ))}
-        <LuxeDivider $visible={isVisible} $delay={1} />
-      </LuxeList>
-      <LuxeFooterDiamond $visible={isVisible}>✦</LuxeFooterDiamond>
-    </LuxeContainer>
+    <VideoSection id="features">
+      <VideoContainer>
+        <VideoHeader>
+          <VideoEyebrow>Warum S&I.</VideoEyebrow>
+          <VideoTitle>Was uns besonders macht</VideoTitle>
+        </VideoHeader>
+        
+        <VideoList>
+          {USPS.map((usp, i) => (
+            <VideoItem key={i} onClick={() => setOpenItem(openItem === i ? -1 : i)}>
+              <VideoItemHeader>
+                <VideoItemIcon>{usp.icon}</VideoItemIcon>
+                <VideoItemTitle>{usp.title}</VideoItemTitle>
+                <VideoItemArrow $open={openItem === i}>→</VideoItemArrow>
+              </VideoItemHeader>
+              <VideoItemContent $open={openItem === i}>
+                <VideoItemDesc>{usp.desc}</VideoItemDesc>
+              </VideoItemContent>
+            </VideoItem>
+          ))}
+        </VideoList>
+        
+        <VideoRSVP>
+          <VideoRSVPTitle>{RSVP_FEATURE.icon} {RSVP_FEATURE.title}</VideoRSVPTitle>
+          <VideoRSVPDesc>{RSVP_FEATURE.desc}</VideoRSVPDesc>
+        </VideoRSVP>
+        
+        <CTABox>
+          <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', color: 'rgba(255,255,255,0.8)' }}>
+            {CTA_TEXT.headline}
+          </CTAHeadline>
+          <CTAButton 
+            onClick={scrollToThemes}
+            style={{ fontFamily: "'Manrope', sans-serif", color: '#FFFFFF', background: 'transparent', border: '1px solid #6B8CAE' }}
+          >
+            {CTA_TEXT.button}
+          </CTAButton>
+          <CTASubline style={{ fontFamily: "'Inter', sans-serif", color: 'rgba(255,255,255,0.4)' }}>
+            {CTA_TEXT.subline}
+          </CTASubline>
+        </CTABox>
+      </VideoContainer>
+    </VideoSection>
   );
 };
 
 export default USPSection;
-
-// ============================================
-// STYLES
-// ============================================
-const Section = styled.section`
-  padding: 100px 20px;
-  @media (min-width: 600px) { padding: 140px 5%; }
-  position: relative;
-  overflow: hidden;
-  ${p => p.$themeId === 'editorial' && css`background: #1A1A1A;`}
-  ${p => p.$themeId === 'contemporary' && css`background: #0D0D0D;`}
-  ${p => p.$themeId === 'botanical' && css`background: #2C3E2D;`}
-  ${p => p.$themeId === 'neon' && css`background: #0a0a0f;`}
-  ${p => p.$themeId === 'video' && css`background: #FAFAFA;`}
-  ${p => p.$themeId === 'luxe' && css`background: #0A0A0A;`}
-`;
-
-// ============================================
-// EDITORIAL STYLES
-// ============================================
-const EditorialContainer = styled.div`max-width: 900px; margin: 0 auto;`;
-const EditorialHeader = styled.div`
-  text-align: center; margin-bottom: 80px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease;
-`;
-const EditorialEyebrow = styled.span`
-  display: block; font-family: 'Inter', sans-serif;
-  font-size: 0.7rem; letter-spacing: 0.3em; color: #666; margin-bottom: 20px;
-`;
-const EditorialTitle = styled.h2`
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; font-style: italic; color: #FFFFFF;
-`;
-const EditorialList = styled.div`display: flex; flex-direction: column; gap: 40px;`;
-const EditorialItem = styled.div`
-  display: flex; align-items: flex-start; gap: 30px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateX(${p => p.$visible ? 0 : '-40px'});
-  transition: all 0.6s ease;
-  transition-delay: ${p => p.$delay}s;
-  @media (max-width: 600px) { gap: 20px; }
-`;
-const EditorialItemIcon = styled.div`
-  font-size: 2.5rem; flex-shrink: 0;
-  @media (max-width: 600px) { font-size: 2rem; }
-`;
-const EditorialItemContent = styled.div`flex: 1;`;
-const EditorialItemTitle = styled.h3`
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: 1.4rem; font-style: italic; color: #FFFFFF; margin-bottom: 10px;
-`;
-const EditorialItemLine = styled.div`
-  height: 1px; background: #444; margin-bottom: 12px;
-  width: ${p => p.$visible ? '100%' : '0'};
-  transition: width 0.8s ease;
-  transition-delay: ${p => p.$delay}s;
-`;
-const EditorialItemDesc = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.8;
-`;
-
-// ============================================
-// CONTEMPORARY STYLES
-// ============================================
-const ContemporaryContainer = styled.div`max-width: 1100px; margin: 0 auto; position: relative;`;
-const ContemporaryShapes = styled.div`position: absolute; inset: 0; pointer-events: none; z-index: 0;`;
-const ContemporaryCircle = styled.div`
-  position: absolute; border-radius: 50%; opacity: 0.5;
-  width: ${p => p.$size}; height: ${p => p.$size}; background: ${p => p.$color};
-  top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'};
-  left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'};
-  animation: ${float} 6s ease-in-out infinite;
-`;
-const ContemporaryDiamond = styled.div`
-  position: absolute; transform: rotate(45deg); opacity: 0.5;
-  width: ${p => p.$size}; height: ${p => p.$size}; background: ${p => p.$color};
-  top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'};
-  left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'};
-  animation: ${float} 7s ease-in-out infinite reverse;
-`;
-const ContemporarySquare = styled.div`
-  position: absolute; border: 3px solid #FFFFFF; opacity: 0.2;
-  width: ${p => p.$size}; height: ${p => p.$size};
-  top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'};
-  left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'};
-  animation: ${float} 8s ease-in-out infinite;
-`;
-const ContemporaryHeader = styled.div`
-  text-align: center; margin-bottom: 60px; position: relative; z-index: 1;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease;
-`;
-const ContemporaryBadge = styled.div`
-  display: inline-block; font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
-  color: #0D0D0D; background: #FFE66D; padding: 10px 20px; margin-bottom: 25px;
-`;
-const ContemporaryTitle = styled.h2`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: #FFFFFF;
-`;
-const ContemporaryGrid = styled.div`
-  display: grid; 
-  grid-template-columns: 1fr; 
-  gap: 20px;
-  position: relative; z-index: 1;
-  @media (min-width: 600px) { grid-template-columns: repeat(2, 1fr); gap: 25px; }
-  @media (min-width: 900px) { grid-template-columns: repeat(3, 1fr); }
-`;
-const ContemporaryCard = styled.div`
-  background: #FFFFFF; border: 3px solid #FFFFFF; padding: 30px 20px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  animation: ${p => p.$visible ? css`${bounce} 0.6s ease forwards` : 'none'};
-  animation-delay: ${p => p.$delay}s;
-  transition: all 0.3s ease;
-  @media (min-width: 600px) { padding: 35px 25px; }
-  &:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 8px 8px 0 ${p => p.$color};
-  }
-`;
-const ContemporaryCardIcon = styled.div`font-size: 2.5rem; margin-bottom: 20px;`;
-const ContemporaryCardTitle = styled.h3`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem; font-weight: 700; color: #0D0D0D; margin-bottom: 12px;
-`;
-const ContemporaryCardLine = styled.div`
-  width: 40px; height: 4px; background: ${p => p.$color}; margin-bottom: 15px;
-`;
-const ContemporaryCardDesc = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem; color: #666; line-height: 1.7;
-`;
-
-// ============================================
-// BOTANICAL STYLES
-// ============================================
-const BotanicalContainer = styled.div`max-width: 1100px; margin: 0 auto; position: relative;`;
-const BotanicalLeaves = styled.div`position: absolute; inset: 0; pointer-events: none; z-index: 0;`;
-const BotanicalLeaf = styled.div`
-  position: absolute; font-size: ${p => p.$size}; opacity: 0.15;
-  animation: ${leafFloat} 5s ease-in-out infinite;
-  animation-delay: ${p => p.$delay};
-  top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'};
-  left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'};
-`;
-const BotanicalHeader = styled.div`
-  text-align: center; margin-bottom: 60px; position: relative; z-index: 1;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease;
-`;
-const BotanicalEyebrow = styled.span`
-  display: block; font-family: 'Lato', sans-serif;
-  font-size: 0.75rem; letter-spacing: 0.4em; color: #8B9D83; margin-bottom: 20px;
-`;
-const BotanicalTitle = styled.h2`
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; font-style: italic; color: #F5F1EB;
-`;
-const BotanicalGrid = styled.div`
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
-  position: relative; z-index: 1;
-  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 600px) { grid-template-columns: 1fr; }
-`;
-const BotanicalCard = styled.div`
-  background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
-  border-radius: 20px; padding: 35px 25px; text-align: center;
-  border: 1px solid rgba(139, 157, 131, 0.2);
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.6s ease;
-  transition-delay: ${p => p.$delay}s;
-  animation: ${p => p.$visible && p.$float ? css`${float} 4s ease-in-out infinite` : 'none'};
-  animation-delay: ${p => p.$delay}s;
-  &:hover {
-    transform: translateY(-8px);
-    background: rgba(255,255,255,0.12);
-    border-color: #8B9D83;
-  }
-`;
-const BotanicalCardIcon = styled.div`font-size: 2.5rem; margin-bottom: 20px;`;
-const BotanicalCardTitle = styled.h3`
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.3rem; font-style: italic; color: #F5F1EB; margin-bottom: 12px;
-`;
-const BotanicalCardDesc = styled.p`
-  font-family: 'Lato', sans-serif;
-  font-size: 0.9rem; color: rgba(245, 241, 235, 0.6); line-height: 1.7;
-`;
-
-// ============================================
-// NEON STYLES
-// ============================================
-const NeonContainer = styled.div`max-width: 900px; margin: 0 auto;`;
-const NeonTerminal = styled.div`
-  background: #0D0D12; border: 1px solid rgba(0, 255, 255, 0.3);
-  border-radius: 8px; overflow: hidden;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease;
-`;
-const NeonTerminalHeader = styled.div`
-  display: flex; align-items: center; gap: 8px;
-  padding: 15px 20px; background: #1A1A22;
-  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-`;
-const NeonDot = styled.div`width: 12px; height: 12px; border-radius: 50%; background: ${p => p.$color};`;
-const NeonTerminalTitle = styled.span`
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); margin-left: 15px;
-`;
-const NeonTerminalBody = styled.div`padding: 30px;`;
-const NeonTypingLine = styled.div`
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.85rem; color: #00ffff; margin-bottom: 20px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transition: opacity 0.5s ease;
-  transition-delay: ${p => p.$delay};
-  span { color: #ff00ff; }
-`;
-const NeonCursor = styled.span`animation: ${blink} 1s infinite;`;
-const NeonFeatureList = styled.div`display: flex; flex-direction: column; gap: 25px; margin: 30px 0;`;
-const NeonFeature = styled.div`
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateX(${p => p.$visible ? 0 : '-20px'});
-  transition: all 0.5s ease;
-  transition-delay: ${p => p.$delay}s;
-`;
-const NeonFeatureHeader = styled.div`display: flex; align-items: center; gap: 15px; margin-bottom: 8px;`;
-const NeonFeatureIndex = styled.span`
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.85rem; color: #ff00ff;
-`;
-const NeonFeatureTitle = styled.span`
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.95rem; color: #FFFFFF; font-weight: 600;
-`;
-const NeonProgressContainer = styled.div`display: flex; align-items: center; gap: 15px; margin-bottom: 8px;`;
-const NeonProgressBar = styled.div`
-  flex: 1; height: 6px; background: rgba(0, 255, 255, 0.1); border-radius: 3px;
-  position: relative; overflow: hidden;
-  &::after {
-    content: '';
-    position: absolute; left: 0; top: 0; height: 100%;
-    background: linear-gradient(90deg, #00ffff, #ff00ff);
-    border-radius: 3px;
-    width: ${p => p.$visible ? `${p.$progress}%` : '0'};
-    transition: width 1s ease;
-    transition-delay: ${p => p.$delay}s;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-  }
-`;
-const NeonProgressValue = styled.span`
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.8rem; color: #00ffff; min-width: 45px;
-`;
-const NeonFeatureDesc = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.8rem; color: rgba(255, 255, 255, 0.4);
-  padding-left: 55px; line-height: 1.6;
-`;
-
-// ============================================
-// VIDEO STYLES - Elegant with Gold Lines
-// ============================================
-const VideoContainer = styled.div`max-width: 900px; margin: 0 auto;`;
-const VideoHeader = styled.div`
-  text-align: center; margin-bottom: 80px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease;
-`;
-const VideoEyebrow = styled.span`
-  display: block; font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem; letter-spacing: 0.3em; color: #B8976A; margin-bottom: 20px;
-`;
-const VideoTitle = styled.h2`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; font-style: italic; color: #1A1A1A;
-`;
-const VideoList = styled.div`display: flex; flex-direction: column; gap: 30px;`;
-const VideoCard = styled.div`
-  display: flex; align-items: flex-start; gap: 30px;
-  padding: 30px; background: #FFFFFF;
-  border: 1px solid rgba(184, 151, 106, 0.15);
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.6s ease;
-  transition-delay: ${p => p.$delay}s;
-  &:hover {
-    border-color: #B8976A;
-    box-shadow: 0 10px 40px rgba(184, 151, 106, 0.1);
-  }
-  @media (max-width: 600px) { gap: 20px; padding: 25px 20px; }
-`;
-const VideoCardIcon = styled.div`
-  font-size: 2.5rem; flex-shrink: 0;
-  @media (max-width: 600px) { font-size: 2rem; }
-`;
-const VideoCardContent = styled.div`flex: 1;`;
-const VideoCardTitle = styled.h3`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.4rem; font-weight: 500; font-style: italic; color: #1A1A1A; margin-bottom: 12px;
-`;
-const VideoCardLine = styled.div`
-  height: 1px; background: #B8976A; margin-bottom: 15px;
-  width: ${p => p.$visible ? '80px' : '0'};
-  transition: width 0.8s ease;
-  transition-delay: ${p => p.$delay}s;
-`;
-const VideoCardDesc = styled.p`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.95rem; color: rgba(26, 26, 26, 0.6); line-height: 1.8;
-`;
-const VideoFooterLine = styled.div`
-  height: 1px; margin-top: 60px;
-  background: linear-gradient(90deg, transparent, rgba(184, 151, 106, 0.4), transparent);
-  opacity: ${p => p.$visible ? 1 : 0};
-  transition: opacity 1s ease;
-  transition-delay: 1.2s;
-`;
-
-// ============================================
-// LUXE STYLES
-// ============================================
-const LuxeContainer = styled.div`max-width: 800px; margin: 0 auto; text-align: center;`;
-const LuxeHeader = styled.div`
-  margin-bottom: 60px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease;
-`;
-const LuxeDiamond = styled.div`font-size: 1.5rem; color: #D4AF37; margin-bottom: 25px;`;
-const LuxeEyebrow = styled.span`
-  display: block; font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem; letter-spacing: 0.4em; color: #D4AF37; margin-bottom: 20px;
-`;
-const LuxeTitle = styled.h2`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; font-style: italic; color: #FEFEFE;
-`;
-const LuxeList = styled.div`text-align: left;`;
-const LuxeDivider = styled.div`
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-  opacity: ${p => p.$visible ? 0.3 : 0};
-  transition: opacity 0.8s ease;
-  transition-delay: ${p => p.$delay}s;
-`;
-const LuxeItem = styled.div`
-  display: flex; align-items: flex-start; gap: 25px; padding: 35px 0;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '20px'});
-  transition: all 0.6s ease;
-  transition-delay: ${p => p.$delay}s;
-  @media (max-width: 600px) { flex-wrap: wrap; gap: 15px; }
-`;
-const LuxeItemNumber = styled.div`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1rem; font-style: italic; color: #D4AF37;
-  min-width: 80px; flex-shrink: 0;
-  span { font-size: 0.7rem; }
-  @media (max-width: 600px) { min-width: auto; }
-`;
-const LuxeItemIcon = styled.div`font-size: 2rem; flex-shrink: 0;`;
-const LuxeItemContent = styled.div`flex: 1;`;
-const LuxeItemTitle = styled.h3`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem; font-weight: 400; letter-spacing: 0.2em;
-  color: #FEFEFE; margin-bottom: 10px;
-`;
-const LuxeItemDesc = styled.p`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.05rem; font-style: italic; color: rgba(255, 255, 255, 0.5); line-height: 1.8;
-`;
-const LuxeFooterDiamond = styled.div`
-  font-size: 1.5rem; color: #D4AF37; margin-top: 40px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transition: opacity 0.8s ease;
-  transition-delay: 1.2s;
-`;
