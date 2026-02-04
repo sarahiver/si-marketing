@@ -738,15 +738,22 @@ function ExamplesShowcase() {
   }, [])
 
   const handleCardClick = (theme) => {
-    // Wenn Demo noch nicht verfügbar, zeige Message
-    if (theme.comingSoon || !theme.demoUrl) {
-      // Wechsle zum Theme für Vorschau
-      if (switchTheme && theme.id) {
-        switchTheme(theme.id);
-      }
+    // Wenn externe URL vorhanden, öffne in neuem Tab
+    if (theme.externalUrl) {
+      window.open(theme.externalUrl, '_blank', 'noopener,noreferrer');
       return;
     }
-    navigate(theme.demoUrl)
+    
+    // Wenn interne Demo-URL vorhanden
+    if (theme.demoUrl && !theme.comingSoon) {
+      window.open(theme.demoUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    
+    // Fallback: Wechsle zum Theme für Vorschau
+    if (switchTheme && theme.id) {
+      switchTheme(theme.id);
+    }
   }
 
   const themeEmojis = {

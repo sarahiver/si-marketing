@@ -53,9 +53,17 @@ const Nav = styled.nav`
     gap: 0.5rem;
     
     @media (max-width: 768px) {
-      top: 1rem;
-      border-radius: 30px;
-      padding: 0.5rem 1rem;
+      top: 0;
+      left: 0;
+      right: 0;
+      transform: none;
+      max-width: none;
+      width: 100%;
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(4, 10, 4, 0.95);
+      padding: 1rem 1.5rem;
     }
   `}
   

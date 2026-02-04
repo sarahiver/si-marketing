@@ -162,7 +162,7 @@ const EditorialScrollHint = styled.div`
 // ============================================
 const BotanicalSection = styled.section`
   min-height: 100vh;
-  background: #020802;
+  background: transparent;
   position: relative;
   display: flex;
   align-items: center;
@@ -174,7 +174,7 @@ const BotanicalBg = styled.div`
   position: fixed;
   inset: 0;
   background: url(${FOREST_BG}) center/cover no-repeat;
-  filter: brightness(0.4) saturate(0.8);
+  filter: brightness(0.5) saturate(0.85);
   z-index: -10;
 `;
 

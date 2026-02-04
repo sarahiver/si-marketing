@@ -53,13 +53,13 @@ const BotanicalLeaves = () => {
   // Scroll-Fortschritt (0 bis 1)
   const progress = Math.min(scrollY / maxScroll, 1);
   
-  // Sanfte Sinus-Wellen für organische Bewegung
-  const wave1 = Math.sin(scrollY * 0.002) * 5;
-  const wave2 = Math.sin(scrollY * 0.0015 + 1) * 4;
-  const wave3 = Math.sin(scrollY * 0.0018 + 2) * 6;
+  // Sehr sanfte Sinus-Wellen für subtile organische Bewegung
+  const wave1 = Math.sin(scrollY * 0.001) * 2;
+  const wave2 = Math.sin(scrollY * 0.0008 + 1) * 1.5;
+  const wave3 = Math.sin(scrollY * 0.0009 + 2) * 2;
 
-  // Größenänderung: Startet groß, wird kleiner beim Scrollen
-  const sizeMultiplier = 1 - (progress * 0.3); // 100% bis 70%
+  // Subtile Größenänderung: 100% bis 85%
+  const sizeMultiplier = 1 - (progress * 0.15);
 
   // Top-Left Blatt
   const topLeftStyle = {
