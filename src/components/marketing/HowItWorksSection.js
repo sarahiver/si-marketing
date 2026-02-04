@@ -1,6 +1,12 @@
 // src/components/marketing/HowItWorksSection.js
-// Premium emotional Version - "In 4 Schritten zu eurer S&I. Premium Hochzeitswebsite"
-import React from 'react';
+// 6 verschiedene Layout-Logiken pro Theme:
+// Editorial: Horizontale Timeline mit Connector-Lines
+// Botanical: Akkordeon/FAQ-Style (aufklappbar)
+// Contemporary: Karten-Grid mit Hover-Effekten
+// Luxe: Großflächig untereinander (Full-Width Sections)
+// Neon: Terminal/CLI Style mit "typing" Effekt
+// Video: Vertikale Stepper-Timeline links
+import React, { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -15,6 +21,7 @@ const STEPS = [
     desc: 'Ihr entdeckt unsere Designs, spürt den Stil, seht die Qualität – und merkt: „Das fühlt sich nach uns an."',
     detail: 'Mit nur wenigen Klicks sendet ihr eure Anfrage. Unverbindlich. Einfach. Schnell.',
     highlight: '✨ Der erste Schritt zu einer Hochzeit mit digitalem Wow-Effekt.',
+    icon: '💕',
   },
   {
     num: '02',
@@ -27,11 +34,12 @@ const STEPS = [
       'Welche Details machen eure Website einzigartig?',
     ],
     highlight: '🤍 Ihr trefft keine technische Entscheidung – wir führen euch stilvoll.',
+    icon: '💬',
   },
   {
     num: '03',
     tag: 'Einfach. Geführt. Entspannt.',
-    title: 'Ihr liefert Inhalte. Wir übernehmen den Rest.',
+    title: 'Ihr liefert Inhalte',
     desc: 'Ihr erhaltet Zugang zu eurem persönlichen Admin-Dashboard.',
     bullets: [
       'Texte & Infos eintragen',
@@ -40,18 +48,20 @@ const STEPS = [
     ],
     detail: 'Das technische Grundgerüst steht bereits – ihr müsst nichts bauen, nichts programmieren.',
     highlight: '🧩 Ihr teilt eure Geschichte – wir verwandeln sie in Design.',
+    icon: '📝',
   },
   {
     num: '04',
     tag: 'Der große Moment – auch digital.',
-    title: 'Wir gestalten. Ihr geht live.',
+    title: 'Ihr geht live',
     desc: 'Wir setzen eure Website professionell um, optimieren jedes Detail und informieren euch, sobald sie live ist.',
     bullets: [
-      '✨ Feinschliff & Design-Revisionen',
-      '🔁 Anpassungen nach eurem Feedback',
-      '🚀 Finale Freigabe durch euch',
+      'Feinschliff & Design-Revisionen',
+      'Anpassungen nach eurem Feedback',
+      'Finale Freigabe durch euch',
     ],
     highlight: '💍 Elegant. Emotional. Eindrucksvoll.',
+    icon: '🚀',
   },
 ];
 
@@ -64,61 +74,48 @@ const CTA_TEXT = {
 // ============================================
 // ANIMATIONS
 // ============================================
-const fadeInUp = keyframes`
-  from { opacity: 0; transform: translateY(30px); }
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 `;
 
-const shimmer = keyframes`
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+const slideDown = keyframes`
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 500px; }
+`;
+
+const typing = keyframes`
+  from { width: 0; }
+  to { width: 100%; }
+`;
+
+const blink = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 `;
 
 const pulse = keyframes`
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-`;
-
-const glow = keyframes`
-  0%, 100% { box-shadow: 0 0 20px rgba(0,255,255,0.3); }
-  50% { box-shadow: 0 0 40px rgba(0,255,255,0.6); }
+  50% { transform: scale(1.1); }
 `;
 
 // ============================================
-// BASE STYLES
+// EDITORIAL - Horizontale Timeline
 // ============================================
-const Section = styled.section`
+const EditorialSection = styled.section`
   padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
-  position: relative;
+  background: #0A0A0A;
   overflow: hidden;
 `;
 
-const Container = styled.div`
-  max-width: 1000px;
+const EditorialContainer = styled.div`
+  max-width: 1200px;
   margin: 0 auto;
 `;
 
-const Header = styled.div`
+const EditorialHeader = styled.div`
   text-align: center;
-  margin-bottom: clamp(3rem, 8vh, 5rem);
-`;
-
-const StepsList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: clamp(3rem, 6vh, 5rem);
-`;
-
-const CTABox = styled.div`
-  margin-top: clamp(4rem, 10vh, 6rem);
-  text-align: center;
-`;
-
-// ============================================
-// EDITORIAL THEME
-// ============================================
-const EditorialSection = styled(Section)`
-  background: #0A0A0A;
+  margin-bottom: 4rem;
 `;
 
 const EditorialEyebrow = styled.p`
@@ -128,7 +125,7 @@ const EditorialEyebrow = styled.p`
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: #C41E3A;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const EditorialTitle = styled.h2`
@@ -137,149 +134,105 @@ const EditorialTitle = styled.h2`
   font-weight: 700;
   text-transform: uppercase;
   color: #FAFAFA;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
   
-  span {
-    color: #C41E3A;
-  }
+  span { color: #C41E3A; }
 `;
 
-const EditorialSubtitle = styled.p`
-  font-family: 'Source Serif 4', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.6);
-  max-width: 600px;
-  margin: 0 auto;
-`;
-
-const EditorialStep = styled.div`
+const EditorialTimeline = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2rem;
-  align-items: start;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
   
-  @media (max-width: 600px) {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: linear-gradient(90deg, #C41E3A 0%, rgba(196,30,58,0.3) 100%);
+  }
+  
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-`;
-
-const EditorialNum = styled.div`
-  font-family: 'Oswald', sans-serif;
-  font-size: 4rem;
-  font-weight: 700;
-  color: rgba(196, 30, 58, 0.3);
-  line-height: 1;
-  
-  @media (max-width: 600px) {
-    font-size: 3rem;
-  }
-`;
-
-const EditorialStepContent = styled.div``;
-
-const EditorialTag = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 0.5rem;
-`;
-
-const EditorialStepTitle = styled.h3`
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #FAFAFA;
-  margin-bottom: 1rem;
-`;
-
-const EditorialDesc = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.7;
-  margin-bottom: 1rem;
-`;
-
-const EditorialBullets = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
-    padding: 0.4rem 0;
-    padding-left: 1.5rem;
-    position: relative;
+    gap: 2rem;
     
     &::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: #C41E3A;
+      display: none;
     }
   }
 `;
 
-const EditorialHighlight = styled.p`
-  font-family: 'Source Serif 4', serif;
-  font-size: 1rem;
-  font-style: italic;
-  color: #C41E3A;
-  margin-top: 1.5rem;
-  padding-left: 1rem;
-  border-left: 2px solid rgba(196, 30, 58, 0.3);
+const EditorialStep = styled.div`
+  text-align: center;
+  position: relative;
+  padding: 0 1rem;
 `;
 
-const EditorialCTAHeadline = styled.p`
-  font-family: 'Source Serif 4', serif;
-  font-size: 1.3rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 2rem;
-`;
-
-const EditorialCTAButton = styled.button`
-  font-family: 'Oswald', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #FAFAFA;
-  background: #C41E3A;
-  border: none;
-  padding: 1.2rem 3rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+const EditorialDot = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #0A0A0A;
+  border: 2px solid #C41E3A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  z-index: 2;
   
-  &:hover {
-    background: #a01830;
-    transform: translateY(-2px);
+  span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #C41E3A;
   }
 `;
 
-const EditorialCTASubline = styled.p`
+const EditorialStepTitle = styled.h3`
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  margin-bottom: 0.75rem;
+`;
+
+const EditorialStepDesc = styled.p`
   font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.4);
-  margin-top: 1.5rem;
-  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+`;
+
+const EditorialHighlight = styled.p`
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #C41E3A;
+  margin-top: 1rem;
 `;
 
 // ============================================
-// BOTANICAL THEME
+// BOTANICAL - Akkordeon/FAQ Style
 // ============================================
-const BotanicalSection = styled(Section)`
+const BotanicalSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
   background: transparent;
   position: relative;
   z-index: 10;
+`;
+
+const BotanicalContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
+const BotanicalHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
 `;
 
 const BotanicalEyebrow = styled.p`
@@ -289,71 +242,72 @@ const BotanicalEyebrow = styled.p`
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.5);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const BotanicalTitle = styled.h2`
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 300;
   color: rgba(255,255,255,0.95);
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
 `;
 
-const BotanicalSubtitle = styled.p`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.6);
-  max-width: 600px;
-  margin: 0 auto;
+const BotanicalAccordion = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
-const BotanicalStep = styled.div`
+const BotanicalItem = styled.div`
   background: rgba(255,255,255,0.06);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2rem;
-  align-items: start;
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
+  border: 1px solid ${p => p.$open ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.1)'};
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
 `;
 
-const BotanicalNum = styled.div`
+const BotanicalItemHeader = styled.button`
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: left;
+`;
+
+const BotanicalNum = styled.span`
   font-family: 'Cormorant Garamond', serif;
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.2);
-  line-height: 1;
+  color: rgba(255,255,255,0.3);
+  min-width: 50px;
 `;
 
-const BotanicalStepContent = styled.div``;
-
-const BotanicalTag = styled.p`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.55rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 0.5rem;
-`;
-
-const BotanicalStepTitle = styled.h3`
+const BotanicalItemTitle = styled.span`
+  flex: 1;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 1.3rem;
   color: rgba(255,255,255,0.95);
-  margin-bottom: 1rem;
+`;
+
+const BotanicalToggle = styled.span`
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.5);
+  transition: transform 0.3s ease;
+  transform: rotate(${p => p.$open ? '45deg' : '0'});
+`;
+
+const BotanicalItemContent = styled.div`
+  max-height: ${p => p.$open ? '400px' : '0'};
+  opacity: ${p => p.$open ? 1 : 0};
+  overflow: hidden;
+  transition: all 0.4s ease;
+  padding: ${p => p.$open ? '0 2rem 2rem 5.5rem' : '0 2rem 0 5.5rem'};
 `;
 
 const BotanicalDesc = styled.p`
@@ -361,84 +315,32 @@ const BotanicalDesc = styled.p`
   font-size: 0.9rem;
   color: rgba(255,255,255,0.6);
   line-height: 1.7;
-`;
-
-const BotanicalBullets = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-    padding: 0.4rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-    
-    &::before {
-      content: '·';
-      position: absolute;
-      left: 0;
-      color: rgba(255,255,255,0.4);
-    }
-  }
+  margin-bottom: 1rem;
 `;
 
 const BotanicalHighlight = styled.p`
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-style: italic;
   color: rgba(255,255,255,0.8);
-  margin-top: 1.5rem;
-`;
-
-const BotanicalCTABox = styled(CTABox)`
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(40px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  padding: 3rem 2rem;
-`;
-
-const BotanicalCTAHeadline = styled.p`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 2rem;
-`;
-
-const BotanicalCTAButton = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #040604;
-  background: rgba(255,255,255,0.95);
-  border: none;
-  border-radius: 50px;
-  padding: 1.2rem 3rem;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(255,255,255,0.15);
-  }
-`;
-
-const BotanicalCTASubline = styled.p`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.4);
-  margin-top: 1.5rem;
 `;
 
 // ============================================
-// CONTEMPORARY THEME
+// CONTEMPORARY - Karten-Grid mit Hover
 // ============================================
-const ContemporarySection = styled(Section)`
-  background: #4ECDC4;
+const ContemporarySection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FFE66D;
+`;
+
+const ContemporaryContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+`;
+
+const ContemporaryHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
 `;
 
 const ContemporaryEyebrow = styled.p`
@@ -448,166 +350,97 @@ const ContemporaryEyebrow = styled.p`
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #0D0D0D;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 const ContemporaryTitle = styled.h2`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   text-transform: uppercase;
   color: #0D0D0D;
-  line-height: 1.1;
-  margin-bottom: 1rem;
 `;
 
-const ContemporarySubtitle = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  color: rgba(13,13,13,0.7);
-  max-width: 600px;
-  margin: 0 auto;
+const ContemporaryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-const ContemporaryStep = styled.div`
+const CARD_COLORS = ['#FF6B6B', '#4ECDC4', '#9B5DE5', '#0D0D0D'];
+
+const ContemporaryCard = styled.div`
   background: #fff;
   border: 3px solid #0D0D0D;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  box-shadow: 8px 8px 0 ${p => ['#FF6B6B', '#FFE66D', '#9B5DE5', '#0D0D0D'][p.$i % 4]};
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2rem;
-  align-items: start;
+  padding: 2rem;
+  position: relative;
   transition: all 0.3s ease;
+  box-shadow: 6px 6px 0 ${p => CARD_COLORS[p.$i % 4]};
   
   &:hover {
     transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0 ${p => ['#FF6B6B', '#FFE66D', '#9B5DE5', '#0D0D0D'][p.$i % 4]};
-  }
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    box-shadow: 10px 10px 0 ${p => CARD_COLORS[p.$i % 4]};
   }
 `;
 
-const ContemporaryNum = styled.div`
+const ContemporaryCardNum = styled.div`
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: ${p => CARD_COLORS[p.$i % 4]};
+  color: ${p => p.$i === 3 ? '#fff' : '#0D0D0D'};
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 3.5rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: #0D0D0D;
-  line-height: 1;
+  padding: 0.4rem 1rem;
+  border: 2px solid #0D0D0D;
 `;
 
-const ContemporaryStepContent = styled.div``;
-
-const ContemporaryTag = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #525252;
-  margin-bottom: 0.5rem;
-`;
-
-const ContemporaryStepTitle = styled.h3`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #0D0D0D;
+const ContemporaryCardIcon = styled.div`
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 `;
 
-const ContemporaryDesc = styled.p`
+const ContemporaryCardTitle = styled.h3`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  margin-bottom: 0.75rem;
+`;
+
+const ContemporaryCardDesc = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
   color: #525252;
   line-height: 1.6;
 `;
 
-const ContemporaryBullets = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    color: #525252;
-    padding: 0.4rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    
-    &::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: #FF6B6B;
-      font-weight: 700;
-    }
-  }
-`;
-
-const ContemporaryHighlight = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #FF6B6B;
-  margin-top: 1.5rem;
-  padding: 0.75rem 1rem;
-  background: #FFE66D;
-  border: 2px solid #0D0D0D;
-  display: inline-block;
-`;
-
-const ContemporaryCTABox = styled(CTABox)`
-  background: #fff;
-  border: 3px solid #0D0D0D;
-  box-shadow: 8px 8px 0 #FF6B6B;
-  padding: 3rem 2rem;
-`;
-
-const ContemporaryCTAHeadline = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #0D0D0D;
-  margin-bottom: 2rem;
-`;
-
-const ContemporaryCTAButton = styled.button`
+const ContemporaryCardHighlight = styled.p`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #FAFAFA;
-  background: #FF6B6B;
-  border: 3px solid #0D0D0D;
-  padding: 1.2rem 3rem;
-  box-shadow: 4px 4px 0 #0D0D0D;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  
-  &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 #0D0D0D;
-  }
-`;
-
-const ContemporaryCTASubline = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.75rem;
-  color: #525252;
-  margin-top: 1.5rem;
+  font-weight: 600;
+  color: #FF6B6B;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px dashed #E5E5E5;
 `;
 
 // ============================================
-// LUXE THEME
+// LUXE - Full-Width Sections untereinander
 // ============================================
-const LuxeSection = styled(Section)`
+const LuxeSection = styled.section`
   background: #0A0A0A;
+`;
+
+const LuxeHeader = styled.div`
+  text-align: center;
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem) 4rem;
 `;
 
 const LuxeEyebrow = styled.p`
@@ -617,7 +450,7 @@ const LuxeEyebrow = styled.p`
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: #C9A962;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const LuxeTitle = styled.h2`
@@ -626,319 +459,207 @@ const LuxeTitle = styled.h2`
   font-weight: 300;
   font-style: italic;
   color: #F8F6F3;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-`;
-
-const LuxeSubtitle = styled.p`
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  color: rgba(248,246,243,0.5);
-  max-width: 600px;
-  margin: 0 auto;
 `;
 
 const LuxeStep = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2.5rem;
-  align-items: start;
-  padding: 2.5rem 0;
-  border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+  grid-template-columns: ${p => p.$reverse ? '1fr 1fr' : '1fr 1fr'};
+  min-height: 50vh;
   
-  &:last-child { border-bottom: none; }
-  
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 1rem;
   }
 `;
 
-const LuxeNum = styled.div`
-  font-family: 'Cormorant', serif;
-  font-size: 3.5rem;
-  font-weight: 300;
-  font-style: italic;
-  color: #C9A962;
-  line-height: 1;
+const LuxeStepContent = styled.div`
+  padding: clamp(3rem, 8vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: ${p => p.$reverse ? 2 : 1};
+  
+  @media (max-width: 768px) {
+    order: 2;
+  }
 `;
 
-const LuxeStepContent = styled.div``;
+const LuxeStepVisual = styled.div`
+  background: ${p => p.$bg || '#111'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: ${p => p.$reverse ? 1 : 2};
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(201,169,98,0.1) 0%, transparent 70%);
+  }
+  
+  @media (max-width: 768px) {
+    order: 1;
+    min-height: 200px;
+  }
+`;
 
-const LuxeTag = styled.p`
+const LuxeStepNum = styled.span`
+  font-family: 'Cormorant', serif;
+  font-size: 8rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(201,169,98,0.2);
+`;
+
+const LuxeStepTag = styled.p`
   font-family: 'Outfit', sans-serif;
   font-size: 0.6rem;
   font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(248,246,243,0.4);
+  color: #C9A962;
   margin-bottom: 0.5rem;
 `;
 
 const LuxeStepTitle = styled.h3`
   font-family: 'Cormorant', serif;
-  font-size: 1.6rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 300;
   font-style: italic;
   color: #F8F6F3;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
-const LuxeDesc = styled.p`
+const LuxeStepDesc = styled.p`
   font-family: 'Outfit', sans-serif;
   font-size: 0.9rem;
   font-weight: 300;
   color: rgba(248,246,243,0.6);
-  line-height: 1.8;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
 `;
 
-const LuxeBullets = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 300;
-    color: rgba(248,246,243,0.5);
-    padding: 0.4rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-    
-    &::before {
-      content: '·';
-      position: absolute;
-      left: 0;
-      color: #C9A962;
-    }
-  }
-`;
-
-const LuxeHighlight = styled.p`
+const LuxeStepHighlight = styled.p`
   font-family: 'Cormorant', serif;
   font-size: 1.1rem;
   font-style: italic;
   color: #C9A962;
-  margin-top: 1.5rem;
-`;
-
-const LuxeCTAHeadline = styled.p`
-  font-family: 'Cormorant', serif;
-  font-size: 1.4rem;
-  font-style: italic;
-  color: rgba(248,246,243,0.8);
-  margin-bottom: 2rem;
-`;
-
-const LuxeCTAButton = styled.button`
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #0A0A0A;
-  background: #C9A962;
-  border: none;
-  padding: 1.2rem 3rem;
-  cursor: pointer;
-  transition: all 0.5s ease;
-  
-  &:hover {
-    background: #d4b66f;
-  }
-`;
-
-const LuxeCTASubline = styled.p`
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 300;
-  color: rgba(248,246,243,0.4);
-  margin-top: 1.5rem;
-  letter-spacing: 0.1em;
 `;
 
 // ============================================
-// NEON THEME
+// NEON - Terminal/CLI Style
 // ============================================
-const NeonSection = styled(Section)`
+const NeonSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
   background: #0a0a0f;
+  position: relative;
   
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     background: 
-      radial-gradient(ellipse at 20% 30%, rgba(0,255,255,0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 70%, rgba(255,0,255,0.05) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 30%, rgba(0,255,255,0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(255,0,255,0.03) 0%, transparent 50%);
     pointer-events: none;
   }
 `;
 
-const NeonEyebrow = styled.p`
+const NeonContainer = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+`;
+
+const NeonTerminal = styled.div`
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0,255,255,0.1);
+`;
+
+const NeonTerminalHeader = styled.div`
+  background: rgba(0,255,255,0.1);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(0,255,255,0.2);
+`;
+
+const NeonDot = styled.span`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: ${p => p.$c};
+`;
+
+const NeonTerminalTitle = styled.span`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  margin-left: 0.5rem;
+`;
+
+const NeonTerminalBody = styled.div`
+  padding: 1.5rem;
+`;
+
+const NeonLine = styled.div`
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  
+  &:last-child { margin-bottom: 0; }
+`;
+
+const NeonPrompt = styled.span`
+  color: #00ffff;
+  margin-right: 0.5rem;
+`;
+
+const NeonCommand = styled.span`
+  color: #00ff88;
+`;
+
+const NeonOutput = styled.div`
+  color: rgba(255,255,255,0.7);
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  line-height: 1.8;
+  border-left: 2px solid rgba(0,255,255,0.2);
+`;
+
+const NeonHighlight = styled.span`
   color: #ff00ff;
   text-shadow: 0 0 10px rgba(255,0,255,0.5);
-  margin-bottom: 1rem;
 `;
 
-const NeonTitle = styled.h2`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+const NeonComment = styled.span`
+  color: rgba(255,255,255,0.3);
+  font-style: italic;
 `;
 
-const NeonSubtitle = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.5);
-  max-width: 600px;
+// ============================================
+// VIDEO - Vertikale Stepper-Timeline
+// ============================================
+const VideoSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #0A0A0A;
+`;
+
+const VideoContainer = styled.div`
+  max-width: 700px;
   margin: 0 auto;
 `;
 
-const NeonStep = styled.div`
-  position: relative;
-  z-index: 1;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(0,255,255,0.2);
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2rem;
-  align-items: start;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    border-color: #00ffff;
-    box-shadow: 0 0 30px rgba(0,255,255,0.15);
-  }
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-`;
-
-const NeonNum = styled.div`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  color: #00ffff;
-  text-shadow: 0 0 20px rgba(0,255,255,0.5);
-  line-height: 1;
-`;
-
-const NeonStepContent = styled.div``;
-
-const NeonTag = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 0.5rem;
-`;
-
-const NeonStepTitle = styled.h3`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  margin-bottom: 1rem;
-`;
-
-const NeonDesc = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.7;
-`;
-
-const NeonBullets = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-    padding: 0.4rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    
-    &::before {
-      content: '>';
-      position: absolute;
-      left: 0;
-      color: #00ffff;
-      text-shadow: 0 0 5px rgba(0,255,255,0.5);
-    }
-  }
-`;
-
-const NeonHighlight = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem;
-  color: #00ff88;
-  text-shadow: 0 0 10px rgba(0,255,136,0.5);
-  margin-top: 1.5rem;
-`;
-
-const NeonCTABox = styled(CTABox)`
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(0,255,255,0.3);
-  padding: 3rem 2rem;
-`;
-
-const NeonCTAHeadline = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.1rem;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 2rem;
-`;
-
-const NeonCTAButton = styled.button`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #00ff88;
-  background: transparent;
-  border: 1px solid #00ff88;
-  padding: 1.2rem 3rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(0,255,136,0.3);
-  
-  &:hover {
-    background: rgba(0,255,136,0.1);
-    box-shadow: 0 0 30px rgba(0,255,136,0.5);
-  }
-`;
-
-const NeonCTASubline = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.4);
-  margin-top: 1.5rem;
-`;
-
-// ============================================
-// VIDEO THEME
-// ============================================
-const VideoSection = styled(Section)`
-  background: #0A0A0A;
+const VideoHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
 `;
 
 const VideoEyebrow = styled.p`
@@ -948,138 +669,125 @@ const VideoEyebrow = styled.p`
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #6B8CAE;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const VideoTitle = styled.h2`
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   color: #FFFFFF;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
 `;
 
-const VideoSubtitle = styled.p`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #B0B0B0;
-  max-width: 600px;
-  margin: 0 auto;
-`;
-
-const VideoStep = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2rem;
-  align-items: start;
-  padding: 2rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+const VideoTimeline = styled.div`
+  position: relative;
   
-  &:last-child { border-bottom: none; }
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #6B8CAE 0%, rgba(107,140,174,0.2) 100%);
   }
 `;
 
-const VideoNum = styled.div`
-  font-family: 'Manrope', sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  color: #6B8CAE;
-  line-height: 1;
+const VideoStep = styled.div`
+  display: flex;
+  gap: 2rem;
+  padding-bottom: 3rem;
+  
+  &:last-child { padding-bottom: 0; }
 `;
 
-const VideoStepContent = styled.div``;
+const VideoStepMarker = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #0A0A0A;
+  border: 2px solid #6B8CAE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  
+  span {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #6B8CAE;
+  }
+`;
 
-const VideoTag = styled.p`
+const VideoStepContent = styled.div`
+  flex: 1;
+  padding-top: 0.5rem;
+`;
+
+const VideoStepTag = styled.p`
   font-family: 'Inter', sans-serif;
   font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.4);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 `;
 
 const VideoStepTitle = styled.h3`
   font-family: 'Manrope', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #FFFFFF;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 `;
 
-const VideoDesc = styled.p`
+const VideoStepDesc = styled.p`
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   color: #B0B0B0;
   line-height: 1.7;
 `;
 
-const VideoBullets = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    color: #B0B0B0;
-    padding: 0.4rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-    
-    &::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: #6B8CAE;
-    }
-  }
-`;
-
-const VideoHighlight = styled.p`
+const VideoStepHighlight = styled.p`
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-style: italic;
   color: #6B8CAE;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 `;
 
-const VideoCTAHeadline = styled.p`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 2rem;
+// ============================================
+// SHARED CTA
+// ============================================
+const CTABox = styled.div`
+  margin-top: clamp(4rem, 10vh, 6rem);
+  text-align: center;
+  padding: 0 1rem;
 `;
 
-const VideoCTAButton = styled.button`
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.75rem;
+const CTAHeadline = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+`;
+
+const CTAButton = styled.button`
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  background: transparent;
-  border: 1px solid #6B8CAE;
-  padding: 1.2rem 3rem;
+  padding: 1rem 2.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  
-  &:hover {
-    background: #6B8CAE;
-  }
 `;
 
-const VideoCTASubline = styled.p`
-  font-family: 'Inter', sans-serif;
+const CTASubline = styled.p`
   font-size: 0.7rem;
-  color: rgba(255,255,255,0.4);
   margin-top: 1.5rem;
+  opacity: 0.5;
 `;
 
 // ============================================
@@ -1087,240 +795,322 @@ const VideoCTASubline = styled.p`
 // ============================================
 const HowItWorksSection = () => {
   const { currentTheme } = useTheme();
+  const [openAccordion, setOpenAccordion] = useState(0);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // EDITORIAL
+  // ==========================================
+  // EDITORIAL - Horizontale Timeline
+  // ==========================================
   if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="howitworks">
-        <Container>
-          <Header>
+        <EditorialContainer>
+          <EditorialHeader>
             <EditorialEyebrow>In 4 Schritten zu eurer</EditorialEyebrow>
-            <EditorialTitle>S&I. <span>Premium</span> Hochzeitswebsite</EditorialTitle>
-            <EditorialSubtitle>Persönlich. Stilvoll. Stressfrei. So einfach wird aus eurer Vision eine Website, die eure Liebe widerspiegelt.</EditorialSubtitle>
-          </Header>
-          <StepsList>
+            <EditorialTitle>S&I. <span>Premium</span> Website</EditorialTitle>
+          </EditorialHeader>
+          
+          <EditorialTimeline>
             {STEPS.map((step, i) => (
               <EditorialStep key={i}>
-                <EditorialNum>{step.num}</EditorialNum>
-                <EditorialStepContent>
-                  <EditorialTag>{step.tag}</EditorialTag>
-                  <EditorialStepTitle>{step.title}</EditorialStepTitle>
-                  <EditorialDesc>{step.desc}</EditorialDesc>
-                  {step.bullets && (
-                    <EditorialBullets>
-                      {step.bullets.map((b, j) => <li key={j}>{b}</li>)}
-                    </EditorialBullets>
-                  )}
-                  {step.detail && <EditorialDesc>{step.detail}</EditorialDesc>}
-                  <EditorialHighlight>{step.highlight}</EditorialHighlight>
-                </EditorialStepContent>
+                <EditorialDot><span>{step.num}</span></EditorialDot>
+                <EditorialStepTitle>{step.title}</EditorialStepTitle>
+                <EditorialStepDesc>{step.desc}</EditorialStepDesc>
+                <EditorialHighlight>{step.highlight}</EditorialHighlight>
               </EditorialStep>
             ))}
-          </StepsList>
+          </EditorialTimeline>
+          
           <CTABox>
-            <EditorialCTAHeadline>{CTA_TEXT.headline}</EditorialCTAHeadline>
-            <EditorialCTAButton onClick={scrollToContact}>{CTA_TEXT.button}</EditorialCTAButton>
-            <EditorialCTASubline>{CTA_TEXT.subline}</EditorialCTASubline>
+            <CTAHeadline style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', color: 'rgba(255,255,255,0.8)' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToContact}
+              style={{ 
+                fontFamily: "'Oswald', sans-serif", 
+                color: '#FAFAFA', 
+                background: '#C41E3A', 
+                border: 'none' 
+              }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Inter', sans-serif", color: 'rgba(255,255,255,0.4)' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
           </CTABox>
-        </Container>
+        </EditorialContainer>
       </EditorialSection>
     );
   }
 
-  // BOTANICAL
+  // ==========================================
+  // BOTANICAL - Akkordeon/FAQ Style
+  // ==========================================
   if (currentTheme === 'botanical') {
     return (
       <BotanicalSection id="howitworks">
-        <Container>
-          <Header>
-            <BotanicalEyebrow>In 4 Schritten zu eurer</BotanicalEyebrow>
-            <BotanicalTitle>S&I. Premium Hochzeitswebsite</BotanicalTitle>
-            <BotanicalSubtitle>Persönlich. Stilvoll. Stressfrei.</BotanicalSubtitle>
-          </Header>
-          <StepsList>
+        <BotanicalContainer>
+          <BotanicalHeader>
+            <BotanicalEyebrow>Euer Weg zur Website</BotanicalEyebrow>
+            <BotanicalTitle>In 4 einfachen Schritten</BotanicalTitle>
+          </BotanicalHeader>
+          
+          <BotanicalAccordion>
             {STEPS.map((step, i) => (
-              <BotanicalStep key={i}>
-                <BotanicalNum>{step.num}</BotanicalNum>
-                <BotanicalStepContent>
-                  <BotanicalTag>{step.tag}</BotanicalTag>
-                  <BotanicalStepTitle>{step.title}</BotanicalStepTitle>
+              <BotanicalItem key={i} $open={openAccordion === i}>
+                <BotanicalItemHeader onClick={() => setOpenAccordion(openAccordion === i ? -1 : i)}>
+                  <BotanicalNum>{step.num}</BotanicalNum>
+                  <BotanicalItemTitle>{step.title}</BotanicalItemTitle>
+                  <BotanicalToggle $open={openAccordion === i}>+</BotanicalToggle>
+                </BotanicalItemHeader>
+                <BotanicalItemContent $open={openAccordion === i}>
                   <BotanicalDesc>{step.desc}</BotanicalDesc>
-                  {step.bullets && (
-                    <BotanicalBullets>
-                      {step.bullets.map((b, j) => <li key={j}>{b}</li>)}
-                    </BotanicalBullets>
-                  )}
                   {step.detail && <BotanicalDesc>{step.detail}</BotanicalDesc>}
                   <BotanicalHighlight>{step.highlight}</BotanicalHighlight>
-                </BotanicalStepContent>
-              </BotanicalStep>
+                </BotanicalItemContent>
+              </BotanicalItem>
             ))}
-          </StepsList>
-          <BotanicalCTABox>
-            <BotanicalCTAHeadline>{CTA_TEXT.headline}</BotanicalCTAHeadline>
-            <BotanicalCTAButton onClick={scrollToContact}>{CTA_TEXT.button}</BotanicalCTAButton>
-            <BotanicalCTASubline>{CTA_TEXT.subline}</BotanicalCTASubline>
-          </BotanicalCTABox>
-        </Container>
+          </BotanicalAccordion>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", color: 'rgba(255,255,255,0.8)' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToContact}
+              style={{ 
+                fontFamily: "'Montserrat', sans-serif", 
+                color: '#040604', 
+                background: 'rgba(255,255,255,0.95)', 
+                border: 'none',
+                borderRadius: '50px'
+              }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Montserrat', sans-serif", color: 'rgba(255,255,255,0.4)' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </BotanicalContainer>
       </BotanicalSection>
     );
   }
 
-  // CONTEMPORARY
+  // ==========================================
+  // CONTEMPORARY - Karten-Grid
+  // ==========================================
   if (currentTheme === 'contemporary') {
     return (
       <ContemporarySection id="howitworks">
-        <Container>
-          <Header>
+        <ContemporaryContainer>
+          <ContemporaryHeader>
             <ContemporaryEyebrow>🚀 So geht's</ContemporaryEyebrow>
-            <ContemporaryTitle>In 4 Schritten zur Website</ContemporaryTitle>
-            <ContemporarySubtitle>Persönlich. Stilvoll. Stressfrei.</ContemporarySubtitle>
-          </Header>
-          <StepsList>
+            <ContemporaryTitle>4 Steps to Go Live</ContemporaryTitle>
+          </ContemporaryHeader>
+          
+          <ContemporaryGrid>
             {STEPS.map((step, i) => (
-              <ContemporaryStep key={i} $i={i}>
-                <ContemporaryNum>{step.num}</ContemporaryNum>
-                <ContemporaryStepContent>
-                  <ContemporaryTag>{step.tag}</ContemporaryTag>
-                  <ContemporaryStepTitle>{step.title}</ContemporaryStepTitle>
-                  <ContemporaryDesc>{step.desc}</ContemporaryDesc>
-                  {step.bullets && (
-                    <ContemporaryBullets>
-                      {step.bullets.map((b, j) => <li key={j}>{b}</li>)}
-                    </ContemporaryBullets>
-                  )}
-                  {step.detail && <ContemporaryDesc>{step.detail}</ContemporaryDesc>}
-                  <ContemporaryHighlight>{step.highlight}</ContemporaryHighlight>
-                </ContemporaryStepContent>
-              </ContemporaryStep>
+              <ContemporaryCard key={i} $i={i}>
+                <ContemporaryCardNum $i={i}>{step.num}</ContemporaryCardNum>
+                <ContemporaryCardIcon>{step.icon}</ContemporaryCardIcon>
+                <ContemporaryCardTitle>{step.title}</ContemporaryCardTitle>
+                <ContemporaryCardDesc>{step.desc}</ContemporaryCardDesc>
+                <ContemporaryCardHighlight>{step.highlight}</ContemporaryCardHighlight>
+              </ContemporaryCard>
             ))}
-          </StepsList>
-          <ContemporaryCTABox>
-            <ContemporaryCTAHeadline>{CTA_TEXT.headline}</ContemporaryCTAHeadline>
-            <ContemporaryCTAButton onClick={scrollToContact}>{CTA_TEXT.button} →</ContemporaryCTAButton>
-            <ContemporaryCTASubline>{CTA_TEXT.subline}</ContemporaryCTASubline>
-          </ContemporaryCTABox>
-        </Container>
+          </ContemporaryGrid>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, color: '#0D0D0D' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToContact}
+              style={{ 
+                fontFamily: "'Space Grotesk', sans-serif", 
+                color: '#FAFAFA', 
+                background: '#FF6B6B', 
+                border: '3px solid #0D0D0D',
+                boxShadow: '4px 4px 0 #0D0D0D'
+              }}
+            >
+              {CTA_TEXT.button} →
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#525252' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </ContemporaryContainer>
       </ContemporarySection>
     );
   }
 
-  // LUXE
+  // ==========================================
+  // LUXE - Full-Width Sections
+  // ==========================================
   if (currentTheme === 'luxe') {
     return (
       <LuxeSection id="howitworks">
-        <Container>
-          <Header>
-            <LuxeEyebrow>Der Weg zu eurer Website</LuxeEyebrow>
-            <LuxeTitle>In 4 Schritten zur Perfektion</LuxeTitle>
-            <LuxeSubtitle>Persönlich. Stilvoll. Stressfrei.</LuxeSubtitle>
-          </Header>
-          <StepsList>
-            {STEPS.map((step, i) => (
-              <LuxeStep key={i}>
-                <LuxeNum>{step.num}</LuxeNum>
-                <LuxeStepContent>
-                  <LuxeTag>{step.tag}</LuxeTag>
-                  <LuxeStepTitle>{step.title}</LuxeStepTitle>
-                  <LuxeDesc>{step.desc}</LuxeDesc>
-                  {step.bullets && (
-                    <LuxeBullets>
-                      {step.bullets.map((b, j) => <li key={j}>{b}</li>)}
-                    </LuxeBullets>
-                  )}
-                  {step.detail && <LuxeDesc>{step.detail}</LuxeDesc>}
-                  <LuxeHighlight>{step.highlight}</LuxeHighlight>
-                </LuxeStepContent>
-              </LuxeStep>
-            ))}
-          </StepsList>
-          <CTABox>
-            <LuxeCTAHeadline>{CTA_TEXT.headline}</LuxeCTAHeadline>
-            <LuxeCTAButton onClick={scrollToContact}>{CTA_TEXT.button}</LuxeCTAButton>
-            <LuxeCTASubline>{CTA_TEXT.subline}</LuxeCTASubline>
-          </CTABox>
-        </Container>
+        <LuxeHeader>
+          <LuxeEyebrow>Der Weg zur Perfektion</LuxeEyebrow>
+          <LuxeTitle>Vier Schritte zu eurer Website</LuxeTitle>
+        </LuxeHeader>
+        
+        {STEPS.map((step, i) => (
+          <LuxeStep key={i} $reverse={i % 2 === 1}>
+            <LuxeStepContent $reverse={i % 2 === 1}>
+              <LuxeStepTag>{step.tag}</LuxeStepTag>
+              <LuxeStepTitle>{step.title}</LuxeStepTitle>
+              <LuxeStepDesc>{step.desc}</LuxeStepDesc>
+              {step.detail && <LuxeStepDesc>{step.detail}</LuxeStepDesc>}
+              <LuxeStepHighlight>{step.highlight}</LuxeStepHighlight>
+            </LuxeStepContent>
+            <LuxeStepVisual $reverse={i % 2 === 1}>
+              <LuxeStepNum>{step.num}</LuxeStepNum>
+            </LuxeStepVisual>
+          </LuxeStep>
+        ))}
+        
+        <CTABox style={{ padding: '4rem 2rem' }}>
+          <CTAHeadline style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic', color: 'rgba(248,246,243,0.8)' }}>
+            {CTA_TEXT.headline}
+          </CTAHeadline>
+          <CTAButton 
+            onClick={scrollToContact}
+            style={{ 
+              fontFamily: "'Outfit', sans-serif", 
+              fontWeight: 400,
+              letterSpacing: '0.3em',
+              color: '#0A0A0A', 
+              background: '#C9A962', 
+              border: 'none'
+            }}
+          >
+            {CTA_TEXT.button}
+          </CTAButton>
+          <CTASubline style={{ fontFamily: "'Outfit', sans-serif", color: 'rgba(248,246,243,0.4)' }}>
+            {CTA_TEXT.subline}
+          </CTASubline>
+        </CTABox>
       </LuxeSection>
     );
   }
 
-  // NEON
+  // ==========================================
+  // NEON - Terminal Style
+  // ==========================================
   if (currentTheme === 'neon') {
     return (
       <NeonSection id="howitworks">
-        <Container style={{ position: 'relative', zIndex: 1 }}>
-          <Header>
-            <NeonEyebrow>// Process.init()</NeonEyebrow>
-            <NeonTitle>Execute: Website Launch</NeonTitle>
-            <NeonSubtitle>4 steps to digital perfection</NeonSubtitle>
-          </Header>
-          <StepsList>
-            {STEPS.map((step, i) => (
-              <NeonStep key={i}>
-                <NeonNum>{step.num}</NeonNum>
-                <NeonStepContent>
-                  <NeonTag>{step.tag}</NeonTag>
-                  <NeonStepTitle>{step.title}</NeonStepTitle>
-                  <NeonDesc>{step.desc}</NeonDesc>
-                  {step.bullets && (
-                    <NeonBullets>
-                      {step.bullets.map((b, j) => <li key={j}>{b}</li>)}
-                    </NeonBullets>
-                  )}
-                  {step.detail && <NeonDesc>{step.detail}</NeonDesc>}
-                  <NeonHighlight>{step.highlight}</NeonHighlight>
-                </NeonStepContent>
-              </NeonStep>
-            ))}
-          </StepsList>
-          <NeonCTABox>
-            <NeonCTAHeadline>{CTA_TEXT.headline}</NeonCTAHeadline>
-            <NeonCTAButton onClick={scrollToContact}>Execute.send() →</NeonCTAButton>
-            <NeonCTASubline>{CTA_TEXT.subline}</NeonCTASubline>
-          </NeonCTABox>
-        </Container>
+        <NeonContainer>
+          <NeonTerminal>
+            <NeonTerminalHeader>
+              <NeonDot $c="#ff5f56" />
+              <NeonDot $c="#ffbd2e" />
+              <NeonDot $c="#27c93f" />
+              <NeonTerminalTitle>wedding_process.sh</NeonTerminalTitle>
+            </NeonTerminalHeader>
+            <NeonTerminalBody>
+              <NeonLine>
+                <NeonPrompt>$</NeonPrompt>
+                <NeonCommand>./init_wedding_website.sh</NeonCommand>
+              </NeonLine>
+              
+              {STEPS.map((step, i) => (
+                <NeonLine key={i}>
+                  <NeonPrompt>[{step.num}]</NeonPrompt>
+                  <NeonHighlight>{step.title}</NeonHighlight>
+                  <NeonOutput>
+                    <NeonComment>// {step.tag}</NeonComment><br />
+                    {step.desc}<br />
+                    <span style={{ color: '#00ff88' }}>{step.highlight}</span>
+                  </NeonOutput>
+                </NeonLine>
+              ))}
+              
+              <NeonLine style={{ marginTop: '2rem' }}>
+                <NeonPrompt>$</NeonPrompt>
+                <NeonCommand>echo "Process complete. Website ready."</NeonCommand>
+              </NeonLine>
+            </NeonTerminalBody>
+          </NeonTerminal>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'rgba(255,255,255,0.8)' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToContact}
+              style={{ 
+                fontFamily: "'Space Grotesk', sans-serif", 
+                color: '#00ff88', 
+                background: 'transparent', 
+                border: '1px solid #00ff88',
+                boxShadow: '0 0 15px rgba(0,255,136,0.3)'
+              }}
+            >
+              execute.contact()
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'rgba(255,255,255,0.4)' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </NeonContainer>
       </NeonSection>
     );
   }
 
-  // VIDEO (Default)
+  // ==========================================
+  // VIDEO - Vertikale Stepper-Timeline (Default)
+  // ==========================================
   return (
     <VideoSection id="howitworks">
-      <Container>
-        <Header>
-          <VideoEyebrow>In 4 Schritten zu eurer</VideoEyebrow>
-          <VideoTitle>S&I. Premium Hochzeitswebsite</VideoTitle>
-          <VideoSubtitle>Persönlich. Stilvoll. Stressfrei.</VideoSubtitle>
-        </Header>
-        <StepsList>
+      <VideoContainer>
+        <VideoHeader>
+          <VideoEyebrow>Euer Weg zur Website</VideoEyebrow>
+          <VideoTitle>In 4 Schritten live</VideoTitle>
+        </VideoHeader>
+        
+        <VideoTimeline>
           {STEPS.map((step, i) => (
             <VideoStep key={i}>
-              <VideoNum>{step.num}</VideoNum>
+              <VideoStepMarker><span>{step.num}</span></VideoStepMarker>
               <VideoStepContent>
-                <VideoTag>{step.tag}</VideoTag>
+                <VideoStepTag>{step.tag}</VideoStepTag>
                 <VideoStepTitle>{step.title}</VideoStepTitle>
-                <VideoDesc>{step.desc}</VideoDesc>
-                {step.bullets && (
-                  <VideoBullets>
-                    {step.bullets.map((b, j) => <li key={j}>{b}</li>)}
-                  </VideoBullets>
-                )}
-                {step.detail && <VideoDesc>{step.detail}</VideoDesc>}
-                <VideoHighlight>{step.highlight}</VideoHighlight>
+                <VideoStepDesc>{step.desc}</VideoStepDesc>
+                <VideoStepHighlight>{step.highlight}</VideoStepHighlight>
               </VideoStepContent>
             </VideoStep>
           ))}
-        </StepsList>
+        </VideoTimeline>
+        
         <CTABox>
-          <VideoCTAHeadline>{CTA_TEXT.headline}</VideoCTAHeadline>
-          <VideoCTAButton onClick={scrollToContact}>{CTA_TEXT.button}</VideoCTAButton>
-          <VideoCTASubline>{CTA_TEXT.subline}</VideoCTASubline>
+          <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', color: 'rgba(255,255,255,0.8)' }}>
+            {CTA_TEXT.headline}
+          </CTAHeadline>
+          <CTAButton 
+            onClick={scrollToContact}
+            style={{ 
+              fontFamily: "'Manrope', sans-serif", 
+              color: '#FFFFFF', 
+              background: 'transparent', 
+              border: '1px solid #6B8CAE'
+            }}
+          >
+            {CTA_TEXT.button}
+          </CTAButton>
+          <CTASubline style={{ fontFamily: "'Inter', sans-serif", color: 'rgba(255,255,255,0.4)' }}>
+            {CTA_TEXT.subline}
+          </CTASubline>
         </CTABox>
-      </Container>
+      </VideoContainer>
     </VideoSection>
   );
 };
