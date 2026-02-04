@@ -464,18 +464,21 @@ const ContemporaryRSVPDesc = styled.p`
 `;
 
 // ============================================
-// LUXE - Horizontale Scroll-Cards
+// LUXE - Elegantes 2-Spalten Layout mit großen Nummern
 // ============================================
 const LuxeSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) 0;
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
-  overflow: hidden;
+`;
+
+const LuxeContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
 `;
 
 const LuxeHeader = styled.div`
   text-align: center;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 `;
 
 const LuxeEyebrow = styled.p`
@@ -496,50 +499,73 @@ const LuxeTitle = styled.h2`
   color: #F8F6F3;
 `;
 
-const LuxeScroller = styled.div`
-  display: flex;
-  gap: 2rem;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+const LuxeGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
   
-  &::-webkit-scrollbar {
-    display: none;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `;
 
 const LuxeCard = styled.div`
-  flex: 0 0 350px;
-  scroll-snap-align: start;
-  border: 1px solid rgba(201, 169, 98, 0.2);
-  padding: 2.5rem;
+  padding: 3rem;
+  border: 1px solid rgba(201, 169, 98, 0.1);
+  position: relative;
   transition: all 0.5s ease;
   
-  &:hover {
-    border-color: #C9A962;
-    background: rgba(201, 169, 98, 0.05);
+  &:nth-child(odd) {
+    border-right: 1px solid rgba(201, 169, 98, 0.15);
   }
   
-  @media (max-width: 500px) {
-    flex: 0 0 300px;
+  &:nth-child(-n+2) {
+    border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+  }
+  
+  &:nth-child(3), &:nth-child(4) {
+    border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+  }
+  
+  @media (max-width: 768px) {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  &:hover {
+    background: rgba(201, 169, 98, 0.03);
   }
 `;
 
+const LuxeCardNum = styled.span`
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-family: 'Cormorant', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(201, 169, 98, 0.15);
+  line-height: 1;
+`;
+
 const LuxeCardIcon = styled.div`
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 1.5rem;
 `;
 
 const LuxeCardTitle = styled.h3`
   font-family: 'Cormorant', serif;
-  font-size: 1.3rem;
-  font-weight: 300;
-  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: 400;
   color: #F8F6F3;
   margin-bottom: 1rem;
   line-height: 1.4;
+  padding-right: 2rem;
 `;
 
 const LuxeCardDesc = styled.p`
@@ -551,10 +577,9 @@ const LuxeCardDesc = styled.p`
 `;
 
 const LuxeRSVP = styled.div`
-  margin: 4rem clamp(1.5rem, 5vw, 4rem) 0;
+  margin-top: 4rem;
   padding: 3rem;
-  border-top: 1px solid rgba(201, 169, 98, 0.2);
-  border-bottom: 1px solid rgba(201, 169, 98, 0.2);
+  border: 1px solid rgba(201, 169, 98, 0.3);
   text-align: center;
 `;
 
@@ -1080,45 +1105,48 @@ const USPSection = () => {
   }
 
   // ==========================================
-  // LUXE - Horizontale Scroll-Cards
+  // LUXE - Elegantes 2-Spalten Grid
   // ==========================================
   if (currentTheme === 'luxe') {
     return (
       <LuxeSection id="features">
-        <LuxeHeader>
-          <LuxeEyebrow>Warum S&I.</LuxeEyebrow>
-          <LuxeTitle>Was uns auszeichnet</LuxeTitle>
-        </LuxeHeader>
-        
-        <LuxeScroller>
-          {USPS.map((usp, i) => (
-            <LuxeCard key={i}>
-              <LuxeCardIcon>{usp.icon}</LuxeCardIcon>
-              <LuxeCardTitle>{usp.title}</LuxeCardTitle>
-              <LuxeCardDesc>{usp.desc}</LuxeCardDesc>
-            </LuxeCard>
-          ))}
-        </LuxeScroller>
-        
-        <LuxeRSVP>
-          <LuxeRSVPTitle>{RSVP_FEATURE.icon} {RSVP_FEATURE.title}</LuxeRSVPTitle>
-          <LuxeRSVPDesc>{RSVP_FEATURE.desc}</LuxeRSVPDesc>
-        </LuxeRSVP>
-        
-        <CTABox style={{ padding: '0 clamp(1.5rem, 5vw, 4rem)' }}>
-          <CTAHeadline style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic', color: 'rgba(248,246,243,0.8)' }}>
-            {CTA_TEXT.headline}
-          </CTAHeadline>
-          <CTAButton 
-            onClick={scrollToThemes}
-            style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: '0.3em', color: '#0A0A0A', background: '#C9A962', border: 'none' }}
-          >
-            {CTA_TEXT.button}
-          </CTAButton>
-          <CTASubline style={{ fontFamily: "'Outfit', sans-serif", color: 'rgba(248,246,243,0.4)' }}>
-            {CTA_TEXT.subline}
-          </CTASubline>
-        </CTABox>
+        <LuxeContainer>
+          <LuxeHeader>
+            <LuxeEyebrow>Warum S&I.</LuxeEyebrow>
+            <LuxeTitle>Was uns auszeichnet</LuxeTitle>
+          </LuxeHeader>
+          
+          <LuxeGrid>
+            {USPS.map((usp, i) => (
+              <LuxeCard key={i}>
+                <LuxeCardNum>0{i + 1}</LuxeCardNum>
+                <LuxeCardIcon>{usp.icon}</LuxeCardIcon>
+                <LuxeCardTitle>{usp.title}</LuxeCardTitle>
+                <LuxeCardDesc>{usp.desc}</LuxeCardDesc>
+              </LuxeCard>
+            ))}
+          </LuxeGrid>
+          
+          <LuxeRSVP>
+            <LuxeRSVPTitle>{RSVP_FEATURE.icon} {RSVP_FEATURE.title}</LuxeRSVPTitle>
+            <LuxeRSVPDesc>{RSVP_FEATURE.desc}</LuxeRSVPDesc>
+          </LuxeRSVP>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic', color: 'rgba(248,246,243,0.8)' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToThemes}
+              style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: '0.3em', color: '#0A0A0A', background: '#C9A962', border: 'none' }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Outfit', sans-serif", color: 'rgba(248,246,243,0.4)' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </LuxeContainer>
       </LuxeSection>
     );
   }

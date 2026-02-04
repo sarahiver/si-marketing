@@ -633,20 +633,17 @@ const VideoSubtitle = styled.p`
   margin-top: 0.5rem;
 `;
 
-const VideoCarousel = styled.div`
-  display: flex;
+const VideoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
-  overflow-x: auto;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
   
-  &::-webkit-scrollbar { display: none; }
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const VideoCard = styled.div`
-  flex: 0 0 200px;
-  scroll-snap-align: start;
   background: ${p => p.$included ? 'rgba(107, 140, 174, 0.1)' : 'rgba(255,255,255,0.02)'};
   border: 1px solid ${p => p.$included ? '#6B8CAE' : 'rgba(255,255,255,0.1)'};
   padding: 1.5rem;
@@ -655,7 +652,7 @@ const VideoCard = styled.div`
   
   &:hover {
     border-color: #6B8CAE;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 `;
 
@@ -872,7 +869,7 @@ const ComponentsShowcase = () => {
           <VideoSubtitle>{INCLUDED_COUNT} davon immer inklusive</VideoSubtitle>
         </VideoHeader>
         
-        <VideoCarousel>
+        <VideoGrid>
           {COMPONENTS.map((comp, i) => (
             <VideoCard key={comp.id} $included={comp.included}>
               <VideoCardIcon>{comp.icon}</VideoCardIcon>
@@ -881,7 +878,7 @@ const ComponentsShowcase = () => {
               {comp.included && <VideoIncluded>Inklusive</VideoIncluded>}
             </VideoCard>
           ))}
-        </VideoCarousel>
+        </VideoGrid>
       </VideoContainer>
     </VideoSection>
   );
