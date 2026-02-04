@@ -1,7 +1,12 @@
 // src/components/marketing/AboutSection.js
-// SEO-optimierte About Section mit Sarah & Iver Bild
-// Keywords: Premium Hochzeitswebsite, Wedding Website, Hochzeitsseite erstellen, RSVP, Hamburg
-import React from 'react';
+// "Über uns" - 6 verschiedene Layout-Logiken:
+// Editorial: Split-Screen Magazin Layout
+// Botanical: Story-Cards mit Parallax-Bild
+// Contemporary: Comic/Storyboard Style mit Panels
+// Luxe: Cinematischer Vollbild-Scroll
+// Neon: Terminal-Interview Format
+// Video: Timeline mit aufklappbaren Abschnitten
+import React, { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -11,77 +16,102 @@ import { useTheme } from '../../context/ThemeContext';
 const SARAH_IVER_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1769863906/iverlasting/demo/hero/v8il9fyd1u6dhj6se3tz.jpg';
 
 // ============================================
+// CONTENT DATA
+// ============================================
+const STORY_SECTIONS = [
+  {
+    id: 'origin',
+    title: 'Wie alles begann',
+    content: 'S&I. ist aus unserer eigenen Hochzeitsreise entstanden. Als wir unsere Hochzeit planten, wollten wir eine Website, die unsere Geschichte widerspiegelt – stilvoll, modern, emotional.',
+  },
+  {
+    id: 'problem',
+    title: 'Das Problem',
+    content: 'Was wir fanden, war ernüchternd: Baukästen, die unpersönlich wirkten. Designs ohne Gefühl. Lösungen, die entweder kompliziert, zeitintensiv oder schlicht unschön waren.',
+  },
+  {
+    id: 'solution',
+    title: 'Unsere Lösung',
+    content: 'Wir dachten: „Unsere Hochzeit verdient etwas Besonderes – warum gibt es das nicht?" Also haben wir es selbst gebaut. Aus einer Idee wurde Leidenschaft.',
+  },
+  {
+    id: 'vision',
+    title: 'Unsere Vision',
+    content: 'Eine Hochzeitswebsite sollte mehr sein als eine Informationsseite. Sie sollte sich anfühlen wie ein Zuhause für eure Liebe – ein Ort für eure Geschichte, eure Gäste, eure Erinnerungen.',
+  },
+];
+
+const TEAM = {
+  sarah: {
+    name: 'Sarah',
+    role: 'Herz, Design & Gefühl',
+    emoji: '🎨',
+    desc: 'Sarah sorgt dafür, dass jede Website nicht nur schön aussieht, sondern sich richtig anfühlt. Farben, Typografie, Bildsprache – alles wird mit Liebe gestaltet.',
+  },
+  iver: {
+    name: 'Iver',
+    role: 'Technik & persönliche Begleitung',
+    emoji: '🧑‍💻',
+    desc: 'Iver kümmert sich um Technik, Umsetzung und Betreuung. Vom ersten Gespräch bis zur fertigen Website – ein echter Ansprechpartner, keine Massenabfertigung.',
+  },
+};
+
+const CTA = {
+  headline: 'Wenn eure Hochzeit besonders ist, sollte eure Website es auch sein.',
+  button: 'Schreibt uns',
+  tagline: 'S&I. – Premium Hochzeitswebsites für Paare mit Anspruch.',
+};
+
+// ============================================
 // ANIMATIONS
 // ============================================
-const fadeInUp = keyframes`
-  from { opacity: 0; transform: translateY(30px); }
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 `;
 
-// ============================================
-// BASE STYLES
-// ============================================
-const Section = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
-  position: relative;
-  overflow: hidden;
+const typewriter = keyframes`
+  from { width: 0; }
+  to { width: 100%; }
 `;
 
-const Container = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
-`;
-
-const HeroArea = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  margin-bottom: clamp(3rem, 8vh, 5rem);
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-`;
-
-const ContentArea = styled.div`
-  margin-bottom: clamp(3rem, 6vh, 4rem);
-`;
-
-const TeamSection = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin: clamp(2rem, 5vh, 3rem) 0;
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const CTABox = styled.div`
-  margin-top: clamp(3rem, 8vh, 5rem);
-  text-align: center;
+const blink = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 `;
 
 // ============================================
-// EDITORIAL THEME
+// EDITORIAL - Split-Screen Magazin
 // ============================================
-const EditorialSection = styled(Section)`
+const EditorialSection = styled.section`
   background: #FAFAFA;
 `;
 
-const EditorialImage = styled.img`
-  width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-  filter: grayscale(20%);
+const EditorialHero = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
   
-  @media (max-width: 768px) {
-    max-width: 400px;
-    margin: 0 auto;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
+`;
+
+const EditorialImage = styled.div`
+  background: url(${SARAH_IVER_IMAGE}) center/cover no-repeat;
+  min-height: 400px;
+  
+  @media (max-width: 900px) {
+    min-height: 50vh;
+  }
+`;
+
+const EditorialContent = styled.div`
+  padding: clamp(3rem, 8vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const EditorialEyebrow = styled.p`
@@ -96,163 +126,129 @@ const EditorialEyebrow = styled.p`
 
 const EditorialTitle = styled.h2`
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #0A0A0A;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-`;
-
-const EditorialSubtitle = styled.p`
-  font-family: 'Source Serif 4', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #525252;
-`;
-
-const EditorialH3 = styled.h3`
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #0A0A0A;
-  margin: 2rem 0 1rem;
-`;
-
-const EditorialQuote = styled.blockquote`
-  font-family: 'Source Serif 4', serif;
-  font-size: 1.3rem;
-  font-style: italic;
-  color: #C41E3A;
-  padding: 1.5rem 0;
-  margin: 1.5rem 0;
-  border-left: 3px solid #C41E3A;
-  padding-left: 1.5rem;
-`;
-
-const EditorialText = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  color: #333;
-  line-height: 1.8;
-  margin-bottom: 1rem;
-`;
-
-const EditorialList = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: #333;
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    
-    &::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: #C41E3A;
-    }
-  }
-`;
-
-const EditorialTeamCard = styled.article`
-  padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #E5E5E5;
-`;
-
-const EditorialTeamEmoji = styled.span`
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 1rem;
-`;
-
-const EditorialTeamName = styled.h4`
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.1rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   text-transform: uppercase;
   color: #0A0A0A;
   margin-bottom: 0.5rem;
 `;
 
-const EditorialTeamDesc = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  color: #666;
-  line-height: 1.7;
-`;
-
-const EditorialCTAText = styled.p`
+const EditorialSubtitle = styled.p`
   font-family: 'Source Serif 4', serif;
   font-size: 1.2rem;
   font-style: italic;
+  color: #666;
+  margin-bottom: 2rem;
+`;
+
+const EditorialText = styled.p`
+  font-family: 'Source Serif 4', serif;
+  font-size: 1rem;
   color: #333;
+  line-height: 1.9;
   margin-bottom: 1.5rem;
 `;
 
-const EditorialCTAButton = styled.button`
+const EditorialQuote = styled.blockquote`
   font-family: 'Oswald', sans-serif;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #FAFAFA;
-  background: #C41E3A;
-  border: none;
-  padding: 1rem 2.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: #C41E3A;
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid #C41E3A;
+`;
+
+const EditorialTeam = styled.div`
+  padding: clamp(3rem, 8vw, 6rem);
+  background: #0A0A0A;
+`;
+
+const EditorialTeamGrid = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
   
-  &:hover {
-    background: #a01830;
-    transform: translateY(-2px);
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 `;
 
-const EditorialTagline = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+const EditorialTeamMember = styled.div`
+  text-align: center;
+`;
+
+const EditorialTeamEmoji = styled.div`
+  font-size: 3rem;
+  margin-bottom: 1rem;
+`;
+
+const EditorialTeamName = styled.h3`
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
   text-transform: uppercase;
-  color: #999;
-  margin-top: 2rem;
+  color: #FAFAFA;
+  margin-bottom: 0.25rem;
+`;
+
+const EditorialTeamRole = styled.p`
+  font-family: 'Source Serif 4', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #C41E3A;
+  margin-bottom: 1rem;
+`;
+
+const EditorialTeamDesc = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+`;
+
+const EditorialCTA = styled.div`
+  padding: clamp(3rem, 8vw, 5rem);
+  text-align: center;
+  background: #FAFAFA;
 `;
 
 // ============================================
-// BOTANICAL THEME
+// BOTANICAL - Story Cards mit Parallax
 // ============================================
-const BotanicalSection = styled(Section)`
+const BotanicalSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
   background: transparent;
   position: relative;
   z-index: 10;
 `;
 
-const BotanicalCard = styled.div`
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  padding: clamp(2rem, 5vw, 3rem);
+const BotanicalContainer = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
 `;
 
-const BotanicalImage = styled.img`
+const BotanicalImageCard = styled.div`
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+`;
+
+const BotanicalImg = styled.img`
   width: 100%;
-  aspect-ratio: 4/5;
+  height: 400px;
   object-fit: cover;
-  border-radius: 16px;
-  
-  @media (max-width: 768px) {
-    max-width: 350px;
-    margin: 0 auto;
-  }
+`;
+
+const BotanicalImageCaption = styled.div`
+  padding: 2rem;
+  text-align: center;
 `;
 
 const BotanicalEyebrow = styled.p`
@@ -262,7 +258,7 @@ const BotanicalEyebrow = styled.p`
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.5);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 const BotanicalTitle = styled.h2`
@@ -270,310 +266,254 @@ const BotanicalTitle = styled.h2`
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 300;
   color: rgba(255,255,255,0.95);
-  line-height: 1.2;
-  margin-bottom: 1rem;
 `;
 
-const BotanicalSubtitle = styled.p`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.6);
+const BotanicalStory = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 `;
 
-const BotanicalH3 = styled.h3`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: rgba(255,255,255,0.95);
-  margin: 2rem 0 1rem;
-`;
-
-const BotanicalQuote = styled.blockquote`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.8);
-  padding: 1.5rem 0;
-  margin: 1.5rem 0;
-  text-align: center;
-`;
-
-const BotanicalText = styled.p`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.8;
-  margin-bottom: 1rem;
-`;
-
-const BotanicalList = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-    padding: 0.4rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-    
-    &::before {
-      content: '·';
-      position: absolute;
-      left: 0;
-      color: rgba(255,255,255,0.4);
-    }
-  }
-`;
-
-const BotanicalTeamCard = styled.article`
+const BotanicalStoryCard = styled.div`
   background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
-  padding: 1.5rem;
-`;
-
-const BotanicalTeamEmoji = styled.span`
-  font-size: 1.8rem;
-  display: block;
-  margin-bottom: 1rem;
-`;
-
-const BotanicalTeamName = styled.h4`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  color: rgba(255,255,255,0.95);
-  margin-bottom: 0.5rem;
-`;
-
-const BotanicalTeamDesc = styled.p`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.7;
-`;
-
-const BotanicalCTAText = styled.p`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 1.5rem;
-`;
-
-const BotanicalCTAButton = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #040604;
-  background: rgba(255,255,255,0.95);
-  border: none;
-  border-radius: 50px;
-  padding: 1rem 2.5rem;
+  padding: 2rem;
   cursor: pointer;
   transition: all 0.4s ease;
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
   }
 `;
 
-const BotanicalTagline = styled.p`
+const BotanicalStoryTitle = styled.h3`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 0.75rem;
+`;
+
+const BotanicalStoryText = styled.p`
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.4);
-  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
 `;
 
-// ============================================
-// CONTEMPORARY THEME
-// ============================================
-const ContemporarySection = styled(Section)`
-  background: #FAFAFA;
-`;
-
-const ContemporaryCard = styled.div`
-  background: #fff;
-  border: 3px solid #0D0D0D;
-  box-shadow: 8px 8px 0 #FF6B6B;
-  padding: clamp(2rem, 5vw, 3rem);
-`;
-
-const ContemporaryImage = styled.img`
-  width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-  border: 3px solid #0D0D0D;
-  box-shadow: 6px 6px 0 #4ECDC4;
+const BotanicalTeamSection = styled.div`
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
   
-  @media (max-width: 768px) {
-    max-width: 350px;
-    margin: 0 auto;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const ContemporaryEyebrow = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #FF6B6B;
-  margin-bottom: 1rem;
+const BotanicalTeamCard = styled.div`
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+`;
+
+// ============================================
+// CONTEMPORARY - Comic Panels
+// ============================================
+const ContemporarySection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FFE66D;
+`;
+
+const ContemporaryContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+`;
+
+const ContemporaryHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
 `;
 
 const ContemporaryTitle = styled.h2`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   text-transform: uppercase;
   color: #0D0D0D;
-  line-height: 1.1;
-  margin-bottom: 1rem;
 `;
 
-const ContemporarySubtitle = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  color: #525252;
-`;
-
-const ContemporaryH3 = styled.h3`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #0D0D0D;
-  margin: 2rem 0 1rem;
-`;
-
-const ContemporaryQuote = styled.blockquote`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #0D0D0D;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  background: #FFE66D;
-  border: 2px solid #0D0D0D;
-`;
-
-const ContemporaryText = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.95rem;
-  color: #525252;
-  line-height: 1.7;
-  margin-bottom: 1rem;
-`;
-
-const ContemporaryList = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
+const ContemporaryComic = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   
-  li {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    color: #525252;
-    padding: 0.4rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    
-    &::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: #FF6B6B;
-      font-weight: 700;
-    }
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const ContemporaryTeamCard = styled.article`
+const PANEL_COLORS = ['#FF6B6B', '#4ECDC4', '#9B5DE5', '#0D0D0D'];
+
+const ContemporaryPanel = styled.div`
   background: #fff;
   border: 3px solid #0D0D0D;
   padding: 1.5rem;
-  box-shadow: 4px 4px 0 ${p => p.$color || '#FFE66D'};
+  box-shadow: 6px 6px 0 ${p => PANEL_COLORS[p.$i % 4]};
+  
+  ${p => p.$large && css`
+    grid-column: span 2;
+    
+    @media (max-width: 500px) {
+      grid-column: span 1;
+    }
+  `}
 `;
 
-const ContemporaryTeamEmoji = styled.span`
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 1rem;
-`;
-
-const ContemporaryTeamName = styled.h4`
+const ContemporaryPanelNum = styled.div`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  background: #0D0D0D;
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+`;
+
+const ContemporaryPanelTitle = styled.h3`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
   font-weight: 700;
   text-transform: uppercase;
   color: #0D0D0D;
   margin-bottom: 0.5rem;
 `;
 
-const ContemporaryTeamDesc = styled.p`
+const ContemporaryPanelText = styled.p`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.85rem;
   color: #525252;
   line-height: 1.6;
 `;
 
-const ContemporaryCTAText = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #0D0D0D;
-  margin-bottom: 1.5rem;
-`;
-
-const ContemporaryCTAButton = styled.button`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #FAFAFA;
-  background: #FF6B6B;
+const ContemporaryImagePanel = styled.div`
+  background: url(${SARAH_IVER_IMAGE}) center/cover no-repeat;
   border: 3px solid #0D0D0D;
-  padding: 1rem 2.5rem;
-  box-shadow: 4px 4px 0 #0D0D0D;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  min-height: 250px;
+  grid-row: span 2;
+  box-shadow: 6px 6px 0 #FF6B6B;
+  position: relative;
   
-  &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 #0D0D0D;
+  &::after {
+    content: 'SARAH & IVER';
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    background: #0D0D0D;
+    padding: 0.5rem 1rem;
+  }
+  
+  @media (max-width: 800px) {
+    grid-row: span 1;
+    min-height: 300px;
   }
 `;
 
-const ContemporaryTagline = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #525252;
+const ContemporaryTeam = styled.div`
   margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ContemporaryTeamCard = styled.div`
+  background: #fff;
+  border: 3px solid #0D0D0D;
+  padding: 1.5rem;
+  box-shadow: 5px 5px 0 ${p => p.$color || '#4ECDC4'};
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+`;
+
+const ContemporaryTeamEmoji = styled.span`
+  font-size: 2rem;
+`;
+
+const ContemporaryTeamContent = styled.div``;
+
+const ContemporaryTeamName = styled.h3`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+`;
+
+const ContemporaryTeamRole = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  color: #FF6B6B;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+`;
+
+const ContemporaryTeamDesc = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.5;
 `;
 
 // ============================================
-// LUXE THEME
+// LUXE - Cinematisch
 // ============================================
-const LuxeSection = styled(Section)`
+const LuxeSection = styled.section`
   background: #0A0A0A;
 `;
 
-const LuxeImage = styled.img`
-  width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-  filter: brightness(0.95);
+const LuxeHero = styled.div`
+  position: relative;
+  height: 70vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
-  @media (max-width: 768px) {
-    max-width: 350px;
-    margin: 0 auto;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url(${SARAH_IVER_IMAGE}) center/cover no-repeat;
+    filter: brightness(0.4);
   }
+`;
+
+const LuxeHeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
 `;
 
 const LuxeEyebrow = styled.p`
@@ -588,314 +528,252 @@ const LuxeEyebrow = styled.p`
 
 const LuxeTitle = styled.h2`
   font-family: 'Cormorant', serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 300;
   font-style: italic;
   color: #F8F6F3;
-  line-height: 1.2;
-  margin-bottom: 1rem;
 `;
 
-const LuxeSubtitle = styled.p`
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  color: rgba(248,246,243,0.5);
-`;
-
-const LuxeH3 = styled.h3`
-  font-family: 'Cormorant', serif;
-  font-size: 1.4rem;
-  font-weight: 300;
-  font-style: italic;
-  color: #F8F6F3;
-  margin: 2rem 0 1rem;
-`;
-
-const LuxeQuote = styled.blockquote`
-  font-family: 'Cormorant', serif;
-  font-size: 1.4rem;
-  font-style: italic;
-  color: #C9A962;
-  padding: 1.5rem 0;
-  margin: 1.5rem 0;
-  text-align: center;
+const LuxeContent = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);
 `;
 
 const LuxeText = styled.p`
   font-family: 'Outfit', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 300;
-  color: rgba(248,246,243,0.6);
-  line-height: 1.9;
-  margin-bottom: 1rem;
+  color: rgba(248,246,243,0.7);
+  line-height: 2;
+  margin-bottom: 2rem;
+  text-align: center;
 `;
 
-const LuxeList = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
+const LuxeQuote = styled.blockquote`
+  font-family: 'Cormorant', serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  color: #C9A962;
+  text-align: center;
+  margin: 3rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(201, 169, 98, 0.2);
+  border-bottom: 1px solid rgba(201, 169, 98, 0.2);
+`;
+
+const LuxeTeamSection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(201, 169, 98, 0.2);
+  margin-top: 4rem;
   
-  li {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 300;
-    color: rgba(248,246,243,0.5);
-    padding: 0.4rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-    
-    &::before {
-      content: '·';
-      position: absolute;
-      left: 0;
-      color: #C9A962;
-    }
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const LuxeTeamCard = styled.article`
-  padding: 1.5rem;
-  border: 1px solid rgba(201, 169, 98, 0.2);
+const LuxeTeamCard = styled.div`
+  background: #0A0A0A;
+  padding: 3rem;
+  text-align: center;
 `;
 
-const LuxeTeamEmoji = styled.span`
-  font-size: 1.8rem;
-  display: block;
-  margin-bottom: 1rem;
+const LuxeTeamEmoji = styled.div`
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
 `;
 
-const LuxeTeamName = styled.h4`
+const LuxeTeamName = styled.h3`
   font-family: 'Cormorant', serif;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 300;
   font-style: italic;
   color: #F8F6F3;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+`;
+
+const LuxeTeamRole = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A962;
+  margin-bottom: 1rem;
 `;
 
 const LuxeTeamDesc = styled.p`
   font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 300;
   color: rgba(248,246,243,0.5);
-  line-height: 1.7;
-`;
-
-const LuxeCTAText = styled.p`
-  font-family: 'Cormorant', serif;
-  font-size: 1.3rem;
-  font-style: italic;
-  color: rgba(248,246,243,0.8);
-  margin-bottom: 1.5rem;
-`;
-
-const LuxeCTAButton = styled.button`
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #0A0A0A;
-  background: #C9A962;
-  border: none;
-  padding: 1rem 2.5rem;
-  cursor: pointer;
-  transition: all 0.5s ease;
-  
-  &:hover {
-    background: #d4b66f;
-  }
-`;
-
-const LuxeTagline = styled.p`
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-  color: rgba(248,246,243,0.4);
-  margin-top: 2rem;
+  line-height: 1.8;
 `;
 
 // ============================================
-// NEON THEME
+// NEON - Terminal Interview
 // ============================================
-const NeonSection = styled(Section)`
+const NeonSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
   background: #0a0a0f;
+  position: relative;
   
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 30% 70%, rgba(255,0,255,0.05) 0%, transparent 50%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(255,0,255,0.05) 0%, transparent 50%);
     pointer-events: none;
   }
 `;
 
-const NeonCard = styled.div`
+const NeonContainer = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
+`;
+
+const NeonTerminal = styled.div`
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+const NeonTerminalHeader = styled.div`
+  background: rgba(0,255,255,0.1);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(0,255,255,0.2);
+`;
+
+const NeonDot = styled.span`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: ${p => p.$c};
+`;
+
+const NeonTerminalTitle = styled.span`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  margin-left: 0.5rem;
+`;
+
+const NeonTerminalBody = styled.div`
+  padding: 2rem;
+`;
+
+const NeonLine = styled.div`
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  
+  &:last-child { margin-bottom: 0; }
+`;
+
+const NeonPrompt = styled.span`
+  color: #00ffff;
+`;
+
+const NeonCommand = styled.span`
+  color: #00ff88;
+`;
+
+const NeonOutput = styled.div`
+  color: rgba(255,255,255,0.8);
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(0,255,255,0.2);
+  line-height: 1.8;
+`;
+
+const NeonHighlight = styled.span`
+  color: #ff00ff;
+`;
+
+const NeonImage = styled.div`
+  margin: 2rem 0;
+  border: 1px solid rgba(0,255,255,0.3);
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    filter: saturate(0.8) brightness(0.9);
+  }
+`;
+
+const NeonTeamGrid = styled.div`
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const NeonTeamCard = styled.div`
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(0,255,255,0.2);
-  padding: clamp(2rem, 5vw, 3rem);
-`;
-
-const NeonImage = styled.img`
-  width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-  border: 1px solid rgba(0,255,255,0.3);
-  box-shadow: 0 0 30px rgba(0,255,255,0.2);
-  
-  @media (max-width: 768px) {
-    max-width: 350px;
-    margin: 0 auto;
-  }
-`;
-
-const NeonEyebrow = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #ff00ff;
-  text-shadow: 0 0 10px rgba(255,0,255,0.5);
-  margin-bottom: 1rem;
-`;
-
-const NeonTitle = styled.h2`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-`;
-
-const NeonSubtitle = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.5);
-`;
-
-const NeonH3 = styled.h3`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #00ffff;
-  text-shadow: 0 0 10px rgba(0,255,255,0.5);
-  margin: 2rem 0 1rem;
-`;
-
-const NeonQuote = styled.blockquote`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.1rem;
-  color: #00ff88;
-  text-shadow: 0 0 10px rgba(0,255,136,0.5);
-  padding: 1.5rem 0;
-  margin: 1.5rem 0;
-  text-align: center;
-`;
-
-const NeonText = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.8;
-  margin-bottom: 1rem;
-`;
-
-const NeonList = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
-  
-  li {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-    padding: 0.4rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    
-    &::before {
-      content: '>';
-      position: absolute;
-      left: 0;
-      color: #00ffff;
-      text-shadow: 0 0 5px rgba(0,255,255,0.5);
-    }
-  }
-`;
-
-const NeonTeamCard = styled.article`
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(0,255,255,0.15);
   padding: 1.5rem;
 `;
 
-const NeonTeamEmoji = styled.span`
-  font-size: 1.8rem;
-  display: block;
-  margin-bottom: 1rem;
-`;
-
-const NeonTeamName = styled.h4`
+const NeonTeamName = styled.h3`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 1rem;
   font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0,255,255,0.5);
+  margin-bottom: 0.25rem;
+`;
+
+const NeonTeamRole = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  color: #ff00ff;
+  margin-bottom: 0.75rem;
 `;
 
 const NeonTeamDesc = styled.p`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.7;
-`;
-
-const NeonCTAText = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 1.5rem;
-`;
-
-const NeonCTAButton = styled.button`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #00ff88;
-  background: transparent;
-  border: 1px solid #00ff88;
-  padding: 1rem 2.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(0,255,136,0.3);
-  
-  &:hover {
-    background: rgba(0,255,136,0.1);
-    box-shadow: 0 0 30px rgba(0,255,136,0.5);
-  }
-`;
-
-const NeonTagline = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.4);
-  margin-top: 2rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
 `;
 
 // ============================================
-// VIDEO THEME
+// VIDEO - Timeline mit Akkordeon
 // ============================================
-const VideoSection = styled(Section)`
+const VideoSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
+`;
+
+const VideoContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
+const VideoHeader = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  align-items: center;
+  
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const VideoImage = styled.img`
@@ -903,11 +781,12 @@ const VideoImage = styled.img`
   aspect-ratio: 4/5;
   object-fit: cover;
   
-  @media (max-width: 768px) {
-    max-width: 350px;
-    margin: 0 auto;
+  @media (max-width: 700px) {
+    max-height: 400px;
   }
 `;
+
+const VideoHeaderContent = styled.div``;
 
 const VideoEyebrow = styled.p`
   font-family: 'Inter', sans-serif;
@@ -921,10 +800,9 @@ const VideoEyebrow = styled.p`
 
 const VideoTitle = styled.h2`
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 2.5rem);
   font-weight: 700;
   color: #FFFFFF;
-  line-height: 1.1;
   margin-bottom: 1rem;
 `;
 
@@ -932,590 +810,529 @@ const VideoSubtitle = styled.p`
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.1rem;
   font-style: italic;
-  color: #B0B0B0;
+  color: #888;
 `;
 
-const VideoH3 = styled.h3`
+const VideoTimeline = styled.div`
+  position: relative;
+  padding-left: 2rem;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #6B8CAE 0%, rgba(107,140,174,0.2) 100%);
+  }
+`;
+
+const VideoTimelineItem = styled.div`
+  position: relative;
+  margin-bottom: 1.5rem;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 1.25rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: ${p => p.$open ? '#6B8CAE' : '#333'};
+    border: 2px solid #6B8CAE;
+    transition: all 0.3s ease;
+  }
+`;
+
+const VideoTimelineHeader = styled.button`
+  width: 100%;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(107, 140, 174, 0.1);
+    border-color: rgba(107, 140, 174, 0.3);
+  }
+`;
+
+const VideoTimelineTitle = styled.h3`
   font-family: 'Manrope', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin: 2rem 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
 `;
 
-const VideoQuote = styled.blockquote`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  font-style: italic;
+const VideoTimelineArrow = styled.span`
   color: #6B8CAE;
-  padding: 1.5rem 0;
-  margin: 1.5rem 0;
-  text-align: center;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  transform: rotate(${p => p.$open ? '90deg' : '0'});
 `;
 
-const VideoText = styled.p`
+const VideoTimelineContent = styled.div`
+  max-height: ${p => p.$open ? '300px' : '0'};
+  opacity: ${p => p.$open ? 1 : 0};
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-top: none;
+`;
+
+const VideoTimelineText = styled.p`
+  padding: 1.5rem;
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   color: #B0B0B0;
   line-height: 1.8;
-  margin-bottom: 1rem;
 `;
 
-const VideoList = styled.ul`
-  list-style: none;
-  margin: 1rem 0;
+const VideoTeamSection = styled.div`
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
   
-  li {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    color: #B0B0B0;
-    padding: 0.4rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-    
-    &::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: #6B8CAE;
-    }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const VideoTeamCard = styled.article`
-  padding: 1.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+const VideoTeamCard = styled.div`
+  border: 1px solid rgba(107, 140, 174, 0.3);
+  padding: 2rem;
+  text-align: center;
 `;
 
-const VideoTeamEmoji = styled.span`
-  font-size: 1.8rem;
-  display: block;
+const VideoTeamEmoji = styled.div`
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 `;
 
-const VideoTeamName = styled.h4`
+const VideoTeamName = styled.h3`
   font-family: 'Manrope', sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 0.5rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+`;
+
+const VideoTeamRole = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #6B8CAE;
+  margin-bottom: 1rem;
 `;
 
 const VideoTeamDesc = styled.p`
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  color: #B0B0B0;
+  font-size: 0.85rem;
+  color: #888;
   line-height: 1.7;
 `;
 
-const VideoCTAText = styled.p`
-  font-family: 'Cormorant Garamond', serif;
+// ============================================
+// SHARED CTA
+// ============================================
+const CTABox = styled.div`
+  margin-top: clamp(3rem, 8vh, 5rem);
+  text-align: center;
+  padding: 2rem;
+`;
+
+const CTAHeadline = styled.p`
   font-size: 1.2rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.8);
   margin-bottom: 1.5rem;
 `;
 
-const VideoCTAButton = styled.button`
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.75rem;
+const CTAButton = styled.button`
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  background: transparent;
-  border: 1px solid #6B8CAE;
   padding: 1rem 2.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  
-  &:hover {
-    background: #6B8CAE;
-  }
 `;
 
-const VideoTagline = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.4);
-  margin-top: 2rem;
+const CTATagline = styled.p`
+  font-size: 0.75rem;
+  margin-top: 1.5rem;
 `;
-
-// ============================================
-// CONTENT - SEO OPTIMIZED
-// ============================================
-const CONTENT = {
-  eyebrow: 'Über uns',
-  title: 'Sarah & Iver',
-  subtitle: 'Warum es S&I. überhaupt gibt',
-  intro: 'S&I. ist aus unserer eigenen Hochzeitsreise entstanden.',
-  story: `Als wir unsere eigene Hochzeit geplant haben, wollten wir eine Hochzeitswebsite, die unsere Geschichte widerspiegelt – stilvoll, modern, emotional. Doch was wir fanden, war ernüchternd: Baukästen, die unpersönlich wirkten. Designs ohne Gefühl. Lösungen, die entweder kompliziert, zeitintensiv oder schlicht unschön waren.`,
-  quote: '„Unsere Hochzeit verdient etwas Besonderes – warum gibt es das nicht?"',
-  result: 'Also haben wir es selbst gebaut. Aus einer Idee wurde Leidenschaft. Aus Leidenschaft wurde ein Produkt. Und daraus entstand S&I. Premium Hochzeitswebsites.',
-  visionTitle: 'Unsere Vision: Ein digitales Zuhause für eure Hochzeit',
-  visionText: 'Wir glauben, dass eine Hochzeitswebsite mehr sein sollte als eine Informationsseite. Sie sollte sich anfühlen wie ein Zuhause für eure Liebe – ein Ort für eure Geschichte, eure Gäste, eure Erinnerungen und euren großen Tag.',
-  visionList: [
-    'Emotionen transportiert',
-    'eure Persönlichkeit widerspiegelt',
-    'Organisation erleichtert',
-    'Gästen Orientierung gibt',
-    'und euch Zeit, Stress und Nerven spart'
-  ],
-  visionTagline: 'So individuell wie eure Liebe. So einfach wie möglich für euch. So hochwertig wie euer großer Tag.',
-  teamTitle: 'Wer wir sind – und warum wir so arbeiten',
-  sarah: {
-    emoji: '🎨',
-    name: 'Sarah – Herz, Design & Gefühl',
-    desc: 'Sarah sorgt dafür, dass jede Hochzeitswebsite nicht nur schön aussieht, sondern sich richtig anfühlt. Farben, Typografie, Bildsprache und Details – alles wird mit viel Liebe gestaltet, damit eure Website emotional berührt und stilistisch perfekt zu euch passt.'
-  },
-  iver: {
-    emoji: '🧑‍💻',
-    name: 'Iver – Technik, Umsetzung & persönliche Begleitung',
-    desc: 'Iver kümmert sich um die Technik, Umsetzung und persönliche Betreuung. Vom ersten Gespräch bis zur fertigen Website habt ihr einen echten Ansprechpartner – kein anonymes System, keinen Support-Chat, keine Massenabfertigung.'
-  },
-  personalTitle: 'Warum wir immer persönlich mit euch sprechen',
-  personalText: 'Jede Liebesgeschichte ist anders. Deshalb glauben wir nicht an Standardlösungen. Bevor wir starten, möchten wir euch wirklich kennenlernen:',
-  personalList: [
-    'Was macht euch als Paar aus?',
-    'Wie soll sich eure Hochzeit anfühlen?',
-    'Elegant, modern, verspielt, minimalistisch?',
-    'Welche Details sind euch wichtig?'
-  ],
-  personalResult: 'Erst danach gestalten wir eure individuelle Hochzeitswebsite – maßgeschneidert, persönlich und mit dem Anspruch, nicht nur zu funktionieren, sondern zu begeistern.',
-  seoTitle: 'Für Paare, die mehr wollen als eine „normale" Hochzeitswebsite',
-  seoList: [
-    'Premium Hochzeitswebsite erstellen lassen',
-    'moderne Wedding Website mit Persönlichkeit bekommen',
-    'emotionale Hochzeitsseite statt Baukasten nutzen',
-    'Website mit RSVP, Galerie, Gäste-Fotos, Ablauf, Wunschliste & mehr haben',
-    'digitales Erlebnis schaffen, das Gäste beeindruckt'
-  ],
-  ctaText: 'Wenn eure Hochzeit besonders ist, sollte eure Website es auch sein.',
-  ctaButton: 'Schreibt uns',
-  tagline: 'S&I. – Premium Hochzeitswebsites für eure Liebesgeschichte mit Anspruch.'
-};
 
 // ============================================
 // MAIN COMPONENT
 // ============================================
 const AboutSection = () => {
   const { currentTheme } = useTheme();
+  const [openSection, setOpenSection] = useState(0);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // EDITORIAL
+  // ==========================================
+  // EDITORIAL - Split Screen
+  // ==========================================
   if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="about">
-        <Container>
-          <HeroArea>
-            <EditorialImage 
-              src={SARAH_IVER_IMAGE} 
-              alt="Sarah und Iver - Gründer von S&I. Premium Hochzeitswebsites"
-              loading="lazy"
-            />
-            <div>
-              <EditorialEyebrow>{CONTENT.eyebrow}</EditorialEyebrow>
-              <EditorialTitle>{CONTENT.title}</EditorialTitle>
-              <EditorialSubtitle>{CONTENT.subtitle}</EditorialSubtitle>
-            </div>
-          </HeroArea>
-          
-          <ContentArea>
-            <EditorialText><strong>{CONTENT.intro}</strong></EditorialText>
-            <EditorialText>{CONTENT.story}</EditorialText>
-            <EditorialQuote>{CONTENT.quote}</EditorialQuote>
-            <EditorialText>{CONTENT.result}</EditorialText>
-            
-            <EditorialH3>{CONTENT.visionTitle}</EditorialH3>
-            <EditorialText>{CONTENT.visionText}</EditorialText>
-            <EditorialText>Eine Website, die:</EditorialText>
-            <EditorialList>
-              {CONTENT.visionList.map((item, i) => <li key={i}>{item}</li>)}
-            </EditorialList>
-            <EditorialText><em>{CONTENT.visionTagline}</em></EditorialText>
-            
-            <EditorialH3>{CONTENT.teamTitle}</EditorialH3>
-            <TeamSection>
-              <EditorialTeamCard>
-                <EditorialTeamEmoji>{CONTENT.sarah.emoji}</EditorialTeamEmoji>
-                <EditorialTeamName>{CONTENT.sarah.name}</EditorialTeamName>
-                <EditorialTeamDesc>{CONTENT.sarah.desc}</EditorialTeamDesc>
-              </EditorialTeamCard>
-              <EditorialTeamCard>
-                <EditorialTeamEmoji>{CONTENT.iver.emoji}</EditorialTeamEmoji>
-                <EditorialTeamName>{CONTENT.iver.name}</EditorialTeamName>
-                <EditorialTeamDesc>{CONTENT.iver.desc}</EditorialTeamDesc>
-              </EditorialTeamCard>
-            </TeamSection>
-            
-            <EditorialH3>{CONTENT.personalTitle}</EditorialH3>
-            <EditorialText>{CONTENT.personalText}</EditorialText>
-            <EditorialList>
-              {CONTENT.personalList.map((item, i) => <li key={i}>{item}</li>)}
-            </EditorialList>
-            <EditorialText>{CONTENT.personalResult}</EditorialText>
-            
-            <EditorialH3>{CONTENT.seoTitle}</EditorialH3>
-            <EditorialText>Wir helfen Paaren:</EditorialText>
-            <EditorialList>
-              {CONTENT.seoList.map((item, i) => <li key={i}>{item}</li>)}
-            </EditorialList>
-          </ContentArea>
-          
-          <CTABox>
-            <EditorialCTAText>{CONTENT.ctaText}</EditorialCTAText>
-            <EditorialCTAButton onClick={scrollToContact}>{CONTENT.ctaButton}</EditorialCTAButton>
-            <EditorialTagline>{CONTENT.tagline}</EditorialTagline>
-          </CTABox>
-        </Container>
+        <EditorialHero>
+          <EditorialImage />
+          <EditorialContent>
+            <EditorialEyebrow>Über uns</EditorialEyebrow>
+            <EditorialTitle>Sarah & Iver</EditorialTitle>
+            <EditorialSubtitle>Warum es S&I. überhaupt gibt</EditorialSubtitle>
+            <EditorialText>
+              S&I. ist aus unserer eigenen Hochzeitsreise entstanden. Als wir unsere Hochzeit planten, 
+              wollten wir eine Website, die unsere Geschichte widerspiegelt – stilvoll, modern, emotional.
+            </EditorialText>
+            <EditorialQuote>
+              „Unsere Hochzeit verdient etwas Besonderes – warum gibt es das nicht?"
+            </EditorialQuote>
+            <EditorialText>
+              Also haben wir es selbst gebaut. Aus einer Idee wurde Leidenschaft. 
+              Aus Leidenschaft wurde S&I. Premium Hochzeitswebsites.
+            </EditorialText>
+          </EditorialContent>
+        </EditorialHero>
+        
+        <EditorialTeam>
+          <EditorialTeamGrid>
+            <EditorialTeamMember>
+              <EditorialTeamEmoji>{TEAM.sarah.emoji}</EditorialTeamEmoji>
+              <EditorialTeamName>{TEAM.sarah.name}</EditorialTeamName>
+              <EditorialTeamRole>{TEAM.sarah.role}</EditorialTeamRole>
+              <EditorialTeamDesc>{TEAM.sarah.desc}</EditorialTeamDesc>
+            </EditorialTeamMember>
+            <EditorialTeamMember>
+              <EditorialTeamEmoji>{TEAM.iver.emoji}</EditorialTeamEmoji>
+              <EditorialTeamName>{TEAM.iver.name}</EditorialTeamName>
+              <EditorialTeamRole>{TEAM.iver.role}</EditorialTeamRole>
+              <EditorialTeamDesc>{TEAM.iver.desc}</EditorialTeamDesc>
+            </EditorialTeamMember>
+          </EditorialTeamGrid>
+        </EditorialTeam>
+        
+        <EditorialCTA>
+          <CTAHeadline style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', color: '#525252' }}>
+            {CTA.headline}
+          </CTAHeadline>
+          <CTAButton 
+            onClick={scrollToContact}
+            style={{ fontFamily: "'Oswald', sans-serif", color: '#FAFAFA', background: '#C41E3A', border: 'none' }}
+          >
+            {CTA.button}
+          </CTAButton>
+          <CTATagline style={{ fontFamily: "'Inter', sans-serif", color: '#999' }}>
+            {CTA.tagline}
+          </CTATagline>
+        </EditorialCTA>
       </EditorialSection>
     );
   }
 
-  // BOTANICAL
+  // ==========================================
+  // BOTANICAL - Story Cards
+  // ==========================================
   if (currentTheme === 'botanical') {
     return (
       <BotanicalSection id="about">
-        <Container>
-          <BotanicalCard>
-            <HeroArea>
-              <BotanicalImage 
-                src={SARAH_IVER_IMAGE} 
-                alt="Sarah und Iver - Gründer von S&I. Premium Hochzeitswebsites"
-                loading="lazy"
-              />
-              <div>
-                <BotanicalEyebrow>{CONTENT.eyebrow}</BotanicalEyebrow>
-                <BotanicalTitle>{CONTENT.title}</BotanicalTitle>
-                <BotanicalSubtitle>{CONTENT.subtitle}</BotanicalSubtitle>
-              </div>
-            </HeroArea>
-            
-            <ContentArea>
-              <BotanicalText><strong>{CONTENT.intro}</strong></BotanicalText>
-              <BotanicalText>{CONTENT.story}</BotanicalText>
-              <BotanicalQuote>{CONTENT.quote}</BotanicalQuote>
-              <BotanicalText>{CONTENT.result}</BotanicalText>
-              
-              <BotanicalH3>{CONTENT.visionTitle}</BotanicalH3>
-              <BotanicalText>{CONTENT.visionText}</BotanicalText>
-              <BotanicalList>
-                {CONTENT.visionList.map((item, i) => <li key={i}>{item}</li>)}
-              </BotanicalList>
-              <BotanicalText><em>{CONTENT.visionTagline}</em></BotanicalText>
-              
-              <BotanicalH3>{CONTENT.teamTitle}</BotanicalH3>
-              <TeamSection>
-                <BotanicalTeamCard>
-                  <BotanicalTeamEmoji>{CONTENT.sarah.emoji}</BotanicalTeamEmoji>
-                  <BotanicalTeamName>{CONTENT.sarah.name}</BotanicalTeamName>
-                  <BotanicalTeamDesc>{CONTENT.sarah.desc}</BotanicalTeamDesc>
-                </BotanicalTeamCard>
-                <BotanicalTeamCard>
-                  <BotanicalTeamEmoji>{CONTENT.iver.emoji}</BotanicalTeamEmoji>
-                  <BotanicalTeamName>{CONTENT.iver.name}</BotanicalTeamName>
-                  <BotanicalTeamDesc>{CONTENT.iver.desc}</BotanicalTeamDesc>
-                </BotanicalTeamCard>
-              </TeamSection>
-              
-              <BotanicalH3>{CONTENT.personalTitle}</BotanicalH3>
-              <BotanicalText>{CONTENT.personalText}</BotanicalText>
-              <BotanicalList>
-                {CONTENT.personalList.map((item, i) => <li key={i}>{item}</li>)}
-              </BotanicalList>
-              <BotanicalText>{CONTENT.personalResult}</BotanicalText>
-              
-              <BotanicalH3>{CONTENT.seoTitle}</BotanicalH3>
-              <BotanicalList>
-                {CONTENT.seoList.map((item, i) => <li key={i}>{item}</li>)}
-              </BotanicalList>
-            </ContentArea>
-            
-            <CTABox>
-              <BotanicalCTAText>{CONTENT.ctaText}</BotanicalCTAText>
-              <BotanicalCTAButton onClick={scrollToContact}>{CONTENT.ctaButton}</BotanicalCTAButton>
-              <BotanicalTagline>{CONTENT.tagline}</BotanicalTagline>
-            </CTABox>
-          </BotanicalCard>
-        </Container>
+        <BotanicalContainer>
+          <BotanicalImageCard>
+            <BotanicalImg src={SARAH_IVER_IMAGE} alt="Sarah und Iver" loading="lazy" />
+            <BotanicalImageCaption>
+              <BotanicalEyebrow>Über uns</BotanicalEyebrow>
+              <BotanicalTitle>Sarah & Iver</BotanicalTitle>
+            </BotanicalImageCaption>
+          </BotanicalImageCard>
+          
+          <BotanicalStory>
+            {STORY_SECTIONS.map((section) => (
+              <BotanicalStoryCard key={section.id}>
+                <BotanicalStoryTitle>{section.title}</BotanicalStoryTitle>
+                <BotanicalStoryText>{section.content}</BotanicalStoryText>
+              </BotanicalStoryCard>
+            ))}
+          </BotanicalStory>
+          
+          <BotanicalTeamSection>
+            <BotanicalTeamCard>
+              <BotanicalStoryTitle>{TEAM.sarah.emoji} {TEAM.sarah.name}</BotanicalStoryTitle>
+              <BotanicalEyebrow style={{ marginBottom: '0.75rem' }}>{TEAM.sarah.role}</BotanicalEyebrow>
+              <BotanicalStoryText>{TEAM.sarah.desc}</BotanicalStoryText>
+            </BotanicalTeamCard>
+            <BotanicalTeamCard>
+              <BotanicalStoryTitle>{TEAM.iver.emoji} {TEAM.iver.name}</BotanicalStoryTitle>
+              <BotanicalEyebrow style={{ marginBottom: '0.75rem' }}>{TEAM.iver.role}</BotanicalEyebrow>
+              <BotanicalStoryText>{TEAM.iver.desc}</BotanicalStoryText>
+            </BotanicalTeamCard>
+          </BotanicalTeamSection>
+          
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", color: 'rgba(255,255,255,0.8)' }}>
+              {CTA.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToContact}
+              style={{ fontFamily: "'Montserrat', sans-serif", color: '#040604', background: 'rgba(255,255,255,0.95)', border: 'none', borderRadius: '50px' }}
+            >
+              {CTA.button}
+            </CTAButton>
+          </CTABox>
+        </BotanicalContainer>
       </BotanicalSection>
     );
   }
 
-  // CONTEMPORARY
+  // ==========================================
+  // CONTEMPORARY - Comic Panels
+  // ==========================================
   if (currentTheme === 'contemporary') {
     return (
       <ContemporarySection id="about">
-        <Container>
-          <ContemporaryCard>
-            <HeroArea>
-              <ContemporaryImage 
-                src={SARAH_IVER_IMAGE} 
-                alt="Sarah und Iver - Gründer von S&I. Premium Hochzeitswebsites"
-                loading="lazy"
-              />
-              <div>
-                <ContemporaryEyebrow>👋 {CONTENT.eyebrow}</ContemporaryEyebrow>
-                <ContemporaryTitle>{CONTENT.title}</ContemporaryTitle>
-                <ContemporarySubtitle>{CONTENT.subtitle}</ContemporarySubtitle>
-              </div>
-            </HeroArea>
-            
-            <ContentArea>
-              <ContemporaryText><strong>{CONTENT.intro}</strong></ContemporaryText>
-              <ContemporaryText>{CONTENT.story}</ContemporaryText>
-              <ContemporaryQuote>{CONTENT.quote}</ContemporaryQuote>
-              <ContemporaryText>{CONTENT.result}</ContemporaryText>
-              
-              <ContemporaryH3>🏠 {CONTENT.visionTitle}</ContemporaryH3>
-              <ContemporaryText>{CONTENT.visionText}</ContemporaryText>
-              <ContemporaryList>
-                {CONTENT.visionList.map((item, i) => <li key={i}>{item}</li>)}
-              </ContemporaryList>
-              <ContemporaryText><strong>{CONTENT.visionTagline}</strong></ContemporaryText>
-              
-              <ContemporaryH3>🤝 {CONTENT.teamTitle}</ContemporaryH3>
-              <TeamSection>
-                <ContemporaryTeamCard $color="#FF6B6B">
-                  <ContemporaryTeamEmoji>{CONTENT.sarah.emoji}</ContemporaryTeamEmoji>
-                  <ContemporaryTeamName>{CONTENT.sarah.name}</ContemporaryTeamName>
-                  <ContemporaryTeamDesc>{CONTENT.sarah.desc}</ContemporaryTeamDesc>
-                </ContemporaryTeamCard>
-                <ContemporaryTeamCard $color="#4ECDC4">
-                  <ContemporaryTeamEmoji>{CONTENT.iver.emoji}</ContemporaryTeamEmoji>
-                  <ContemporaryTeamName>{CONTENT.iver.name}</ContemporaryTeamName>
-                  <ContemporaryTeamDesc>{CONTENT.iver.desc}</ContemporaryTeamDesc>
-                </ContemporaryTeamCard>
-              </TeamSection>
-              
-              <ContemporaryH3>💬 {CONTENT.personalTitle}</ContemporaryH3>
-              <ContemporaryText>{CONTENT.personalText}</ContemporaryText>
-              <ContemporaryList>
-                {CONTENT.personalList.map((item, i) => <li key={i}>{item}</li>)}
-              </ContemporaryList>
-              <ContemporaryText>{CONTENT.personalResult}</ContemporaryText>
-              
-              <ContemporaryH3>💎 {CONTENT.seoTitle}</ContemporaryH3>
-              <ContemporaryList>
-                {CONTENT.seoList.map((item, i) => <li key={i}>{item}</li>)}
-              </ContemporaryList>
-            </ContentArea>
-            
-            <CTABox>
-              <ContemporaryCTAText>{CONTENT.ctaText}</ContemporaryCTAText>
-              <ContemporaryCTAButton onClick={scrollToContact}>{CONTENT.ctaButton} →</ContemporaryCTAButton>
-              <ContemporaryTagline>{CONTENT.tagline}</ContemporaryTagline>
-            </CTABox>
-          </ContemporaryCard>
-        </Container>
+        <ContemporaryContainer>
+          <ContemporaryHeader>
+            <ContemporaryTitle>👋 Unsere Story</ContemporaryTitle>
+          </ContemporaryHeader>
+          
+          <ContemporaryComic>
+            <ContemporaryImagePanel />
+            {STORY_SECTIONS.map((section, i) => (
+              <ContemporaryPanel key={section.id} $i={i} $large={i === 2}>
+                <ContemporaryPanelNum>{i + 1}</ContemporaryPanelNum>
+                <ContemporaryPanelTitle>{section.title}</ContemporaryPanelTitle>
+                <ContemporaryPanelText>{section.content}</ContemporaryPanelText>
+              </ContemporaryPanel>
+            ))}
+          </ContemporaryComic>
+          
+          <ContemporaryTeam>
+            <ContemporaryTeamCard $color="#FF6B6B">
+              <ContemporaryTeamEmoji>{TEAM.sarah.emoji}</ContemporaryTeamEmoji>
+              <ContemporaryTeamContent>
+                <ContemporaryTeamName>{TEAM.sarah.name}</ContemporaryTeamName>
+                <ContemporaryTeamRole>{TEAM.sarah.role}</ContemporaryTeamRole>
+                <ContemporaryTeamDesc>{TEAM.sarah.desc}</ContemporaryTeamDesc>
+              </ContemporaryTeamContent>
+            </ContemporaryTeamCard>
+            <ContemporaryTeamCard $color="#4ECDC4">
+              <ContemporaryTeamEmoji>{TEAM.iver.emoji}</ContemporaryTeamEmoji>
+              <ContemporaryTeamContent>
+                <ContemporaryTeamName>{TEAM.iver.name}</ContemporaryTeamName>
+                <ContemporaryTeamRole>{TEAM.iver.role}</ContemporaryTeamRole>
+                <ContemporaryTeamDesc>{TEAM.iver.desc}</ContemporaryTeamDesc>
+              </ContemporaryTeamContent>
+            </ContemporaryTeamCard>
+          </ContemporaryTeam>
+          
+          <CTABox>
+            <CTAButton 
+              onClick={scrollToContact}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#FAFAFA', background: '#FF6B6B', border: '3px solid #0D0D0D', boxShadow: '4px 4px 0 #0D0D0D' }}
+            >
+              {CTA.button} →
+            </CTAButton>
+          </CTABox>
+        </ContemporaryContainer>
       </ContemporarySection>
     );
   }
 
-  // LUXE
+  // ==========================================
+  // LUXE - Cinematisch
+  // ==========================================
   if (currentTheme === 'luxe') {
     return (
       <LuxeSection id="about">
-        <Container>
-          <HeroArea>
-            <LuxeImage 
-              src={SARAH_IVER_IMAGE} 
-              alt="Sarah und Iver - Gründer von S&I. Premium Hochzeitswebsites"
-              loading="lazy"
-            />
-            <div>
-              <LuxeEyebrow>{CONTENT.eyebrow}</LuxeEyebrow>
-              <LuxeTitle>{CONTENT.title}</LuxeTitle>
-              <LuxeSubtitle>{CONTENT.subtitle}</LuxeSubtitle>
-            </div>
-          </HeroArea>
+        <LuxeHero>
+          <LuxeHeroContent>
+            <LuxeEyebrow>Über uns</LuxeEyebrow>
+            <LuxeTitle>Sarah & Iver</LuxeTitle>
+          </LuxeHeroContent>
+        </LuxeHero>
+        
+        <LuxeContent>
+          <LuxeText>
+            S&I. ist aus unserer eigenen Hochzeitsreise entstanden. Als wir unsere Hochzeit planten, 
+            wollten wir eine Website, die unsere Geschichte widerspiegelt – stilvoll, modern, emotional.
+          </LuxeText>
           
-          <ContentArea>
-            <LuxeText><strong>{CONTENT.intro}</strong></LuxeText>
-            <LuxeText>{CONTENT.story}</LuxeText>
-            <LuxeQuote>{CONTENT.quote}</LuxeQuote>
-            <LuxeText>{CONTENT.result}</LuxeText>
-            
-            <LuxeH3>{CONTENT.visionTitle}</LuxeH3>
-            <LuxeText>{CONTENT.visionText}</LuxeText>
-            <LuxeList>
-              {CONTENT.visionList.map((item, i) => <li key={i}>{item}</li>)}
-            </LuxeList>
-            <LuxeText><em>{CONTENT.visionTagline}</em></LuxeText>
-            
-            <LuxeH3>{CONTENT.teamTitle}</LuxeH3>
-            <TeamSection>
-              <LuxeTeamCard>
-                <LuxeTeamEmoji>{CONTENT.sarah.emoji}</LuxeTeamEmoji>
-                <LuxeTeamName>{CONTENT.sarah.name}</LuxeTeamName>
-                <LuxeTeamDesc>{CONTENT.sarah.desc}</LuxeTeamDesc>
-              </LuxeTeamCard>
-              <LuxeTeamCard>
-                <LuxeTeamEmoji>{CONTENT.iver.emoji}</LuxeTeamEmoji>
-                <LuxeTeamName>{CONTENT.iver.name}</LuxeTeamName>
-                <LuxeTeamDesc>{CONTENT.iver.desc}</LuxeTeamDesc>
-              </LuxeTeamCard>
-            </TeamSection>
-            
-            <LuxeH3>{CONTENT.personalTitle}</LuxeH3>
-            <LuxeText>{CONTENT.personalText}</LuxeText>
-            <LuxeList>
-              {CONTENT.personalList.map((item, i) => <li key={i}>{item}</li>)}
-            </LuxeList>
-            <LuxeText>{CONTENT.personalResult}</LuxeText>
-            
-            <LuxeH3>{CONTENT.seoTitle}</LuxeH3>
-            <LuxeList>
-              {CONTENT.seoList.map((item, i) => <li key={i}>{item}</li>)}
-            </LuxeList>
-          </ContentArea>
+          <LuxeQuote>
+            „Unsere Hochzeit verdient etwas Besonderes – warum gibt es das nicht?"
+          </LuxeQuote>
+          
+          <LuxeText>
+            Wir erschaffen ein digitales Zuhause für eure Hochzeit: für eure Geschichte, 
+            eure Gäste, eure Erinnerungen und euren großen Tag.
+          </LuxeText>
+          
+          <LuxeTeamSection>
+            <LuxeTeamCard>
+              <LuxeTeamEmoji>{TEAM.sarah.emoji}</LuxeTeamEmoji>
+              <LuxeTeamName>{TEAM.sarah.name}</LuxeTeamName>
+              <LuxeTeamRole>{TEAM.sarah.role}</LuxeTeamRole>
+              <LuxeTeamDesc>{TEAM.sarah.desc}</LuxeTeamDesc>
+            </LuxeTeamCard>
+            <LuxeTeamCard>
+              <LuxeTeamEmoji>{TEAM.iver.emoji}</LuxeTeamEmoji>
+              <LuxeTeamName>{TEAM.iver.name}</LuxeTeamName>
+              <LuxeTeamRole>{TEAM.iver.role}</LuxeTeamRole>
+              <LuxeTeamDesc>{TEAM.iver.desc}</LuxeTeamDesc>
+            </LuxeTeamCard>
+          </LuxeTeamSection>
           
           <CTABox>
-            <LuxeCTAText>{CONTENT.ctaText}</LuxeCTAText>
-            <LuxeCTAButton onClick={scrollToContact}>{CONTENT.ctaButton}</LuxeCTAButton>
-            <LuxeTagline>{CONTENT.tagline}</LuxeTagline>
+            <CTAHeadline style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic', color: 'rgba(248,246,243,0.8)' }}>
+              {CTA.headline}
+            </CTAHeadline>
+            <CTAButton 
+              onClick={scrollToContact}
+              style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: '0.3em', color: '#0A0A0A', background: '#C9A962', border: 'none' }}
+            >
+              {CTA.button}
+            </CTAButton>
           </CTABox>
-        </Container>
+        </LuxeContent>
       </LuxeSection>
     );
   }
 
-  // NEON
+  // ==========================================
+  // NEON - Terminal Interview
+  // ==========================================
   if (currentTheme === 'neon') {
     return (
       <NeonSection id="about">
-        <Container style={{ position: 'relative', zIndex: 1 }}>
-          <NeonCard>
-            <HeroArea>
-              <NeonImage 
-                src={SARAH_IVER_IMAGE} 
-                alt="Sarah und Iver - Gründer von S&I. Premium Hochzeitswebsites"
-                loading="lazy"
-              />
-              <div>
-                <NeonEyebrow>// about.init()</NeonEyebrow>
-                <NeonTitle>{CONTENT.title}</NeonTitle>
-                <NeonSubtitle>{CONTENT.subtitle}</NeonSubtitle>
-              </div>
-            </HeroArea>
+        <NeonContainer>
+          <NeonTerminal>
+            <NeonTerminalHeader>
+              <NeonDot $c="#ff5f56" />
+              <NeonDot $c="#ffbd2e" />
+              <NeonDot $c="#27c93f" />
+              <NeonTerminalTitle>about_si.interview</NeonTerminalTitle>
+            </NeonTerminalHeader>
             
-            <ContentArea>
-              <NeonText><strong>{CONTENT.intro}</strong></NeonText>
-              <NeonText>{CONTENT.story}</NeonText>
-              <NeonQuote>{CONTENT.quote}</NeonQuote>
-              <NeonText>{CONTENT.result}</NeonText>
+            <NeonTerminalBody>
+              <NeonImage>
+                <img src={SARAH_IVER_IMAGE} alt="Sarah und Iver" loading="lazy" />
+              </NeonImage>
               
-              <NeonH3>// vision</NeonH3>
-              <NeonText>{CONTENT.visionText}</NeonText>
-              <NeonList>
-                {CONTENT.visionList.map((item, i) => <li key={i}>{item}</li>)}
-              </NeonList>
-              <NeonText><em>{CONTENT.visionTagline}</em></NeonText>
+              <NeonLine>
+                <NeonPrompt>$</NeonPrompt> <NeonCommand>who --founders</NeonCommand>
+                <NeonOutput>
+                  <NeonHighlight>Sarah & Iver</NeonHighlight> - Die Köpfe hinter S&I. Premium Hochzeitswebsites
+                </NeonOutput>
+              </NeonLine>
               
-              <NeonH3>// team</NeonH3>
-              <TeamSection>
+              <NeonLine>
+                <NeonPrompt>$</NeonPrompt> <NeonCommand>cat origin_story.txt</NeonCommand>
+                <NeonOutput>
+                  S&I. ist aus unserer eigenen Hochzeitsreise entstanden. Wir wollten eine Website, 
+                  die unsere Geschichte widerspiegelt. Was wir fanden: Baukästen ohne Gefühl.
+                </NeonOutput>
+              </NeonLine>
+              
+              <NeonLine>
+                <NeonPrompt>$</NeonPrompt> <NeonCommand>echo $MISSION</NeonCommand>
+                <NeonOutput>
+                  <NeonHighlight>"Unsere Hochzeit verdient etwas Besonderes – warum gibt es das nicht?"</NeonHighlight>
+                </NeonOutput>
+              </NeonLine>
+              
+              <NeonTeamGrid>
                 <NeonTeamCard>
-                  <NeonTeamEmoji>{CONTENT.sarah.emoji}</NeonTeamEmoji>
-                  <NeonTeamName>{CONTENT.sarah.name}</NeonTeamName>
-                  <NeonTeamDesc>{CONTENT.sarah.desc}</NeonTeamDesc>
+                  <NeonTeamName>{TEAM.sarah.emoji} {TEAM.sarah.name}</NeonTeamName>
+                  <NeonTeamRole>{TEAM.sarah.role}</NeonTeamRole>
+                  <NeonTeamDesc>{TEAM.sarah.desc}</NeonTeamDesc>
                 </NeonTeamCard>
                 <NeonTeamCard>
-                  <NeonTeamEmoji>{CONTENT.iver.emoji}</NeonTeamEmoji>
-                  <NeonTeamName>{CONTENT.iver.name}</NeonTeamName>
-                  <NeonTeamDesc>{CONTENT.iver.desc}</NeonTeamDesc>
+                  <NeonTeamName>{TEAM.iver.emoji} {TEAM.iver.name}</NeonTeamName>
+                  <NeonTeamRole>{TEAM.iver.role}</NeonTeamRole>
+                  <NeonTeamDesc>{TEAM.iver.desc}</NeonTeamDesc>
                 </NeonTeamCard>
-              </TeamSection>
-              
-              <NeonH3>// personal.approach</NeonH3>
-              <NeonText>{CONTENT.personalText}</NeonText>
-              <NeonList>
-                {CONTENT.personalList.map((item, i) => <li key={i}>{item}</li>)}
-              </NeonList>
-              <NeonText>{CONTENT.personalResult}</NeonText>
-              
-              <NeonH3>// premium.features</NeonH3>
-              <NeonList>
-                {CONTENT.seoList.map((item, i) => <li key={i}>{item}</li>)}
-              </NeonList>
-            </ContentArea>
-            
-            <CTABox>
-              <NeonCTAText>{CONTENT.ctaText}</NeonCTAText>
-              <NeonCTAButton onClick={scrollToContact}>contact.send()</NeonCTAButton>
-              <NeonTagline>{CONTENT.tagline}</NeonTagline>
-            </CTABox>
-          </NeonCard>
-        </Container>
+              </NeonTeamGrid>
+            </NeonTerminalBody>
+          </NeonTerminal>
+          
+          <CTABox>
+            <CTAButton 
+              onClick={scrollToContact}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#00ff88', background: 'transparent', border: '1px solid #00ff88', boxShadow: '0 0 15px rgba(0,255,136,0.3)' }}
+            >
+              contact.send()
+            </CTAButton>
+          </CTABox>
+        </NeonContainer>
       </NeonSection>
     );
   }
 
-  // VIDEO (Default)
+  // ==========================================
+  // VIDEO - Timeline Akkordeon (Default)
+  // ==========================================
   return (
     <VideoSection id="about">
-      <Container>
-        <HeroArea>
-          <VideoImage 
-            src={SARAH_IVER_IMAGE} 
-            alt="Sarah und Iver - Gründer von S&I. Premium Hochzeitswebsites"
-            loading="lazy"
-          />
-          <div>
-            <VideoEyebrow>{CONTENT.eyebrow}</VideoEyebrow>
-            <VideoTitle>{CONTENT.title}</VideoTitle>
-            <VideoSubtitle>{CONTENT.subtitle}</VideoSubtitle>
-          </div>
-        </HeroArea>
+      <VideoContainer>
+        <VideoHeader>
+          <VideoImage src={SARAH_IVER_IMAGE} alt="Sarah und Iver" loading="lazy" />
+          <VideoHeaderContent>
+            <VideoEyebrow>Über uns</VideoEyebrow>
+            <VideoTitle>Sarah & Iver</VideoTitle>
+            <VideoSubtitle>Warum es S&I. überhaupt gibt</VideoSubtitle>
+          </VideoHeaderContent>
+        </VideoHeader>
         
-        <ContentArea>
-          <VideoText><strong>{CONTENT.intro}</strong></VideoText>
-          <VideoText>{CONTENT.story}</VideoText>
-          <VideoQuote>{CONTENT.quote}</VideoQuote>
-          <VideoText>{CONTENT.result}</VideoText>
-          
-          <VideoH3>{CONTENT.visionTitle}</VideoH3>
-          <VideoText>{CONTENT.visionText}</VideoText>
-          <VideoList>
-            {CONTENT.visionList.map((item, i) => <li key={i}>{item}</li>)}
-          </VideoList>
-          <VideoText><em>{CONTENT.visionTagline}</em></VideoText>
-          
-          <VideoH3>{CONTENT.teamTitle}</VideoH3>
-          <TeamSection>
-            <VideoTeamCard>
-              <VideoTeamEmoji>{CONTENT.sarah.emoji}</VideoTeamEmoji>
-              <VideoTeamName>{CONTENT.sarah.name}</VideoTeamName>
-              <VideoTeamDesc>{CONTENT.sarah.desc}</VideoTeamDesc>
-            </VideoTeamCard>
-            <VideoTeamCard>
-              <VideoTeamEmoji>{CONTENT.iver.emoji}</VideoTeamEmoji>
-              <VideoTeamName>{CONTENT.iver.name}</VideoTeamName>
-              <VideoTeamDesc>{CONTENT.iver.desc}</VideoTeamDesc>
-            </VideoTeamCard>
-          </TeamSection>
-          
-          <VideoH3>{CONTENT.personalTitle}</VideoH3>
-          <VideoText>{CONTENT.personalText}</VideoText>
-          <VideoList>
-            {CONTENT.personalList.map((item, i) => <li key={i}>{item}</li>)}
-          </VideoList>
-          <VideoText>{CONTENT.personalResult}</VideoText>
-          
-          <VideoH3>{CONTENT.seoTitle}</VideoH3>
-          <VideoList>
-            {CONTENT.seoList.map((item, i) => <li key={i}>{item}</li>)}
-          </VideoList>
-        </ContentArea>
+        <VideoTimeline>
+          {STORY_SECTIONS.map((section, i) => (
+            <VideoTimelineItem key={section.id} $open={openSection === i}>
+              <VideoTimelineHeader onClick={() => setOpenSection(openSection === i ? -1 : i)}>
+                <VideoTimelineTitle>{section.title}</VideoTimelineTitle>
+                <VideoTimelineArrow $open={openSection === i}>→</VideoTimelineArrow>
+              </VideoTimelineHeader>
+              <VideoTimelineContent $open={openSection === i}>
+                <VideoTimelineText>{section.content}</VideoTimelineText>
+              </VideoTimelineContent>
+            </VideoTimelineItem>
+          ))}
+        </VideoTimeline>
+        
+        <VideoTeamSection>
+          <VideoTeamCard>
+            <VideoTeamEmoji>{TEAM.sarah.emoji}</VideoTeamEmoji>
+            <VideoTeamName>{TEAM.sarah.name}</VideoTeamName>
+            <VideoTeamRole>{TEAM.sarah.role}</VideoTeamRole>
+            <VideoTeamDesc>{TEAM.sarah.desc}</VideoTeamDesc>
+          </VideoTeamCard>
+          <VideoTeamCard>
+            <VideoTeamEmoji>{TEAM.iver.emoji}</VideoTeamEmoji>
+            <VideoTeamName>{TEAM.iver.name}</VideoTeamName>
+            <VideoTeamRole>{TEAM.iver.role}</VideoTeamRole>
+            <VideoTeamDesc>{TEAM.iver.desc}</VideoTeamDesc>
+          </VideoTeamCard>
+        </VideoTeamSection>
         
         <CTABox>
-          <VideoCTAText>{CONTENT.ctaText}</VideoCTAText>
-          <VideoCTAButton onClick={scrollToContact}>{CONTENT.ctaButton}</VideoCTAButton>
-          <VideoTagline>{CONTENT.tagline}</VideoTagline>
+          <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', color: 'rgba(255,255,255,0.8)' }}>
+            {CTA.headline}
+          </CTAHeadline>
+          <CTAButton 
+            onClick={scrollToContact}
+            style={{ fontFamily: "'Manrope', sans-serif", color: '#FFFFFF', background: 'transparent', border: '1px solid #6B8CAE' }}
+          >
+            {CTA.button}
+          </CTAButton>
         </CTABox>
-      </Container>
+      </VideoContainer>
     </VideoSection>
   );
 };

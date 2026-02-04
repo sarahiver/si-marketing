@@ -1,414 +1,890 @@
 // src/components/marketing/ComponentsShowcase.js
-import React, { useEffect, useRef, useState } from 'react';
+// "18 Komponenten" - 6 verschiedene Layout-Logiken:
+// Editorial: Clean Liste mit Inklusive-Tags (wie im Mockup)
+// Botanical: Kreisförmiges/Organisches Layout mit Hover-Expand
+// Contemporary: Draggable/Scrollbare Chips mit Filter-Tabs
+// Luxe: Elegantes 2-Spalten Layout mit Nummer-Badges
+// Neon: Matrix/Grid mit Pulse-Animationen
+// Video: Karussell mit großen Karten
+import React, { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
-// Animations
-const leafFloat = keyframes`
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(3deg); }
-`;
-
-const neonPulse = keyframes`
-  0%, 100% { box-shadow: 0 0 5px rgba(0,255,255,0.3), inset 0 0 5px rgba(0,255,255,0.1); }
-  50% { box-shadow: 0 0 20px rgba(0,255,255,0.5), inset 0 0 10px rgba(0,255,255,0.2); }
-`;
-
-const scrollTrack = keyframes`
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-`;
-
-// Components Data
-const components = [
-  { icon: '🏠', name: 'Hero', desc: 'Der erste Eindruck', included: true },
-  { icon: '💕', name: 'Love Story', desc: 'Eure Geschichte', included: true },
-  { icon: '💌', name: 'RSVP', desc: 'Digitale Zusagen', included: true },
-  { icon: '🔔', name: 'Countdown', desc: 'Tage bis zum Ja', included: true },
-  { icon: '📅', name: 'Ablauf', desc: 'Der Tagesplan', included: false },
-  { icon: '⏰', name: 'Timeline', desc: 'Zeitlicher Ablauf', included: false },
-  { icon: '📍', name: 'Location', desc: 'Mit Karte & Infos', included: false },
-  { icon: '🧭', name: 'Anfahrt', desc: 'Navigation & Tipps', included: false },
-  { icon: '✏️', name: 'Gästebuch', desc: 'Wünsche sammeln', included: false },
-  { icon: '🏨', name: 'Unterkünfte', desc: 'Hotels & Tipps', included: false },
-  { icon: '👗', name: 'Dresscode', desc: 'Was anziehen?', included: false },
-  { icon: '🎁', name: 'Wunschliste', desc: 'Geschenkideen', included: false },
-  { icon: '🎵', name: 'Musikwünsche', desc: 'Playlist gestalten', included: false },
-  { icon: '❓', name: 'FAQ', desc: 'Häufige Fragen', included: false },
-  { icon: '🖼️', name: 'Galerie', desc: 'Eure Bilder', included: false },
-  { icon: '📸', name: 'Foto Upload', desc: 'Gäste-Fotos', included: false },
-  { icon: '📞', name: 'Kontakt', desc: 'Trauzeugen etc.', included: false },
-  { icon: '📖', name: 'Wedding ABC', desc: 'Von A bis Z', included: false },
+// ============================================
+// COMPONENT DATA
+// ============================================
+const COMPONENTS = [
+  { id: 'hero', icon: '🏠', name: 'Hero', desc: 'Der erste Eindruck', included: true },
+  { id: 'lovestory', icon: '💕', name: 'Love Story', desc: 'Eure Geschichte', included: true },
+  { id: 'rsvp', icon: '💌', name: 'RSVP', desc: 'Digitale Zusagen', included: true },
+  { id: 'countdown', icon: '🔔', name: 'Countdown', desc: 'Tage bis zum Ja', included: true },
+  { id: 'ablauf', icon: '📅', name: 'Ablauf', desc: 'Der Tagesplan', included: false },
+  { id: 'timeline', icon: '⏰', name: 'Timeline', desc: 'Zeitlicher Ablauf', included: false },
+  { id: 'location', icon: '📍', name: 'Location', desc: 'Mit Karte & Infos', included: false },
+  { id: 'anfahrt', icon: '🚗', name: 'Anfahrt', desc: 'Navigation & Tipps', included: false },
+  { id: 'hotels', icon: '🏨', name: 'Hotels', desc: 'Übernachtungstipps', included: false },
+  { id: 'dresscode', icon: '👗', name: 'Dresscode', desc: 'Was ihr tragen könnt', included: false },
+  { id: 'wunschliste', icon: '🎁', name: 'Wunschliste', desc: 'Geschenkideen', included: false },
+  { id: 'galerie', icon: '📸', name: 'Galerie', desc: 'Eure schönsten Bilder', included: false },
+  { id: 'guestphotos', icon: '🤳', name: 'Gäste-Fotos', desc: 'Upload für Gäste', included: false },
+  { id: 'faq', icon: '❓', name: 'FAQ', desc: 'Häufige Fragen', included: false },
+  { id: 'music', icon: '🎵', name: 'Musikwünsche', desc: 'Playlist mitgestalten', included: false },
+  { id: 'trauzeugen', icon: '👥', name: 'Trauzeugen', desc: 'Wer ist wer', included: false },
+  { id: 'footer', icon: '💍', name: 'Footer', desc: 'Kontakt & Links', included: false },
+  { id: 'impressum', icon: '📄', name: 'Impressum', desc: 'Rechtliches', included: false },
 ];
 
-function ComponentsShowcase() {
-  const { currentTheme } = useTheme();
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+const INCLUDED_COUNT = COMPONENTS.filter(c => c.included).length;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+// ============================================
+// ANIMATIONS
+// ============================================
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
 
-  const renderContent = () => {
-    switch(currentTheme) {
-      case 'editorial': return <EditorialLayout components={components} isVisible={isVisible} />;
-      case 'contemporary': return <ContemporaryLayout components={components} isVisible={isVisible} />;
-      case 'botanical': return <BotanicalLayout components={components} isVisible={isVisible} />;
-      case 'neon': return <NeonLayout components={components} isVisible={isVisible} />;
-      case 'video': return <VideoLayout components={components} isVisible={isVisible} />;
-      case 'luxe': return <LuxeLayout components={components} isVisible={isVisible} />;
-      default: return <EditorialLayout components={components} isVisible={isVisible} />;
-    }
-  };
+const pulse = keyframes`
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+`;
 
-  return (
-    <Section ref={sectionRef} $themeId={currentTheme} id="features">
-      {renderContent()}
-    </Section>
-  );
-}
+const glow = keyframes`
+  0%, 100% { box-shadow: 0 0 5px rgba(0,255,255,0.3); }
+  50% { box-shadow: 0 0 20px rgba(0,255,255,0.6); }
+`;
 
-// EDITORIAL LAYOUT
-const EditorialLayout = ({ components, isVisible }) => (
-  <EditorialContainer>
-    <EditorialHeader $visible={isVisible}>
-      <EditorialEyebrow>— 18 Komponenten —</EditorialEyebrow>
-      <EditorialTitle>Alles was ihr braucht</EditorialTitle>
-      <EditorialSubtitle>Wählt aus 18 liebevoll gestalteten Komponenten – 4 davon immer inklusive.</EditorialSubtitle>
-    </EditorialHeader>
-    <EditorialLine $visible={isVisible} $delay="0.3s" />
-    <EditorialGrid>
-      {components.slice(0, 9).map((comp, i) => (
-        <EditorialCard key={comp.name} $visible={isVisible} $delay={0.1 + i * 0.05}>
-          <EditorialIcon>{comp.icon}</EditorialIcon>
-          <EditorialCardContent>
-            <EditorialCardName>{comp.name}</EditorialCardName>
-            <EditorialCardLine />
-            <EditorialCardDesc>{comp.desc}</EditorialCardDesc>
-            {comp.included && <EditorialBadge>Inklusive</EditorialBadge>}
-          </EditorialCardContent>
-        </EditorialCard>
-      ))}
-    </EditorialGrid>
-    <EditorialLine $visible={isVisible} $delay="0.6s" />
-    <EditorialGrid>
-      {components.slice(9).map((comp, i) => (
-        <EditorialCard key={comp.name} $visible={isVisible} $delay={0.7 + i * 0.05}>
-          <EditorialIcon>{comp.icon}</EditorialIcon>
-          <EditorialCardContent>
-            <EditorialCardName>{comp.name}</EditorialCardName>
-            <EditorialCardLine />
-            <EditorialCardDesc>{comp.desc}</EditorialCardDesc>
-          </EditorialCardContent>
-        </EditorialCard>
-      ))}
-    </EditorialGrid>
-  </EditorialContainer>
-);
+const float = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+`;
 
-// CONTEMPORARY LAYOUT
-const ContemporaryLayout = ({ components, isVisible }) => (
-  <ContemporaryContainer>
-    <ContemporaryHeader $visible={isVisible}>
-      <ContemporaryBadge>18 KOMPONENTEN</ContemporaryBadge>
-      <ContemporaryTitle>ALLES WAS IHR BRAUCHT.</ContemporaryTitle>
-      <ContemporarySubtitle>Wählt aus 18 liebevoll gestalteten Komponenten – 4 davon immer inklusive.</ContemporarySubtitle>
-    </ContemporaryHeader>
-    <ContemporaryShapes>
-      <ContemporaryCircle $top="10%" $left="5%" $size="60px" $color="#FF6B6B" />
-      <ContemporaryCircle $top="40%" $right="8%" $size="40px" $color="#4ECDC4" />
-      <ContemporarySquare $bottom="20%" $left="3%" $size="30px" $color="#FFE66D" />
-    </ContemporaryShapes>
-    <ContemporaryStack>
-      {components.map((comp, i) => (
-        <ContemporaryCard key={comp.name} $visible={isVisible} $delay={0.1 + i * 0.03} $align={i % 2 === 0 ? 'left' : 'right'}>
-          <ContemporaryCardInner>
-            <ContemporaryCardIcon>{comp.icon}</ContemporaryCardIcon>
-            <ContemporaryCardContent>
-              <ContemporaryCardName>{comp.name}</ContemporaryCardName>
-              <ContemporaryCardDesc>{comp.desc}</ContemporaryCardDesc>
-            </ContemporaryCardContent>
-            {comp.included && <ContemporaryIncluded>✓</ContemporaryIncluded>}
-          </ContemporaryCardInner>
-        </ContemporaryCard>
-      ))}
-    </ContemporaryStack>
-  </ContemporaryContainer>
-);
+// ============================================
+// EDITORIAL - Clean Liste mit Tags (wie Mockup)
+// ============================================
+const EditorialSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FAF9F7;
+`;
 
-// BOTANICAL LAYOUT
-const BotanicalLayout = ({ components, isVisible }) => (
-  <BotanicalContainer>
-    <BotanicalLeaf $top="5%" $left="3%" $delay="0s">🌿</BotanicalLeaf>
-    <BotanicalLeaf $top="15%" $right="5%" $delay="0.5s">🍃</BotanicalLeaf>
-    <BotanicalLeaf $bottom="20%" $left="8%" $delay="1s">🌱</BotanicalLeaf>
-    <BotanicalLeaf $bottom="10%" $right="3%" $delay="1.5s">🌸</BotanicalLeaf>
-    <BotanicalHeader $visible={isVisible}>
-      <BotanicalEyebrow>✿ 18 Komponenten ✿</BotanicalEyebrow>
-      <BotanicalTitle>Alles was ihr braucht</BotanicalTitle>
-      <BotanicalSubtitle>Wählt aus 18 liebevoll gestalteten Komponenten – 4 davon immer inklusive.</BotanicalSubtitle>
-    </BotanicalHeader>
-    <BotanicalMasonry>
-      {components.map((comp, i) => (
-        <BotanicalCard key={comp.name} $visible={isVisible} $delay={0.1 + i * 0.04} $size={comp.included ? 'large' : 'normal'}>
-          <BotanicalCardIcon>{comp.icon}</BotanicalCardIcon>
-          <BotanicalCardName>{comp.name}</BotanicalCardName>
-          <BotanicalCardDesc>{comp.desc}</BotanicalCardDesc>
-          {comp.included && <BotanicalBadge>Inklusive</BotanicalBadge>}
-        </BotanicalCard>
-      ))}
-    </BotanicalMasonry>
-  </BotanicalContainer>
-);
+const EditorialContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
 
-// NEON LAYOUT
-const NeonLayout = ({ components, isVisible }) => (
-  <NeonContainer>
-    <NeonFrame $visible={isVisible}>
-      <NeonFrameCorner $position="top-left" />
-      <NeonFrameCorner $position="top-right" />
-      <NeonFrameCorner $position="bottom-left" />
-      <NeonFrameCorner $position="bottom-right" />
-      <NeonHeader $visible={isVisible}>
-        <NeonEyebrow><span>//</span> 18 KOMPONENTEN <span>//</span></NeonEyebrow>
-        <NeonTitle>SYSTEM_COMPONENTS</NeonTitle>
-        <NeonSubtitle>&gt; Wählt aus 18 Modulen – 4 davon immer inklusive_</NeonSubtitle>
-      </NeonHeader>
-      <NeonGrid>
-        {components.map((comp, i) => (
-          <NeonCard key={comp.name} $visible={isVisible} $delay={0.1 + i * 0.03}>
-            <NeonCardHeader>
-              <NeonCardIcon>{comp.icon}</NeonCardIcon>
-              <NeonCardName>&gt; {comp.name}_</NeonCardName>
-            </NeonCardHeader>
-            <NeonCardDesc>{comp.desc}</NeonCardDesc>
-            {comp.included && <NeonBadge>[INCLUDED]</NeonBadge>}
-            <NeonCardLine />
-          </NeonCard>
-        ))}
-      </NeonGrid>
-    </NeonFrame>
-    <NeonFloatingSquare $top="10%" $left="5%" $delay="0s" />
-    <NeonFloatingCircle $bottom="15%" $right="8%" $delay="0.5s" />
-  </NeonContainer>
-);
+const EditorialHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
 
-// VIDEO LAYOUT - Auto-Scroll Carousel mit eleganten Karten
-const VideoLayout = ({ components, isVisible }) => (
-  <VideoContainer>
-    <VideoHeader $visible={isVisible}>
-      <VideoEyebrow>— 18 Komponenten —</VideoEyebrow>
-      <VideoTitle>Alles was ihr braucht</VideoTitle>
-      <VideoSubtitle>Wählt aus 18 liebevoll gestalteten Komponenten – 4 davon immer inklusive.</VideoSubtitle>
-    </VideoHeader>
-    <VideoCarouselWrapper>
-      <VideoCarouselTrack $visible={isVisible}>
-        {/* Dupliziere für seamless loop */}
-        {[...components, ...components].map((comp, i) => (
-          <VideoCard key={`${comp.name}-${i}`}>
-            <VideoCardIcon>{comp.icon}</VideoCardIcon>
-            <VideoCardName>{comp.name}</VideoCardName>
-            <VideoCardDesc>{comp.desc}</VideoCardDesc>
-            {comp.included && <VideoCardBadge>Inklusive</VideoCardBadge>}
-          </VideoCard>
-        ))}
-      </VideoCarouselTrack>
-    </VideoCarouselWrapper>
-    <VideoGoldLine $visible={isVisible} />
-  </VideoContainer>
-);
+const EditorialStar = styled.div`
+  font-size: 1.5rem;
+  color: #C9A962;
+  margin-bottom: 1rem;
+`;
 
-// LUXE LAYOUT
-const LuxeLayout = ({ components, isVisible }) => (
-  <LuxeContainer>
-    <LuxeHeader $visible={isVisible}>
-      <LuxeDiamond>✦</LuxeDiamond>
-      <LuxeEyebrow>18 KOMPONENTEN</LuxeEyebrow>
-      <LuxeTitle>Alles was ihr braucht</LuxeTitle>
-      <LuxeSubtitle>Wählt aus 18 liebevoll gestalteten Komponenten – 4 davon immer inklusive.</LuxeSubtitle>
-    </LuxeHeader>
-    <LuxeList>
-      {components.map((comp, i) => (
-        <React.Fragment key={comp.name}>
-          <LuxeDivider $visible={isVisible} $delay={0.1 + i * 0.05} />
-          <LuxeItem $visible={isVisible} $delay={0.15 + i * 0.05}>
-            <LuxeItemIcon>{comp.icon}</LuxeItemIcon>
-            <LuxeItemContent>
-              <LuxeItemName>{comp.name}</LuxeItemName>
-              <LuxeItemDesc>{comp.desc}</LuxeItemDesc>
-            </LuxeItemContent>
-            {comp.included && <LuxeBadge>Inklusive</LuxeBadge>}
-          </LuxeItem>
-        </React.Fragment>
-      ))}
-      <LuxeDivider $visible={isVisible} $delay={1.2} />
-    </LuxeList>
-    <LuxeFooterDiamond $visible={isVisible}>✦</LuxeFooterDiamond>
-  </LuxeContainer>
-);
+const EditorialEyebrow = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #C9A962;
+  margin-bottom: 1rem;
+`;
 
-export default ComponentsShowcase;
+const EditorialTitle = styled.h2`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  font-style: italic;
+  color: #2D2D2D;
+  margin-bottom: 1rem;
+`;
 
-// STYLES
-const Section = styled.section`
-  padding: 100px 20px;
+const EditorialSubtitle = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #888;
+  line-height: 1.6;
+`;
+
+const EditorialList = styled.div`
+  border-top: 1px solid #E5E0D8;
+`;
+
+const EditorialItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #E5E0D8;
+`;
+
+const EditorialIcon = styled.span`
+  font-size: 1.5rem;
+  width: 40px;
+  text-align: center;
+`;
+
+const EditorialItemContent = styled.div`
+  flex: 1;
+`;
+
+const EditorialItemName = styled.h3`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2D2D2D;
+  margin-bottom: 0.25rem;
+`;
+
+const EditorialItemDesc = styled.p`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #888;
+`;
+
+const EditorialTag = styled.span`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #C9A962;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #C9A962;
+  border-radius: 2px;
+`;
+
+// ============================================
+// BOTANICAL - Organisches Grid mit Hover
+// ============================================
+const BotanicalSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: transparent;
+  position: relative;
+  z-index: 10;
+`;
+
+const BotanicalContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;
+
+const BotanicalHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const BotanicalEyebrow = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1rem;
+`;
+
+const BotanicalTitle = styled.h2`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 1rem;
+`;
+
+const BotanicalSubtitle = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+`;
+
+const BotanicalGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+`;
+
+const BotanicalChip = styled.div`
+  background: ${p => p.$included ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.05)'};
+  backdrop-filter: blur(20px);
+  border: 1px solid ${p => p.$included ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.08)'};
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  animation: ${float} ${p => 4 + (p.$i % 3)}s ease-in-out infinite;
+  animation-delay: ${p => p.$i * 0.1}s;
+  
+  &:hover {
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.05);
+    border-color: rgba(255,255,255,0.3);
+  }
+`;
+
+const BotanicalChipIcon = styled.span`
+  font-size: 1.2rem;
+`;
+
+const BotanicalChipName = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+`;
+
+const BotanicalIncluded = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+`;
+
+// ============================================
+// CONTEMPORARY - Filter Tabs + Chips
+// ============================================
+const ContemporarySection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FAFAFA;
+`;
+
+const ContemporaryContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;
+
+const ContemporaryHeader = styled.div`
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
+const ContemporaryEyebrow = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #FF6B6B;
+  margin-bottom: 0.5rem;
+`;
+
+const ContemporaryTitle = styled.h2`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+`;
+
+const ContemporaryTabs = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+`;
+
+const ContemporaryTab = styled.button`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border: 3px solid #0D0D0D;
+  background: ${p => p.$active ? '#FFE66D' : '#fff'};
+  box-shadow: ${p => p.$active ? '4px 4px 0 #0D0D0D' : 'none'};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: #FFE66D;
+  }
+`;
+
+const ContemporaryGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+`;
+
+const CHIP_COLORS = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5'];
+
+const ContemporaryChip = styled.div`
+  background: #fff;
+  border: 3px solid #0D0D0D;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 4px 4px 0 ${p => CHIP_COLORS[p.$i % 4]};
+  transition: all 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 ${p => CHIP_COLORS[p.$i % 4]};
+  }
+`;
+
+const ContemporaryChipIcon = styled.span`
+  font-size: 1.5rem;
+`;
+
+const ContemporaryChipContent = styled.div``;
+
+const ContemporaryChipName = styled.h3`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+`;
+
+const ContemporaryChipDesc = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  color: #666;
+`;
+
+const ContemporaryIncluded = styled.span`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  background: #FF6B6B;
+  padding: 0.3rem 0.6rem;
+  border: 2px solid #0D0D0D;
+`;
+
+// ============================================
+// LUXE - 2-Spalten mit Nummern
+// ============================================
+const LuxeSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #0A0A0A;
+`;
+
+const LuxeContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;
+
+const LuxeHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const LuxeEyebrow = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #C9A962;
+  margin-bottom: 1rem;
+`;
+
+const LuxeTitle = styled.h2`
+  font-family: 'Cormorant', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #F8F6F3;
+`;
+
+const LuxeGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid rgba(201, 169, 98, 0.2);
+  
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const LuxeItem = styled.div`
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(201, 169, 98, 0.1);
+  border-right: 1px solid rgba(201, 169, 98, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.4s ease;
+  
+  &:nth-child(2n) { border-right: none; }
+  
+  @media (max-width: 700px) {
+    border-right: none;
+  }
+  
+  &:hover {
+    background: rgba(201, 169, 98, 0.05);
+  }
+`;
+
+const LuxeNum = styled.span`
+  font-family: 'Cormorant', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(201, 169, 98, 0.3);
+  min-width: 30px;
+`;
+
+const LuxeIcon = styled.span`
+  font-size: 1.3rem;
+`;
+
+const LuxeItemContent = styled.div`
+  flex: 1;
+`;
+
+const LuxeItemName = styled.h3`
+  font-family: 'Cormorant', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #F8F6F3;
+  margin-bottom: 0.25rem;
+`;
+
+const LuxeItemDesc = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(248,246,243,0.4);
+`;
+
+const LuxeIncluded = styled.span`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A962;
+`;
+
+// ============================================
+// NEON - Matrix Grid
+// ============================================
+const NeonSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #0a0a0f;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(0,255,255,0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(255,0,255,0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+`;
+
+const NeonContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+`;
+
+const NeonHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const NeonEyebrow = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ff00ff;
+  text-shadow: 0 0 10px rgba(255,0,255,0.5);
+  margin-bottom: 0.5rem;
+`;
+
+const NeonTitle = styled.h2`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+`;
+
+const NeonSubtitle = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.5rem;
+`;
+
+const NeonGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const NeonCell = styled.div`
+  aspect-ratio: 1;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid ${p => p.$included ? 'rgba(0,255,255,0.4)' : 'rgba(255,255,255,0.1)'};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   
-  @media (min-width: 600px) {
-    padding: 140px 5%;
-  }
-  
-  ${p => p.$themeId === 'video' && css`background: #FFFFFF;`}
-  ${p => p.$themeId === 'editorial' && css`background: #FFFFFF;`}
-  ${p => p.$themeId === 'botanical' && css`background: linear-gradient(180deg, #FAF9F6 0%, #F0EDE5 100%);`}
-  ${p => p.$themeId === 'contemporary' && css`background: #FAFAFA;`}
-  ${p => p.$themeId === 'luxe' && css`background: #FAF9F7;`}
-  ${p => p.$themeId === 'neon' && css`background: #0a0a0f;`}
-`;
-
-// EDITORIAL STYLES
-const EditorialContainer = styled.div`max-width: 1100px; margin: 0 auto;`;
-const EditorialHeader = styled.div`text-align: center; margin-bottom: 60px; opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}); transition: all 0.8s ease;`;
-const EditorialEyebrow = styled.span`display: block; font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em; color: #999; margin-bottom: 20px;`;
-const EditorialTitle = styled.h2`font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; font-style: italic; color: #1A1A1A; margin-bottom: 20px;`;
-const EditorialSubtitle = styled.p`font-family: 'Inter', sans-serif; font-size: 1rem; color: #666; max-width: 500px; margin: 0 auto; line-height: 1.8;`;
-const EditorialLine = styled.div`height: 1px; background: #E0E0E0; margin: 50px 0; width: ${p => p.$visible ? '100%' : '0'}; transition: width 1s ease; transition-delay: ${p => p.$delay || '0s'};`;
-const EditorialGrid = styled.div`display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 30px;`;
-const EditorialCard = styled.div`display: flex; align-items: flex-start; gap: 15px; padding: 20px 0; opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '20px'}); transition: all 0.6s ease; transition-delay: ${p => p.$delay}s; &:hover .card-line { background: #1A1A1A; width: 40px; }`;
-const EditorialIcon = styled.div`font-size: 1.8rem; flex-shrink: 0;`;
-const EditorialCardContent = styled.div`flex: 1;`;
-const EditorialCardName = styled.h3`font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 500; color: #1A1A1A; margin-bottom: 8px;`;
-const EditorialCardLine = styled.div.attrs({ className: 'card-line' })`width: 25px; height: 1px; background: #CCC; margin-bottom: 8px; transition: all 0.3s ease;`;
-const EditorialCardDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #999; margin: 0;`;
-const EditorialBadge = styled.span`display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #1A1A1A; background: #F0F0F0; padding: 4px 8px; margin-top: 10px;`;
-
-// CONTEMPORARY STYLES
-const ContemporaryContainer = styled.div`max-width: 1000px; margin: 0 auto; position: relative;`;
-const ContemporaryHeader = styled.div`text-align: center; margin-bottom: 60px; opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}); transition: all 0.8s ease;`;
-const ContemporaryBadge = styled.div`display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #FFFFFF; background: #FF6B6B; padding: 10px 20px; margin-bottom: 25px;`;
-const ContemporaryTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: #0D0D0D; margin-bottom: 20px;`;
-const ContemporarySubtitle = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 1rem; color: #666; max-width: 500px; margin: 0 auto;`;
-const ContemporaryShapes = styled.div`position: absolute; inset: 0; pointer-events: none; z-index: 0;`;
-const ContemporaryCircle = styled.div`position: absolute; width: ${p => p.$size}; height: ${p => p.$size}; border-radius: 50%; background: ${p => p.$color}; top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'}; left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'}; opacity: 0.6;`;
-const ContemporarySquare = styled.div`position: absolute; width: ${p => p.$size}; height: ${p => p.$size}; background: ${p => p.$color}; top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'}; left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'}; transform: rotate(12deg);`;
-const ContemporaryStack = styled.div`display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; position: relative; z-index: 1;`;
-const ContemporaryCard = styled.div`opacity: ${p => p.$visible ? 1 : 0}; transform: ${p => p.$visible ? 'translateX(0)' : p.$align === 'left' ? 'translateX(-30px)' : 'translateX(30px)'}; transition: all 0.6s ease; transition-delay: ${p => p.$delay}s;`;
-const ContemporaryCardInner = styled.div`display: flex; align-items: center; gap: 15px; padding: 20px; background: #FFFFFF; border: 3px solid #0D0D0D; transition: all 0.3s ease; &:hover { box-shadow: 6px 6px 0 #FF6B6B; transform: translate(-3px, -3px); }`;
-const ContemporaryCardIcon = styled.div`font-size: 2rem; flex-shrink: 0;`;
-const ContemporaryCardContent = styled.div`flex: 1;`;
-const ContemporaryCardName = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: #0D0D0D; margin-bottom: 4px;`;
-const ContemporaryCardDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; color: #999; margin: 0;`;
-const ContemporaryIncluded = styled.div`width: 28px; height: 28px; background: #4ECDC4; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0;`;
-
-// BOTANICAL STYLES
-const BotanicalContainer = styled.div`max-width: 1200px; margin: 0 auto; position: relative;`;
-const BotanicalLeaf = styled.div`position: absolute; font-size: 2.5rem; opacity: 0.2; animation: ${leafFloat} 4s ease-in-out infinite; animation-delay: ${p => p.$delay}; top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'}; left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'}; z-index: 0;`;
-const BotanicalHeader = styled.div`text-align: center; margin-bottom: 60px; position: relative; z-index: 1; opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}); transition: all 0.8s ease;`;
-const BotanicalEyebrow = styled.span`display: block; font-family: 'Lato', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.4em; color: #7A9972; margin-bottom: 20px;`;
-const BotanicalTitle = styled.h2`font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; font-style: italic; color: #2C3E2D; margin-bottom: 20px;`;
-const BotanicalSubtitle = styled.p`font-family: 'Lato', sans-serif; font-size: 1rem; color: #6B7B6C; max-width: 500px; margin: 0 auto; line-height: 1.8;`;
-const BotanicalMasonry = styled.div`display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; position: relative; z-index: 1;`;
-const BotanicalCard = styled.div`background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-radius: 20px; padding: ${p => p.$size === 'large' ? '30px 25px' : '25px 20px'}; text-align: center; border: 1px solid rgba(122, 153, 114, 0.15); opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '20px'}) scale(${p => p.$visible ? 1 : 0.95}); transition: all 0.6s ease; transition-delay: ${p => p.$delay}s; &:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 40px rgba(122, 153, 114, 0.15); border-color: #7A9972; }`;
-const BotanicalCardIcon = styled.div`font-size: 2.2rem; margin-bottom: 12px;`;
-const BotanicalCardName = styled.h3`font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; font-weight: 500; color: #2C3E2D; margin-bottom: 6px;`;
-const BotanicalCardDesc = styled.p`font-family: 'Lato', sans-serif; font-size: 0.8rem; color: #6B7B6C; margin: 0;`;
-const BotanicalBadge = styled.span`display: inline-block; font-family: 'Lato', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #7A9972; background: rgba(122, 153, 114, 0.15); padding: 5px 12px; border-radius: 20px; margin-top: 12px;`;
-
-// NEON STYLES
-const NeonContainer = styled.div`max-width: 1200px; margin: 0 auto; position: relative;`;
-const NeonFrame = styled.div`position: relative; border: 1px solid rgba(0, 255, 255, 0.2); padding: 60px 40px; opacity: ${p => p.$visible ? 1 : 0}; transition: opacity 0.8s ease; @media (max-width: 600px) { padding: 40px 20px; }`;
-const NeonFrameCorner = styled.div`position: absolute; width: 20px; height: 20px; border-color: #00ffff; border-style: solid; ${p => p.$position === 'top-left' && css`top: -1px; left: -1px; border-width: 2px 0 0 2px;`} ${p => p.$position === 'top-right' && css`top: -1px; right: -1px; border-width: 2px 2px 0 0;`} ${p => p.$position === 'bottom-left' && css`bottom: -1px; left: -1px; border-width: 0 0 2px 2px;`} ${p => p.$position === 'bottom-right' && css`bottom: -1px; right: -1px; border-width: 0 2px 2px 0;`}`;
-const NeonHeader = styled.div`text-align: center; margin-bottom: 50px; opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}); transition: all 0.8s ease;`;
-const NeonEyebrow = styled.span`display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.4em; color: #00ffff; margin-bottom: 20px; span { color: #ff00ff; }`;
-const NeonTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: #FFFFFF; margin-bottom: 15px; letter-spacing: 0.05em;`;
-const NeonSubtitle = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; color: rgba(255, 255, 255, 0.5); max-width: 500px; margin: 0 auto;`;
-const NeonGrid = styled.div`display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;`;
-const NeonCard = styled.div`background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(0, 255, 255, 0.15); padding: 20px; opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '20px'}); transition: all 0.5s ease; transition-delay: ${p => p.$delay}s; &:hover { border-color: #00ffff; animation: ${neonPulse} 1.5s ease-in-out infinite; }`;
-const NeonCardHeader = styled.div`display: flex; align-items: center; gap: 12px; margin-bottom: 10px;`;
-const NeonCardIcon = styled.div`font-size: 1.5rem;`;
-const NeonCardName = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; color: #FFFFFF;`;
-const NeonCardDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); margin: 0 0 10px 0;`;
-const NeonBadge = styled.span`display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 0.55rem; font-weight: 600; letter-spacing: 0.1em; color: #00ffff; margin-bottom: 10px;`;
-const NeonCardLine = styled.div`height: 1px; background: linear-gradient(90deg, #00ffff, transparent); opacity: 0.3;`;
-const NeonFloatingSquare = styled.div`position: absolute; width: 50px; height: 50px; border: 2px solid rgba(0, 255, 255, 0.3); top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'}; left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'}; animation: ${neonPulse} 3s ease-in-out infinite; animation-delay: ${p => p.$delay};`;
-const NeonFloatingCircle = styled.div`position: absolute; width: 60px; height: 60px; border: 2px solid rgba(255, 0, 255, 0.3); border-radius: 50%; top: ${p => p.$top || 'auto'}; bottom: ${p => p.$bottom || 'auto'}; left: ${p => p.$left || 'auto'}; right: ${p => p.$right || 'auto'}; animation: ${neonPulse} 4s ease-in-out infinite; animation-delay: ${p => p.$delay};`;
-
-// VIDEO STYLES - Auto-Scroll Carousel
-const VideoContainer = styled.div`max-width: 100%; margin: 0 auto;`;
-const VideoHeader = styled.div`text-align: center; margin-bottom: 60px; padding: 0 5%; opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}); transition: all 0.8s ease;`;
-const VideoEyebrow = styled.span`display: block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em; color: #B8976A; margin-bottom: 20px;`;
-const VideoTitle = styled.h2`font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; font-style: italic; color: #1A1A1A; margin-bottom: 20px;`;
-const VideoSubtitle = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: rgba(26, 26, 26, 0.6); max-width: 550px; margin: 0 auto; line-height: 1.8;`;
-
-const VideoCarouselWrapper = styled.div`
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
-`;
-
-const VideoCarouselTrack = styled.div`
-  display: flex;
-  gap: 25px;
-  width: fit-content;
-  animation: ${scrollTrack} 40s linear infinite;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transition: opacity 0.8s ease;
+  ${p => p.$included && css`
+    animation: ${glow} 3s ease-in-out infinite;
+    animation-delay: ${p.$i * 0.2}s;
+  `}
   
   &:hover {
-    animation-play-state: paused;
+    background: rgba(0,255,255,0.1);
+    border-color: #00ffff;
+    transform: scale(1.05);
+    z-index: 2;
   }
+`;
+
+const NeonCellIcon = styled.span`
+  font-size: 1.5rem;
+`;
+
+const NeonCellName = styled.span`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: ${p => p.$included ? '#00ffff' : 'rgba(255,255,255,0.5)'};
+  text-align: center;
+  text-shadow: ${p => p.$included ? '0 0 5px rgba(0,255,255,0.5)' : 'none'};
+`;
+
+// ============================================
+// VIDEO - Karussell
+// ============================================
+const VideoSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #0A0A0A;
+`;
+
+const VideoContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;
+
+const VideoHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const VideoEyebrow = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6B8CAE;
+  margin-bottom: 1rem;
+`;
+
+const VideoTitle = styled.h2`
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #FFFFFF;
+`;
+
+const VideoSubtitle = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 0.5rem;
+`;
+
+const VideoCarousel = styled.div`
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar { display: none; }
 `;
 
 const VideoCard = styled.div`
-  flex-shrink: 0;
-  width: 200px;
-  text-align: center; 
-  padding: 35px 20px; 
-  background: #FFFFFF;
-  border: 1px solid rgba(184, 151, 106, 0.15);
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+  background: ${p => p.$included ? 'rgba(107, 140, 174, 0.1)' : 'rgba(255,255,255,0.02)'};
+  border: 1px solid ${p => p.$included ? '#6B8CAE' : 'rgba(255,255,255,0.1)'};
+  padding: 1.5rem;
+  text-align: center;
   transition: all 0.3s ease;
   
-  &:hover { 
-    border-color: #B8976A; 
-    box-shadow: 0 15px 40px rgba(184, 151, 106, 0.15);
+  &:hover {
+    border-color: #6B8CAE;
     transform: translateY(-5px);
   }
 `;
 
-const VideoCardIcon = styled.div`font-size: 2.2rem; margin-bottom: 15px;`;
-const VideoCardName = styled.h3`font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.2rem; font-weight: 500; font-style: italic; color: #1A1A1A; margin-bottom: 8px;`;
-const VideoCardDesc = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: rgba(26, 26, 26, 0.5); margin: 0;`;
-const VideoCardBadge = styled.span`display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #B8976A; border: 1px solid rgba(184, 151, 106, 0.3); padding: 5px 12px; margin-top: 15px;`;
-
-const VideoGoldLine = styled.div`
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(184, 151, 106, 0.4), transparent);
-  margin: 40px 5% 0;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transition: opacity 1s ease;
-  transition-delay: 0.5s;
+const VideoCardIcon = styled.div`
+  font-size: 2rem;
+  margin-bottom: 1rem;
 `;
 
-// LUXE STYLES
-const LuxeContainer = styled.div`max-width: 800px; margin: 0 auto; text-align: center;`;
-const LuxeHeader = styled.div`margin-bottom: 60px; opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}); transition: all 0.8s ease;`;
-const LuxeDiamond = styled.div`font-size: 1.5rem; color: #D4AF37; margin-bottom: 25px;`;
-const LuxeEyebrow = styled.span`display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.4em; color: #D4AF37; margin-bottom: 20px;`;
-const LuxeTitle = styled.h2`font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; font-style: italic; color: #2A2A2A; margin-bottom: 20px;`;
-const LuxeSubtitle = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: rgba(42, 42, 42, 0.6); max-width: 450px; margin: 0 auto; line-height: 1.9;`;
-const LuxeList = styled.div`text-align: left;`;
-const LuxeDivider = styled.div`height: 1px; background: linear-gradient(90deg, transparent, #D4AF37, transparent); opacity: ${p => p.$visible ? 0.3 : 0}; transition: opacity 0.8s ease; transition-delay: ${p => p.$delay}s;`;
-const LuxeItem = styled.div`display: flex; align-items: center; gap: 25px; padding: 25px 0; opacity: ${p => p.$visible ? 1 : 0}; transform: translateX(${p => p.$visible ? 0 : '-20px'}); transition: all 0.6s ease; transition-delay: ${p => p.$delay}s; &:hover .luxe-name { color: #D4AF37; }`;
-const LuxeItemIcon = styled.div`font-size: 1.8rem; flex-shrink: 0;`;
-const LuxeItemContent = styled.div`flex: 1;`;
-const LuxeItemName = styled.h3.attrs({ className: 'luxe-name' })`font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: #2A2A2A; margin-bottom: 5px; transition: color 0.3s ease;`;
-const LuxeItemDesc = styled.p`font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1rem; font-style: italic; color: rgba(42, 42, 42, 0.5); margin: 0;`;
-const LuxeBadge = styled.span`font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #D4AF37; border: 1px solid rgba(212, 175, 55, 0.3); padding: 6px 12px; flex-shrink: 0;`;
-const LuxeFooterDiamond = styled.div`font-size: 1.5rem; color: #D4AF37; margin-top: 40px; opacity: ${p => p.$visible ? 1 : 0}; transition: opacity 0.8s ease; transition-delay: 1.5s;`;
+const VideoCardName = styled.h3`
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+`;
+
+const VideoCardDesc = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #888;
+`;
+
+const VideoIncluded = styled.span`
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #6B8CAE;
+  margin-top: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #6B8CAE;
+`;
+
+// ============================================
+// MAIN COMPONENT
+// ============================================
+const ComponentsShowcase = () => {
+  const { currentTheme } = useTheme();
+  const [filter, setFilter] = useState('all');
+
+  const filteredComponents = filter === 'all' 
+    ? COMPONENTS 
+    : filter === 'included' 
+      ? COMPONENTS.filter(c => c.included)
+      : COMPONENTS.filter(c => !c.included);
+
+  // ==========================================
+  // EDITORIAL - Clean Liste
+  // ==========================================
+  if (currentTheme === 'editorial') {
+    return (
+      <EditorialSection id="components">
+        <EditorialContainer>
+          <EditorialHeader>
+            <EditorialStar>✦</EditorialStar>
+            <EditorialEyebrow>18 Komponenten</EditorialEyebrow>
+            <EditorialTitle>Alles was ihr braucht</EditorialTitle>
+            <EditorialSubtitle>
+              Wählt aus 18 liebevoll gestalteten Komponenten – {INCLUDED_COUNT} davon<br />
+              immer inklusive.
+            </EditorialSubtitle>
+          </EditorialHeader>
+          
+          <EditorialList>
+            {COMPONENTS.map((comp, i) => (
+              <EditorialItem key={comp.id}>
+                <EditorialIcon>{comp.icon}</EditorialIcon>
+                <EditorialItemContent>
+                  <EditorialItemName>{comp.name}</EditorialItemName>
+                  <EditorialItemDesc>{comp.desc}</EditorialItemDesc>
+                </EditorialItemContent>
+                {comp.included && <EditorialTag>Inklusive</EditorialTag>}
+              </EditorialItem>
+            ))}
+          </EditorialList>
+        </EditorialContainer>
+      </EditorialSection>
+    );
+  }
+
+  // ==========================================
+  // BOTANICAL - Organische Chips
+  // ==========================================
+  if (currentTheme === 'botanical') {
+    return (
+      <BotanicalSection id="components">
+        <BotanicalContainer>
+          <BotanicalHeader>
+            <BotanicalEyebrow>18 Komponenten</BotanicalEyebrow>
+            <BotanicalTitle>Alles was ihr braucht</BotanicalTitle>
+            <BotanicalSubtitle>{INCLUDED_COUNT} davon immer inklusive</BotanicalSubtitle>
+          </BotanicalHeader>
+          
+          <BotanicalGrid>
+            {COMPONENTS.map((comp, i) => (
+              <BotanicalChip key={comp.id} $i={i} $included={comp.included}>
+                <BotanicalChipIcon>{comp.icon}</BotanicalChipIcon>
+                <BotanicalChipName>{comp.name}</BotanicalChipName>
+                {comp.included && <BotanicalIncluded>✓</BotanicalIncluded>}
+              </BotanicalChip>
+            ))}
+          </BotanicalGrid>
+        </BotanicalContainer>
+      </BotanicalSection>
+    );
+  }
+
+  // ==========================================
+  // CONTEMPORARY - Filter + Chips
+  // ==========================================
+  if (currentTheme === 'contemporary') {
+    return (
+      <ContemporarySection id="components">
+        <ContemporaryContainer>
+          <ContemporaryHeader>
+            <ContemporaryEyebrow>🧩 18 Komponenten</ContemporaryEyebrow>
+            <ContemporaryTitle>Pick & Mix</ContemporaryTitle>
+          </ContemporaryHeader>
+          
+          <ContemporaryTabs>
+            <ContemporaryTab $active={filter === 'all'} onClick={() => setFilter('all')}>
+              Alle (18)
+            </ContemporaryTab>
+            <ContemporaryTab $active={filter === 'included'} onClick={() => setFilter('included')}>
+              Inklusive ({INCLUDED_COUNT})
+            </ContemporaryTab>
+            <ContemporaryTab $active={filter === 'optional'} onClick={() => setFilter('optional')}>
+              Optional ({18 - INCLUDED_COUNT})
+            </ContemporaryTab>
+          </ContemporaryTabs>
+          
+          <ContemporaryGrid>
+            {filteredComponents.map((comp, i) => (
+              <ContemporaryChip key={comp.id} $i={i}>
+                <ContemporaryChipIcon>{comp.icon}</ContemporaryChipIcon>
+                <ContemporaryChipContent>
+                  <ContemporaryChipName>{comp.name}</ContemporaryChipName>
+                  <ContemporaryChipDesc>{comp.desc}</ContemporaryChipDesc>
+                </ContemporaryChipContent>
+                {comp.included && <ContemporaryIncluded>✓</ContemporaryIncluded>}
+              </ContemporaryChip>
+            ))}
+          </ContemporaryGrid>
+        </ContemporaryContainer>
+      </ContemporarySection>
+    );
+  }
+
+  // ==========================================
+  // LUXE - 2-Spalten Grid
+  // ==========================================
+  if (currentTheme === 'luxe') {
+    return (
+      <LuxeSection id="components">
+        <LuxeContainer>
+          <LuxeHeader>
+            <LuxeEyebrow>18 Komponenten</LuxeEyebrow>
+            <LuxeTitle>Alles was ihr braucht</LuxeTitle>
+          </LuxeHeader>
+          
+          <LuxeGrid>
+            {COMPONENTS.map((comp, i) => (
+              <LuxeItem key={comp.id}>
+                <LuxeNum>{String(i + 1).padStart(2, '0')}</LuxeNum>
+                <LuxeIcon>{comp.icon}</LuxeIcon>
+                <LuxeItemContent>
+                  <LuxeItemName>{comp.name}</LuxeItemName>
+                  <LuxeItemDesc>{comp.desc}</LuxeItemDesc>
+                </LuxeItemContent>
+                {comp.included && <LuxeIncluded>Inklusive</LuxeIncluded>}
+              </LuxeItem>
+            ))}
+          </LuxeGrid>
+        </LuxeContainer>
+      </LuxeSection>
+    );
+  }
+
+  // ==========================================
+  // NEON - Matrix Grid
+  // ==========================================
+  if (currentTheme === 'neon') {
+    return (
+      <NeonSection id="components">
+        <NeonContainer>
+          <NeonHeader>
+            <NeonEyebrow>// components.load(18)</NeonEyebrow>
+            <NeonTitle>Module Library</NeonTitle>
+            <NeonSubtitle>{INCLUDED_COUNT} modules included by default</NeonSubtitle>
+          </NeonHeader>
+          
+          <NeonGrid>
+            {COMPONENTS.map((comp, i) => (
+              <NeonCell key={comp.id} $i={i} $included={comp.included}>
+                <NeonCellIcon>{comp.icon}</NeonCellIcon>
+                <NeonCellName $included={comp.included}>{comp.name}</NeonCellName>
+              </NeonCell>
+            ))}
+          </NeonGrid>
+        </NeonContainer>
+      </NeonSection>
+    );
+  }
+
+  // ==========================================
+  // VIDEO - Karussell (Default)
+  // ==========================================
+  return (
+    <VideoSection id="components">
+      <VideoContainer>
+        <VideoHeader>
+          <VideoEyebrow>18 Komponenten</VideoEyebrow>
+          <VideoTitle>Alles was ihr braucht</VideoTitle>
+          <VideoSubtitle>{INCLUDED_COUNT} davon immer inklusive</VideoSubtitle>
+        </VideoHeader>
+        
+        <VideoCarousel>
+          {COMPONENTS.map((comp, i) => (
+            <VideoCard key={comp.id} $included={comp.included}>
+              <VideoCardIcon>{comp.icon}</VideoCardIcon>
+              <VideoCardName>{comp.name}</VideoCardName>
+              <VideoCardDesc>{comp.desc}</VideoCardDesc>
+              {comp.included && <VideoIncluded>Inklusive</VideoIncluded>}
+            </VideoCard>
+          ))}
+        </VideoCarousel>
+      </VideoContainer>
+    </VideoSection>
+  );
+};
+
+export default ComponentsShowcase;
