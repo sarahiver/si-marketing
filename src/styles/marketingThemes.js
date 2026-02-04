@@ -1,334 +1,337 @@
 // src/styles/marketingThemes.js
+// Design-Tokens exakt aus si-wedding-themes übernommen
 
 export const marketingThemes = {
   // ═══════════════════════════════════════════════════════════
-  // EDITORIAL (Default) - Schwarz/Weiß - Minimalistisch modern
+  // EDITORIAL - Magazine Bold Style mit Rot-Akzent
+  // S/W Bilder, Oswald Headlines, Source Serif Accents
   // ═══════════════════════════════════════════════════════════
   editorial: {
     id: "editorial",
     name: "Editorial",
-    description: "Minimalistisch modern",
+    description: "Magazine Bold — S/W mit Rot-Akzent",
+    isDark: false,
     colors: {
-      primary: "#000000",
-      secondary: "#333333",
-      accent: "#000000",
-      background: "#FFFFFF",
-      backgroundAlt: "#FAFAFA",
+      primary: "#C41E3A",        // Editorial Red - HAUPT-AKZENT!
+      secondary: "#0A0A0A",
+      accent: "#C41E3A",
+      background: "#FAFAFA",
+      backgroundAlt: "#0A0A0A",  // Für dunkle Sections
       surface: "#FFFFFF",
-      text: "#000000",
+      text: "#0A0A0A",
+      textLight: "#FAFAFA",
       textSecondary: "#666666",
       textMuted: "#999999",
       border: "#E5E5E5",
-      borderHover: "#000000",
+      borderHover: "#C41E3A",
     },
     fonts: {
-      heading: "'Instrument Serif', serif",
+      headline: "'Oswald', 'Arial Narrow', sans-serif",
+      serif: "'Source Serif 4', Georgia, serif",
       body: "'Inter', sans-serif",
     },
-    // Editorial Style: Clean, minimal, modern
     style: {
-      headingWeight: "400",
-      headingLetterSpacing: "0",
-      headingTextTransform: "none",
+      headingWeight: "700",
+      headingLetterSpacing: "-0.02em",
+      headingTextTransform: "uppercase",
+      headingLineHeight: "0.9",
+      bodyWeight: "300",
       bodyLetterSpacing: "0",
       borderRadius: "0",
       borderWidth: "1px",
-      dividerStyle: "solid",
-      dividerWidth: "1px",
-      buttonStyle: "solid", // solid, outline, gradient
-      decorativeElements: false,
-      ornaments: false,
-      shadowStyle: "subtle", // none, subtle, dramatic
-      animationStyle: "smooth", // smooth, elegant, dramatic
-      sectionSpacing: "8rem",
-      cardStyle: "flat", // flat, elevated, bordered
-    },
-  },
-
-  // ═══════════════════════════════════════════════════════════
-  // GOLD - Schwarz/Gold - Klassisch luxuriös
-  // ═══════════════════════════════════════════════════════════
-  gold: {
-    id: "gold",
-    name: "Gold",
-    description: "Klassisch luxuriös",
-    colors: {
-      primary: "#D4AF37",
-      secondary: "#B8960C",
-      accent: "#F5E6C8",
-      background: "#0A0A0A",
-      backgroundAlt: "#111111",
-      surface: "#1A1A1A",
-      text: "#FFFFFF",
-      textSecondary: "rgba(255, 255, 255, 0.7)",
-      textMuted: "rgba(255, 255, 255, 0.5)",
-      border: "rgba(212, 175, 55, 0.3)",
-      borderHover: "#D4AF37",
-      gradient:
-        "linear-gradient(135deg, #D4AF37 0%, #F5E6C8 50%, #D4AF37 100%)",
-      shimmer:
-        "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.3) 50%, transparent 100%)",
-    },
-    fonts: {
-      heading: "'Playfair Display', serif",
-      body: "'Inter', sans-serif",
-    },
-    // Gold Style: Opulent, luxurious, dramatic
-    style: {
-      headingWeight: "400",
-      headingLetterSpacing: "0.05em",
-      headingTextTransform: "none",
-      bodyLetterSpacing: "0.02em",
-      borderRadius: "0",
-      borderWidth: "1px",
-      dividerStyle: "double", // double lines for elegance
-      dividerWidth: "3px",
-      buttonStyle: "gradient",
-      decorativeElements: true,
-      ornaments: true, // ✦ ◆ ❖ decorative symbols
-      shadowStyle: "dramatic",
-      animationStyle: "elegant",
-      sectionSpacing: "10rem",
-      cardStyle: "elevated",
-    },
-  },
-
-  // ═══════════════════════════════════════════════════════════
-  // TIMELESS - Beige/Gold/Braun - Elegant traditionell
-  // ═══════════════════════════════════════════════════════════
-  timeless: {
-    id: "timeless",
-    name: "Timeless",
-    description: "Elegant traditionell",
-    colors: {
-      primary: "#8B7355",
-      secondary: "#A67C52",
-      accent: "#C9A86C",
-      background: "#FAF7F2",
-      backgroundAlt: "#F5F0E8",
-      surface: "#FFFFFF",
-      text: "#3D3D3D",
-      textSecondary: "#6B6B6B",
-      textMuted: "#999999",
-      border: "#E5DED3",
-      borderHover: "#8B7355",
-    },
-    fonts: {
-      heading: "'Cormorant Garamond', serif",
-      body: "'Inter', sans-serif",
-    },
-    style: {
-      headingWeight: "500",
-      headingLetterSpacing: "0.02em",
-      headingTextTransform: "none",
-      bodyLetterSpacing: "0",
-      borderRadius: "0",
-      borderWidth: "1px",
-      dividerStyle: "solid",
-      dividerWidth: "1px",
+      dividerWidth: "2px",
+      dividerColor: "#C41E3A",
       buttonStyle: "solid",
-      decorativeElements: true,
-      ornaments: false,
+      imageFilter: "grayscale(100%)",
       shadowStyle: "subtle",
       animationStyle: "smooth",
-      sectionSpacing: "8rem",
-      cardStyle: "bordered",
+      sectionSpacing: "clamp(4rem, 10vh, 8rem)",
     },
   },
 
   // ═══════════════════════════════════════════════════════════
-  // BOTANICAL - Grün/Creme - Natürlich organisch
+  // BOTANICAL - Dark Glassmorphism mit Pflanzen
+  // Apple-style Glass, dunkler Hintergrund, Cormorant + Montserrat
   // ═══════════════════════════════════════════════════════════
   botanical: {
     id: "botanical",
     name: "Botanical",
-    description: "Natürlich organisch",
+    description: "Dark Glassmorphism — Tropisch elegant",
+    isDark: true,
     colors: {
-      primary: "#7D9D7C",
-      secondary: "#5C7C5B",
-      accent: "#9DB99C",
-      background: "#FEFDF8",
-      backgroundAlt: "#F7F5EE",
-      surface: "#FFFFFF",
-      text: "#2D3B2D",
-      textSecondary: "#5A6B5A",
-      textMuted: "#8A9B8A",
-      border: "#D4E0D4",
-      borderHover: "#7D9D7C",
+      primary: "rgba(45, 90, 60, 0.8)",
+      secondary: "rgba(80, 140, 90, 0.6)",
+      accent: "rgba(45, 90, 60, 0.8)",
+      background: "#040604",
+      backgroundAlt: "#081208",
+      surface: "rgba(255, 255, 255, 0.08)",
+      surfaceHover: "rgba(255, 255, 255, 0.12)",
+      text: "rgba(255, 255, 255, 0.95)",
+      textSecondary: "rgba(255, 255, 255, 0.55)",
+      textMuted: "rgba(255, 255, 255, 0.35)",
+      border: "rgba(255, 255, 255, 0.15)",
+      borderHover: "rgba(255, 255, 255, 0.25)",
+      glass: {
+        bg: "rgba(255, 255, 255, 0.08)",
+        border: "rgba(255, 255, 255, 0.15)",
+        blur: "40px",
+        shadow: "0 0 0 1px rgba(255,255,255,0.05) inset, 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.25)",
+      },
     },
     fonts: {
-      heading: "'Cormorant Garamond', serif",
-      body: "'Inter', sans-serif",
+      headline: "'Cormorant Garamond', Georgia, serif",
+      body: "'Montserrat', sans-serif",
     },
     style: {
-      headingWeight: "400",
-      headingLetterSpacing: "0.02em",
+      headingWeight: "300",
+      headingLetterSpacing: "0",
       headingTextTransform: "none",
-      bodyLetterSpacing: "0",
-      borderRadius: "8px",
-      borderWidth: "1px",
-      dividerStyle: "solid",
-      dividerWidth: "1px",
-      buttonStyle: "solid",
-      decorativeElements: true,
-      ornaments: false,
-      shadowStyle: "subtle",
-      animationStyle: "smooth",
-      sectionSpacing: "8rem",
-      cardStyle: "flat",
-    },
-  },
-
-  // ═══════════════════════════════════════════════════════════
-  // LUXE - Schwarz/Gold - Dramatisch glamourös
-  // ═══════════════════════════════════════════════════════════
-  luxe: {
-    id: "luxe",
-    name: "Luxe",
-    description: "Dramatisch glamourös",
-    colors: {
-      primary: "#C9A86C",
-      secondary: "#E8D5B5",
-      accent: "#F5E6C8",
-      background: "#0D0D0D",
-      backgroundAlt: "#1A1A1A",
-      surface: "#141414",
-      text: "#FFFFFF",
-      textSecondary: "rgba(255, 255, 255, 0.75)",
-      textMuted: "rgba(255, 255, 255, 0.5)",
-      border: "rgba(201, 168, 108, 0.25)",
-      borderHover: "#C9A86C",
-    },
-    fonts: {
-      heading: "'Playfair Display', serif",
-      body: "'Inter', sans-serif",
-    },
-    style: {
-      headingWeight: "400",
-      headingLetterSpacing: "0.1em",
-      headingTextTransform: "uppercase",
+      headingLineHeight: "1.1",
+      bodyWeight: "300",
       bodyLetterSpacing: "0.02em",
-      borderRadius: "0",
+      borderRadius: "28px",
       borderWidth: "1px",
-      dividerStyle: "solid",
       dividerWidth: "1px",
-      buttonStyle: "outline",
-      decorativeElements: true,
-      ornaments: true,
-      shadowStyle: "dramatic",
-      animationStyle: "dramatic",
-      sectionSpacing: "10rem",
-      cardStyle: "elevated",
-    },
-  },
-
-  // ═══════════════════════════════════════════════════════════
-  // INTIMATE - Rosa/Creme - Warm persönlich
-  // ═══════════════════════════════════════════════════════════
-  intimate: {
-    id: "intimate",
-    name: "Intimate",
-    description: "Warm persönlich",
-    colors: {
-      primary: "#C4A484",
-      secondary: "#D4B896",
-      accent: "#E8C8A8",
-      background: "#FDF9F6",
-      backgroundAlt: "#F9F3EE",
-      surface: "#FFFFFF",
-      text: "#4A3F35",
-      textSecondary: "#7A6B5D",
-      textMuted: "#A89B8B",
-      border: "#EDE5DC",
-      borderHover: "#C4A484",
-    },
-    fonts: {
-      heading: "'Cormorant Garamond', serif",
-      body: "'Inter', sans-serif",
-    },
-    style: {
-      headingWeight: "400",
-      headingLetterSpacing: "0.02em",
-      headingTextTransform: "none",
-      bodyLetterSpacing: "0",
-      borderRadius: "4px",
-      borderWidth: "1px",
-      dividerStyle: "solid",
-      dividerWidth: "1px",
-      buttonStyle: "solid",
-      decorativeElements: false,
-      ornaments: false,
-      shadowStyle: "subtle",
+      buttonStyle: "glass",
+      backdropFilter: "blur(40px) saturate(180%)",
+      shadowStyle: "glass",
       animationStyle: "smooth",
-      sectionSpacing: "8rem",
-      cardStyle: "flat",
+      sectionSpacing: "clamp(4rem, 10vh, 8rem)",
     },
   },
 
   // ═══════════════════════════════════════════════════════════
-  // CONTEMPORARY - Grau/Rot - Kreativ künstlerisch
+  // CONTEMPORARY - Neobrutalism Playful
+  // Bunte Palette, harte Schatten, Space Grotesk
   // ═══════════════════════════════════════════════════════════
   contemporary: {
     id: "contemporary",
     name: "Contemporary",
-    description: "Kreativ künstlerisch",
+    description: "Neobrutalism — Playful & Bold",
+    isDark: false,
     colors: {
-      primary: "#C45C4B",
-      secondary: "#A84B3C",
-      accent: "#D97B6B",
-      background: "#F5F5F5",
-      backgroundAlt: "#EDEDED",
+      primary: "#FF6B6B",       // Coral
+      secondary: "#4ECDC4",     // Electric Teal
+      accent: "#FFE66D",        // Yellow
+      purple: "#9B5DE5",
+      pink: "#F15BB5",
+      background: "#FAFAFA",
+      backgroundAlt: "#0D0D0D",
       surface: "#FFFFFF",
-      text: "#2D2D2D",
-      textSecondary: "#5C5C5C",
-      textMuted: "#8C8C8C",
-      border: "#DDDDDD",
-      borderHover: "#C45C4B",
+      text: "#0D0D0D",
+      textLight: "#FAFAFA",
+      textSecondary: "#737373",
+      textMuted: "#A3A3A3",
+      border: "#0D0D0D",
+      borderHover: "#0D0D0D",
+      // Neobrutalism Shadows
+      shadowSm: "4px 4px 0 #0D0D0D",
+      shadowMd: "6px 6px 0 #0D0D0D",
+      shadowLg: "8px 8px 0 #0D0D0D",
+      shadowXl: "12px 12px 0 #0D0D0D",
     },
     fonts: {
-      heading: "'Instrument Serif', serif",
+      headline: "'Space Grotesk', sans-serif",
+      body: "'Space Grotesk', sans-serif",
+    },
+    style: {
+      headingWeight: "700",
+      headingLetterSpacing: "-0.02em",
+      headingTextTransform: "uppercase",
+      headingLineHeight: "1.1",
+      bodyWeight: "400",
+      bodyLetterSpacing: "0",
+      borderRadius: "0",
+      borderWidth: "3px",
+      dividerWidth: "3px",
+      buttonStyle: "brutal",
+      shadowStyle: "brutal",
+      animationStyle: "bouncy",
+      sectionSpacing: "clamp(4rem, 10vh, 8rem)",
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // LUXE - Cinematic Dark Luxury
+  // Sehr langsame, elegante Animationen, Cormorant + Outfit
+  // ═══════════════════════════════════════════════════════════
+  luxe: {
+    id: "luxe",
+    name: "Luxe",
+    description: "Cinematic Luxury — Elegant & Timeless",
+    isDark: true,
+    colors: {
+      primary: "#C9A962",       // Gold
+      secondary: "#D4AF37",     // Champagne
+      accent: "#C9A962",
+      background: "#0A0A0A",    // Void
+      backgroundAlt: "#0E0E11", // Anthracite
+      surface: "#1A1A1D",       // Charcoal
+      text: "#F8F6F3",          // Cream
+      textSecondary: "#E8E6E1", // Pearl
+      textMuted: "rgba(248, 246, 243, 0.5)",
+      border: "rgba(201, 169, 98, 0.25)",
+      borderHover: "#C9A962",
+    },
+    fonts: {
+      headline: "'Cormorant', 'Didot', Georgia, serif",
+      body: "'Outfit', 'Montserrat', sans-serif",
+    },
+    style: {
+      headingWeight: "300",
+      headingLetterSpacing: "-0.02em",
+      headingTextTransform: "none",
+      headingLineHeight: "1.1",
+      headingFontStyle: "italic",
+      bodyWeight: "300",
+      bodyLetterSpacing: "0",
+      borderRadius: "0",
+      borderWidth: "1px",
+      dividerWidth: "1px",
+      dividerColor: "#C9A962",
+      buttonStyle: "outline",
+      shadowStyle: "subtle",
+      animationStyle: "cinematic",
+      transitionEase: "cubic-bezier(0.16, 1, 0.3, 1)",
+      transitionDuration: "1.2s",
+      sectionSpacing: "clamp(5rem, 15vh, 10rem)",
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // NEON - Cyberpunk Glow
+  // Glitch-Effekte, Glow Shadows, Grid Background
+  // ═══════════════════════════════════════════════════════════
+  neon: {
+    id: "neon",
+    name: "Neon",
+    description: "Cyberpunk — Glow & Glitch",
+    isDark: true,
+    colors: {
+      primary: "#00ffff",       // Cyan
+      secondary: "#ff00ff",     // Pink/Magenta
+      accent: "#00ff88",        // Green
+      purple: "#b347ff",
+      background: "#0a0a0f",
+      backgroundAlt: "#12121a",
+      surface: "rgba(255, 255, 255, 0.05)",
+      text: "#FFFFFF",
+      textSecondary: "rgba(255, 255, 255, 0.6)",
+      textMuted: "rgba(255, 255, 255, 0.4)",
+      border: "rgba(0, 255, 255, 0.3)",
+      borderHover: "#00ffff",
+      // Glow Effects
+      glowCyan: "0 0 10px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3)",
+      glowPink: "0 0 10px rgba(255, 0, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.3)",
+      glowGreen: "0 0 10px rgba(0, 255, 136, 0.5), 0 0 30px rgba(0, 255, 136, 0.3)",
+      textGlowCyan: "0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5)",
+      textGlowPink: "0 0 10px rgba(255, 0, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.5)",
+    },
+    fonts: {
+      headline: "'Space Grotesk', sans-serif",
+      body: "'Space Grotesk', sans-serif",
+    },
+    style: {
+      headingWeight: "700",
+      headingLetterSpacing: "0",
+      headingTextTransform: "uppercase",
+      headingLineHeight: "1.1",
+      bodyWeight: "400",
+      bodyLetterSpacing: "0",
+      borderRadius: "0",
+      borderWidth: "1px",
+      dividerWidth: "1px",
+      buttonStyle: "glow",
+      shadowStyle: "glow",
+      animationStyle: "glitch",
+      gridBackground: true,
+      sectionSpacing: "clamp(4rem, 10vh, 8rem)",
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // VIDEO - Horizontal Cinematic S/W
+  // Dusty Blue Akzent, Manrope + Inter, Grayscale Bilder
+  // ═══════════════════════════════════════════════════════════
+  video: {
+    id: "video",
+    name: "Video",
+    description: "Cinematic S/W — Horizontal & Modern",
+    isDark: true,
+    colors: {
+      primary: "#6B8CAE",       // Dusty Blue - NICHT Gold!
+      secondary: "#8BA5C1",
+      accent: "#6B8CAE",
+      background: "#0A0A0A",
+      backgroundAlt: "#1A1A1A",
+      surface: "#252525",
+      text: "#FFFFFF",
+      textSecondary: "#B0B0B0", // Silver
+      textMuted: "#888888",
+      border: "rgba(107, 140, 174, 0.3)",
+      borderHover: "#6B8CAE",
+    },
+    fonts: {
+      headline: "'Manrope', sans-serif",
+      accent: "'Cormorant Garamond', Georgia, serif",
       body: "'Inter', sans-serif",
     },
     style: {
-      headingWeight: "400",
+      headingWeight: "600",
       headingLetterSpacing: "-0.02em",
-      headingTextTransform: "none",
+      headingTextTransform: "uppercase",
+      headingLineHeight: "1.1",
+      bodyWeight: "400",
       bodyLetterSpacing: "0",
       borderRadius: "0",
-      borderWidth: "2px",
-      dividerStyle: "solid",
-      dividerWidth: "2px",
-      buttonStyle: "solid",
-      decorativeElements: false,
-      ornaments: false,
-      shadowStyle: "none",
+      borderWidth: "1px",
+      dividerWidth: "1px",
+      dividerColor: "#6B8CAE",
+      buttonStyle: "outline",
+      imageFilter: "grayscale(100%)",
+      shadowStyle: "subtle",
       animationStyle: "smooth",
-      sectionSpacing: "8rem",
-      cardStyle: "bordered",
+      transitionEase: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      sectionSpacing: "clamp(4rem, 10vh, 8rem)",
     },
   },
-}
+};
 
-// Theme order for switcher
+// ============================================
+// THEME ORDER - Für Switcher (6 Themes, keine Fake-Themes mehr)
+// ============================================
 export const themeOrder = [
   "editorial",
-  "gold",
-  "timeless",
-  "botanical",
-  "luxe",
-  "intimate",
+  "botanical", 
   "contemporary",
-]
+  "luxe",
+  "neon",
+  "video",
+];
+
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
 
 // Get theme by id
 export const getTheme = (themeId) => {
-  return marketingThemes[themeId] || marketingThemes.editorial
-}
+  return marketingThemes[themeId] || marketingThemes.editorial;
+};
 
-// Helper: Check if theme is dark
+// Check if theme is dark
 export const isDarkTheme = (themeId) => {
-  const darkThemes = ["gold", "luxe"]
-  return darkThemes.includes(themeId)
-}
+  const theme = marketingThemes[themeId];
+  return theme?.isDark || false;
+};
 
-export default marketingThemes
+// Get all dark themes
+export const getDarkThemes = () => {
+  return themeOrder.filter(id => marketingThemes[id]?.isDark);
+};
+
+// Get all light themes
+export const getLightThemes = () => {
+  return themeOrder.filter(id => !marketingThemes[id]?.isDark);
+};
+
+export default marketingThemes;

@@ -38,71 +38,78 @@ const luxeReveal = keyframes`
 // ============================================
 // THEME DATA - Die 6 Demo-Themes
 // ============================================
-// UPDATED: All external URLs now point to multi-theme app
-const MULTI_THEME_BASE = 'https://siwedding.de'; // TODO: Change to https://siwedding.de after deployment
+// Demo URLs zeigen auf echte Kunden-Seiten (werden später hinzugefügt)
+// Struktur: siwedding.de/[slug] für jedes Theme
+const DEMO_BASE_URL = 'https://siwedding.de';
 
 const themeExamples = [
   {
     id: "editorial",
     name: "Editorial",
-    tagline: "Zeitlose Magazin-Ästhetik",
-    description: "Minimalistisch, elegant und inspiriert von High-End Magazinen.",
-    fonts: "Instrument Serif + Inter",
-    colors: ["#FFFFFF", "#1A1A1A", "#666666"],
-    demoUrl: "/demo?theme=editorial",
-    externalUrl: `${MULTI_THEME_BASE}/demo?theme=editorial`
-  },
-  {
-    id: "contemporary",
-    name: "Contemporary",
-    tagline: "Modern & Playful",
-    description: "Bold, farbenfroh und unerwartet.",
-    fonts: "Space Grotesk",
-    colors: ["#FF6B6B", "#4ECDC4", "#FFE66D"],
-    demoUrl: "/demo?theme=contemporary",
-    externalUrl: `${MULTI_THEME_BASE}/demo?theme=contemporary`
+    tagline: "Magazine Bold — S/W mit Rot-Akzent",
+    description: "Oswald Headlines, Source Serif Accents, S/W Bilder mit Hover-Farbe.",
+    fonts: "Oswald + Source Serif 4 + Inter",
+    colors: ["#FAFAFA", "#0A0A0A", "#C41E3A"],
+    demoUrl: null, // TODO: Wird später mit echtem Kunden-Slug ersetzt
+    externalUrl: null,
+    comingSoon: true,
   },
   {
     id: "botanical",
     name: "Botanical",
-    tagline: "Organisch & Natürlich",
-    description: "Sanfte Erdtöne und Verbindung zur Natur.",
-    fonts: "Playfair Display + Lato",
-    colors: ["#F8F6F0", "#2D3B2D", "#8B9D83"],
-    demoUrl: "/demo?theme=botanical",
-    externalUrl: `${MULTI_THEME_BASE}/demo?theme=botanical`
+    tagline: "Dark Glassmorphism — Tropisch elegant",
+    description: "Apple-style Glass-Effekte auf dunklem Hintergrund.",
+    fonts: "Cormorant Garamond + Montserrat",
+    colors: ["#040604", "rgba(255,255,255,0.95)", "rgba(45,90,60,0.8)"],
+    demoUrl: null,
+    externalUrl: null,
+    comingSoon: true,
+  },
+  {
+    id: "contemporary",
+    name: "Contemporary",
+    tagline: "Neobrutalism — Playful & Bold",
+    description: "Harte Schatten, bunte Palette, Space Grotesk überall.",
+    fonts: "Space Grotesk",
+    colors: ["#FF6B6B", "#4ECDC4", "#FFE66D", "#9B5DE5"],
+    demoUrl: null,
+    externalUrl: null,
+    comingSoon: true,
   },
   {
     id: "luxe",
     name: "Luxe",
-    tagline: "Opulent & Glamourös",
-    description: "Dunkle Eleganz trifft auf goldene Akzente.",
-    fonts: "Cormorant Garamond + Montserrat",
-    colors: ["#FAF9F7", "#2A2A2A", "#B4A08C"],
-    demoUrl: "/demo?theme=luxe",
-    externalUrl: `${MULTI_THEME_BASE}/demo?theme=luxe`
+    tagline: "Cinematic — Elegant & Timeless",
+    description: "Langsame, cinematische Animationen mit Gold-Akzenten.",
+    fonts: "Cormorant (italic) + Outfit",
+    colors: ["#0A0A0A", "#F8F6F3", "#C9A962"],
+    demoUrl: null,
+    externalUrl: null,
+    comingSoon: true,
   },
   {
     id: "neon",
     name: "Neon",
-    tagline: "Bold & Digital",
-    description: "Cyberpunk-Ästhetik für moderne Paare.",
+    tagline: "Cyberpunk — Glow & Glitch",
+    description: "Neon-Glow, Scanlines, perspektivisches Grid.",
     fonts: "Space Grotesk",
-    colors: ["#0A0A0F", "#00FFFF", "#FF00FF"],
-    demoUrl: "/demo?theme=neon",
-    externalUrl: `${MULTI_THEME_BASE}/demo?theme=neon`
+    colors: ["#0a0a0f", "#00ffff", "#ff00ff", "#00ff88"],
+    demoUrl: null,
+    externalUrl: null,
+    comingSoon: true,
   },
   {
     id: "video",
     name: "Video",
-    tagline: "Cineastisch & Dramatisch",
-    description: "Fullscreen Video-Hintergründe treffen auf elegante Typografie.",
-    fonts: "Cormorant Garamond + Inter",
-    colors: ["#FAF8F5", "#1A1A1A", "#B8976A"],
-    demoUrl: "/demo?theme=video",
-    externalUrl: `${MULTI_THEME_BASE}/demo?theme=video`
-  }
-]
+    tagline: "Cinematic S/W — Horizontal Scroll",
+    description: "Horizontales Layout mit Dusty Blue Akzent und Grayscale-Bildern.",
+    fonts: "Manrope + Cormorant Garamond + Inter",
+    colors: ["#0A0A0A", "#FFFFFF", "#6B8CAE"],
+    demoUrl: null,
+    externalUrl: null,
+    comingSoon: true,
+  },
+];
 
 // ============================================
 // MAIN SECTION STYLES
@@ -112,7 +119,7 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
   ${(p) => p.$themeId === "editorial" && css`background: #ffffff;`}
-  ${(p) => p.$themeId === "gold" && css`background: #0a0a0a;`}
+  ${(p) => p.$themeId === "video" && css`background: #0a0a0a;`}
   ${(p) => p.$themeId === "botanical" && css`background: #f8f6f0;`}
   ${(p) => p.$themeId === "contemporary" && css`background: #f5f5f5;`}
   ${(p) => p.$themeId === "luxe" && css`background: #faf9f7;`}
@@ -132,7 +139,7 @@ const Header = styled.div`
   transform: translateY(${(p) => (p.$visible ? 0 : "40px")});
   transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   ${(p) => p.$themeId === "editorial" && css`text-align: left; max-width: 600px;`}
-  ${(p) => p.$themeId === "gold" && css`text-align: center;`}
+  ${(p) => p.$themeId === "video" && css`text-align: center;`}
   ${(p) => p.$themeId === "botanical" && css`text-align: center;`}
   ${(p) => p.$themeId === "contemporary" && css`text-align: left;`}
   ${(p) => p.$themeId === "luxe" && css`text-align: center;`}
@@ -150,7 +157,7 @@ const Eyebrow = styled.span`
     text-transform: uppercase;
     color: #999;
   `}
-  ${(p) => p.$themeId === "gold" && css`
+  ${(p) => p.$themeId === "video" && css`
     font-family: "Montserrat", sans-serif;
     font-size: 0.75rem;
     letter-spacing: 0.3em;
@@ -196,7 +203,7 @@ const Title = styled.h2`
     font-style: italic;
     color: #1a1a1a;
   `}
-  ${(p) => p.$themeId === "gold" && css`
+  ${(p) => p.$themeId === "video" && css`
     font-family: "Cormorant Garamond", Georgia, serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 300;
@@ -234,7 +241,7 @@ const Title = styled.h2`
 const Subtitle = styled.p`
   line-height: 1.7;
   ${(p) => p.$themeId === "editorial" && css`font-family: "Inter", sans-serif; font-size: 1rem; color: #666; margin: 0;`}
-  ${(p) => p.$themeId === "gold" && css`font-family: "Montserrat", sans-serif; font-size: 1rem; color: rgba(255, 255, 255, 0.5); max-width: 500px; margin: 0 auto;`}
+  ${(p) => p.$themeId === "video" && css`font-family: "Montserrat", sans-serif; font-size: 1rem; color: rgba(255, 255, 255, 0.5); max-width: 500px; margin: 0 auto;`}
   ${(p) => p.$themeId === "botanical" && css`font-family: "Lato", sans-serif; font-size: 1.05rem; color: #5a6b5a; max-width: 500px; margin: 0 auto;`}
   ${(p) => p.$themeId === "contemporary" && css`font-family: "Space Grotesk", sans-serif; font-size: 1rem; color: #666; margin: 0;`}
   ${(p) => p.$themeId === "luxe" && css`font-family: "Montserrat", sans-serif; font-size: 0.9rem; color: #888; max-width: 500px; margin: 0 auto;`}
@@ -716,7 +723,7 @@ const NeonCTA = styled.div`
 // MAIN COMPONENT
 // ============================================
 function ExamplesShowcase() {
-  const { currentTheme } = useTheme()
+  const { currentTheme, switchTheme } = useTheme()
   const navigate = useNavigate()
   const sectionRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -731,6 +738,14 @@ function ExamplesShowcase() {
   }, [])
 
   const handleCardClick = (theme) => {
+    // Wenn Demo noch nicht verfügbar, zeige Message
+    if (theme.comingSoon || !theme.demoUrl) {
+      // Wechsle zum Theme für Vorschau
+      if (switchTheme && theme.id) {
+        switchTheme(theme.id);
+      }
+      return;
+    }
     navigate(theme.demoUrl)
   }
 
@@ -760,7 +775,7 @@ function ExamplesShowcase() {
           </EditorialGrid>
         )
 
-      case "gold":
+      case "video":
         return (
           <GoldGrid>
             {themeExamples.map((theme) => (
@@ -853,7 +868,7 @@ function ExamplesShowcase() {
         return { eyebrow: "DESIGN SYSTEMS", title: "PICK YOUR VIBE", subtitle: "6 unique design worlds. Each one tells a different story." }
       case "neon":
         return { eyebrow: "// AVAILABLE_THEMES", title: "Design Modules", subtitle: "Select your preferred visual interface. Each module runs independently." }
-      case "gold":
+      case "video":
         return { eyebrow: "Kollektion", title: "Unsere Design-Welten", subtitle: "Sechs einzigartige Ästhetiken. Welche erzählt eure Geschichte?" }
       case "botanical":
         return { eyebrow: "Inspirationen", title: "Unsere Themes", subtitle: "Entdeckt sechs verschiedene Design-Welten für eure Hochzeit." }

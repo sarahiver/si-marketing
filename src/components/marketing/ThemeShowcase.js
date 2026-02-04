@@ -85,7 +85,7 @@ const Section = styled.section`
       background: #fafafa;
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       background: #0a0a0a;
       &::before {
@@ -151,7 +151,7 @@ const Header = styled.div`
       max-width: 600px;
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       text-align: center;
     `}
@@ -192,7 +192,7 @@ const Eyebrow = styled.span`
       color: #999;
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       font-family: "Montserrat", sans-serif;
       font-size: 0.75rem;
@@ -252,7 +252,7 @@ const Title = styled.h2`
       color: #1a1a1a;
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       font-family: "Cormorant Garamond", Georgia, serif;
       font-size: clamp(2.5rem, 5vw, 4rem);
@@ -307,7 +307,7 @@ const Subtitle = styled.p`
       margin: 0;
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       font-family: "Montserrat", sans-serif;
       font-size: 1rem;
@@ -395,7 +395,7 @@ const ThemeCard = styled.div`
       }
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       background: rgba(212, 175, 55, 0.02);
       border: 1px solid ${p.$active ? "#D4AF37" : "rgba(212,175,55,0.15)"};
@@ -474,7 +474,7 @@ const ActiveBadge = styled.div`
       color: #ffffff;
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       font-family: "Montserrat", sans-serif;
       background: linear-gradient(135deg, #d4af37, #f4d03f);
@@ -1171,7 +1171,7 @@ const ThemeName = styled.h3`
       color: #1a1a1a;
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       font-family: "Cormorant Garamond", Georgia, serif;
       font-size: 1.2rem;
@@ -1221,7 +1221,7 @@ const ThemeDescription = styled.p`
       color: #999;
     `}
   ${(p) =>
-    p.$themeId === "gold" &&
+    p.$themeId === "video" &&
     css`
       font-family: "Montserrat", sans-serif;
       font-size: 0.75rem;
@@ -1266,13 +1266,33 @@ const themeConfigs = [
   {
     id: "editorial",
     name: "Editorial",
-    description: "Minimalistisch & Modern",
+    description: "Magazine Bold — S/W mit Rot-Akzent",
   },
-  { id: "gold", name: "Gold", description: "Luxuriös & Opulent" },
-  { id: "botanical", name: "Botanical", description: "Natürlich & Organisch" },
-  { id: "contemporary", name: "Contemporary", description: "Bold & Playful" },
-  { id: "luxe", name: "Luxe", description: "Raffiniert & Zeitlos" },
-  { id: "neon", name: "Neon", description: "Futuristisch & Elektrisierend" },
+  { 
+    id: "botanical", 
+    name: "Botanical", 
+    description: "Dark Glassmorphism — Tropisch elegant" 
+  },
+  { 
+    id: "contemporary", 
+    name: "Contemporary", 
+    description: "Neobrutalism — Playful & Bold" 
+  },
+  { 
+    id: "luxe", 
+    name: "Luxe", 
+    description: "Cinematic — Elegant & Timeless" 
+  },
+  { 
+    id: "neon", 
+    name: "Neon", 
+    description: "Cyberpunk — Glow & Glitch" 
+  },
+  { 
+    id: "video", 
+    name: "Video", 
+    description: "Cinematic S/W — Horizontal & Modern" 
+  },
 ]
 
 // ============================================
@@ -1313,23 +1333,22 @@ const MiniHeroPreview = ({ themeId }) => {
         </EditorialHero>
       )
 
-    case "gold":
+    case "video":
       return (
-        <GoldHero>
-          <GoldGlow />
-          <GoldSparkle $top='15%' $left='20%' $delay='0s' />
-          <GoldSparkle $top='25%' $left='75%' $delay='1s' />
-          <GoldSparkle $top='70%' $left='30%' $delay='2s' />
-          <GoldSparkle $top='60%' $left='80%' $delay='0.5s' />
-          <GoldSparkle $top='40%' $left='10%' $delay='1.5s' />
-          <GoldEyebrow>✦ Exklusiv & Elegant ✦</GoldEyebrow>
-          <GoldTitle>
-            <span>Zeitlose</span> Eleganz
+        <GoldHero style={{ background: '#0A0A0A' }}>
+          <GoldGlow style={{ background: 'radial-gradient(circle at 30% 30%, rgba(107, 140, 174, 0.15), transparent 50%)' }} />
+          <GoldEyebrow style={{ color: '#6B8CAE' }}>Cinematic Experience</GoldEyebrow>
+          <GoldTitle style={{ color: '#FFFFFF' }}>
+            <span style={{ color: '#6B8CAE', fontStyle: 'italic' }}>Your</span> Story
           </GoldTitle>
-          <GoldSubtitle>
-            Luxuriöse Hochzeitswebsites für Paare mit Anspruch.
+          <GoldSubtitle style={{ color: 'rgba(255,255,255,0.6)' }}>
+            Horizontales Storytelling für eure Hochzeit.
           </GoldSubtitle>
-          <GoldButton>Jetzt starten</GoldButton>
+          <GoldButton style={{ 
+            background: 'transparent', 
+            border: '1px solid #6B8CAE', 
+            color: '#6B8CAE' 
+          }}>Jetzt starten</GoldButton>
         </GoldHero>
       )
 

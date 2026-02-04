@@ -79,52 +79,26 @@ const Logo = styled.a`
   transition: all 0.3s ease;
   z-index: 1001;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
   
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.4rem;
-    font-weight: 300;
-    color: ${p.$scrolled ? '#D4AF37' : '#FFFFFF'};
-    letter-spacing: 0.1em;
-    @media (min-width: 600px) { font-size: 1.6rem; }
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: 1.3rem;
-    font-style: italic;
-    color: #1A1A1A;
-    @media (min-width: 600px) { font-size: 1.5rem; }
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.2rem;
-    color: #2D3B2D;
-    @media (min-width: 600px) { font-size: 1.4rem; }
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0D0D0D;
-    text-transform: uppercase;
-    @media (min-width: 600px) { font-size: 1.3rem; }
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.3rem;
-    font-weight: 300;
-    font-style: italic;
-    color: ${p.$scrolled ? '#D4AF37' : '#E8DDD4'};
-    @media (min-width: 600px) { font-size: 1.5rem; }
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #00ffff;
-    text-shadow: 0 0 10px rgba(0,255,255,0.5);
-    @media (min-width: 600px) { font-size: 1.4rem; }
-  `}
+  /* Einheitliches S&I. Logo - Roboto Bold, schwarzer Hintergrund, weiße Schrift */
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.06em; /* Zeichen berühren sich leicht */
+  color: #FFFFFF;
+  background: #000000;
+  padding: 8px 14px;
+  
+  @media (min-width: 600px) { 
+    font-size: 1.4rem; 
+    padding: 10px 16px;
+  }
+  
+  &:hover {
+    opacity: 0.9;
+  }
 `;
 
 const NavLinks = styled.div`
@@ -672,8 +646,8 @@ function MarketingNav() {
     <>
       <Nav $themeId={currentTheme} $scrolled={scrolled}>
         <NavInner $themeId={currentTheme} $scrolled={scrolled}>
-          <Logo href="#" $themeId={currentTheme} $scrolled={scrolled}>
-            S & I
+          <Logo href="#">
+            S&I.
           </Logo>
           
           <NavLinks>

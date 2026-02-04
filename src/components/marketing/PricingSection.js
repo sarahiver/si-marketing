@@ -244,41 +244,39 @@ const AddOnNote = styled.span`
 `;
 
 const tiers = [
-  { name: 'Klassik', price: '1.490', popular: false, features: [
-    { text: '10 Komponenten', highlight: false },
-    { text: '8 Monate Hosting', highlight: false },
-    { text: '1× 30 Min Beratung', highlight: false },
-    { text: 'Alle 6 Themes', highlight: false },
-    { text: 'Mobile-optimiert', highlight: false },
-    { text: 'Save-the-Date: +250€', highlight: false },
+  { name: 'Starter', price: '1.290', popular: false, features: [
+    { text: 'Custom URL (siwedding.de/name)', highlight: false },
+    { text: '4 Basis-Komponenten', highlight: false },
+    { text: '6 Monate Hosting', highlight: false },
+    { text: 'Dateneingabe durch Kunde', highlight: false },
+    { text: 'RSVP mit Download', highlight: false },
+    { text: '1 Revision vorher / 1 nachher', highlight: false },
   ]},
-  { name: 'Signature', price: '2.190', popular: true, features: [
-    { text: '16 Komponenten', highlight: true },
+  { name: 'Standard', price: '1.490', popular: true, features: [
+    { text: '4 Basis + 3 Extra-Komponenten', highlight: true },
+    { text: '8 Monate Hosting', highlight: true },
+    { text: 'Dateneingabe durch Kunde', highlight: false },
+    { text: 'RSVP mit Download', highlight: false },
+    { text: '2 Revisionen vorher / 2 nachher', highlight: true },
+    { text: 'Save-the-Date: ab 75€', highlight: false },
+  ]},
+  { name: 'Premium', price: '1.990', popular: false, features: [
+    { text: '4 Basis + 6 Extra-Komponenten', highlight: true },
     { text: '12 Monate Hosting', highlight: true },
-    { text: '2× 30 Min Beratung', highlight: true },
-    { text: 'Alle 6 Themes', highlight: false },
-    { text: 'Save-the-Date: nur +125€', highlight: true },
-    { text: 'Archivierung: +190€', highlight: false },
-  ]},
-  { name: 'Couture', price: '2.990', pricePlus: true, popular: false, features: [
-    { text: 'Alle 18 Komponenten', highlight: true },
-    { text: '12 Monate Hosting', highlight: false },
-    { text: 'Unbegrenzte Beratung', highlight: true },
+    { text: 'Dateneingabe durch uns', highlight: true },
     { text: 'Save-the-Date inklusive', highlight: true },
-    { text: '3 Monate Archiv inkl.', highlight: true },
-    { text: 'Custom Design möglich', highlight: true },
+    { text: 'Archiv-Seite (3 Monate) inkl.', highlight: true },
+    { text: 'QR-Code Erstellung inkl.', highlight: true },
   ]}
 ];
 
 const addOns = [
-  { name: 'Save-the-Date', price: 'ab 125€', note: '+1 Monat Hosting' },
-  { name: 'Archivierung', price: '+190€', note: '3 Monate' },
-  { name: 'Hosting-Verlängerung', price: '29€/Mon', note: 'Nach Ablauf' },
-  { name: 'Zusätzliche Sprache', price: '+350€', note: 'Mehrsprachig' },
-  { name: 'QR-Code Paket', price: '+120€', note: 'Print-Ready' },
-  { name: 'Tischkarten-Design', price: '+290€', note: 'Passend zum Theme' },
-  { name: 'Save-the-Date Digital', price: '+190€', note: 'Animierte Karte' },
-  { name: 'Statischer Download', price: '49€', note: 'Nach Archivierung' },
+  { name: 'Save-the-Date', price: 'ab 75€', note: 'Bis 2 Monate vor Hochzeit' },
+  { name: 'Archiv-Seite', price: 'ab 75€', note: '3 Monate nach Hochzeit' },
+  { name: 'Extra-Komponente', price: '50€', note: 'Pro Stück' },
+  { name: 'QR-Code Erstellung', price: '35€', note: 'Für Einladungen' },
+  { name: 'Einladungs-Design', price: 'ab 200€', note: 'Passend zum Theme' },
+  { name: 'Individual-Paket', price: 'Auf Anfrage', note: 'Maßgeschneidert' },
 ];
 
 function PricingSection() {

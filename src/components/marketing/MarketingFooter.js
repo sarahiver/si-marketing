@@ -29,13 +29,16 @@ const TopSection = styled.div`
 const BrandCol = styled.div``;
 
 const Logo = styled.div`
-  font-size: 1.8rem; margin-bottom: 20px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #B8976A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Instrument Serif', Georgia, serif; color: #FFFFFF;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Playfair Display', Georgia, serif; color: #8B9D83;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #FFFFFF;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; color: #D4AF37;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #00ffff; text-shadow: 0 0 10px rgba(0,255,255,0.5);`}
+  /* Einheitliches S&I. Logo - Roboto Bold, schwarzer Hintergrund, weiße Schrift */
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  color: #FFFFFF;
+  background: #000000;
+  padding: 10px 18px;
+  margin-bottom: 20px;
 `;
 
 const BrandDesc = styled.p`
@@ -111,7 +114,7 @@ function MarketingFooter() {
       <Container>
         <TopSection>
           <BrandCol>
-            <Logo $themeId={currentTheme}>S & I</Logo>
+            <Logo>S&I.</Logo>
             <BrandDesc $themeId={currentTheme}>
               Premium Hochzeitswebsites, die so einzigartig sind wie eure Liebe. Handgemacht in Hamburg.
             </BrandDesc>
@@ -138,9 +141,10 @@ function MarketingFooter() {
           </Column>
           
           <Column>
-            <ColTitle $themeId={currentTheme}>Admin</ColTitle>
+            <ColTitle $themeId={currentTheme}>Kontakt</ColTitle>
             <Links>
-              <LinkItem $themeId={currentTheme}><a href="/admin">Dashboard</a></LinkItem>
+              <LinkItem $themeId={currentTheme}><a href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</a></LinkItem>
+              <LinkItem $themeId={currentTheme}><a href="https://instagram.com/sarah.iver.wedding" target="_blank" rel="noopener noreferrer">Instagram</a></LinkItem>
             </Links>
           </Column>
         </TopSection>
