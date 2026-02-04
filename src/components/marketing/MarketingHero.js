@@ -939,7 +939,7 @@ const MarketingHero = () => {
         <EditorialContent>
           <EditorialEyebrow>Premium Wedding Websites</EditorialEyebrow>
           <EditorialTitle>
-            S<span className="ampersand">&</span>I.
+            Premium<span className="ampersand">&</span>Hochzeits<br/>websites
           </EditorialTitle>
           <EditorialDate>Eure Geschichte. Digital erzählt.</EditorialDate>
           <EditorialCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</EditorialCTA>
@@ -959,15 +959,15 @@ const MarketingHero = () => {
         <BotanicalLeaf src={LEAVES[3]} className="bottom-left" alt="" />
         <BotanicalLeaf src={LEAVES[0]} className="bottom-right" alt="" />
         <BotanicalCard>
-          <BotanicalEyebrow>Wir heiraten</BotanicalEyebrow>
+          <BotanicalEyebrow>Premium Wedding Websites</BotanicalEyebrow>
           <BotanicalTitle>
-            S&I.
+            Premium
             <span className="ampersand">&</span>
-            Wedding
+            Hochzeitswebsites
           </BotanicalTitle>
-          <BotanicalDate>Premium Hochzeitswebsites</BotanicalDate>
+          <BotanicalDate>Eure Geschichte. Digital erzählt.</BotanicalDate>
           <BotanicalLocation>Hamburg</BotanicalLocation>
-          <BotanicalCTA onClick={() => scrollToSection('contact')}>Jetzt zusagen</BotanicalCTA>
+          <BotanicalCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</BotanicalCTA>
         </BotanicalCard>
         <BotanicalScroll>Entdecken</BotanicalScroll>
       </BotanicalSection>
@@ -983,19 +983,19 @@ const MarketingHero = () => {
         <ContemporaryShape className="circle2" />
         <ContemporaryShape className="square2" />
         <ContemporaryLeft>
-          <ContemporaryEyebrow>Hochzeit ist!</ContemporaryEyebrow>
+          <ContemporaryEyebrow>Premium Wedding Websites</ContemporaryEyebrow>
           <ContemporaryTitle>
-            S&I.
+            Premium
             <span className="ampersand">&</span>
-            <span className="name2">Wedding</span>
+            <span className="name2">Hochzeits-websites</span>
           </ContemporaryTitle>
           <ContemporaryTags>
-            <ContemporaryTag>📅 Premium Websites</ContemporaryTag>
+            <ContemporaryTag>📅 6 Themes</ContemporaryTag>
             <ContemporaryTag $filled>📍 Hamburg</ContemporaryTag>
           </ContemporaryTags>
           <ContemporaryCTAs>
-            <ContemporaryCTA $primary onClick={() => scrollToSection('contact')}>Jetzt zusagen →</ContemporaryCTA>
-            <ContemporaryCTA onClick={() => scrollToSection('features')}>Unsere Geschichte</ContemporaryCTA>
+            <ContemporaryCTA $primary onClick={() => scrollToSection('contact')}>Jetzt anfragen →</ContemporaryCTA>
+            <ContemporaryCTA onClick={() => scrollToSection('features')}>Features ansehen</ContemporaryCTA>
           </ContemporaryCTAs>
         </ContemporaryLeft>
         <ContemporaryRight />
@@ -1012,13 +1012,13 @@ const MarketingHero = () => {
         <LuxeContent>
           <LuxeEyebrow>Premium Wedding Websites</LuxeEyebrow>
           <LuxeTitle>
-            S&I.
+            Premium
             <span className="ampersand">&</span>
-            Wedding
+            Hochzeitswebsites
           </LuxeTitle>
-          <LuxeDate>Exklusive Hochzeitswebsites</LuxeDate>
+          <LuxeDate>Eure Geschichte. Digital erzählt.</LuxeDate>
           <LuxeDivider />
-          <LuxeCTA onClick={() => scrollToSection('contact')}>Entdecken</LuxeCTA>
+          <LuxeCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</LuxeCTA>
         </LuxeContent>
         <LuxeScroll>
           <span>Scroll</span>
@@ -1036,7 +1036,7 @@ const MarketingHero = () => {
         <NeonContent>
           <NeonEyebrow>// Wedding.init()</NeonEyebrow>
           <NeonTitle>
-            S&I.
+            Premium
             <span className="ampersand">_</span>
             WEDDING
           </NeonTitle>
@@ -1056,23 +1056,16 @@ const MarketingHero = () => {
       </VideoBg>
       <VideoOverlay />
       <VideoContent>
-        <VideoEyebrow>Hochzeit ist!</VideoEyebrow>
+        <VideoEyebrow>Premium Wedding Websites</VideoEyebrow>
         <VideoTitle>
-          S&I.
+          Premium
           <span className="ampersand">&</span>
-          WEDDING
+          Hochzeitswebsites
         </VideoTitle>
         <VideoDivider />
-        <VideoDate>Premium Hochzeitswebsites</VideoDate>
+        <VideoDate>Eure Geschichte. Digital erzählt.</VideoDate>
         <VideoLocation>Hamburg</VideoLocation>
       </VideoContent>
-      <VideoNav>
-        <VideoNavItem className="active">Start</VideoNavItem>
-        <VideoNavItem onClick={() => scrollToSection('features')}>Features</VideoNavItem>
-        <VideoNavItem onClick={() => scrollToSection('themes')}>Designs</VideoNavItem>
-        <VideoNavItem onClick={() => scrollToSection('pricing')}>Preise</VideoNavItem>
-        <VideoNavItem onClick={() => scrollToSection('contact')}>Kontakt</VideoNavItem>
-      </VideoNav>
     </VideoSection>
   );
 };

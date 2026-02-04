@@ -362,6 +362,57 @@ const Textarea = styled.textarea`
   `}
 `;
 
+const Select = styled.select`
+  ${inputBaseStyles}
+  border-radius: ${p => p.$config.borderRadius};
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  
+  ${p => p.$config.inputStyle === 'border' && css`
+    border: 1px solid ${p.$config.inputBorder};
+    &:focus { border-color: ${p.$config.inputFocusBorder}; }
+  `}
+  
+  ${p => p.$config.inputStyle === 'rounded' && css`
+    border: 1px solid ${p.$config.inputBorder};
+    border-radius: 12px;
+    &:focus { 
+      border-color: ${p.$config.inputFocusBorder}; 
+      background-color: rgba(255,255,255,0.08);
+    }
+  `}
+  
+  ${p => p.$config.inputStyle === 'brutalist' && css`
+    border: 2px solid ${p.$config.inputBorder};
+    &:focus { box-shadow: ${p.$config.inputFocusShadow}; }
+  `}
+  
+  ${p => p.$config.inputStyle === 'underline' && css`
+    border: none;
+    border-bottom: 1px solid ${p.$config.inputBorder};
+    border-radius: 0;
+    padding-left: 0;
+    &:focus { border-color: ${p.$config.inputFocusBorder}; }
+  `}
+  
+  ${p => p.$config.inputStyle === 'glow' && css`
+    border: 1px solid ${p.$config.inputBorder};
+    &:focus { 
+      border-color: ${p.$config.inputFocusBorder}; 
+      box-shadow: ${p.$config.inputFocusShadow};
+    }
+  `}
+  
+  option {
+    background: #1a1a1a;
+    color: #fff;
+  }
+`;
+
 const Button = styled.button`
   width: 100%;
   padding: 1.25rem;
@@ -460,6 +511,23 @@ const BREVO_LIST_ID = parseInt(process.env.REACT_APP_BREVO_LIST_ID || '3'); // C
 // ============================================
 // COMPONENT
 // ============================================
+const PACKAGES = [
+  { id: '', label: 'Bitte wählen...' },
+  { id: 'starter', label: 'Starter (€1.290)' },
+  { id: 'standard', label: 'Standard (€1.490)' },
+  { id: 'premium', label: 'Premium (€1.990)' },
+];
+
+const THEME_OPTIONS = [
+  { id: '', label: 'Bitte wählen...' },
+  { id: 'editorial', label: 'Editorial' },
+  { id: 'botanical', label: 'Botanical' },
+  { id: 'contemporary', label: 'Contemporary' },
+  { id: 'luxe', label: 'Luxe' },
+  { id: 'neon', label: 'Neon' },
+  { id: 'video', label: 'Video' },
+];
+
 const ContactSection = () => {
   const { currentTheme } = useTheme();
   const config = THEME_CONFIG[currentTheme] || THEME_CONFIG.video;
@@ -469,6 +537,8 @@ const ContactSection = () => {
     email: '',
     phone: '',
     weddingDate: '',
+    interestedTheme: '',
+    interestedPackage: '',
     message: '',
     honeypot: '', // Spam trap
   });
@@ -533,6 +603,8 @@ const ContactSection = () => {
           email: formData.email.trim().toLowerCase(),
           phone: formData.phone.trim() || null,
           wedding_date: formData.weddingDate || null,
+          interested_theme: formData.interestedTheme || null,
+          interested_package: formData.interestedPackage || null,
           message: formData.message.trim(),
           source: 'website_contact',
           status: 'new',
@@ -708,6 +780,37 @@ const ContactSection = () => {
                     $theme={currentTheme}
                     $config={config}
                   />
+                </FormGroup>
+              </FormRow>
+              
+              <FormRow>
+                <FormGroup>
+                  <Label $theme={currentTheme} $config={config}>Interesse an Theme</Label>
+                  <Select
+                    name="interestedTheme"
+                    value={formData.interestedTheme}
+                    onChange={handleChange}
+                    $theme={currentTheme}
+                    $config={config}
+                  >
+                    {THEME_OPTIONS.map(opt => (
+                      <option key={opt.id} value={opt.id}>{opt.label}</option>
+                    ))}
+                  </Select>
+                </FormGroup>
+                <FormGroup>
+                  <Label $theme={currentTheme} $config={config}>Interesse an Paket</Label>
+                  <Select
+                    name="interestedPackage"
+                    value={formData.interestedPackage}
+                    onChange={handleChange}
+                    $theme={currentTheme}
+                    $config={config}
+                  >
+                    {PACKAGES.map(opt => (
+                      <option key={opt.id} value={opt.id}>{opt.label}</option>
+                    ))}
+                  </Select>
                 </FormGroup>
               </FormRow>
               
