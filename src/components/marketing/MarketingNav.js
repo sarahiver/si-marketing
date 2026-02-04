@@ -1,5 +1,5 @@
 // src/components/marketing/MarketingNav.js
-// Theme Switcher: Aktuelles Theme mit Dropdown für andere
+// Theme Switcher + Mobile Burger Menu
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
@@ -14,6 +14,7 @@ const THEMES = [
 ];
 
 const fadeIn = keyframes`from { opacity: 0; } to { opacity: 1; }`;
+const slideIn = keyframes`from { transform: translateX(100%); } to { transform: translateX(0); }`;
 
 // ============================================
 // NAV STYLES
@@ -50,6 +51,12 @@ const Nav = styled.nav`
     border-radius: 50px;
     padding: 0.6rem 1.5rem;
     gap: 0.5rem;
+    
+    @media (max-width: 768px) {
+      top: 1rem;
+      border-radius: 30px;
+      padding: 0.5rem 1rem;
+    }
   `}
   
   ${p => p.$theme === 'contemporary' && css`
@@ -75,6 +82,11 @@ const ContemporaryInner = styled.div`
     max-width: 1200px;
     margin: 0 auto;
   }
+  
+  @media (max-width: 768px) {
+    height: 50px;
+    padding: 0 15px;
+  }
 `;
 
 // LOGO: S&I. - bold, white, Roboto, letter-spacing -0.06em
@@ -83,19 +95,31 @@ const Logo = styled.a`
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.06em;
-  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#FFFFFF'};
   text-decoration: none;
+  color: #fff;
+  background: #000;
+  padding: 6px 12px;
+  transition: all 0.3s ease;
   
-  &:hover { 
-    opacity: 0.8;
+  ${p => p.$theme === 'contemporary' && css`
+    background: #0D0D0D;
+    color: #fff;
+  `}
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    padding: 5px 10px;
   }
 `;
 
 const NavLinks = styled.div`
-  display: none;
+  display: flex;
   gap: 2rem;
+  align-items: center;
   
-  @media (min-width: 768px) { display: flex; }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const NavLink = styled.a`
@@ -120,7 +144,7 @@ const RightSection = styled.div`
 `;
 
 // ============================================
-// THEME SWITCHER - Aktuelles Theme + Dropdown
+// THEME SWITCHER
 // ============================================
 const ThemeSwitcherWrapper = styled.div`
   position: relative;
@@ -129,7 +153,7 @@ const ThemeSwitcherWrapper = styled.div`
   padding-left: 1rem;
   border-left: 1px solid ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.2)'};
   
-  @media (max-width: 500px) { display: none; }
+  @media (max-width: 768px) { display: none; }
 `;
 
 const CurrentThemeBtn = styled.button`
@@ -159,19 +183,16 @@ const CurrentThemeBtn = styled.button`
 
 const ThemeDropdown = styled.div`
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   right: 0;
-  margin-top: 0.5rem;
-  background: ${p => p.$theme === 'contemporary' ? '#fff' : 'rgba(10,10,10,0.95)'};
-  border: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : '1px solid rgba(255,255,255,0.1)'};
+  min-width: 140px;
+  background: ${p => p.$theme === 'contemporary' ? '#fff' : 'rgba(10, 10, 10, 0.95)'};
+  border: ${p => p.$theme === 'contemporary' ? '2px solid #0D0D0D' : '1px solid rgba(255,255,255,0.15)'};
   ${p => p.$theme === 'contemporary' && css`box-shadow: 4px 4px 0 #0D0D0D;`}
-  ${p => p.$theme !== 'contemporary' && css`backdrop-filter: blur(20px);`}
-  border-radius: ${p => p.$theme === 'contemporary' ? '0' : '12px'};
-  padding: 0.5rem;
-  min-width: 150px;
+  padding: 0.5rem 0;
   opacity: ${p => p.$open ? 1 : 0};
   visibility: ${p => p.$open ? 'visible' : 'hidden'};
-  transform: translateY(${p => p.$open ? '0' : '-10px'});
+  transform: ${p => p.$open ? 'translateY(0)' : 'translateY(-10px)'};
   transition: all 0.2s ease;
   z-index: 100;
 `;
@@ -179,40 +200,196 @@ const ThemeDropdown = styled.div`
 const ThemeOption = styled.button`
   display: block;
   width: 100%;
-  padding: 0.6rem 0.75rem;
-  background: ${p => p.$active ? (p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)') : 'transparent'};
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  padding: 0.6rem 1rem;
   text-align: left;
   font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: ${p => p.$active ? '600' : '500'};
-  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.7)'};
+  background: transparent;
+  border: none;
+  cursor: pointer;
   transition: all 0.2s ease;
   
   &:hover {
     background: ${p => p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
+    color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
   }
 `;
 
+// ============================================
+// BURGER BUTTON + MOBILE MENU
+// ============================================
 const BurgerBtn = styled.button`
+  background: transparent;
+  border: none;
   width: 44px;
   height: 44px;
-  background: ${p => p.$theme === 'contemporary' ? '#FFE66D' : 'transparent'};
-  border: ${p => p.$theme === 'contemporary' ? '2px solid #0D0D0D' : '1px solid rgba(255,255,255,0.2)'};
-  ${p => p.$theme === 'contemporary' && css`box-shadow: 2px 2px 0 #0D0D0D;`}
   cursor: pointer;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
+  position: relative;
+  z-index: 1001;
   
-  @media (min-width: 768px) { display: none; }
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+const BurgerLine = styled.span`
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
+  position: relative;
+  transition: all 0.3s ease;
   
-  &:hover { 
-    border-color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.5)'};
+  ${p => p.$open && css`
+    background: transparent;
+  `}
+  
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
+    transition: all 0.3s ease;
+  }
+  
+  &::before {
+    top: -7px;
+    ${p => p.$open && css`
+      top: 0;
+      transform: rotate(45deg);
+    `}
+  }
+  
+  &::after {
+    top: 7px;
+    ${p => p.$open && css`
+      top: 0;
+      transform: rotate(-45deg);
+    `}
+  }
+`;
+
+const MobileMenuOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  opacity: ${p => p.$open ? 1 : 0};
+  visibility: ${p => p.$open ? 'visible' : 'hidden'};
+  transition: all 0.3s ease;
+`;
+
+const MobileMenu = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  max-width: 85vw;
+  z-index: 1000;
+  padding: 100px 2rem 2rem;
+  transform: ${p => p.$open ? 'translateX(0)' : 'translateX(100%)'};
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  background: ${p => {
+    switch(p.$theme) {
+      case 'botanical': return 'rgba(4, 6, 4, 0.98)';
+      case 'contemporary': return '#FFFFFF';
+      case 'luxe': return '#0A0A0A';
+      case 'neon': return '#0a0a0f';
+      default: return '#0A0A0A';
+    }
+  }};
+  
+  border-left: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : '1px solid rgba(255,255,255,0.1)'};
+`;
+
+const MobileNavLink = styled.a`
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 0;
+  border-bottom: 1px solid ${p => p.$theme === 'contemporary' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
+  transition: all 0.3s ease;
+  
+  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
+  
+  &:hover {
+    color: ${p => {
+      switch(p.$theme) {
+        case 'contemporary': return '#FF6B6B';
+        case 'neon': return '#00ffff';
+        case 'luxe': return '#C9A962';
+        default: return '#fff';
+      }
+    }};
+  }
+`;
+
+const MobileThemeSection = styled.div`
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid ${p => p.$theme === 'contemporary' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
+`;
+
+const MobileThemeTitle = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: ${p => p.$theme === 'contemporary' ? '#999' : 'rgba(255,255,255,0.4)'};
+  margin-bottom: 1rem;
+`;
+
+const MobileThemeGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+`;
+
+const MobileThemeBtn = styled.button`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  background: ${p => p.$active 
+    ? (p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.15)') 
+    : (p.$theme === 'contemporary' ? '#F5F5F5' : 'rgba(255,255,255,0.05)')
+  };
+  
+  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
+  
+  border: ${p => p.$active 
+    ? (p.$theme === 'contemporary' ? '2px solid #0D0D0D' : '1px solid rgba(255,255,255,0.3)') 
+    : (p.$theme === 'contemporary' ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.1)')
+  };
+  
+  &:hover {
+    background: ${p => p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
   }
 `;
 
@@ -242,10 +419,23 @@ const MarketingNav = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Prevent body scroll when menu open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   const handleLinkClick = (e, targetId) => {
     e.preventDefault();
     setMenuOpen(false);
-    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    setDropdownOpen(false);
+    setTimeout(() => {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   const navItems = [
@@ -289,7 +479,6 @@ const MarketingNav = () => {
             {THEMES.filter(t => t.id !== currentTheme).map(t => (
               <ThemeOption 
                 key={t.id}
-                $active={false}
                 $theme={currentTheme}
                 onClick={() => { setCurrentTheme(t.id); setDropdownOpen(false); }}
               >
@@ -298,8 +487,42 @@ const MarketingNav = () => {
             ))}
           </ThemeDropdown>
         </ThemeSwitcherWrapper>
-        <BurgerBtn $theme={currentTheme} onClick={() => setMenuOpen(!menuOpen)}>☰</BurgerBtn>
+        
+        <BurgerBtn $theme={currentTheme} onClick={() => setMenuOpen(!menuOpen)}>
+          <BurgerLine $theme={currentTheme} $open={menuOpen} />
+        </BurgerBtn>
       </RightSection>
+      
+      {/* Mobile Menu */}
+      <MobileMenuOverlay $open={menuOpen} onClick={() => setMenuOpen(false)} />
+      <MobileMenu $theme={currentTheme} $open={menuOpen}>
+        {navItems.map(item => (
+          <MobileNavLink 
+            key={item.id} 
+            href={`#${item.id}`} 
+            onClick={(e) => handleLinkClick(e, item.id)}
+            $theme={currentTheme}
+          >
+            {item.label}
+          </MobileNavLink>
+        ))}
+        
+        <MobileThemeSection $theme={currentTheme}>
+          <MobileThemeTitle $theme={currentTheme}>Theme wählen</MobileThemeTitle>
+          <MobileThemeGrid>
+            {THEMES.map(t => (
+              <MobileThemeBtn 
+                key={t.id}
+                $theme={currentTheme}
+                $active={t.id === currentTheme}
+                onClick={() => { setCurrentTheme(t.id); setMenuOpen(false); }}
+              >
+                {t.name}
+              </MobileThemeBtn>
+            ))}
+          </MobileThemeGrid>
+        </MobileThemeSection>
+      </MobileMenu>
     </>
   );
 

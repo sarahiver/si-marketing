@@ -948,24 +948,6 @@ const MarketingHero = () => {
     return (
       <BotanicalSection id="hero">
         <BotanicalBg />
-        {/* Oben links */}
-        <BotanicalLeaf 
-          src={LEAVES[0]} 
-          className="top-left" 
-          alt="" 
-        />
-        {/* Unten links - großes Blatt */}
-        <BotanicalLeaf 
-          src={LEAVES[1]} 
-          className="bottom-left" 
-          alt="" 
-        />
-        {/* Unten rechts - großes Blatt */}
-        <BotanicalLeaf 
-          src={LEAVES[2]} 
-          className="bottom-right" 
-          alt="" 
-        />
         <BotanicalCard>
           <BotanicalEyebrow>S&I. Premium</BotanicalEyebrow>
           <BotanicalTitle>

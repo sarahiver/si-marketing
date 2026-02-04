@@ -19,6 +19,8 @@ import ContactSection from './components/marketing/ContactSection';
 import HowItWorksSection from './components/marketing/HowItWorksSection';
 import AboutSection from './components/marketing/AboutSection';
 import USPSection from './components/marketing/USPSection';
+import BotanicalLeaves from './components/marketing/BotanicalLeaves';
+import AnimatedSection from './components/marketing/AnimatedSection';
 
 // ============================================
 // SHARED / STANDALONE PAGES
@@ -82,16 +84,31 @@ function MarketingPage() {
         <LoadingText>Laden...</LoadingText>
       </LoadingOverlay>
       
+      <BotanicalLeaves />
       <MarketingNav />
       <MarketingHero />
-      <USPSection />
-      <ThemeShowcase />
+      <AnimatedSection>
+        <USPSection />
+      </AnimatedSection>
+      <AnimatedSection delay={100}>
+        <ThemeShowcase />
+      </AnimatedSection>
       {/* ExamplesShowcase - wird später mit echten Kunden-URLs eingebunden */}
-      <HowItWorksSection />
-      <ComponentsShowcase />
-      <PricingSection />
-      <AboutSection />
-      <ContactSection />
+      <AnimatedSection delay={100}>
+        <HowItWorksSection />
+      </AnimatedSection>
+      <AnimatedSection delay={100}>
+        <ComponentsShowcase />
+      </AnimatedSection>
+      <AnimatedSection delay={100}>
+        <PricingSection />
+      </AnimatedSection>
+      <AnimatedSection delay={100}>
+        <AboutSection />
+      </AnimatedSection>
+      <AnimatedSection delay={100}>
+        <ContactSection />
+      </AnimatedSection>
       <MarketingFooter />
     </AppWrapper>
   );
