@@ -19,6 +19,7 @@ import ContactSection from './components/marketing/ContactSection';
 import HowItWorksSection from './components/marketing/HowItWorksSection';
 import AboutSection from './components/marketing/AboutSection';
 import USPSection from './components/marketing/USPSection';
+import CooperationSection from './components/marketing/CooperationSection';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
 
@@ -108,6 +109,9 @@ function MarketingPage() {
       </AnimatedSection>
       <AnimatedSection delay={100}>
         <ContactSection />
+      </AnimatedSection>
+      <AnimatedSection delay={100}>
+        <CooperationSection />
       </AnimatedSection>
       <MarketingFooter />
     </AppWrapper>

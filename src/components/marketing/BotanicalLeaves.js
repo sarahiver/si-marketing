@@ -56,9 +56,10 @@ const BotanicalLeaves = () => {
   const progress = Math.min(scrollY / maxScroll, 1);
 
   // Sehr sanfte Sinus-Wellen für subtile organische Bewegung
-  const wave1 = Math.sin(scrollY * 0.001) * 2;
-  const wave2 = Math.sin(scrollY * 0.0008 + 1) * 1.5;
-  const wave3 = Math.sin(scrollY * 0.0009 + 2) * 2;
+  // Reduzierte Multiplikatoren für langsamere, sanftere Bewegung
+  const wave1 = Math.sin(scrollY * 0.0003) * 1.5;
+  const wave2 = Math.sin(scrollY * 0.00025 + 1) * 1;
+  const wave3 = Math.sin(scrollY * 0.00028 + 2) * 1.5;
 
   // Subtile Größenänderung: 100% bis 85%
   const sizeMultiplier = 1 - (progress * 0.15);

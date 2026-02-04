@@ -5,12 +5,12 @@ import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
 const THEMES_DATA = [
-  { id: 'editorial', name: 'Editorial', desc: 'Bold & Magazine-Style mit rotem Akzent', colors: ['#0A0A0A', '#C41E3A', '#FAFAFA'] },
-  { id: 'botanical', name: 'Botanical', desc: 'Dunkle Eleganz mit Glassmorphism', colors: ['#040604', '#2D5A3C', 'rgba(255,255,255,0.1)'] },
-  { id: 'contemporary', name: 'Contemporary', desc: 'Neobrutalism mit bunten Akzenten', colors: ['#FAFAFA', '#FF6B6B', '#4ECDC4'] },
-  { id: 'luxe', name: 'Luxe', desc: 'Cinematische Eleganz in Gold & Schwarz', colors: ['#0A0A0A', '#C9A962', '#F8F6F3'] },
-  { id: 'neon', name: 'Neon', desc: 'Cyberpunk mit Glow-Effekten', colors: ['#0a0a0f', '#00ffff', '#ff00ff'] },
-  { id: 'video', name: 'Video', desc: 'Cinematisch mit Dusty Blue Akzent', colors: ['#0A0A0A', '#6B8CAE', '#FFFFFF'] },
+  { id: 'editorial', name: 'Editorial', desc: 'Bold & Magazine-Style mit rotem Akzent', colors: ['#0A0A0A', '#C41E3A', '#FAFAFA'], demoLink: 'https://siwedding.de/demo-editorial' },
+  { id: 'botanical', name: 'Botanical', desc: 'Dunkle Eleganz mit Glassmorphism', colors: ['#040604', '#2D5A3C', 'rgba(255,255,255,0.1)'], demoLink: 'https://siwedding.de/demo-botanical' },
+  { id: 'contemporary', name: 'Contemporary', desc: 'Neobrutalism mit bunten Akzenten', colors: ['#FAFAFA', '#FF6B6B', '#4ECDC4'], demoLink: 'https://siwedding.de/demo-contemporary' },
+  { id: 'luxe', name: 'Luxe', desc: 'Cinematische Eleganz in Gold & Schwarz', colors: ['#0A0A0A', '#C9A962', '#F8F6F3'], demoLink: 'https://siwedding.de/demo-luxe' },
+  { id: 'neon', name: 'Neon', desc: 'Cyberpunk mit Glow-Effekten', colors: ['#0a0a0f', '#00ffff', '#ff00ff'], demoLink: 'https://siwedding.de/demo-neon' },
+  { id: 'video', name: 'Video', desc: 'Cinematisch mit Dusty Blue Akzent', colors: ['#0A0A0A', '#6B8CAE', '#FFFFFF'], demoLink: 'https://siwedding.de/demo-video' },
 ];
 
 const Section = styled.section`padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);`;
@@ -29,6 +29,7 @@ const EditorialCardColor = styled.div`width: 30px; height: 30px; border-radius: 
 const EditorialCardBody = styled.div`padding: 1.5rem;`;
 const EditorialCardName = styled.h3`font-family: 'Oswald', sans-serif; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; color: #0A0A0A; margin-bottom: 0.5rem;`;
 const EditorialCardDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #666;`;
+const EditorialDemoButton = styled.a`display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #fff; background: #C41E3A; border: none; transition: all 0.3s; &:hover { background: #A01830; transform: translateY(-2px); }`;
 
 // BOTANICAL
 const BotanicalSection = styled(Section)`background: #040604; position: relative; &::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(45, 90, 60, 0.1) 0%, transparent 50%); }`;
@@ -39,6 +40,7 @@ const BotanicalCardPreview = styled.div`height: 200px; background: ${p => p.$bg}
 const BotanicalCardBody = styled.div`padding: 1.5rem; text-align: center;`;
 const BotanicalCardName = styled.h3`font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: rgba(255,255,255,0.95); margin-bottom: 0.5rem;`;
 const BotanicalCardDesc = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.6);`;
+const BotanicalDemoButton = styled.a`display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; color: rgba(255,255,255,0.9); background: rgba(45, 90, 60, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; transition: all 0.4s; &:hover { background: rgba(45, 90, 60, 0.6); border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }`;
 
 // CONTEMPORARY
 const ContemporarySection = styled(Section)`background: #FFE66D;`;
@@ -49,6 +51,7 @@ const ContemporaryCardPreview = styled.div`height: 200px; background: ${p => p.$
 const ContemporaryCardBody = styled.div`padding: 1.5rem; border-top: 3px solid #0D0D0D;`;
 const ContemporaryCardName = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; color: #0D0D0D; margin-bottom: 0.5rem;`;
 const ContemporaryCardDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: #525252;`;
+const ContemporaryDemoButton = styled.a`display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; text-decoration: none; color: #fff; background: #FF6B6B; border: 3px solid #0D0D0D; box-shadow: 3px 3px 0 #0D0D0D; transition: all 0.2s; &:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 #0D0D0D; background: #4ECDC4; }`;
 
 // LUXE
 const LuxeSection = styled(Section)`background: #0A0A0A;`;
@@ -59,6 +62,7 @@ const LuxeCardPreview = styled.div`height: 200px; background: ${p => p.$bg}; dis
 const LuxeCardBody = styled.div`padding: 1.5rem; text-align: center;`;
 const LuxeCardName = styled.h3`font-family: 'Cormorant', serif; font-size: 1.4rem; font-weight: 300; font-style: italic; color: #F8F6F3; margin-bottom: 0.5rem;`;
 const LuxeCardDesc = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.8rem; color: rgba(248,246,243,0.5);`;
+const LuxeDemoButton = styled.a`display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; color: #C9A962; background: transparent; border: 1px solid rgba(201, 169, 98, 0.4); transition: all 0.5s; &:hover { background: rgba(201, 169, 98, 0.1); border-color: #C9A962; }`;
 
 // NEON
 const NeonSection = styled(Section)`background: #0a0a0f; position: relative; &::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 80%, rgba(255,0,255,0.05) 0%, transparent 50%); }`;
@@ -69,6 +73,7 @@ const NeonCardPreview = styled.div`height: 200px; background: ${p => p.$bg}; dis
 const NeonCardBody = styled.div`padding: 1.5rem; text-align: center;`;
 const NeonCardName = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 0.5rem;`;
 const NeonCardDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.6);`;
+const NeonDemoButton = styled.a`display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; text-decoration: none; color: #00ffff; background: transparent; border: 1px solid #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.3), inset 0 0 10px rgba(0,255,255,0.1); transition: all 0.3s; &:hover { background: rgba(0,255,255,0.1); box-shadow: 0 0 20px rgba(0,255,255,0.5), inset 0 0 15px rgba(0,255,255,0.2); text-shadow: 0 0 10px rgba(0,255,255,0.8); }`;
 
 // VIDEO
 const VideoSection = styled(Section)`background: #0A0A0A;`;
@@ -79,6 +84,7 @@ const VideoCardPreview = styled.div`height: 200px; background: ${p => p.$bg}; di
 const VideoCardBody = styled.div`padding: 1.5rem; text-align: center;`;
 const VideoCardName = styled.h3`font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;`;
 const VideoCardDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #B0B0B0;`;
+const VideoDemoButton = styled.a`display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem; font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; color: #fff; background: #6B8CAE; border: none; transition: all 0.3s; &:hover { background: #5A7A9C; transform: translateY(-2px); }`;
 
 // Preview Mockups
 const PreviewText = styled.div`color: ${p => p.$c || '#fff'}; font-size: 1.5rem; font-weight: 700; text-align: center;`;
@@ -95,27 +101,27 @@ const ThemeShowcase = () => {
   );
 
   if (currentTheme === 'editorial') return (
-    <EditorialSection id="themes"><Container><Header><EditorialEyebrow>Unsere Designs</EditorialEyebrow><EditorialTitle>6 Einzigartige Themes</EditorialTitle></Header><Grid>{THEMES_DATA.map(t => <EditorialCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><EditorialCardPreview $bg={t.colors[0]}><EditorialCardColors>{t.colors.map((c,i) => <EditorialCardColor key={i} $c={c} />)}</EditorialCardColors></EditorialCardPreview><EditorialCardBody><EditorialCardName>{t.name}</EditorialCardName><EditorialCardDesc>{t.desc}</EditorialCardDesc></EditorialCardBody></EditorialCard>)}</Grid></Container></EditorialSection>
+    <EditorialSection id="themes"><Container><Header><EditorialEyebrow>Unsere Designs</EditorialEyebrow><EditorialTitle>6 Einzigartige Themes</EditorialTitle></Header><Grid>{THEMES_DATA.map(t => <EditorialCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><EditorialCardPreview $bg={t.colors[0]}><EditorialCardColors>{t.colors.map((c,i) => <EditorialCardColor key={i} $c={c} />)}</EditorialCardColors></EditorialCardPreview><EditorialCardBody><EditorialCardName>{t.name}</EditorialCardName><EditorialCardDesc>{t.desc}</EditorialCardDesc><EditorialDemoButton href={t.demoLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>Demo ansehen</EditorialDemoButton></EditorialCardBody></EditorialCard>)}</Grid></Container></EditorialSection>
   );
 
   if (currentTheme === 'botanical') return (
-    <BotanicalSection id="themes"><Container style={{ position: 'relative', zIndex: 1 }}><Header><BotanicalEyebrow>Unsere Designs</BotanicalEyebrow><BotanicalTitle>6 Einzigartige Themes</BotanicalTitle></Header><Grid>{THEMES_DATA.map(t => <BotanicalCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><BotanicalCardPreview $bg={t.colors[0]}>{renderPreview(t)}</BotanicalCardPreview><BotanicalCardBody><BotanicalCardName>{t.name}</BotanicalCardName><BotanicalCardDesc>{t.desc}</BotanicalCardDesc></BotanicalCardBody></BotanicalCard>)}</Grid></Container></BotanicalSection>
+    <BotanicalSection id="themes"><Container style={{ position: 'relative', zIndex: 1 }}><Header><BotanicalEyebrow>Unsere Designs</BotanicalEyebrow><BotanicalTitle>6 Einzigartige Themes</BotanicalTitle></Header><Grid>{THEMES_DATA.map(t => <BotanicalCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><BotanicalCardPreview $bg={t.colors[0]}>{renderPreview(t)}</BotanicalCardPreview><BotanicalCardBody><BotanicalCardName>{t.name}</BotanicalCardName><BotanicalCardDesc>{t.desc}</BotanicalCardDesc><BotanicalDemoButton href={t.demoLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>Demo ansehen</BotanicalDemoButton></BotanicalCardBody></BotanicalCard>)}</Grid></Container></BotanicalSection>
   );
 
   if (currentTheme === 'contemporary') return (
-    <ContemporarySection id="themes"><Container><Header><ContemporaryEyebrow>🎨 Designs</ContemporaryEyebrow><ContemporaryTitle>Wählt euren Style!</ContemporaryTitle></Header><Grid>{THEMES_DATA.map(t => <ContemporaryCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><ContemporaryCardPreview $bg={t.colors[0]}>{renderPreview(t)}</ContemporaryCardPreview><ContemporaryCardBody><ContemporaryCardName>{t.name}</ContemporaryCardName><ContemporaryCardDesc>{t.desc}</ContemporaryCardDesc></ContemporaryCardBody></ContemporaryCard>)}</Grid></Container></ContemporarySection>
+    <ContemporarySection id="themes"><Container><Header><ContemporaryEyebrow>🎨 Designs</ContemporaryEyebrow><ContemporaryTitle>Wählt euren Style!</ContemporaryTitle></Header><Grid>{THEMES_DATA.map(t => <ContemporaryCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><ContemporaryCardPreview $bg={t.colors[0]}>{renderPreview(t)}</ContemporaryCardPreview><ContemporaryCardBody><ContemporaryCardName>{t.name}</ContemporaryCardName><ContemporaryCardDesc>{t.desc}</ContemporaryCardDesc><ContemporaryDemoButton href={t.demoLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>Demo ansehen</ContemporaryDemoButton></ContemporaryCardBody></ContemporaryCard>)}</Grid></Container></ContemporarySection>
   );
 
   if (currentTheme === 'luxe') return (
-    <LuxeSection id="themes"><Container><Header><LuxeEyebrow>Kollektion</LuxeEyebrow><LuxeTitle>Unsere Designs</LuxeTitle></Header><Grid>{THEMES_DATA.map(t => <LuxeCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><LuxeCardPreview $bg={t.colors[0]}>{renderPreview(t)}</LuxeCardPreview><LuxeCardBody><LuxeCardName>{t.name}</LuxeCardName><LuxeCardDesc>{t.desc}</LuxeCardDesc></LuxeCardBody></LuxeCard>)}</Grid></Container></LuxeSection>
+    <LuxeSection id="themes"><Container><Header><LuxeEyebrow>Kollektion</LuxeEyebrow><LuxeTitle>Unsere Designs</LuxeTitle></Header><Grid>{THEMES_DATA.map(t => <LuxeCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><LuxeCardPreview $bg={t.colors[0]}>{renderPreview(t)}</LuxeCardPreview><LuxeCardBody><LuxeCardName>{t.name}</LuxeCardName><LuxeCardDesc>{t.desc}</LuxeCardDesc><LuxeDemoButton href={t.demoLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>Demo ansehen</LuxeDemoButton></LuxeCardBody></LuxeCard>)}</Grid></Container></LuxeSection>
   );
 
   if (currentTheme === 'neon') return (
-    <NeonSection id="themes"><Container style={{ position: 'relative', zIndex: 1 }}><Header><NeonEyebrow>// Themes.select()</NeonEyebrow><NeonTitle>Choose Skin</NeonTitle></Header><Grid>{THEMES_DATA.map(t => <NeonCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><NeonCardPreview $bg={t.colors[0]}>{renderPreview(t)}</NeonCardPreview><NeonCardBody><NeonCardName>{t.name}</NeonCardName><NeonCardDesc>{t.desc}</NeonCardDesc></NeonCardBody></NeonCard>)}</Grid></Container></NeonSection>
+    <NeonSection id="themes"><Container style={{ position: 'relative', zIndex: 1 }}><Header><NeonEyebrow>// Themes.select()</NeonEyebrow><NeonTitle>Choose Skin</NeonTitle></Header><Grid>{THEMES_DATA.map(t => <NeonCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><NeonCardPreview $bg={t.colors[0]}>{renderPreview(t)}</NeonCardPreview><NeonCardBody><NeonCardName>{t.name}</NeonCardName><NeonCardDesc>{t.desc}</NeonCardDesc><NeonDemoButton href={t.demoLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>Demo ansehen</NeonDemoButton></NeonCardBody></NeonCard>)}</Grid></Container></NeonSection>
   );
 
   return (
-    <VideoSection id="themes"><Container><Header><VideoEyebrow>Unsere Designs</VideoEyebrow><VideoTitle>6 Einzigartige Themes</VideoTitle></Header><Grid>{THEMES_DATA.map(t => <VideoCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><VideoCardPreview $bg={t.colors[0]}>{renderPreview(t)}</VideoCardPreview><VideoCardBody><VideoCardName>{t.name}</VideoCardName><VideoCardDesc>{t.desc}</VideoCardDesc></VideoCardBody></VideoCard>)}</Grid></Container></VideoSection>
+    <VideoSection id="themes"><Container><Header><VideoEyebrow>Unsere Designs</VideoEyebrow><VideoTitle>6 Einzigartige Themes</VideoTitle></Header><Grid>{THEMES_DATA.map(t => <VideoCard key={t.id} $active={currentTheme === t.id} onClick={() => handleThemeClick(t.id)}><VideoCardPreview $bg={t.colors[0]}>{renderPreview(t)}</VideoCardPreview><VideoCardBody><VideoCardName>{t.name}</VideoCardName><VideoCardDesc>{t.desc}</VideoCardDesc><VideoDemoButton href={t.demoLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>Demo ansehen</VideoDemoButton></VideoCardBody></VideoCard>)}</Grid></Container></VideoSection>
   );
 };
 
