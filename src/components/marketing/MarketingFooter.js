@@ -13,6 +13,23 @@ const FooterBase = styled.footer`
   transition: all 0.3s ease;
 `;
 
+// Einheitliches Logo für alle Themes: S&I. - Roboto, bold, weiß auf schwarz
+const UnifiedLogo = styled.a`
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: #fff;
+  background: #000;
+  padding: 6px 12px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+
+  &:hover { opacity: 0.8; }
+`;
+
 // ============================================
 // EDITORIAL FOOTER
 // ============================================
@@ -604,7 +621,7 @@ const MarketingFooter = () => {
       <EditorialFooter>
         <EditorialInner>
           <EditorialBrand>
-            <EditorialLogo href="#">S&I.</EditorialLogo>
+            <UnifiedLogo href="#">S&I.</UnifiedLogo>
             <EditorialTagline>Premium Hochzeitswebsites für unvergessliche Momente.</EditorialTagline>
           </EditorialBrand>
           <EditorialColumn>
@@ -637,7 +654,7 @@ const MarketingFooter = () => {
     return (
       <BotanicalFooter>
         <BotanicalInner>
-          <BotanicalLogo href="#">S&I</BotanicalLogo>
+          <UnifiedLogo href="#">S&I.</UnifiedLogo>
           <BotanicalTagline>Premium Hochzeitswebsites</BotanicalTagline>
           <BotanicalLinks>
             {navItems.map(item => (
@@ -664,7 +681,7 @@ const MarketingFooter = () => {
         <ContemporaryInner>
           <ContemporaryTop>
             <ContemporaryBrand>
-              <ContemporaryLogo href="#">S&I.</ContemporaryLogo>
+              <UnifiedLogo href="#">S&I.</UnifiedLogo>
               <ContemporaryTagline>Hochzeitswebsites die rocken! 🎉</ContemporaryTagline>
             </ContemporaryBrand>
             <ContemporaryLinks>
@@ -695,7 +712,7 @@ const MarketingFooter = () => {
     return (
       <LuxeFooter>
         <LuxeInner>
-          <LuxeLogo href="#">S&I</LuxeLogo>
+          <UnifiedLogo href="#">S&I.</UnifiedLogo>
           <LuxeTagline>Zeitlose Eleganz für Ihren besonderen Tag</LuxeTagline>
           <LuxeDivider />
           <LuxeLinks>
@@ -721,7 +738,7 @@ const MarketingFooter = () => {
       <NeonFooter>
         <NeonInner>
           <NeonBrand>
-            <NeonLogo href="#">S&I_</NeonLogo>
+            <UnifiedLogo href="#">S&I.</UnifiedLogo>
             <NeonTagline>Next-Level Wedding Websites</NeonTagline>
           </NeonBrand>
           <NeonColumn>
@@ -752,7 +769,7 @@ const MarketingFooter = () => {
   return (
     <VideoFooter>
       <VideoInner>
-        <VideoLogo href="#">S&I.</VideoLogo>
+        <UnifiedLogo href="#">S&I.</UnifiedLogo>
         <VideoTagline>Eure Geschichte, cinematisch erzählt</VideoTagline>
         <VideoLinks>
           {navItems.map(item => (

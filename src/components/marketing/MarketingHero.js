@@ -83,22 +83,13 @@ const EditorialEyebrow = styled.p`
 
 const EditorialTitle = styled.h1`
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(4rem, 15vw, 12rem);
+  font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 700;
   text-transform: uppercase;
-  line-height: 0.9;
+  line-height: 0.95;
   color: #FAFAFA;
   margin-bottom: 0.5rem;
   animation: ${fadeInUp} 0.8s ease 0.2s both;
-  
-  span.ampersand {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    color: #C41E3A;
-    display: inline-block;
-    margin: 0 0.1em;
-  }
 `;
 
 const EditorialDate = styled.p`
@@ -245,17 +236,10 @@ const BotanicalEyebrow = styled.p`
 
 const BotanicalTitle = styled.h1`
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: 300;
   color: rgba(255,255,255,0.95);
   line-height: 1.15;
-  
-  span.ampersand {
-    display: block;
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.35);
-    margin: 0.2rem 0;
-  }
 `;
 
 const BotanicalSubtitle = styled.p`
@@ -427,24 +411,14 @@ const ContemporaryEyebrow = styled.div`
 
 const ContemporaryTitle = styled.h1`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
   font-weight: 700;
   text-transform: uppercase;
   line-height: 0.95;
   color: #0D0D0D;
-  
+
   span.name2 {
     color: #FF6B6B;
-  }
-  
-  span.ampersand {
-    display: block;
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.4em;
-    color: #A3A3A3;
-    margin: 0.2em 0;
   }
 `;
 
@@ -570,18 +544,11 @@ const LuxeEyebrow = styled.p`
 
 const LuxeTitle = styled.h1`
   font-family: 'Cormorant', serif;
-  font-size: clamp(4rem, 12vw, 8rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 300;
   font-style: italic;
   color: #F8F6F3;
-  line-height: 1;
-  
-  span.ampersand {
-    display: block;
-    font-size: 0.3em;
-    color: #C9A962;
-    margin: 0.5rem 0;
-  }
+  line-height: 1.1;
 `;
 
 const LuxeDate = styled.p`
@@ -707,20 +674,12 @@ const NeonEyebrow = styled.p`
 
 const NeonTitle = styled.h1`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(4rem, 15vw, 10rem);
+  font-size: clamp(2.5rem, 10vw, 6rem);
   font-weight: 700;
   text-transform: uppercase;
-  line-height: 0.9;
+  line-height: 0.95;
   color: #fff;
   animation: ${glitch} 3s ease-in-out infinite;
-  
-  span.ampersand {
-    display: block;
-    font-size: 0.3em;
-    color: #00ffff;
-    text-shadow: 0 0 20px rgba(0,255,255,0.5);
-    margin: 0.3em 0;
-  }
 `;
 
 const NeonSubtitle = styled.p`
@@ -824,20 +783,10 @@ const VideoEyebrow = styled.p`
 
 const VideoTitle = styled.h1`
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(4rem, 12vw, 8rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 700;
   color: #FFFFFF;
-  line-height: 0.95;
-  
-  span.ampersand {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 0.25em;
-    color: #6B8CAE;
-    margin: 0.5rem 0;
-  }
+  line-height: 1;
 `;
 
 const VideoDivider = styled.div`
@@ -933,7 +882,7 @@ const MarketingHero = () => {
         <EditorialContent>
           <EditorialEyebrow>Premium Wedding Websites</EditorialEyebrow>
           <EditorialTitle>
-            Premium<span className="ampersand">&</span>Hochzeits<br/>websites
+            Premium<br/>Hochzeits-<br/>websites
           </EditorialTitle>
           <EditorialDate>Eure Geschichte. Digital erzählt.</EditorialDate>
           <EditorialCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</EditorialCTA>
@@ -951,8 +900,7 @@ const MarketingHero = () => {
         <BotanicalCard>
           <BotanicalEyebrow>S&I. Premium</BotanicalEyebrow>
           <BotanicalTitle>
-            Premium
-            <span className="ampersand">&</span>
+            Premium<br/>
             Hochzeitswebsites
           </BotanicalTitle>
           <BotanicalSubtitle>
@@ -977,9 +925,8 @@ const MarketingHero = () => {
         <ContemporaryLeft>
           <ContemporaryEyebrow>Premium Wedding Websites</ContemporaryEyebrow>
           <ContemporaryTitle>
-            Premium
-            <span className="ampersand">&</span>
-            <span className="name2">Hochzeits-websites</span>
+            Premium<br/>
+            <span className="name2">Hochzeits-<br/>websites</span>
           </ContemporaryTitle>
           <ContemporaryTags>
             <ContemporaryTag>📅 6 Themes</ContemporaryTag>
@@ -1004,8 +951,7 @@ const MarketingHero = () => {
         <LuxeContent>
           <LuxeEyebrow>Premium Wedding Websites</LuxeEyebrow>
           <LuxeTitle>
-            Premium
-            <span className="ampersand">&</span>
+            Premium<br/>
             Hochzeitswebsites
           </LuxeTitle>
           <LuxeDate>Eure Geschichte. Digital erzählt.</LuxeDate>
@@ -1028,9 +974,9 @@ const MarketingHero = () => {
         <NeonContent>
           <NeonEyebrow>// Wedding.init()</NeonEyebrow>
           <NeonTitle>
-            Premium
-            <span className="ampersand">_</span>
-            WEDDING
+            Premium<br/>
+            Hochzeits-<br/>
+            websites
           </NeonTitle>
           <NeonSubtitle>Premium Wedding Websites // Hamburg</NeonSubtitle>
           <NeonCTA onClick={() => scrollToSection('contact')}>Start.exe →</NeonCTA>
@@ -1050,8 +996,7 @@ const MarketingHero = () => {
       <VideoContent>
         <VideoEyebrow>Premium Wedding Websites</VideoEyebrow>
         <VideoTitle>
-          Premium
-          <span className="ampersand">&</span>
+          Premium<br/>
           Hochzeitswebsites
         </VideoTitle>
         <VideoDivider />

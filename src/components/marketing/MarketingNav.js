@@ -30,7 +30,14 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   transition: all 0.4s ease;
-  
+
+  /* Mobile: Immer Hintergrund für bessere Lesbarkeit */
+  @media (max-width: 768px) {
+    background: ${p => p.$theme === 'contemporary' ? 'rgba(255,255,255,0.95)' : 'rgba(10, 10, 10, 0.95)'};
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.5rem;
+  }
+
   ${p => p.$scrolled && css`
     background: ${p.$theme === 'contemporary' ? 'rgba(255,255,255,0.95)' : 'rgba(10, 10, 10, 0.95)'};
     backdrop-filter: blur(10px);
