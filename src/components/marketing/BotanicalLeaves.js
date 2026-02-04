@@ -15,10 +15,10 @@ const LeafImage = styled.img`
   pointer-events: none;
   filter: brightness(0.7) contrast(1.1) saturate(0.9);
   opacity: 0.85;
-  z-index: 9999;
+  z-index: 1;
   transition: transform 0.3s ease-out, width 0.3s ease-out;
   will-change: transform, width;
-  
+
   @media (max-width: 768px) {
     display: none;
   }

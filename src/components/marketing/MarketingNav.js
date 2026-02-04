@@ -304,6 +304,10 @@ const MobileMenuOverlay = styled.div`
   opacity: ${p => p.$open ? 1 : 0};
   visibility: ${p => p.$open ? 'visible' : 'hidden'};
   transition: all 0.3s ease;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 const MobileMenu = styled.div`
@@ -320,7 +324,7 @@ const MobileMenu = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  
+
   background: ${p => {
     switch(p.$theme) {
       case 'botanical': return 'rgba(4, 6, 4, 0.98)';
@@ -330,8 +334,12 @@ const MobileMenu = styled.div`
       default: return '#0A0A0A';
     }
   }};
-  
+
   border-left: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : '1px solid rgba(255,255,255,0.1)'};
+
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 const MobileNavLink = styled.a`
