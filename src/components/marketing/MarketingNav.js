@@ -1,31 +1,19 @@
 // src/components/marketing/MarketingNav.js
-// Mit Theme Switcher Dropdown (MENÜ + farbige Dots)
+// Theme Switcher: Aktuelles Theme mit Dropdown für andere
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
 const THEMES = [
-  { id: 'editorial', name: 'Editorial', color: '#C41E3A' },
-  { id: 'botanical', name: 'Botanical', color: '#2D5A3C' },
-  { id: 'contemporary', name: 'Contemporary', color: '#FF6B6B' },
-  { id: 'luxe', name: 'Luxe', color: '#C9A962' },
-  { id: 'neon', name: 'Neon', color: '#00ffff' },
-  { id: 'video', name: 'Video', color: '#6B8CAE' },
+  { id: 'editorial', name: 'Editorial' },
+  { id: 'botanical', name: 'Botanical' },
+  { id: 'contemporary', name: 'Contemporary' },
+  { id: 'luxe', name: 'Luxe' },
+  { id: 'neon', name: 'Neon' },
+  { id: 'video', name: 'Video' },
 ];
 
 const fadeIn = keyframes`from { opacity: 0; } to { opacity: 1; }`;
-
-// ============================================
-// THEME CONFIG
-// ============================================
-const THEME_STYLES = {
-  editorial: { bg: '#0A0A0A', text: '#FAFAFA', accent: '#C41E3A', font: "'Oswald', sans-serif" },
-  botanical: { bg: 'rgba(255,255,255,0.08)', text: 'rgba(255,255,255,0.9)', accent: '#fff', font: "'Montserrat', sans-serif" },
-  contemporary: { bg: '#FFFFFF', text: '#0D0D0D', accent: '#FF6B6B', font: "'Space Grotesk', sans-serif" },
-  luxe: { bg: 'transparent', text: '#F8F6F3', accent: '#C9A962', font: "'Cormorant', serif" },
-  neon: { bg: 'transparent', text: '#fff', accent: '#00ffff', font: "'Space Grotesk', sans-serif" },
-  video: { bg: 'transparent', text: '#FFFFFF', accent: '#6B8CAE', font: "'Manrope', sans-serif" },
-};
 
 // ============================================
 // NAV STYLES
@@ -86,44 +74,39 @@ const ContemporaryInner = styled.div`
   }
 `;
 
+// LOGO: S&I. - bold, white, Roboto, letter-spacing -0.06em
 const Logo = styled.a`
-  font-family: ${p => THEME_STYLES[p.$theme]?.font || "'Inter', sans-serif"};
-  font-size: ${p => p.$theme === 'luxe' ? '1.4rem' : '1.2rem'};
-  font-weight: ${p => p.$theme === 'luxe' ? '300' : '700'};
-  font-style: ${p => p.$theme === 'luxe' ? 'italic' : 'normal'};
-  color: ${p => THEME_STYLES[p.$theme]?.text || '#fff'};
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#FFFFFF'};
   text-decoration: none;
-  letter-spacing: ${p => p.$theme === 'editorial' ? '0.1em' : '-0.02em'};
-  text-transform: ${p => p.$theme === 'editorial' ? 'uppercase' : 'none'};
   
-  ${p => p.$theme === 'neon' && css`
-    color: #00ffff;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-  `}
-  
-  &:hover { color: ${p => THEME_STYLES[p.$theme]?.accent}; }
+  &:hover { 
+    opacity: 0.8;
+  }
 `;
 
 const NavLinks = styled.div`
   display: none;
-  gap: ${p => p.$theme === 'luxe' ? '2.5rem' : '2rem'};
+  gap: 2rem;
   
   @media (min-width: 768px) { display: flex; }
 `;
 
 const NavLink = styled.a`
-  font-family: ${p => p.$theme === 'luxe' ? "'Outfit', sans-serif" : p.$theme === 'contemporary' ? "'Space Grotesk', sans-serif" : "'Inter', sans-serif"};
-  font-size: ${p => p.$theme === 'luxe' ? '0.7rem' : '0.75rem'};
-  font-weight: ${p => p.$theme === 'contemporary' ? '600' : '500'};
-  letter-spacing: ${p => p.$theme === 'luxe' ? '0.2em' : '0.1em'};
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.7)'};
   text-decoration: none;
   transition: all 0.3s ease;
   
   &:hover { 
-    color: ${p => THEME_STYLES[p.$theme]?.accent || '#fff'}; 
-    ${p => p.$theme === 'neon' && css`text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);`}
+    color: ${p => p.$theme === 'contemporary' ? '#FF6B6B' : '#fff'}; 
   }
 `;
 
@@ -134,41 +117,23 @@ const RightSection = styled.div`
 `;
 
 // ============================================
-// THEME SWITCHER (mit Dropdown!)
+// THEME SWITCHER - Aktuelles Theme + Dropdown
 // ============================================
 const ThemeSwitcherWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
   padding-left: 1rem;
   border-left: 1px solid ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.2)'};
   
   @media (max-width: 500px) { display: none; }
 `;
 
-const ThemeDots = styled.div`
-  display: flex;
-  gap: 0.4rem;
-`;
-
-const ThemeDot = styled.button`
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 2px solid ${p => p.$active ? '#fff' : 'transparent'};
-  background: ${p => p.$color};
-  cursor: pointer;
-  transition: all 0.2s ease;
-  
-  &:hover { transform: scale(1.15); }
-`;
-
-const MenuLabel = styled.button`
+const CurrentThemeBtn = styled.button`
   font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
   background: transparent;
@@ -197,9 +162,10 @@ const ThemeDropdown = styled.div`
   background: ${p => p.$theme === 'contemporary' ? '#fff' : 'rgba(10,10,10,0.95)'};
   border: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : '1px solid rgba(255,255,255,0.1)'};
   ${p => p.$theme === 'contemporary' && css`box-shadow: 4px 4px 0 #0D0D0D;`}
+  ${p => p.$theme !== 'contemporary' && css`backdrop-filter: blur(20px);`}
   border-radius: ${p => p.$theme === 'contemporary' ? '0' : '12px'};
   padding: 0.5rem;
-  min-width: 160px;
+  min-width: 150px;
   opacity: ${p => p.$open ? 1 : 0};
   visibility: ${p => p.$open ? 'visible' : 'hidden'};
   transform: translateY(${p => p.$open ? '0' : '-10px'});
@@ -208,34 +174,23 @@ const ThemeDropdown = styled.div`
 `;
 
 const ThemeOption = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  display: block;
   width: 100%;
   padding: 0.6rem 0.75rem;
   background: ${p => p.$active ? (p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)') : 'transparent'};
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: ${p => p.$active ? '600' : '500'};
+  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
   transition: all 0.2s ease;
   
   &:hover {
     background: ${p => p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
   }
-`;
-
-const ThemeOptionDot = styled.span`
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: ${p => p.$color};
-`;
-
-const ThemeOptionName = styled.span`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
 `;
 
 const BurgerBtn = styled.button`
@@ -254,11 +209,7 @@ const BurgerBtn = styled.button`
   @media (min-width: 768px) { display: none; }
   
   &:hover { 
-    border-color: ${p => THEME_STYLES[p.$theme]?.accent}; 
-    ${p => p.$theme === 'contemporary' && css`
-      transform: translate(-2px, -2px);
-      box-shadow: 4px 4px 0 #0D0D0D;
-    `}
+    border-color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.5)'};
   }
 `;
 
@@ -301,6 +252,8 @@ const MarketingNav = () => {
     { id: 'contact', label: 'Kontakt' },
   ];
 
+  const currentThemeData = THEMES.find(t => t.id === currentTheme);
+
   const renderContent = () => (
     <>
       <Logo href="#" onClick={(e) => handleLinkClick(e, 'hero')} $theme={currentTheme}>
@@ -322,34 +275,22 @@ const MarketingNav = () => {
       
       <RightSection>
         <ThemeSwitcherWrapper $theme={currentTheme} ref={dropdownRef}>
-          <ThemeDots>
-            {THEMES.map(t => (
-              <ThemeDot 
-                key={t.id} 
-                $color={t.color}
-                $active={currentTheme === t.id}
-                onClick={() => setCurrentTheme(t.id)}
-                title={t.name}
-              />
-            ))}
-          </ThemeDots>
-          <MenuLabel 
+          <CurrentThemeBtn 
             $theme={currentTheme} 
             $open={dropdownOpen}
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
-            Menü
-          </MenuLabel>
+            {currentThemeData?.name || 'Theme'}
+          </CurrentThemeBtn>
           <ThemeDropdown $theme={currentTheme} $open={dropdownOpen}>
-            {THEMES.map(t => (
+            {THEMES.filter(t => t.id !== currentTheme).map(t => (
               <ThemeOption 
                 key={t.id}
-                $active={currentTheme === t.id}
+                $active={false}
                 $theme={currentTheme}
                 onClick={() => { setCurrentTheme(t.id); setDropdownOpen(false); }}
               >
-                <ThemeOptionDot $color={t.color} />
-                <ThemeOptionName $theme={currentTheme}>{t.name}</ThemeOptionName>
+                {t.name}
               </ThemeOption>
             ))}
           </ThemeDropdown>

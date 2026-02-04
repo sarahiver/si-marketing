@@ -172,10 +172,11 @@ const BotanicalSection = styled.section`
 `;
 
 const BotanicalBg = styled.div`
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: url(${FOREST_BG}) center/cover no-repeat;
   filter: brightness(0.2) saturate(0.6);
+  z-index: -2;
   
   &::after {
     content: '';
@@ -186,11 +187,11 @@ const BotanicalBg = styled.div`
 `;
 
 const BotanicalLeaf = styled.img`
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   filter: brightness(0.8);
   opacity: 0.9;
-  z-index: 10;
+  z-index: -1;
   
   &.top-left {
     top: -5%;
@@ -360,13 +361,16 @@ const ContemporaryLeft = styled.div`
 
 const ContemporaryRight = styled.div`
   position: relative;
-  background: url(${HERO_BG}) center/cover no-repeat;
+  background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #FFE66D 100%);
   
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.2);
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(255,107,107,0.4) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(78,205,196,0.4) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(255,230,109,0.3) 0%, transparent 50%);
   }
 `;
 
