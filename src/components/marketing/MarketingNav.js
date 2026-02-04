@@ -327,10 +327,12 @@ const MobileMenu = styled.div`
 
   background: ${p => {
     switch(p.$theme) {
-      case 'botanical': return 'rgba(4, 6, 4, 0.98)';
+      case 'botanical': return '#040604';
       case 'contemporary': return '#FFFFFF';
       case 'luxe': return '#0A0A0A';
       case 'neon': return '#0a0a0f';
+      case 'editorial': return '#0A0A0A';
+      case 'video': return '#0A0A0A';
       default: return '#0A0A0A';
     }
   }};
