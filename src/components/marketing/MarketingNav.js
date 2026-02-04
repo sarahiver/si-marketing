@@ -313,10 +313,9 @@ const MobileMenuOverlay = styled.div`
 const MobileMenu = styled.div`
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  width: 280px;
-  max-width: 85vw;
   z-index: 1000;
   padding: 100px 2rem 2rem;
   transform: ${p => p.$open ? 'translateX(0)' : 'translateX(100%)'};
@@ -324,8 +323,9 @@ const MobileMenu = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  overflow-y: auto;
 
-  background: ${p => {
+  background-color: ${p => {
     switch(p.$theme) {
       case 'botanical': return '#040604';
       case 'contemporary': return '#FFFFFF';
@@ -336,8 +336,6 @@ const MobileMenu = styled.div`
       default: return '#0A0A0A';
     }
   }};
-
-  border-left: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : '1px solid rgba(255,255,255,0.1)'};
 
   @media (min-width: 769px) {
     display: none;
