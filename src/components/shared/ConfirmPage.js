@@ -1,15 +1,15 @@
-// Confirm Page - Double Opt-In Bestätigung (Editorial Style)
+// src/components/shared/ConfirmPage.js
+// Double Opt-In Bestätigung für Waitlist UND Kontaktanfragen
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { supabase } from '../../config/supabase';
 
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
+const BREVO_API_KEY = process.env.REACT_APP_BREVO_API_KEY;
 
 const ConfirmPage = () => {
   const [status, setStatus] = useState('loading'); // 'loading', 'success', 'error', 'already'
   const [message, setMessage] = useState('');
+  const [confirmType, setConfirmType] = useState('waitlist'); // 'waitlist' or 'contact'
 
   useEffect(() => {
     // Load Google Fonts
@@ -20,9 +20,13 @@ const ConfirmPage = () => {
 
     document.title = 'Bestätigung – S&I.';
 
-    // Get email from URL
+    // Get params from URL
     const params = new URLSearchParams(window.location.search);
     const email = params.get('email');
+    const type = params.get('type') || 'waitlist';
+    const contactId = params.get('id');
+    
+    setConfirmType(type);
 
     if (!email) {
       setStatus('error');
@@ -30,33 +34,83 @@ const ConfirmPage = () => {
       return;
     }
 
-    // Confirm via Brevo API
     const confirm = async () => {
       try {
-        const response = await fetch('/api/brevo-confirm', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
-        
-        const data = await response.json();
-        
-        if (response.ok && data.success) {
-          if (data.alreadyConfirmed) {
+        if (type === 'contact' && contactId) {
+          // Confirm contact request
+          const { data: existingContact, error: fetchError } = await supabase
+            .from('contact_requests')
+            .select('email_confirmed')
+            .eq('id', contactId)
+            .single();
+          
+          if (fetchError) throw new Error('Kontaktanfrage nicht gefunden.');
+          
+          if (existingContact?.email_confirmed) {
             setStatus('already');
             setMessage('Du hast deine E-Mail bereits bestätigt.');
-          } else {
-            setStatus('success');
-            setMessage('Deine E-Mail wurde erfolgreich bestätigt!');
+            return;
           }
+          
+          // Update contact request
+          const { error: updateError } = await supabase
+            .from('contact_requests')
+            .update({ 
+              email_confirmed: true,
+              confirmed_at: new Date().toISOString()
+            })
+            .eq('id', contactId);
+          
+          if (updateError) throw updateError;
+          
+          // Update Brevo contact attribute
+          if (BREVO_API_KEY) {
+            await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
+              method: 'PUT',
+              headers: {
+                'accept': 'application/json',
+                'api-key': BREVO_API_KEY,
+                'content-type': 'application/json',
+              },
+              body: JSON.stringify({
+                attributes: {
+                  EMAIL_BESTAETIGT: true,
+                  BESTAETIGT_AM: new Date().toISOString(),
+                },
+              }),
+            });
+          }
+          
+          setStatus('success');
+          setMessage('Deine Kontaktanfrage wurde bestätigt!');
+          
         } else {
-          setStatus('error');
-          setMessage(data.error || 'Ein Fehler ist aufgetreten.');
+          // Original waitlist confirmation via API
+          const response = await fetch('/api/brevo-confirm', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok && data.success) {
+            if (data.alreadyConfirmed) {
+              setStatus('already');
+              setMessage('Du hast deine E-Mail bereits bestätigt.');
+            } else {
+              setStatus('success');
+              setMessage('Deine E-Mail wurde erfolgreich bestätigt!');
+            }
+          } else {
+            setStatus('error');
+            setMessage(data.error || 'Ein Fehler ist aufgetreten.');
+          }
         }
       } catch (error) {
         console.error('Confirm error:', error);
         setStatus('error');
-        setMessage('Ein Fehler ist aufgetreten.');
+        setMessage(error.message || 'Ein Fehler ist aufgetreten.');
       }
     };
 
@@ -69,38 +123,49 @@ const ConfirmPage = () => {
     };
   }, []);
 
+  const getSuccessContent = () => {
+    if (confirmType === 'contact') {
+      return {
+        title: 'Vielen Dank!',
+        text: 'Deine Kontaktanfrage wurde bestätigt. Wir melden uns innerhalb von 24 Stunden bei dir.',
+        highlight: 'Wir freuen uns auf das Gespräch!',
+      };
+    }
+    return {
+      title: 'Wunderbar!',
+      text: 'Du bist jetzt offiziell auf unserer Warteliste und erhältst einen exklusiven Rabatt, sobald wir starten.',
+      highlight: 'Wir freuen uns auf dich!',
+    };
+  };
+
+  const successContent = getSuccessContent();
+
   return (
     <PageWrapper>
       <Container>
-        {/* Logo */}
         <LogoWrapper>
           <Logo>S&I.</Logo>
         </LogoWrapper>
 
-        {/* Elegant Divider */}
         <Divider>
           <DividerLine />
           <DividerSymbol>✦</DividerSymbol>
           <DividerLine />
         </Divider>
 
-        {/* Content based on status */}
         {status === 'loading' && (
           <Content>
             <Title>Einen Moment...</Title>
-            <Text>Wir bestätigen deine Anmeldung.</Text>
+            <Text>Wir bestätigen deine {confirmType === 'contact' ? 'Anfrage' : 'Anmeldung'}.</Text>
           </Content>
         )}
 
         {status === 'success' && (
           <Content>
             <SuccessIcon>✓</SuccessIcon>
-            <Title>Wunderbar!</Title>
-            <Text>
-              Du bist jetzt offiziell auf unserer Warteliste und erhältst 
-              einen exklusiven Rabatt, sobald wir starten.
-            </Text>
-            <Highlight>Wir freuen uns auf dich!</Highlight>
+            <Title>{successContent.title}</Title>
+            <Text>{successContent.text}</Text>
+            <Highlight>{successContent.highlight}</Highlight>
           </Content>
         )}
 
@@ -109,8 +174,10 @@ const ConfirmPage = () => {
             <AlreadyIcon>✦</AlreadyIcon>
             <Title>Bereits bestätigt</Title>
             <Text>
-              Du hast deine E-Mail-Adresse bereits bestätigt. 
-              Wir melden uns bei dir, sobald es losgeht!
+              {confirmType === 'contact' 
+                ? 'Du hast deine Kontaktanfrage bereits bestätigt. Wir melden uns bald bei dir!'
+                : 'Du hast deine E-Mail-Adresse bereits bestätigt. Wir melden uns bei dir, sobald es losgeht!'
+              }
             </Text>
           </Content>
         )}
@@ -127,28 +194,24 @@ const ConfirmPage = () => {
           </Content>
         )}
 
-        {/* Divider */}
         <Divider>
           <DividerLine />
           <DividerSymbol>✦</DividerSymbol>
           <DividerLine />
         </Divider>
 
-        {/* Back Link */}
         <BackLink href="/">
           Zurück zur Startseite
         </BackLink>
 
-        {/* Signature */}
         <Signature>
           <SignatureName>Sarah & Iver</SignatureName>
           <SignatureRole>Gründer von S&I.</SignatureRole>
         </Signature>
 
-        {/* Footer */}
         <Footer>
           <FooterLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</FooterLink>
-          <FooterCopy>© 2026 S&I.</FooterCopy>
+          <FooterCopy>© {new Date().getFullYear()} S&I.</FooterCopy>
         </Footer>
       </Container>
     </PageWrapper>
@@ -158,8 +221,12 @@ const ConfirmPage = () => {
 export default ConfirmPage;
 
 // ============================================
-// STYLES - Editorial Theme
+// STYLES
 // ============================================
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
 
 const PageWrapper = styled.div`
   min-height: 100vh;

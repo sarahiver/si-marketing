@@ -1,526 +1,315 @@
 // src/components/marketing/MarketingHero.js
-// 1:1 Theme-Designs aus si-wedding-themes
-import React, { useState, useEffect } from 'react';
+// 1:1 basierend auf Design-Vorlagen
+import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
 // ============================================
-// SHARED ANIMATIONS
+// CLOUDINARY URLS
 // ============================================
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
+const VIDEO_URL = 'https://res.cloudinary.com/si-weddings/video/upload/v1769070616/si_comming_soon_video_hero_xga2ia.mp4';
+const HERO_BG = 'https://res.cloudinary.com/si-weddings/image/upload/v1769537648/siwedding/demo/hero/t4rsv6gjmwtow3k761d2.jpg';
+const FOREST_BG = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769793086/forest-6761846_1920_dumcnj.jpg';
 
-const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
-const lineGrow = keyframes`
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-`;
+// Botanical Leaves
+const LEAVES = [
+  'https://res.cloudinary.com/si-weddings/image/upload/w_400,q_auto,f_auto/v1769789868/pngwing.com_6_xo6v3t.png',
+  'https://res.cloudinary.com/si-weddings/image/upload/w_400,q_auto,f_auto/v1769789866/pngwing.com_3_tz1fk6.png',
+  'https://res.cloudinary.com/si-weddings/image/upload/w_400,q_auto,f_auto/v1769789866/pngwing.com_4_ugo8hl.png',
+  'https://res.cloudinary.com/si-weddings/image/upload/w_400,q_auto,f_auto/v1769789865/pngwing.com_2_sxhekf.png',
+];
 
 // ============================================
-// EDITORIAL THEME - Magazine Bold mit Rot-Akzent
+// ANIMATIONS
 // ============================================
-const letterReveal = keyframes`
-  0% { opacity: 0; transform: translateY(100%) rotateX(-90deg); }
-  100% { opacity: 1; transform: translateY(0) rotateX(0); }
+const fadeIn = keyframes`from { opacity: 0; } to { opacity: 1; }`;
+const fadeInUp = keyframes`from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); }`;
+const scrollBounce = keyframes`0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); }`;
+const float1 = keyframes`0%, 100% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(10px, -15px) rotate(3deg); }`;
+const float2 = keyframes`0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-8px, 10px); }`;
+const glitch = keyframes`
+  0%, 100% { transform: translate(0); text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+  20% { transform: translate(-2px, 2px); text-shadow: 4px 0 #ff00ff, -4px 0 #00ffff; }
+  40% { transform: translate(-2px, -2px); text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
+  60% { transform: translate(2px, 2px); text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
+  80% { transform: translate(2px, -2px); text-shadow: 4px 0 #00ffff, -4px 0 #ff00ff; }
 `;
+const scanline = keyframes`0% { top: -10%; } 100% { top: 110%; }`;
+const geometricFloat = keyframes`0%, 100% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(20px, -30px) rotate(90deg); }`;
 
+// ============================================
+// EDITORIAL HERO - Magazine Style
+// ============================================
 const EditorialSection = styled.section`
-  position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
   background: #0A0A0A;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
 `;
 
 const EditorialBg = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  background: url(${HERO_BG}) center/cover no-repeat;
+  filter: grayscale(100%) brightness(0.7);
   
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.7) 100%);
+    background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.8) 100%);
   }
 `;
 
 const EditorialContent = styled.div`
   position: relative;
   z-index: 10;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-  padding-bottom: clamp(3rem, 8vh, 6rem);
-  max-width: 1400px;
+  padding: 0 clamp(2rem, 5vw, 6rem);
+  padding-bottom: clamp(4rem, 10vh, 8rem);
+  width: 100%;
 `;
 
-const EditorialTagline = styled.p`
+const EditorialEyebrow = styled.p`
   font-family: 'Inter', sans-serif;
-  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1.5rem;
+  animation: ${fadeInUp} 0.8s ease both;
+`;
+
+const EditorialTitle = styled.h1`
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: #FAFAFA;
+  margin-bottom: 0.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.2s both;
+  
+  span.ampersand {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #C41E3A;
+    display: inline-block;
+    margin: 0 0.1em;
+  }
+`;
+
+const EditorialDate = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: ${fadeUp} 0.8s ease forwards 0.8s;
+  color: rgba(255,255,255,0.6);
+  margin-top: 1.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.4s both;
 `;
 
-const EditorialHeadline = styled.h1`
-  font-family: 'Oswald', 'Arial Narrow', sans-serif;
-  font-size: clamp(3rem, 12vw, 10rem);
-  font-weight: 700;
-  line-height: 0.9;
-  color: #FAFAFA;
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 0.2em;
-`;
-
-const EditorialWord = styled.span`
-  display: inline-flex;
-  overflow: hidden;
-  perspective: 1000px;
-`;
-
-const EditorialLetter = styled.span`
-  display: inline-block;
-  opacity: 0;
-  transform-origin: bottom center;
-  animation: ${letterReveal} 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
-  animation-delay: ${p => p.$delay}s;
-  color: ${p => p.$accent ? '#C41E3A' : 'inherit'};
-`;
-
-const EditorialAmpersand = styled.span`
-  display: inline-block;
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-style: italic;
-  font-size: 0.7em;
-  color: #C41E3A;
-  margin: 0 0.15em;
-  opacity: 0;
-  animation: ${fadeIn} 0.6s ease forwards 1.2s;
-`;
-
-const EditorialDateLine = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 2rem;
-  opacity: 0;
-  animation: ${fadeUp} 0.8s ease forwards 1.8s;
-`;
-
-const EditorialLine = styled.div`
-  width: 60px;
-  height: 2px;
-  background: #C41E3A;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: ${lineGrow} 0.6s ease forwards 2s;
-`;
-
-const EditorialDateText = styled.p`
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: clamp(1rem, 2vw, 1.4rem);
-  font-style: italic;
-  color: #FAFAFA;
-`;
-
-const EditorialCTA = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 2.5rem;
-  opacity: 0;
-  animation: ${fadeUp} 0.8s ease forwards 2.2s;
-  flex-wrap: wrap;
-`;
-
-const EditorialButton = styled.a`
-  font-family: 'Oswald', sans-serif;
-  font-size: 0.85rem;
+const EditorialCTA = styled.button`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 1rem 2rem;
+  color: #FAFAFA;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 1rem 2.5rem;
+  margin-top: 2rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  animation: ${fadeInUp} 0.8s ease 0.6s both;
   
-  ${p => p.$primary ? css`
+  &:hover {
     background: #C41E3A;
-    color: #FAFAFA;
-    border: none;
-    &:hover { background: #a01830; }
-  ` : css`
-    background: transparent;
-    color: #FAFAFA;
-    border: 1px solid rgba(255,255,255,0.3);
-    &:hover { border-color: #C41E3A; color: #C41E3A; }
-  `}
+    border-color: #C41E3A;
+  }
+`;
+
+const EditorialScrollHint = styled.div`
+  position: absolute;
+  bottom: 2rem;
+  right: clamp(2rem, 5vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: ${fadeIn} 1s ease 1s both;
+  
+  &::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    animation: ${scrollBounce} 2s ease infinite;
+  }
 `;
 
 // ============================================
-// BOTANICAL THEME - Dark Glassmorphism
+// BOTANICAL HERO - Forest with Leaves
 // ============================================
-const glassReveal = keyframes`
-  from { opacity: 0; transform: translateY(30px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-`;
-
-const botanicalFloat1 = keyframes`
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
-  25% { transform: translateY(-15px) translateX(5px) rotate(3deg); }
-  50% { transform: translateY(-8px) translateX(-3px) rotate(-2deg); }
-  75% { transform: translateY(-20px) translateX(8px) rotate(5deg); }
-`;
-
-const botanicalFloat2 = keyframes`
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-18px) rotate(-5deg); }
-`;
-
 const BotanicalSection = styled.section`
-  position: relative;
   min-height: 100vh;
+  background: #020802;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7rem 2rem 4rem;
   overflow: hidden;
-  background: #040604;
 `;
 
-const BotanicalBgGradient = styled.div`
+const BotanicalBg = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #030503 0%, #081208 40%, #050805 100%);
+  background: url(${FOREST_BG}) center/cover no-repeat;
+  filter: brightness(0.2) saturate(0.6);
   
-  &::before {
+  &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 30% 20%, rgba(45, 90, 60, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(45, 90, 60, 0.1) 0%, transparent 50%);
+    background: radial-gradient(ellipse 65% 65% at 50% 50%, transparent 5%, rgba(2,8,2,0.4) 50%, rgba(2,8,2,0.85) 100%);
   }
 `;
 
-const FloatingPlant = styled.div`
+const BotanicalLeaf = styled.img`
   position: absolute;
-  font-size: ${p => p.$size || '40px'};
-  opacity: ${p => p.$opacity || 0.4};
-  top: ${p => p.$top || 'auto'};
-  left: ${p => p.$left || 'auto'};
-  right: ${p => p.$right || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
-  animation: ${p => p.$anim === 2 ? botanicalFloat2 : botanicalFloat1} ${p => p.$duration || '10s'} ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-  z-index: 1;
-`;
-
-const GlassCard = styled.div`
-  position: relative;
+  pointer-events: none;
+  filter: brightness(0.8);
+  opacity: 0.9;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 32px;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.05) inset, 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.25);
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 5rem);
-  max-width: 550px;
-  width: 100%;
-  text-align: center;
-  opacity: 0;
-  animation: ${glassReveal} 1.2s ease forwards 0.3s;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 30%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.25) 70%, transparent 100%);
+  &.top-left {
+    top: -5%;
+    left: -3%;
+    width: 350px;
+    transform: rotate(130deg);
+    animation: ${float1} 8s ease-in-out infinite;
+  }
+  
+  &.top-right {
+    top: -5%;
+    right: -3%;
+    width: 330px;
+    transform: rotate(-130deg) scaleX(-1);
+    animation: ${float2} 9s ease-in-out infinite;
+  }
+  
+  &.bottom-left {
+    bottom: -5%;
+    left: -3%;
+    width: 400px;
+    transform: rotate(50deg);
+    animation: ${float2} 10s ease-in-out infinite;
+  }
+  
+  &.bottom-right {
+    bottom: -5%;
+    right: -3%;
+    width: 380px;
+    transform: rotate(-50deg) scaleX(-1);
+    animation: ${float1} 11s ease-in-out infinite;
+  }
+  
+  @media (max-width: 768px) {
+    &.top-left, &.top-right { width: 180px; }
+    &.bottom-left, &.bottom-right { width: 200px; }
   }
 `;
 
-const BotanicalEyebrow = styled.span`
-  display: inline-block;
+const BotanicalCard = styled.div`
+  position: relative;
+  z-index: 20;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 1.5rem;
+  animation: ${fadeIn} 1s ease both;
+`;
+
+const BotanicalEyebrow = styled.p`
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 500;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255,255,255,0.5);
   margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: ${fadeIn} 0.8s ease forwards 0.8s;
 `;
 
-const BotanicalNames = styled.h1`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.5rem, 10vw, 4.5rem);
+const BotanicalTitle = styled.h1`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 4.5rem);
   font-weight: 300;
+  color: rgba(255,255,255,0.95);
   line-height: 1.1;
-  color: rgba(255, 255, 255, 0.95);
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: ${fadeIn} 0.8s ease forwards 1s;
-`;
-
-const BotanicalAmpersand = styled.span`
-  display: block;
-  font-size: 0.35em;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.55);
-  margin: 0.4em 0;
+  
+  span.ampersand {
+    display: block;
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.4);
+    margin: 0.3rem 0;
+  }
 `;
 
 const BotanicalDate = styled.p`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.95);
-  letter-spacing: 0.05em;
-  opacity: 0;
-  animation: ${fadeIn} 0.8s ease forwards 1.2s;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-top: 1.5rem;
 `;
 
 const BotanicalLocation = styled.p`
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255,255,255,0.4);
   margin-top: 0.5rem;
-  opacity: 0;
-  animation: ${fadeIn} 0.8s ease forwards 1.4s;
 `;
 
-const BotanicalButton = styled.a`
-  display: inline-block;
-  margin-top: 2rem;
-  padding: 1rem 2.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50px;
+const BotanicalCTA = styled.button`
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.95);
-  cursor: pointer;
-  transition: all 0.4s ease;
-  opacity: 0;
-  animation: ${fadeIn} 0.8s ease forwards 1.6s;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
-  }
-`;
-
-// ============================================
-// CONTEMPORARY THEME - Neobrutalism
-// ============================================
-const floatAnim = keyframes`
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(10px, -15px) rotate(5deg); }
-`;
-
-const spinAnim = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
-
-const bounceAnim = keyframes`
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-`;
-
-const expandAnim = keyframes`
-  from { width: 0; }
-  to { width: 60px; }
-`;
-
-const ContemporarySection = styled.section`
-  min-height: 100vh;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  background: #FAFAFA;
-`;
-
-const ContemporaryLeft = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(2rem, 5vw, 5rem);
-  position: relative;
-  z-index: 2;
-  
-  @media (max-width: 968px) {
-    min-height: 100vh;
-    padding: 6rem 2rem 4rem;
-  }
-`;
-
-const ContemporaryRight = styled.div`
-  flex: 1;
-  position: relative;
-  background: linear-gradient(135deg, #FF6B6B 0%, #9B5DE5 50%, #4ECDC4 100%);
-  
-  @media (max-width: 968px) {
-    position: absolute;
-    inset: 0;
-    opacity: 0.1;
-  }
-`;
-
-const FloatingCircle = styled.div`
-  position: absolute;
-  width: ${p => p.$size || '80px'};
-  height: ${p => p.$size || '80px'};
-  background: ${p => p.$color || '#FF6B6B'};
-  border: 3px solid #0D0D0D;
-  border-radius: 50%;
-  animation: ${floatAnim} ${p => p.$duration || '8s'} ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-  z-index: 0;
-`;
-
-const FloatingSquare = styled.div`
-  position: absolute;
-  width: ${p => p.$size || '60px'};
-  height: ${p => p.$size || '60px'};
-  background: ${p => p.$color || '#FFE66D'};
-  border: 3px solid #0D0D0D;
-  animation: ${floatAnim} ${p => p.$duration || '10s'} ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-  z-index: 0;
-`;
-
-const SpinningRing = styled.div`
-  position: absolute;
-  width: ${p => p.$size || '100px'};
-  height: ${p => p.$size || '100px'};
-  border: 4px solid ${p => p.$color || '#4ECDC4'};
-  border-radius: 50%;
-  animation: ${spinAnim} ${p => p.$duration || '20s'} linear infinite;
-  z-index: 0;
-  @media (max-width: 768px) { display: none; }
-`;
-
-const ContemporaryEyebrow = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.65rem;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #FF6B6B;
-  margin-bottom: 1rem;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '20px'});
-  transition: all 0.6s ease;
-  
-  &::after {
-    content: '';
-    height: 3px;
-    background: #FF6B6B;
-    animation: ${p => p.$visible ? expandAnim : 'none'} 0.8s ease forwards 0.3s;
-  }
-`;
-
-const ContemporaryName = styled.h1`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  font-weight: 700;
-  line-height: 0.95;
-  color: ${p => p.$first ? '#FF6B6B' : '#0D0D0D'};
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  opacity: ${p => p.$visible ? 1 : 0};
-  animation: ${p => p.$visible ? fadeUp : 'none'} 0.7s ease forwards;
-  animation-delay: ${p => p.$delay || '0s'};
-`;
-
-const ContemporaryAmpersand = styled.span`
-  display: inline-block;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  color: #A3A3A3;
-  margin: 0 0.5rem;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transition: opacity 0.5s ease 0.3s;
-`;
-
-const ContemporaryBadge = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(0.85rem, 1.5vw, 1rem);
-  font-weight: 700;
-  padding: 0.75rem 1.25rem;
-  background: ${p => p.$color || '#FFE66D'};
-  color: #0D0D0D;
-  border: 3px solid #0D0D0D;
-  box-shadow: 6px 6px 0 #0D0D0D;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '20px'});
-  transition: all 0.5s ease;
-  transition-delay: ${p => p.$delay || '0s'};
+  color: #020802;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
   
   &:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 8px 8px 0 #0D0D0D;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255,255,255,0.15);
   }
 `;
 
-const ContemporaryButton = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 1rem 2rem;
-  border: 3px solid #0D0D0D;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  ${p => p.$primary ? css`
-    color: #FAFAFA;
-    background: #FF6B6B;
-    box-shadow: 6px 6px 0 #0D0D0D;
-    &:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 #0D0D0D; }
-  ` : css`
-    color: #0D0D0D;
-    background: #FAFAFA;
-    box-shadow: 4px 4px 0 #0D0D0D;
-    &:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 #0D0D0D; background: #4ECDC4; }
-  `}
-`;
-
-const ContemporaryScroll = styled.div`
+const BotanicalScroll = styled.div`
   position: absolute;
   bottom: 2rem;
   left: 50%;
@@ -529,160 +318,322 @@ const ContemporaryScroll = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  z-index: 30;
+  animation: ${fadeIn} 1s ease 0.5s both;
+  
+  &::after {
+    content: '↓';
+    animation: ${scrollBounce} 2s ease infinite;
+  }
+`;
+
+// ============================================
+// CONTEMPORARY HERO - Neobrutalism Split
+// ============================================
+const ContemporarySection = styled.section`
+  min-height: 100vh;
+  background: #FAFAFA;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+`;
+
+const ContemporaryLeft = styled.div`
+  padding: clamp(2rem, 5vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+`;
+
+const ContemporaryRight = styled.div`
+  position: relative;
+  background: url(${HERO_BG}) center/cover no-repeat;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+  }
+`;
+
+const ContemporaryShape = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  z-index: 5;
+  
+  &.circle1 {
+    width: 80px;
+    height: 80px;
+    background: #FF6B6B;
+    top: 5%;
+    left: 5%;
+    animation: ${float1} 6s ease-in-out infinite;
+  }
+  
+  &.square1 {
+    width: 50px;
+    height: 50px;
+    background: #FFE66D;
+    border-radius: 0;
+    top: 10%;
+    left: 40%;
+    animation: ${geometricFloat} 8s ease-in-out infinite;
+  }
+  
+  &.circle2 {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #FF6B6B;
+    background: transparent;
+    bottom: 30%;
+    left: 50%;
+    animation: ${float2} 7s ease-in-out infinite;
+  }
+  
+  &.square2 {
+    width: 40px;
+    height: 40px;
+    background: #9B5DE5;
+    border-radius: 0;
+    bottom: 10%;
+    right: 45%;
+    animation: ${geometricFloat} 9s ease-in-out infinite reverse;
+  }
+  
+  @media (max-width: 768px) {
+    &.circle1 { width: 50px; height: 50px; }
+    &.square1 { width: 35px; height: 35px; }
+    &.circle2 { width: 40px; height: 40px; }
+    &.square2 { width: 30px; height: 30px; }
+  }
+`;
+
+const ContemporaryEyebrow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   font-family: 'Space Grotesk', sans-serif;
-  color: #737373;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #525252;
+  margin-bottom: 1rem;
+  
+  &::before {
+    content: '';
+    width: 40px;
+    height: 3px;
+    background: #FF6B6B;
+  }
+`;
+
+const ContemporaryTitle = styled.h1`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
   font-weight: 700;
   text-transform: uppercase;
-  animation: ${bounceAnim} 2s ease-in-out infinite;
-  z-index: 10;
-  @media (max-width: 968px) { display: none; }
+  line-height: 0.95;
+  color: #0D0D0D;
+  
+  span.name2 {
+    color: #FF6B6B;
+  }
+  
+  span.ampersand {
+    display: block;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.4em;
+    color: #A3A3A3;
+    margin: 0.2em 0;
+  }
+`;
+
+const ContemporaryTags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+`;
+
+const ContemporaryTag = styled.span`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 2px solid #0D0D0D;
+  background: ${p => p.$filled ? '#FFE66D' : 'transparent'};
+`;
+
+const ContemporaryCTAs = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+`;
+
+const ContemporaryCTA = styled.button`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1rem 1.5rem;
+  border: 3px solid #0D0D0D;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  ${p => p.$primary ? css`
+    background: #FF6B6B;
+    color: #FAFAFA;
+    box-shadow: 4px 4px 0 #0D0D0D;
+    
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 #0D0D0D;
+    }
+  ` : css`
+    background: transparent;
+    color: #0D0D0D;
+    
+    &:hover {
+      background: #4ECDC4;
+    }
+  `}
+`;
+
+const ContemporaryScroll = styled.div`
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #525252;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  z-index: 20;
+  
+  &::after {
+    content: '↓';
+    animation: ${scrollBounce} 2s ease infinite;
+  }
 `;
 
 // ============================================
-// LUXE THEME - Cinematic Dark Luxury
+// LUXE HERO - Cinematic Elegant
 // ============================================
-const revealText = keyframes`
-  from { transform: translateY(110%); }
-  to { transform: translateY(0); }
-`;
-
-const expandLine = keyframes`
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-`;
-
-const luxeFloatAnim = keyframes`
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-`;
-
 const LuxeSection = styled.section`
-  position: relative;
   min-height: 100vh;
+  background: #0A0A0A;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #0A0A0A;
 `;
 
-const LuxeBgMedia = styled.div`
+const LuxeBg = styled.div`
   position: absolute;
   inset: 0;
-  z-index: 1;
+  background: url(${HERO_BG}) center/cover no-repeat;
+  filter: brightness(0.4) saturate(0.8);
   
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.5) 50%, rgba(10, 10, 10, 0.8) 100%);
+    background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.7) 100%);
   }
-`;
-
-const LuxeBgImage = styled.div`
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #1A1A1D 0%, #0A0A0A 100%);
-  background-size: cover;
-  background-position: center;
-  opacity: ${p => p.$loaded ? 1 : 0};
-  transform: scale(${p => p.$loaded ? 1 : 1.2});
-  transition: opacity 1.5s ease, transform 8s ease-out;
 `;
 
 const LuxeContent = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 10;
   text-align: center;
-  padding: 0 5%;
-  max-width: 1000px;
+  padding: 0 2rem;
+  animation: ${fadeIn} 1.5s ease both;
 `;
 
-const LuxeEyebrow = styled.div`
-  overflow: hidden;
+const LuxeEyebrow = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #C9A962;
   margin-bottom: 2rem;
 `;
 
-const LuxeEyebrowText = styled.span`
-  display: inline-block;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: #C9A962;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: ${p => p.$visible ? css`${fadeUp} 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none'};
-  animation-delay: 0.5s;
-`;
-
-const LuxeNameLine = styled.div`
-  overflow: hidden;
-`;
-
-const LuxeName = styled.h1`
-  font-family: 'Cormorant', Georgia, serif;
-  font-size: clamp(4rem, 15vw, 12rem);
+const LuxeTitle = styled.h1`
+  font-family: 'Cormorant', serif;
+  font-size: clamp(4rem, 12vw, 8rem);
   font-weight: 300;
   font-style: italic;
   color: #F8F6F3;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  transform: translateY(110%);
-  animation: ${p => p.$visible ? css`${revealText} 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none'};
-  animation-delay: ${p => p.$delay || '0s'};
+  line-height: 1;
+  
+  span.ampersand {
+    display: block;
+    font-size: 0.3em;
+    color: #C9A962;
+    margin: 0.5rem 0;
+  }
 `;
 
-const LuxeAmpersand = styled.div`
-  overflow: hidden;
-  margin: 1rem 0;
-`;
-
-const LuxeAmpersandText = styled.span`
-  display: inline-block;
-  font-family: 'Cormorant', Georgia, serif;
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  font-style: italic;
-  color: #C9A962;
-  transform: translateY(110%);
-  animation: ${p => p.$visible ? css`${revealText} 1s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none'};
-  animation-delay: 0.9s;
+const LuxeDate = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: rgba(248,246,243,0.6);
+  margin-top: 2.5rem;
 `;
 
 const LuxeDivider = styled.div`
-  width: 80px;
-  height: 1px;
-  background: #C9A962;
-  margin: 2.5rem auto;
-  transform-origin: center;
-  transform: scaleX(0);
-  animation: ${p => p.$visible ? css`${expandLine} 1s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none'};
-  animation-delay: 1.3s;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, #C9A962, transparent);
+  margin: 2rem auto;
 `;
 
-const LuxeInfo = styled.div`
-  opacity: 0;
-  animation: ${p => p.$visible ? css`${fadeIn} 1s ease forwards` : 'none'};
-  animation-delay: 1.5s;
-`;
-
-const LuxeDateText = styled.p`
-  font-family: 'Cormorant', Georgia, serif;
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-style: italic;
-  color: #F8F6F3;
-  margin-bottom: 0.5rem;
-`;
-
-const LuxeLocationText = styled.p`
+const LuxeCTA = styled.button`
   font-family: 'Outfit', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #E8E6E1;
+  color: rgba(248,246,243,0.8);
+  background: transparent;
+  border: 1px solid rgba(248,246,243,0.3);
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  
+  &:hover {
+    border-color: #C9A962;
+    color: #C9A962;
+  }
 `;
 
 const LuxeScroll = styled.div`
@@ -694,471 +645,306 @@ const LuxeScroll = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  opacity: 0;
-  animation: ${p => p.$visible ? css`${fadeIn} 1s ease forwards` : 'none'};
-  animation-delay: 2s;
-  z-index: 10;
-`;
-
-const LuxeScrollText = styled.span`
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #E8E6E1;
-  animation: ${luxeFloatAnim} 3s ease-in-out infinite;
-`;
-
-const LuxeScrollLine = styled.div`
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, #C9A962, transparent);
+  z-index: 20;
+  
+  span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(248,246,243,0.4);
+  }
+  
+  &::after {
+    content: '';
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(248,246,243,0.3), transparent);
+    animation: ${scrollBounce} 2s ease infinite;
+  }
 `;
 
 // ============================================
-// NEON THEME - Cyberpunk Glow
+// NEON HERO - Cyberpunk Glitch
 // ============================================
-const glitchAnim = keyframes`
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-3px, 3px); }
-  40% { transform: translate(-3px, -3px); }
-  60% { transform: translate(3px, 3px); }
-  80% { transform: translate(3px, -3px); }
-`;
-
-const neonFlicker = keyframes`
-  0%, 100% { opacity: 1; }
-  92% { opacity: 1; }
-  93% { opacity: 0.7; }
-  94% { opacity: 1; }
-  97% { opacity: 0.9; }
-`;
-
-const scanlineAnim = keyframes`
-  0% { top: -100%; }
-  100% { top: 100%; }
-`;
-
-const pulseGlow = keyframes`
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.1); }
-`;
-
-const neonFloatAnim = keyframes`
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-`;
-
 const NeonSection = styled.section`
   min-height: 100vh;
+  background: #0a0a0f;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow: hidden;
-  background: #0a0a0f;
 `;
 
 const NeonGrid = styled.div`
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
   background-size: 50px 50px;
-  transform: perspective(500px) rotateX(60deg);
-  transform-origin: center top;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transition: opacity 1s ease;
-`;
-
-const GlowOrb = styled.div`
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  animation: ${pulseGlow} 4s ease-in-out infinite;
   
-  &:nth-child(2) {
-    width: 400px;
-    height: 400px;
-    background: rgba(0,255,255,0.3);
-    top: -100px;
-    left: -100px;
-  }
-  
-  &:nth-child(3) {
-    width: 300px;
-    height: 300px;
-    background: rgba(255,0,255,0.3);
-    bottom: -50px;
-    right: -50px;
-    animation-delay: 2s;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(0,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(255,0,255,0.1) 0%, transparent 50%);
   }
 `;
 
-const Scanline = styled.div`
+const NeonScanline = styled.div`
   position: absolute;
-  left: 0;
-  right: 0;
+  width: 100%;
   height: 4px;
   background: linear-gradient(90deg, transparent, rgba(0,255,255,0.3), transparent);
-  animation: ${scanlineAnim} 6s linear infinite;
+  animation: ${scanline} 4s linear infinite;
   pointer-events: none;
-`;
-
-const NeonFloatingShape = styled.div`
-  position: absolute;
-  border: 1px solid rgba(0,255,255,0.3);
-  animation: ${neonFloatAnim} ${p => 6 + (p.$delay || 0)}s ease-in-out infinite;
-  animation-delay: ${p => p.$delay || 0}s;
-  
-  ${p => p.$shape === 'square' && css`width: 60px; height: 60px;`}
-  ${p => p.$shape === 'circle' && css`width: 40px; height: 40px; border-radius: 50%;`}
-  ${p => p.$shape === 'diamond' && css`width: 50px; height: 50px; transform: rotate(45deg);`}
-`;
-
-const CornerDecor = styled.div`
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border: 1px solid rgba(0,255,255,0.2);
-  
-  &:nth-child(5) { top: 30px; left: 30px; border-right: none; border-bottom: none; }
-  &:nth-child(6) { top: 30px; right: 30px; border-left: none; border-bottom: none; }
-  &:nth-child(7) { bottom: 30px; left: 30px; border-right: none; border-top: none; }
-  &:nth-child(8) { bottom: 30px; right: 30px; border-left: none; border-top: none; }
 `;
 
 const NeonContent = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 10;
   text-align: center;
-  padding: 0 5%;
+  padding: 0 2rem;
 `;
 
-const NeonEyebrow = styled.div`
+const NeonEyebrow = styled.p`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: #00ffff;
-  text-shadow: 0 0 10px rgba(0,255,255,0.5);
-  margin-bottom: 30px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease;
-  
-  &::before, &::after {
-    content: '//';
-    margin: 0 15px;
-    color: #ff00ff;
-  }
+  color: #ff00ff;
+  text-shadow: 0 0 10px rgba(255,0,255,0.5);
+  margin-bottom: 1.5rem;
 `;
 
-const NeonNames = styled.h1`
+const NeonTitle = styled.h1`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(4rem, 15vw, 12rem);
+  font-size: clamp(4rem, 15vw, 10rem);
   font-weight: 700;
+  text-transform: uppercase;
   line-height: 0.9;
   color: #fff;
-  text-transform: uppercase;
-  position: relative;
-  margin-bottom: 30px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '50px'});
-  transition: all 1s ease 0.2s;
+  animation: ${glitch} 3s ease-in-out infinite;
   
-  &::before, &::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-  }
-  
-  &::before {
+  span.ampersand {
+    display: block;
+    font-size: 0.3em;
     color: #00ffff;
-    z-index: -1;
-    animation: ${glitchAnim} 3s ease-in-out infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-  }
-  
-  &::after {
-    color: #ff00ff;
-    z-index: -2;
-    animation: ${glitchAnim} 3s ease-in-out infinite reverse;
-    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    text-shadow: 0 0 20px rgba(0,255,255,0.5);
+    margin: 0.3em 0;
   }
 `;
 
-const NeonAmpersand = styled.span`
-  display: block;
-  font-size: 0.4em;
-  font-weight: 300;
-  font-style: italic;
-  color: #ff00ff;
-  text-shadow: 0 0 20px rgba(255,0,255,0.5);
-  animation: ${neonFlicker} 4s ease-in-out infinite;
-  margin: 20px 0;
-`;
-
-const NeonDate = styled.div`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #00ffff;
-  text-shadow: 0 0 15px rgba(0,255,255,0.5);
-  letter-spacing: 0.2em;
-  margin-bottom: 20px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease 0.4s;
-`;
-
-const NeonLocation = styled.div`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: 0.1em;
-  margin-bottom: 50px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.8s ease 0.5s;
-`;
-
-const NeonButton = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+const NeonSubtitle = styled.p`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.5);
+  margin-top: 2rem;
+`;
+
+const NeonCTA = styled.button`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   color: #00ff88;
-  border: 1px solid rgba(0,255,136,0.3);
-  padding: 15px 30px;
+  background: transparent;
+  border: 1px solid #00ff88;
+  padding: 1rem 2.5rem;
+  margin-top: 2.5rem;
   cursor: pointer;
-  opacity: ${p => p.$visible ? 1 : 0};
   transition: all 0.3s ease;
-  
-  &::before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #00ff88;
-    box-shadow: 0 0 10px #00ff88;
-    animation: ${pulseGlow} 2s ease-in-out infinite;
-  }
+  box-shadow: 0 0 15px rgba(0,255,136,0.3);
   
   &:hover {
     background: rgba(0,255,136,0.1);
-    box-shadow: 0 0 20px rgba(0,255,136,0.3);
+    box-shadow: 0 0 30px rgba(0,255,136,0.5);
+  }
+`;
+
+const NeonScroll = styled.div`
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(0,255,255,0.5);
+  z-index: 20;
+  
+  &::after {
+    content: '↓';
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    animation: ${scrollBounce} 2s ease infinite;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0,255,255,0.5);
   }
 `;
 
 // ============================================
-// VIDEO THEME - Horizontal Cinematic S/W
+// VIDEO HERO - Fullscreen Cinematic
 // ============================================
 const VideoSection = styled.section`
-  position: relative;
   min-height: 100vh;
+  background: #0A0A0A;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #0A0A0A;
 `;
 
-const VideoBg = styled.div`
+const VideoBg = styled.video`
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
-  
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(107, 140, 174, 0.1) 0%, transparent 70%);
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) saturate(0.9);
+`;
+
+const VideoOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.5) 100%);
 `;
 
 const VideoContent = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 10;
   text-align: center;
-  max-width: 800px;
-  padding: 0 5%;
+  padding: 0 2rem;
+  animation: ${fadeIn} 1.5s ease both;
 `;
 
 const VideoEyebrow = styled.p`
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 500;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: #6B8CAE;
-  margin-bottom: 2rem;
-  opacity: 0;
-  animation: ${p => p.$visible ? css`${fadeUp} 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards` : 'none'};
-  animation-delay: 0.3s;
+  margin-bottom: 1.5rem;
 `;
 
-const VideoNames = styled.h1`
+const VideoTitle = styled.h1`
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(3rem, 12vw, 7rem);
+  font-size: clamp(4rem, 12vw, 8rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
   color: #FFFFFF;
   line-height: 0.95;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  animation: ${p => p.$visible ? css`${fadeIn} 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards` : 'none'};
-  animation-delay: ${p => p.$delay || '0.5s'};
-`;
-
-const VideoAmpersand = styled.span`
-  display: block;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-style: italic;
-  font-weight: 400;
-  color: #6B8CAE;
-  margin: 1rem 0;
-  opacity: 0;
-  animation: ${p => p.$visible ? css`${fadeIn} 0.8s ease forwards` : 'none'};
-  animation-delay: 0.7s;
+  
+  span.ampersand {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.25em;
+    color: #6B8CAE;
+    margin: 0.5rem 0;
+  }
 `;
 
 const VideoDivider = styled.div`
-  width: 80px;
-  height: 1px;
+  width: 60px;
+  height: 2px;
   background: #6B8CAE;
   margin: 2rem auto;
-  transform-origin: center;
-  transform: scaleX(0);
-  animation: ${p => p.$visible ? css`${lineGrow} 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards` : 'none'};
-  animation-delay: 1s;
 `;
 
-const VideoDateText = styled.p`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-style: italic;
-  color: #FFFFFF;
-  margin-bottom: 0.5rem;
-  opacity: 0;
-  animation: ${p => p.$visible ? css`${fadeUp} 0.8s ease forwards` : 'none'};
-  animation-delay: 1.2s;
+const VideoDate = styled.p`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
 `;
 
-const VideoLocationText = styled.p`
+const VideoLocation = styled.p`
   font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #B0B0B0;
-  opacity: 0;
-  animation: ${p => p.$visible ? css`${fadeUp} 0.8s ease forwards` : 'none'};
-  animation-delay: 1.4s;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.5rem;
 `;
 
-const VideoCTA = styled.div`
+const VideoNav = styled.nav`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 0;
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 2.5rem;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: ${p => p.$visible ? css`${fadeUp} 0.8s ease forwards` : 'none'};
-  animation-delay: 1.6s;
-`;
-
-const VideoButton = styled.a`
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 1rem 2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  gap: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  z-index: 20;
+  overflow-x: auto;
   
-  ${p => p.$primary ? css`
-    background: transparent;
-    color: #FFFFFF;
-    border: 1px solid #6B8CAE;
-    &:hover { background: #6B8CAE; }
-  ` : css`
-    background: transparent;
-    color: #B0B0B0;
-    border: 1px solid rgba(255,255,255,0.2);
-    &:hover { border-color: #6B8CAE; color: #6B8CAE; }
-  `}
+  @media (max-width: 768px) {
+    gap: 1rem;
+    padding: 1rem;
+  }
 `;
 
-// ============================================
-// ANIMATED WORD COMPONENT (Editorial)
-// ============================================
-const AnimatedWord = ({ text, startDelay = 0, accent = false }) => (
-  <EditorialWord>
-    {text.split('').map((letter, i) => (
-      <EditorialLetter key={i} $delay={startDelay + i * 0.05} $accent={accent}>
-        {letter === ' ' ? '\u00A0' : letter}
-      </EditorialLetter>
-    ))}
-  </EditorialWord>
-);
+const VideoNavItem = styled.span`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  
+  &:hover, &.active {
+    color: #FFFFFF;
+  }
+  
+  &.active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+`;
 
 // ============================================
 // MAIN COMPONENT
 // ============================================
 const MarketingHero = () => {
   const { currentTheme } = useTheme();
-  const [visible, setVisible] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisible(true);
-      setLoaded(true);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []);
 
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToDesigns = () => {
-    document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   // EDITORIAL
   if (currentTheme === 'editorial') {
     return (
-      <EditorialSection>
+      <EditorialSection id="hero">
         <EditorialBg />
         <EditorialContent>
-          <EditorialTagline>Premium Hochzeitswebsites</EditorialTagline>
-          <EditorialHeadline>
-            <AnimatedWord text="EINZIGARTIG" startDelay={0.5} />
-            <EditorialAmpersand>&</EditorialAmpersand>
-            <AnimatedWord text="INDIVIDUELL" startDelay={0.9} accent />
-          </EditorialHeadline>
-          <EditorialDateLine>
-            <EditorialLine />
-            <EditorialDateText>Eure Geschichte, digital erzählt</EditorialDateText>
-          </EditorialDateLine>
-          <EditorialCTA>
-            <EditorialButton $primary onClick={scrollToContact}>Jetzt anfragen</EditorialButton>
-            <EditorialButton onClick={scrollToDesigns}>Designs entdecken</EditorialButton>
-          </EditorialCTA>
+          <EditorialEyebrow>Premium Wedding Websites</EditorialEyebrow>
+          <EditorialTitle>
+            S<span className="ampersand">&</span>I.
+          </EditorialTitle>
+          <EditorialDate>Eure Geschichte. Digital erzählt.</EditorialDate>
+          <EditorialCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</EditorialCTA>
         </EditorialContent>
+        <EditorialScrollHint>Scroll</EditorialScrollHint>
       </EditorialSection>
     );
   }
@@ -1166,26 +952,24 @@ const MarketingHero = () => {
   // BOTANICAL
   if (currentTheme === 'botanical') {
     return (
-      <BotanicalSection>
-        <BotanicalBgGradient />
-        <FloatingPlant $top="8%" $left="5%" $size="60px" $anim={1} $duration="12s" $opacity={0.4}>🌿</FloatingPlant>
-        <FloatingPlant $top="15%" $right="8%" $size="45px" $anim={2} $duration="10s" $delay="1s" $opacity={0.5}>🍃</FloatingPlant>
-        <FloatingPlant $top="55%" $left="6%" $size="35px" $anim={2} $duration="14s" $delay="2s" $opacity={0.3}>🌸</FloatingPlant>
-        <FloatingPlant $top="65%" $right="10%" $size="50px" $anim={1} $duration="11s" $delay="0.5s" $opacity={0.45}>🌺</FloatingPlant>
-        <FloatingPlant $bottom="12%" $left="15%" $size="40px" $anim={2} $duration="9s" $delay="1.5s" $opacity={0.35}>🍀</FloatingPlant>
-        <FloatingPlant $bottom="20%" $right="5%" $size="55px" $anim={1} $duration="11s" $opacity={0.4}>🌾</FloatingPlant>
-        
-        <GlassCard>
-          <BotanicalEyebrow>Premium Hochzeitswebsites</BotanicalEyebrow>
-          <BotanicalNames>
-            Individuell
-            <BotanicalAmpersand>&</BotanicalAmpersand>
-            Einzigartig
-          </BotanicalNames>
-          <BotanicalDate>Eure Geschichte, liebevoll gestaltet</BotanicalDate>
-          <BotanicalLocation>Hamburg · Deutschland</BotanicalLocation>
-          <BotanicalButton onClick={scrollToContact}>Jetzt starten</BotanicalButton>
-        </GlassCard>
+      <BotanicalSection id="hero">
+        <BotanicalBg />
+        <BotanicalLeaf src={LEAVES[2]} className="top-left" alt="" />
+        <BotanicalLeaf src={LEAVES[1]} className="top-right" alt="" />
+        <BotanicalLeaf src={LEAVES[3]} className="bottom-left" alt="" />
+        <BotanicalLeaf src={LEAVES[0]} className="bottom-right" alt="" />
+        <BotanicalCard>
+          <BotanicalEyebrow>Wir heiraten</BotanicalEyebrow>
+          <BotanicalTitle>
+            S&I.
+            <span className="ampersand">&</span>
+            Wedding
+          </BotanicalTitle>
+          <BotanicalDate>Premium Hochzeitswebsites</BotanicalDate>
+          <BotanicalLocation>Hamburg</BotanicalLocation>
+          <BotanicalCTA onClick={() => scrollToSection('contact')}>Jetzt zusagen</BotanicalCTA>
+        </BotanicalCard>
+        <BotanicalScroll>Entdecken</BotanicalScroll>
       </BotanicalSection>
     );
   }
@@ -1193,47 +977,29 @@ const MarketingHero = () => {
   // CONTEMPORARY
   if (currentTheme === 'contemporary') {
     return (
-      <ContemporarySection>
+      <ContemporarySection id="hero">
+        <ContemporaryShape className="circle1" />
+        <ContemporaryShape className="square1" />
+        <ContemporaryShape className="circle2" />
+        <ContemporaryShape className="square2" />
         <ContemporaryLeft>
-          <FloatingCircle $color="#FF6B6B" $size="100px" style={{ top: '10%', left: '5%' }} $duration="10s" />
-          <FloatingCircle $color="#4ECDC4" $size="60px" style={{ top: '60%', left: '10%' }} $duration="8s" $delay="1s" />
-          <FloatingSquare $color="#FFE66D" $size="70px" style={{ top: '20%', right: '15%' }} $duration="12s" $delay="0.5s" />
-          <FloatingSquare $color="#9B5DE5" $size="50px" style={{ bottom: '25%', left: '20%' }} $duration="9s" $delay="2s" />
-          <SpinningRing $color="#FF6B6B" $size="120px" style={{ bottom: '10%', right: '5%' }} $duration="25s" />
-          
-          <ContemporaryEyebrow $visible={visible}>Hochzeitswebsites</ContemporaryEyebrow>
-          
-          <div style={{ marginBottom: '2rem' }}>
-            <ContemporaryName $visible={visible} $delay="0.1s" $first>MAKE IT</ContemporaryName>
-            <ContemporaryAmpersand $visible={visible}>&</ContemporaryAmpersand>
-            <ContemporaryName $visible={visible} $delay="0.2s">COUNT</ContemporaryName>
-          </div>
-          
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
-            <ContemporaryBadge $visible={visible} $delay="0.4s" $color="#FFE66D">
-              <span>✨</span> 6 einzigartige Designs
-            </ContemporaryBadge>
-            <ContemporaryBadge $visible={visible} $delay="0.5s" $color="#4ECDC4">
-              <span>🚀</span> ab 1.290€
-            </ContemporaryBadge>
-          </div>
-          
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-            <ContemporaryButton $primary onClick={scrollToContact}>
-              Jetzt anfragen →
-            </ContemporaryButton>
-            <ContemporaryButton onClick={scrollToDesigns}>
-              Designs entdecken
-            </ContemporaryButton>
-          </div>
+          <ContemporaryEyebrow>Hochzeit ist!</ContemporaryEyebrow>
+          <ContemporaryTitle>
+            S&I.
+            <span className="ampersand">&</span>
+            <span className="name2">Wedding</span>
+          </ContemporaryTitle>
+          <ContemporaryTags>
+            <ContemporaryTag>📅 Premium Websites</ContemporaryTag>
+            <ContemporaryTag $filled>📍 Hamburg</ContemporaryTag>
+          </ContemporaryTags>
+          <ContemporaryCTAs>
+            <ContemporaryCTA $primary onClick={() => scrollToSection('contact')}>Jetzt zusagen →</ContemporaryCTA>
+            <ContemporaryCTA onClick={() => scrollToSection('features')}>Unsere Geschichte</ContemporaryCTA>
+          </ContemporaryCTAs>
         </ContemporaryLeft>
-        
         <ContemporaryRight />
-        
-        <ContemporaryScroll>
-          Scroll
-          <span style={{ fontSize: '1.2rem', color: '#FF6B6B' }}>↓</span>
-        </ContemporaryScroll>
+        <ContemporaryScroll>Scroll</ContemporaryScroll>
       </ContemporarySection>
     );
   }
@@ -1241,39 +1007,21 @@ const MarketingHero = () => {
   // LUXE
   if (currentTheme === 'luxe') {
     return (
-      <LuxeSection>
-        <LuxeBgMedia>
-          <LuxeBgImage $loaded={loaded} />
-        </LuxeBgMedia>
-        
+      <LuxeSection id="hero">
+        <LuxeBg />
         <LuxeContent>
-          <LuxeEyebrow>
-            <LuxeEyebrowText $visible={visible}>Premium Hochzeitswebsites</LuxeEyebrowText>
-          </LuxeEyebrow>
-          
-          <div style={{ marginBottom: '3rem' }}>
-            <LuxeNameLine>
-              <LuxeName $visible={visible} $delay="0.6s">Zeitlose</LuxeName>
-            </LuxeNameLine>
-            <LuxeAmpersand>
-              <LuxeAmpersandText $visible={visible}>&</LuxeAmpersandText>
-            </LuxeAmpersand>
-            <LuxeNameLine>
-              <LuxeName $visible={visible} $delay="0.75s">Eleganz</LuxeName>
-            </LuxeNameLine>
-          </div>
-          
-          <LuxeDivider $visible={visible} />
-          
-          <LuxeInfo $visible={visible}>
-            <LuxeDateText>Eure Geschichte, cinematisch erzählt</LuxeDateText>
-            <LuxeLocationText>Hamburg · Deutschland</LuxeLocationText>
-          </LuxeInfo>
+          <LuxeEyebrow>Premium Wedding Websites</LuxeEyebrow>
+          <LuxeTitle>
+            S&I.
+            <span className="ampersand">&</span>
+            Wedding
+          </LuxeTitle>
+          <LuxeDate>Exklusive Hochzeitswebsites</LuxeDate>
+          <LuxeDivider />
+          <LuxeCTA onClick={() => scrollToSection('contact')}>Entdecken</LuxeCTA>
         </LuxeContent>
-        
-        <LuxeScroll $visible={visible}>
-          <LuxeScrollText>Entdecken</LuxeScrollText>
-          <LuxeScrollLine />
+        <LuxeScroll>
+          <span>Scroll</span>
         </LuxeScroll>
       </LuxeSection>
     );
@@ -1281,61 +1029,50 @@ const MarketingHero = () => {
 
   // NEON
   if (currentTheme === 'neon') {
-    const fullText = "NEXT LEVEL WEDDING";
     return (
-      <NeonSection>
-        <NeonGrid $visible={visible} />
-        <GlowOrb />
-        <GlowOrb />
-        <Scanline />
-        
-        <NeonFloatingShape $shape="square" $delay={0} style={{ top: '15%', left: '10%' }} />
-        <NeonFloatingShape $shape="circle" $delay={1} style={{ top: '25%', right: '15%' }} />
-        <NeonFloatingShape $shape="diamond" $delay={2} style={{ bottom: '20%', left: '20%' }} />
-        <NeonFloatingShape $shape="circle" $delay={0.5} style={{ bottom: '30%', right: '10%' }} />
-        
-        <CornerDecor />
-        <CornerDecor />
-        <CornerDecor />
-        <CornerDecor />
-        
+      <NeonSection id="hero">
+        <NeonGrid />
+        <NeonScanline />
         <NeonContent>
-          <NeonEyebrow $visible={visible}>Premium Websites</NeonEyebrow>
-          
-          <NeonNames $visible={visible} data-text={fullText}>
-            NEXT LEVEL
-            <NeonAmpersand>&</NeonAmpersand>
+          <NeonEyebrow>// Wedding.init()</NeonEyebrow>
+          <NeonTitle>
+            S&I.
+            <span className="ampersand">_</span>
             WEDDING
-          </NeonNames>
-          
-          <NeonDate $visible={visible}>Digitale Hochzeits-Experience</NeonDate>
-          <NeonLocation $visible={visible}>der nächsten Generation</NeonLocation>
-          
-          <NeonButton $visible={visible} onClick={scrollToContact}>
-            Website.exe starten...
-          </NeonButton>
+          </NeonTitle>
+          <NeonSubtitle>Premium Wedding Websites // Hamburg</NeonSubtitle>
+          <NeonCTA onClick={() => scrollToSection('contact')}>Start.exe →</NeonCTA>
         </NeonContent>
+        <NeonScroll>Scroll.down</NeonScroll>
       </NeonSection>
     );
   }
 
   // VIDEO (Default)
   return (
-    <VideoSection>
-      <VideoBg />
+    <VideoSection id="hero">
+      <VideoBg autoPlay muted loop playsInline>
+        <source src={VIDEO_URL} type="video/mp4" />
+      </VideoBg>
+      <VideoOverlay />
       <VideoContent>
-        <VideoEyebrow $visible={visible}>Premium Hochzeitswebsites</VideoEyebrow>
-        <VideoNames $visible={visible} $delay="0.5s">Individuelle</VideoNames>
-        <VideoAmpersand $visible={visible}>&</VideoAmpersand>
-        <VideoNames $visible={visible} $delay="0.9s">Hochzeitswebsites</VideoNames>
-        <VideoDivider $visible={visible} />
-        <VideoDateText $visible={visible}>Eure Geschichte, cinematisch erzählt</VideoDateText>
-        <VideoLocationText $visible={visible}>6 einzigartige Designs · ab 1.290€</VideoLocationText>
-        <VideoCTA $visible={visible}>
-          <VideoButton $primary onClick={scrollToContact}>Jetzt anfragen</VideoButton>
-          <VideoButton onClick={scrollToDesigns}>Designs entdecken</VideoButton>
-        </VideoCTA>
+        <VideoEyebrow>Hochzeit ist!</VideoEyebrow>
+        <VideoTitle>
+          S&I.
+          <span className="ampersand">&</span>
+          WEDDING
+        </VideoTitle>
+        <VideoDivider />
+        <VideoDate>Premium Hochzeitswebsites</VideoDate>
+        <VideoLocation>Hamburg</VideoLocation>
       </VideoContent>
+      <VideoNav>
+        <VideoNavItem className="active">Start</VideoNavItem>
+        <VideoNavItem onClick={() => scrollToSection('features')}>Features</VideoNavItem>
+        <VideoNavItem onClick={() => scrollToSection('themes')}>Designs</VideoNavItem>
+        <VideoNavItem onClick={() => scrollToSection('pricing')}>Preise</VideoNavItem>
+        <VideoNavItem onClick={() => scrollToSection('contact')}>Kontakt</VideoNavItem>
+      </VideoNav>
     </VideoSection>
   );
 };

@@ -1,108 +1,502 @@
 // src/components/marketing/FeaturesSection.js
-// 1:1 Theme-Designs aus si-wedding-themes
+// 1:1 basierend auf Design-Vorlagen - Editorial/Luxe: alternating layout, Contemporary: cards with shadows
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
-const FEATURES = [
-  { icon: '📱', title: 'Responsive Design', desc: 'Perfekt auf allen Geräten - Desktop, Tablet & Smartphone' },
-  { icon: '🎨', title: '6 Einzigartige Themes', desc: 'Von elegant bis modern - findet euren Stil' },
-  { icon: '✉️', title: 'RSVP System', desc: 'Digitale Zusagen mit automatischer Gästeliste' },
-  { icon: '📸', title: 'Fotogalerie', desc: 'Teilt eure schönsten Momente mit euren Gästen' },
-  { icon: '🗓️', title: 'Countdown', desc: 'Zählt gemeinsam die Tage bis zum großen Tag' },
-  { icon: '📖', title: 'Gästebuch', desc: 'Sammelt Glückwünsche und Erinnerungen' },
+// Cloudinary Demo Images
+const DEMO_IMAGES = [
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769537648/siwedding/demo/hero/t4rsv6gjmwtow3k761d2.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769608965/siwedding/demo/story/flowers_kl9qjr.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769608965/siwedding/demo/story/rings_ab2def.jpg',
 ];
 
-const Section = styled.section`padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);`;
-const Container = styled.div`max-width: 1200px; margin: 0 auto;`;
+const FEATURES = [
+  { num: '01', title: 'Responsive Design', desc: 'Perfekt auf Desktop, Tablet und Smartphone', image: DEMO_IMAGES[0] },
+  { num: '02', title: '6 Einzigartige Themes', desc: 'Von elegant bis modern - für jeden Geschmack', image: DEMO_IMAGES[1] },
+  { num: '03', title: 'RSVP & Gästebuch', desc: 'Digitale Zusagen und Glückwünsche sammeln', image: DEMO_IMAGES[2] },
+];
+
+const fadeInUp = keyframes`from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); }`;
+
+// ============================================
+// BASE STYLES
+// ============================================
+const Section = styled.section`padding: clamp(4rem, 10vh, 8rem) 0;`;
+const Container = styled.div`max-width: 1400px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem);`;
 const Header = styled.div`text-align: center; margin-bottom: 4rem;`;
-const Grid = styled.div`display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;`;
 
-// EDITORIAL
-const EditorialSection = styled(Section)`background: #0A0A0A;`;
-const EditorialEyebrow = styled.p`font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #C41E3A; margin-bottom: 1rem;`;
-const EditorialTitle = styled.h2`font-family: 'Oswald', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #FAFAFA; margin-bottom: 1rem;`;
-const EditorialSubtitle = styled.p`font-family: 'Source Serif 4', serif; font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto;`;
-const EditorialCard = styled.div`padding: 2rem; border-left: 3px solid #C41E3A; background: rgba(255,255,255,0.02); transition: all 0.3s; &:hover { background: rgba(255,255,255,0.05); transform: translateX(10px); }`;
-const EditorialIcon = styled.div`font-size: 2rem; margin-bottom: 1rem;`;
-const EditorialCardTitle = styled.h3`font-family: 'Oswald', sans-serif; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; color: #FAFAFA; margin-bottom: 0.5rem;`;
-const EditorialCardDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6;`;
+// ============================================
+// EDITORIAL - Alternating Image/Text Rows (wie im Design)
+// ============================================
+const EditorialSection = styled(Section)`background: #FAFAFA;`;
+const EditorialEyebrow = styled.p`font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #C41E3A; margin-bottom: 1rem;`;
+const EditorialTitle = styled.h2`font-family: 'Oswald', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #0A0A0A;`;
+const EditorialSubtitle = styled.p`font-family: 'Source Serif 4', serif; font-size: 1rem; font-style: italic; color: #666; max-width: 500px; margin: 1rem auto 0;`;
 
-// BOTANICAL
-const BotanicalSection = styled(Section)`background: #040604; position: relative; &::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(45, 90, 60, 0.1) 0%, transparent 50%); }`;
-const BotanicalEyebrow = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem;`;
-const BotanicalTitle = styled.h2`font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; color: rgba(255,255,255,0.95); margin-bottom: 1rem;`;
-const BotanicalSubtitle = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); max-width: 600px; margin: 0 auto;`;
-const BotanicalCard = styled.div`position: relative; z-index: 1; background: rgba(255,255,255,0.06); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem; text-align: center; transition: all 0.4s; &:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }`;
-const BotanicalIcon = styled.div`font-size: 2.5rem; margin-bottom: 1.5rem;`;
-const BotanicalCardTitle = styled.h3`font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: rgba(255,255,255,0.95); margin-bottom: 0.5rem;`;
-const BotanicalCardDesc = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.6;`;
+const EditorialStory = styled.div`display: flex; flex-direction: column; gap: 0;`;
 
-// CONTEMPORARY
+const EditorialRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  
+  ${p => p.$reverse && css`
+    & > *:first-child { order: 2; }
+    & > *:last-child { order: 1; }
+    @media (max-width: 900px) {
+      & > *:first-child { order: 1; }
+      & > *:last-child { order: 2; }
+    }
+  `}
+`;
+
+const EditorialImage = styled.div`
+  background: url(${p => p.$src}) center/cover no-repeat;
+  min-height: 400px;
+  
+  @media (max-width: 900px) { min-height: 300px; }
+`;
+
+const EditorialText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem);
+  background: ${p => p.$dark ? '#0A0A0A' : '#FAFAFA'};
+`;
+
+const EditorialNum = styled.span`
+  font-family: 'Oswald', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: ${p => p.$dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'};
+  line-height: 1;
+  margin-bottom: 1rem;
+`;
+
+const EditorialItemTitle = styled.h3`
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: ${p => p.$dark ? '#FAFAFA' : '#0A0A0A'};
+  margin-bottom: 0.5rem;
+`;
+
+const EditorialItemDesc = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: ${p => p.$dark ? 'rgba(255,255,255,0.6)' : '#666'};
+  line-height: 1.6;
+`;
+
+// ============================================
+// BOTANICAL - Glassmorphism Cards in Timeline
+// ============================================
+const BotanicalSection = styled(Section)`
+  background: #040604;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(45, 90, 60, 0.1) 0%, transparent 50%);
+  }
+`;
+
+const BotanicalEyebrow = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem;`;
+const BotanicalTitle = styled.h2`font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; color: rgba(255,255,255,0.95);`;
+
+const BotanicalTimeline = styled.div`
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+    
+    @media (min-width: 600px) { left: 50%; transform: translateX(-50%); }
+  }
+`;
+
+const BotanicalCard = styled.div`
+  position: relative;
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-left: 2.5rem;
+  
+  @media (min-width: 600px) {
+    width: calc(50% - 2rem);
+    margin-left: 0;
+    ${p => p.$align === 'left' ? 'margin-right: auto;' : 'margin-left: auto;'}
+  }
+  
+  &::before {
+    content: '▸';
+    position: absolute;
+    left: -1.5rem;
+    top: 1.5rem;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.75rem;
+    
+    @media (min-width: 600px) {
+      ${p => p.$align === 'left' ? 'right: -1.5rem; left: auto; content: "◂";' : 'left: -1.5rem;'}
+    }
+  }
+`;
+
+const BotanicalCardTitle = styled.h3`font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin-bottom: 0.25rem;`;
+const BotanicalCardDesc = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.6);`;
+
+const BotanicalImage = styled.img`
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 1rem;
+`;
+
+// ============================================
+// CONTEMPORARY - Neobrutalism Cards (wie im Design)
+// ============================================
 const ContemporarySection = styled(Section)`background: #FAFAFA;`;
-const ContemporaryEyebrow = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B6B; margin-bottom: 1rem;`;
-const ContemporaryTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #0D0D0D; margin-bottom: 1rem;`;
-const ContemporarySubtitle = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 1rem; color: #737373; max-width: 600px; margin: 0 auto;`;
-const ContemporaryCard = styled.div`background: #fff; border: 3px solid #0D0D0D; padding: 2rem; box-shadow: 6px 6px 0 ${p => ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5', '#FF6B6B', '#4ECDC4'][p.$i % 6]}; transition: all 0.3s; &:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 ${p => ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5', '#FF6B6B', '#4ECDC4'][p.$i % 6]}; }`;
-const ContemporaryIcon = styled.div`font-size: 2.5rem; margin-bottom: 1rem;`;
+const ContemporaryEyebrow = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #FF6B6B; margin-bottom: 1rem;`;
+const ContemporaryTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #0D0D0D;`;
+
+const ContemporaryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+`;
+
+const ContemporaryCard = styled.div`
+  background: #fff;
+  border: 3px solid #0D0D0D;
+  box-shadow: 8px 8px 0 ${p => ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5'][p.$i % 4]};
+  transition: all 0.3s ease;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 ${p => ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5'][p.$i % 4]};
+  }
+`;
+
+const ContemporaryCardImage = styled.div`
+  height: 200px;
+  background: url(${p => p.$src}) center/cover no-repeat;
+  position: relative;
+  
+  &::after {
+    content: '${p => p.$num}';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #FFE66D;
+    border: 2px solid #0D0D0D;
+    padding: 0.3rem 0.6rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+`;
+
+const ContemporaryCardBody = styled.div`padding: 1.5rem; border-top: 3px solid #0D0D0D;`;
 const ContemporaryCardTitle = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; color: #0D0D0D; margin-bottom: 0.5rem;`;
-const ContemporaryCardDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: #525252; line-height: 1.5;`;
+const ContemporaryCardDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: #525252;`;
 
-// LUXE
-const LuxeSection = styled(Section)`background: #0A0A0A;`;
-const LuxeEyebrow = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: #C9A962; margin-bottom: 1rem;`;
-const LuxeTitle = styled.h2`font-family: 'Cormorant', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; font-style: italic; color: #F8F6F3; margin-bottom: 1rem;`;
-const LuxeSubtitle = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: rgba(248,246,243,0.6); max-width: 600px; margin: 0 auto;`;
-const LuxeCard = styled.div`padding: 2.5rem; border: 1px solid rgba(248,246,243,0.1); text-align: center; transition: all 0.5s; &:hover { border-color: #C9A962; }`;
-const LuxeIcon = styled.div`font-size: 2rem; margin-bottom: 1.5rem; opacity: 0.8;`;
-const LuxeCardTitle = styled.h3`font-family: 'Cormorant', serif; font-size: 1.4rem; font-weight: 300; font-style: italic; color: #F8F6F3; margin-bottom: 0.75rem;`;
-const LuxeCardDesc = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: rgba(248,246,243,0.5); line-height: 1.6;`;
+// ============================================
+// LUXE - Full-width Alternating Image/Text (wie im Design)
+// ============================================
+const LuxeSection = styled(Section)`background: #0A0A0A; padding: 0;`;
+const LuxeHeader = styled(Header)`padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);`;
+const LuxeEyebrow = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.4em; text-transform: uppercase; color: #C9A962; margin-bottom: 1rem;`;
+const LuxeTitle = styled.h2`font-family: 'Cormorant', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; font-style: italic; color: #F8F6F3;`;
 
-// NEON
-const NeonSection = styled(Section)`background: #0a0a0f; position: relative; &::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 70%, rgba(255,0,255,0.05) 0%, transparent 50%); }`;
-const NeonEyebrow = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: #00ffff; text-shadow: 0 0 10px rgba(0,255,255,0.5); margin-bottom: 1rem;`;
-const NeonTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 1rem;`;
-const NeonSubtitle = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.5); max-width: 600px; margin: 0 auto;`;
-const NeonCard = styled.div`position: relative; z-index: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,255,0.2); padding: 2rem; text-align: center; transition: all 0.3s; &:hover { border-color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.2); }`;
-const NeonIcon = styled.div`font-size: 2.5rem; margin-bottom: 1rem; filter: drop-shadow(0 0 10px rgba(0,255,255,0.5));`;
-const NeonCardTitle = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 0.5rem;`;
-const NeonCardDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.5;`;
+const LuxeRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  
+  ${p => p.$reverse && css`
+    & > *:first-child { order: 2; }
+    & > *:last-child { order: 1; }
+    @media (max-width: 900px) {
+      & > *:first-child { order: 1; }
+      & > *:last-child { order: 2; }
+    }
+  `}
+`;
 
-// VIDEO
+const LuxeImage = styled.div`
+  background: url(${p => p.$src}) center/cover no-repeat;
+  min-height: 400px;
+  @media (max-width: 900px) { min-height: 300px; }
+`;
+
+const LuxeText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem);
+  background: #0A0A0A;
+`;
+
+const LuxeItemTitle = styled.h3`
+  font-family: 'Cormorant', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #F8F6F3;
+  margin-bottom: 1rem;
+`;
+
+const LuxeItemDesc = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(248,246,243,0.6);
+  line-height: 1.7;
+`;
+
+// ============================================
+// NEON - Cyber Cards
+// ============================================
+const NeonSection = styled(Section)`
+  background: #0a0a0f;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(255,0,255,0.05) 0%, transparent 50%);
+  }
+`;
+
+const NeonEyebrow = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: #00ffff; text-shadow: 0 0 10px rgba(0,255,255,0.5); margin-bottom: 1rem;`;
+const NeonTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #fff;`;
+
+const NeonGrid = styled.div`
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+`;
+
+const NeonCard = styled.div`
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(0,255,255,0.2);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: #00ffff;
+    box-shadow: 0 0 30px rgba(0,255,255,0.2);
+  }
+`;
+
+const NeonCardNum = styled.span`font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; color: #ff00ff; letter-spacing: 0.2em;`;
+const NeonCardTitle = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; color: #fff; margin: 0.5rem 0;`;
+const NeonCardDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.6);`;
+
+// ============================================
+// VIDEO - Clean Minimal Cards
+// ============================================
 const VideoSection = styled(Section)`background: #0A0A0A;`;
-const VideoEyebrow = styled.p`font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: #6B8CAE; margin-bottom: 1rem;`;
-const VideoTitle = styled.h2`font-family: 'Manrope', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; color: #fff; margin-bottom: 1rem;`;
-const VideoSubtitle = styled.p`font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: #B0B0B0; max-width: 600px; margin: 0 auto;`;
-const VideoCard = styled.div`padding: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; &:hover { border-color: #6B8CAE; background: rgba(107,140,174,0.05); }`;
-const VideoIcon = styled.div`font-size: 2rem; margin-bottom: 1rem;`;
-const VideoCardTitle = styled.h3`font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;`;
-const VideoCardDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #B0B0B0; line-height: 1.6;`;
+const VideoEyebrow = styled.p`font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: #6B8CAE; margin-bottom: 1rem;`;
+const VideoTitle = styled.h2`font-family: 'Manrope', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; color: #fff;`;
+const VideoSubtitle = styled.p`font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: #B0B0B0; max-width: 500px; margin: 1rem auto 0;`;
 
+const VideoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+`;
+
+const VideoCard = styled.div`
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 2rem;
+  transition: border-color 0.3s ease;
+  
+  &:hover { border-color: #6B8CAE; }
+`;
+
+const VideoCardTitle = styled.h3`font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;`;
+const VideoCardDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #B0B0B0; line-height: 1.6;`;
+
+// ============================================
+// MAIN COMPONENT
+// ============================================
 const FeaturesSection = () => {
   const { currentTheme } = useTheme();
 
-  if (currentTheme === 'editorial') return (
-    <EditorialSection id="features"><Container><Header><EditorialEyebrow>Features</EditorialEyebrow><EditorialTitle>Alles was ihr braucht</EditorialTitle><EditorialSubtitle>Professionelle Funktionen für eure perfekte Hochzeitswebsite</EditorialSubtitle></Header><Grid>{FEATURES.map((f, i) => <EditorialCard key={i}><EditorialIcon>{f.icon}</EditorialIcon><EditorialCardTitle>{f.title}</EditorialCardTitle><EditorialCardDesc>{f.desc}</EditorialCardDesc></EditorialCard>)}</Grid></Container></EditorialSection>
-  );
+  // EDITORIAL
+  if (currentTheme === 'editorial') {
+    return (
+      <EditorialSection id="features">
+        <Container>
+          <Header>
+            <EditorialEyebrow>Unsere Geschichte</EditorialEyebrow>
+            <EditorialTitle>Unsere Geschichte</EditorialTitle>
+            <EditorialSubtitle>Eine Liebe, die Geschichten schreibt</EditorialSubtitle>
+          </Header>
+        </Container>
+        <EditorialStory>
+          {FEATURES.map((f, i) => (
+            <EditorialRow key={i} $reverse={i % 2 === 1}>
+              <EditorialImage $src={f.image} />
+              <EditorialText $dark={i % 2 === 0}>
+                <EditorialNum $dark={i % 2 === 0}>{f.num}</EditorialNum>
+                <EditorialItemTitle $dark={i % 2 === 0}>{f.title}</EditorialItemTitle>
+                <EditorialItemDesc $dark={i % 2 === 0}>{f.desc}</EditorialItemDesc>
+              </EditorialText>
+            </EditorialRow>
+          ))}
+        </EditorialStory>
+      </EditorialSection>
+    );
+  }
 
-  if (currentTheme === 'botanical') return (
-    <BotanicalSection id="features"><Container style={{ position: 'relative', zIndex: 1 }}><Header><BotanicalEyebrow>Features</BotanicalEyebrow><BotanicalTitle>Alles was ihr braucht</BotanicalTitle><BotanicalSubtitle>Professionelle Funktionen für eure perfekte Hochzeitswebsite</BotanicalSubtitle></Header><Grid>{FEATURES.map((f, i) => <BotanicalCard key={i}><BotanicalIcon>{f.icon}</BotanicalIcon><BotanicalCardTitle>{f.title}</BotanicalCardTitle><BotanicalCardDesc>{f.desc}</BotanicalCardDesc></BotanicalCard>)}</Grid></Container></BotanicalSection>
-  );
+  // BOTANICAL
+  if (currentTheme === 'botanical') {
+    return (
+      <BotanicalSection id="features">
+        <Container style={{ position: 'relative', zIndex: 10 }}>
+          <Header>
+            <BotanicalEyebrow>Wie alles begann</BotanicalEyebrow>
+            <BotanicalTitle>Unsere Geschichte</BotanicalTitle>
+          </Header>
+          <BotanicalTimeline>
+            {FEATURES.map((f, i) => (
+              <BotanicalCard key={i} $align={i % 2 === 0 ? 'left' : 'right'}>
+                <BotanicalCardTitle>{f.title}</BotanicalCardTitle>
+                <BotanicalCardDesc>{f.desc}</BotanicalCardDesc>
+                <BotanicalImage src={f.image} alt={f.title} loading="lazy" />
+              </BotanicalCard>
+            ))}
+          </BotanicalTimeline>
+        </Container>
+      </BotanicalSection>
+    );
+  }
 
-  if (currentTheme === 'contemporary') return (
-    <ContemporarySection id="features"><Container><Header><ContemporaryEyebrow>🚀 Features</ContemporaryEyebrow><ContemporaryTitle>Was ihr bekommt</ContemporaryTitle><ContemporarySubtitle>Alles für die perfekte digitale Hochzeitseinladung!</ContemporarySubtitle></Header><Grid>{FEATURES.map((f, i) => <ContemporaryCard key={i} $i={i}><ContemporaryIcon>{f.icon}</ContemporaryIcon><ContemporaryCardTitle>{f.title}</ContemporaryCardTitle><ContemporaryCardDesc>{f.desc}</ContemporaryCardDesc></ContemporaryCard>)}</Grid></Container></ContemporarySection>
-  );
+  // CONTEMPORARY
+  if (currentTheme === 'contemporary') {
+    return (
+      <ContemporarySection id="features">
+        <Container>
+          <Header>
+            <ContemporaryEyebrow>✨ Unsere Geschichte</ContemporaryEyebrow>
+            <ContemporaryTitle>Unsere Geschichte</ContemporaryTitle>
+          </Header>
+          <ContemporaryGrid>
+            {FEATURES.map((f, i) => (
+              <ContemporaryCard key={i} $i={i}>
+                <ContemporaryCardImage $src={f.image} $num={f.num} />
+                <ContemporaryCardBody>
+                  <ContemporaryCardTitle>{f.title}</ContemporaryCardTitle>
+                  <ContemporaryCardDesc>{f.desc}</ContemporaryCardDesc>
+                </ContemporaryCardBody>
+              </ContemporaryCard>
+            ))}
+          </ContemporaryGrid>
+        </Container>
+      </ContemporarySection>
+    );
+  }
 
-  if (currentTheme === 'luxe') return (
-    <LuxeSection id="features"><Container><Header><LuxeEyebrow>Ausstattung</LuxeEyebrow><LuxeTitle>Exklusive Features</LuxeTitle><LuxeSubtitle>Erstklassige Funktionen für Ihren besonderen Anlass</LuxeSubtitle></Header><Grid>{FEATURES.map((f, i) => <LuxeCard key={i}><LuxeIcon>{f.icon}</LuxeIcon><LuxeCardTitle>{f.title}</LuxeCardTitle><LuxeCardDesc>{f.desc}</LuxeCardDesc></LuxeCard>)}</Grid></Container></LuxeSection>
-  );
+  // LUXE
+  if (currentTheme === 'luxe') {
+    return (
+      <LuxeSection id="features">
+        <LuxeHeader>
+          <LuxeEyebrow>Unsere Reise</LuxeEyebrow>
+          <LuxeTitle>Unsere Geschichte</LuxeTitle>
+        </LuxeHeader>
+        {FEATURES.map((f, i) => (
+          <LuxeRow key={i} $reverse={i % 2 === 1}>
+            <LuxeImage $src={f.image} />
+            <LuxeText>
+              <LuxeItemTitle>{f.title}</LuxeItemTitle>
+              <LuxeItemDesc>{f.desc}</LuxeItemDesc>
+            </LuxeText>
+          </LuxeRow>
+        ))}
+      </LuxeSection>
+    );
+  }
 
-  if (currentTheme === 'neon') return (
-    <NeonSection id="features"><Container style={{ position: 'relative', zIndex: 1 }}><Header><NeonEyebrow>// Features.load()</NeonEyebrow><NeonTitle>System Modules</NeonTitle><NeonSubtitle>Next-gen wedding website components</NeonSubtitle></Header><Grid>{FEATURES.map((f, i) => <NeonCard key={i}><NeonIcon>{f.icon}</NeonIcon><NeonCardTitle>{f.title}</NeonCardTitle><NeonCardDesc>{f.desc}</NeonCardDesc></NeonCard>)}</Grid></Container></NeonSection>
-  );
+  // NEON
+  if (currentTheme === 'neon') {
+    return (
+      <NeonSection id="features">
+        <Container style={{ position: 'relative', zIndex: 10 }}>
+          <Header>
+            <NeonEyebrow>// Story.load()</NeonEyebrow>
+            <NeonTitle>Unsere Geschichte</NeonTitle>
+          </Header>
+          <NeonGrid>
+            {FEATURES.map((f, i) => (
+              <NeonCard key={i}>
+                <NeonCardNum>{`> ${f.num}`}</NeonCardNum>
+                <NeonCardTitle>{f.title}</NeonCardTitle>
+                <NeonCardDesc>{f.desc}</NeonCardDesc>
+              </NeonCard>
+            ))}
+          </NeonGrid>
+        </Container>
+      </NeonSection>
+    );
+  }
 
+  // VIDEO (Default)
   return (
-    <VideoSection id="features"><Container><Header><VideoEyebrow>Features</VideoEyebrow><VideoTitle>Alles was ihr braucht</VideoTitle><VideoSubtitle>Professionelle Funktionen für eure perfekte Hochzeitswebsite</VideoSubtitle></Header><Grid>{FEATURES.map((f, i) => <VideoCard key={i}><VideoIcon>{f.icon}</VideoIcon><VideoCardTitle>{f.title}</VideoCardTitle><VideoCardDesc>{f.desc}</VideoCardDesc></VideoCard>)}</Grid></Container></VideoSection>
+    <VideoSection id="features">
+      <Container>
+        <Header>
+          <VideoEyebrow>Unsere Geschichte</VideoEyebrow>
+          <VideoTitle>Unsere Geschichte</VideoTitle>
+          <VideoSubtitle>Eine Liebe, die Geschichten schreibt</VideoSubtitle>
+        </Header>
+        <VideoGrid>
+          {FEATURES.map((f, i) => (
+            <VideoCard key={i}>
+              <VideoCardTitle>{f.title}</VideoCardTitle>
+              <VideoCardDesc>{f.desc}</VideoCardDesc>
+            </VideoCard>
+          ))}
+        </VideoGrid>
+      </Container>
+    </VideoSection>
   );
 };
 
