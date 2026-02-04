@@ -60,26 +60,26 @@ const float = keyframes`
 `;
 
 // ============================================
-// EDITORIAL - Clean Liste mit Tags (wie Mockup)
+// EDITORIAL - Magazin Grid Layout
 // ============================================
 const EditorialSection = styled.section`
   padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
-  background: #FAF9F7;
+  background: #FAFAFA;
 `;
 
 const EditorialContainer = styled.div`
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
 `;
 
 const EditorialHeader = styled.div`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 `;
 
 const EditorialStar = styled.div`
   font-size: 1.5rem;
-  color: #C9A962;
+  color: #C41E3A;
   margin-bottom: 1rem;
 `;
 
@@ -89,75 +89,86 @@ const EditorialEyebrow = styled.p`
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #C9A962;
+  color: #C41E3A;
   margin-bottom: 1rem;
 `;
 
 const EditorialTitle = styled.h2`
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Oswald', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 400;
-  font-style: italic;
-  color: #2D2D2D;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0A0A0A;
   margin-bottom: 1rem;
 `;
 
 const EditorialSubtitle = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  color: #888;
+  font-family: 'Source Serif 4', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #666;
   line-height: 1.6;
 `;
 
-const EditorialList = styled.div`
-  border-top: 1px solid #E5E0D8;
+const EditorialGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
-const EditorialItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.25rem 0;
-  border-bottom: 1px solid #E5E0D8;
+const EditorialCard = styled.div`
+  background: ${p => p.$included ? '#fff' : '#F5F5F5'};
+  border: ${p => p.$included ? '2px solid #C41E3A' : '1px solid #E5E5E5'};
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  ${p => p.$included && css`
+    &::after {
+      content: 'INKLUSIVE';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #C41E3A;
+    }
+  `}
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
 `;
 
 const EditorialIcon = styled.span`
-  font-size: 1.5rem;
-  width: 40px;
-  text-align: center;
-`;
-
-const EditorialItemContent = styled.div`
-  flex: 1;
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
 `;
 
 const EditorialItemName = styled.h3`
-  font-family: 'Inter', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #2D2D2D;
+  color: #0A0A0A;
   margin-bottom: 0.25rem;
 `;
 
 const EditorialItemDesc = styled.p`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.8rem;
   font-style: italic;
   color: #888;
-`;
-
-const EditorialTag = styled.span`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #C9A962;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid #C9A962;
-  border-radius: 2px;
 `;
 
 // ============================================
@@ -700,7 +711,7 @@ const ComponentsShowcase = () => {
       : COMPONENTS.filter(c => !c.included);
 
   // ==========================================
-  // EDITORIAL - Clean Liste
+  // EDITORIAL - Magazin Grid
   // ==========================================
   if (currentTheme === 'editorial') {
     return (
@@ -711,23 +722,19 @@ const ComponentsShowcase = () => {
             <EditorialEyebrow>18 Komponenten</EditorialEyebrow>
             <EditorialTitle>Alles was ihr braucht</EditorialTitle>
             <EditorialSubtitle>
-              Wählt aus 18 liebevoll gestalteten Komponenten – {INCLUDED_COUNT} davon<br />
-              immer inklusive.
+              Wählt aus 18 liebevoll gestalteten Komponenten – {INCLUDED_COUNT} davon immer inklusive.
             </EditorialSubtitle>
           </EditorialHeader>
           
-          <EditorialList>
+          <EditorialGrid>
             {COMPONENTS.map((comp, i) => (
-              <EditorialItem key={comp.id}>
+              <EditorialCard key={comp.id} $included={comp.included}>
                 <EditorialIcon>{comp.icon}</EditorialIcon>
-                <EditorialItemContent>
-                  <EditorialItemName>{comp.name}</EditorialItemName>
-                  <EditorialItemDesc>{comp.desc}</EditorialItemDesc>
-                </EditorialItemContent>
-                {comp.included && <EditorialTag>Inklusive</EditorialTag>}
-              </EditorialItem>
+                <EditorialItemName>{comp.name}</EditorialItemName>
+                <EditorialItemDesc>{comp.desc}</EditorialItemDesc>
+              </EditorialCard>
             ))}
-          </EditorialList>
+          </EditorialGrid>
         </EditorialContainer>
       </EditorialSection>
     );
