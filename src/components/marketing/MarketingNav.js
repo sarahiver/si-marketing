@@ -318,8 +318,9 @@ const MobileMenu = styled.div`
   bottom: 0;
   z-index: 1000;
   padding: 100px 2rem 2rem;
-  transform: ${p => p.$open ? 'translateX(0)' : 'translateX(100%)'};
-  transition: transform 0.3s ease;
+  opacity: ${p => p.$open ? 1 : 0};
+  visibility: ${p => p.$open ? 'visible' : 'hidden'};
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -338,7 +339,7 @@ const MobileMenu = styled.div`
   }};
 
   @media (min-width: 769px) {
-    display: none;
+    display: none !important;
   }
 `;
 
