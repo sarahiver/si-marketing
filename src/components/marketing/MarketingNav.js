@@ -42,11 +42,14 @@ const Nav = styled.nav`
     right: auto;
     transform: translateX(-50%);
     width: auto;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(40px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    max-width: calc(100% - 3rem);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.6rem 1.5rem;
+    gap: 0.5rem;
   `}
   
   ${p => p.$theme === 'contemporary' && css`

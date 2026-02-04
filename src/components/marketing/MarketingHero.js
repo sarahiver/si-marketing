@@ -174,15 +174,8 @@ const BotanicalBg = styled.div`
   position: fixed;
   inset: 0;
   background: url(${FOREST_BG}) center/cover no-repeat;
-  filter: brightness(0.25) saturate(0.7);
+  filter: brightness(0.4) saturate(0.8);
   z-index: -10;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(2,8,2,0.5) 50%, rgba(2,8,2,0.9) 100%);
-  }
 `;
 
 const BotanicalLeaf = styled.img`

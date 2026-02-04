@@ -149,6 +149,38 @@ const AddonsList = styled.div`
 `;
 
 // ============================================
+// ON REQUEST BOX - Auf Anfrage
+// ============================================
+const OnRequestBox = styled.div`
+  margin-top: 3rem;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 12px;
+`;
+
+const OnRequestTitle = styled.h3`
+  margin-bottom: 0.75rem;
+`;
+
+const OnRequestItems = styled.p`
+  margin-bottom: 1rem;
+  line-height: 1.6;
+`;
+
+const OnRequestNote = styled.p`
+  font-style: italic;
+`;
+
+// ON REQUEST DATA
+const ON_REQUEST_ITEMS = [
+  'Mehrsprachigkeit',
+  'Individuelles Design',
+  'Designanpassungen',
+  'Passwortschutz',
+  'Eigene Domain'
+];
+
+// ============================================
 // EDITORIAL THEME
 // ============================================
 const EditorialSection = styled(Section)`
@@ -1235,6 +1267,69 @@ const PricingSection = () => {
     );
   };
 
+  // Theme-spezifische OnRequest Box Styles
+  const getOnRequestStyles = () => {
+    switch(currentTheme) {
+      case 'editorial':
+        return {
+          box: { background: '#fff', border: '1px solid #E5E5E5' },
+          title: { fontFamily: "'Oswald', sans-serif", fontSize: '1.1rem', fontWeight: 700, textTransform: 'uppercase', color: '#0A0A0A' },
+          items: { fontFamily: "'Inter', sans-serif", fontSize: '0.9rem', color: '#666' },
+          note: { fontFamily: "'Source Serif 4', serif", fontSize: '0.95rem', color: '#C41E3A' }
+        };
+      case 'botanical':
+        return {
+          box: { background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '24px' },
+          title: { fontFamily: "'Cormorant Garamond', serif", fontSize: '1.3rem', fontWeight: 400, color: 'rgba(255,255,255,0.9)' },
+          items: { fontFamily: "'Montserrat', sans-serif", fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)' },
+          note: { fontFamily: "'Cormorant Garamond', serif", fontSize: '1rem', color: 'rgba(255,255,255,0.7)' }
+        };
+      case 'contemporary':
+        return {
+          box: { background: '#fff', border: '3px solid #0D0D0D', boxShadow: '6px 6px 0 #4ECDC4' },
+          title: { fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.1rem', fontWeight: 700, textTransform: 'uppercase', color: '#0D0D0D' },
+          items: { fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.9rem', color: '#525252' },
+          note: { fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.95rem', fontWeight: 600, color: '#FF6B6B' }
+        };
+      case 'luxe':
+        return {
+          box: { background: 'rgba(201,169,98,0.05)', border: '1px solid rgba(201,169,98,0.3)' },
+          title: { fontFamily: "'Cormorant', serif", fontSize: '1.3rem', fontWeight: 300, fontStyle: 'italic', color: '#F8F6F3' },
+          items: { fontFamily: "'Outfit', sans-serif", fontSize: '0.85rem', fontWeight: 300, color: 'rgba(248,246,243,0.6)' },
+          note: { fontFamily: "'Cormorant', serif", fontSize: '1rem', fontStyle: 'italic', color: '#C9A962' }
+        };
+      case 'neon':
+        return {
+          box: { background: 'rgba(0,255,255,0.02)', border: '1px solid rgba(0,255,255,0.2)' },
+          title: { fontFamily: "'Space Grotesk', sans-serif", fontSize: '1rem', fontWeight: 600, textTransform: 'uppercase', color: '#00ffff', textShadow: '0 0 10px rgba(0,255,255,0.5)' },
+          items: { fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)' },
+          note: { fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.9rem', color: '#ff00ff', textShadow: '0 0 10px rgba(255,0,255,0.5)' }
+        };
+      default: // video
+        return {
+          box: { background: 'rgba(107,140,174,0.05)', border: '1px solid rgba(255,255,255,0.1)' },
+          title: { fontFamily: "'Manrope', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#fff' },
+          items: { fontFamily: "'Inter', sans-serif", fontSize: '0.85rem', color: '#B0B0B0' },
+          note: { fontFamily: "'Manrope', sans-serif", fontSize: '0.9rem', color: '#6B8CAE' }
+        };
+    }
+  };
+
+  const renderOnRequest = () => {
+    const styles = getOnRequestStyles();
+    return (
+      <OnRequestBox style={styles.box}>
+        <OnRequestTitle style={styles.title}>Auf Anfrage</OnRequestTitle>
+        <OnRequestItems style={styles.items}>
+          {ON_REQUEST_ITEMS.join(' · ')}
+        </OnRequestItems>
+        <OnRequestNote style={styles.note}>
+          Preislich finden wir da sicher zusammen ;)
+        </OnRequestNote>
+      </OnRequestBox>
+    );
+  };
+
   // EDITORIAL
   if (currentTheme === 'editorial') {
     return (
@@ -1263,6 +1358,7 @@ const PricingSection = () => {
               </EditorialCard>
             ))}
           </Grid>
+          {renderOnRequest()}
         </Container>
       </EditorialSection>
     );
@@ -1296,6 +1392,7 @@ const PricingSection = () => {
               </BotanicalCard>
             ))}
           </Grid>
+          {renderOnRequest()}
         </Container>
       </BotanicalSection>
     );
@@ -1329,6 +1426,7 @@ const PricingSection = () => {
               </ContemporaryCard>
             ))}
           </Grid>
+          {renderOnRequest()}
         </Container>
       </ContemporarySection>
     );
@@ -1362,6 +1460,7 @@ const PricingSection = () => {
               </LuxeCard>
             ))}
           </Grid>
+          {renderOnRequest()}
         </Container>
       </LuxeSection>
     );
@@ -1395,6 +1494,7 @@ const PricingSection = () => {
               </NeonCard>
             ))}
           </Grid>
+          {renderOnRequest()}
         </Container>
       </NeonSection>
     );
@@ -1427,6 +1527,7 @@ const PricingSection = () => {
             </VideoCard>
           ))}
         </Grid>
+        {renderOnRequest()}
       </Container>
     </VideoSection>
   );
