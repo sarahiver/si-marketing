@@ -1,1535 +1,1343 @@
 // src/components/marketing/MarketingHero.js
-import React from 'react';
+// 1:1 Theme-Designs aus si-wedding-themes
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
 // ============================================
-// MEDIA URLS
+// SHARED ANIMATIONS
 // ============================================
-const VIDEO_URL = 'https://res.cloudinary.com/si-weddings/video/upload/v1769070616/si_comming_soon_video_hero_xga2ia.mp4';
-const LUXE_BG_URL = 'https://res.cloudinary.com/si-weddings/image/upload/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
-
-// ============================================
-// ANIMATIONS
-// ============================================
-const float1 = keyframes`
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(10px, -15px) rotate(5deg); }
-  50% { transform: translate(-5px, -25px) rotate(-3deg); }
-  75% { transform: translate(-15px, -10px) rotate(2deg); }
-`;
-
-const float2 = keyframes`
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(-20px, 15px) rotate(-8deg); }
-  66% { transform: translate(15px, -10px) rotate(5deg); }
-`;
-
-const float3 = keyframes`
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(10px, 20px) scale(1.1); }
-`;
-
-const fadeInUp = keyframes`
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
 `;
 
-const scrollBounce = keyframes`
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+const fadeUp = keyframes`
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 `;
 
-const leafFloat = keyframes`
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(5deg); }
-`;
-
-const textReveal = keyframes`
-  from { 
-    opacity: 0; 
-    transform: translateY(30px);
-    filter: blur(10px);
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0);
-    filter: blur(0);
-  }
-`;
-
-const drawLine = keyframes`
-  from { width: 0; }
-  to { width: 100%; }
-`;
-
-const drawLineVertical = keyframes`
-  from { height: 0; }
-  to { height: 100%; }
-`;
-
-// Neon animations
-const glitch = keyframes`
-  0%, 100% { 
-    transform: translate(0);
-    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
-  }
-  20% { 
-    transform: translate(-2px, 2px);
-    text-shadow: 4px 0 #ff00ff, -4px 0 #00ffff;
-  }
-  40% { 
-    transform: translate(-2px, -2px);
-    text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
-  }
-  60% { 
-    transform: translate(2px, 2px);
-    text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff;
-  }
-  80% { 
-    transform: translate(2px, -2px);
-    text-shadow: 4px 0 #00ffff, -4px 0 #ff00ff;
-  }
-`;
-
-const neonWobble = keyframes`
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  25% { transform: scale(1.02) rotate(0.5deg); }
-  50% { transform: scale(0.98) rotate(-0.5deg); }
-  75% { transform: scale(1.01) rotate(0.3deg); }
-`;
-
-const geometricFloat = keyframes`
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(20px, -30px) rotate(90deg); }
-  50% { transform: translate(-10px, -50px) rotate(180deg); }
-  75% { transform: translate(-30px, -20px) rotate(270deg); }
-`;
-
-const geometricFloat2 = keyframes`
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(-40px, 20px) rotate(-120deg); }
-  66% { transform: translate(30px, -40px) rotate(120deg); }
-`;
-
-const scanlineMove = keyframes`
-  0% { top: -10%; }
-  100% { top: 110%; }
-`;
-
-const neonPulse = keyframes`
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
+const lineGrow = keyframes`
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 `;
 
 // ============================================
-// MAIN COMPONENT
+// EDITORIAL THEME - Magazine Bold mit Rot-Akzent
 // ============================================
-const MarketingHero = () => {
-  const { currentTheme } = useTheme();
+const letterReveal = keyframes`
+  0% { opacity: 0; transform: translateY(100%) rotateX(-90deg); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0); }
+`;
 
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToDesigns = () => {
-    document.getElementById('designs')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  if (currentTheme === 'luxe') return <LuxeHero scrollToContact={scrollToContact} scrollToDesigns={scrollToDesigns} />;
-  if (currentTheme === 'botanical') return <BotanicalHero scrollToContact={scrollToContact} scrollToDesigns={scrollToDesigns} />;
-  if (currentTheme === 'video') return <VideoHero scrollToContact={scrollToContact} scrollToDesigns={scrollToDesigns} />;
-  if (currentTheme === 'editorial') return <EditorialHero scrollToContact={scrollToContact} scrollToDesigns={scrollToDesigns} />;
-  if (currentTheme === 'neon') return <NeonHero scrollToContact={scrollToContact} scrollToDesigns={scrollToDesigns} />;
-  return <ContemporaryHero scrollToContact={scrollToContact} scrollToDesigns={scrollToDesigns} />;
-};
-
-// ============================================
-// EDITORIAL HERO - Mit hellgrauen Linien
-// ============================================
-const EditorialHero = ({ scrollToContact, scrollToDesigns }) => (
-  <EditorialSection>
-    {/* Hellgraue Linien im Hintergrund */}
-    <EditorialLines>
-      <HLine $top="12%" $delay="0.3s" />
-      <HLine $top="88%" $delay="0.5s" />
-      <VLine $left="8%" $delay="0.4s" />
-      <VLine $right="8%" $delay="0.6s" />
-      <VLine $left="50%" $delay="0.7s" />
-    </EditorialLines>
-    
-    <EditorialContainer>
-      <EditorialEyebrow>PREMIUM WEDDING WEBSITES</EditorialEyebrow>
-      
-      <EditorialMainTagline>
-        Individuelle Hochzeitswebsites
-      </EditorialMainTagline>
-      
-      <EditorialTagline>
-        <em>die so einzigartig sind wie eure Liebe</em>
-      </EditorialTagline>
-      
-      <EditorialDivider />
-      
-      <EditorialDate>6 einzigartige Designs</EditorialDate>
-      <EditorialLocation>SIWEDDING.DE</EditorialLocation>
-      
-      <EditorialButtonGroup>
-        <EditorialPrimaryBtn onClick={scrollToContact}>Jetzt anfragen</EditorialPrimaryBtn>
-        <EditorialSecondaryBtn onClick={scrollToDesigns}>Designs entdecken</EditorialSecondaryBtn>
-      </EditorialButtonGroup>
-    </EditorialContainer>
-
-    <EditorialScrollIndicator onClick={scrollToDesigns}>
-      <span>SCROLL</span>
-      <EditorialScrollArrow>↓</EditorialScrollArrow>
-    </EditorialScrollIndicator>
-  </EditorialSection>
-);
-
-// ============================================
-// BOTANICAL HERO - Coming Soon Design mit Text-Animation
-// ============================================
-const BotanicalHero = ({ scrollToContact, scrollToDesigns }) => (
-  <BotanicalSection>
-    {/* Floating Leaves - wie Coming Soon */}
-    <BotanicalLeaf $position="top-left" style={{fontSize: '4rem'}}>🌿</BotanicalLeaf>
-    <BotanicalLeaf $position="top-right" style={{fontSize: '3rem'}}>🍃</BotanicalLeaf>
-    <BotanicalLeaf $position="top-center" style={{fontSize: '2.5rem', top: '8%', left: '30%'}}>🌱</BotanicalLeaf>
-    <BotanicalLeaf $position="mid-right" style={{fontSize: '3.5rem', top: '25%', right: '5%'}}>🌿</BotanicalLeaf>
-    <BotanicalLeaf $position="bottom-left" style={{fontSize: '5rem'}}>🌸</BotanicalLeaf>
-    <BotanicalLeaf $position="bottom-right" style={{fontSize: '3rem'}}>🌿</BotanicalLeaf>
-    
-    <BotanicalContent>
-      <BotanicalEyebrow $delay="0s">✿ NATÜRLICH SCHÖN ✿</BotanicalEyebrow>
-      
-      <BotanicalMainTagline $delay="0.2s">
-        Wo Liebe erblüht
-      </BotanicalMainTagline>
-      
-      <BotanicalTagline $delay="0.4s">
-        Organisch schön, liebevoll gestaltet. Hochzeitswebsites,<br/>
-        die sich anfühlen wie ein Spaziergang durch einen blühenden Garten.
-      </BotanicalTagline>
-      
-      <BotanicalButtonGroup $delay="0.6s">
-        <BotanicalPrimaryBtn onClick={scrollToContact}>Jetzt Starten</BotanicalPrimaryBtn>
-        <BotanicalSecondaryBtn onClick={scrollToDesigns}>Designs Entdecken</BotanicalSecondaryBtn>
-      </BotanicalButtonGroup>
-    </BotanicalContent>
-
-    <BotanicalScrollIndicator onClick={scrollToDesigns}>
-      <BotanicalScrollDot />
-      <span>SCROLL TO EXPLORE</span>
-    </BotanicalScrollIndicator>
-  </BotanicalSection>
-);
-
-// ============================================
-// CONTEMPORARY HERO - 2-Spalten mit Gradient
-// ============================================
-const ContemporaryHero = ({ scrollToContact, scrollToDesigns }) => (
-  <ContemporaryWrapper>
-    {/* Linke Seite - Content */}
-    <ContemporaryLeft>
-      {/* Floating Shapes auf linker Seite */}
-      <ContemporaryShapesLeft>
-        <ContemporaryCircle $top="8%" $left="40%" $size="70px" $color="#FF6B6B" $delay="0s" />
-        <ContemporaryCircle $top="55%" $left="45%" $size="25px" $color="#FFE66D" $delay="0.5s" />
-        <ContemporarySquareOutline $bottom="18%" $left="50%" $size="35px" $delay="1s" />
-        <ContemporaryDiamond $bottom="25%" $left="0%" $size="40px" $color="#4ECDC4" $delay="0.3s" />
-      </ContemporaryShapesLeft>
-      
-      <ContemporaryLeftContent>
-        <ContemporaryEyebrow>WE'RE GETTING MARRIED ————</ContemporaryEyebrow>
-        
-        <ContemporaryNames>
-          <ContemporaryName1>SOPHIE</ContemporaryName1>
-          <ContemporaryNameRow>
-            <ContemporaryAmpersand>&</ContemporaryAmpersand>
-            <ContemporaryName2>MAX</ContemporaryName2>
-          </ContemporaryNameRow>
-        </ContemporaryNames>
-        
-        <ContemporaryLocation>
-          <span>📍</span> Schloss Heidelberg
-        </ContemporaryLocation>
-        
-        <ContemporaryButtonGroup>
-          <ContemporaryPrimaryBtn onClick={scrollToContact}>JETZT ZUSAGEN →</ContemporaryPrimaryBtn>
-          <ContemporarySecondaryBtn onClick={scrollToDesigns}>UNSERE STORY</ContemporarySecondaryBtn>
-        </ContemporaryButtonGroup>
-      </ContemporaryLeftContent>
-      
-      <ContemporaryScrollIndicator onClick={scrollToDesigns}>
-        <ContemporaryScrollDot />
-        <span>SCROLL TO EXPLORE</span>
-      </ContemporaryScrollIndicator>
-    </ContemporaryLeft>
-    
-    {/* Rechte Seite - Gradient */}
-    <ContemporaryRight>
-      <ContemporaryGradientOverlay />
-      <ContemporaryDateBox>15. AUGUST 2025</ContemporaryDateBox>
-      <ContemporarySquareOutline $bottom="15%" $right="15%" $size="40px" $delay="0.8s" style={{position: 'absolute'}} />
-    </ContemporaryRight>
-  </ContemporaryWrapper>
-);
-
-// ============================================
-// NEON HERO - Wabernde Schrift, bewegende Elemente
-// ============================================
-const NeonHero = ({ scrollToContact, scrollToDesigns }) => (
-  <NeonWrapper>
-    {/* Scanline von oben nach unten */}
-    <NeonScanline />
-    
-    {/* Grid Background */}
-    <NeonGrid />
-    
-    {/* Horizontale Linien */}
-    <NeonHorizontalLine $top="30%" />
-    <NeonHorizontalLine $bottom="25%" />
-    
-    {/* Neon Frame */}
-    <NeonFrame />
-    
-    {/* Bewegende geometrische Elemente */}
-    <NeonGeometricElements>
-      <NeonSquare $top="8%" $left="3%" $size="60px" $delay="0s" />
-      <NeonSquare $top="15%" $right="8%" $size="80px" $delay="0.5s" $color="#ff00ff" />
-      <NeonCircle $bottom="18%" $left="5%" $size="90px" $delay="1s" />
-      <NeonTriangle $bottom="22%" $right="12%" $delay="0.7s" />
-    </NeonGeometricElements>
-    
-    <NeonContent>
-      <NeonBadge>
-        <span>//</span> COMING SOON <span>//</span>
-      </NeonBadge>
-      
-      {/* Waberndes Logo mit Glitch */}
-      <NeonTitleWrapper>
-        <NeonTitle>S&I.</NeonTitle>
-        <NeonTitleGlitch>S&I.</NeonTitleGlitch>
-        <NeonTitleGlitch2>S&I.</NeonTitleGlitch2>
-      </NeonTitleWrapper>
-      
-      <NeonSubtitle>Individuelle Hochzeitswebsites</NeonSubtitle>
-      <NeonSubtitleSmall>die so einzigartig sind wie eure Liebe</NeonSubtitleSmall>
-      
-      <NeonDateBadge>
-        <NeonDateLine />
-        <NeonDate>01. OKTOBER 2026</NeonDate>
-        <NeonDateLine />
-      </NeonDateBadge>
-      
-      <NeonCTA onClick={scrollToContact}>
-        Let's make it epic
-        <span>→</span>
-      </NeonCTA>
-    </NeonContent>
-    
-    <NeonScrollIndicator onClick={scrollToDesigns}>
-      <span>SCROLL TO EXPLORE</span>
-      <NeonScrollArrow>↓</NeonScrollArrow>
-    </NeonScrollIndicator>
-  </NeonWrapper>
-);
-
-// ============================================
-// VIDEO HERO - Unverändert
-// ============================================
-const VideoHero = ({ scrollToContact, scrollToDesigns }) => (
-  <VideoSection>
-    <VideoBackground>
-      <video autoPlay muted loop playsInline>
-        <source src={VIDEO_URL} type="video/mp4" />
-      </video>
-      <VideoOverlay />
-    </VideoBackground>
-
-    <VideoContent>
-      <VideoEyebrow>PREMIUM WEDDING WEBSITES</VideoEyebrow>
-      <VideoMainTagline>Individuelle Hochzeitswebsites</VideoMainTagline>
-      <VideoTagline><em>die so einzigartig sind wie eure Liebe</em></VideoTagline>
-      
-      <VideoButtonGroup>
-        <VideoPrimaryBtn onClick={scrollToContact}>Jetzt anfragen</VideoPrimaryBtn>
-        <VideoSecondaryBtn onClick={scrollToDesigns}>Designs entdecken</VideoSecondaryBtn>
-      </VideoButtonGroup>
-    </VideoContent>
-
-    <VideoScrollIndicator onClick={scrollToDesigns}>
-      <span>ENTDECKEN</span>
-      <VideoScrollArrow>∨</VideoScrollArrow>
-    </VideoScrollIndicator>
-  </VideoSection>
-);
-
-// ============================================
-// LUXE HERO - Unverändert
-// ============================================
-const LuxeHero = ({ scrollToContact, scrollToDesigns }) => (
-  <LuxeSection>
-    <LuxeBgImage style={{ backgroundImage: `url(${LUXE_BG_URL})` }} />
-    <LuxeOverlay />
-    
-    <LuxeContent>
-      <LuxeEyebrow>PREMIUM WEDDING WEBSITES</LuxeEyebrow>
-      <LuxeMainTagline>Individuelle Hochzeitswebsites</LuxeMainTagline>
-      <LuxeTagline>die so einzigartig sind wie eure Liebe</LuxeTagline>
-      
-      <LuxeButtonGroup>
-        <LuxePrimaryBtn onClick={scrollToContact}>Jetzt anfragen</LuxePrimaryBtn>
-        <LuxeSecondaryBtn onClick={scrollToDesigns}>Designs entdecken</LuxeSecondaryBtn>
-      </LuxeButtonGroup>
-    </LuxeContent>
-
-    <LuxeScrollIndicator onClick={scrollToDesigns}>
-      <span>ENTDECKEN</span>
-      <LuxeScrollArrow>↓</LuxeScrollArrow>
-    </LuxeScrollIndicator>
-  </LuxeSection>
-);
-
-export default MarketingHero;
-
-// ============================================
-// EDITORIAL STYLES
-// ============================================
 const EditorialSection = styled.section`
+  position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  flex-direction: column;
+  justify-content: flex-end;
   overflow: hidden;
-  padding: 100px 5% 60px;
-  background: #FFFFFF;
+  background: #0A0A0A;
 `;
 
-const EditorialLines = styled.div`
+const EditorialBg = styled.div`
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  z-index: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.7) 100%);
+  }
 `;
 
-const HLine = styled.div`
-  position: absolute;
-  left: 0;
-  height: 1px;
-  background: #E8E8E8;
-  animation: ${drawLine} 2s ease forwards;
-  animation-delay: ${p => p.$delay || '0s'};
-  width: 0;
-  top: ${p => p.$top || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
-`;
-
-const VLine = styled.div`
-  position: absolute;
-  top: 0;
-  width: 1px;
-  background: #E8E8E8;
-  animation: ${drawLineVertical} 2s ease forwards;
-  animation-delay: ${p => p.$delay || '0s'};
-  height: 0;
-  left: ${p => p.$left || 'auto'};
-  right: ${p => p.$right || 'auto'};
-`;
-
-const EditorialContainer = styled.div`
-  text-align: center;
+const EditorialContent = styled.div`
   position: relative;
-  z-index: 1;
-  animation: ${fadeInUp} 1s ease-out;
-`;
-
-const EditorialEyebrow = styled.div`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  color: #999;
-  margin-bottom: 80px;
-`;
-
-const EditorialMainTagline = styled.h1`
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 400;
-  font-style: italic;
-  color: #1A1A1A;
-  line-height: 1.1;
-  margin-bottom: 20px;
+  z-index: 10;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 8vh, 6rem);
+  max-width: 1400px;
 `;
 
 const EditorialTagline = styled.p`
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  font-weight: 400;
-  color: #666;
-  line-height: 1.8;
-  margin-bottom: 40px;
-  
-  em {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
-    color: #1A1A1A;
-  }
-`;
-
-const EditorialDivider = styled.div`
-  width: 40px;
-  height: 1px;
-  background: #1A1A1A;
-  margin: 0 auto 25px;
-`;
-
-const EditorialDate = styled.div`
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-style: italic;
-  color: #1A1A1A;
-  margin-bottom: 8px;
-`;
-
-const EditorialLocation = styled.div`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   font-weight: 500;
-  letter-spacing: 0.25em;
-  color: #999;
-  margin-bottom: 60px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: ${fadeUp} 0.8s ease forwards 0.8s;
 `;
 
-const EditorialButtonGroup = styled.div`
+const EditorialHeadline = styled.h1`
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-size: clamp(3rem, 12vw, 10rem);
+  font-weight: 700;
+  line-height: 0.9;
+  color: #FAFAFA;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
   display: flex;
-  gap: 20px;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 0.2em;
+`;
+
+const EditorialWord = styled.span`
+  display: inline-flex;
+  overflow: hidden;
+  perspective: 1000px;
+`;
+
+const EditorialLetter = styled.span`
+  display: inline-block;
+  opacity: 0;
+  transform-origin: bottom center;
+  animation: ${letterReveal} 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: ${p => p.$delay}s;
+  color: ${p => p.$accent ? '#C41E3A' : 'inherit'};
+`;
+
+const EditorialAmpersand = styled.span`
+  display: inline-block;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-size: 0.7em;
+  color: #C41E3A;
+  margin: 0 0.15em;
+  opacity: 0;
+  animation: ${fadeIn} 0.6s ease forwards 1.2s;
+`;
+
+const EditorialDateLine = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  opacity: 0;
+  animation: ${fadeUp} 0.8s ease forwards 1.8s;
+`;
+
+const EditorialLine = styled.div`
+  width: 60px;
+  height: 2px;
+  background: #C41E3A;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: ${lineGrow} 0.6s ease forwards 2s;
+`;
+
+const EditorialDateText = styled.p`
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-style: italic;
+  color: #FAFAFA;
+`;
+
+const EditorialCTA = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  opacity: 0;
+  animation: ${fadeUp} 0.8s ease forwards 2.2s;
   flex-wrap: wrap;
 `;
 
-const EditorialPrimaryBtn = styled.button`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
+const EditorialButton = styled.a`
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 18px 40px;
-  background: #1A1A1A;
-  color: #FFFFFF;
-  border: none;
+  padding: 1rem 2rem;
   cursor: pointer;
   transition: all 0.3s ease;
   
-  &:hover { background: #333; }
+  ${p => p.$primary ? css`
+    background: #C41E3A;
+    color: #FAFAFA;
+    border: none;
+    &:hover { background: #a01830; }
+  ` : css`
+    background: transparent;
+    color: #FAFAFA;
+    border: 1px solid rgba(255,255,255,0.3);
+    &:hover { border-color: #C41E3A; color: #C41E3A; }
+  `}
 `;
 
-const EditorialSecondaryBtn = styled.button`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 18px 40px;
-  background: transparent;
-  color: #1A1A1A;
-  border: 1px solid #1A1A1A;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover { background: #1A1A1A; color: #FFFFFF; }
+// ============================================
+// BOTANICAL THEME - Dark Glassmorphism
+// ============================================
+const glassReveal = keyframes`
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 `;
 
-const EditorialScrollIndicator = styled.button`
+const botanicalFloat1 = keyframes`
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  25% { transform: translateY(-15px) translateX(5px) rotate(3deg); }
+  50% { transform: translateY(-8px) translateX(-3px) rotate(-2deg); }
+  75% { transform: translateY(-20px) translateX(8px) rotate(5deg); }
+`;
+
+const botanicalFloat2 = keyframes`
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(-5deg); }
+`;
+
+const BotanicalSection = styled.section`
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7rem 2rem 4rem;
+  overflow: hidden;
+  background: #040604;
+`;
+
+const BotanicalBgGradient = styled.div`
   position: absolute;
-  bottom: 40px;
+  inset: 0;
+  background: linear-gradient(160deg, #030503 0%, #081208 40%, #050805 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(45, 90, 60, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(45, 90, 60, 0.1) 0%, transparent 50%);
+  }
+`;
+
+const FloatingPlant = styled.div`
+  position: absolute;
+  font-size: ${p => p.$size || '40px'};
+  opacity: ${p => p.$opacity || 0.4};
+  top: ${p => p.$top || 'auto'};
+  left: ${p => p.$left || 'auto'};
+  right: ${p => p.$right || 'auto'};
+  bottom: ${p => p.$bottom || 'auto'};
+  animation: ${p => p.$anim === 2 ? botanicalFloat2 : botanicalFloat1} ${p => p.$duration || '10s'} ease-in-out infinite;
+  animation-delay: ${p => p.$delay || '0s'};
+  z-index: 1;
+`;
+
+const GlassCard = styled.div`
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 32px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05) inset, 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.25);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 5rem);
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  animation: ${glassReveal} 1.2s ease forwards 0.3s;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 30%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.25) 70%, transparent 100%);
+  }
+`;
+
+const BotanicalEyebrow = styled.span`
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: ${fadeIn} 0.8s ease forwards 0.8s;
+`;
+
+const BotanicalNames = styled.h1`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: ${fadeIn} 0.8s ease forwards 1s;
+`;
+
+const BotanicalAmpersand = styled.span`
+  display: block;
+  font-size: 0.35em;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0.4em 0;
+`;
+
+const BotanicalDate = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: ${fadeIn} 0.8s ease forwards 1.2s;
+`;
+
+const BotanicalLocation = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 0.5rem;
+  opacity: 0;
+  animation: ${fadeIn} 0.8s ease forwards 1.4s;
+`;
+
+const BotanicalButton = styled.a`
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  opacity: 0;
+  animation: ${fadeIn} 0.8s ease forwards 1.6s;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+  }
+`;
+
+// ============================================
+// CONTEMPORARY THEME - Neobrutalism
+// ============================================
+const floatAnim = keyframes`
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10px, -15px) rotate(5deg); }
+`;
+
+const spinAnim = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+const bounceAnim = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+`;
+
+const expandAnim = keyframes`
+  from { width: 0; }
+  to { width: 60px; }
+`;
+
+const ContemporarySection = styled.section`
+  min-height: 100vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  background: #FAFAFA;
+`;
+
+const ContemporaryLeft = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 5rem);
+  position: relative;
+  z-index: 2;
+  
+  @media (max-width: 968px) {
+    min-height: 100vh;
+    padding: 6rem 2rem 4rem;
+  }
+`;
+
+const ContemporaryRight = styled.div`
+  flex: 1;
+  position: relative;
+  background: linear-gradient(135deg, #FF6B6B 0%, #9B5DE5 50%, #4ECDC4 100%);
+  
+  @media (max-width: 968px) {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+  }
+`;
+
+const FloatingCircle = styled.div`
+  position: absolute;
+  width: ${p => p.$size || '80px'};
+  height: ${p => p.$size || '80px'};
+  background: ${p => p.$color || '#FF6B6B'};
+  border: 3px solid #0D0D0D;
+  border-radius: 50%;
+  animation: ${floatAnim} ${p => p.$duration || '8s'} ease-in-out infinite;
+  animation-delay: ${p => p.$delay || '0s'};
+  z-index: 0;
+`;
+
+const FloatingSquare = styled.div`
+  position: absolute;
+  width: ${p => p.$size || '60px'};
+  height: ${p => p.$size || '60px'};
+  background: ${p => p.$color || '#FFE66D'};
+  border: 3px solid #0D0D0D;
+  animation: ${floatAnim} ${p => p.$duration || '10s'} ease-in-out infinite;
+  animation-delay: ${p => p.$delay || '0s'};
+  z-index: 0;
+`;
+
+const SpinningRing = styled.div`
+  position: absolute;
+  width: ${p => p.$size || '100px'};
+  height: ${p => p.$size || '100px'};
+  border: 4px solid ${p => p.$color || '#4ECDC4'};
+  border-radius: 50%;
+  animation: ${spinAnim} ${p => p.$duration || '20s'} linear infinite;
+  z-index: 0;
+  @media (max-width: 768px) { display: none; }
+`;
+
+const ContemporaryEyebrow = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #FF6B6B;
+  margin-bottom: 1rem;
+  opacity: ${p => p.$visible ? 1 : 0};
+  transform: translateY(${p => p.$visible ? 0 : '20px'});
+  transition: all 0.6s ease;
+  
+  &::after {
+    content: '';
+    height: 3px;
+    background: #FF6B6B;
+    animation: ${p => p.$visible ? expandAnim : 'none'} 0.8s ease forwards 0.3s;
+  }
+`;
+
+const ContemporaryName = styled.h1`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  color: ${p => p.$first ? '#FF6B6B' : '#0D0D0D'};
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  opacity: ${p => p.$visible ? 1 : 0};
+  animation: ${p => p.$visible ? fadeUp : 'none'} 0.7s ease forwards;
+  animation-delay: ${p => p.$delay || '0s'};
+`;
+
+const ContemporaryAmpersand = styled.span`
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  color: #A3A3A3;
+  margin: 0 0.5rem;
+  opacity: ${p => p.$visible ? 1 : 0};
+  transition: opacity 0.5s ease 0.3s;
+`;
+
+const ContemporaryBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+  background: ${p => p.$color || '#FFE66D'};
+  color: #0D0D0D;
+  border: 3px solid #0D0D0D;
+  box-shadow: 6px 6px 0 #0D0D0D;
+  opacity: ${p => p.$visible ? 1 : 0};
+  transform: translateY(${p => p.$visible ? 0 : '20px'});
+  transition: all 0.5s ease;
+  transition-delay: ${p => p.$delay || '0s'};
+  
+  &:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 #0D0D0D;
+  }
+`;
+
+const ContemporaryButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border: 3px solid #0D0D0D;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  ${p => p.$primary ? css`
+    color: #FAFAFA;
+    background: #FF6B6B;
+    box-shadow: 6px 6px 0 #0D0D0D;
+    &:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 #0D0D0D; }
+  ` : css`
+    color: #0D0D0D;
+    background: #FAFAFA;
+    box-shadow: 4px 4px 0 #0D0D0D;
+    &:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 #0D0D0D; background: #4ECDC4; }
+  `}
+`;
+
+const ContemporaryScroll = styled.div`
+  position: absolute;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  cursor: pointer;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #737373;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: ${bounceAnim} 2s ease-in-out infinite;
   z-index: 10;
-  
-  span {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    color: #999;
-  }
-`;
-
-const EditorialScrollArrow = styled.span`
-  font-size: 1rem;
-  color: #999;
-  animation: ${scrollBounce} 1.5s ease-in-out infinite;
+  @media (max-width: 968px) { display: none; }
 `;
 
 // ============================================
-// BOTANICAL STYLES
+// LUXE THEME - Cinematic Dark Luxury
 // ============================================
-const BotanicalSection = styled.section`
+const revealText = keyframes`
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+`;
+
+const expandLine = keyframes`
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+`;
+
+const luxeFloatAnim = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+`;
+
+const LuxeSection = styled.section`
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow: hidden;
-  padding: 100px 5% 60px;
-  background: linear-gradient(180deg, #FAF9F6 0%, #F0EDE5 100%);
+  background: #0A0A0A;
 `;
 
-const BotanicalLeaf = styled.div`
-  position: absolute;
-  opacity: 0.25;
-  animation: ${leafFloat} 5s ease-in-out infinite;
-  z-index: 0;
-  
-  ${p => p.$position === 'top-left' && css`top: 8%; left: 3%; animation-delay: 0s;`}
-  ${p => p.$position === 'top-right' && css`top: 12%; right: 10%; animation-delay: 1s;`}
-  ${p => p.$position === 'bottom-left' && css`bottom: 15%; left: 8%; animation-delay: 0.5s;`}
-  ${p => p.$position === 'bottom-right' && css`bottom: 20%; right: 5%; animation-delay: 1.5s;`}
-`;
-
-const BotanicalContent = styled.div`
-  text-align: center;
-  position: relative;
-  z-index: 2;
-`;
-
-const BotanicalEyebrow = styled.div`
-  font-family: 'Lato', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.4em;
-  color: #7A9972;
-  margin-bottom: 25px;
-  animation: ${textReveal} 0.8s ease forwards;
-  animation-delay: ${p => p.$delay || '0s'};
-  opacity: 0;
-`;
-
-const BotanicalMainTagline = styled.h1`
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  font-weight: 400;
-  color: #2C3E2D;
-  line-height: 1.2;
-  margin-bottom: 25px;
-  animation: ${textReveal} 0.8s ease forwards;
-  animation-delay: ${p => p.$delay || '0s'};
-  opacity: 0;
-`;
-
-const BotanicalTagline = styled.p`
-  font-family: 'Lato', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  font-weight: 300;
-  color: #6B7B6C;
-  line-height: 1.9;
-  margin-bottom: 50px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: ${textReveal} 0.8s ease forwards;
-  animation-delay: ${p => p.$delay || '0s'};
-  opacity: 0;
-`;
-
-const BotanicalButtonGroup = styled.div`
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  animation: ${textReveal} 0.8s ease forwards;
-  animation-delay: ${p => p.$delay || '0s'};
-  opacity: 0;
-`;
-
-const BotanicalPrimaryBtn = styled.button`
-  font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 18px 45px;
-  background: #7A9972;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 35px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover { background: #5A7952; transform: translateY(-2px); }
-`;
-
-const BotanicalSecondaryBtn = styled.button`
-  font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 18px 45px;
-  background: transparent;
-  color: #2C3E2D;
-  border: 1.5px solid #2C3E2D;
-  border-radius: 35px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover { background: #2C3E2D; color: #FFFFFF; }
-`;
-
-const BotanicalScrollIndicator = styled.button`
-  position: absolute;
-  bottom: 40px;
-  left: 50px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  
-  span {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    color: #7A9972;
-  }
-`;
-
-const BotanicalScrollDot = styled.div`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #7A9972;
-  animation: ${scrollBounce} 1.5s ease-in-out infinite;
-`;
-
-// ============================================
-// CONTEMPORARY STYLES
-// ============================================
-const ContemporaryWrapper = styled.section`
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const ContemporaryLeft = styled.div`
-  position: relative;
-  background: #FAFAFA;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 100px 5% 60px 8%;
-`;
-
-const ContemporaryShapesLeft = styled.div`
+const LuxeBgMedia = styled.div`
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  z-index: 0;
-`;
-
-const ContemporaryCircle = styled.div`
-  position: absolute;
-  width: ${p => p.$size || '60px'};
-  height: ${p => p.$size || '60px'};
-  border-radius: 50%;
-  background: ${p => p.$color || '#FF6B6B'};
-  top: ${p => p.$top || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
-  left: ${p => p.$left || 'auto'};
-  right: ${p => p.$right || 'auto'};
-  animation: ${float1} 8s ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-`;
-
-const ContemporarySquareOutline = styled.div`
-  position: absolute;
-  width: ${p => p.$size || '35px'};
-  height: ${p => p.$size || '35px'};
-  border: 2px solid #1A1A1A;
-  background: transparent;
-  top: ${p => p.$top || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
-  left: ${p => p.$left || 'auto'};
-  right: ${p => p.$right || 'auto'};
-  animation: ${float3} 7s ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-`;
-
-const ContemporaryDiamond = styled.div`
-  position: absolute;
-  width: ${p => p.$size || '40px'};
-  height: ${p => p.$size || '40px'};
-  background: ${p => p.$color || '#4ECDC4'};
-  transform: rotate(45deg);
-  top: ${p => p.$top || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
-  left: ${p => p.$left || 'auto'};
-  right: ${p => p.$right || 'auto'};
-  animation: ${float2} 9s ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-`;
-
-const ContemporaryLeftContent = styled.div`
-  position: relative;
   z-index: 1;
-  animation: ${fadeInUp} 1s ease;
-`;
-
-const ContemporaryEyebrow = styled.div`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  color: #999;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
   
   &::after {
     content: '';
-    width: 50px;
-    height: 1px;
-    background: #999;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.5) 50%, rgba(10, 10, 10, 0.8) 100%);
   }
 `;
 
-const ContemporaryNames = styled.div`
-  margin-bottom: 30px;
+const LuxeBgImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1A1A1D 0%, #0A0A0A 100%);
+  background-size: cover;
+  background-position: center;
+  opacity: ${p => p.$loaded ? 1 : 0};
+  transform: scale(${p => p.$loaded ? 1 : 1.2});
+  transition: opacity 1.5s ease, transform 8s ease-out;
 `;
 
-const ContemporaryName1 = styled.h1`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 6rem);
-  font-weight: 700;
-  color: #FF6B6B;
-  line-height: 1;
-  letter-spacing: -0.02em;
+const LuxeContent = styled.div`
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 5%;
+  max-width: 1000px;
 `;
 
-const ContemporaryNameRow = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
+const LuxeEyebrow = styled.div`
+  overflow: hidden;
+  margin-bottom: 2rem;
 `;
 
-const ContemporaryAmpersand = styled.span`
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+const LuxeEyebrowText = styled.span`
+  display: inline-block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #C9A962;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: ${p => p.$visible ? css`${fadeUp} 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none'};
+  animation-delay: 0.5s;
+`;
+
+const LuxeNameLine = styled.div`
+  overflow: hidden;
+`;
+
+const LuxeName = styled.h1`
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: 300;
   font-style: italic;
-  color: #CCC;
-  line-height: 1.2;
+  color: #F8F6F3;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  transform: translateY(110%);
+  animation: ${p => p.$visible ? css`${revealText} 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none'};
+  animation-delay: ${p => p.$delay || '0s'};
 `;
 
-const ContemporaryName2 = styled.h1`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 6rem);
-  font-weight: 700;
-  color: #1A1A1A;
-  line-height: 1;
-  letter-spacing: -0.02em;
+const LuxeAmpersand = styled.div`
+  overflow: hidden;
+  margin: 1rem 0;
 `;
 
-const ContemporaryLocation = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 25px;
-  background: #FFE66D;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #1A1A1A;
-  margin-bottom: 35px;
+const LuxeAmpersandText = styled.span`
+  display: inline-block;
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-style: italic;
+  color: #C9A962;
+  transform: translateY(110%);
+  animation: ${p => p.$visible ? css`${revealText} 1s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none'};
+  animation-delay: 0.9s;
 `;
 
-const ContemporaryButtonGroup = styled.div`
+const LuxeDivider = styled.div`
+  width: 80px;
+  height: 1px;
+  background: #C9A962;
+  margin: 2.5rem auto;
+  transform-origin: center;
+  transform: scaleX(0);
+  animation: ${p => p.$visible ? css`${expandLine} 1s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none'};
+  animation-delay: 1.3s;
+`;
+
+const LuxeInfo = styled.div`
+  opacity: 0;
+  animation: ${p => p.$visible ? css`${fadeIn} 1s ease forwards` : 'none'};
+  animation-delay: 1.5s;
+`;
+
+const LuxeDateText = styled.p`
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-style: italic;
+  color: #F8F6F3;
+  margin-bottom: 0.5rem;
+`;
+
+const LuxeLocationText = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #E8E6E1;
+`;
+
+const LuxeScroll = styled.div`
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  gap: 12px;
-`;
-
-const ContemporaryPrimaryBtn = styled.button`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 16px 32px;
-  background: #FF6B6B;
-  color: #FFFFFF;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: fit-content;
-  
-  &:hover { background: #E85555; transform: translateY(-2px); }
-`;
-
-const ContemporarySecondaryBtn = styled.button`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 16px 32px;
-  background: transparent;
-  color: #1A1A1A;
-  border: 2px solid #1A1A1A;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: fit-content;
-  
-  &:hover { background: #1A1A1A; color: #FFFFFF; }
-`;
-
-const ContemporaryScrollIndicator = styled.button`
-  position: absolute;
-  bottom: 40px;
-  left: 8%;
-  display: flex;
   align-items: center;
-  gap: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
+  gap: 1rem;
+  opacity: 0;
+  animation: ${p => p.$visible ? css`${fadeIn} 1s ease forwards` : 'none'};
+  animation-delay: 2s;
   z-index: 10;
-  
-  span {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: #666;
-  }
 `;
 
-const ContemporaryScrollDot = styled.div`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #FF6B6B;
-  animation: ${scrollBounce} 1.5s ease-in-out infinite;
+const LuxeScrollText = styled.span`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #E8E6E1;
+  animation: ${luxeFloatAnim} 3s ease-in-out infinite;
 `;
 
-const ContemporaryRight = styled.div`
-  position: relative;
-  background: linear-gradient(160deg, #FF6B6B 0%, #4ECDC4 50%, #FFE66D 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  
-  @media (max-width: 900px) {
-    min-height: 300px;
-  }
-`;
-
-const ContemporaryGradientOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: 
-    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px),
-    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px);
-`;
-
-const ContemporaryDateBox = styled.div`
-  position: absolute;
-  left: -5%;
-  padding: 20px 50px;
-  background: #1A1A1A;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #FFFFFF;
-  z-index: 2;
+const LuxeScrollLine = styled.div`
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, #C9A962, transparent);
 `;
 
 // ============================================
-// NEON STYLES
+// NEON THEME - Cyberpunk Glow
 // ============================================
-const NeonWrapper = styled.section`
-  position: relative;
+const glitchAnim = keyframes`
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-3px, 3px); }
+  40% { transform: translate(-3px, -3px); }
+  60% { transform: translate(3px, 3px); }
+  80% { transform: translate(3px, -3px); }
+`;
+
+const neonFlicker = keyframes`
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.7; }
+  94% { opacity: 1; }
+  97% { opacity: 0.9; }
+`;
+
+const scanlineAnim = keyframes`
+  0% { top: -100%; }
+  100% { top: 100%; }
+`;
+
+const pulseGlow = keyframes`
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+`;
+
+const neonFloatAnim = keyframes`
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+`;
+
+const NeonSection = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0a0a0f;
+  position: relative;
   overflow: hidden;
-`;
-
-const NeonScanline = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.5), transparent);
-  animation: ${scanlineMove} 4s linear infinite;
-  z-index: 5;
-  pointer-events: none;
+  background: #0a0a0f;
 `;
 
 const NeonGrid = styled.div`
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
   background-size: 50px 50px;
-  z-index: 0;
+  transform: perspective(500px) rotateX(60deg);
+  transform-origin: center top;
+  opacity: ${p => p.$visible ? 1 : 0};
+  transition: opacity 1s ease;
 `;
 
-const NeonHorizontalLine = styled.div`
+const GlowOrb = styled.div`
   position: absolute;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #00ffff, transparent);
-  opacity: 0.5;
-  top: ${p => p.$top || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
-  z-index: 1;
-`;
-
-const NeonFrame = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-  max-width: 800px;
-  height: 60%;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  z-index: 1;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: ${pulseGlow} 4s ease-in-out infinite;
   
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    border-color: #00ffff;
-    border-style: solid;
+  &:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    background: rgba(0,255,255,0.3);
+    top: -100px;
+    left: -100px;
   }
   
-  &::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-  &::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+  &:nth-child(3) {
+    width: 300px;
+    height: 300px;
+    background: rgba(255,0,255,0.3);
+    bottom: -50px;
+    right: -50px;
+    animation-delay: 2s;
+  }
 `;
 
-const NeonGeometricElements = styled.div`
+const Scanline = styled.div`
   position: absolute;
-  inset: 0;
-  z-index: 1;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,255,0.3), transparent);
+  animation: ${scanlineAnim} 6s linear infinite;
   pointer-events: none;
 `;
 
-const NeonSquare = styled.div`
+const NeonFloatingShape = styled.div`
   position: absolute;
-  width: ${p => p.$size || '60px'};
-  height: ${p => p.$size || '60px'};
-  border: 2px solid ${p => p.$color || '#00ffff'};
-  opacity: 0.4;
-  animation: ${geometricFloat} 20s ease-in-out infinite, ${neonPulse} 3s ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-  top: ${p => p.$top || 'auto'};
-  left: ${p => p.$left || 'auto'};
-  right: ${p => p.$right || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
+  border: 1px solid rgba(0,255,255,0.3);
+  animation: ${neonFloatAnim} ${p => 6 + (p.$delay || 0)}s ease-in-out infinite;
+  animation-delay: ${p => p.$delay || 0}s;
   
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 5px;
-    border: 1px solid rgba(255, 0, 255, 0.4);
-  }
+  ${p => p.$shape === 'square' && css`width: 60px; height: 60px;`}
+  ${p => p.$shape === 'circle' && css`width: 40px; height: 40px; border-radius: 50%;`}
+  ${p => p.$shape === 'diamond' && css`width: 50px; height: 50px; transform: rotate(45deg);`}
 `;
 
-const NeonCircle = styled.div`
+const CornerDecor = styled.div`
   position: absolute;
-  width: ${p => p.$size || '80px'};
-  height: ${p => p.$size || '80px'};
-  border: 2px solid #ff00ff;
-  border-radius: 50%;
-  opacity: 0.4;
-  animation: ${geometricFloat2} 25s ease-in-out infinite, ${neonPulse} 4s ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-  top: ${p => p.$top || 'auto'};
-  left: ${p => p.$left || 'auto'};
-  right: ${p => p.$right || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
-`;
-
-const NeonTriangle = styled.div`
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-left: 35px solid transparent;
-  border-right: 35px solid transparent;
-  border-bottom: 60px solid rgba(0, 255, 136, 0.3);
-  opacity: 0.5;
-  animation: ${geometricFloat} 18s ease-in-out infinite reverse, ${neonPulse} 3.5s ease-in-out infinite;
-  animation-delay: ${p => p.$delay || '0s'};
-  top: ${p => p.$top || 'auto'};
-  left: ${p => p.$left || 'auto'};
-  right: ${p => p.$right || 'auto'};
-  bottom: ${p => p.$bottom || 'auto'};
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(0,255,255,0.2);
+  
+  &:nth-child(5) { top: 30px; left: 30px; border-right: none; border-bottom: none; }
+  &:nth-child(6) { top: 30px; right: 30px; border-left: none; border-bottom: none; }
+  &:nth-child(7) { bottom: 30px; left: 30px; border-right: none; border-top: none; }
+  &:nth-child(8) { bottom: 30px; right: 30px; border-left: none; border-top: none; }
 `;
 
 const NeonContent = styled.div`
   position: relative;
-  z-index: 10;
+  z-index: 2;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 5%;
 `;
 
-const NeonBadge = styled.div`
+const NeonEyebrow = styled.div`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.4em;
+  text-transform: uppercase;
   color: #00ffff;
+  text-shadow: 0 0 10px rgba(0,255,255,0.5);
   margin-bottom: 30px;
-  animation: ${fadeIn} 1s ease;
+  opacity: ${p => p.$visible ? 1 : 0};
+  transform: translateY(${p => p.$visible ? 0 : '30px'});
+  transition: all 0.8s ease;
   
-  span { color: #ff00ff; }
+  &::before, &::after {
+    content: '//';
+    margin: 0 15px;
+    color: #ff00ff;
+  }
 `;
 
-const NeonTitleWrapper = styled.div`
+const NeonNames = styled.h1`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: 700;
+  line-height: 0.9;
+  color: #fff;
+  text-transform: uppercase;
   position: relative;
-  display: inline-block;
   margin-bottom: 30px;
-  animation: ${neonWobble} 4s ease-in-out infinite;
+  opacity: ${p => p.$visible ? 1 : 0};
+  transform: translateY(${p => p.$visible ? 0 : '50px'});
+  transition: all 1s ease 0.2s;
+  
+  &::before, &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+  
+  &::before {
+    color: #00ffff;
+    z-index: -1;
+    animation: ${glitchAnim} 3s ease-in-out infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  }
+  
+  &::after {
+    color: #ff00ff;
+    z-index: -2;
+    animation: ${glitchAnim} 3s ease-in-out infinite reverse;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  }
 `;
 
-const NeonTitle = styled.h1`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(4rem, 15vw, 10rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #FFFFFF;
-  line-height: 1;
-  position: relative;
-  animation: ${fadeInUp} 1s ease;
-`;
-
-const NeonTitleGlitch = styled.span`
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(4rem, 15vw, 10rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #00ffff;
-  line-height: 1;
-  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-  animation: ${glitch} 3s infinite;
-  opacity: 0.8;
-`;
-
-const NeonTitleGlitch2 = styled.span`
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(4rem, 15vw, 10rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #ff00ff;
-  line-height: 1;
-  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-  animation: ${glitch} 3s infinite reverse;
-  animation-delay: 0.1s;
-  opacity: 0.8;
-`;
-
-const NeonSubtitle = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  color: #FFFFFF;
-  margin-bottom: 8px;
-  animation: ${fadeInUp} 1s ease 0.2s both;
-`;
-
-const NeonSubtitleSmall = styled.p`
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
+const NeonAmpersand = styled.span`
+  display: block;
+  font-size: 0.4em;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 40px;
-  animation: ${fadeInUp} 1s ease 0.3s both;
+  font-style: italic;
+  color: #ff00ff;
+  text-shadow: 0 0 20px rgba(255,0,255,0.5);
+  animation: ${neonFlicker} 4s ease-in-out infinite;
+  margin: 20px 0;
 `;
 
-const NeonDateBadge = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 50px;
-  animation: ${fadeInUp} 1s ease 0.4s both;
-`;
-
-const NeonDateLine = styled.div`
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #00ffff, transparent);
-`;
-
-const NeonDate = styled.span`
+const NeonDate = styled.div`
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
+  font-size: 1.5rem;
+  font-weight: 600;
   color: #00ffff;
+  text-shadow: 0 0 15px rgba(0,255,255,0.5);
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+  opacity: ${p => p.$visible ? 1 : 0};
+  transform: translateY(${p => p.$visible ? 0 : '30px'});
+  transition: all 0.8s ease 0.4s;
 `;
 
-const NeonCTA = styled.button`
+const NeonLocation = styled.div`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1em;
+  margin-bottom: 50px;
+  opacity: ${p => p.$visible ? 1 : 0};
+  transform: translateY(${p => p.$visible ? 0 : '30px'});
+  transition: all 0.8s ease 0.5s;
+`;
+
+const NeonButton = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 40px;
-  background: transparent;
-  border: 2px solid #00ffff;
-  color: #00ffff;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  color: #00ff88;
+  border: 1px solid rgba(0,255,136,0.3);
+  padding: 15px 30px;
   cursor: pointer;
+  opacity: ${p => p.$visible ? 1 : 0};
   transition: all 0.3s ease;
-  animation: ${fadeInUp} 1s ease 0.5s both;
   
-  span { transition: transform 0.3s ease; }
+  &::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 10px #00ff88;
+    animation: ${pulseGlow} 2s ease-in-out infinite;
+  }
   
   &:hover {
-    background: rgba(0, 255, 255, 0.1);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1);
-    
-    span { transform: translateX(5px); }
+    background: rgba(0,255,136,0.1);
+    box-shadow: 0 0 20px rgba(0,255,136,0.3);
   }
-`;
-
-const NeonScrollIndicator = styled.button`
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  
-  span {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    color: rgba(255, 255, 255, 0.4);
-  }
-`;
-
-const NeonScrollArrow = styled.span`
-  font-size: 1.2rem;
-  color: #00ffff;
-  animation: ${scrollBounce} 1.5s ease-in-out infinite;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 `;
 
 // ============================================
-// VIDEO STYLES (unverändert)
+// VIDEO THEME - Horizontal Cinematic S/W
 // ============================================
 const VideoSection = styled.section`
-  min-height: 100vh;
   position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: #0A0A0A;
 `;
 
-const VideoBackground = styled.div`
+const VideoBg = styled.div`
   position: absolute;
   inset: 0;
-  z-index: 1;
+  background: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
   
-  video { width: 100%; height: 100%; object-fit: cover; }
-`;
-
-const VideoOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.5) 100%);
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(107, 140, 174, 0.1) 0%, transparent 70%);
+  }
 `;
 
 const VideoContent = styled.div`
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 0 20px;
-  animation: ${fadeIn} 1.5s ease;
+  max-width: 800px;
+  padding: 0 5%;
 `;
 
-const VideoEyebrow = styled.div`
-  font-family: 'Montserrat', sans-serif;
+const VideoEyebrow = styled.p`
+  font-family: 'Inter', sans-serif;
   font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.4em;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 40px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6B8CAE;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: ${p => p.$visible ? css`${fadeUp} 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards` : 'none'};
+  animation-delay: 0.3s;
 `;
 
-const VideoMainTagline = styled.h1`
+const VideoNames = styled.h1`
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(3rem, 12vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  line-height: 0.95;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: ${p => p.$visible ? css`${fadeIn} 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards` : 'none'};
+  animation-delay: ${p => p.$delay || '0.5s'};
+`;
+
+const VideoAmpersand = styled.span`
+  display: block;
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 300;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-style: italic;
+  font-weight: 400;
+  color: #6B8CAE;
+  margin: 1rem 0;
+  opacity: 0;
+  animation: ${p => p.$visible ? css`${fadeIn} 0.8s ease forwards` : 'none'};
+  animation-delay: 0.7s;
+`;
+
+const VideoDivider = styled.div`
+  width: 80px;
+  height: 1px;
+  background: #6B8CAE;
+  margin: 2rem auto;
+  transform-origin: center;
+  transform: scaleX(0);
+  animation: ${p => p.$visible ? css`${lineGrow} 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards` : 'none'};
+  animation-delay: 1s;
+`;
+
+const VideoDateText = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
   font-style: italic;
   color: #FFFFFF;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: ${p => p.$visible ? css`${fadeUp} 0.8s ease forwards` : 'none'};
+  animation-delay: 1.2s;
 `;
 
-const VideoTagline = styled.p`
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.8;
-  margin-bottom: 50px;
-  
-  em {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-    font-size: 1.1em;
-    color: #C4A87C;
-  }
+const VideoLocationText = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B0B0B0;
+  opacity: 0;
+  animation: ${p => p.$visible ? css`${fadeUp} 0.8s ease forwards` : 'none'};
+  animation-delay: 1.4s;
 `;
 
-const VideoButtonGroup = styled.div`
+const VideoCTA = styled.div`
   display: flex;
-  gap: 20px;
   justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
   flex-wrap: wrap;
+  opacity: 0;
+  animation: ${p => p.$visible ? css`${fadeUp} 0.8s ease forwards` : 'none'};
+  animation-delay: 1.6s;
 `;
 
-const VideoPrimaryBtn = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
+const VideoButton = styled.a`
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 18px 40px;
-  background: rgba(139, 115, 85, 0.9);
-  color: #FFFFFF;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  
-  &:hover { background: #C4A87C; }
-`;
-
-const VideoSecondaryBtn = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 18px 40px;
-  background: transparent;
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 1rem 2rem;
   cursor: pointer;
   transition: all 0.3s ease;
   
-  &:hover { border-color: #FFFFFF; background: rgba(255, 255, 255, 0.1); }
-`;
-
-const VideoScrollIndicator = styled.button`
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  
-  span {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    color: rgba(255, 255, 255, 0.6);
-  }
-`;
-
-const VideoScrollArrow = styled.span`
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.6);
-  animation: ${scrollBounce} 1.5s ease-in-out infinite;
+  ${p => p.$primary ? css`
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid #6B8CAE;
+    &:hover { background: #6B8CAE; }
+  ` : css`
+    background: transparent;
+    color: #B0B0B0;
+    border: 1px solid rgba(255,255,255,0.2);
+    &:hover { border-color: #6B8CAE; color: #6B8CAE; }
+  `}
 `;
 
 // ============================================
-// LUXE STYLES (unverändert)
+// ANIMATED WORD COMPONENT (Editorial)
 // ============================================
-const LuxeSection = styled.section`
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background: #000;
-`;
+const AnimatedWord = ({ text, startDelay = 0, accent = false }) => (
+  <EditorialWord>
+    {text.split('').map((letter, i) => (
+      <EditorialLetter key={i} $delay={startDelay + i * 0.05} $accent={accent}>
+        {letter === ' ' ? '\u00A0' : letter}
+      </EditorialLetter>
+    ))}
+  </EditorialWord>
+);
 
-const LuxeBgImage = styled.div`
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(100%);
-`;
-
-const LuxeOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-`;
-
-const LuxeContent = styled.div`
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  animation: ${fadeInUp} 1s ease;
-`;
-
-const LuxeEyebrow = styled.div`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.4em;
-  color: #B8960B;
-  margin-bottom: 30px;
-`;
-
-const LuxeMainTagline = styled.h1`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 300;
-  font-style: italic;
-  color: #FFFFFF;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-`;
-
-const LuxeTagline = styled.p`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.8;
-  margin-bottom: 50px;
-`;
-
-const LuxeButtonGroup = styled.div`
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-
-const LuxePrimaryBtn = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 18px 40px;
-  background: #B8960B;
-  color: #FFFFFF;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+// ============================================
+// MAIN COMPONENT
+// ============================================
+const MarketingHero = () => {
+  const { currentTheme } = useTheme();
+  const [visible, setVisible] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   
-  &:hover { background: #D4AF37; }
-`;
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(true);
+      setLoaded(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
-const LuxeSecondaryBtn = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 18px 40px;
-  background: transparent;
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover { border-color: #B8960B; color: #B8960B; }
-`;
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-const LuxeScrollIndicator = styled.button`
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  
-  span {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-    color: rgba(255, 255, 255, 0.5);
+  const scrollToDesigns = () => {
+    document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // EDITORIAL
+  if (currentTheme === 'editorial') {
+    return (
+      <EditorialSection>
+        <EditorialBg />
+        <EditorialContent>
+          <EditorialTagline>Premium Hochzeitswebsites</EditorialTagline>
+          <EditorialHeadline>
+            <AnimatedWord text="EINZIGARTIG" startDelay={0.5} />
+            <EditorialAmpersand>&</EditorialAmpersand>
+            <AnimatedWord text="INDIVIDUELL" startDelay={0.9} accent />
+          </EditorialHeadline>
+          <EditorialDateLine>
+            <EditorialLine />
+            <EditorialDateText>Eure Geschichte, digital erzählt</EditorialDateText>
+          </EditorialDateLine>
+          <EditorialCTA>
+            <EditorialButton $primary onClick={scrollToContact}>Jetzt anfragen</EditorialButton>
+            <EditorialButton onClick={scrollToDesigns}>Designs entdecken</EditorialButton>
+          </EditorialCTA>
+        </EditorialContent>
+      </EditorialSection>
+    );
   }
-`;
 
-const LuxeScrollArrow = styled.span`
-  font-size: 1rem;
-  color: #B8960B;
-  animation: ${scrollBounce} 1.5s ease-in-out infinite;
-`;
+  // BOTANICAL
+  if (currentTheme === 'botanical') {
+    return (
+      <BotanicalSection>
+        <BotanicalBgGradient />
+        <FloatingPlant $top="8%" $left="5%" $size="60px" $anim={1} $duration="12s" $opacity={0.4}>🌿</FloatingPlant>
+        <FloatingPlant $top="15%" $right="8%" $size="45px" $anim={2} $duration="10s" $delay="1s" $opacity={0.5}>🍃</FloatingPlant>
+        <FloatingPlant $top="55%" $left="6%" $size="35px" $anim={2} $duration="14s" $delay="2s" $opacity={0.3}>🌸</FloatingPlant>
+        <FloatingPlant $top="65%" $right="10%" $size="50px" $anim={1} $duration="11s" $delay="0.5s" $opacity={0.45}>🌺</FloatingPlant>
+        <FloatingPlant $bottom="12%" $left="15%" $size="40px" $anim={2} $duration="9s" $delay="1.5s" $opacity={0.35}>🍀</FloatingPlant>
+        <FloatingPlant $bottom="20%" $right="5%" $size="55px" $anim={1} $duration="11s" $opacity={0.4}>🌾</FloatingPlant>
+        
+        <GlassCard>
+          <BotanicalEyebrow>Premium Hochzeitswebsites</BotanicalEyebrow>
+          <BotanicalNames>
+            Individuell
+            <BotanicalAmpersand>&</BotanicalAmpersand>
+            Einzigartig
+          </BotanicalNames>
+          <BotanicalDate>Eure Geschichte, liebevoll gestaltet</BotanicalDate>
+          <BotanicalLocation>Hamburg · Deutschland</BotanicalLocation>
+          <BotanicalButton onClick={scrollToContact}>Jetzt starten</BotanicalButton>
+        </GlassCard>
+      </BotanicalSection>
+    );
+  }
+
+  // CONTEMPORARY
+  if (currentTheme === 'contemporary') {
+    return (
+      <ContemporarySection>
+        <ContemporaryLeft>
+          <FloatingCircle $color="#FF6B6B" $size="100px" style={{ top: '10%', left: '5%' }} $duration="10s" />
+          <FloatingCircle $color="#4ECDC4" $size="60px" style={{ top: '60%', left: '10%' }} $duration="8s" $delay="1s" />
+          <FloatingSquare $color="#FFE66D" $size="70px" style={{ top: '20%', right: '15%' }} $duration="12s" $delay="0.5s" />
+          <FloatingSquare $color="#9B5DE5" $size="50px" style={{ bottom: '25%', left: '20%' }} $duration="9s" $delay="2s" />
+          <SpinningRing $color="#FF6B6B" $size="120px" style={{ bottom: '10%', right: '5%' }} $duration="25s" />
+          
+          <ContemporaryEyebrow $visible={visible}>Hochzeitswebsites</ContemporaryEyebrow>
+          
+          <div style={{ marginBottom: '2rem' }}>
+            <ContemporaryName $visible={visible} $delay="0.1s" $first>MAKE IT</ContemporaryName>
+            <ContemporaryAmpersand $visible={visible}>&</ContemporaryAmpersand>
+            <ContemporaryName $visible={visible} $delay="0.2s">COUNT</ContemporaryName>
+          </div>
+          
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
+            <ContemporaryBadge $visible={visible} $delay="0.4s" $color="#FFE66D">
+              <span>✨</span> 6 einzigartige Designs
+            </ContemporaryBadge>
+            <ContemporaryBadge $visible={visible} $delay="0.5s" $color="#4ECDC4">
+              <span>🚀</span> ab 1.290€
+            </ContemporaryBadge>
+          </div>
+          
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            <ContemporaryButton $primary onClick={scrollToContact}>
+              Jetzt anfragen →
+            </ContemporaryButton>
+            <ContemporaryButton onClick={scrollToDesigns}>
+              Designs entdecken
+            </ContemporaryButton>
+          </div>
+        </ContemporaryLeft>
+        
+        <ContemporaryRight />
+        
+        <ContemporaryScroll>
+          Scroll
+          <span style={{ fontSize: '1.2rem', color: '#FF6B6B' }}>↓</span>
+        </ContemporaryScroll>
+      </ContemporarySection>
+    );
+  }
+
+  // LUXE
+  if (currentTheme === 'luxe') {
+    return (
+      <LuxeSection>
+        <LuxeBgMedia>
+          <LuxeBgImage $loaded={loaded} />
+        </LuxeBgMedia>
+        
+        <LuxeContent>
+          <LuxeEyebrow>
+            <LuxeEyebrowText $visible={visible}>Premium Hochzeitswebsites</LuxeEyebrowText>
+          </LuxeEyebrow>
+          
+          <div style={{ marginBottom: '3rem' }}>
+            <LuxeNameLine>
+              <LuxeName $visible={visible} $delay="0.6s">Zeitlose</LuxeName>
+            </LuxeNameLine>
+            <LuxeAmpersand>
+              <LuxeAmpersandText $visible={visible}>&</LuxeAmpersandText>
+            </LuxeAmpersand>
+            <LuxeNameLine>
+              <LuxeName $visible={visible} $delay="0.75s">Eleganz</LuxeName>
+            </LuxeNameLine>
+          </div>
+          
+          <LuxeDivider $visible={visible} />
+          
+          <LuxeInfo $visible={visible}>
+            <LuxeDateText>Eure Geschichte, cinematisch erzählt</LuxeDateText>
+            <LuxeLocationText>Hamburg · Deutschland</LuxeLocationText>
+          </LuxeInfo>
+        </LuxeContent>
+        
+        <LuxeScroll $visible={visible}>
+          <LuxeScrollText>Entdecken</LuxeScrollText>
+          <LuxeScrollLine />
+        </LuxeScroll>
+      </LuxeSection>
+    );
+  }
+
+  // NEON
+  if (currentTheme === 'neon') {
+    const fullText = "NEXT LEVEL WEDDING";
+    return (
+      <NeonSection>
+        <NeonGrid $visible={visible} />
+        <GlowOrb />
+        <GlowOrb />
+        <Scanline />
+        
+        <NeonFloatingShape $shape="square" $delay={0} style={{ top: '15%', left: '10%' }} />
+        <NeonFloatingShape $shape="circle" $delay={1} style={{ top: '25%', right: '15%' }} />
+        <NeonFloatingShape $shape="diamond" $delay={2} style={{ bottom: '20%', left: '20%' }} />
+        <NeonFloatingShape $shape="circle" $delay={0.5} style={{ bottom: '30%', right: '10%' }} />
+        
+        <CornerDecor />
+        <CornerDecor />
+        <CornerDecor />
+        <CornerDecor />
+        
+        <NeonContent>
+          <NeonEyebrow $visible={visible}>Premium Websites</NeonEyebrow>
+          
+          <NeonNames $visible={visible} data-text={fullText}>
+            NEXT LEVEL
+            <NeonAmpersand>&</NeonAmpersand>
+            WEDDING
+          </NeonNames>
+          
+          <NeonDate $visible={visible}>Digitale Hochzeits-Experience</NeonDate>
+          <NeonLocation $visible={visible}>der nächsten Generation</NeonLocation>
+          
+          <NeonButton $visible={visible} onClick={scrollToContact}>
+            Website.exe starten...
+          </NeonButton>
+        </NeonContent>
+      </NeonSection>
+    );
+  }
+
+  // VIDEO (Default)
+  return (
+    <VideoSection>
+      <VideoBg />
+      <VideoContent>
+        <VideoEyebrow $visible={visible}>Premium Hochzeitswebsites</VideoEyebrow>
+        <VideoNames $visible={visible} $delay="0.5s">Individuelle</VideoNames>
+        <VideoAmpersand $visible={visible}>&</VideoAmpersand>
+        <VideoNames $visible={visible} $delay="0.9s">Hochzeitswebsites</VideoNames>
+        <VideoDivider $visible={visible} />
+        <VideoDateText $visible={visible}>Eure Geschichte, cinematisch erzählt</VideoDateText>
+        <VideoLocationText $visible={visible}>6 einzigartige Designs · ab 1.290€</VideoLocationText>
+        <VideoCTA $visible={visible}>
+          <VideoButton $primary onClick={scrollToContact}>Jetzt anfragen</VideoButton>
+          <VideoButton onClick={scrollToDesigns}>Designs entdecken</VideoButton>
+        </VideoCTA>
+      </VideoContent>
+    </VideoSection>
+  );
+};
+
+export default MarketingHero;
