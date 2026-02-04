@@ -1,6 +1,6 @@
 // src/components/marketing/MarketingHero.js
 // 1:1 basierend auf Design-Vorlagen
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -168,82 +168,85 @@ const BotanicalSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
 `;
 
 const BotanicalBg = styled.div`
   position: fixed;
   inset: 0;
   background: url(${FOREST_BG}) center/cover no-repeat;
-  filter: brightness(0.2) saturate(0.6);
-  z-index: -2;
+  filter: brightness(0.25) saturate(0.7);
+  z-index: -10;
   
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 65% 65% at 50% 50%, transparent 5%, rgba(2,8,2,0.4) 50%, rgba(2,8,2,0.85) 100%);
+    background: radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(2,8,2,0.5) 50%, rgba(2,8,2,0.9) 100%);
   }
 `;
 
 const BotanicalLeaf = styled.img`
   position: fixed;
   pointer-events: none;
-  filter: brightness(0.8);
-  opacity: 0.9;
-  z-index: -1;
+  filter: brightness(0.75) contrast(1.1);
+  opacity: 0.85;
+  z-index: 100;
+  transition: transform 0.1s ease-out;
   
   &.top-left {
-    top: -5%;
-    left: -3%;
-    width: 350px;
-    transform: rotate(130deg);
-    animation: ${float1} 8s ease-in-out infinite;
+    top: 0;
+    left: 0;
+    width: 280px;
+    transform-origin: top left;
+    transform: translate(-15%, -15%) rotate(125deg);
   }
   
   &.top-right {
-    top: -5%;
-    right: -3%;
-    width: 330px;
-    transform: rotate(-130deg) scaleX(-1);
-    animation: ${float2} 9s ease-in-out infinite;
+    top: 0;
+    right: 0;
+    width: 260px;
+    transform-origin: top right;
+    transform: translate(15%, -15%) rotate(-125deg) scaleX(-1);
   }
   
   &.bottom-left {
-    bottom: -5%;
-    left: -3%;
-    width: 400px;
-    transform: rotate(50deg);
-    animation: ${float2} 10s ease-in-out infinite;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    transform-origin: bottom left;
+    transform: translate(-20%, 20%) rotate(55deg);
   }
   
   &.bottom-right {
-    bottom: -5%;
-    right: -3%;
-    width: 380px;
-    transform: rotate(-50deg) scaleX(-1);
-    animation: ${float1} 11s ease-in-out infinite;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    transform-origin: bottom right;
+    transform: translate(20%, 20%) rotate(-55deg) scaleX(-1);
   }
   
   @media (max-width: 768px) {
-    &.top-left, &.top-right { width: 180px; }
-    &.bottom-left, &.bottom-right { width: 200px; }
+    &.top-left, &.top-right { width: 150px; }
+    &.bottom-left, &.bottom-right { width: 180px; }
   }
 `;
 
 const BotanicalCard = styled.div`
   position: relative;
-  z-index: 20;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 24px;
-  padding: clamp(2.5rem, 5vw, 4rem);
+  z-index: 50;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 28px;
+  padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
   text-align: center;
-  max-width: 500px;
-  margin: 0 1.5rem;
+  max-width: 480px;
+  width: calc(100% - 3rem);
+  margin: 0 auto;
   animation: ${fadeIn} 1s ease both;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.4);
 `;
 
 const BotanicalEyebrow = styled.p`
@@ -253,45 +256,37 @@ const BotanicalEyebrow = styled.p`
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.5);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 `;
 
 const BotanicalTitle = styled.h1`
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
   font-weight: 300;
   color: rgba(255,255,255,0.95);
-  line-height: 1.1;
+  line-height: 1.15;
   
   span.ampersand {
     display: block;
-    font-size: 1.5rem;
-    color: rgba(255,255,255,0.4);
-    margin: 0.3rem 0;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.35);
+    margin: 0.2rem 0;
   }
 `;
 
-const BotanicalDate = styled.p`
+const BotanicalSubtitle = styled.p`
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: 300;
-  color: rgba(255,255,255,0.7);
-  margin-top: 1.5rem;
-`;
-
-const BotanicalLocation = styled.p`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-top: 0.5rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+  margin-top: 1.25rem;
+  line-height: 1.4;
 `;
 
 const BotanicalCTA = styled.button`
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -299,8 +294,8 @@ const BotanicalCTA = styled.button`
   background: rgba(255,255,255,0.95);
   border: none;
   border-radius: 50px;
-  padding: 1rem 2.5rem;
-  margin-top: 2rem;
+  padding: 0.9rem 2rem;
+  margin-top: 1.75rem;
   cursor: pointer;
   transition: all 0.4s ease;
   
@@ -324,7 +319,7 @@ const BotanicalScroll = styled.div`
   font-size: 0.55rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  z-index: 30;
+  z-index: 60;
   animation: ${fadeIn} 1s ease 0.5s both;
   
   &::after {
@@ -930,6 +925,17 @@ const VideoNavItem = styled.span`
 // ============================================
 const MarketingHero = () => {
   const { currentTheme } = useTheme();
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax scroll effect for Botanical leaves
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -958,19 +964,41 @@ const MarketingHero = () => {
     return (
       <BotanicalSection id="hero">
         <BotanicalBg />
-        <BotanicalLeaf src={LEAVES[2]} className="top-left" alt="" />
-        <BotanicalLeaf src={LEAVES[1]} className="top-right" alt="" />
-        <BotanicalLeaf src={LEAVES[3]} className="bottom-left" alt="" />
-        <BotanicalLeaf src={LEAVES[0]} className="bottom-right" alt="" />
+        <BotanicalLeaf 
+          src={LEAVES[2]} 
+          className="top-left" 
+          alt="" 
+          style={{ transform: `translate(-15%, -15%) rotate(125deg) translateY(${scrollY * 0.15}px)` }}
+        />
+        <BotanicalLeaf 
+          src={LEAVES[1]} 
+          className="top-right" 
+          alt="" 
+          style={{ transform: `translate(15%, -15%) rotate(-125deg) scaleX(-1) translateY(${scrollY * 0.12}px)` }}
+        />
+        <BotanicalLeaf 
+          src={LEAVES[3]} 
+          className="bottom-left" 
+          alt="" 
+          style={{ transform: `translate(-20%, 20%) rotate(55deg) translateY(${scrollY * -0.1}px)` }}
+        />
+        <BotanicalLeaf 
+          src={LEAVES[0]} 
+          className="bottom-right" 
+          alt="" 
+          style={{ transform: `translate(20%, 20%) rotate(-55deg) scaleX(-1) translateY(${scrollY * -0.08}px)` }}
+        />
         <BotanicalCard>
-          <BotanicalEyebrow>Premium Wedding Websites</BotanicalEyebrow>
+          <BotanicalEyebrow>S&I. Premium</BotanicalEyebrow>
           <BotanicalTitle>
             Premium
             <span className="ampersand">&</span>
             Hochzeitswebsites
           </BotanicalTitle>
-          <BotanicalDate>Eure Geschichte. Digital erzählt.</BotanicalDate>
-          <BotanicalLocation>Hamburg</BotanicalLocation>
+          <BotanicalSubtitle>
+            Eure Geschichte. Digital erzählt.<br />
+            Handgefertigt in Hamburg.
+          </BotanicalSubtitle>
           <BotanicalCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</BotanicalCTA>
         </BotanicalCard>
         <BotanicalScroll>Entdecken</BotanicalScroll>

@@ -66,7 +66,7 @@ const PACKAGES = [
       '6 zusätzliche Komponenten',
       'Save the Date Seite (bis 2 Monate)',
       'Archiv-Seite (3 Monate)',
-      'Dateneingabe durch IverLasting',
+      'Dateneingabe durch S&I.',
       'QR-Code Erstellung',
       'Unbegrenzte Revisionen'
     ],
