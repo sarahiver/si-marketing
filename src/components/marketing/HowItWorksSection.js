@@ -1,520 +1,101 @@
 // src/components/marketing/HowItWorksSection.js
-import React, { useEffect, useRef, useState } from 'react';
+// 1:1 Theme-Designs aus si-wedding-themes
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
-const Section = styled.section`
-  padding: 140px 5%;
-  position: relative;
-  overflow: hidden;
-  
-  ${p => p.$themeId === 'editorial' && css`background: #FFFFFF;`}
-  ${p => p.$themeId === 'video' && css`
-    background: #0A0A0A;
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.08) 0%, transparent 50%);
-    }
-  `}
-  ${p => p.$themeId === 'botanical' && css`background: #F5F1EB;`}
-  ${p => p.$themeId === 'contemporary' && css`
-    background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
-  `}
-  ${p => p.$themeId === 'luxe' && css`background: #0A0A0A;`}
-  ${p => p.$themeId === 'neon' && css`
-    background: #0a0a0f;
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(0,255,255,0.05) 0%, transparent 30%),
-        radial-gradient(circle at 80% 50%, rgba(255,0,255,0.05) 0%, transparent 30%);
-    }
-  `}
-`;
-
-const Container = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-`;
-
-const Header = styled.div`
-  margin-bottom: 80px;
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '40px'});
-  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  
-  ${p => p.$themeId === 'editorial' && css`text-align: left; max-width: 600px;`}
-  ${p => p.$themeId === 'video' && css`text-align: center;`}
-  ${p => p.$themeId === 'botanical' && css`text-align: center;`}
-  ${p => p.$themeId === 'contemporary' && css`text-align: center;`}
-  ${p => p.$themeId === 'luxe' && css`text-align: center;`}
-  ${p => p.$themeId === 'neon' && css`text-align: center;`}
-`;
-
-const Eyebrow = styled.span`
-  display: inline-block;
-  margin-bottom: 1rem;
-  
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #999;
-  `}
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: #D4AF37;
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Lato', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #8B9D83;
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    background: rgba(0,0,0,0.2);
-    padding: 8px 16px;
-    display: inline-block;
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: rgba(212,175,55,0.6);
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #00ffff;
-    text-shadow: 0 0 10px rgba(0,255,255,0.5);
-  `}
-`;
-
-const Title = styled.h2`
-  margin: 0 0 1.5rem 0;
-  
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 400;
-    font-style: italic;
-    color: #1A1A1A;
-    line-height: 1.1;
-  `}
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 300;
-    color: #FFFFFF;
-    letter-spacing: 0.05em;
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 400;
-    color: #2D3B2D;
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 700;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    line-height: 0.9;
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 300;
-    font-style: italic;
-    color: #E8DDD4;
-    letter-spacing: 0.02em;
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    color: #FFFFFF;
-    text-shadow: 0 0 30px rgba(255,255,255,0.3);
-  `}
-`;
-
-const Subtitle = styled.p`
-  line-height: 1.7;
-  
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    color: #666;
-    margin: 0;
-  `}
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    max-width: 500px;
-    margin: 0 auto;
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Lato', sans-serif;
-    font-size: 1.1rem;
-    color: #5A6B5A;
-    max-width: 550px;
-    margin: 0 auto;
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.8);
-    max-width: 500px;
-    margin: 0 auto;
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.4);
-    max-width: 500px;
-    margin: 0 auto;
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    max-width: 500px;
-    margin: 0 auto;
-  `}
-`;
-
-const StepsContainer = styled.div`
-  ${p => p.$themeId === 'editorial' && css`
-    display: flex;
-    gap: 60px;
-    position: relative;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 25px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: #E0E0E0;
-    }
-  `}
-  ${p => p.$themeId === 'video' && css`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 500px) { grid-template-columns: 1fr; }
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 900px;
-    margin: 0 auto;
-    @media (max-width: 600px) { grid-template-columns: 1fr; }
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    &::-webkit-scrollbar { height: 4px; }
-    &::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); }
-    &::-webkit-scrollbar-thumb { background: #FFFFFF; }
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    display: flex;
-    justify-content: center;
-    gap: 80px;
-    @media (max-width: 900px) { 
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 500px) { grid-template-columns: 1fr; }
-  `}
-`;
-
-const Step = styled.div`
-  opacity: ${p => p.$visible ? 1 : 0};
-  transform: translateY(${p => p.$visible ? 0 : '30px'});
-  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: ${p => p.$delay}s;
-  
-  ${p => p.$themeId === 'editorial' && css`
-    flex: 1;
-    text-align: left;
-  `}
-  ${p => p.$themeId === 'video' && css`
-    text-align: center;
-    padding: 30px 20px;
-    &:hover {
-      transform: translateY(-5px);
-    }
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    background: #FFFFFF;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    flex: 0 0 280px;
-    background: #FFFFFF;
-    padding: 30px;
-    border: 3px solid #0D0D0D;
-    &:hover {
-      transform: translate(-5px, -5px);
-      box-shadow: 8px 8px 0 #0D0D0D;
-    }
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    text-align: center;
-    max-width: 200px;
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    padding: 30px;
-    border: 1px solid rgba(0,255,255,0.2);
-    background: rgba(0,255,255,0.02);
-    &:hover {
-      border-color: rgba(0,255,255,0.5);
-      box-shadow: 0 0 30px rgba(0,255,255,0.1);
-    }
-  `}
-`;
-
-const StepNumber = styled.div`
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: 3rem;
-    font-style: italic;
-    color: #1A1A1A;
-    line-height: 1;
-    margin-bottom: 20px;
-    position: relative;
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 40px;
-      width: 8px;
-      height: 8px;
-      background: #1A1A1A;
-      border-radius: 50%;
-    }
-  `}
-  ${p => p.$themeId === 'video' && css`
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: 1px solid #D4AF37;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 25px;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.5rem;
-    color: #D4AF37;
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #8B9D83;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 4rem;
-    font-weight: 700;
-    color: #FF6B6B;
-    line-height: 1;
-    margin-bottom: 15px;
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 4rem;
-    font-weight: 300;
-    color: rgba(212,175,55,0.3);
-    line-height: 1;
-    margin-bottom: 15px;
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #00ffff;
-    text-shadow: 0 0 20px rgba(0,255,255,0.5);
-    margin-bottom: 15px;
-  `}
-`;
-
-const StepTitle = styled.h3`
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #1A1A1A;
-    margin: 0 0 10px 0;
-  `}
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #FFFFFF;
-    margin: 0 0 15px 0;
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #2D3B2D;
-    margin: 0 0 10px 0;
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0D0D0D;
-    text-transform: uppercase;
-    margin: 0 0 10px 0;
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.3rem;
-    font-weight: 400;
-    font-style: italic;
-    color: #E8DDD4;
-    margin: 0 0 10px 0;
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #FFFFFF;
-    margin: 0 0 10px 0;
-  `}
-`;
-
-const StepDescription = styled.p`
-  margin: 0;
-  line-height: 1.6;
-  
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-  `}
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.5);
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Lato', sans-serif;
-    font-size: 0.95rem;
-    color: #5A6B5A;
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.4);
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.5);
-  `}
-`;
-
-const steps = [
-  { number: '01', title: 'Beratung', description: 'Wir lernen euch und eure Wünsche kennen.' },
-  { number: '02', title: 'Design', description: 'Wir gestalten eure individuelle Website.' },
-  { number: '03', title: 'Inhalte', description: 'Ihr liefert Texte und Fotos – wir setzen um.' },
-  { number: '04', title: 'Launch', description: 'Eure Website geht online!' }
+const STEPS = [
+  { num: '01', title: 'Theme wählen', desc: 'Wählt aus 6 einzigartigen Designs euren Favoriten' },
+  { num: '02', title: 'Inhalte liefern', desc: 'Füllt unser einfaches Formular mit euren Infos & Fotos aus' },
+  { num: '03', title: 'Wir gestalten', desc: 'Unser Team erstellt eure individuelle Hochzeitswebsite' },
+  { num: '04', title: 'Online gehen', desc: 'Eure fertige Website geht live - bereit für eure Gäste!' },
 ];
 
-function HowItWorksSection() {
-  const { currentTheme } = useTheme();
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+const Section = styled.section`padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);`;
+const Container = styled.div`max-width: 1000px; margin: 0 auto;`;
+const Header = styled.div`text-align: center; margin-bottom: 4rem;`;
+const Steps = styled.div`display: grid; gap: 2rem; @media (min-width: 768px) { grid-template-columns: repeat(4, 1fr); }`;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.2 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+// EDITORIAL
+const EditorialSection = styled(Section)`background: #0A0A0A;`;
+const EditorialEyebrow = styled.p`font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #C41E3A; margin-bottom: 1rem;`;
+const EditorialTitle = styled.h2`font-family: 'Oswald', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #FAFAFA; margin-bottom: 1rem;`;
+const EditorialStep = styled.div`text-align: center; position: relative; &:not(:last-child)::after { content: ''; position: absolute; top: 2rem; right: -1rem; width: 2rem; height: 2px; background: #C41E3A; @media (max-width: 767px) { display: none; } }`;
+const EditorialNum = styled.div`font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; color: #C41E3A; margin-bottom: 1rem;`;
+const EditorialStepTitle = styled.h3`font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; color: #FAFAFA; margin-bottom: 0.5rem;`;
+const EditorialStepDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.6);`;
+
+// BOTANICAL
+const BotanicalSection = styled(Section)`background: #040604; position: relative; &::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 80%, rgba(45, 90, 60, 0.1) 0%, transparent 50%); }`;
+const BotanicalEyebrow = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem;`;
+const BotanicalTitle = styled.h2`font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; color: rgba(255,255,255,0.95); margin-bottom: 1rem;`;
+const BotanicalStep = styled.div`position: relative; z-index: 1; background: rgba(255,255,255,0.06); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem; text-align: center;`;
+const BotanicalNum = styled.div`font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: rgba(255,255,255,0.95); margin-bottom: 1rem;`;
+const BotanicalStepTitle = styled.h3`font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: rgba(255,255,255,0.95); margin-bottom: 0.5rem;`;
+const BotanicalStepDesc = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.6);`;
+
+// CONTEMPORARY
+const ContemporarySection = styled(Section)`background: #FAFAFA;`;
+const ContemporaryEyebrow = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B6B; margin-bottom: 1rem;`;
+const ContemporaryTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #0D0D0D; margin-bottom: 1rem;`;
+const ContemporaryStep = styled.div`background: #fff; border: 3px solid #0D0D0D; padding: 1.5rem; box-shadow: 6px 6px 0 ${p => ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5'][p.$i]}; text-align: center; transition: all 0.3s; &:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 ${p => ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5'][p.$i]}; }`;
+const ContemporaryNum = styled.div`font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: #0D0D0D; margin-bottom: 0.5rem;`;
+const ContemporaryStepTitle = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; color: #0D0D0D; margin-bottom: 0.5rem;`;
+const ContemporaryStepDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: #525252;`;
+
+// LUXE
+const LuxeSection = styled(Section)`background: #0A0A0A;`;
+const LuxeEyebrow = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: #C9A962; margin-bottom: 1rem;`;
+const LuxeTitle = styled.h2`font-family: 'Cormorant', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; font-style: italic; color: #F8F6F3; margin-bottom: 1rem;`;
+const LuxeStep = styled.div`text-align: center; padding: 2rem; border: 1px solid rgba(248,246,243,0.1); transition: all 0.5s; &:hover { border-color: #C9A962; }`;
+const LuxeNum = styled.div`font-family: 'Cormorant', serif; font-size: 2.5rem; font-weight: 300; font-style: italic; color: #C9A962; margin-bottom: 1rem;`;
+const LuxeStepTitle = styled.h3`font-family: 'Cormorant', serif; font-size: 1.2rem; font-weight: 300; font-style: italic; color: #F8F6F3; margin-bottom: 0.5rem;`;
+const LuxeStepDesc = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.8rem; color: rgba(248,246,243,0.5);`;
+
+// NEON
+const NeonSection = styled(Section)`background: #0a0a0f; position: relative; &::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(255,0,255,0.05) 0%, transparent 50%); }`;
+const NeonEyebrow = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: #00ffff; text-shadow: 0 0 10px rgba(0,255,255,0.5); margin-bottom: 1rem;`;
+const NeonTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 1rem;`;
+const NeonStep = styled.div`position: relative; z-index: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,255,0.2); padding: 2rem; text-align: center; transition: all 0.3s; &:hover { border-color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.2); }`;
+const NeonNum = styled.div`font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: #00ffff; text-shadow: 0 0 15px rgba(0,255,255,0.5); margin-bottom: 0.5rem;`;
+const NeonStepTitle = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 0.5rem;`;
+const NeonStepDesc = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.6);`;
+
+// VIDEO
+const VideoSection = styled(Section)`background: #0A0A0A;`;
+const VideoEyebrow = styled.p`font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: #6B8CAE; margin-bottom: 1rem;`;
+const VideoTitle = styled.h2`font-family: 'Manrope', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; color: #fff; margin-bottom: 1rem;`;
+const VideoStep = styled.div`text-align: center; padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; &:hover { border-color: #6B8CAE; }`;
+const VideoNum = styled.div`font-family: 'Manrope', sans-serif; font-size: 2rem; font-weight: 700; color: #6B8CAE; margin-bottom: 0.5rem;`;
+const VideoStepTitle = styled.h3`font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;`;
+const VideoStepDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #B0B0B0;`;
+
+const HowItWorksSection = () => {
+  const { currentTheme } = useTheme();
+
+  if (currentTheme === 'editorial') return (
+    <EditorialSection id="howitworks"><Container><Header><EditorialEyebrow>So funktioniert's</EditorialEyebrow><EditorialTitle>In 4 Schritten zur Website</EditorialTitle></Header><Steps>{STEPS.map((s, i) => <EditorialStep key={i}><EditorialNum>{s.num}</EditorialNum><EditorialStepTitle>{s.title}</EditorialStepTitle><EditorialStepDesc>{s.desc}</EditorialStepDesc></EditorialStep>)}</Steps></Container></EditorialSection>
+  );
+
+  if (currentTheme === 'botanical') return (
+    <BotanicalSection id="howitworks"><Container style={{ position: 'relative', zIndex: 1 }}><Header><BotanicalEyebrow>So funktioniert's</BotanicalEyebrow><BotanicalTitle>In 4 Schritten zur Website</BotanicalTitle></Header><Steps>{STEPS.map((s, i) => <BotanicalStep key={i}><BotanicalNum>{s.num}</BotanicalNum><BotanicalStepTitle>{s.title}</BotanicalStepTitle><BotanicalStepDesc>{s.desc}</BotanicalStepDesc></BotanicalStep>)}</Steps></Container></BotanicalSection>
+  );
+
+  if (currentTheme === 'contemporary') return (
+    <ContemporarySection id="howitworks"><Container><Header><ContemporaryEyebrow>🎯 So geht's</ContemporaryEyebrow><ContemporaryTitle>4 Easy Steps</ContemporaryTitle></Header><Steps>{STEPS.map((s, i) => <ContemporaryStep key={i} $i={i}><ContemporaryNum>{s.num}</ContemporaryNum><ContemporaryStepTitle>{s.title}</ContemporaryStepTitle><ContemporaryStepDesc>{s.desc}</ContemporaryStepDesc></ContemporaryStep>)}</Steps></Container></ContemporarySection>
+  );
+
+  if (currentTheme === 'luxe') return (
+    <LuxeSection id="howitworks"><Container><Header><LuxeEyebrow>Der Prozess</LuxeEyebrow><LuxeTitle>Ihr Weg zur Website</LuxeTitle></Header><Steps>{STEPS.map((s, i) => <LuxeStep key={i}><LuxeNum>{s.num}</LuxeNum><LuxeStepTitle>{s.title}</LuxeStepTitle><LuxeStepDesc>{s.desc}</LuxeStepDesc></LuxeStep>)}</Steps></Container></LuxeSection>
+  );
+
+  if (currentTheme === 'neon') return (
+    <NeonSection id="howitworks"><Container style={{ position: 'relative', zIndex: 1 }}><Header><NeonEyebrow>// Process.run()</NeonEyebrow><NeonTitle>Execute Steps</NeonTitle></Header><Steps>{STEPS.map((s, i) => <NeonStep key={i}><NeonNum>{s.num}</NeonNum><NeonStepTitle>{s.title}</NeonStepTitle><NeonStepDesc>{s.desc}</NeonStepDesc></NeonStep>)}</Steps></Container></NeonSection>
+  );
 
   return (
-    <Section ref={sectionRef} $themeId={currentTheme} id="how-it-works">
-      <Container>
-        <Header $themeId={currentTheme} $visible={isVisible}>
-          <Eyebrow $themeId={currentTheme}>So funktioniert's</Eyebrow>
-          <Title $themeId={currentTheme}>In 4 Schritten zu eurer Traumwebsite</Title>
-          <Subtitle $themeId={currentTheme}>
-            Einfach, persönlich und stressfrei – wir begleiten euch von der ersten Idee bis zum großen Tag.
-          </Subtitle>
-        </Header>
-
-        <StepsContainer $themeId={currentTheme}>
-          {steps.map((step, index) => (
-            <Step 
-              key={step.number} 
-              $themeId={currentTheme}
-              $visible={isVisible}
-              $delay={0.1 + index * 0.1}
-            >
-              <StepNumber $themeId={currentTheme}>{step.number}</StepNumber>
-              <StepTitle $themeId={currentTheme}>{step.title}</StepTitle>
-              <StepDescription $themeId={currentTheme}>{step.description}</StepDescription>
-            </Step>
-          ))}
-        </StepsContainer>
-      </Container>
-    </Section>
+    <VideoSection id="howitworks"><Container><Header><VideoEyebrow>So funktioniert's</VideoEyebrow><VideoTitle>In 4 Schritten zur Website</VideoTitle></Header><Steps>{STEPS.map((s, i) => <VideoStep key={i}><VideoNum>{s.num}</VideoNum><VideoStepTitle>{s.title}</VideoStepTitle><VideoStepDesc>{s.desc}</VideoStepDesc></VideoStep>)}</Steps></Container></VideoSection>
   );
-}
+};
 
 export default HowItWorksSection;

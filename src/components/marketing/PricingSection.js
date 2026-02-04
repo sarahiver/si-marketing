@@ -1,336 +1,126 @@
-// src/components/marketing/PricingSection.js
-import React, { useEffect, useRef, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+// src/components/marketing/PricingSection.js - Simplified Version
+import React from 'react';
+import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
-const shimmer = keyframes`
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-`;
+const PACKAGES = [
+  { id: 'starter', name: 'Starter', price: '1.290', duration: '6 Monate', features: ['4 Basis-Komponenten', 'Responsives Design', '1 Revision'], cta: 'Jetzt starten' },
+  { id: 'standard', name: 'Standard', price: '1.490', duration: '8 Monate', popular: true, features: ['7 Komponenten', 'Alle 6 Themes', '2 Revisionen', 'RSVP & Gästebuch'], cta: 'Beliebteste Wahl' },
+  { id: 'premium', name: 'Premium', price: '1.990', duration: '12 Monate', features: ['10 Komponenten', 'Save the Date', 'Archiv inklusive', 'Unbegrenzte Revisionen'], cta: 'Premium wählen' },
+];
 
-const Section = styled.section`
-  padding: 100px 20px;
-  @media (min-width: 600px) { padding: 140px 5%; }
-  ${p => p.$themeId === 'video' && css`background: #FAF8F5;`}
-  ${p => p.$themeId === 'editorial' && css`background: #FAFAFA;`}
-  ${p => p.$themeId === 'botanical' && css`background: #F5F1EB;`}
-  ${p => p.$themeId === 'contemporary' && css`background: #FAFAFA;`}
-  ${p => p.$themeId === 'luxe' && css`background: #FAF9F7;`}
-  ${p => p.$themeId === 'neon' && css`background: #0a0a0f;`}
-`;
-
+const Section = styled.section`padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);`;
 const Container = styled.div`max-width: 1200px; margin: 0 auto;`;
+const Header = styled.div`text-align: center; margin-bottom: 4rem;`;
+const Grid = styled.div`display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;`;
 
-const Header = styled.div`
-  text-align: center; margin-bottom: 80px;
-  opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}); transition: all 0.8s ease;
-`;
+// EDITORIAL
+const EditorialSection = styled(Section)`background: #FAFAFA;`;
+const EditorialEyebrow = styled.p`font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #C41E3A; margin-bottom: 1rem;`;
+const EditorialTitle = styled.h2`font-family: 'Oswald', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #0A0A0A; margin-bottom: 1rem;`;
+const EditorialCard = styled.div`background: #fff; border: 1px solid ${p => p.$pop ? '#C41E3A' : '#E5E5E5'}; padding: 2.5rem; position: relative; transition: all 0.3s; ${p => p.$pop && css`border-width: 2px; &::before { content: 'Empfohlen'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #C41E3A; color: #fff; font-family: 'Oswald', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; }`} &:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }`;
+const EditorialCardName = styled.h3`font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; color: #0A0A0A; margin-bottom: 0.5rem;`;
+const EditorialCardPrice = styled.div`font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; color: ${p => p.$pop ? '#C41E3A' : '#0A0A0A'}; margin-bottom: 0.25rem; span { font-size: 1.5rem; }`;
+const EditorialCardDuration = styled.p`font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #999; margin-bottom: 2rem;`;
+const EditorialCardFeature = styled.li`font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #666; padding: 0.6rem 0; border-bottom: 1px solid #F0F0F0; display: flex; align-items: center; gap: 0.75rem; &::before { content: '✓'; color: #C41E3A; font-weight: bold; }`;
+const EditorialCardCTA = styled.a`display: block; width: 100%; padding: 1rem; font-family: 'Oswald', sans-serif; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; cursor: pointer; transition: all 0.3s; ${p => p.$pop ? css`background: #C41E3A; color: #fff; &:hover { background: #a01830; }` : css`background: transparent; color: #0A0A0A; border: 2px solid #0A0A0A; &:hover { background: #0A0A0A; color: #fff; }`}`;
 
-const Eyebrow = styled.span`
-  display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 20px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Inter', sans-serif; color: #B8976A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #999;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #8B9D83;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #FF6B6B;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: #D4AF37;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #00ffff;`}
-`;
+// BOTANICAL
+const BotanicalSection = styled(Section)`background: #040604; position: relative; &::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(45, 90, 60, 0.1) 0%, transparent 50%); }`;
+const BotanicalEyebrow = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); margin-bottom: 1rem;`;
+const BotanicalTitle = styled.h2`font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; color: rgba(255, 255, 255, 0.95); margin-bottom: 1rem;`;
+const BotanicalCard = styled.div`position: relative; z-index: 1; background: rgba(255, 255, 255, ${p => p.$pop ? '0.1' : '0.06'}); backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, ${p => p.$pop ? '0.3' : '0.1'}); border-radius: 24px; padding: 2.5rem; transition: all 0.4s; &:hover { background: rgba(255, 255, 255, 0.1); }`;
+const BotanicalCardName = styled.h3`font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: rgba(255, 255, 255, 0.95); margin-bottom: 0.5rem;`;
+const BotanicalCardPrice = styled.div`font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: rgba(255, 255, 255, 0.95); margin-bottom: 0.25rem; span { font-size: 1.5rem; color: rgba(255,255,255,0.6); }`;
+const BotanicalCardDuration = styled.p`font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: rgba(255, 255, 255, 0.4); margin-bottom: 2rem;`;
+const BotanicalCardFeature = styled.li`font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); padding: 0.6rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; gap: 0.75rem; &::before { content: '✓'; color: rgba(255, 255, 255, 0.5); }`;
+const BotanicalCardCTA = styled.a`display: block; width: 100%; padding: 1rem; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; text-align: center; border-radius: 50px; cursor: pointer; transition: all 0.4s; ${p => p.$pop ? css`background: rgba(255, 255, 255, 0.95); color: #040604; &:hover { transform: translateY(-2px); }` : css`background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.9); border: 1px solid rgba(255, 255, 255, 0.2); &:hover { background: rgba(255, 255, 255, 0.15); }`}`;
 
-const Title = styled.h2`
-  font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; margin-bottom: 20px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Playfair Display', Georgia, serif; color: #2D3B2D;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #0D0D0D; font-weight: 700;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #2A2A2A; font-style: italic;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #ffffff; font-weight: 700;`}
-`;
+// CONTEMPORARY
+const ContemporarySection = styled(Section)`background: #FAFAFA;`;
+const ContemporaryEyebrow = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B6B; margin-bottom: 1rem;`;
+const ContemporaryTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #0D0D0D; margin-bottom: 1rem;`;
+const ContemporaryCard = styled.div`background: #fff; border: 3px solid #0D0D0D; padding: 2rem; position: relative; transition: all 0.3s; box-shadow: ${p => p.$pop ? '8px 8px 0 #FF6B6B' : '6px 6px 0 #0D0D0D'}; ${p => p.$pop && css`&::before { content: '🔥 POPULAR'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #FFE66D; color: #0D0D0D; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; padding: 0.4rem 1rem; border: 2px solid #0D0D0D; }`} &:hover { transform: translate(-4px, -4px); box-shadow: ${p => p.$pop ? '12px 12px 0 #FF6B6B' : '10px 10px 0 #0D0D0D'}; }`;
+const ContemporaryCardName = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; color: #0D0D0D; margin-bottom: 0.5rem;`;
+const ContemporaryCardPrice = styled.div`font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; color: ${p => p.$pop ? '#FF6B6B' : '#0D0D0D'}; margin-bottom: 0.25rem; span { font-size: 1.5rem; }`;
+const ContemporaryCardDuration = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: #A3A3A3; margin-bottom: 2rem;`;
+const ContemporaryCardFeature = styled.li`font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: #525252; padding: 0.6rem 0; border-bottom: 2px dashed #E5E5E5; display: flex; gap: 0.75rem; &::before { content: '→'; color: #4ECDC4; font-weight: bold; }`;
+const ContemporaryCardCTA = styled.a`display: block; width: 100%; padding: 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; text-align: center; cursor: pointer; transition: all 0.3s; border: 3px solid #0D0D0D; ${p => p.$pop ? css`background: #FF6B6B; color: #fff; box-shadow: 4px 4px 0 #0D0D0D; &:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #0D0D0D; }` : css`background: transparent; color: #0D0D0D; &:hover { background: #4ECDC4; }`}`;
 
-const PricingGrid = styled.div`
-  display: grid; 
-  grid-template-columns: 1fr; 
-  gap: 25px; 
-  margin-bottom: 60px;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  @media (min-width: 768px) { 
-    grid-template-columns: repeat(3, 1fr); 
-    max-width: none;
-    gap: 30px; 
-    margin-bottom: 80px; 
-  }
-`;
+// LUXE
+const LuxeSection = styled(Section)`background: #0A0A0A;`;
+const LuxeEyebrow = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: #C9A962; margin-bottom: 1rem;`;
+const LuxeTitle = styled.h2`font-family: 'Cormorant', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; font-style: italic; color: #F8F6F3; margin-bottom: 1rem;`;
+const LuxeCard = styled.div`background: ${p => p.$pop ? 'rgba(201, 169, 98, 0.05)' : 'transparent'}; border: 1px solid ${p => p.$pop ? '#C9A962' : 'rgba(248, 246, 243, 0.15)'}; padding: 2.5rem; position: relative; transition: all 0.5s; ${p => p.$pop && css`&::before { content: 'Empfohlen'; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: #C9A962; color: #0A0A0A; font-family: 'Outfit', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.5rem 1.5rem; }`}`;
+const LuxeCardName = styled.h3`font-family: 'Cormorant', serif; font-size: 1.8rem; font-weight: 300; font-style: italic; color: #F8F6F3; margin-bottom: 0.5rem;`;
+const LuxeCardPrice = styled.div`font-family: 'Cormorant', serif; font-size: 3rem; font-weight: 300; color: ${p => p.$pop ? '#C9A962' : '#F8F6F3'}; margin-bottom: 0.25rem; span { font-size: 1.5rem; color: #E8E6E1; opacity: 0.5; }`;
+const LuxeCardDuration = styled.p`font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; color: rgba(248, 246, 243, 0.4); margin-bottom: 2rem;`;
+const LuxeCardFeature = styled.li`font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: rgba(248, 246, 243, 0.7); padding: 0.6rem 0; border-bottom: 1px solid rgba(248, 246, 243, 0.08); display: flex; gap: 0.75rem; &::before { content: '—'; color: #C9A962; }`;
+const LuxeCardCTA = styled.a`display: block; width: 100%; padding: 1rem; font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; text-align: center; cursor: pointer; transition: all 0.5s; ${p => p.$pop ? css`background: #C9A962; color: #0A0A0A; &:hover { background: #d4b66f; }` : css`background: transparent; color: #F8F6F3; border: 1px solid rgba(248, 246, 243, 0.3); &:hover { border-color: #C9A962; color: #C9A962; }`}`;
 
-const PricingCard = styled.div`
-  padding: 40px 25px; text-align: center; position: relative;
-  opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}) scale(${p => p.$popular && p.$visible ? 1.02 : 1});
-  transition: all 0.6s ease ${p => p.$delay}s;
-  @media (min-width: 768px) { padding: 50px 35px; }
-  ${p => p.$themeId === 'video' && css`
-    background: ${p.$popular ? 'rgba(184,151,106,0.05)' : '#FFFFFF'};
-    border: 1px solid ${p.$popular ? 'rgba(184,151,106,0.4)' : 'rgba(184,151,106,0.15)'};
-    &:hover { border-color: #B8976A; }
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    background: #FFFFFF; border: 1px solid ${p.$popular ? '#1A1A1A' : '#E0E0E0'};
-    ${p.$popular && css`border-width: 2px;`}
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    background: #FFFFFF; border: 1px solid ${p.$popular ? '#8B9D83' : 'rgba(139,157,131,0.2)'}; border-radius: 20px;
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    background: #FFFFFF; border: 3px solid #0D0D0D;
-    ${p.$popular && css`box-shadow: 6px 6px 0 #FF6B6B;`}
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    background: #FFFFFF; border: 1px solid ${p.$popular ? 'rgba(212,175,55,0.4)' : 'rgba(212,175,55,0.1)'};
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    background: rgba(255,255,255,0.02); border: 1px solid ${p.$popular ? '#00ffff' : 'rgba(0,255,255,0.2)'};
-    ${p.$popular && css`box-shadow: 0 0 30px rgba(0,255,255,0.2);`}
-  `}
-`;
+// NEON
+const NeonSection = styled(Section)`background: #0a0a0f; position: relative; &::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 50%); }`;
+const NeonEyebrow = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: #00ffff; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); margin-bottom: 1rem;`;
+const NeonTitle = styled.h2`font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 1rem;`;
+const NeonCard = styled.div`position: relative; z-index: 1; background: rgba(255, 255, 255, 0.02); border: 1px solid ${p => p.$pop ? '#00ffff' : 'rgba(0, 255, 255, 0.2)'}; padding: 2.5rem; transition: all 0.3s; ${p => p.$pop && css`box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);`} &:hover { border-color: #00ffff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }`;
+const NeonCardName = styled.h3`font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 0.5rem;`;
+const NeonCardPrice = styled.div`font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; color: ${p => p.$pop ? '#00ffff' : '#fff'}; text-shadow: ${p => p.$pop ? '0 0 20px rgba(0, 255, 255, 0.5)' : 'none'}; margin-bottom: 0.25rem; span { font-size: 1.5rem; color: rgba(255,255,255,0.4); }`;
+const NeonCardDuration = styled.p`font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.4); margin-bottom: 2rem;`;
+const NeonCardFeature = styled.li`font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); padding: 0.6rem 0; border-bottom: 1px solid rgba(0, 255, 255, 0.1); display: flex; gap: 0.75rem; &::before { content: '>'; color: #00ff88; }`;
+const NeonCardCTA = styled.a`display: block; width: 100%; padding: 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; text-align: center; cursor: pointer; transition: all 0.3s; ${p => p.$pop ? css`background: transparent; color: #00ffff; border: 1px solid #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); &:hover { background: rgba(0, 255, 255, 0.1); box-shadow: 0 0 25px rgba(0, 255, 255, 0.5); }` : css`background: transparent; color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(255, 255, 255, 0.2); &:hover { border-color: #ff00ff; color: #ff00ff; }`}`;
 
-const PopularBadge = styled.div`
-  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 8px 20px;
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #B8976A, #D4AF37); background-size: 200% auto;
-    animation: ${shimmer} 3s linear infinite; color: #0a0a0a;
-  `}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; background: #1A1A1A; color: #FFFFFF;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; background: #8B9D83; color: #FFFFFF; border-radius: 0 0 10px 10px;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; background: #FF6B6B; color: #FFFFFF;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; background: #D4AF37; color: #0a0a0a;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; background: #00ffff; color: #0a0a0f;`}
-`;
+// VIDEO
+const VideoSection = styled(Section)`background: #0A0A0A;`;
+const VideoEyebrow = styled.p`font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: #6B8CAE; margin-bottom: 1rem;`;
+const VideoTitle = styled.h2`font-family: 'Manrope', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; color: #fff; margin-bottom: 1rem;`;
+const VideoCard = styled.div`background: ${p => p.$pop ? 'rgba(107, 140, 174, 0.05)' : 'transparent'}; border: 1px solid ${p => p.$pop ? '#6B8CAE' : 'rgba(255, 255, 255, 0.1)'}; padding: 2.5rem; position: relative; transition: all 0.4s; ${p => p.$pop && css`&::before { content: 'Empfohlen'; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: #6B8CAE; color: #0A0A0A; font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.4rem 1rem; }`} &:hover { border-color: #6B8CAE; }`;
+const VideoCardName = styled.h3`font-family: 'Manrope', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;`;
+const VideoCardPrice = styled.div`font-family: 'Manrope', sans-serif; font-size: 3rem; font-weight: 700; color: ${p => p.$pop ? '#6B8CAE' : '#fff'}; margin-bottom: 0.25rem; span { font-size: 1.5rem; color: #B0B0B0; }`;
+const VideoCardDuration = styled.p`font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.4); margin-bottom: 2rem;`;
+const VideoCardFeature = styled.li`font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #B0B0B0; padding: 0.6rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; gap: 0.75rem; &::before { content: '✓'; color: #6B8CAE; }`;
+const VideoCardCTA = styled.a`display: block; width: 100%; padding: 1rem; font-family: 'Manrope', sans-serif; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; cursor: pointer; transition: all 0.3s; ${p => p.$pop ? css`background: #6B8CAE; color: #0A0A0A; &:hover { background: #7d9cba; }` : css`background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); &:hover { border-color: #6B8CAE; color: #6B8CAE; }`}`;
 
-const PlanName = styled.h3`
-  font-size: 1.5rem; margin-bottom: 10px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Playfair Display', Georgia, serif; color: #2D3B2D;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #0D0D0D; font-weight: 700;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #2A2A2A;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #ffffff;`}
-`;
-
-const Price = styled.div`
-  font-size: 3rem; font-weight: 300; margin: 20px 0;
-  ${p => p.$themeId === 'video' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #B8976A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Playfair Display', Georgia, serif; color: #8B9D83;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #FF6B6B; font-weight: 700;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #D4AF37;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #00ffff; font-weight: 700;`}
-  span { font-size: 1rem; }
-`;
-
-const Features = styled.ul`list-style: none; text-align: left; margin: 30px 0;`;
-
-const Feature = styled.li`
-  display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 0.9rem;
-  ${p => p.$themeId === 'video' && css`font-family: 'Inter', sans-serif; color: ${p.$highlight ? '#1A1A1A' : 'rgba(26,26,26,0.6)'};`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: ${p.$highlight ? '#1A1A1A' : '#666'};`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: ${p.$highlight ? '#2D3B2D' : '#5A6B5A'};`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: ${p.$highlight ? '#0D0D0D' : '#666'};`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: ${p.$highlight ? '#2A2A2A' : 'rgba(42,42,42,0.6)'};`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: ${p.$highlight ? '#ffffff' : 'rgba(255,255,255,0.5)'};`}
-  &::before {
-    content: '✓'; font-weight: 600;
-    ${p => p.$themeId === 'video' && css`color: #B8976A;`}
-    ${p => p.$themeId === 'editorial' && css`color: #1A1A1A;`}
-    ${p => p.$themeId === 'botanical' && css`color: #8B9D83;`}
-    ${p => p.$themeId === 'contemporary' && css`color: #FF6B6B;`}
-    ${p => p.$themeId === 'luxe' && css`color: #D4AF37;`}
-    ${p => p.$themeId === 'neon' && css`color: #00ffff;`}
-  }
-`;
-
-const CTAButton = styled.a`
-  display: inline-block; width: 100%; text-align: center; font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.15em; text-transform: uppercase; padding: 18px 30px; text-decoration: none; transition: all 0.3s ease;
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Inter', sans-serif;
-    ${p.$primary ? css`background: #B8976A; color: #0a0a0a; &:hover { background: #D4AF37; }` 
-                : css`background: transparent; color: #B8976A; border: 1px solid rgba(184,151,106,0.4); &:hover { border-color: #B8976A; }`}
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif;
-    ${p.$primary ? css`background: #1A1A1A; color: #FFFFFF; &:hover { background: #333; }` 
-                : css`background: transparent; color: #1A1A1A; border: 1px solid #1A1A1A; &:hover { background: #1A1A1A; color: #FFFFFF; }`}
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Lato', sans-serif; border-radius: 30px;
-    ${p.$primary ? css`background: #8B9D83; color: #FFFFFF; &:hover { background: #6B7D63; }` 
-                : css`background: transparent; color: #2D3B2D; border: 2px solid #2D3B2D; &:hover { background: #2D3B2D; color: #F5F1EB; }`}
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-    ${p.$primary ? css`background: #FF6B6B; color: #FFFFFF; border: 3px solid #FF6B6B; &:hover { background: #E85555; }` 
-                : css`background: transparent; color: #0D0D0D; border: 3px solid #0D0D0D; &:hover { background: #0D0D0D; color: #FFFFFF; }`}
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em;
-    ${p.$primary ? css`background: #D4AF37; color: #0a0a0a; &:hover { background: #F4D03F; }` 
-                : css`background: transparent; color: #D4AF37; border: 1px solid rgba(212,175,55,0.4); &:hover { border-color: #D4AF37; }`}
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    ${p.$primary ? css`background: #00ffff; color: #0a0a0f; box-shadow: 0 0 20px rgba(0,255,255,0.3); &:hover { box-shadow: 0 0 30px rgba(0,255,255,0.5); }` 
-                : css`background: transparent; color: #00ffff; border: 1px solid rgba(0,255,255,0.4); &:hover { border-color: #00ffff; }`}
-  `}
-`;
-
-const AddOnsSection = styled.div`margin-top: 60px;`;
-
-const AddOnsTitle = styled.h3`
-  text-align: center; font-size: 1.8rem; margin-bottom: 40px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Playfair Display', Georgia, serif; color: #2D3B2D;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #0D0D0D; font-weight: 700;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #2A2A2A;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #ffffff;`}
-`;
-
-const AddOnsGrid = styled.div`
-  display: grid; 
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 15px;
-  @media (min-width: 600px) { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (min-width: 900px) { grid-template-columns: repeat(4, 1fr); }
-`;
-
-const AddOn = styled.div`
-  padding: 25px; text-align: center;
-  ${p => p.$themeId === 'video' && css`background: #FFFFFF; border: 1px solid rgba(184,151,106,0.15);`}
-  ${p => p.$themeId === 'editorial' && css`background: #FFFFFF; border: 1px solid #E0E0E0;`}
-  ${p => p.$themeId === 'botanical' && css`background: #FFFFFF; border: 1px solid rgba(139,157,131,0.2); border-radius: 12px;`}
-  ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF; border: 2px solid #0D0D0D;`}
-  ${p => p.$themeId === 'luxe' && css`background: #FFFFFF; border: 1px solid rgba(212,175,55,0.1);`}
-  ${p => p.$themeId === 'neon' && css`background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,255,0.15);`}
-`;
-
-const AddOnName = styled.h4`
-  font-size: 0.9rem; margin-bottom: 5px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Inter', sans-serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #2D3B2D;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #0D0D0D; font-weight: 600;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: #2A2A2A;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #ffffff;`}
-`;
-
-const AddOnPrice = styled.span`
-  font-size: 1.1rem; font-weight: 600;
-  ${p => p.$themeId === 'video' && css`color: #B8976A;`}
-  ${p => p.$themeId === 'editorial' && css`color: #1A1A1A;`}
-  ${p => p.$themeId === 'botanical' && css`color: #8B9D83;`}
-  ${p => p.$themeId === 'contemporary' && css`color: #FF6B6B;`}
-  ${p => p.$themeId === 'luxe' && css`color: #D4AF37;`}
-  ${p => p.$themeId === 'neon' && css`color: #00ffff;`}
-`;
-
-const AddOnNote = styled.span`
-  display: block; font-size: 0.7rem; margin-top: 5px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Inter', sans-serif; color: rgba(26,26,26,0.4);`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #999;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #7D9D7C;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #999;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: rgba(42,42,42,0.4);`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: rgba(255,255,255,0.3);`}
-`;
-
-const tiers = [
-  { name: 'Starter', price: '1.290', popular: false, features: [
-    { text: 'Custom URL (siwedding.de/name)', highlight: false },
-    { text: '4 Basis-Komponenten', highlight: false },
-    { text: '6 Monate Hosting', highlight: false },
-    { text: 'Dateneingabe durch Kunde', highlight: false },
-    { text: 'RSVP mit Download', highlight: false },
-    { text: '1 Revision vorher / 1 nachher', highlight: false },
-  ]},
-  { name: 'Standard', price: '1.490', popular: true, features: [
-    { text: '4 Basis + 3 Extra-Komponenten', highlight: true },
-    { text: '8 Monate Hosting', highlight: true },
-    { text: 'Dateneingabe durch Kunde', highlight: false },
-    { text: 'RSVP mit Download', highlight: false },
-    { text: '2 Revisionen vorher / 2 nachher', highlight: true },
-    { text: 'Save-the-Date: ab 75€', highlight: false },
-  ]},
-  { name: 'Premium', price: '1.990', popular: false, features: [
-    { text: '4 Basis + 6 Extra-Komponenten', highlight: true },
-    { text: '12 Monate Hosting', highlight: true },
-    { text: 'Dateneingabe durch uns', highlight: true },
-    { text: 'Save-the-Date inklusive', highlight: true },
-    { text: 'Archiv-Seite (3 Monate) inkl.', highlight: true },
-    { text: 'QR-Code Erstellung inkl.', highlight: true },
-  ]}
-];
-
-const addOns = [
-  { name: 'Save-the-Date', price: 'ab 75€', note: 'Bis 2 Monate vor Hochzeit' },
-  { name: 'Archiv-Seite', price: 'ab 75€', note: '3 Monate nach Hochzeit' },
-  { name: 'Extra-Komponente', price: '50€', note: 'Pro Stück' },
-  { name: 'QR-Code Erstellung', price: '35€', note: 'Für Einladungen' },
-  { name: 'Einladungs-Design', price: 'ab 200€', note: 'Passend zum Theme' },
-  { name: 'Individual-Paket', price: 'Auf Anfrage', note: 'Maßgeschneidert' },
-];
-
-function PricingSection() {
+const PricingSection = () => {
   const { currentTheme } = useTheme();
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setIsVisible(true); }, { threshold: 0.1 });
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const renderCards = (Card, Name, Price, Duration, Feature, CTA) => (
+    <Grid>
+      {PACKAGES.map(pkg => (
+        <Card key={pkg.id} $pop={pkg.popular}>
+          <Name>{pkg.name}</Name>
+          <Price $pop={pkg.popular}><span>€</span>{pkg.price}</Price>
+          <Duration>{pkg.duration}</Duration>
+          <ul style={{ marginBottom: '2rem' }}>{pkg.features.map((f, i) => <Feature key={i}>{f}</Feature>)}</ul>
+          <CTA $pop={pkg.popular} onClick={scrollToContact}>{pkg.cta}</CTA>
+        </Card>
+      ))}
+    </Grid>
+  );
+
+  if (currentTheme === 'editorial') return (
+    <EditorialSection id="pricing"><Container><Header><EditorialEyebrow>Unsere Pakete</EditorialEyebrow><EditorialTitle>Preise</EditorialTitle></Header>{renderCards(EditorialCard, EditorialCardName, EditorialCardPrice, EditorialCardDuration, EditorialCardFeature, EditorialCardCTA)}</Container></EditorialSection>
+  );
+
+  if (currentTheme === 'botanical') return (
+    <BotanicalSection id="pricing"><Container style={{ position: 'relative', zIndex: 1 }}><Header><BotanicalEyebrow>Unsere Pakete</BotanicalEyebrow><BotanicalTitle>Preise</BotanicalTitle></Header>{renderCards(BotanicalCard, BotanicalCardName, BotanicalCardPrice, BotanicalCardDuration, BotanicalCardFeature, BotanicalCardCTA)}</Container></BotanicalSection>
+  );
+
+  if (currentTheme === 'contemporary') return (
+    <ContemporarySection id="pricing"><Container><Header><ContemporaryEyebrow>💰 Pricing</ContemporaryEyebrow><ContemporaryTitle>Was kostet's?</ContemporaryTitle></Header>{renderCards(ContemporaryCard, ContemporaryCardName, ContemporaryCardPrice, ContemporaryCardDuration, ContemporaryCardFeature, ContemporaryCardCTA)}</Container></ContemporarySection>
+  );
+
+  if (currentTheme === 'luxe') return (
+    <LuxeSection id="pricing"><Container><Header><LuxeEyebrow>Investition</LuxeEyebrow><LuxeTitle>Unsere Pakete</LuxeTitle></Header>{renderCards(LuxeCard, LuxeCardName, LuxeCardPrice, LuxeCardDuration, LuxeCardFeature, LuxeCardCTA)}</Container></LuxeSection>
+  );
+
+  if (currentTheme === 'neon') return (
+    <NeonSection id="pricing"><Container style={{ position: 'relative', zIndex: 1 }}><Header><NeonEyebrow>// Pricing.config</NeonEyebrow><NeonTitle>Select Package</NeonTitle></Header>{renderCards(NeonCard, NeonCardName, NeonCardPrice, NeonCardDuration, NeonCardFeature, NeonCardCTA)}</Container></NeonSection>
+  );
 
   return (
-    <Section ref={sectionRef} $themeId={currentTheme} id="pricing">
-      <Container>
-        <Header $visible={isVisible}>
-          <Eyebrow $themeId={currentTheme}>— Unsere Pakete —</Eyebrow>
-          <Title $themeId={currentTheme}>Transparent & Fair</Title>
-        </Header>
-        
-        <PricingGrid>
-          {tiers.map((tier, i) => (
-            <PricingCard key={tier.name} $themeId={currentTheme} $popular={tier.popular} $visible={isVisible} $delay={0.1 * i}>
-              {tier.popular && <PopularBadge $themeId={currentTheme}>Bestseller</PopularBadge>}
-              <PlanName $themeId={currentTheme}>{tier.name}</PlanName>
-              <Price $themeId={currentTheme}>{tier.price}€{tier.pricePlus && <span>+</span>}</Price>
-              <Features>
-                {tier.features.map(f => (
-                  <Feature key={f.text} $themeId={currentTheme} $highlight={f.highlight}>{f.text}</Feature>
-                ))}
-              </Features>
-              <CTAButton href="#contact" $themeId={currentTheme} $primary={tier.popular}>
-                {tier.popular ? 'Jetzt starten' : 'Anfragen'}
-              </CTAButton>
-            </PricingCard>
-          ))}
-        </PricingGrid>
-        
-        <AddOnsSection>
-          <AddOnsTitle $themeId={currentTheme}>Optionale Add-ons</AddOnsTitle>
-          <AddOnsGrid>
-            {addOns.map(addon => (
-              <AddOn key={addon.name} $themeId={currentTheme}>
-                <AddOnName $themeId={currentTheme}>{addon.name}</AddOnName>
-                <AddOnPrice $themeId={currentTheme}>{addon.price}</AddOnPrice>
-                <AddOnNote $themeId={currentTheme}>{addon.note}</AddOnNote>
-              </AddOn>
-            ))}
-          </AddOnsGrid>
-        </AddOnsSection>
-      </Container>
-    </Section>
+    <VideoSection id="pricing"><Container><Header><VideoEyebrow>Unsere Pakete</VideoEyebrow><VideoTitle>Preise</VideoTitle></Header>{renderCards(VideoCard, VideoCardName, VideoCardPrice, VideoCardDuration, VideoCardFeature, VideoCardCTA)}</Container></VideoSection>
   );
-}
+};
 
 export default PricingSection;

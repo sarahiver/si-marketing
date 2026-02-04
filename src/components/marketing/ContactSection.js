@@ -1,293 +1,877 @@
 // src/components/marketing/ContactSection.js
-import React, { useEffect, useRef, useState } from 'react';
-import styled, { css } from 'styled-components';
+// 1:1 Theme-Designs aus si-wedding-themes
+import React, { useState } from 'react';
+import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
+// ============================================
+// BASE STYLES
+// ============================================
 const Section = styled.section`
-  padding: 100px 20px;
-  overflow: hidden;
-  @media (min-width: 600px) { padding: 140px 5%; }
-  ${p => p.$themeId === 'video' && css`background: #FAF8F5;`}
-  ${p => p.$themeId === 'editorial' && css`background: #FAFAFA;`}
-  ${p => p.$themeId === 'botanical' && css`background: #F5F1EB;`}
-  ${p => p.$themeId === 'contemporary' && css`background: #FAFAFA;`}
-  ${p => p.$themeId === 'luxe' && css`background: #FAF9F7;`}
-  ${p => p.$themeId === 'neon' && css`background: #0a0a0f;`}
+  padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);
 `;
 
-const Container = styled.div`max-width: 600px; margin: 0 auto; width: 100%;`;
+const Container = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
 
 const Header = styled.div`
-  text-align: center; margin-bottom: 50px;
-  opacity: ${p => p.$visible ? 1 : 0}; transform: translateY(${p => p.$visible ? 0 : '30px'}); transition: all 0.8s ease;
+  text-align: center;
+  margin-bottom: 3rem;
 `;
 
-const Eyebrow = styled.span`
-  display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 20px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Inter', sans-serif; color: #B8976A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #999;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #8B9D83;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #FF6B6B;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: #D4AF37;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #00ffff;`}
+// ============================================
+// EDITORIAL THEME
+// ============================================
+const EditorialSection = styled(Section)`
+  background: #0A0A0A;
 `;
 
-const Title = styled.h2`
-  font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; margin-bottom: 15px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Playfair Display', Georgia, serif; color: #2D3B2D;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #0D0D0D; font-weight: 700;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #2A2A2A; font-style: italic;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #ffffff; font-weight: 700;`}
+const EditorialEyebrow = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C41E3A;
+  margin-bottom: 1rem;
 `;
 
-const Subtitle = styled.p`
-  font-size: 1rem; max-width: 450px; margin: 0 auto; line-height: 1.7;
-  ${p => p.$themeId === 'video' && css`font-family: 'Montserrat', sans-serif; color: rgba(26,26,26,0.6);`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #666;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #6B7B6C;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #666;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: rgba(42,42,42,0.6);`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: rgba(255,255,255,0.5);`}
+const EditorialTitle = styled.h2`
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  margin-bottom: 1rem;
 `;
 
-const Form = styled.form`
-  opacity: ${p => p.$visible ? 1 : 0}; 
-  transform: translateY(${p => p.$visible ? 0 : '30px'}); 
-  transition: all 0.8s ease 0.2s;
+const EditorialSubtitle = styled.p`
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6);
 `;
 
-const Row = styled.div`
+const EditorialForm = styled.form`
+  display: grid;
+  gap: 1.5rem;
+`;
+
+const EditorialFormRow = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-  margin-bottom: 20px;
-  @media (min-width: 500px) { grid-template-columns: 1fr 1fr; }
+  gap: 1.5rem;
+  
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
-const Field = styled.div`margin-bottom: 20px;`;
-
-const Label = styled.label`
-  display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Inter', sans-serif; color: rgba(26,26,26,0.6);`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #666;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #5A6B5A;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #666;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: rgba(42,42,42,0.6);`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: rgba(255,255,255,0.5);`}
+const EditorialLabel = styled.label`
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
 `;
 
-const inputStyles = css`
-  padding: 16px 18px; font-size: 1rem; transition: all 0.3s ease; width: 100%;
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Inter', sans-serif; background: #FFFFFF; color: #1A1A1A;
-    border: 1px solid rgba(184,151,106,0.2);
-    &:focus { outline: none; border-color: #B8976A; }
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif; background: #FFFFFF; color: #1A1A1A; border: 1px solid #E0E0E0;
-    &:focus { outline: none; border-color: #1A1A1A; }
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Lato', sans-serif; background: #FFFFFF; color: #2D3B2D;
-    border: 1px solid rgba(139,157,131,0.3); border-radius: 12px;
-    &:focus { outline: none; border-color: #8B9D83; }
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif; background: #FFFFFF; color: #0D0D0D; border: 3px solid #0D0D0D;
-    &:focus { outline: none; box-shadow: 4px 4px 0 #FF6B6B; }
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Montserrat', sans-serif; background: #FFFFFF; color: #2A2A2A;
-    border: 1px solid rgba(212,175,55,0.2);
-    &:focus { outline: none; border-color: #D4AF37; }
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif; background: rgba(255,255,255,0.05); color: #ffffff;
-    border: 1px solid rgba(0,255,255,0.3);
-    &:focus { outline: none; border-color: #00ffff; box-shadow: 0 0 15px rgba(0,255,255,0.2); }
-  `}
-  ${p => p.$error && css`border-color: #FF6B6B !important;`}
+const EditorialInput = styled.input`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #FAFAFA;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #C41E3A;
+  }
+  
+  &::placeholder { color: rgba(255, 255, 255, 0.3); }
 `;
 
-const Input = styled.input`${inputStyles}`;
-const Textarea = styled.textarea`${inputStyles} min-height: 120px; resize: vertical;`;
-const ErrorText = styled.span`font-size: 0.7rem; color: #FF6B6B; margin-top: 5px; display: block;`;
+const EditorialTextarea = styled.textarea`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #FAFAFA;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 150px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #C41E3A;
+  }
+  
+  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+`;
 
-const SubmitButton = styled.button`
-  width: 100%; padding: 18px 30px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
-  cursor: pointer; transition: all 0.3s ease; border: none; margin-top: 10px;
-  ${p => p.$themeId === 'video' && css`font-family: 'Inter', sans-serif; background: #B8976A; color: #0a0a0a; &:hover { background: #D4AF37; }`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; background: #1A1A1A; color: #FFFFFF; &:hover { background: #333; }`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; background: #8B9D83; color: #FFFFFF; border-radius: 30px; &:hover { background: #6B7D63; }`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; background: #FF6B6B; color: #FFFFFF; &:hover { background: #E85555; }`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; background: #D4AF37; color: #0a0a0a; &:hover { background: #F4D03F; }`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; background: #00ffff; color: #0a0a0f; box-shadow: 0 0 20px rgba(0,255,255,0.3); &:hover { box-shadow: 0 0 30px rgba(0,255,255,0.5); }`}
+const EditorialButton = styled.button`
+  width: 100%;
+  padding: 1.25rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  background: #C41E3A;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover { background: #a01830; }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
 `;
 
-const SuccessMessage = styled.div`
-  text-align: center; padding: 50px 30px;
-  ${p => p.$themeId === 'video' && css`background: rgba(184,151,106,0.1); border: 1px solid rgba(184,151,106,0.3);`}
-  ${p => p.$themeId === 'editorial' && css`background: #F5F5F5; border: 1px solid #E0E0E0;`}
-  ${p => p.$themeId === 'botanical' && css`background: rgba(139,157,131,0.1); border: 1px solid rgba(139,157,131,0.2); border-radius: 16px;`}
-  ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF; border: 3px solid #0D0D0D;`}
-  ${p => p.$themeId === 'luxe' && css`background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.2);`}
-  ${p => p.$themeId === 'neon' && css`background: rgba(0,255,255,0.05); border: 1px solid rgba(0,255,255,0.3);`}
-  h3 { font-size: 1.8rem; margin-bottom: 10px; }
-  p { font-size: 0.95rem; opacity: 0.7; }
+// ============================================
+// BOTANICAL THEME
+// ============================================
+const BotanicalSection = styled(Section)`
+  background: #040604;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(45, 90, 60, 0.1) 0%, transparent 50%);
+  }
 `;
 
-function ContactSection() {
+const BotanicalEyebrow = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
+`;
+
+const BotanicalTitle = styled.h2`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 1rem;
+`;
+
+const BotanicalSubtitle = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+`;
+
+const BotanicalFormCard = styled.div`
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2.5rem;
+`;
+
+const BotanicalLabel = styled.label`
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+`;
+
+const BotanicalInput = styled.input`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+`;
+
+const BotanicalTextarea = styled.textarea`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  min-height: 150px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+`;
+
+const BotanicalButton = styled.button`
+  width: 100%;
+  padding: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #040604;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  
+  &:hover { background: #fff; transform: translateY(-2px); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+`;
+
+// ============================================
+// CONTEMPORARY THEME
+// ============================================
+const ContemporarySection = styled(Section)`
+  background: #FFE66D;
+`;
+
+const ContemporaryEyebrow = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #FF6B6B;
+  margin-bottom: 1rem;
+`;
+
+const ContemporaryTitle = styled.h2`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  margin-bottom: 1rem;
+`;
+
+const ContemporarySubtitle = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #525252;
+`;
+
+const ContemporaryFormCard = styled.div`
+  background: #FFFFFF;
+  border: 3px solid #0D0D0D;
+  padding: 2rem;
+  box-shadow: 8px 8px 0 #0D0D0D;
+`;
+
+const ContemporaryLabel = styled.label`
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  margin-bottom: 0.5rem;
+`;
+
+const ContemporaryInput = styled.input`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #0D0D0D;
+  background: #FAFAFA;
+  border: 2px solid #0D0D0D;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 4px 4px 0 #4ECDC4;
+  }
+  
+  &::placeholder { color: #A3A3A3; }
+`;
+
+const ContemporaryTextarea = styled.textarea`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #0D0D0D;
+  background: #FAFAFA;
+  border: 2px solid #0D0D0D;
+  min-height: 150px;
+  resize: vertical;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 4px 4px 0 #4ECDC4;
+  }
+  
+  &::placeholder { color: #A3A3A3; }
+`;
+
+const ContemporaryButton = styled.button`
+  width: 100%;
+  padding: 1.25rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  background: #FF6B6B;
+  border: 3px solid #0D0D0D;
+  box-shadow: 6px 6px 0 #0D0D0D;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 #0D0D0D; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+`;
+
+// ============================================
+// LUXE THEME
+// ============================================
+const LuxeSection = styled(Section)`
+  background: #0A0A0A;
+`;
+
+const LuxeEyebrow = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #C9A962;
+  margin-bottom: 1rem;
+`;
+
+const LuxeTitle = styled.h2`
+  font-family: 'Cormorant', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #F8F6F3;
+  margin-bottom: 1rem;
+`;
+
+const LuxeSubtitle = styled.p`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(248, 246, 243, 0.6);
+`;
+
+const LuxeLabel = styled.label`
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248, 246, 243, 0.5);
+  margin-bottom: 0.5rem;
+`;
+
+const LuxeInput = styled.input`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  color: #F8F6F3;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(248, 246, 243, 0.2);
+  transition: all 0.4s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #C9A962;
+  }
+  
+  &::placeholder { color: rgba(248, 246, 243, 0.3); }
+`;
+
+const LuxeTextarea = styled.textarea`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  color: #F8F6F3;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(248, 246, 243, 0.2);
+  min-height: 150px;
+  resize: vertical;
+  transition: all 0.4s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #C9A962;
+  }
+  
+  &::placeholder { color: rgba(248, 246, 243, 0.3); }
+`;
+
+const LuxeButton = styled.button`
+  width: 100%;
+  padding: 1.25rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  background: #C9A962;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  
+  &:hover { background: #d4b66f; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+`;
+
+// ============================================
+// NEON THEME
+// ============================================
+const NeonSection = styled(Section)`
+  background: #0a0a0f;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.03) 0%, transparent 50%);
+  }
+`;
+
+const NeonEyebrow = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  margin-bottom: 1rem;
+`;
+
+const NeonTitle = styled.h2`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1rem;
+`;
+
+const NeonSubtitle = styled.p`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+`;
+
+const NeonFormCard = styled.div`
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  padding: 2.5rem;
+`;
+
+const NeonLabel = styled.label`
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ff00ff;
+  margin-bottom: 0.5rem;
+`;
+
+const NeonInput = styled.input`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  }
+  
+  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+`;
+
+const NeonTextarea = styled.textarea`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  min-height: 150px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  }
+  
+  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+`;
+
+const NeonButton = styled.button`
+  width: 100%;
+  padding: 1.25rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #00ffff;
+  background: transparent;
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover { 
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+  }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+`;
+
+// ============================================
+// VIDEO THEME
+// ============================================
+const VideoSection = styled(Section)`
+  background: #0A0A0A;
+`;
+
+const VideoEyebrow = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6B8CAE;
+  margin-bottom: 1rem;
+`;
+
+const VideoTitle = styled.h2`
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+`;
+
+const VideoSubtitle = styled.p`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #B0B0B0;
+`;
+
+const VideoLabel = styled.label`
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+`;
+
+const VideoInput = styled.input`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #FFFFFF;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #6B8CAE;
+  }
+  
+  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+`;
+
+const VideoTextarea = styled.textarea`
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #FFFFFF;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 150px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #6B8CAE;
+  }
+  
+  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+`;
+
+const VideoButton = styled.button`
+  width: 100%;
+  padding: 1.25rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: #6B8CAE;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover { background: #7d9cba; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+`;
+
+// ============================================
+// SUCCESS MESSAGE
+// ============================================
+const SuccessMessage = styled.div`
+  text-align: center;
+  padding: 3rem;
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    opacity: 0.7;
+  }
+`;
+
+// ============================================
+// MAIN COMPONENT
+// ============================================
+const ContactSection = () => {
   const { currentTheme } = useTheme();
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
-    name: '', email: '', phone: '', weddingDate: '', message: ''
+    name: '',
+    email: '',
+    date: '',
+    message: ''
   });
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setIsVisible(true); }, { threshold: 0.1 });
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // Min date: today + 2 months
-  const getMinDate = () => {
-    const date = new Date();
-    date.setMonth(date.getMonth() + 2);
-    return date.toISOString().split('T')[0];
-  };
-
-  const validateDate = (dateStr) => {
-    if (!dateStr) return 'Bitte Datum wählen';
-    const selected = new Date(dateStr);
-    const minDate = new Date();
-    minDate.setMonth(minDate.getMonth() + 2);
-    if (selected < minDate) return 'Datum muss mind. 2 Monate in der Zukunft liegen';
-    return null;
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = {};
-    if (!formData.name) newErrors.name = 'Bitte Name eingeben';
-    if (!formData.email) newErrors.email = 'Bitte E-Mail eingeben';
-    const dateError = validateDate(formData.weddingDate);
-    if (dateError) newErrors.weddingDate = dateError;
-    
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setIsSubmitting(true);
+    // Simulate submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsSuccess(true);
+    setIsSubmitting(false);
   };
 
-  if (submitted) {
+  const renderForm = (InputComp, TextareaComp, LabelComp, ButtonComp, FormWrapper = 'form') => {
+    if (isSuccess) {
+      return (
+        <SuccessMessage>
+          <h3>✓ Nachricht gesendet!</h3>
+          <p>Wir melden uns innerhalb von 24 Stunden bei euch.</p>
+        </SuccessMessage>
+      );
+    }
+
+    const formContent = (
+      <>
+        <div style={{ display: 'grid', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+            <div>
+              <LabelComp>Name</LabelComp>
+              <InputComp name="name" value={formData.name} onChange={handleChange} placeholder="Euer Name" required />
+            </div>
+            <div>
+              <LabelComp>E-Mail</LabelComp>
+              <InputComp type="email" name="email" value={formData.email} onChange={handleChange} placeholder="email@beispiel.de" required />
+            </div>
+          </div>
+          <div>
+            <LabelComp>Hochzeitsdatum (optional)</LabelComp>
+            <InputComp type="date" name="date" value={formData.date} onChange={handleChange} />
+          </div>
+          <div>
+            <LabelComp>Nachricht</LabelComp>
+            <TextareaComp name="message" value={formData.message} onChange={handleChange} placeholder="Erzählt uns von eurer Hochzeit..." required />
+          </div>
+          <ButtonComp type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
+          </ButtonComp>
+        </div>
+      </>
+    );
+
+    if (FormWrapper === 'form') {
+      return <form onSubmit={handleSubmit}>{formContent}</form>;
+    }
+    return <FormWrapper as="form" onSubmit={handleSubmit}>{formContent}</FormWrapper>;
+  };
+
+  // EDITORIAL
+  if (currentTheme === 'editorial') {
     return (
-      <Section $themeId={currentTheme} id="contact">
+      <EditorialSection id="contact">
         <Container>
-          <SuccessMessage $themeId={currentTheme}>
-            <h3>Vielen Dank! 💕</h3>
-            <p>Wir melden uns innerhalb von 24 Stunden bei euch.</p>
-          </SuccessMessage>
+          <Header>
+            <EditorialEyebrow>Kontakt</EditorialEyebrow>
+            <EditorialTitle>Schreibt uns</EditorialTitle>
+            <EditorialSubtitle>Wir freuen uns auf eure Anfrage</EditorialSubtitle>
+          </Header>
+          {renderForm(EditorialInput, EditorialTextarea, EditorialLabel, EditorialButton)}
         </Container>
-      </Section>
+      </EditorialSection>
     );
   }
 
+  // BOTANICAL
+  if (currentTheme === 'botanical') {
+    return (
+      <BotanicalSection id="contact">
+        <Container>
+          <Header>
+            <BotanicalEyebrow>Kontakt</BotanicalEyebrow>
+            <BotanicalTitle>Schreibt uns</BotanicalTitle>
+            <BotanicalSubtitle>Wir freuen uns auf eure Anfrage</BotanicalSubtitle>
+          </Header>
+          <BotanicalFormCard>
+            {renderForm(BotanicalInput, BotanicalTextarea, BotanicalLabel, BotanicalButton)}
+          </BotanicalFormCard>
+        </Container>
+      </BotanicalSection>
+    );
+  }
+
+  // CONTEMPORARY
+  if (currentTheme === 'contemporary') {
+    return (
+      <ContemporarySection id="contact">
+        <Container>
+          <Header>
+            <ContemporaryEyebrow>📧 Let's Talk</ContemporaryEyebrow>
+            <ContemporaryTitle>Kontakt</ContemporaryTitle>
+            <ContemporarySubtitle>Schreibt uns - wir beißen nicht! 😄</ContemporarySubtitle>
+          </Header>
+          <ContemporaryFormCard>
+            {renderForm(ContemporaryInput, ContemporaryTextarea, ContemporaryLabel, ContemporaryButton)}
+          </ContemporaryFormCard>
+        </Container>
+      </ContemporarySection>
+    );
+  }
+
+  // LUXE
+  if (currentTheme === 'luxe') {
+    return (
+      <LuxeSection id="contact">
+        <Container>
+          <Header>
+            <LuxeEyebrow>Kontakt</LuxeEyebrow>
+            <LuxeTitle>Sprechen wir</LuxeTitle>
+            <LuxeSubtitle>Wir freuen uns auf Ihre Anfrage</LuxeSubtitle>
+          </Header>
+          {renderForm(LuxeInput, LuxeTextarea, LuxeLabel, LuxeButton)}
+        </Container>
+      </LuxeSection>
+    );
+  }
+
+  // NEON
+  if (currentTheme === 'neon') {
+    return (
+      <NeonSection id="contact">
+        <Container>
+          <Header>
+            <NeonEyebrow>// Contact.init()</NeonEyebrow>
+            <NeonTitle>Send Message</NeonTitle>
+            <NeonSubtitle>Initiating communication protocol...</NeonSubtitle>
+          </Header>
+          <NeonFormCard>
+            {renderForm(NeonInput, NeonTextarea, NeonLabel, NeonButton)}
+          </NeonFormCard>
+        </Container>
+      </NeonSection>
+    );
+  }
+
+  // VIDEO (Default)
   return (
-    <Section ref={sectionRef} $themeId={currentTheme} id="contact">
+    <VideoSection id="contact">
       <Container>
-        <Header $visible={isVisible}>
-          <Eyebrow $themeId={currentTheme}>— Kontakt —</Eyebrow>
-          <Title $themeId={currentTheme}>Lasst uns starten</Title>
-          <Subtitle $themeId={currentTheme}>
-            Erzählt uns von eurer Hochzeit - wir melden uns innerhalb von 24 Stunden!
-          </Subtitle>
+        <Header>
+          <VideoEyebrow>Kontakt</VideoEyebrow>
+          <VideoTitle>Schreibt uns</VideoTitle>
+          <VideoSubtitle>Wir freuen uns auf eure Anfrage</VideoSubtitle>
         </Header>
-        
-        <Form $visible={isVisible} onSubmit={handleSubmit}>
-          <Field>
-            <Label $themeId={currentTheme}>Eure Namen *</Label>
-            <Input 
-              $themeId={currentTheme} 
-              name="name" 
-              value={formData.name} 
-              onChange={handleChange} 
-              $error={errors.name} 
-              placeholder="Anna & Max" 
-            />
-            {errors.name && <ErrorText>{errors.name}</ErrorText>}
-          </Field>
-          
-          <Row>
-            <Field style={{ marginBottom: 0 }}>
-              <Label $themeId={currentTheme}>E-Mail *</Label>
-              <Input 
-                $themeId={currentTheme} 
-                type="email" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
-                $error={errors.email} 
-                placeholder="eure@email.de" 
-              />
-              {errors.email && <ErrorText>{errors.email}</ErrorText>}
-            </Field>
-            <Field style={{ marginBottom: 0 }}>
-              <Label $themeId={currentTheme}>Handynummer (optional)</Label>
-              <Input 
-                $themeId={currentTheme} 
-                type="tel" 
-                name="phone" 
-                value={formData.phone} 
-                onChange={handleChange} 
-                placeholder="+49 170 ..." 
-              />
-            </Field>
-          </Row>
-          
-          <Field>
-            <Label $themeId={currentTheme}>Hochzeitsdatum *</Label>
-            <Input 
-              $themeId={currentTheme} 
-              type="date" 
-              name="weddingDate" 
-              value={formData.weddingDate} 
-              onChange={handleChange} 
-              min={getMinDate()} 
-              $error={errors.weddingDate} 
-            />
-            {errors.weddingDate && <ErrorText>{errors.weddingDate}</ErrorText>}
-          </Field>
-          
-          <Field>
-            <Label $themeId={currentTheme}>Eure Nachricht (optional)</Label>
-            <Textarea 
-              $themeId={currentTheme} 
-              name="message" 
-              value={formData.message} 
-              onChange={handleChange}
-              placeholder="Erzählt uns von eurer Hochzeit, welches Paket euch interessiert..." 
-            />
-          </Field>
-          
-          <SubmitButton type="submit" $themeId={currentTheme}>Anfrage senden</SubmitButton>
-        </Form>
+        {renderForm(VideoInput, VideoTextarea, VideoLabel, VideoButton)}
       </Container>
-    </Section>
+    </VideoSection>
   );
-}
+};
 
 export default ContactSection;

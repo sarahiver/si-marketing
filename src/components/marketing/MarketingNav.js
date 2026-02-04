@@ -1,593 +1,714 @@
 // src/components/marketing/MarketingNav.js
-import React, { useState, useEffect, useRef } from 'react';
+// 1:1 Theme-Designs aus si-wedding-themes
+import React, { useState, useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+
+const THEMES = ['editorial', 'botanical', 'contemporary', 'luxe', 'neon', 'video'];
+
+// ============================================
+// ANIMATIONS
+// ============================================
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const fadeInDown = keyframes`
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
 
 const floatNav = keyframes`
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
 `;
 
-// Base Nav - always full width with padding
-const Nav = styled.nav`
+// ============================================
+// SHARED STYLES
+// ============================================
+const BaseNav = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 0 15px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   transition: all 0.4s ease;
-  
-  @media (min-width: 600px) {
-    padding: 0 5%;
-    height: 80px;
-  }
+`;
+
+// ============================================
+// EDITORIAL NAV - Burger Menu Only
+// ============================================
+const EditorialNav = styled(BaseNav)`
+  padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   
   ${p => p.$scrolled && css`
-    backdrop-filter: blur(20px);
-    ${p.$themeId === 'video' && css`background: rgba(10,10,10,0.95); border-bottom: 1px solid rgba(184,151,106,0.1);`}
-    ${p.$themeId === 'editorial' && css`background: rgba(255,255,255,0.98); border-bottom: 1px solid #E0E0E0;`}
-    ${p.$themeId === 'botanical' && css`background: transparent; border: none;`}
-    ${p.$themeId === 'contemporary' && css`background: transparent; border: none;`}
-    ${p.$themeId === 'luxe' && css`background: rgba(10,10,10,0.98); border-bottom: 1px solid rgba(212,175,55,0.1);`}
-    ${p.$themeId === 'neon' && css`background: rgba(10,10,15,0.95); border-bottom: 1px solid rgba(0,255,255,0.2);`}
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem clamp(1.5rem, 5vw, 4rem);
   `}
 `;
 
-// Inner container for special themes that need centered/framed nav
-const NavInner = styled.div`
+const EditorialLogo = styled.a`
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  opacity: 0;
+  animation: ${fadeIn} 0.6s ease forwards 0.3s;
+  
+  &:hover { color: #C41E3A; }
+`;
+
+const EditorialMenuBtn = styled.button`
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  opacity: 0;
+  animation: ${fadeIn} 0.6s ease forwards 0.5s;
+  
+  &:hover span { background: #C41E3A; }
+`;
+
+const EditorialMenuLine = styled.span`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  background: #FAFAFA;
+  transition: all 0.3s ease;
+  
+  &:nth-child(1) { top: 12px; ${p => p.$open && css`top: 19px; transform: translateX(-50%) rotate(45deg);`} }
+  &:nth-child(2) { top: 19px; ${p => p.$open && css`opacity: 0;`} }
+  &:nth-child(3) { top: 26px; ${p => p.$open && css`top: 19px; transform: translateX(-50%) rotate(-45deg);`} }
+`;
+
+const EditorialMenuLabel = styled.span`
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  ${p => p.$open && css`opacity: 0;`}
+  @media (max-width: 768px) { display: none; }
+`;
+
+const EditorialOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  ${p => p.$open && css`opacity: 1; visibility: visible;`}
+`;
+
+const EditorialPanel = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(400px, 85vw);
+  height: 100vh;
+  background: #0A0A0A;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  ${p => p.$open && css`transform: translateX(0);`}
+`;
+
+const EditorialPanelContent = styled.div`
+  padding: 6rem 2.5rem 3rem;
+`;
+
+const EditorialMenuLink = styled.a`
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  
+  &:hover { color: #C41E3A; padding-left: 1rem; }
+`;
+
+// ============================================
+// BOTANICAL NAV - Floating Pill Glassmorphism
+// ============================================
+const BotanicalPill = styled(BaseNav)`
+  top: 1.5rem;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: auto;
+  
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  animation: ${fadeInDown} 0.8s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+`;
+
+const BotanicalLink = styled.a`
+  padding: 0.6rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  @media (max-width: 768px) { display: none; }
+`;
+
+const BotanicalCTA = styled.a`
+  padding: 0.6rem 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #040604;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #fff;
+    transform: scale(1.02);
+  }
+  
+  @media (max-width: 768px) { display: none; }
+`;
+
+const BotanicalMenuBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover { background: rgba(255, 255, 255, 0.1); }
+`;
+
+const BotanicalMenuIcon = styled.div`
+  width: 18px;
+  height: 14px;
+  position: relative;
+  
+  span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    
+    &:nth-child(1) { top: 0; ${p => p.$open && css`top: 6px; transform: rotate(45deg);`} }
+    &:nth-child(2) { top: 6px; ${p => p.$open && css`opacity: 0;`} }
+    &:nth-child(3) { top: 12px; ${p => p.$open && css`top: 6px; transform: rotate(-45deg);`} }
+  }
+`;
+
+const BotanicalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(4, 6, 4, 0.95);
+  backdrop-filter: blur(30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  ${p => p.$open && css`opacity: 1; visibility: visible;`}
+`;
+
+const BotanicalMenuCard = styled.div`
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 32px;
+  padding: 2.5rem;
+  min-width: 280px;
+`;
+
+const BotanicalMenuLink = styled.a`
+  display: block;
+  padding: 1rem 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+`;
+
+// ============================================
+// CONTEMPORARY NAV - Neobrutalism Frame
+// ============================================
+const ContemporaryNav = styled(BaseNav)`
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  
+  @media (min-width: 600px) {
+    padding: 10px 5%;
+  }
+`;
+
+const ContemporaryInner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
-  transition: all 0.4s ease;
+  height: 60px;
+  background: #FFFFFF;
+  border: 3px solid #0D0D0D;
+  padding: 0 20px;
+  transition: all 0.3s ease;
   
-  ${p => p.$themeId === 'contemporary' && css`
-    @media (min-width: 600px) {
-      background: #FFFFFF;
-      border: 2px solid #1A1A1A;
-      padding: 0 20px;
-      max-width: 1200px;
-      margin: 10px auto;
-      height: calc(100% - 20px);
-      box-shadow: ${p.$scrolled ? '6px 6px 0 #FF6B6B' : 'none'};
-    }
+  ${p => p.$scrolled && css`
+    box-shadow: 6px 6px 0 #FF6B6B;
   `}
   
-  ${p => p.$themeId === 'botanical' && css`
-    @media (min-width: 600px) {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(15px);
-      border-radius: 50px;
-      padding: 0 25px;
-      max-width: 1100px;
-      margin: 10px auto;
-      height: calc(100% - 20px);
-      box-shadow: ${p.$scrolled ? '0 4px 30px rgba(0, 0, 0, 0.12)' : '0 4px 30px rgba(0, 0, 0, 0.05)'};
-      animation: ${floatNav} 4s ease-in-out infinite;
-    }
-  `}
+  @media (min-width: 600px) {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 `;
 
-const Logo = styled.a`
-  text-decoration: none;
-  transition: all 0.3s ease;
-  z-index: 1001;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  
-  /* Einheitliches S&I. Logo - Roboto Bold, schwarzer Hintergrund, weiße Schrift */
-  font-family: 'Roboto', sans-serif;
+const ContemporaryLogo = styled.a`
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: -0.06em; /* Zeichen berühren sich leicht */
-  color: #FFFFFF;
-  background: #000000;
-  padding: 8px 14px;
+  color: #0D0D0D;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
   
-  @media (min-width: 600px) { 
-    font-size: 1.4rem; 
-    padding: 10px 16px;
+  &:hover { color: #FF6B6B; }
+`;
+
+const ContemporaryLinks = styled.div`
+  display: none;
+  gap: 0.5rem;
+  
+  @media (min-width: 768px) {
+    display: flex;
   }
+`;
+
+const ContemporaryLink = styled.a`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0D0D0D;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
   
   &:hover {
-    opacity: 0.9;
+    color: #FF6B6B;
   }
 `;
 
-const NavLinks = styled.div`
-  display: none;
-  align-items: center;
-  gap: 25px;
-  
-  @media (min-width: 900px) {
-    display: flex;
-    gap: 35px;
-  }
-`;
-
-const NavLink = styled.a`
+const ContemporaryCTA = styled.a`
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  
-  @media (min-width: 900px) { font-size: 0.8rem; }
-  
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Inter', sans-serif;
-    color: ${p.$scrolled ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.8)'};
-    &:hover { color: #B8976A; }
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif;
-    color: #666;
-    &:hover { color: #1A1A1A; }
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Lato', sans-serif;
-    color: #5A6B5A;
-    &:hover { color: #2D3B2D; }
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    color: #666;
-    text-transform: uppercase;
-    font-weight: 600;
-    &:hover { color: #FF6B6B; }
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    &:hover { color: #D4AF37; }
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    color: rgba(255,255,255,0.6);
-    &:hover { color: #00ffff; text-shadow: 0 0 10px rgba(0,255,255,0.5); }
-  `}
-`;
-
-const RightSection = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  z-index: 1001;
-  flex-shrink: 0;
-  
-  @media (min-width: 600px) { gap: 20px; }
-`;
-
-const ThemeDropdown = styled.div`
-  position: relative;
-  display: none;
-  
-  @media (min-width: 900px) {
-    display: block;
-  }
-`;
-
-const ThemeButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: transparent;
-  border: 1px solid;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  font-size: 0.65rem;
-  
-  @media (min-width: 900px) { 
-    gap: 10px;
-    padding: 10px 16px;
-    font-size: 0.7rem;
-  }
-  
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: ${p.$scrolled ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.8)'};
-    border-color: rgba(184,151,106,0.3);
-    &:hover { border-color: #B8976A; color: #B8976A; }
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif;
-    color: #666;
-    border-color: #E0E0E0;
-    &:hover { border-color: #1A1A1A; color: #1A1A1A; }
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Lato', sans-serif;
-    color: #5A6B5A;
-    border-color: rgba(139,157,131,0.3);
-    border-radius: 20px;
-    &:hover { border-color: #8B9D83; }
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    color: #0D0D0D;
-    border-color: #0D0D0D;
-    border-width: 2px;
-    &:hover { background: #0D0D0D; color: #FFF; }
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(212,175,55,0.6);
-    border-color: rgba(212,175,55,0.2);
-    &:hover { border-color: #D4AF37; color: #D4AF37; }
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    color: #00ffff;
-    border-color: rgba(0,255,255,0.3);
-    &:hover { border-color: #00ffff; box-shadow: 0 0 15px rgba(0,255,255,0.3); }
-  `}
-`;
-
-const ThemeDot = styled.span`
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: ${p => p.$color};
-  flex-shrink: 0;
-  
-  @media (min-width: 900px) {
-    width: 12px;
-    height: 12px;
-  }
-`;
-
-const DropdownArrow = styled.span`
-  font-size: 0.5rem;
-  transition: transform 0.3s ease;
-  ${p => p.$open && css`transform: rotate(180deg);`}
-`;
-
-const DropdownMenu = styled.div`
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 180px;
-  padding: 8px 0;
-  border-radius: 8px;
-  opacity: ${p => p.$open ? 1 : 0};
-  visibility: ${p => p.$open ? 'visible' : 'hidden'};
-  transform: translateY(${p => p.$open ? 0 : '-10px'});
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1001;
-  
-  ${p => p.$themeId === 'video' && css`background: rgba(10,10,10,0.98); border: 1px solid rgba(184,151,106,0.2);`}
-  ${p => p.$themeId === 'editorial' && css`background: #FFFFFF; border: 1px solid #E0E0E0; box-shadow: 0 10px 40px rgba(0,0,0,0.1);`}
-  ${p => p.$themeId === 'botanical' && css`background: #FFFFFF; border: 1px solid rgba(139,157,131,0.2); border-radius: 16px;`}
-  ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF; border: 3px solid #0D0D0D; box-shadow: 6px 6px 0 #0D0D0D;`}
-  ${p => p.$themeId === 'luxe' && css`background: rgba(10,10,10,0.98); border: 1px solid rgba(212,175,55,0.15);`}
-  ${p => p.$themeId === 'neon' && css`background: rgba(10,10,15,0.98); border: 1px solid rgba(0,255,255,0.2);`}
-`;
-
-const DropdownItem = styled.button`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+  font-weight: 700;
+  color: #FAFAFA;
+  background: #FF6B6B;
+  border: 2px solid #0D0D0D;
+  padding: 0.6rem 1.2rem;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 #0D0D0D;
   transition: all 0.2s ease;
-  text-align: left;
-  font-size: 0.8rem;
   
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Inter', sans-serif;
-    color: ${p.$active ? '#B8976A' : 'rgba(255,255,255,0.7)'};
-    &:hover { background: rgba(184,151,106,0.1); }
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Inter', sans-serif;
-    color: ${p.$active ? '#1A1A1A' : '#666'};
-    &:hover { background: #F5F5F5; }
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Lato', sans-serif;
-    color: ${p.$active ? '#2D3B2D' : '#5A6B5A'};
-    &:hover { background: rgba(139,157,131,0.1); }
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    color: ${p.$active ? '#FF6B6B' : '#0D0D0D'};
-    &:hover { background: #F5F5F5; }
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    color: ${p.$active ? '#D4AF37' : 'rgba(255,255,255,0.5)'};
-    &:hover { background: rgba(212,175,55,0.1); }
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    color: ${p.$active ? '#00ffff' : 'rgba(255,255,255,0.6)'};
-    &:hover { background: rgba(0,255,255,0.1); }
-  `}
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #0D0D0D;
+  }
+  
+  @media (max-width: 500px) { display: none; }
 `;
 
-const MobileMenuButton = styled.button`
-  display: flex;
+const ContemporaryMenuBtn = styled.button`
   width: 40px;
   height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  background: none;
-  border: none;
+  background: #FFE66D;
+  border: 2px solid #0D0D0D;
   cursor: pointer;
-  z-index: 1002;
-  padding: 8px;
-  
-  @media (min-width: 900px) {
-    display: none;
-  }
-  
-  span {
-    width: 22px;
-    height: 2px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    transform-origin: center;
-    
-    ${p => p.$themeId === 'video' && css`background: #B8976A;`}
-    ${p => p.$themeId === 'editorial' && css`background: #1A1A1A;`}
-    ${p => p.$themeId === 'botanical' && css`background: #2D3B2D;`}
-    ${p => p.$themeId === 'contemporary' && css`background: #0D0D0D;`}
-    ${p => p.$themeId === 'luxe' && css`background: #D4AF37;`}
-    ${p => p.$themeId === 'neon' && css`background: #00ffff;`}
-    
-    &:nth-child(1) {
-      transform: ${p => p.$menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none'};
-    }
-    &:nth-child(2) {
-      opacity: ${p => p.$menuOpen ? 0 : 1};
-      transform: ${p => p.$menuOpen ? 'scaleX(0)' : 'scaleX(1)'};
-    }
-    &:nth-child(3) {
-      transform: ${p => p.$menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none'};
-    }
-  }
-`;
-
-// Mobile Menu Overlay
-const MobileMenuOverlay = styled.div`
-  position: fixed;
-  inset: 0;
-  z-index: 998;
-  opacity: ${p => p.$open ? 1 : 0};
-  visibility: ${p => p.$open ? 'visible' : 'hidden'};
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  
-  ${p => p.$themeId === 'video' && css`background: rgba(10,10,10,0.98);`}
-  ${p => p.$themeId === 'editorial' && css`background: rgba(255,255,255,0.98);`}
-  ${p => p.$themeId === 'botanical' && css`background: rgba(250,249,246,0.98);`}
-  ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF;`}
-  ${p => p.$themeId === 'luxe' && css`background: rgba(10,10,10,0.98);`}
-  ${p => p.$themeId === 'neon' && css`background: rgba(10,10,15,0.98);`}
-  
-  @media (min-width: 900px) {
-    display: none;
-  }
-`;
-
-const MobileMenuContent = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  gap: 18px;
-  padding: 90px 20px 40px;
-  overflow-y: auto;
+  box-shadow: 2px 2px 0 #0D0D0D;
+  
+  @media (min-width: 768px) { display: none; }
+  
+  &:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 #0D0D0D;
+  }
 `;
 
-const MobileNavLink = styled.a`
-  font-size: 1.5rem;
-  text-decoration: none;
-  opacity: ${p => p.$open ? 1 : 0};
-  transform: translateY(${p => p.$open ? 0 : '20px'});
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: ${p => p.$open ? p.$delay : 0}s;
+// ============================================
+// LUXE NAV - Minimal Cinematic
+// ============================================
+const LuxeNav = styled(BaseNav)`
+  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   
-  @media (min-width: 400px) { font-size: 1.8rem; }
-  
-  ${p => p.$themeId === 'video' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-    color: rgba(255,255,255,0.8);
-    &:hover { color: #B8976A; }
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
-    color: #1A1A1A;
-    &:hover { color: #666; }
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    color: #2D3B2D;
-    &:hover { color: #7A9972; }
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #0D0D0D;
-    &:hover { color: #FF6B6B; }
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-    color: rgba(255,255,255,0.7);
-    &:hover { color: #D4AF37; }
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    color: rgba(255,255,255,0.7);
-    &:hover { color: #00ffff; text-shadow: 0 0 15px rgba(0,255,255,0.5); }
+  ${p => p.$scrolled && css`
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1.25rem clamp(1.5rem, 5vw, 4rem);
   `}
 `;
 
-const MobileThemeSection = styled.div`
-  margin-top: 25px;
-  padding-top: 25px;
-  width: 100%;
-  max-width: 300px;
-  opacity: ${p => p.$open ? 1 : 0};
-  transform: translateY(${p => p.$open ? 0 : '20px'});
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: ${p => p.$open ? '0.3s' : '0s'};
+const LuxeLogo = styled.a`
+  font-family: 'Cormorant', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  color: #F8F6F3;
+  opacity: 0;
+  animation: ${fadeIn} 1s ease forwards 0.5s;
   
-  ${p => p.$themeId === 'video' && css`border-top: 1px solid rgba(184,151,106,0.2);`}
-  ${p => p.$themeId === 'editorial' && css`border-top: 1px solid #E0E0E0;`}
-  ${p => p.$themeId === 'botanical' && css`border-top: 1px solid rgba(139,157,131,0.2);`}
-  ${p => p.$themeId === 'contemporary' && css`border-top: 3px solid #0D0D0D;`}
-  ${p => p.$themeId === 'luxe' && css`border-top: 1px solid rgba(212,175,55,0.2);`}
-  ${p => p.$themeId === 'neon' && css`border-top: 1px solid rgba(0,255,255,0.2);`}
+  &:hover { color: #C9A962; }
 `;
 
-const MobileThemeTitle = styled.p`
-  text-align: center;
-  font-size: 0.65rem;
+const LuxeLinks = styled.div`
+  display: none;
+  gap: 2.5rem;
+  
+  @media (min-width: 768px) { display: flex; }
+`;
+
+const LuxeLink = styled.a`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 15px;
+  color: #E8E6E1;
+  opacity: 0;
+  animation: ${fadeIn} 1s ease forwards;
+  animation-delay: ${p => 0.7 + p.$i * 0.1}s;
+  transition: color 0.3s ease;
   
-  ${p => p.$themeId === 'video' && css`font-family: 'Montserrat', sans-serif; color: #B8976A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #999;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #7A9972;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #666;`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: #D4AF37;`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #00ffff;`}
+  &:hover { color: #C9A962; }
 `;
 
-const MobileThemeGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-`;
-
-const MobileThemeButton = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 6px;
+const LuxeMenuBtn = styled.button`
+  width: 50px;
+  height: 50px;
   background: transparent;
-  border: 1px solid;
+  border: 1px solid rgba(248, 246, 243, 0.2);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: ${fadeIn} 1s ease forwards 1s;
+  transition: all 0.3s ease;
   
-  ${p => p.$themeId === 'video' && css`
-    border-color: ${p.$active ? '#B8976A' : 'rgba(184,151,106,0.2)'};
-    background: ${p.$active ? 'rgba(184,151,106,0.1)' : 'transparent'};
-  `}
-  ${p => p.$themeId === 'editorial' && css`
-    border-color: ${p.$active ? '#1A1A1A' : '#E0E0E0'};
-    background: ${p.$active ? '#F5F5F5' : 'transparent'};
-  `}
-  ${p => p.$themeId === 'botanical' && css`
-    border-color: ${p.$active ? '#7A9972' : 'rgba(139,157,131,0.2)'};
-    background: ${p.$active ? 'rgba(139,157,131,0.1)' : 'transparent'};
-    border-radius: 10px;
-  `}
-  ${p => p.$themeId === 'contemporary' && css`
-    border-color: #0D0D0D;
-    border-width: 2px;
-    background: ${p.$active ? '#0D0D0D' : 'transparent'};
-  `}
-  ${p => p.$themeId === 'luxe' && css`
-    border-color: ${p.$active ? '#D4AF37' : 'rgba(212,175,55,0.2)'};
-    background: ${p.$active ? 'rgba(212,175,55,0.1)' : 'transparent'};
-  `}
-  ${p => p.$themeId === 'neon' && css`
-    border-color: ${p.$active ? '#00ffff' : 'rgba(0,255,255,0.2)'};
-    background: ${p.$active ? 'rgba(0,255,255,0.1)' : 'transparent'};
-  `}
-`;
-
-const MobileThemeDot = styled.span`
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: ${p => p.$color};
-`;
-
-const MobileThemeName = styled.span`
-  font-size: 0.5rem;
-  letter-spacing: 0.03em;
-  
-  ${p => p.$themeId === 'video' && css`font-family: 'Montserrat', sans-serif; color: rgba(255,255,255,0.6);`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #666;`}
-  ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #5A6B5A;`}
-  ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: ${p.$active ? '#FFF' : '#0D0D0D'};`}
-  ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: rgba(255,255,255,0.5);`}
-  ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: rgba(255,255,255,0.5);`}
-`;
-
-const themeColors = {
-  video: '#B8976A',
-  editorial: '#1A1A1A',
-  botanical: '#8B9D83',
-  contemporary: '#FF6B6B',
-  luxe: '#D4AF37',
-  neon: '#00ffff'
-};
-
-const navLinks = [
-  { label: 'Features', href: '#features' },
-  { label: 'Designs', href: '#designs' },
-  { label: 'Preise', href: '#pricing' },
-  { label: 'Über uns', href: '#about' },
-  { label: 'Kontakt', href: '#contact' }
-];
-
-const smoothScrollTo = (elementId) => {
-  const element = document.getElementById(elementId);
-  if (element) {
-    const navHeight = 90;
-    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-    const offsetPosition = elementPosition - navHeight;
-    
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
+  &:hover {
+    border-color: #C9A962;
   }
-};
+  
+  @media (min-width: 768px) { display: none; }
+`;
 
-function MarketingNav() {
-  const { currentTheme, switchTheme, themes } = useTheme();
+const LuxeMenuIcon = styled.div`
+  width: 20px;
+  height: 12px;
+  position: relative;
+  
+  span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #F8F6F3;
+    transition: all 0.3s ease;
+    
+    &:nth-child(1) { top: 0; }
+    &:nth-child(2) { top: 5.5px; }
+    &:nth-child(3) { bottom: 0; }
+  }
+`;
+
+// ============================================
+// NEON NAV - Cyberpunk Glow
+// ============================================
+const NeonNav = styled(BaseNav)`
+  padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  ${p => p.$scrolled && css`
+    background: rgba(10, 10, 15, 0.95);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  `}
+`;
+
+const NeonLogo = styled.a`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  
+  &:hover {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  }
+`;
+
+const NeonLinks = styled.div`
+  display: none;
+  gap: 2rem;
+  
+  @media (min-width: 768px) { display: flex; }
+`;
+
+const NeonLink = styled.a`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+`;
+
+const NeonCTA = styled.a`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #00ff88;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  padding: 0.6rem 1.2rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+  }
+  
+  @media (max-width: 500px) { display: none; }
+`;
+
+const NeonMenuBtn = styled.button`
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+  
+  @media (min-width: 768px) { display: none; }
+`;
+
+// ============================================
+// VIDEO NAV - Cinematic Minimal with Dusty Blue
+// ============================================
+const VideoNav = styled(BaseNav)`
+  padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  ${p => p.$scrolled && css`
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+  `}
+`;
+
+const VideoLogo = styled.a`
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  
+  &:hover { color: #6B8CAE; }
+`;
+
+const VideoLinks = styled.div`
+  display: none;
+  gap: 2rem;
+  
+  @media (min-width: 768px) { display: flex; }
+`;
+
+const VideoLink = styled.a`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #B0B0B0;
+  transition: color 0.3s ease;
+  
+  &:hover { color: #6B8CAE; }
+`;
+
+const VideoCTA = styled.a`
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  border: 1px solid #6B8CAE;
+  padding: 0.6rem 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #6B8CAE;
+  }
+  
+  @media (max-width: 500px) { display: none; }
+`;
+
+const VideoMenuBtn = styled.button`
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media (min-width: 768px) { display: none; }
+  
+  &:hover { border-color: #6B8CAE; }
+`;
+
+// ============================================
+// THEME SWITCHER (Shared)
+// ============================================
+const ThemeSwitcher = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid ${p => {
+    if (p.$theme === 'editorial') return 'rgba(255,255,255,0.2)';
+    if (p.$theme === 'botanical') return 'rgba(255,255,255,0.15)';
+    if (p.$theme === 'contemporary') return '#0D0D0D';
+    if (p.$theme === 'luxe') return 'rgba(248,246,243,0.2)';
+    if (p.$theme === 'neon') return 'rgba(0,255,255,0.2)';
+    return 'rgba(255,255,255,0.2)';
+  }};
+  
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
+const ThemeDot = styled.button`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid ${p => p.$active ? '#fff' : 'transparent'};
+  background: ${p => {
+    if (p.$t === 'editorial') return '#C41E3A';
+    if (p.$t === 'botanical') return '#2D5A3C';
+    if (p.$t === 'contemporary') return '#FF6B6B';
+    if (p.$t === 'luxe') return '#C9A962';
+    if (p.$t === 'neon') return '#00ffff';
+    if (p.$t === 'video') return '#6B8CAE';
+    return '#888';
+  }};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+// ============================================
+// MAIN COMPONENT
+// ============================================
+const MarketingNav = () => {
+  const { currentTheme, setCurrentTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -596,151 +717,183 @@ function MarketingNav() {
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [mobileMenuOpen]);
+  }, [menuOpen]);
 
-  const handleThemeSelect = (themeId) => {
-    switchTheme(themeId);
-    setDropdownOpen(false);
-  };
-
-  const handleMobileThemeSelect = (themeId) => {
-    switchTheme(themeId);
-    setTimeout(() => {
-      setMobileMenuOpen(false);
-    }, 300);
-  };
-
-  const handleNavLinkClick = (e, href) => {
+  const handleLinkClick = (e, targetId) => {
     e.preventDefault();
-    const elementId = href.replace('#', '');
-    smoothScrollTo(elementId);
+    setMenuOpen(false);
+    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleMobileLinkClick = (e, href) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    
-    setTimeout(() => {
-      const elementId = href.replace('#', '');
-      smoothScrollTo(elementId);
-    }, 400);
-  };
+  const navItems = [
+    { id: 'features', label: 'Features' },
+    { id: 'themes', label: 'Designs' },
+    { id: 'pricing', label: 'Preise' },
+    { id: 'about', label: 'Über uns' },
+    { id: 'contact', label: 'Kontakt' },
+  ];
 
-  return (
-    <>
-      <Nav $themeId={currentTheme} $scrolled={scrolled}>
-        <NavInner $themeId={currentTheme} $scrolled={scrolled}>
-          <Logo href="#">
-            S&I.
-          </Logo>
-          
-          <NavLinks>
-            {navLinks.map(link => (
-              <NavLink 
-                key={link.label} 
-                href={link.href} 
-                $themeId={currentTheme} 
-                $scrolled={scrolled}
-                onClick={(e) => handleNavLinkClick(e, link.href)}
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </NavLinks>
-          
-          <RightSection>
-            <ThemeDropdown ref={dropdownRef}>
-              <ThemeButton 
-                $themeId={currentTheme} 
-                $scrolled={scrolled}
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-              >
-                <ThemeDot $color={themeColors[currentTheme]} />
-                {themes[currentTheme].name}
-                <DropdownArrow $open={dropdownOpen}>▼</DropdownArrow>
-              </ThemeButton>
-              
-              <DropdownMenu $themeId={currentTheme} $open={dropdownOpen}>
-                {Object.values(themes).map(theme => (
-                  <DropdownItem
-                    key={theme.id}
-                    $themeId={currentTheme}
-                    $active={currentTheme === theme.id}
-                    onClick={() => handleThemeSelect(theme.id)}
-                  >
-                    <ThemeDot $color={themeColors[theme.id]} />
-                    {theme.name}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </ThemeDropdown>
-            
-            <MobileMenuButton 
-              $themeId={currentTheme} 
-              $menuOpen={mobileMenuOpen}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <span />
-              <span />
-              <span />
-            </MobileMenuButton>
-          </RightSection>
-        </NavInner>
-      </Nav>
-
-      <MobileMenuOverlay $themeId={currentTheme} $open={mobileMenuOpen}>
-        <MobileMenuContent>
-          {navLinks.map((link, i) => (
-            <MobileNavLink 
-              key={link.label} 
-              href={link.href} 
-              $themeId={currentTheme}
-              $open={mobileMenuOpen}
-              $delay={0.05 + i * 0.04}
-              onClick={(e) => handleMobileLinkClick(e, link.href)}
-            >
-              {link.label}
-            </MobileNavLink>
-          ))}
-          
-          <MobileThemeSection $themeId={currentTheme} $open={mobileMenuOpen}>
-            <MobileThemeTitle $themeId={currentTheme}>Theme wählen</MobileThemeTitle>
-            <MobileThemeGrid>
-              {Object.values(themes).map(theme => (
-                <MobileThemeButton
-                  key={theme.id}
-                  $themeId={currentTheme}
-                  $active={currentTheme === theme.id}
-                  onClick={() => handleMobileThemeSelect(theme.id)}
-                >
-                  <MobileThemeDot $color={themeColors[theme.id]} />
-                  <MobileThemeName $themeId={currentTheme} $active={currentTheme === theme.id}>
-                    {theme.name}
-                  </MobileThemeName>
-                </MobileThemeButton>
-              ))}
-            </MobileThemeGrid>
-          </MobileThemeSection>
-        </MobileMenuContent>
-      </MobileMenuOverlay>
-    </>
+  const renderThemeSwitcher = () => (
+    <ThemeSwitcher $theme={currentTheme}>
+      {THEMES.map(t => (
+        <ThemeDot 
+          key={t} 
+          $t={t} 
+          $active={currentTheme === t}
+          onClick={() => setCurrentTheme(t)}
+          title={t.charAt(0).toUpperCase() + t.slice(1)}
+        />
+      ))}
+    </ThemeSwitcher>
   );
-}
+
+  // EDITORIAL
+  if (currentTheme === 'editorial') {
+    return (
+      <>
+        <EditorialNav $scrolled={scrolled}>
+          <EditorialLogo href="#" onClick={(e) => handleLinkClick(e, 'hero')}>S&I.</EditorialLogo>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            {renderThemeSwitcher()}
+            <EditorialMenuBtn onClick={() => setMenuOpen(!menuOpen)}>
+              <EditorialMenuLabel $open={menuOpen}>Menü</EditorialMenuLabel>
+              <EditorialMenuLine $open={menuOpen} />
+              <EditorialMenuLine $open={menuOpen} />
+              <EditorialMenuLine $open={menuOpen} />
+            </EditorialMenuBtn>
+          </div>
+        </EditorialNav>
+        <EditorialOverlay $open={menuOpen} onClick={() => setMenuOpen(false)} />
+        <EditorialPanel $open={menuOpen}>
+          <EditorialPanelContent>
+            {navItems.map(item => (
+              <EditorialMenuLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+                {item.label}
+              </EditorialMenuLink>
+            ))}
+          </EditorialPanelContent>
+        </EditorialPanel>
+      </>
+    );
+  }
+
+  // BOTANICAL
+  if (currentTheme === 'botanical') {
+    return (
+      <>
+        <BotanicalPill>
+          {navItems.slice(0, 3).map(item => (
+            <BotanicalLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+              {item.label}
+            </BotanicalLink>
+          ))}
+          <BotanicalCTA href="#contact" onClick={(e) => handleLinkClick(e, 'contact')}>Kontakt</BotanicalCTA>
+          {renderThemeSwitcher()}
+          <BotanicalMenuBtn onClick={() => setMenuOpen(!menuOpen)}>
+            <BotanicalMenuIcon $open={menuOpen}>
+              <span /><span /><span />
+            </BotanicalMenuIcon>
+          </BotanicalMenuBtn>
+        </BotanicalPill>
+        <BotanicalOverlay $open={menuOpen} onClick={() => setMenuOpen(false)}>
+          <BotanicalMenuCard onClick={e => e.stopPropagation()}>
+            {navItems.map(item => (
+              <BotanicalMenuLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+                {item.label}
+              </BotanicalMenuLink>
+            ))}
+          </BotanicalMenuCard>
+        </BotanicalOverlay>
+      </>
+    );
+  }
+
+  // CONTEMPORARY
+  if (currentTheme === 'contemporary') {
+    return (
+      <ContemporaryNav>
+        <ContemporaryInner $scrolled={scrolled}>
+          <ContemporaryLogo href="#" onClick={(e) => handleLinkClick(e, 'hero')}>S&I.</ContemporaryLogo>
+          <ContemporaryLinks>
+            {navItems.map(item => (
+              <ContemporaryLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+                {item.label}
+              </ContemporaryLink>
+            ))}
+          </ContemporaryLinks>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <ContemporaryCTA href="#contact" onClick={(e) => handleLinkClick(e, 'contact')}>Anfragen</ContemporaryCTA>
+            {renderThemeSwitcher()}
+            <ContemporaryMenuBtn onClick={() => setMenuOpen(!menuOpen)}>☰</ContemporaryMenuBtn>
+          </div>
+        </ContemporaryInner>
+      </ContemporaryNav>
+    );
+  }
+
+  // LUXE
+  if (currentTheme === 'luxe') {
+    return (
+      <LuxeNav $scrolled={scrolled}>
+        <LuxeLogo href="#" onClick={(e) => handleLinkClick(e, 'hero')}>S&I.</LuxeLogo>
+        <LuxeLinks>
+          {navItems.map((item, i) => (
+            <LuxeLink key={item.id} $i={i} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+              {item.label}
+            </LuxeLink>
+          ))}
+        </LuxeLinks>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {renderThemeSwitcher()}
+          <LuxeMenuBtn onClick={() => setMenuOpen(!menuOpen)}>
+            <LuxeMenuIcon><span /><span /><span /></LuxeMenuIcon>
+          </LuxeMenuBtn>
+        </div>
+      </LuxeNav>
+    );
+  }
+
+  // NEON
+  if (currentTheme === 'neon') {
+    return (
+      <NeonNav $scrolled={scrolled}>
+        <NeonLogo href="#" onClick={(e) => handleLinkClick(e, 'hero')}>S&I_</NeonLogo>
+        <NeonLinks>
+          {navItems.map(item => (
+            <NeonLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+              {item.label}
+            </NeonLink>
+          ))}
+        </NeonLinks>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <NeonCTA href="#contact" onClick={(e) => handleLinkClick(e, 'contact')}>Start.exe</NeonCTA>
+          {renderThemeSwitcher()}
+          <NeonMenuBtn onClick={() => setMenuOpen(!menuOpen)}>☰</NeonMenuBtn>
+        </div>
+      </NeonNav>
+    );
+  }
+
+  // VIDEO (Default)
+  return (
+    <VideoNav $scrolled={scrolled}>
+      <VideoLogo href="#" onClick={(e) => handleLinkClick(e, 'hero')}>S&I.</VideoLogo>
+      <VideoLinks>
+        {navItems.map(item => (
+          <VideoLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+            {item.label}
+          </VideoLink>
+        ))}
+      </VideoLinks>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <VideoCTA href="#contact" onClick={(e) => handleLinkClick(e, 'contact')}>Anfragen</VideoCTA>
+        {renderThemeSwitcher()}
+        <VideoMenuBtn onClick={() => setMenuOpen(!menuOpen)}>☰</VideoMenuBtn>
+      </div>
+    </VideoNav>
+  );
+};
 
 export default MarketingNav;
