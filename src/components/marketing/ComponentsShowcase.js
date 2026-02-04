@@ -115,8 +115,18 @@ const EditorialGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1rem;
   
-  @media (max-width: 500px) {
-    grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 600px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
 `;
 
@@ -127,6 +137,11 @@ const EditorialCard = styled.div`
   text-align: center;
   transition: all 0.3s ease;
   position: relative;
+  
+  @media (max-width: 600px) {
+    flex: 0 0 140px;
+    scroll-snap-align: start;
+  }
   
   ${p => p.$included && css`
     &::after {
@@ -220,6 +235,20 @@ const BotanicalGrid = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  
+  @media (max-width: 600px) {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const BotanicalChip = styled.div`
@@ -235,6 +264,12 @@ const BotanicalChip = styled.div`
   transition: all 0.4s ease;
   animation: ${float} ${p => 4 + (p.$i % 3)}s ease-in-out infinite;
   animation-delay: ${p => p.$i * 0.1}s;
+  
+  @media (max-width: 600px) {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    animation: none;
+  }
   
   &:hover {
     background: rgba(255,255,255,0.15);
@@ -330,6 +365,20 @@ const ContemporaryGrid = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  
+  @media (max-width: 600px) {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const CHIP_COLORS = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5'];
@@ -344,6 +393,11 @@ const ContemporaryChip = styled.div`
   box-shadow: 4px 4px 0 ${p => CHIP_COLORS[p.$i % 4]};
   transition: all 0.2s ease;
   cursor: pointer;
+  
+  @media (max-width: 600px) {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
   
   &:hover {
     transform: translate(-2px, -2px);
@@ -424,7 +478,16 @@ const LuxeGrid = styled.div`
   border: 1px solid rgba(201, 169, 98, 0.2);
   
   @media (max-width: 700px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    border: none;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
 `;
 
@@ -440,7 +503,12 @@ const LuxeItem = styled.div`
   &:nth-child(2n) { border-right: none; }
   
   @media (max-width: 700px) {
-    border-right: none;
+    flex: 0 0 200px;
+    scroll-snap-align: start;
+    border: 1px solid rgba(201, 169, 98, 0.2);
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 1rem;
   }
   
   &:hover {
@@ -556,7 +624,15 @@ const NeonGrid = styled.div`
   }
   
   @media (max-width: 600px) {
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.75rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
 `;
 
@@ -574,6 +650,13 @@ const NeonCell = styled.div`
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 600px) {
+    flex: 0 0 100px;
+    scroll-snap-align: start;
+    aspect-ratio: auto;
+    height: 100px;
+  }
   
   ${p => p.$included && css`
     animation: ${glow} 3s ease-in-out infinite;
@@ -649,8 +732,16 @@ const VideoGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
   
-  @media (max-width: 500px) {
-    grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 600px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
 `;
 
@@ -660,6 +751,12 @@ const VideoCard = styled.div`
   padding: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
+  
+  @media (max-width: 600px) {
+    flex: 0 0 150px;
+    scroll-snap-align: start;
+    padding: 1rem;
+  }
   
   &:hover {
     border-color: #6B8CAE;

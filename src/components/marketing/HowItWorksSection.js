@@ -155,8 +155,15 @@ const EditorialTimeline = styled.div`
   }
   
   @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
     
     &::before {
       display: none;
@@ -168,6 +175,12 @@ const EditorialStep = styled.div`
   text-align: center;
   position: relative;
   padding: 0 1rem;
+  
+  @media (max-width: 900px) {
+    flex: 0 0 250px;
+    scroll-snap-align: start;
+    padding: 0;
+  }
 `;
 
 const EditorialDot = styled.div`
@@ -367,7 +380,15 @@ const ContemporaryGrid = styled.div`
   gap: 1.5rem;
   
   @media (max-width: 700px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
 `;
 
@@ -380,6 +401,12 @@ const ContemporaryCard = styled.div`
   position: relative;
   transition: all 0.3s ease;
   box-shadow: 6px 6px 0 ${p => CARD_COLORS[p.$i % 4]};
+  
+  @media (max-width: 700px) {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    padding: 1.5rem;
+  }
   
   &:hover {
     transform: translate(-4px, -4px);

@@ -272,7 +272,15 @@ const BotanicalGrid = styled.div`
   }
   
   @media (max-width: 600px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
 `;
 
@@ -286,6 +294,12 @@ const BotanicalCard = styled.div`
   transition: all 0.5s ease;
   animation: ${float} ${p => 6 + p.$i * 0.5}s ease-in-out infinite;
   animation-delay: ${p => p.$i * 0.2}s;
+  
+  @media (max-width: 600px) {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    animation: none;
+  }
   
   &:hover {
     transform: translateY(-10px) scale(1.02);
