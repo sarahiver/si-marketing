@@ -28,23 +28,25 @@ const BotanicalLeaves = () => {
   const { currentTheme } = useTheme();
   const [scrollY, setScrollY] = useState(0);
   const [maxScroll, setMaxScroll] = useState(1);
+  const [viewportWidth, setViewportWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
-    const updateMaxScroll = () => {
+
+    const handleResize = () => {
       setMaxScroll(document.documentElement.scrollHeight - window.innerHeight);
+      setViewportWidth(window.innerWidth);
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', updateMaxScroll);
-    updateMaxScroll();
-    
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updateMaxScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -52,7 +54,7 @@ const BotanicalLeaves = () => {
 
   // Scroll-Fortschritt (0 bis 1)
   const progress = Math.min(scrollY / maxScroll, 1);
-  
+
   // Sehr sanfte Sinus-Wellen für subtile organische Bewegung
   const wave1 = Math.sin(scrollY * 0.001) * 2;
   const wave2 = Math.sin(scrollY * 0.0008 + 1) * 1.5;
@@ -61,27 +63,36 @@ const BotanicalLeaves = () => {
   // Subtile Größenänderung: 100% bis 85%
   const sizeMultiplier = 1 - (progress * 0.15);
 
+  // Responsive Skalierung basierend auf Viewport-Breite
+  // Bei 1920px = 100%, bei 768px = 50%
+  const viewportScale = Math.max(0.5, Math.min(1, (viewportWidth - 768) / (1920 - 768) * 0.5 + 0.5));
+
+  // Basis-Größen (reduziert)
+  const baseTopLeft = 280;
+  const baseBottomLeft = 320;
+  const baseBottomRight = 350;
+
   // Top-Left Blatt
   const topLeftStyle = {
-    top: '-80px',
-    left: '-100px',
-    width: `${400 * sizeMultiplier}px`,
+    top: '-60px',
+    left: '-80px',
+    width: `${baseTopLeft * sizeMultiplier * viewportScale}px`,
     transform: `rotate(${135 + wave1}deg)`,
   };
 
   // Bottom-Left Blatt
   const bottomLeftStyle = {
-    bottom: '-100px',
-    left: '-120px',
-    width: `${500 * sizeMultiplier}px`,
+    bottom: '-80px',
+    left: '-100px',
+    width: `${baseBottomLeft * sizeMultiplier * viewportScale}px`,
     transform: `rotate(${45 + wave2}deg)`,
   };
 
   // Bottom-Right Blatt
   const bottomRightStyle = {
-    bottom: '-120px',
-    right: '-150px',
-    width: `${550 * sizeMultiplier}px`,
+    bottom: '-90px',
+    right: '-110px',
+    width: `${baseBottomRight * sizeMultiplier * viewportScale}px`,
     transform: `rotate(${-45 + wave3}deg) scaleX(-1)`,
   };
 
