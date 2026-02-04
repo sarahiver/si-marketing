@@ -108,7 +108,7 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 4rem;
+  align-items: stretch;
   
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -116,6 +116,20 @@ const Grid = styled.div`
     margin-left: auto;
     margin-right: auto;
   }
+`;
+
+const CardInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
+const CardContent = styled.div`
+  flex: 1;
+`;
+
+const CardBottom = styled.div`
+  margin-top: auto;
 `;
 
 const AddonsSection = styled.div`
@@ -165,6 +179,8 @@ const EditorialCard = styled.div`
   padding: 2.5rem;
   position: relative;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
   
   ${p => p.$pop && css`
     &::before {
@@ -218,7 +234,7 @@ const EditorialCardDuration = styled.p`
 
 const EditorialFeatureList = styled.ul`
   margin-bottom: 1.5rem;
-  min-height: 200px;
+  flex: 1;
 `;
 
 const EditorialFeature = styled.li`
@@ -246,6 +262,8 @@ const EditorialAddonsTitle = styled(AddonsTitle)`
   text-transform: uppercase;
   color: #0A0A0A;
   letter-spacing: 0.05em;
+  margin-top: auto;
+  padding-top: 1.5rem;
 `;
 
 const EditorialAddon = styled.div`
@@ -349,6 +367,8 @@ const BotanicalCard = styled.div`
   border-radius: 24px;
   padding: 2.5rem;
   transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
   
   &:hover {
     background: rgba(255,255,255,0.1);
@@ -382,7 +402,7 @@ const BotanicalCardDuration = styled.p`
 
 const BotanicalFeatureList = styled.ul`
   margin-bottom: 1.5rem;
-  min-height: 200px;
+  flex: 1;
 `;
 
 const BotanicalFeature = styled.li`
@@ -405,6 +425,8 @@ const BotanicalAddonsTitle = styled(AddonsTitle)`
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.2rem;
   color: rgba(255,255,255,0.8);
+  margin-top: auto;
+  padding-top: 1.5rem;
 `;
 
 const BotanicalAddon = styled.div`
@@ -505,6 +527,8 @@ const ContemporaryCard = styled.div`
   position: relative;
   transition: all 0.3s ease;
   box-shadow: ${p => p.$pop ? '8px 8px 0 #FF6B6B' : '6px 6px 0 #0D0D0D'};
+  display: flex;
+  flex-direction: column;
   
   ${p => p.$pop && css`
     &::before {
@@ -557,7 +581,7 @@ const ContemporaryCardDuration = styled.p`
 
 const ContemporaryFeatureList = styled.ul`
   margin-bottom: 1.5rem;
-  min-height: 180px;
+  flex: 1;
 `;
 
 const ContemporaryFeature = styled.li`
@@ -583,6 +607,8 @@ const ContemporaryAddonsTitle = styled(AddonsTitle)`
   font-weight: 700;
   text-transform: uppercase;
   color: #0D0D0D;
+  margin-top: auto;
+  padding-top: 1.5rem;
 `;
 
 const ContemporaryAddon = styled.div`
@@ -682,6 +708,8 @@ const LuxeCard = styled.div`
   padding: 2.5rem;
   position: relative;
   transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
   
   ${p => p.$pop && css`
     &::before {
@@ -731,7 +759,7 @@ const LuxeCardDuration = styled.p`
 
 const LuxeFeatureList = styled.ul`
   margin-bottom: 1.5rem;
-  min-height: 200px;
+  flex: 1;
 `;
 
 const LuxeFeature = styled.li`
@@ -756,6 +784,8 @@ const LuxeAddonsTitle = styled(AddonsTitle)`
   font-size: 1.1rem;
   font-style: italic;
   color: rgba(248, 246, 243, 0.7);
+  margin-top: auto;
+  padding-top: 1.5rem;
 `;
 
 const LuxeAddon = styled.div`
@@ -864,6 +894,8 @@ const NeonCard = styled.div`
   padding: 2rem;
   position: relative;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
   
   ${p => p.$pop && css`
     box-shadow: 0 0 30px rgba(0,255,255,0.2);
@@ -904,7 +936,7 @@ const NeonCardDuration = styled.p`
 
 const NeonFeatureList = styled.ul`
   margin-bottom: 1.5rem;
-  min-height: 180px;
+  flex: 1;
 `;
 
 const NeonFeature = styled.li`
@@ -930,6 +962,8 @@ const NeonAddonsTitle = styled(AddonsTitle)`
   text-transform: uppercase;
   color: #ff00ff;
   text-shadow: 0 0 10px rgba(255,0,255,0.5);
+  margin-top: auto;
+  padding-top: 1.5rem;
 `;
 
 const NeonAddon = styled.div`
@@ -1029,6 +1063,8 @@ const VideoCard = styled.div`
   padding: 2rem;
   position: relative;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
   
   ${p => p.$pop && css`
     &::before {
@@ -1080,7 +1116,7 @@ const VideoCardDuration = styled.p`
 
 const VideoFeatureList = styled.ul`
   margin-bottom: 1.5rem;
-  min-height: 200px;
+  flex: 1;
 `;
 
 const VideoFeature = styled.li`
@@ -1104,6 +1140,8 @@ const VideoAddonsTitle = styled(AddonsTitle)`
   font-size: 0.9rem;
   font-weight: 700;
   color: rgba(255,255,255,0.7);
+  margin-top: auto;
+  padding-top: 1.5rem;
 `;
 
 const VideoAddon = styled.div`

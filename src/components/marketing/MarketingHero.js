@@ -8,15 +8,14 @@ import { useTheme } from '../../context/ThemeContext';
 // CLOUDINARY URLS
 // ============================================
 const VIDEO_URL = 'https://res.cloudinary.com/si-weddings/video/upload/v1769070616/si_comming_soon_video_hero_xga2ia.mp4';
-const HERO_BG = 'https://res.cloudinary.com/si-weddings/image/upload/v1769537648/siwedding/demo/hero/t4rsv6gjmwtow3k761d2.jpg';
+const HERO_BG = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
 const FOREST_BG = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769793086/forest-6761846_1920_dumcnj.jpg';
 
-// Botanical Leaves
+// Botanical Leaves - nur 3 große Blätter
 const LEAVES = [
-  'https://res.cloudinary.com/si-weddings/image/upload/w_400,q_auto,f_auto/v1769789868/pngwing.com_6_xo6v3t.png',
-  'https://res.cloudinary.com/si-weddings/image/upload/w_400,q_auto,f_auto/v1769789866/pngwing.com_3_tz1fk6.png',
-  'https://res.cloudinary.com/si-weddings/image/upload/w_400,q_auto,f_auto/v1769789866/pngwing.com_4_ugo8hl.png',
-  'https://res.cloudinary.com/si-weddings/image/upload/w_400,q_auto,f_auto/v1769789865/pngwing.com_2_sxhekf.png',
+  'https://res.cloudinary.com/si-weddings/image/upload/w_600,q_auto,f_auto/v1769789868/pngwing.com_6_xo6v3t.png',
+  'https://res.cloudinary.com/si-weddings/image/upload/w_600,q_auto,f_auto/v1769789866/pngwing.com_3_tz1fk6.png',
+  'https://res.cloudinary.com/si-weddings/image/upload/w_600,q_auto,f_auto/v1769789866/pngwing.com_4_ugo8hl.png',
 ];
 
 // ============================================
@@ -168,7 +167,7 @@ const BotanicalSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: hidden;
 `;
 
 const BotanicalBg = styled.div`
@@ -187,48 +186,40 @@ const BotanicalBg = styled.div`
 `;
 
 const BotanicalLeaf = styled.img`
-  position: fixed;
+  position: absolute;
   pointer-events: none;
-  filter: brightness(0.75) contrast(1.1);
-  opacity: 0.85;
-  z-index: 100;
-  transition: transform 0.1s ease-out;
+  filter: brightness(0.65) contrast(1.1) saturate(0.85);
+  opacity: 0.9;
+  z-index: 5;
   
+  /* Oben links - großes Blatt in der Ecke */
   &.top-left {
-    top: 0;
-    left: 0;
-    width: 280px;
-    transform-origin: top left;
-    transform: translate(-15%, -15%) rotate(125deg);
+    top: -80px;
+    left: -100px;
+    width: 400px;
+    transform: rotate(135deg);
   }
   
-  &.top-right {
-    top: 0;
-    right: 0;
-    width: 260px;
-    transform-origin: top right;
-    transform: translate(15%, -15%) rotate(-125deg) scaleX(-1);
-  }
-  
+  /* Unten links - großes Blatt am Rand */
   &.bottom-left {
-    bottom: 0;
-    left: 0;
-    width: 320px;
-    transform-origin: bottom left;
-    transform: translate(-20%, 20%) rotate(55deg);
+    bottom: -100px;
+    left: -120px;
+    width: 500px;
+    transform: rotate(45deg);
   }
   
+  /* Unten rechts - großes Blatt am Rand */
   &.bottom-right {
-    bottom: 0;
-    right: 0;
-    width: 300px;
-    transform-origin: bottom right;
-    transform: translate(20%, 20%) rotate(-55deg) scaleX(-1);
+    bottom: -120px;
+    right: -150px;
+    width: 550px;
+    transform: rotate(-45deg) scaleX(-1);
   }
   
   @media (max-width: 768px) {
-    &.top-left, &.top-right { width: 150px; }
-    &.bottom-left, &.bottom-right { width: 180px; }
+    &.top-left { width: 220px; top: -40px; left: -60px; }
+    &.bottom-left { width: 280px; bottom: -60px; left: -80px; }
+    &.bottom-right { width: 300px; bottom: -70px; right: -90px; }
   }
 `;
 
@@ -964,29 +955,23 @@ const MarketingHero = () => {
     return (
       <BotanicalSection id="hero">
         <BotanicalBg />
-        <BotanicalLeaf 
-          src={LEAVES[2]} 
-          className="top-left" 
-          alt="" 
-          style={{ transform: `translate(-15%, -15%) rotate(125deg) translateY(${scrollY * 0.15}px)` }}
-        />
-        <BotanicalLeaf 
-          src={LEAVES[1]} 
-          className="top-right" 
-          alt="" 
-          style={{ transform: `translate(15%, -15%) rotate(-125deg) scaleX(-1) translateY(${scrollY * 0.12}px)` }}
-        />
-        <BotanicalLeaf 
-          src={LEAVES[3]} 
-          className="bottom-left" 
-          alt="" 
-          style={{ transform: `translate(-20%, 20%) rotate(55deg) translateY(${scrollY * -0.1}px)` }}
-        />
+        {/* Oben links */}
         <BotanicalLeaf 
           src={LEAVES[0]} 
+          className="top-left" 
+          alt="" 
+        />
+        {/* Unten links - großes Blatt */}
+        <BotanicalLeaf 
+          src={LEAVES[1]} 
+          className="bottom-left" 
+          alt="" 
+        />
+        {/* Unten rechts - großes Blatt */}
+        <BotanicalLeaf 
+          src={LEAVES[2]} 
           className="bottom-right" 
           alt="" 
-          style={{ transform: `translate(20%, 20%) rotate(-55deg) scaleX(-1) translateY(${scrollY * -0.08}px)` }}
         />
         <BotanicalCard>
           <BotanicalEyebrow>S&I. Premium</BotanicalEyebrow>
