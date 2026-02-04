@@ -161,7 +161,7 @@ const EditorialAccent = styled.div`
 // 2. BOTANICAL - Glassmorphism Cards
 // ============================================
 const BotanicalSection = styled(Section)`
-  background: #020302;
+  background: #040604;
   position: relative;
 
   &::before {
@@ -169,17 +169,8 @@ const BotanicalSection = styled(Section)`
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 20%, rgba(30, 60, 40, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 80%, rgba(30, 60, 40, 0.05) 0%, transparent 40%);
-  }
-
-  /* Extra dark overlay for better glass contrast */
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    pointer-events: none;
+      radial-gradient(ellipse at 20% 20%, rgba(45, 90, 60, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(45, 90, 60, 0.1) 0%, transparent 40%);
   }
 `;
 
@@ -187,7 +178,7 @@ const BotanicalContainer = styled.div`
   max-width: 900px;
   margin: 0 auto;
   position: relative;
-  z-index: 3;
+  z-index: 1;
   text-align: center;
 `;
 
@@ -218,15 +209,19 @@ const BotanicalSubtitle = styled.p`
 `;
 
 const BotanicalCard = styled.div`
-  background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(50px);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 24px;
+  /* Exakt wie Theme: --glass-bg, --glass-blur, --glass-border, --glass-shadow */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
   padding: 3rem;
   margin-bottom: 2rem;
   position: relative;
-  z-index: 2;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 40px rgba(0, 0, 0, 0.25);
 `;
 
 const BotanicalMockup = styled.div`

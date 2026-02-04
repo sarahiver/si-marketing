@@ -52,17 +52,17 @@ const BotanicalLeaves = () => {
 
   if (currentTheme !== 'botanical') return null;
 
-  // Scroll-Fortschritt (0 bis 1)
+  // Scroll-Fortschritt (0 bis 1) - nur für minimale Effekte
   const progress = Math.min(scrollY / maxScroll, 1);
 
-  // Sehr sanfte Sinus-Wellen für subtile organische Bewegung
-  // Reduzierte Multiplikatoren für langsamere, sanftere Bewegung
-  const wave1 = Math.sin(scrollY * 0.0003) * 1.5;
-  const wave2 = Math.sin(scrollY * 0.00025 + 1) * 1;
-  const wave3 = Math.sin(scrollY * 0.00028 + 2) * 1.5;
+  // Extrem sanfte Bewegung - Blätter sollen an den Rändern bleiben
+  // Nur minimale Rotation von ca. 0.3-0.5 Grad
+  const wave1 = Math.sin(scrollY * 0.00008) * 0.4;
+  const wave2 = Math.sin(scrollY * 0.00006 + 1) * 0.3;
+  const wave3 = Math.sin(scrollY * 0.00007 + 2) * 0.4;
 
-  // Subtile Größenänderung: 100% bis 85%
-  const sizeMultiplier = 1 - (progress * 0.15);
+  // Keine Größenänderung - Blätter bleiben konstant
+  const sizeMultiplier = 1;
 
   // Responsive Skalierung basierend auf Viewport-Breite
   // Bei 1920px = 100%, bei 768px = 50%
