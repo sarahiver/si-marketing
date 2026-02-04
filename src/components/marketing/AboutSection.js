@@ -6,9 +6,9 @@ import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
 // ============================================
-// CLOUDINARY IMAGE
+// CLOUDINARY IMAGE - Sarah & Iver
 // ============================================
-const SARAH_IVER_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1769537648/siwedding/demo/hero/t4rsv6gjmwtow3k761d2.jpg';
+const SARAH_IVER_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1769863906/iverlasting/demo/hero/v8il9fyd1u6dhj6se3tz.jpg';
 
 // ============================================
 // ANIMATIONS
