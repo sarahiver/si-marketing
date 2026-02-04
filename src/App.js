@@ -76,24 +76,7 @@ function MarketingPage() {
   }, []);
 
   return (
-    <AppWrapper>
-      <LoadingOverlay $show={isLoading} $theme={currentTheme}>
-        <LoadingLogo>S&I.</LoadingLogo>
-        <LoadingText>Laden...</LoadingText>
-      </LoadingOverlay>
-      
-      <MarketingNav />
-      <MarketingHero />
-      <USPSection />
-      <ThemeShowcase />
-      {/* ExamplesShowcase - wird später mit echten Kunden-URLs eingebunden */}
-      <HowItWorksSection />
-      <ComponentsShowcase />
-      <PricingSection />
-      <AboutSection />
-      <ContactSection />
-      <MarketingFooter />
-    </AppWrapper>
+    <div><p>moin</p></div>
   );
 }
 
