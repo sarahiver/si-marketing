@@ -831,6 +831,277 @@ const ArrowIcon = () => (
 );
 
 // ============================================
+// ALL DEMOS DATA
+// ============================================
+const ALL_DEMOS = [
+  { id: 'editorial', name: 'Editorial', url: 'https://siwedding.de/demo-editorial' },
+  { id: 'botanical', name: 'Botanical', url: 'https://siwedding.de/demo-botanical' },
+  { id: 'contemporary', name: 'Contemporary', url: 'https://siwedding.de/demo-contemporary' },
+  { id: 'luxe', name: 'Luxe', url: 'https://siwedding.de/demo-luxe' },
+  { id: 'neon', name: 'Neon', url: 'https://siwedding.de/demo-neon' },
+  { id: 'video', name: 'Video', url: 'https://siwedding.de/demo-video' },
+];
+
+// ============================================
+// ALL DEMOS SECTION - EDITORIAL STYLE
+// ============================================
+const EditorialAllDemos = styled.div`
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid #ddd;
+`;
+
+const EditorialAllDemosTitle = styled.h3`
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #666;
+  margin-bottom: 1.5rem;
+`;
+
+const EditorialDemoGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+`;
+
+const EditorialDemoLink = styled.a`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: ${p => p.$active ? '#fff' : '#0A0A0A'};
+  background: ${p => p.$active ? '#C41E3A' : 'transparent'};
+  padding: 0.5rem 1rem;
+  border: 1px solid ${p => p.$active ? '#C41E3A' : '#0A0A0A'};
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    background: ${p => p.$active ? '#A01830' : '#0A0A0A'};
+    color: #fff;
+    border-color: #0A0A0A;
+  }
+`;
+
+// ============================================
+// ALL DEMOS SECTION - BOTANICAL STYLE
+// ============================================
+const BotanicalAllDemos = styled.div`
+  margin-top: 2rem;
+`;
+
+const BotanicalAllDemosTitle = styled.h3`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 1rem;
+`;
+
+const BotanicalDemoGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+`;
+
+const BotanicalDemoLink = styled.a`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: ${p => p.$active ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.4)'};
+  background: ${p => p.$active ? 'rgba(45, 90, 60, 0.4)' : 'rgba(255,255,255,0.03)'};
+  padding: 0.5rem 1rem;
+  border: 1px solid ${p => p.$active ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.08)'};
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    background: rgba(45, 90, 60, 0.3);
+    border-color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+  }
+`;
+
+// ============================================
+// ALL DEMOS SECTION - CONTEMPORARY STYLE
+// ============================================
+const ContemporaryAllDemos = styled.div`
+  margin-top: 2rem;
+`;
+
+const ContemporaryAllDemosTitle = styled.h3`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  margin-bottom: 1rem;
+`;
+
+const ContemporaryDemoGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
+
+const ContemporaryDemoLink = styled.a`
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: ${p => p.$active ? '#fff' : '#0D0D0D'};
+  background: ${p => p.$active ? '#FF6B6B' : '#fff'};
+  padding: 0.5rem 1rem;
+  border: 2px solid #0D0D0D;
+  box-shadow: ${p => p.$active ? '3px 3px 0 #0D0D0D' : 'none'};
+  text-decoration: none;
+  transition: all 0.15s;
+
+  &:hover {
+    background: #4ECDC4;
+    color: #0D0D0D;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 #0D0D0D;
+  }
+`;
+
+// ============================================
+// ALL DEMOS SECTION - LUXE STYLE
+// ============================================
+const LuxeAllDemos = styled.div`
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 169, 98, 0.2);
+`;
+
+const LuxeAllDemosTitle = styled.h3`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(248,246,243,0.3);
+  margin-bottom: 1.5rem;
+`;
+
+const LuxeDemoGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+`;
+
+const LuxeDemoLink = styled.a`
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: ${p => p.$active ? '#C9A962' : 'rgba(248,246,243,0.4)'};
+  border: 1px solid ${p => p.$active ? 'rgba(201, 169, 98, 0.5)' : 'rgba(248,246,243,0.1)'};
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: all 0.4s;
+
+  &:hover {
+    color: #C9A962;
+    border-color: rgba(201, 169, 98, 0.4);
+  }
+`;
+
+// ============================================
+// ALL DEMOS SECTION - NEON STYLE
+// ============================================
+const NeonAllDemos = styled.div`
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0,255,255,0.1);
+`;
+
+const NeonAllDemosTitle = styled.h3`
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 1rem;
+
+  span { color: #00ff88; }
+`;
+
+const NeonDemoGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
+
+const NeonDemoLink = styled.a`
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.7rem;
+  color: ${p => p.$active ? '#00ffff' : 'rgba(255,255,255,0.4)'};
+  background: ${p => p.$active ? 'rgba(0,255,255,0.1)' : 'transparent'};
+  border: 1px solid ${p => p.$active ? 'rgba(0,255,255,0.4)' : 'rgba(255,255,255,0.1)'};
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  ${p => p.$active && 'box-shadow: 0 0 10px rgba(0,255,255,0.2);'}
+
+  &:hover {
+    color: #ff00ff;
+    border-color: rgba(255,0,255,0.4);
+    background: rgba(255,0,255,0.1);
+  }
+`;
+
+// ============================================
+// ALL DEMOS SECTION - VIDEO STYLE
+// ============================================
+const VideoAllDemos = styled.div`
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(107, 140, 174, 0.2);
+`;
+
+const VideoAllDemosTitle = styled.h3`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 1.5rem;
+`;
+
+const VideoDemoGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+`;
+
+const VideoDemoLink = styled.a`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: ${p => p.$active ? '#fff' : 'rgba(255,255,255,0.5)'};
+  background: ${p => p.$active ? '#6B8CAE' : 'transparent'};
+  border: 1px solid ${p => p.$active ? '#6B8CAE' : 'rgba(255,255,255,0.15)'};
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    background: rgba(107, 140, 174, 0.2);
+    border-color: #6B8CAE;
+    color: #fff;
+  }
+`;
+
+// ============================================
 // MAIN COMPONENT
 // ============================================
 const ThemeShowcase = () => {
@@ -856,6 +1127,23 @@ const ThemeShowcase = () => {
             <EditorialCTA href="https://siwedding.de/demo-editorial" target="_blank" rel="noopener noreferrer">
               Demo ansehen <ArrowIcon />
             </EditorialCTA>
+
+            <EditorialAllDemos>
+              <EditorialAllDemosTitle>Alle Themes ansehen</EditorialAllDemosTitle>
+              <EditorialDemoGrid>
+                {ALL_DEMOS.map(demo => (
+                  <EditorialDemoLink
+                    key={demo.id}
+                    href={demo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    $active={demo.id === 'editorial'}
+                  >
+                    {demo.name}
+                  </EditorialDemoLink>
+                ))}
+              </EditorialDemoGrid>
+            </EditorialAllDemos>
           </EditorialContent>
           <EditorialPreview>
             <EditorialAccent />
@@ -886,6 +1174,23 @@ const ThemeShowcase = () => {
             <BotanicalCTA href="https://siwedding.de/demo-botanical" target="_blank" rel="noopener noreferrer">
               Demo ansehen
             </BotanicalCTA>
+
+            <BotanicalAllDemos>
+              <BotanicalAllDemosTitle>Alle Themes</BotanicalAllDemosTitle>
+              <BotanicalDemoGrid>
+                {ALL_DEMOS.map(demo => (
+                  <BotanicalDemoLink
+                    key={demo.id}
+                    href={demo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    $active={demo.id === 'botanical'}
+                  >
+                    {demo.name}
+                  </BotanicalDemoLink>
+                ))}
+              </BotanicalDemoGrid>
+            </BotanicalAllDemos>
           </BotanicalCard>
         </BotanicalContainer>
       </BotanicalSection>
@@ -928,6 +1233,23 @@ const ThemeShowcase = () => {
               </ContemporaryFeatureBox>
             </ContemporarySidebar>
           </ContemporaryGrid>
+
+          <ContemporaryAllDemos>
+            <ContemporaryAllDemosTitle>Alle Themes →</ContemporaryAllDemosTitle>
+            <ContemporaryDemoGrid>
+              {ALL_DEMOS.map(demo => (
+                <ContemporaryDemoLink
+                  key={demo.id}
+                  href={demo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  $active={demo.id === 'contemporary'}
+                >
+                  {demo.name}
+                </ContemporaryDemoLink>
+              ))}
+            </ContemporaryDemoGrid>
+          </ContemporaryAllDemos>
         </ContemporaryContainer>
       </ContemporarySection>
     );
@@ -956,6 +1278,23 @@ const ThemeShowcase = () => {
             <LuxeCTA href="https://siwedding.de/demo-luxe" target="_blank" rel="noopener noreferrer">
               Demo ansehen
             </LuxeCTA>
+
+            <LuxeAllDemos>
+              <LuxeAllDemosTitle>Collection</LuxeAllDemosTitle>
+              <LuxeDemoGrid>
+                {ALL_DEMOS.map(demo => (
+                  <LuxeDemoLink
+                    key={demo.id}
+                    href={demo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    $active={demo.id === 'luxe'}
+                  >
+                    {demo.name}
+                  </LuxeDemoLink>
+                ))}
+              </LuxeDemoGrid>
+            </LuxeAllDemos>
           </LuxeContent>
         </LuxeContainer>
       </LuxeSection>
@@ -992,6 +1331,23 @@ const ThemeShowcase = () => {
               <NeonCTA href="https://siwedding.de/demo-neon" target="_blank" rel="noopener noreferrer">
                 [ DEMO STARTEN ]
               </NeonCTA>
+
+              <NeonAllDemos>
+                <NeonAllDemosTitle><span>$</span> ls ./themes/</NeonAllDemosTitle>
+                <NeonDemoGrid>
+                  {ALL_DEMOS.map(demo => (
+                    <NeonDemoLink
+                      key={demo.id}
+                      href={demo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      $active={demo.id === 'neon'}
+                    >
+                      {demo.name}
+                    </NeonDemoLink>
+                  ))}
+                </NeonDemoGrid>
+              </NeonAllDemos>
             </NeonTerminalBody>
           </NeonTerminal>
         </NeonContainer>
@@ -1031,6 +1387,23 @@ const ThemeShowcase = () => {
             <p>Elegant color accent</p>
           </VideoFeature>
         </VideoFeatures>
+
+        <VideoAllDemos>
+          <VideoAllDemosTitle>Alle Themes ansehen</VideoAllDemosTitle>
+          <VideoDemoGrid>
+            {ALL_DEMOS.map(demo => (
+              <VideoDemoLink
+                key={demo.id}
+                href={demo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                $active={demo.id === 'video'}
+              >
+                {demo.name}
+              </VideoDemoLink>
+            ))}
+          </VideoDemoGrid>
+        </VideoAllDemos>
       </VideoContainer>
     </VideoSection>
   );
