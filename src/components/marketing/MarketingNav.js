@@ -288,7 +288,7 @@ const BurgerBtn = styled.button`
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 1001;
+  z-index: 1300;
   
   @media (max-width: 768px) {
     display: flex;
@@ -341,7 +341,7 @@ const MobileMenuOverlay = styled.div`
   right: 0;
   bottom: 0;
   background: rgba(0,0,0,0.5);
-  z-index: 999;
+  z-index: 1100;
   opacity: ${p => p.$open ? 1 : 0};
   visibility: ${p => p.$open ? 'visible' : 'hidden'};
   transition: all 0.3s ease;
@@ -357,7 +357,7 @@ const MobileMenu = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 1200;
   padding: 100px 2rem 2rem;
   opacity: ${p => p.$open ? 1 : 0};
   visibility: ${p => p.$open ? 'visible' : 'hidden'};
@@ -514,7 +514,7 @@ const MarketingNav = () => {
 
   const currentThemeData = THEMES.find(t => t.id === currentTheme);
 
-  const renderContent = () => (
+  const renderNavContent = () => (
     <>
       <Logo href="#" onClick={(e) => handleLinkClick(e, 'hero')} $theme={currentTheme}>
         S&I.
@@ -564,8 +564,11 @@ const MarketingNav = () => {
           <BurgerLine $theme={currentTheme} $open={menuOpen} />
         </BurgerBtn>
       </RightSection>
-      
-      {/* Mobile Menu */}
+    </>
+  );
+
+  const renderMobileMenu = () => (
+    <>
       <MobileMenuOverlay $open={menuOpen} onClick={() => setMenuOpen(false)} />
       <MobileMenu $theme={currentTheme} $open={menuOpen}>
         {navItems.map(item => (
@@ -601,18 +604,24 @@ const MarketingNav = () => {
   // Contemporary hat ein inneres Frame
   if (currentTheme === 'contemporary') {
     return (
-      <Nav $theme={currentTheme} $scrolled={scrolled}>
-        <ContemporaryInner $scrolled={scrolled}>
-          {renderContent()}
-        </ContemporaryInner>
-      </Nav>
+      <>
+        <Nav $theme={currentTheme} $scrolled={scrolled}>
+          <ContemporaryInner $scrolled={scrolled}>
+            {renderNavContent()}
+          </ContemporaryInner>
+        </Nav>
+        {renderMobileMenu()}
+      </>
     );
   }
 
   return (
-    <Nav $theme={currentTheme} $scrolled={scrolled}>
-      {renderContent()}
-    </Nav>
+    <>
+      <Nav $theme={currentTheme} $scrolled={scrolled}>
+        {renderNavContent()}
+      </Nav>
+      {renderMobileMenu()}
+    </>
   );
 };
 

@@ -102,23 +102,18 @@ const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, 
   const screenshotSrc = THEME_SCREENSHOTS[theme];
 
   return (
-    <>
-      <PreviewWrapper
-        {...wrapperProps}
-        onClick={() => window.open(demoUrl, '_blank')}
-        title="Demo ansehen"
-      >
-        {screenshotSrc && <PreviewImage $src={screenshotSrc} />}
-        {!screenshotSrc && (
-          <PreviewFallback {...fallbackProps}>
-            {fallbackText}
-          </PreviewFallback>
-        )}
-      </PreviewWrapper>
-      <MobileFallback {...wrapperProps} {...fallbackProps}>
-        {fallbackText}
-      </MobileFallback>
-    </>
+    <PreviewWrapper
+      {...wrapperProps}
+      onClick={() => window.open(demoUrl, '_blank')}
+      title="Demo ansehen"
+    >
+      {screenshotSrc && <PreviewImage $src={screenshotSrc} />}
+      {!screenshotSrc && (
+        <PreviewFallback {...fallbackProps}>
+          {fallbackText}
+        </PreviewFallback>
+      )}
+    </PreviewWrapper>
   );
 };
 
@@ -233,6 +228,10 @@ const EditorialCTA = styled.a`
 
 const EditorialPreview = styled.div`
   position: relative;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 
@@ -490,6 +489,7 @@ const LuxeContainer = styled.div`
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 `;
 
@@ -515,6 +515,10 @@ const LuxeVisual = styled.div`
   position: relative;
   overflow: hidden;
   cursor: pointer;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 
   &::before {
     content: '';
