@@ -21,6 +21,12 @@ const USPS = [
     short: 'Individuell gestaltet, keine Templates',
   },
   {
+    icon: '🌐',
+    title: 'Eure eigene Domain – keine Subdomain, keine Kompromisse',
+    desc: 'Bei uns bekommt ihr immer eure eigene Domain inklusive – z.\u00A0B. sarah-und-iver.de statt euer-name.irgendeinjemand.de. Professionell, persönlich und leicht zu merken für eure Gäste.',
+    short: 'Eigene Domain inklusive',
+  },
+  {
     icon: '🎨',
     title: 'Ihr wählt den Stil. Wir perfektionieren den Rest.',
     desc: 'Wählt aus 6 kuratierten Premium-Themes – wir passen Farben, Details, Komponenten und Inhalte so an, dass eure Website wie maßgeschneidert wirkt.',
@@ -375,7 +381,7 @@ const ContemporaryTitle = styled.h2`
   color: #0D0D0D;
 `;
 
-const BENTO_COLORS = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5', '#0D0D0D', '#FF6B6B'];
+const BENTO_COLORS = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5', '#0D0D0D', '#FF6B6B', '#4ECDC4'];
 
 const ContemporaryBento = styled.div`
   display: grid;
@@ -401,7 +407,8 @@ const ContemporaryCard = styled.div`
   
   grid-column: ${p => {
     if (p.$i === 0) return 'span 2';
-    if (p.$i === 3) return 'span 2';
+    if (p.$i === 4) return 'span 2';
+    if (p.$i === 6) return '1 / -1';
     return 'span 1';
   }};
   
@@ -540,6 +547,16 @@ const LuxeCard = styled.div`
   &:nth-child(3), &:nth-child(4) {
     border-bottom: 1px solid rgba(201, 169, 98, 0.15);
   }
+
+  &:nth-child(5), &:nth-child(6) {
+    border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+  }
+
+  &:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    text-align: center;
+    border-right: none;
+  }
   
   @media (max-width: 768px) {
     border-right: none !important;
@@ -547,6 +564,11 @@ const LuxeCard = styled.div`
     
     &:last-child {
       border-bottom: none;
+    }
+    
+    &:last-child:nth-child(odd) {
+      grid-column: auto;
+      text-align: left;
     }
   }
   

@@ -15,7 +15,7 @@ const PACKAGES = [
     price: '1.290', 
     duration: '6 Monate',
     features: [
-      'Custom URL (siwedding.de/name)',
+      'Eigene Domain (euer-name.de)',
       'RSVP mit Download',
       '6 Monate Hosting',
       '4 Basis-Komponenten (Hero, Countdown, Love Story, RSVP)',
@@ -37,7 +37,7 @@ const PACKAGES = [
     duration: '8 Monate',
     popular: true,
     features: [
-      'Custom URL (siwedding.de/name)',
+      'Eigene Domain (euer-name.de)',
       'RSVP mit Download',
       '8 Monate Hosting',
       '4 Basis-Komponenten (Hero, Countdown, Love Story, RSVP)',
@@ -59,7 +59,7 @@ const PACKAGES = [
     price: '1.990', 
     duration: '12 Monate',
     features: [
-      'Custom URL (siwedding.de/name)',
+      'Eigene Domain (euer-name.de)',
       'RSVP mit Download',
       '12 Monate Hosting',
       '4 Basis-Komponenten (Hero, Countdown, Love Story, RSVP)',
@@ -177,7 +177,6 @@ const ON_REQUEST_ITEMS = [
   'Individuelles Design',
   'Designanpassungen',
   'Passwortschutz',
-  'Eigene Domain'
 ];
 
 // ============================================
