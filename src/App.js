@@ -66,6 +66,14 @@ const GlobalStyles = createGlobalStyle`
   [id] {
     scroll-margin-top: 100px;
   }
+
+  /* Mobile: Reduce section padding to minimize scrolling */
+  @media (max-width: 768px) {
+    section {
+      padding-top: clamp(2.5rem, 6vh, 4rem) !important;
+      padding-bottom: clamp(2.5rem, 6vh, 4rem) !important;
+    }
+  }
 `;
 
 // ============================================
