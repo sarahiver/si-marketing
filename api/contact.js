@@ -156,7 +156,7 @@ async function sendNotificationEmail(formData, contactId) {
       },
       body: JSON.stringify({
         to: [{ email: 'wedding@sarahiver.de', name: 'S&I Wedding' }],
-        sender: { email: 'noreply@sarahiver.de', name: 'S&I. Website' },
+        sender: { email: 'wedding@sarahiver.de', name: 'S&I. Website' },
         subject: `Neue Anfrage von ${formData.name}`,
         htmlContent: buildNotificationHtml(formData, contactId),
       }),
