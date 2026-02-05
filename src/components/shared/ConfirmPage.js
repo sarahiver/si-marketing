@@ -1,10 +1,9 @@
 // src/components/shared/ConfirmPage.js
 // Double Opt-In Bestätigung für Waitlist UND Kontaktanfragen
+// Alle API-Calls gehen über /api/confirm (Serverless Function)
+// KEIN Brevo-Key, KEIN Supabase-Key im Frontend!
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { supabase } from '../../config/supabase';
-
-const BREVO_API_KEY = process.env.REACT_APP_BREVO_API_KEY;
 
 const ConfirmPage = () => {
   const [status, setStatus] = useState('loading'); // 'loading', 'success', 'error', 'already'
@@ -36,81 +35,35 @@ const ConfirmPage = () => {
 
     const confirm = async () => {
       try {
-        if (type === 'contact' && contactId) {
-          // Confirm contact request
-          const { data: existingContact, error: fetchError } = await supabase
-            .from('contact_requests')
-            .select('email_confirmed')
-            .eq('id', contactId)
-            .single();
-          
-          if (fetchError) throw new Error('Kontaktanfrage nicht gefunden.');
-          
-          if (existingContact?.email_confirmed) {
+        // Einziger Call: an unsere Serverless Function
+        // Kein Brevo-Key, kein Supabase-Key im Frontend!
+        const response = await fetch('/api/confirm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, type, id: contactId }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          if (data.alreadyConfirmed) {
             setStatus('already');
             setMessage('Du hast deine E-Mail bereits bestätigt.');
-            return;
-          }
-          
-          // Update contact request
-          const { error: updateError } = await supabase
-            .from('contact_requests')
-            .update({ 
-              email_confirmed: true,
-              confirmed_at: new Date().toISOString()
-            })
-            .eq('id', contactId);
-          
-          if (updateError) throw updateError;
-          
-          // Update Brevo contact attribute
-          if (BREVO_API_KEY) {
-            await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
-              method: 'PUT',
-              headers: {
-                'accept': 'application/json',
-                'api-key': BREVO_API_KEY,
-                'content-type': 'application/json',
-              },
-              body: JSON.stringify({
-                attributes: {
-                  EMAIL_BESTAETIGT: true,
-                  BESTAETIGT_AM: new Date().toISOString(),
-                },
-              }),
-            });
-          }
-          
-          setStatus('success');
-          setMessage('Deine Kontaktanfrage wurde bestätigt!');
-          
-        } else {
-          // Original waitlist confirmation via API
-          const response = await fetch('/api/brevo-confirm', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email }),
-          });
-          
-          const data = await response.json();
-          
-          if (response.ok && data.success) {
-            if (data.alreadyConfirmed) {
-              setStatus('already');
-              setMessage('Du hast deine E-Mail bereits bestätigt.');
-            } else {
-              setStatus('success');
-              setMessage('Deine E-Mail wurde erfolgreich bestätigt!');
-            }
           } else {
-            setStatus('error');
-            setMessage(data.error || 'Ein Fehler ist aufgetreten.');
+            setStatus('success');
+            setMessage(type === 'contact' 
+              ? 'Deine Kontaktanfrage wurde bestätigt!'
+              : 'Deine E-Mail wurde erfolgreich bestätigt!'
+            );
           }
+        } else {
+          setStatus('error');
+          setMessage(data.error || 'Ein Fehler ist aufgetreten.');
         }
       } catch (error) {
         console.error('Confirm error:', error);
         setStatus('error');
-        setMessage(error.message || 'Ein Fehler ist aufgetreten.');
+        setMessage('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
       }
     };
 
