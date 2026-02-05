@@ -1,10 +1,10 @@
 // src/components/marketing/ContactSection.js
-// Kontaktformular mit Double Opt-In (Brevo), Spam-Schutz (Honeypot + Zeitprüfung)
-// Eine Komponente, Styles ändern sich nach Theme
-import React, { useState, useRef, useEffect } from 'react';
+// Kontaktformular mit Brevo Transaktionsmail an wedding@sarahiver.de
+// Spam-Schutz: hCaptcha + Honeypot + Zeitprüfung
+// KEIN Double Opt-In nötig (Kontaktanfrage ≠ Newsletter)
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
-import { supabase } from '../../config/supabase';
 
 // ============================================
 // THEME CONFIGURATIONS
@@ -503,10 +503,21 @@ const PrivacyNote = styled.p`
 `;
 
 // ============================================
-// BREVO API CONFIG
+// API ENDPOINT (Vercel Serverless Function — alle Secrets serverseitig)
 // ============================================
-const BREVO_API_KEY = process.env.REACT_APP_BREVO_API_KEY;
-const BREVO_LIST_ID = parseInt(process.env.REACT_APP_BREVO_LIST_ID || '3'); // Contact Requests List
+
+// hCaptcha (Site Key ist öffentlich — das ist korrekt so)
+const HCAPTCHA_SITE_KEY = process.env.REACT_APP_HCAPTCHA_SITE_KEY || '10000000-ffff-ffff-ffff-000000000001'; // Test key as fallback
+
+// ============================================
+// hCaptcha STYLED
+// ============================================
+const CaptchaWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+  min-height: 78px;
+`;
 
 // ============================================
 // COMPONENT
@@ -546,9 +557,55 @@ const ContactSection = () => {
   const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
   const [errorMessage, setErrorMessage] = useState('');
   
+  // hCaptcha state
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const captchaRef = useRef(null);
+  const captchaWidgetId = useRef(null);
+  
   // Timing-based spam protection
   const formLoadTime = useRef(Date.now());
   const MIN_SUBMIT_TIME = 3000; // 3 seconds minimum
+
+  // Load hCaptcha script
+  useEffect(() => {
+    if (document.querySelector('script[src*="hcaptcha"]')) return;
+    
+    const script = document.createElement('script');
+    script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }, []);
+
+  // Render hCaptcha when script is loaded and container is ready
+  const renderCaptcha = useCallback(() => {
+    if (!captchaRef.current || captchaWidgetId.current !== null) return;
+    if (!window.hcaptcha) return;
+
+    try {
+      captchaWidgetId.current = window.hcaptcha.render(captchaRef.current, {
+        sitekey: HCAPTCHA_SITE_KEY,
+        theme: ['editorial', 'botanical', 'luxe', 'neon', 'video'].includes(currentTheme) ? 'dark' : 'light',
+        size: 'normal',
+        callback: (token) => setCaptchaToken(token),
+        'expired-callback': () => setCaptchaToken(null),
+        'error-callback': () => setCaptchaToken(null),
+      });
+    } catch (e) {
+      // Widget already rendered or error
+    }
+  }, [currentTheme]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.hcaptcha && captchaRef.current && captchaWidgetId.current === null) {
+        renderCaptcha();
+        clearInterval(interval);
+      }
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [renderCaptcha]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -565,7 +622,6 @@ const ContactSection = () => {
     
     // Spam Check 1: Honeypot
     if (formData.honeypot) {
-      console.log('Honeypot triggered');
       setSubmitStatus('success'); // Fake success for bots
       return;
     }
@@ -573,12 +629,17 @@ const ContactSection = () => {
     // Spam Check 2: Time-based (too fast = bot)
     const timeTaken = Date.now() - formLoadTime.current;
     if (timeTaken < MIN_SUBMIT_TIME) {
-      console.log('Too fast submission:', timeTaken);
       setSubmitStatus('success'); // Fake success for bots
       return;
     }
     
-    // Validation
+    // Spam Check 3: hCaptcha
+    if (!captchaToken) {
+      setErrorMessage('Bitte bestätige, dass du kein Roboter bist.');
+      return;
+    }
+    
+    // Client-side validation
     if (!formData.name.trim()) {
       setErrorMessage('Bitte gib deinen Namen ein.');
       return;
@@ -595,59 +656,40 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      // 1. Save to Supabase
-      const { data: contactData, error: supabaseError } = await supabase
-        .from('contact_requests')
-        .insert([{
+      // Einziger Call: an unsere eigene Serverless Function
+      // Kein Brevo-Key, kein Supabase-Key im Frontend!
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: formData.name.trim(),
           email: formData.email.trim().toLowerCase(),
-          phone: formData.phone.trim() || null,
-          wedding_date: formData.weddingDate || null,
-          interested_theme: formData.interestedTheme || null,
-          interested_package: formData.interestedPackage || null,
+          phone: formData.phone.trim(),
+          weddingDate: formData.weddingDate,
+          interestedTheme: formData.interestedTheme,
+          interestedPackage: formData.interestedPackage,
           message: formData.message.trim(),
-          source: 'website_contact',
-          status: 'new',
-          email_confirmed: false,
-        }])
-        .select()
-        .single();
+          captchaToken,
+        }),
+      });
       
-      if (supabaseError) throw new Error(supabaseError.message);
+      const result = await response.json();
       
-      // 2. Add to Brevo with Double Opt-In
-      if (BREVO_API_KEY) {
-        const confirmUrl = `${window.location.origin}/confirm?email=${encodeURIComponent(formData.email)}&type=contact&id=${contactData.id}`;
-        
-        await fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
-          method: 'POST',
-          headers: {
-            'accept': 'application/json',
-            'api-key': BREVO_API_KEY,
-            'content-type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: formData.email.trim().toLowerCase(),
-            attributes: {
-              VORNAME: formData.name.split(' ')[0],
-              NACHNAME: formData.name.split(' ').slice(1).join(' ') || '',
-              TELEFON: formData.phone || '',
-              HOCHZEITSDATUM: formData.weddingDate || '',
-              NACHRICHT: formData.message.substring(0, 200),
-              QUELLE: 'Website Kontaktformular',
-            },
-            includeListIds: [BREVO_LIST_ID],
-            templateId: parseInt(process.env.REACT_APP_BREVO_DOI_TEMPLATE_ID || '1'),
-            redirectionUrl: confirmUrl,
-          }),
-        });
+      if (!response.ok) {
+        throw new Error(result.error || 'Ein Fehler ist aufgetreten.');
       }
       
       setSubmitStatus('success');
       
+      // Reset captcha
+      if (window.hcaptcha && captchaWidgetId.current !== null) {
+        window.hcaptcha.reset(captchaWidgetId.current);
+      }
+      setCaptchaToken(null);
+      
     } catch (error) {
       console.error('Contact form error:', error);
-      setErrorMessage('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
+      setErrorMessage(error.message || 'Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -702,15 +744,16 @@ const ContactSection = () => {
         <FormCard $theme={currentTheme} $config={config}>
           {submitStatus === 'success' ? (
             <SuccessMessage $theme={currentTheme} $config={config}>
-              <h3>✓ Fast geschafft!</h3>
+              <h3>✓ Vielen Dank!</h3>
               <p>
-                Wir haben dir eine <span className="highlight">Bestätigungs-E-Mail</span> geschickt.
+                Wir haben eure Anfrage erhalten und melden uns
+                <span className="highlight"> innerhalb von 24 Stunden</span> bei euch.
               </p>
               <p>
-                Bitte klicke auf den Link in der E-Mail, um deine Anfrage zu bestätigen.
+                Wir freuen uns auf das Gespräch!
               </p>
               <p style={{ marginTop: '1.5rem', fontSize: '0.85rem' }}>
-                Keine E-Mail erhalten? Prüfe deinen Spam-Ordner oder schreib uns direkt an{' '}
+                Fragen? Schreibt uns direkt an{' '}
                 <a href="mailto:wedding@sarahiver.de" style={{ color: config.accent }}>
                   wedding@sarahiver.de
                 </a>
@@ -831,6 +874,10 @@ const ContactSection = () => {
                 <ErrorMessage $config={config}>{errorMessage}</ErrorMessage>
               )}
               
+              <CaptchaWrapper>
+                <div ref={captchaRef}></div>
+              </CaptchaWrapper>
+              
               <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -842,8 +889,8 @@ const ContactSection = () => {
               
               <PrivacyNote $config={config}>
                 Mit dem Absenden stimmst du unserer{' '}
-                <a href="/datenschutz">Datenschutzerklärung</a> zu.
-                Wir senden dir eine Bestätigungs-E-Mail.
+                <a href="/datenschutz">Datenschutzerklärung</a> zu.{' '}
+                Wir melden uns innerhalb von 24 Stunden.
               </PrivacyNote>
             </Form>
           )}
