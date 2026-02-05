@@ -291,10 +291,10 @@ const BotanicalGrid = styled.div`
 `;
 
 const BotanicalCard = styled.div`
-  background: rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.45);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 24px;
   padding: 2rem;
   transition: all 0.5s ease;
@@ -309,7 +309,7 @@ const BotanicalCard = styled.div`
   
   &:hover {
     transform: translateY(-10px) scale(1.02);
-    background: rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.55);
     border-color: rgba(255,255,255,0.2);
   }
 `;
@@ -337,7 +337,7 @@ const BotanicalCardDesc = styled.p`
 
 const BotanicalRSVP = styled.div`
   margin-top: 3rem;
-  background: rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.45);
   backdrop-filter: blur(40px);
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 24px;

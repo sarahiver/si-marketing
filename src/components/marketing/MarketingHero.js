@@ -169,7 +169,7 @@ const BotanicalBg = styled.div`
   position: fixed;
   inset: 0;
   background: url(${FOREST_BG}) center/cover no-repeat;
-  filter: brightness(0.5) saturate(0.85);
+  filter: brightness(0.3) saturate(0.85);
   z-index: -10;
 `;
 
