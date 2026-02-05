@@ -1,6 +1,6 @@
 // src/components/marketing/ThemeShowcase.js
 // Jedes Theme wird einzigartig präsentiert
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -11,6 +11,123 @@ const Section = styled.section`
   padding: clamp(5rem, 12vh, 8rem) clamp(1.5rem, 5vw, 4rem);
   overflow: hidden;
 `;
+
+// ============================================
+// THEME PREVIEW IFRAME COMPONENT
+// ============================================
+const PreviewWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: ${p => p.$aspect || '16/10'};
+  overflow: hidden;
+  background: ${p => p.$bg || '#0D0D0D'};
+  ${p => p.$borderRadius ? `border-radius: ${p.$borderRadius};` : ''}
+  ${p => p.$border ? `border: ${p.$border};` : ''}
+  ${p => p.$boxShadow ? `box-shadow: ${p.$boxShadow};` : ''}
+  ${p => p.$margin ? `margin: ${p.$margin};` : ''}
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const PreviewIframe = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 400%;
+  transform: scale(0.25);
+  transform-origin: top left;
+  border: none;
+  opacity: ${p => p.$loaded ? 1 : 0};
+  transition: opacity 0.6s ease;
+`;
+
+const PreviewOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: ns-resize;
+`;
+
+const PreviewFallback = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ${p => p.$fontFamily || "'Space Grotesk', sans-serif"};
+  font-size: ${p => p.$fontSize || '2.5rem'};
+  font-weight: ${p => p.$fontWeight || '700'};
+  color: ${p => p.$color || 'rgba(255,255,255,0.15)'};
+  ${p => p.$fontStyle ? `font-style: ${p.$fontStyle};` : ''}
+  ${p => p.$textStroke ? `-webkit-text-stroke: ${p.$textStroke};` : ''}
+  opacity: ${p => p.$loaded ? 0 : 1};
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+`;
+
+const MobileFallback = styled.div`
+  display: none;
+  width: 100%;
+  aspect-ratio: ${p => p.$aspect || '16/10'};
+  background: ${p => p.$bg || '#0D0D0D'};
+  ${p => p.$borderRadius ? `border-radius: ${p.$borderRadius};` : ''}
+  ${p => p.$border ? `border: ${p.$border};` : ''}
+  ${p => p.$boxShadow ? `box-shadow: ${p.$boxShadow};` : ''}
+  ${p => p.$margin ? `margin: ${p.$margin};` : ''}
+  align-items: center;
+  justify-content: center;
+  font-family: ${p => p.$fontFamily || "'Space Grotesk', sans-serif"};
+  font-size: ${p => p.$fontSize || '2.5rem'};
+  font-weight: ${p => p.$fontWeight || '700'};
+  color: ${p => p.$color || 'rgba(255,255,255,0.15)'};
+  ${p => p.$fontStyle ? `font-style: ${p.$fontStyle};` : ''}
+  ${p => p.$textStroke ? `-webkit-text-stroke: ${p.$textStroke};` : ''}
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+const ThemePreview = ({ url, fallbackText, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  const handleWheel = useCallback((e) => {
+    const wrapper = e.currentTarget.parentElement;
+    const iframe = wrapper?.querySelector('iframe');
+    if (iframe?.contentWindow) {
+      iframe.contentWindow.scrollBy({ top: e.deltaY, behavior: 'auto' });
+    }
+    e.preventDefault();
+  }, []);
+
+  const fallbackProps = { $fontFamily: fontFamily, $fontSize: fontSize, $fontWeight: fontWeight, $fontStyle: fontStyle, $textStroke: textStroke, $color: color };
+  const wrapperProps = { $aspect: aspect, $bg: bg, $borderRadius: borderRadius, $border: border, $boxShadow: boxShadow, $margin: margin };
+
+  return (
+    <>
+      <PreviewWrapper {...wrapperProps}>
+        <PreviewIframe
+          src={url}
+          title="Theme Preview"
+          loading="lazy"
+          sandbox="allow-same-origin"
+          $loaded={loaded}
+          onLoad={() => setLoaded(true)}
+        />
+        <PreviewOverlay onWheel={handleWheel} />
+        <PreviewFallback {...fallbackProps} $loaded={loaded}>
+          {fallbackText}
+        </PreviewFallback>
+      </PreviewWrapper>
+      <MobileFallback {...wrapperProps} {...fallbackProps}>
+        {fallbackText}
+      </MobileFallback>
+    </>
+  );
+};
 
 // ============================================
 // 1. EDITORIAL - Magazine Style Feature
@@ -125,24 +242,6 @@ const EditorialPreview = styled.div`
   position: relative;
 `;
 
-const EditorialMockup = styled.div`
-  background: #0A0A0A;
-  aspect-ratio: 3/4;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: 'E&L';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Oswald', sans-serif;
-    font-size: 4rem;
-    font-weight: 700;
-    color: #C41E3A;
-  }
-`;
 
 const EditorialAccent = styled.div`
   position: absolute;
@@ -224,19 +323,6 @@ const BotanicalCard = styled.div`
     0 10px 40px rgba(0, 0, 0, 0.25);
 `;
 
-const BotanicalMockup = styled.div`
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: linear-gradient(135deg, rgba(45,90,60,0.3) 0%, rgba(20,40,30,0.5) 100%);
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  color: rgba(255,255,255,0.8);
-`;
 
 const BotanicalFeatures = styled.div`
   display: flex;
@@ -340,19 +426,6 @@ const ContemporaryMainCard = styled.div`
   padding: 2rem;
 `;
 
-const ContemporaryMockup = styled.div`
-  width: 100%;
-  aspect-ratio: 16/10;
-  background: #0D0D0D;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #4ECDC4;
-`;
 
 const ContemporaryDesc = styled.p`
   font-family: 'Space Grotesk', sans-serif;
@@ -452,6 +525,35 @@ const LuxeMonogram = styled.div`
   font-style: italic;
   color: transparent;
   -webkit-text-stroke: 1px rgba(201, 169, 98, 0.4);
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+`;
+
+const LuxePreviewFrame = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 400%;
+  transform: scale(0.25);
+  transform-origin: top left;
+  border: none;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+`;
+
+const LuxePreviewOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const LuxeContent = styled.div`
@@ -768,35 +870,6 @@ const VideoCTA = styled.a`
   }
 `;
 
-const VideoPreview = styled.div`
-  position: relative;
-  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-  border: 1px solid rgba(107, 140, 174, 0.2);
-  aspect-ratio: 21/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(107, 140, 174, 0.05) 50%,
-      transparent 100%);
-  }
-`;
-
-const VideoMockupText = styled.div`
-  font-family: 'Manrope', sans-serif;
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  font-weight: 700;
-  color: rgba(255,255,255,0.1);
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-`;
 
 const VideoFeatures = styled.div`
   display: flex;
@@ -1147,7 +1220,15 @@ const ThemeShowcase = () => {
           </EditorialContent>
           <EditorialPreview>
             <EditorialAccent />
-            <EditorialMockup />
+            <ThemePreview
+              url="https://siwedding.de/demo-editorial"
+              fallbackText="E&L"
+              aspect="3/4"
+              bg="#0A0A0A"
+              fontFamily="'Oswald', sans-serif"
+              fontSize="4rem"
+              color="#C41E3A"
+            />
           </EditorialPreview>
         </EditorialContainer>
       </EditorialSection>
@@ -1164,7 +1245,17 @@ const ThemeShowcase = () => {
           <BotanicalSubtitle>Elegance meets nature</BotanicalSubtitle>
 
           <BotanicalCard>
-            <BotanicalMockup>E & L</BotanicalMockup>
+            <ThemePreview
+              url="https://siwedding.de/demo-botanical"
+              fallbackText="E & L"
+              aspect="16/9"
+              bg="linear-gradient(135deg, rgba(45,90,60,0.3) 0%, rgba(20,40,30,0.5) 100%)"
+              borderRadius="12px"
+              margin="0 0 2rem 0"
+              fontFamily="'Cormorant Garamond', serif"
+              fontSize="2rem"
+              color="rgba(255,255,255,0.8)"
+            />
             <BotanicalFeatures>
               <BotanicalFeature>Glassmorphism</BotanicalFeature>
               <BotanicalFeature>Dark Elegance</BotanicalFeature>
@@ -1209,7 +1300,16 @@ const ThemeShowcase = () => {
 
           <ContemporaryGrid>
             <ContemporaryMainCard>
-              <ContemporaryMockup>Y & K</ContemporaryMockup>
+              <ThemePreview
+                url="https://siwedding.de/demo-contemporary"
+                fallbackText="Y & K"
+                aspect="16/10"
+                bg="#0D0D0D"
+                margin="0 0 1.5rem 0"
+                fontFamily="'Space Grotesk', sans-serif"
+                fontSize="2.5rem"
+                color="#4ECDC4"
+              />
               <ContemporaryDesc>
                 Bold borders, playful colors, and unapologetic design. For couples who dare to be different.
               </ContemporaryDesc>
@@ -1261,6 +1361,13 @@ const ThemeShowcase = () => {
       <LuxeSection id="themes">
         <LuxeContainer>
           <LuxeVisual>
+            <LuxePreviewFrame
+              src="https://siwedding.de/demo-luxe"
+              title="Luxe Theme Preview"
+              loading="lazy"
+              sandbox="allow-same-origin"
+            />
+            <LuxePreviewOverlay />
             <LuxeMonogram>C&J</LuxeMonogram>
           </LuxeVisual>
           <LuxeContent>
@@ -1369,9 +1476,17 @@ const ThemeShowcase = () => {
           </VideoCTA>
         </VideoHeader>
 
-        <VideoPreview>
-          <VideoMockupText>M & C</VideoMockupText>
-        </VideoPreview>
+        <ThemePreview
+          url="https://siwedding.de/demo-video"
+          fallbackText="M & C"
+          aspect="21/9"
+          bg="linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)"
+          border="1px solid rgba(107, 140, 174, 0.2)"
+          fontFamily="'Manrope', sans-serif"
+          fontSize="clamp(1.5rem, 4vw, 3rem)"
+          fontWeight="700"
+          color="rgba(255,255,255,0.1)"
+        />
 
         <VideoFeatures>
           <VideoFeature>
