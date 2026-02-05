@@ -1,7 +1,8 @@
 // src/components/marketing/ContactSection.js
-// Kontaktformular mit Double Opt-In (Brevo), Spam-Schutz (Honeypot + Zeitprüfung)
-// Eine Komponente, Styles ändern sich nach Theme
-import React, { useState, useRef, useEffect } from 'react';
+// Kontaktformular mit Brevo Transaktionsmail an wedding@sarahiver.de
+// Spam-Schutz: hCaptcha + Honeypot + Zeitprüfung
+// KEIN Double Opt-In nötig (Kontaktanfrage ≠ Newsletter)
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { supabase } from '../../config/supabase';
@@ -506,7 +507,20 @@ const PrivacyNote = styled.p`
 // BREVO API CONFIG
 // ============================================
 const BREVO_API_KEY = process.env.REACT_APP_BREVO_API_KEY;
-const BREVO_LIST_ID = parseInt(process.env.REACT_APP_BREVO_LIST_ID || '3'); // Contact Requests List
+const BREVO_LIST_ID = parseInt(process.env.REACT_APP_BREVO_LIST_ID || '3');
+
+// hCaptcha
+const HCAPTCHA_SITE_KEY = process.env.REACT_APP_HCAPTCHA_SITE_KEY || '10000000-ffff-ffff-ffff-000000000001'; // Test key as fallback
+
+// ============================================
+// hCaptcha STYLED
+// ============================================
+const CaptchaWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+  min-height: 78px;
+`;
 
 // ============================================
 // COMPONENT
@@ -546,9 +560,60 @@ const ContactSection = () => {
   const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
   const [errorMessage, setErrorMessage] = useState('');
   
+  // hCaptcha state
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const captchaRef = useRef(null);
+  const captchaWidgetId = useRef(null);
+  
   // Timing-based spam protection
   const formLoadTime = useRef(Date.now());
   const MIN_SUBMIT_TIME = 3000; // 3 seconds minimum
+
+  // Load hCaptcha script
+  useEffect(() => {
+    if (document.querySelector('script[src*="hcaptcha"]')) return;
+    
+    const script = document.createElement('script');
+    script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+    
+    return () => {
+      // Cleanup not needed - script stays loaded
+    };
+  }, []);
+
+  // Render hCaptcha when script is loaded and container is ready
+  const renderCaptcha = useCallback(() => {
+    if (!captchaRef.current || captchaWidgetId.current !== null) return;
+    if (!window.hcaptcha) return;
+
+    try {
+      captchaWidgetId.current = window.hcaptcha.render(captchaRef.current, {
+        sitekey: HCAPTCHA_SITE_KEY,
+        theme: ['editorial', 'botanical', 'luxe', 'neon', 'video'].includes(currentTheme) ? 'dark' : 'light',
+        size: 'normal',
+        callback: (token) => setCaptchaToken(token),
+        'expired-callback': () => setCaptchaToken(null),
+        'error-callback': () => setCaptchaToken(null),
+      });
+    } catch (e) {
+      // Widget already rendered or error - ignore
+    }
+  }, [currentTheme]);
+
+  useEffect(() => {
+    // Poll for hCaptcha readiness (script loads async)
+    const interval = setInterval(() => {
+      if (window.hcaptcha && captchaRef.current && captchaWidgetId.current === null) {
+        renderCaptcha();
+        clearInterval(interval);
+      }
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [renderCaptcha]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -578,6 +643,12 @@ const ContactSection = () => {
       return;
     }
     
+    // Spam Check 3: hCaptcha
+    if (!captchaToken) {
+      setErrorMessage('Bitte bestätige, dass du kein Roboter bist.');
+      return;
+    }
+    
     // Validation
     if (!formData.name.trim()) {
       setErrorMessage('Bitte gib deinen Namen ein.');
@@ -595,31 +666,35 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      // 1. Save to Supabase
-      const { data: contactData, error: supabaseError } = await supabase
-        .from('contact_requests')
-        .insert([{
-          name: formData.name.trim(),
-          email: formData.email.trim().toLowerCase(),
-          phone: formData.phone.trim() || null,
-          wedding_date: formData.weddingDate || null,
-          interested_theme: formData.interestedTheme || null,
-          interested_package: formData.interestedPackage || null,
-          message: formData.message.trim(),
-          source: 'website_contact',
-          status: 'new',
-          email_confirmed: false,
-        }])
-        .select()
-        .single();
+      let contactId = null;
       
-      if (supabaseError) throw new Error(supabaseError.message);
-      
-      // 2. Add to Brevo with Double Opt-In
-      if (BREVO_API_KEY) {
-        const confirmUrl = `${window.location.origin}/confirm?email=${encodeURIComponent(formData.email)}&type=contact&id=${contactData.id}`;
+      // 1. Save to Supabase (if configured)
+      if (supabase) {
+        const { data: contactData, error: supabaseError } = await supabase
+          .from('contact_requests')
+          .insert([{
+            name: formData.name.trim(),
+            email: formData.email.trim().toLowerCase(),
+            phone: formData.phone.trim() || null,
+            wedding_date: formData.weddingDate || null,
+            interested_theme: formData.interestedTheme || null,
+            interested_package: formData.interestedPackage || null,
+            message: formData.message.trim(),
+            source: 'website_contact',
+            status: 'new',
+            email_confirmed: true, // Kein DOI nötig bei Kontaktformular
+          }])
+          .select()
+          .single();
         
-        await fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
+        if (supabaseError) throw new Error(supabaseError.message);
+        contactId = contactData?.id;
+      }
+      
+      // 2. Benachrichtigungs-Mail an wedding@sarahiver.de via Brevo Transaktionsmail
+      if (BREVO_API_KEY) {
+        // a) Kontakt in Brevo anlegen/aktualisieren
+        await fetch('https://api.brevo.com/v3/contacts', {
           method: 'POST',
           headers: {
             'accept': 'application/json',
@@ -633,17 +708,104 @@ const ContactSection = () => {
               NACHNAME: formData.name.split(' ').slice(1).join(' ') || '',
               TELEFON: formData.phone || '',
               HOCHZEITSDATUM: formData.weddingDate || '',
-              NACHRICHT: formData.message.substring(0, 200),
               QUELLE: 'Website Kontaktformular',
             },
-            includeListIds: [BREVO_LIST_ID],
-            templateId: parseInt(process.env.REACT_APP_BREVO_DOI_TEMPLATE_ID || '1'),
-            redirectionUrl: confirmUrl,
+            listIds: [BREVO_LIST_ID],
+            updateEnabled: true,
           }),
         });
+        
+        // b) Transaktionsmail an wedding@sarahiver.de - Neue Anfrage!
+        const notificationTemplateId = parseInt(process.env.REACT_APP_BREVO_NOTIFICATION_TEMPLATE_ID || '0');
+        
+        if (notificationTemplateId > 0) {
+          // Via Brevo Template
+          await fetch('https://api.brevo.com/v3/smtp/email', {
+            method: 'POST',
+            headers: {
+              'accept': 'application/json',
+              'api-key': BREVO_API_KEY,
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+              to: [{ email: 'wedding@sarahiver.de', name: 'S&I Wedding' }],
+              templateId: notificationTemplateId,
+              params: {
+                NAME: formData.name.trim(),
+                EMAIL: formData.email.trim().toLowerCase(),
+                TELEFON: formData.phone || '–',
+                HOCHZEITSDATUM: formData.weddingDate || '–',
+                THEME: formData.interestedTheme || '–',
+                PAKET: formData.interestedPackage || '–',
+                NACHRICHT: formData.message.trim(),
+                ADMIN_LINK: 'https://admin.sarahiver.de',
+                CONTACT_ID: contactId || '–',
+              },
+            }),
+          });
+        } else {
+          // Fallback: Direkt-Mail ohne Template
+          await fetch('https://api.brevo.com/v3/smtp/email', {
+            method: 'POST',
+            headers: {
+              'accept': 'application/json',
+              'api-key': BREVO_API_KEY,
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+              to: [{ email: 'wedding@sarahiver.de', name: 'S&I Wedding' }],
+              sender: { email: 'noreply@sarahiver.de', name: 'S&I. Website' },
+              subject: `Neue Anfrage von ${formData.name.trim()}`,
+              htmlContent: `
+                <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
+                  <div style="background: #000; color: #fff; display: inline-block; padding: 8px 16px; font-weight: 700; font-size: 18px; letter-spacing: -0.06em; margin-bottom: 30px;">S&I.</div>
+                  <h1 style="font-size: 24px; font-weight: 600; margin-bottom: 24px; color: #1a1a1a;">Neue Kontaktanfrage</h1>
+                  <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+                    <tr style="border-bottom: 1px solid #eee;">
+                      <td style="padding: 12px 0; color: #888; width: 140px;">Name</td>
+                      <td style="padding: 12px 0; color: #1a1a1a; font-weight: 500;">${formData.name.trim()}</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                      <td style="padding: 12px 0; color: #888;">E-Mail</td>
+                      <td style="padding: 12px 0;"><a href="mailto:${formData.email.trim().toLowerCase()}" style="color: #1a1a1a;">${formData.email.trim().toLowerCase()}</a></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                      <td style="padding: 12px 0; color: #888;">Telefon</td>
+                      <td style="padding: 12px 0; color: #1a1a1a;">${formData.phone || '–'}</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                      <td style="padding: 12px 0; color: #888;">Hochzeitsdatum</td>
+                      <td style="padding: 12px 0; color: #1a1a1a;">${formData.weddingDate || '–'}</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                      <td style="padding: 12px 0; color: #888;">Theme</td>
+                      <td style="padding: 12px 0; color: #1a1a1a;">${formData.interestedTheme || '–'}</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                      <td style="padding: 12px 0; color: #888;">Paket</td>
+                      <td style="padding: 12px 0; color: #1a1a1a;">${formData.interestedPackage || '–'}</td>
+                    </tr>
+                  </table>
+                  <div style="background: #f8f8f8; border-left: 3px solid #000; padding: 20px; margin-bottom: 30px;">
+                    <p style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0;">Nachricht</p>
+                    <p style="color: #1a1a1a; line-height: 1.6; margin: 0; white-space: pre-wrap;">${formData.message.trim()}</p>
+                  </div>
+                  <a href="https://admin.sarahiver.de" style="display: inline-block; background: #000; color: #fff; padding: 14px 28px; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.5px;">ZUM ADMIN-BEREICH →</a>
+                  <p style="color: #ccc; font-size: 12px; margin-top: 40px;">Automatische Benachrichtigung von siwedding.de</p>
+                </div>
+              `,
+            }),
+          });
+        }
       }
       
       setSubmitStatus('success');
+      
+      // Reset captcha for next submission
+      if (window.hcaptcha && captchaWidgetId.current !== null) {
+        window.hcaptcha.reset(captchaWidgetId.current);
+      }
+      setCaptchaToken(null);
       
     } catch (error) {
       console.error('Contact form error:', error);
@@ -702,15 +864,16 @@ const ContactSection = () => {
         <FormCard $theme={currentTheme} $config={config}>
           {submitStatus === 'success' ? (
             <SuccessMessage $theme={currentTheme} $config={config}>
-              <h3>✓ Fast geschafft!</h3>
+              <h3>✓ Vielen Dank!</h3>
               <p>
-                Wir haben dir eine <span className="highlight">Bestätigungs-E-Mail</span> geschickt.
+                Wir haben eure Anfrage erhalten und melden uns
+                <span className="highlight"> innerhalb von 24 Stunden</span> bei euch.
               </p>
               <p>
-                Bitte klicke auf den Link in der E-Mail, um deine Anfrage zu bestätigen.
+                Wir freuen uns auf das Gespräch!
               </p>
               <p style={{ marginTop: '1.5rem', fontSize: '0.85rem' }}>
-                Keine E-Mail erhalten? Prüfe deinen Spam-Ordner oder schreib uns direkt an{' '}
+                Fragen? Schreibt uns direkt an{' '}
                 <a href="mailto:wedding@sarahiver.de" style={{ color: config.accent }}>
                   wedding@sarahiver.de
                 </a>
@@ -831,6 +994,10 @@ const ContactSection = () => {
                 <ErrorMessage $config={config}>{errorMessage}</ErrorMessage>
               )}
               
+              <CaptchaWrapper>
+                <div ref={captchaRef}></div>
+              </CaptchaWrapper>
+              
               <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -842,8 +1009,8 @@ const ContactSection = () => {
               
               <PrivacyNote $config={config}>
                 Mit dem Absenden stimmst du unserer{' '}
-                <a href="/datenschutz">Datenschutzerklärung</a> zu.
-                Wir senden dir eine Bestätigungs-E-Mail.
+                <a href="/datenschutz">Datenschutzerklärung</a> zu.{' '}
+                Wir melden uns innerhalb von 24 Stunden.
               </PrivacyNote>
             </Form>
           )}
