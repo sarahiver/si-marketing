@@ -1,6 +1,6 @@
 // src/components/marketing/ThemeShowcase.js
 // Jedes Theme wird einzigartig präsentiert
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -13,7 +13,7 @@ const Section = styled.section`
 `;
 
 // ============================================
-// THEME PREVIEW IFRAME COMPONENT
+// THEME PREVIEW IMAGE COMPONENT
 // ============================================
 const PreviewWrapper = styled.div`
   position: relative;
@@ -25,33 +25,25 @@ const PreviewWrapper = styled.div`
   ${p => p.$border ? `border: ${p.$border};` : ''}
   ${p => p.$boxShadow ? `box-shadow: ${p.$boxShadow};` : ''}
   ${p => p.$margin ? `margin: ${p.$margin};` : ''}
+  cursor: pointer;
 
   @media (max-width: 768px) {
     display: none;
   }
-
-  &:hover iframe {
-    top: -280%;
-  }
 `;
 
-const PreviewIframe = styled.iframe`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400%;
-  height: 400%;
-  transform: scale(0.25);
-  transform-origin: top left;
-  border: none;
-  opacity: ${p => p.$loaded ? 1 : 0};
-  transition: opacity 0.6s ease, top 12s cubic-bezier(0.25, 0.1, 0.25, 1);
-`;
-
-const PreviewOverlay = styled.div`
+const PreviewImage = styled.div`
   position: absolute;
   inset: 0;
-  z-index: 2;
+  background-image: url(${p => p.$src});
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  transition: background-position 8s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  ${PreviewWrapper}:hover & {
+    background-position: bottom center;
+  }
 `;
 
 const PreviewFallback = styled.div`
@@ -66,8 +58,6 @@ const PreviewFallback = styled.div`
   color: ${p => p.$color || 'rgba(255,255,255,0.15)'};
   ${p => p.$fontStyle ? `font-style: ${p.$fontStyle};` : ''}
   ${p => p.$textStroke ? `-webkit-text-stroke: ${p.$textStroke};` : ''}
-  opacity: ${p => p.$loaded ? 0 : 1};
-  transition: opacity 0.6s ease;
   pointer-events: none;
 `;
 
@@ -94,27 +84,36 @@ const MobileFallback = styled.div`
   }
 `;
 
-const ThemePreview = ({ url, fallbackText, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color }) => {
-  const [loaded, setLoaded] = useState(false);
+// Full-page screenshots hosted on Cloudinary
+// Naming: {theme}_demoShowcase_{cloudinarySlug}.jpg
+// Add URLs here as screenshots are created
+const THEME_SCREENSHOTS = {
+  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/v1770290063/editorial_demoShowcase_gmxabx.jpg',
+  botanical: null,
+  contemporary: null,
+  luxe: null,
+  neon: null,
+  video: null,
+};
 
+const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color }) => {
   const fallbackProps = { $fontFamily: fontFamily, $fontSize: fontSize, $fontWeight: fontWeight, $fontStyle: fontStyle, $textStroke: textStroke, $color: color };
   const wrapperProps = { $aspect: aspect, $bg: bg, $borderRadius: borderRadius, $border: border, $boxShadow: boxShadow, $margin: margin };
+  const screenshotSrc = THEME_SCREENSHOTS[theme];
 
   return (
     <>
-      <PreviewWrapper {...wrapperProps}>
-        <PreviewIframe
-          src={url}
-          title="Theme Preview"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin"
-          $loaded={loaded}
-          onLoad={() => setLoaded(true)}
-        />
-        <PreviewOverlay />
-        <PreviewFallback {...fallbackProps} $loaded={loaded}>
-          {fallbackText}
-        </PreviewFallback>
+      <PreviewWrapper
+        {...wrapperProps}
+        onClick={() => window.open(demoUrl, '_blank')}
+        title="Demo ansehen"
+      >
+        {screenshotSrc && <PreviewImage $src={screenshotSrc} />}
+        {!screenshotSrc && (
+          <PreviewFallback {...fallbackProps}>
+            {fallbackText}
+          </PreviewFallback>
+        )}
       </PreviewWrapper>
       <MobileFallback {...wrapperProps} {...fallbackProps}>
         {fallbackText}
@@ -515,6 +514,7 @@ const LuxeVisual = styled.div`
   padding: 4rem;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 
   &::before {
     content: '';
@@ -524,35 +524,23 @@ const LuxeVisual = styled.div`
     margin: 2rem;
   }
 
-  &:hover iframe {
-    top: -280%;
-  }
-
   &:hover ${LuxeMonogram} {
     opacity: 0;
   }
 `;
 
-const LuxePreviewFrame = styled.iframe`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400%;
-  height: 400%;
-  transform: scale(0.25);
-  transform-origin: top left;
-  border: none;
-  transition: top 12s cubic-bezier(0.25, 0.1, 0.25, 1);
-
-  @media (max-width: 900px) {
-    display: none;
-  }
-`;
-
-const LuxePreviewOverlay = styled.div`
+const LuxePreviewImage = styled.div`
   position: absolute;
   inset: 0;
-  z-index: 2;
+  background-image: url(${THEME_SCREENSHOTS.luxe || 'none'});
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  transition: background-position 8s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  ${LuxeVisual}:hover & {
+    background-position: bottom center;
+  }
 
   @media (max-width: 900px) {
     display: none;
@@ -1224,7 +1212,8 @@ const ThemeShowcase = () => {
           <EditorialPreview>
             <EditorialAccent />
             <ThemePreview
-              url="https://siwedding.de/demo-editorial"
+              theme="editorial"
+              demoUrl="https://siwedding.de/demo-editorial"
               fallbackText="E&L"
               aspect="3/4"
               bg="#0A0A0A"
@@ -1249,7 +1238,8 @@ const ThemeShowcase = () => {
 
           <BotanicalCard>
             <ThemePreview
-              url="https://siwedding.de/demo-botanical"
+              theme="botanical"
+              demoUrl="https://siwedding.de/demo-botanical"
               fallbackText="E & L"
               aspect="16/9"
               bg="linear-gradient(135deg, rgba(45,90,60,0.3) 0%, rgba(20,40,30,0.5) 100%)"
@@ -1304,7 +1294,8 @@ const ThemeShowcase = () => {
           <ContemporaryGrid>
             <ContemporaryMainCard>
               <ThemePreview
-                url="https://siwedding.de/demo-contemporary"
+                theme="contemporary"
+                demoUrl="https://siwedding.de/demo-contemporary"
                 fallbackText="Y & K"
                 aspect="16/10"
                 bg="#0D0D0D"
@@ -1363,14 +1354,11 @@ const ThemeShowcase = () => {
     return (
       <LuxeSection id="themes">
         <LuxeContainer>
-          <LuxeVisual>
-            <LuxePreviewFrame
-              src="https://siwedding.de/demo-luxe"
-              title="Luxe Theme Preview"
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin"
-            />
-            <LuxePreviewOverlay />
+          <LuxeVisual
+            onClick={() => window.open('https://siwedding.de/demo-luxe', '_blank')}
+            title="Demo ansehen"
+          >
+            <LuxePreviewImage />
             <LuxeMonogram>C&J</LuxeMonogram>
           </LuxeVisual>
           <LuxeContent>
@@ -1480,7 +1468,8 @@ const ThemeShowcase = () => {
         </VideoHeader>
 
         <ThemePreview
-          url="https://siwedding.de/demo-video"
+          theme="video"
+          demoUrl="https://siwedding.de/demo-video"
           fallbackText="M & C"
           aspect="21/9"
           bg="linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)"
