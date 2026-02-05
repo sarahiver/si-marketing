@@ -20,6 +20,7 @@ import HowItWorksSection from './components/marketing/HowItWorksSection';
 import AboutSection from './components/marketing/AboutSection';
 import USPSection from './components/marketing/USPSection';
 import CooperationSection from './components/marketing/CooperationSection';
+import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
 
@@ -110,6 +111,7 @@ function MarketingPage() {
         <ComponentsShowcase />
       </AnimatedSection>
       <AnimatedSection delay={100}>
+        <PromoBanner />
         <PricingSection />
       </AnimatedSection>
       <AnimatedSection delay={100}>
