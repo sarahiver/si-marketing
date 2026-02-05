@@ -1,6 +1,6 @@
 // src/components/marketing/ThemeShowcase.js
 // Jedes Theme wird einzigartig präsentiert
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -48,7 +48,6 @@ const PreviewOverlay = styled.div`
   position: absolute;
   inset: 0;
   z-index: 2;
-  cursor: ns-resize;
 `;
 
 const PreviewFallback = styled.div`
@@ -94,15 +93,6 @@ const MobileFallback = styled.div`
 const ThemePreview = ({ url, fallbackText, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color }) => {
   const [loaded, setLoaded] = useState(false);
 
-  const handleWheel = useCallback((e) => {
-    const wrapper = e.currentTarget.parentElement;
-    const iframe = wrapper?.querySelector('iframe');
-    if (iframe?.contentWindow) {
-      iframe.contentWindow.scrollBy({ top: e.deltaY, behavior: 'auto' });
-    }
-    e.preventDefault();
-  }, []);
-
   const fallbackProps = { $fontFamily: fontFamily, $fontSize: fontSize, $fontWeight: fontWeight, $fontStyle: fontStyle, $textStroke: textStroke, $color: color };
   const wrapperProps = { $aspect: aspect, $bg: bg, $borderRadius: borderRadius, $border: border, $boxShadow: boxShadow, $margin: margin };
 
@@ -113,11 +103,11 @@ const ThemePreview = ({ url, fallbackText, aspect, bg, borderRadius, border, box
           src={url}
           title="Theme Preview"
           loading="lazy"
-          sandbox="allow-same-origin"
+          sandbox="allow-scripts allow-same-origin"
           $loaded={loaded}
           onLoad={() => setLoaded(true)}
         />
-        <PreviewOverlay onWheel={handleWheel} />
+        <PreviewOverlay />
         <PreviewFallback {...fallbackProps} $loaded={loaded}>
           {fallbackText}
         </PreviewFallback>
@@ -1365,7 +1355,7 @@ const ThemeShowcase = () => {
               src="https://siwedding.de/demo-luxe"
               title="Luxe Theme Preview"
               loading="lazy"
-              sandbox="allow-same-origin"
+              sandbox="allow-scripts allow-same-origin"
             />
             <LuxePreviewOverlay />
             <LuxeMonogram>C&J</LuxeMonogram>
