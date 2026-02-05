@@ -90,6 +90,10 @@ const EditorialTitle = styled.h1`
   color: #FAFAFA;
   margin-bottom: 0.5rem;
   animation: ${fadeInUp} 0.8s ease 0.2s both;
+  
+  span {
+    color: #C41E3A;
+  }
 `;
 
 const EditorialDate = styled.p`
@@ -882,7 +886,7 @@ const MarketingHero = () => {
         <EditorialContent>
           <EditorialEyebrow>Premium Wedding Websites</EditorialEyebrow>
           <EditorialTitle>
-            Premium<br/>Hochzeits-<br/>websites
+            Premium<br/>Hochzeits-<br/><span>websites</span>
           </EditorialTitle>
           <EditorialDate>Eure Geschichte. Digital erzählt.</EditorialDate>
           <EditorialCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</EditorialCTA>

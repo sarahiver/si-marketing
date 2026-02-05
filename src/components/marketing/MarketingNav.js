@@ -180,7 +180,17 @@ const ThemeHint = styled.div`
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' ? '#FF6B6B' : '#C9A962'};
+  color: ${p => {
+    switch (p.$theme) {
+      case 'editorial': return '#C41E3A';
+      case 'botanical': return 'rgba(255,255,255,0.5)';
+      case 'contemporary': return '#FF6B6B';
+      case 'luxe': return '#C9A962';
+      case 'neon': return '#00ffff';
+      case 'video': return '#6B8CAE';
+      default: return '#C9A962';
+    }
+  }};
   white-space: nowrap;
   animation: ${p => p.$dismissed ? css`${hintFadeOut} 0.4s ease forwards` : 'none'};
 
