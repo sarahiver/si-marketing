@@ -29,6 +29,10 @@ const PreviewWrapper = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+
+  &:hover iframe {
+    top: -280%;
+  }
 `;
 
 const PreviewIframe = styled.iframe`
@@ -41,7 +45,7 @@ const PreviewIframe = styled.iframe`
   transform-origin: top left;
   border: none;
   opacity: ${p => p.$loaded ? 1 : 0};
-  transition: opacity 0.6s ease;
+  transition: opacity 0.6s ease, top 12s cubic-bezier(0.25, 0.1, 0.25, 1);
 `;
 
 const PreviewOverlay = styled.div`
@@ -490,6 +494,19 @@ const LuxeContainer = styled.div`
   }
 `;
 
+const LuxeMonogram = styled.div`
+  font-family: 'Cormorant', serif;
+  font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 300;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 169, 98, 0.4);
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+`;
+
 const LuxeVisual = styled.div`
   background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
   display: flex;
@@ -506,19 +523,14 @@ const LuxeVisual = styled.div`
     border: 1px solid rgba(201, 169, 98, 0.2);
     margin: 2rem;
   }
-`;
 
-const LuxeMonogram = styled.div`
-  font-family: 'Cormorant', serif;
-  font-size: clamp(6rem, 15vw, 12rem);
-  font-weight: 300;
-  font-style: italic;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(201, 169, 98, 0.4);
-  position: relative;
-  z-index: 1;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
+  &:hover iframe {
+    top: -280%;
+  }
+
+  &:hover ${LuxeMonogram} {
+    opacity: 0;
+  }
 `;
 
 const LuxePreviewFrame = styled.iframe`
@@ -530,6 +542,7 @@ const LuxePreviewFrame = styled.iframe`
   transform: scale(0.25);
   transform-origin: top left;
   border: none;
+  transition: top 12s cubic-bezier(0.25, 0.1, 0.25, 1);
 
   @media (max-width: 900px) {
     display: none;
