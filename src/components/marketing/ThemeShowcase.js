@@ -89,8 +89,8 @@ const MobileFallback = styled.div`
 // Add URLs here as screenshots are created
 const THEME_SCREENSHOTS = {
   editorial: 'https://res.cloudinary.com/si-weddings/image/upload/v1770290063/editorial_demoShowcase_gmxabx.jpg',
-  botanical: null,
-  contemporary: null,
+  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/v1770297669/botanical_demoShowcase_i4uatm.jpg',
+  contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
   luxe: null,
   neon: null,
   video: null,
