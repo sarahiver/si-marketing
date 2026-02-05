@@ -30,6 +30,18 @@ const pulse = keyframes`
 `;
 
 // ============================================
+// THEME BACKGROUNDS (matching PricingSection)
+// ============================================
+const THEME_BACKGROUNDS = {
+  editorial: '#FAFAFA',
+  botanical: 'transparent',
+  contemporary: '#FFE66D',
+  luxe: '#0A0A0A',
+  neon: '#0a0a0f',
+  video: '#0A0A0A'
+};
+
+// ============================================
 // BASE - STÖRER WRAPPER
 // ============================================
 const StoererWrapper = styled.div`
@@ -37,12 +49,12 @@ const StoererWrapper = styled.div`
   z-index: 50;
   display: flex;
   justify-content: center;
-  margin-bottom: -3rem;
-  padding: 0 1rem;
+  padding: 2rem 1rem 5rem;
   pointer-events: none;
+  background: ${p => THEME_BACKGROUNDS[p.$theme] || '#FAFAFA'};
 
   @media (max-width: 600px) {
-    margin-bottom: -2rem;
+    padding: 1.5rem 1rem 4rem;
   }
 `;
 
@@ -388,7 +400,7 @@ const PromoBanner = () => {
   // EDITORIAL
   if (currentTheme === 'editorial') {
     return (
-      <StoererWrapper>
+      <StoererWrapper $theme={currentTheme}>
         <EditorialStoerer>
           {renderContent(EditorialTitle, EditorialText, EditorialBadge)}
         </EditorialStoerer>
@@ -399,7 +411,7 @@ const PromoBanner = () => {
   // BOTANICAL
   if (currentTheme === 'botanical') {
     return (
-      <StoererWrapper>
+      <StoererWrapper $theme={currentTheme}>
         <BotanicalStoerer>
           {renderContent(BotanicalTitle, BotanicalText, BotanicalBadge)}
         </BotanicalStoerer>
@@ -410,7 +422,7 @@ const PromoBanner = () => {
   // CONTEMPORARY
   if (currentTheme === 'contemporary') {
     return (
-      <StoererWrapper>
+      <StoererWrapper $theme={currentTheme}>
         <ContemporaryStoerer>
           {renderContent(ContemporaryTitle, ContemporaryText, ContemporaryBadge)}
         </ContemporaryStoerer>
@@ -421,7 +433,7 @@ const PromoBanner = () => {
   // LUXE
   if (currentTheme === 'luxe') {
     return (
-      <StoererWrapper>
+      <StoererWrapper $theme={currentTheme}>
         <LuxeStoerer>
           {renderContent(LuxeTitle, LuxeText, LuxeBadge)}
         </LuxeStoerer>
@@ -432,7 +444,7 @@ const PromoBanner = () => {
   // NEON
   if (currentTheme === 'neon') {
     return (
-      <StoererWrapper>
+      <StoererWrapper $theme={currentTheme}>
         <NeonStoerer>
           {renderContent(NeonTitle, NeonText, NeonBadge)}
         </NeonStoerer>
@@ -442,7 +454,7 @@ const PromoBanner = () => {
 
   // VIDEO (Default)
   return (
-    <StoererWrapper>
+    <StoererWrapper $theme={currentTheme}>
       <VideoStoerer>
         {renderContent(VideoTitle, VideoText, VideoBadge)}
       </VideoStoerer>
