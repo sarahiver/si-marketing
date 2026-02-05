@@ -39,7 +39,7 @@ const PreviewImage = styled.div`
   background-size: 100% auto;
   background-position: top center;
   background-repeat: no-repeat;
-  transition: background-position 8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: background-position 20s cubic-bezier(0.25, 0.1, 0.25, 1);
 
   ${PreviewWrapper}:hover & {
     background-position: bottom center;
@@ -536,7 +536,7 @@ const LuxePreviewImage = styled.div`
   background-size: 100% auto;
   background-position: top center;
   background-repeat: no-repeat;
-  transition: background-position 8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: background-position 20s cubic-bezier(0.25, 0.1, 0.25, 1);
 
   ${LuxeVisual}:hover & {
     background-position: bottom center;
@@ -1177,16 +1177,16 @@ const ThemeShowcase = () => {
       <EditorialSection id="themes">
         <EditorialContainer>
           <EditorialContent>
-            <EditorialLabel>Theme Spotlight</EditorialLabel>
+            <EditorialLabel>Theme Vorschau</EditorialLabel>
             <EditorialTitle>Editorial</EditorialTitle>
             <EditorialDesc>
-              Bold, magazine-inspired design with striking typography and a confident red accent.
-              Perfect for couples who want their wedding website to make a statement.
+              Mutiges, magazin-inspiriertes Design mit markanter Typografie und einem selbstbewussten roten Akzent.
+              Für Paare, die mit ihrer Hochzeitswebsite ein Statement setzen wollen.
             </EditorialDesc>
             <EditorialFeatures>
-              <EditorialFeature>Bold Typography</EditorialFeature>
-              <EditorialFeature>Magazine Layout</EditorialFeature>
-              <EditorialFeature>Red Accent</EditorialFeature>
+              <EditorialFeature>Starke Typografie</EditorialFeature>
+              <EditorialFeature>Magazin-Layout</EditorialFeature>
+              <EditorialFeature>Roter Akzent</EditorialFeature>
             </EditorialFeatures>
             <EditorialCTA href="https://siwedding.de/demo-editorial" target="_blank" rel="noopener noreferrer">
               Demo ansehen <ArrowIcon />
@@ -1232,9 +1232,9 @@ const ThemeShowcase = () => {
     return (
       <BotanicalSection id="themes">
         <BotanicalContainer>
-          <BotanicalLabel>Theme Collection</BotanicalLabel>
+          <BotanicalLabel>Theme Kollektion</BotanicalLabel>
           <BotanicalTitle>Botanical</BotanicalTitle>
-          <BotanicalSubtitle>Elegance meets nature</BotanicalSubtitle>
+          <BotanicalSubtitle>Eleganz trifft Natur</BotanicalSubtitle>
 
           <BotanicalCard>
             <ThemePreview
@@ -1251,9 +1251,9 @@ const ThemeShowcase = () => {
             />
             <BotanicalFeatures>
               <BotanicalFeature>Glassmorphism</BotanicalFeature>
-              <BotanicalFeature>Dark Elegance</BotanicalFeature>
-              <BotanicalFeature>Organic Forms</BotanicalFeature>
-              <BotanicalFeature>Subtle Animations</BotanicalFeature>
+              <BotanicalFeature>Dunkle Eleganz</BotanicalFeature>
+              <BotanicalFeature>Organische Formen</BotanicalFeature>
+              <BotanicalFeature>Sanfte Animationen</BotanicalFeature>
             </BotanicalFeatures>
             <BotanicalCTA href="https://siwedding.de/demo-botanical" target="_blank" rel="noopener noreferrer">
               Demo ansehen
@@ -1305,7 +1305,7 @@ const ThemeShowcase = () => {
                 color="#4ECDC4"
               />
               <ContemporaryDesc>
-                Bold borders, playful colors, and unapologetic design. For couples who dare to be different.
+                Kräftige Rahmen, verspielte Farben und kompromissloses Design. Für Paare, die anders sein wollen.
               </ContemporaryDesc>
               <ContemporaryCTA href="https://siwedding.de/demo-contemporary" target="_blank" rel="noopener noreferrer">
                 Demo ansehen →
@@ -1314,16 +1314,16 @@ const ThemeShowcase = () => {
 
             <ContemporarySidebar>
               <ContemporaryFeatureBox $bg="#FF6B6B" $color="#fff">
-                <h4>Bold Colors</h4>
-                <p>Coral, teal, yellow</p>
+                <h4>Kräftige Farben</h4>
+                <p>Koralle, Türkis, Gelb</p>
               </ContemporaryFeatureBox>
               <ContemporaryFeatureBox $bg="#4ECDC4" $color="#0D0D0D">
-                <h4>Hard Shadows</h4>
-                <p>Brutalist aesthetic</p>
+                <h4>Harte Schatten</h4>
+                <p>Brutalistische Ästhetik</p>
               </ContemporaryFeatureBox>
               <ContemporaryFeatureBox>
                 <h4>Fun Vibes</h4>
-                <p>Playful & modern</p>
+                <p>Verspielt & modern</p>
               </ContemporaryFeatureBox>
             </ContemporarySidebar>
           </ContemporaryGrid>
@@ -1362,23 +1362,23 @@ const ThemeShowcase = () => {
             <LuxeMonogram>C&J</LuxeMonogram>
           </LuxeVisual>
           <LuxeContent>
-            <LuxeLabel>Exclusive Collection</LuxeLabel>
+            <LuxeLabel>Exklusive Kollektion</LuxeLabel>
             <LuxeTitle>Luxe</LuxeTitle>
             <LuxeDesc>
-              Timeless elegance with gold accents and cinematic typography.
-              A sophisticated choice for black-tie celebrations and grand venues.
+              Zeitlose Eleganz mit goldenen Akzenten und filmischer Typografie.
+              Die anspruchsvolle Wahl für festliche Feiern und große Locations.
             </LuxeDesc>
             <LuxeFeatures>
-              <LuxeFeature>Gold Accents</LuxeFeature>
-              <LuxeFeature>Cinematic Type</LuxeFeature>
-              <LuxeFeature>Minimal Design</LuxeFeature>
+              <LuxeFeature>Gold-Akzente</LuxeFeature>
+              <LuxeFeature>Filmische Typo</LuxeFeature>
+              <LuxeFeature>Minimales Design</LuxeFeature>
             </LuxeFeatures>
             <LuxeCTA href="https://siwedding.de/demo-luxe" target="_blank" rel="noopener noreferrer">
               Demo ansehen
             </LuxeCTA>
 
             <LuxeAllDemos>
-              <LuxeAllDemosTitle>Collection</LuxeAllDemosTitle>
+              <LuxeAllDemosTitle>Kollektion</LuxeAllDemosTitle>
               <LuxeDemoGrid>
                 {ALL_DEMOS.map(demo => (
                   <LuxeDemoLink
@@ -1415,14 +1415,14 @@ const ThemeShowcase = () => {
             <NeonTerminalBody>
               <NeonCommand><span>$</span> load_theme --name="neon" --preview=true</NeonCommand>
               <NeonTitle><span>Neon</span> Theme</NeonTitle>
-              <NeonSubtitle>// Cyberpunk Wedding Experience</NeonSubtitle>
+              <NeonSubtitle>// Cyberpunk Hochzeits-Erlebnis</NeonSubtitle>
               <NeonDesc>
-                Glow effects, terminal aesthetics, and electric colors.
-                For couples who want their wedding website to feel like stepping into the future.
+                Glow-Effekte, Terminal-Ästhetik und elektrische Farben.
+                Für Paare, deren Hochzeitswebsite sich anfühlen soll wie ein Schritt in die Zukunft.
               </NeonDesc>
               <NeonFeatures>
-                <NeonFeature>Cyan Glow</NeonFeature>
-                <NeonFeature>Magenta Accents</NeonFeature>
+                <NeonFeature>Cyan-Glow</NeonFeature>
+                <NeonFeature>Magenta-Akzente</NeonFeature>
                 <NeonFeature>Terminal UI</NeonFeature>
                 <NeonFeature>Cyberpunk Vibes</NeonFeature>
               </NeonFeatures>
@@ -1459,7 +1459,7 @@ const ThemeShowcase = () => {
       <VideoContainer>
         <VideoHeader>
           <VideoTitleBlock>
-            <VideoLabel>Cinematic Theme</VideoLabel>
+            <VideoLabel>Filmisches Theme</VideoLabel>
             <VideoTitle>Video</VideoTitle>
           </VideoTitleBlock>
           <VideoCTA href="https://siwedding.de/demo-video" target="_blank" rel="noopener noreferrer">
@@ -1482,16 +1482,16 @@ const ThemeShowcase = () => {
 
         <VideoFeatures>
           <VideoFeature>
-            <h4>Video Background</h4>
-            <p>Full-screen cinematic experience</p>
+            <h4>Video-Hintergrund</h4>
+            <p>Filmisches Fullscreen-Erlebnis</p>
           </VideoFeature>
           <VideoFeature>
-            <h4>Horizontal Scroll</h4>
-            <p>Unique navigation on desktop</p>
+            <h4>Horizontaler Scroll</h4>
+            <p>Einzigartige Navigation am Desktop</p>
           </VideoFeature>
           <VideoFeature>
             <h4>Dusty Blue</h4>
-            <p>Elegant color accent</p>
+            <p>Eleganter Farbakzent</p>
           </VideoFeature>
         </VideoFeatures>
 
