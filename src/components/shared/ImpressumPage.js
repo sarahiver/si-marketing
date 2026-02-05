@@ -36,8 +36,8 @@ const ImpressumPage = () => {
           <Section>
             <SectionTitle>Angaben gemäß § 5 TMG</SectionTitle>
             <Text>
-              S&I. wedding<br />
-              Sarah & Iver Bohnes<br />
+              S&I.<br />
+              Iver Gentz<br />
               Große Freiheit 82<br />
               22767 Hamburg
             </Text>
@@ -51,17 +51,9 @@ const ImpressumPage = () => {
           </Section>
 
           <Section>
-            <SectionTitle>Umsatzsteuer-ID</SectionTitle>
-            <Text>
-              Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-              [wird nach Gewerbeanmeldung ergänzt]
-            </Text>
-          </Section>
-
-          <Section>
             <SectionTitle>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</SectionTitle>
             <Text>
-              Sarah & Iver Bohnes<br />
+              Iver Gentz<br />
               Große Freiheit 82<br />
               22767 Hamburg
             </Text>
@@ -154,7 +146,7 @@ const ImpressumPage = () => {
             <FooterLink href="/datenschutz">Datenschutz</FooterLink>
           </FooterLinks>
           
-          <Copyright>© 2025 S&I.</Copyright>
+          <Copyright>© 2026 S&I.</Copyright>
         </Footer>
       </Container>
     </PageWrapper>
