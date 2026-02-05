@@ -161,6 +161,37 @@ const RightSection = styled.div`
 // ============================================
 // THEME SWITCHER
 // ============================================
+
+const bounceX = keyframes`
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+`;
+
+const hintFadeOut = keyframes`
+  to { opacity: 0; visibility: hidden; }
+`;
+
+const ThemeHint = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${p => p.$theme === 'contemporary' ? '#FF6B6B' : '#C9A962'};
+  white-space: nowrap;
+  animation: ${p => p.$dismissed ? css`${hintFadeOut} 0.4s ease forwards` : 'none'};
+
+  @media (max-width: 768px) { display: none; }
+
+  span {
+    display: inline-block;
+    animation: ${bounceX} 1.5s ease-in-out infinite;
+  }
+`;
+
 const ThemeSwitcherWrapper = styled.div`
   position: relative;
   display: flex;
@@ -425,6 +456,8 @@ const MarketingNav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [hintDismissed, setHintDismissed] = useState(false);
+  const [hintGone, setHintGone] = useState(false);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -491,11 +524,16 @@ const MarketingNav = () => {
       </NavLinks>
       
       <RightSection>
+        {!hintGone && (
+          <ThemeHint $theme={currentTheme} $dismissed={hintDismissed}>
+            Design wechseln <span>→</span>
+          </ThemeHint>
+        )}
         <ThemeSwitcherWrapper $theme={currentTheme} ref={dropdownRef}>
           <CurrentThemeBtn 
             $theme={currentTheme} 
             $open={dropdownOpen}
-            onClick={() => setDropdownOpen(!dropdownOpen)}
+            onClick={() => { setDropdownOpen(!dropdownOpen); if (!hintDismissed) { setHintDismissed(true); setTimeout(() => setHintGone(true), 500); } }}
           >
             {currentThemeData?.name || 'Theme'}
           </CurrentThemeBtn>
