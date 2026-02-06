@@ -72,15 +72,15 @@ const DatenschutzPage = () => {
               Verantwortlich für die Datenverarbeitung auf dieser Website ist:
             </Text>
             <Text>
-              S&I. wedding<br />
-              Sarah & Iver Bohnes<br />
+              S&I.<br />
+              Iver Gentz<br />
               Große Freiheit 82<br />
               22767 Hamburg<br /><br />
               E-Mail: <EmailLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</EmailLink>
             </Text>
             <Text>
-              Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder 
-              gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen 
+              Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder
+              gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen
               Daten entscheidet.
             </Text>
           </Section>
@@ -143,36 +143,107 @@ const DatenschutzPage = () => {
 
           <Section>
             <SectionTitle>5. Externe Dienste</SectionTitle>
-            
+
+            <SubTitle>Google Analytics</SubTitle>
+            <Text>
+              Wir nutzen Google Analytics zur Analyse des Nutzungsverhaltens auf unserer Website.
+              Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+            </Text>
+            <Text>
+              Google Analytics verwendet Cookies, die eine Analyse der Benutzung der Website ermöglichen.
+              Die durch das Cookie erzeugten Informationen werden in der Regel an einen Server von
+              Google in den USA übertragen und dort gespeichert.
+            </Text>
+            <Text>
+              <strong>IP-Anonymisierung:</strong> Wir haben die IP-Anonymisierung aktiviert.
+              Dadurch wird deine IP-Adresse von Google innerhalb der EU gekürzt, bevor sie
+              in die USA übertragen wird.
+            </Text>
+            <Text>
+              <strong>Rechtsgrundlage:</strong> Die Nutzung erfolgt nur mit deiner ausdrücklichen
+              Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die du über unseren Cookie-Banner erteilst.
+              Du kannst deine Einwilligung jederzeit widerrufen.
+            </Text>
+            <Text>
+              <strong>Opt-Out:</strong> Du kannst die Erfassung durch Google Analytics verhindern,
+              indem du im Cookie-Banner „Ablehnen" wählst oder das Browser-Add-on zur Deaktivierung
+              von Google Analytics installierst:{' '}
+              <ExternalLink href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">
+                https://tools.google.com/dlpage/gaoptout
+              </ExternalLink>
+            </Text>
+            <Text>
+              Weitere Informationen:{' '}
+              <ExternalLink href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+                https://policies.google.com/privacy
+              </ExternalLink>
+            </Text>
+
+            <SubTitle>Cloudflare (DNS & Sicherheit)</SubTitle>
+            <Text>
+              Wir nutzen Cloudflare als DNS-Provider für unsere Domain. Anbieter ist die
+              Cloudflare Inc., 101 Townsend St, San Francisco, CA 94107, USA.
+            </Text>
+            <Text>
+              Cloudflare kann technische Daten wie IP-Adressen erfassen, um die Sicherheit
+              und Performance zu gewährleisten. Die Datenverarbeitung erfolgt auf Grundlage
+              von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren Website).
+            </Text>
+            <Text>
+              Weitere Informationen:{' '}
+              <ExternalLink href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">
+                https://www.cloudflare.com/privacypolicy/
+              </ExternalLink>
+            </Text>
+
+            <SubTitle>Google Fonts</SubTitle>
+            <Text>
+              Diese Website nutzt zur einheitlichen Darstellung von Schriftarten sogenannte
+              Web Fonts von Google. Beim Aufruf einer Seite lädt dein Browser die benötigten
+              Fonts in deinen Browser-Cache, um Texte korrekt anzuzeigen.
+            </Text>
+            <Text>
+              Zu diesem Zweck nimmt dein Browser Verbindung zu den Servern von Google auf.
+              Hierdurch erlangt Google Kenntnis darüber, dass über deine IP-Adresse unsere
+              Website aufgerufen wurde. Die Nutzung erfolgt auf Grundlage von Art. 6 Abs. 1
+              lit. f DSGVO (berechtigtes Interesse an einheitlicher Typografie).
+            </Text>
+            <Text>
+              Weitere Informationen:{' '}
+              <ExternalLink href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+                https://policies.google.com/privacy
+              </ExternalLink>
+            </Text>
+
             <SubTitle>Supabase (Datenbank)</SubTitle>
             <Text>
-              Wir nutzen Supabase zur Speicherung der Wartelisten-Daten. Anbieter ist die 
+              Wir nutzen Supabase zur Speicherung von Daten. Anbieter ist die
               Supabase Inc., 970 Toa Payoh North #07-04, Singapore 318992.
             </Text>
             <Text>
-              Die Datenverarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. 
+              Die Datenverarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
               Weitere Informationen:{' '}
               <ExternalLink href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">
                 https://supabase.com/privacy
               </ExternalLink>
             </Text>
-            
+
             <SubTitle>EmailJS (E-Mail-Versand)</SubTitle>
             <Text>
-              Für den Versand von Bestätigungs-E-Mails nutzen wir EmailJS. Anbieter ist 
+              Für den Versand von E-Mails nutzen wir EmailJS. Anbieter ist
               EmailJS, 8 The Green #4334, Dover, DE 19901, USA.
             </Text>
             <Text>
-              Beim Versand wird deine E-Mail-Adresse an EmailJS übermittelt. 
+              Beim Versand wird deine E-Mail-Adresse an EmailJS übermittelt.
               Weitere Informationen:{' '}
               <ExternalLink href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">
                 https://www.emailjs.com/legal/privacy-policy/
               </ExternalLink>
             </Text>
-            
+
             <SubTitle>Cloudinary (Bildhosting)</SubTitle>
             <Text>
-              Für das Hosting von Bildern nutzen wir Cloudinary. Anbieter ist Cloudinary Ltd., 
+              Für das Hosting von Bildern nutzen wir Cloudinary. Anbieter ist Cloudinary Ltd.,
               111 W Evelyn Ave, Suite 206, Sunnyvale, CA 94086, USA.
             </Text>
             <Text>
@@ -186,11 +257,44 @@ const DatenschutzPage = () => {
           <Section>
             <SectionTitle>6. Cookies</SectionTitle>
             <Text>
-              Diese Website verwendet keine Cookies zu Tracking- oder Analysezwecken.
+              Diese Website verwendet Cookies. Cookies sind kleine Textdateien, die auf deinem
+              Endgerät gespeichert werden und die dein Browser speichert.
+            </Text>
+
+            <SubTitle>Cookie-Einwilligung</SubTitle>
+            <Text>
+              Beim ersten Besuch unserer Website wird dir ein Cookie-Banner angezeigt.
+              Du kannst selbst entscheiden, ob du der Verwendung von Analyse-Cookies zustimmst
+              oder diese ablehnst. Deine Entscheidung wird in deinem Browser gespeichert.
             </Text>
             <Text>
-              Es werden ausschließlich technisch notwendige Funktionen verwendet, die keine 
-              Cookies setzen, die einer Einwilligung bedürfen.
+              Du kannst deine Einwilligung jederzeit widerrufen, indem du die Cookies in
+              deinen Browsereinstellungen löschst und die Website erneut besuchst.
+            </Text>
+
+            <SubTitle>Analyse-Cookies (Google Analytics)</SubTitle>
+            <Text>
+              Nur mit deiner ausdrücklichen Einwilligung verwenden wir Google Analytics zur
+              Analyse des Nutzerverhaltens. Dabei werden folgende Cookies gesetzt:
+            </Text>
+            <List>
+              <ListItem><strong>_ga:</strong> Unterscheidung von Nutzern (Speicherdauer: 2 Jahre)</ListItem>
+              <ListItem><strong>_ga_*:</strong> Speicherung des Sitzungsstatus (Speicherdauer: 2 Jahre)</ListItem>
+            </List>
+            <Text>
+              Weitere Informationen zu Google Analytics findest du in Abschnitt 5 dieser Datenschutzerklärung.
+            </Text>
+
+            <SubTitle>Lokale Speicherung</SubTitle>
+            <Text>
+              Zusätzlich nutzen wir den lokalen Speicher deines Browsers (localStorage) für:
+            </Text>
+            <List>
+              <ListItem><strong>cookie_consent:</strong> Speicherung deiner Cookie-Präferenz</ListItem>
+              <ListItem><strong>cookie_consent_date:</strong> Zeitpunkt deiner Entscheidung</ListItem>
+            </List>
+            <Text>
+              Diese Daten werden nur lokal in deinem Browser gespeichert und nicht an uns übermittelt.
             </Text>
           </Section>
 
@@ -239,7 +343,7 @@ const DatenschutzPage = () => {
               umzusetzen. Für deinen erneuten Besuch gilt dann die neue Datenschutzerklärung.
             </Text>
             <Text>
-              Stand: Januar 2025
+              Stand: Februar 2026
             </Text>
           </Section>
         </Content>
@@ -258,7 +362,7 @@ const DatenschutzPage = () => {
             <FooterLink href="/impressum">Impressum</FooterLink>
           </FooterLinks>
           
-          <Copyright>© 2025 S&I.</Copyright>
+          <Copyright>© 2026 S&I.</Copyright>
         </Footer>
       </Container>
     </PageWrapper>
