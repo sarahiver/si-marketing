@@ -29,6 +29,7 @@ import AnimatedSection from './components/marketing/AnimatedSection';
 // ============================================
 import ImpressumPage from './components/shared/ImpressumPage';
 import DatenschutzPage from './components/shared/DatenschutzPage';
+import CookieConsent from './components/shared/CookieConsent';
 
 // ============================================
 // GOOGLE FONTS - Alle benötigten Fonts für alle Themes
@@ -164,14 +165,16 @@ function App() {
         <Routes>
           {/* Main Marketing Page */}
           <Route path="/" element={<MainApp />} />
-          
+
           {/* Legal Pages */}
           <Route path="/impressum" element={<ImpressumPage />} />
           <Route path="/datenschutz" element={<DatenschutzPage />} />
-          
+
           {/* Fallback - redirect to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        {/* DSGVO Cookie Banner */}
+        <CookieConsent />
       </Router>
     </ErrorBoundary>
   );
