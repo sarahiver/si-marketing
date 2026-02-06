@@ -3,5 +3,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /api/
 
-# Sitemap (später hinzufügen)
-# Sitemap: https://siwedding.de/sitemap.xml
+Sitemap: https://siwedding.de/sitemap.xml
