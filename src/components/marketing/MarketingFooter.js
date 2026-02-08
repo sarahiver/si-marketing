@@ -634,7 +634,7 @@ const MarketingFooter = () => {
           </EditorialColumn>
           <EditorialColumn>
             <EditorialColumnTitle>Kontakt</EditorialColumnTitle>
-            <EditorialLink href="mailto:hello@siwedding.de">hello@siwedding.de</EditorialLink>
+            <EditorialLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</EditorialLink>
             <EditorialLink href="#">Hamburg, Deutschland</EditorialLink>
           </EditorialColumn>
         </EditorialInner>
@@ -751,7 +751,7 @@ const MarketingFooter = () => {
           </NeonColumn>
           <NeonColumn>
             <NeonColumnTitle>// Connect</NeonColumnTitle>
-            <NeonLink href="mailto:hello@siwedding.de">hello@siwedding.de</NeonLink>
+            <NeonLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</NeonLink>
           </NeonColumn>
         </NeonInner>
         <NeonBottom>
