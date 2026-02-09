@@ -16,59 +16,53 @@ import { useTheme } from '../../context/ThemeContext';
 const USPS = [
   {
     icon: '✨',
-    title: 'Handgefertigt – so einzigartig wie eure Liebe',
-    desc: 'Jede Website wird individuell für euch gestaltet. Keine Massenlösungen, keine austauschbaren Templates – sondern ein Design, das eure Geschichte widerspiegelt.',
-    short: 'Individuell gestaltet, keine Templates',
+    title: 'Kein Paar ist wie das andere',
+    desc: 'Deshalb ist keine Website wie die andere. Jede Hochzeit, die wir umsetzen, ist ein Unikat. Bereits Dutzende Paare haben ihre Liebesgeschichte mit uns digital verewigt — handgemacht, nicht von der Stange.',
+    short: 'Jede Website ein Unikat',
   },
   {
     icon: '🌐',
-    title: 'Eure eigene Domain – keine Subdomain, keine Kompromisse',
-    desc: 'Bei uns bekommt ihr immer eure eigene Domain inklusive – z.\u00A0B. sarah-und-iver.de statt euer-name.irgendeinjemand.de. Professionell, persönlich und leicht zu merken für eure Gäste.',
+    title: 'sarah-und-max.de',
+    desc: 'Eure Liebe hat eine eigene Adresse. Keine Subdomain, kein Baukasten-Link. Ihr bekommt eure persönliche Domain — professionell eingerichtet, sofort startklar.',
     short: 'Eigene Domain inklusive',
   },
   {
     icon: '🎨',
-    title: 'Ihr wählt den Stil. Wir perfektionieren den Rest.',
-    desc: 'Wählt aus 6 kuratierten Premium-Themes – wir passen Farben, Details, Komponenten und Inhalte so an, dass eure Website wie maßgeschneidert wirkt.',
-    short: '6 Premium-Themes zur Auswahl',
+    title: '6 Designwelten — angepasst an euren Stil',
+    desc: 'Ob elegant, modern oder verspielt: Wir passen jedes Design individuell an eure Farben, Fotos und Geschichte an. Kein Theme bleibt „Standard".',
+    short: '6 Themes, individuell angepasst',
   },
   {
     icon: '💬',
-    title: 'Persönlich statt anonym',
-    desc: 'Ihr sprecht direkt mit uns – Sarah & Iver. Kein Callcenter. Kein Ticketsystem. Keine Standard-Antworten. Sondern echte Beratung, ehrliches Feedback und eine Zusammenarbeit auf Augenhöhe.',
-    short: 'Direkter Kontakt zu Sarah & Iver',
-  },
-  {
-    icon: '💍',
-    title: 'Eine Website, die sich wie ein Zuhause anfühlt',
-    desc: 'Wir gestalten nicht einfach nur eine Hochzeitswebsite – wir erschaffen ein digitales Zuhause für eure Hochzeit: für eure Geschichte, eure Gäste, eure Erinnerungen und euren großen Tag.',
-    short: 'Ein digitales Zuhause für eure Hochzeit',
+    title: 'Direkter Kontakt statt Support-Tickets',
+    desc: 'Ihr sprecht mit echten Menschen — Sarah & Iver. Keine Hotline, kein Bot, kein Ticketsystem. Persönlich, schnell, erreichbar.',
+    short: 'Sarah & Iver persönlich',
   },
   {
     icon: '🕊️',
-    title: 'So wenig Aufwand wie möglich für euch',
-    desc: 'Ihr müsst nichts bauen, nichts programmieren, nichts kompliziert organisieren. Ihr liefert die Inhalte – wir übernehmen den Rest. Einfach, entspannt, stressfrei.',
+    title: 'So wenig Aufwand wie möglich',
+    desc: 'Wir übernehmen den Rest. Ihr schickt uns Texte & Fotos. Wir bauen eure Website, optimieren Design & Technik und kümmern uns um den Feinschliff.',
     short: 'Ihr liefert Inhalte, wir den Rest',
   },
   {
     icon: '⚡',
-    title: 'Schnell. Hochwertig. Eindrucksvoll.',
-    desc: 'In der Regel ist eure Website innerhalb von 5–7 Werktagen live – hochwertig umgesetzt, emotional gestaltet und bereit, eure Gäste zu begeistern.',
-    short: '5-7 Werktage bis zur fertigen Website',
+    title: 'In 7 Tagen live',
+    desc: 'Oder wir sagen ehrlich warum nicht. Keine monatelangen Wartezeiten. Die meisten Websites gehen innerhalb einer Woche online — inklusive Korrekturschleife.',
+    short: 'In einer Woche online',
   },
 ];
 
 const RSVP_FEATURE = {
   icon: '📋',
-  title: 'RSVP & Gästemanagement inklusive',
-  desc: 'Behaltet den Überblick über alle Zusagen, Absagen und Sonderwünsche – direkt in eurem persönlichen Dashboard. Exportiert eure Gästeliste jederzeit als Excel für Catering, Sitzplan oder Einlasskontrolle. Alles an einem Ort, immer aktuell, komplett stressfrei.',
-  short: 'Dashboard, Export, volle Kontrolle',
+  title: 'Alle Zusagen an einem Ort — ohne WhatsApp-Stress',
+  desc: 'Gäste sagen direkt über eure Website zu. Ihr erhaltet eine übersichtliche Gästeliste, inklusive Essenswünschen & Begleitpersonen. Exportierbar als Excel für Catering, Sitzplan oder Einlasskontrolle.',
+  short: 'RSVP, Gästeliste, Excel-Export',
 };
 
 const CTA_TEXT = {
-  headline: 'Bereit für eine Hochzeitswebsite, die so besonders ist wie eure Liebe?',
-  button: 'Wählt euren Stil',
-  subline: 'S&I. – Premium Hochzeitswebsites für Paare mit Anspruch.',
+  headline: 'Bereit für eine Hochzeitswebsite, die eure Gäste begeistert?',
+  button: 'Erzählt uns eure Geschichte',
+  subline: 'S&I. — Handgemachte Hochzeitswebsites für Paare mit Anspruch.',
 };
 
 // ============================================

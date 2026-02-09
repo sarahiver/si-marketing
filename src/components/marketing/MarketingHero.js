@@ -37,6 +37,36 @@ const scanline = keyframes`0% { top: -10%; } 100% { top: 110%; }`;
 const geometricFloat = keyframes`0%, 100% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(20px, -30px) rotate(90deg); }`;
 
 // ============================================
+// SHARED HERO COMPONENTS
+// ============================================
+const TrustLine = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: ${p => p.$light ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'};
+  margin-top: 1.5rem;
+  letter-spacing: 0.01em;
+  animation: ${fadeInUp} 0.8s ease 0.9s both;
+  ${p => p.$neon && `
+    color: rgba(255,0,110,0.4);
+    font-family: 'Space Grotesk', sans-serif;
+  `}
+`;
+
+const HeroCTAs = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  animation: ${fadeInUp} 0.8s ease 0.6s both;
+  
+  .primary {
+    background: #C41E3A;
+    border-color: #C41E3A;
+  }
+`;
+
+// ============================================
 // EDITORIAL HERO - Magazine Style
 // ============================================
 const EditorialSection = styled.section`
@@ -884,12 +914,16 @@ const MarketingHero = () => {
       <EditorialSection id="hero">
         <EditorialBg />
         <EditorialContent>
-          <EditorialEyebrow>Premium Wedding Websites</EditorialEyebrow>
+          <EditorialEyebrow>Von Paaren. Für Paare.</EditorialEyebrow>
           <EditorialTitle>
-            Premium<br/>Hochzeits-<br/><span>websites</span>
+            Die Hochzeits-<br/>website, bei der<br/>eure Gäste<br/><span>„WOW"</span> sagen.
           </EditorialTitle>
-          <EditorialDate>Eure Geschichte. Digital erzählt.</EditorialDate>
-          <EditorialCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</EditorialCTA>
+          <EditorialDate>Handgemacht. Persönlich. In 7 Tagen live.</EditorialDate>
+          <HeroCTAs>
+            <EditorialCTA onClick={() => scrollToSection('themes')}>Beispiel-Hochzeit ansehen</EditorialCTA>
+            <EditorialCTA onClick={() => scrollToSection('contact')} className="primary">Erzählt uns eure Geschichte</EditorialCTA>
+          </HeroCTAs>
+          <TrustLine $light>Bereits von modernen Paaren in ganz Deutschland genutzt — individuell, hochwertig, stressfrei.</TrustLine>
         </EditorialContent>
         <EditorialScrollHint>Scroll</EditorialScrollHint>
       </EditorialSection>
@@ -902,16 +936,17 @@ const MarketingHero = () => {
       <BotanicalSection id="hero">
         <BotanicalBg />
         <BotanicalCard>
-          <BotanicalEyebrow>S&I. Premium</BotanicalEyebrow>
+          <BotanicalEyebrow>Von Paaren. Für Paare.</BotanicalEyebrow>
           <BotanicalTitle>
-            Premium<br/>
-            Hochzeitswebsites
+            Die Hochzeitswebsite,<br/>
+            bei der eure Gäste „WOW" sagen.
           </BotanicalTitle>
           <BotanicalSubtitle>
-            Eure Geschichte. Digital erzählt.<br />
-            Handgefertigt in Hamburg.
+            Handgemacht. Persönlich. In 7 Tagen live.<br />
+            Für Paare, die mehr wollen als ein Template.
           </BotanicalSubtitle>
-          <BotanicalCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</BotanicalCTA>
+          <BotanicalCTA onClick={() => scrollToSection('contact')}>Erzählt uns eure Geschichte</BotanicalCTA>
+          <TrustLine>Bereits von modernen Paaren in ganz Deutschland genutzt.</TrustLine>
         </BotanicalCard>
         <BotanicalScroll>Entdecken</BotanicalScroll>
       </BotanicalSection>
@@ -927,19 +962,20 @@ const MarketingHero = () => {
         <ContemporaryShape className="circle2" />
         <ContemporaryShape className="square2" />
         <ContemporaryLeft>
-          <ContemporaryEyebrow>Premium Wedding Websites</ContemporaryEyebrow>
+          <ContemporaryEyebrow>Von Paaren. Für Paare.</ContemporaryEyebrow>
           <ContemporaryTitle>
-            Premium<br/>
-            <span className="name2">Hochzeits-<br/>websites</span>
+            Die Website,<br/>
+            <span className="name2">bei der eure<br/>Gäste „WOW"<br/>sagen.</span>
           </ContemporaryTitle>
           <ContemporaryTags>
-            <ContemporaryTag>📅 6 Themes</ContemporaryTag>
-            <ContemporaryTag $filled>📍 Hamburg</ContemporaryTag>
+            <ContemporaryTag>✨ Handgemacht</ContemporaryTag>
+            <ContemporaryTag $filled>⚡ In 7 Tagen live</ContemporaryTag>
           </ContemporaryTags>
           <ContemporaryCTAs>
-            <ContemporaryCTA $primary onClick={() => scrollToSection('contact')}>Jetzt anfragen →</ContemporaryCTA>
-            <ContemporaryCTA onClick={() => scrollToSection('features')}>Features ansehen</ContemporaryCTA>
+            <ContemporaryCTA $primary onClick={() => scrollToSection('contact')}>Erzählt uns eure Geschichte →</ContemporaryCTA>
+            <ContemporaryCTA onClick={() => scrollToSection('themes')}>Beispiele ansehen</ContemporaryCTA>
           </ContemporaryCTAs>
+          <TrustLine>Bereits von modernen Paaren in ganz Deutschland genutzt.</TrustLine>
         </ContemporaryLeft>
         <ContemporaryRight />
         <ContemporaryScroll>Scroll</ContemporaryScroll>
@@ -953,14 +989,15 @@ const MarketingHero = () => {
       <LuxeSection id="hero">
         <LuxeBg />
         <LuxeContent>
-          <LuxeEyebrow>Premium Wedding Websites</LuxeEyebrow>
+          <LuxeEyebrow>Von Paaren. Für Paare.</LuxeEyebrow>
           <LuxeTitle>
-            Premium<br/>
-            Hochzeitswebsites
+            Die Hochzeitswebsite, bei der<br/>
+            eure Gäste „WOW" sagen.
           </LuxeTitle>
-          <LuxeDate>Eure Geschichte. Digital erzählt.</LuxeDate>
+          <LuxeDate>Handgemacht. Persönlich. In 7 Tagen live.</LuxeDate>
           <LuxeDivider />
-          <LuxeCTA onClick={() => scrollToSection('contact')}>Jetzt anfragen</LuxeCTA>
+          <LuxeCTA onClick={() => scrollToSection('contact')}>Erzählt uns eure Geschichte</LuxeCTA>
+          <TrustLine $light>Bereits von modernen Paaren in ganz Deutschland genutzt.</TrustLine>
         </LuxeContent>
         <LuxeScroll>
           <span>Scroll</span>
@@ -976,14 +1013,16 @@ const MarketingHero = () => {
         <NeonGrid />
         <NeonScanline />
         <NeonContent>
-          <NeonEyebrow>// Wedding.init()</NeonEyebrow>
+          <NeonEyebrow>// built_by_a_couple_who_gave_a_damn</NeonEyebrow>
           <NeonTitle>
-            Premium<br/>
-            Hochzeits-<br/>
-            websites
+            Die Website,<br/>
+            bei der eure<br/>
+            Gäste „WOW"<br/>
+            sagen.
           </NeonTitle>
-          <NeonSubtitle>Premium Wedding Websites // Hamburg</NeonSubtitle>
-          <NeonCTA onClick={() => scrollToSection('contact')}>Start.exe →</NeonCTA>
+          <NeonSubtitle>Handgemacht. Persönlich. In 7 Tagen live.</NeonSubtitle>
+          <NeonCTA onClick={() => scrollToSection('contact')}>Erzählt uns eure Geschichte →</NeonCTA>
+          <TrustLine $light $neon>Von modernen Paaren in Deutschland genutzt — kein Template, kein Baukasten.</TrustLine>
         </NeonContent>
         <NeonScroll>Scroll.down</NeonScroll>
       </NeonSection>
@@ -998,14 +1037,14 @@ const MarketingHero = () => {
       </VideoBg>
       <VideoOverlay />
       <VideoContent>
-        <VideoEyebrow>Premium Wedding Websites</VideoEyebrow>
+        <VideoEyebrow>Von Paaren. Für Paare.</VideoEyebrow>
         <VideoTitle>
-          Premium<br/>
-          Hochzeitswebsites
+          Die Hochzeitswebsite, bei der<br/>
+          eure Gäste „WOW" sagen.
         </VideoTitle>
         <VideoDivider />
-        <VideoDate>Eure Geschichte. Digital erzählt.</VideoDate>
-        <VideoLocation>Hamburg</VideoLocation>
+        <VideoDate>Handgemacht. Persönlich. In 7 Tagen live.</VideoDate>
+        <TrustLine $light>Bereits von modernen Paaren in ganz Deutschland genutzt.</TrustLine>
       </VideoContent>
     </VideoSection>
   );
