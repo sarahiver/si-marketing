@@ -190,6 +190,17 @@ const ContemporaryGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const ContemporaryCard = styled.div`
@@ -202,6 +213,12 @@ const ContemporaryCard = styled.div`
   &:hover {
     transform: translate(-4px, -4px);
     box-shadow: 12px 12px 0 ${p => ['#FF6B6B', '#4ECDC4', '#FFE66D', '#9B5DE5'][p.$i % 4]};
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `;
 
@@ -310,6 +327,17 @@ const NeonGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const NeonCard = styled.div`
@@ -321,6 +349,12 @@ const NeonCard = styled.div`
   &:hover {
     border-color: #00ffff;
     box-shadow: 0 0 30px rgba(0,255,255,0.2);
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `;
 
@@ -340,6 +374,17 @@ const VideoGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const VideoCard = styled.div`
@@ -348,6 +393,12 @@ const VideoCard = styled.div`
   transition: border-color 0.3s ease;
   
   &:hover { border-color: #6B8CAE; }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
+  }
 `;
 
 const VideoCardTitle = styled.h3`font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;`;

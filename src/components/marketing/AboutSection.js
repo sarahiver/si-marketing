@@ -175,10 +175,27 @@ const EditorialTeamGrid = styled.div`
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const EditorialTeamMember = styled.div`
   text-align: center;
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
+  }
 `;
 
 const EditorialTeamEmoji = styled.div`
@@ -720,12 +737,29 @@ const NeonTeamGrid = styled.div`
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const NeonTeamCard = styled.div`
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(0,255,255,0.2);
   padding: 1.5rem;
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
+  }
 `;
 
 const NeonTeamName = styled.h3`

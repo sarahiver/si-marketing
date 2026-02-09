@@ -496,6 +496,17 @@ const LuxeStep = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const LuxeStepContent = styled.div`

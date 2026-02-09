@@ -275,6 +275,17 @@ const Grid = styled.div`
   @media (min-width: 1000px) { 
     grid-template-columns: repeat(3, 1fr); 
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const ThemeCard = styled.div`
@@ -286,6 +297,12 @@ const ThemeCard = styled.div`
   
   &:hover {
     transform: translateY(-8px);
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `;
 

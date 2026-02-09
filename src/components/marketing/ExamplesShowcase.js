@@ -276,6 +276,17 @@ const EditorialGrid = styled.div`
   gap: 1px;
   background: #e0e0e0;
   border: 1px solid #e0e0e0;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `
 
 const EditorialCard = styled.div`
@@ -295,6 +306,12 @@ const EditorialCard = styled.div`
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 15px;
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `
 
@@ -346,6 +363,17 @@ const GoldGrid = styled.div`
   
   @media (max-width: 1000px) { grid-template-columns: repeat(2, 1fr); }
   @media (max-width: 600px) { grid-template-columns: 1fr; }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `
 
 const GoldCard = styled.div`
@@ -373,6 +401,12 @@ const GoldCard = styled.div`
     border-color: rgba(212, 175, 55, 0.5);
     box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
     &::before { left: 100%; }
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `
 
@@ -430,6 +464,17 @@ const BotanicalGrid = styled.div`
   
   @media (max-width: 1000px) { grid-template-columns: repeat(2, 1fr); }
   @media (max-width: 600px) { grid-template-columns: 1fr; }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `
 
 const BotanicalCard = styled.div`
@@ -444,6 +489,12 @@ const BotanicalCard = styled.div`
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 50px rgba(45, 59, 45, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `
 
@@ -501,6 +552,17 @@ const ContemporaryGrid = styled.div`
   
   @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
   @media (max-width: 600px) { grid-template-columns: 1fr; }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `
 
 const ContemporaryCard = styled.div`
@@ -518,6 +580,12 @@ const ContemporaryCard = styled.div`
   &:hover {
     transform: translate(-4px, -4px);
     box-shadow: 10px 10px 0 #0d0d0d;
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `
 
@@ -569,6 +637,17 @@ const LuxeGrid = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `
 
 const LuxeCard = styled.div`
@@ -587,6 +666,12 @@ const LuxeCard = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `
 
@@ -649,6 +734,17 @@ const NeonGrid = styled.div`
   
   @media (max-width: 1000px) { grid-template-columns: repeat(2, 1fr); }
   @media (max-width: 600px) { grid-template-columns: 1fr; }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `
 
 const NeonCard = styled.div`
@@ -676,6 +772,12 @@ const NeonCard = styled.div`
     border-color: rgba(0, 255, 255, 0.5);
     animation: ${neonPulse} 2s ease-in-out infinite;
     &::before { transform: scaleX(1); }
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
   }
 `
 

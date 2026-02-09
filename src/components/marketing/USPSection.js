@@ -142,6 +142,17 @@ const EditorialGrid = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const EditorialRow = styled.div`
@@ -396,6 +407,17 @@ const ContemporaryBento = styled.div`
   @media (max-width: 500px) {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const ContemporaryCard = styled.div`
@@ -528,6 +550,17 @@ const LuxeGrid = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const LuxeCard = styled.div`
@@ -574,6 +607,12 @@ const LuxeCard = styled.div`
   
   &:hover {
     background: rgba(201, 169, 98, 0.03);
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 75vw;
+    max-width: 75vw;
+    scroll-snap-align: center;
   }
 `;
 
@@ -739,6 +778,17 @@ const NeonGrid = styled.div`
   
   @media (max-width: 500px) {
     grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
   }
 `;
 

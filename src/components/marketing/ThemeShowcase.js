@@ -933,6 +933,17 @@ const EditorialDemoGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const EditorialDemoLink = styled.a`
@@ -977,6 +988,17 @@ const BotanicalDemoGrid = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const BotanicalDemoLink = styled.a`
@@ -1019,6 +1041,17 @@ const ContemporaryDemoGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const ContemporaryDemoLink = styled.a`
@@ -1064,6 +1097,17 @@ const LuxeDemoGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const LuxeDemoLink = styled.a`
@@ -1105,6 +1149,17 @@ const NeonDemoGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const NeonDemoLink = styled.a`
@@ -1147,6 +1202,17 @@ const VideoDemoGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const VideoDemoLink = styled.a`
