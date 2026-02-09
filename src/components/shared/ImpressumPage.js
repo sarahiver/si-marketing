@@ -60,6 +60,16 @@ const ImpressumPage = () => {
           </Section>
 
           <Section>
+            <SectionTitle>Bankverbindung</SectionTitle>
+            <Text>
+              Iver Gentz<br />
+              IBAN: DE06 1001 8000 0625 2723 20<br />
+              BIC: FNOMDEB2<br />
+              Bank: Finom Payments
+            </Text>
+          </Section>
+
+          <Section>
             <SectionTitle>EU-Streitschlichtung</SectionTitle>
             <Text>
               Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{' '}
