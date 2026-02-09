@@ -118,17 +118,7 @@ const Grid = styled.div`
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar { display: none; }
+    gap: 2rem;
   }
 `;
 
@@ -136,12 +126,6 @@ const CardInner = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-
-  @media (max-width: 768px) {
-    flex: 0 0 85vw;
-    max-width: 85vw;
-    scroll-snap-align: center;
-  }
 `;
 
 const CardContent = styled.div`

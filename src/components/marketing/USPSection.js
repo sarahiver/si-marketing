@@ -428,6 +428,13 @@ const ContemporaryCard = styled.div`
     return 'span 1';
   }};
   
+  @media (max-width: 768px) {
+    min-width: 75vw;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    grid-column: span 1;
+  }
+
   @media (max-width: 500px) {
     grid-column: span 1;
   }
@@ -772,17 +779,6 @@ const NeonGrid = styled.div`
   
   @media (max-width: 500px) {
     grid-template-columns: 1fr;
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar { display: none; }
   }
 `;
 

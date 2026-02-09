@@ -237,8 +237,7 @@ const BotanicalEyebrow = styled.p`
   font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #1B4332;
-  opacity: 0.6;
+  color: rgba(255,255,255,0.45);
   margin-bottom: 1rem;
 `;
 
@@ -246,7 +245,7 @@ const BotanicalHeadline = styled.h2`
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.8rem, 4.5vw, 3rem);
   font-weight: 400;
-  color: #1B4332;
+  color: rgba(255,255,255,0.95);
   line-height: 1.2;
   margin-bottom: 1rem;
 `;
@@ -255,8 +254,7 @@ const BotanicalSubline = styled.p`
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
   line-height: 1.7;
-  color: #2D6A4F;
-  opacity: 0.7;
+  color: rgba(255,255,255,0.5);
   max-width: 550px;
   margin: 0 auto 4rem;
 `;
@@ -274,9 +272,10 @@ const BotanicalGrid = styled.div`
 `;
 
 const BotanicalCard = styled.div`
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(27,67,50,0.1);
+  background: rgba(10,20,15,0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 16px;
   padding: 2rem 1.75rem;
   text-align: left;
@@ -284,7 +283,7 @@ const BotanicalCard = styled.div`
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(27,67,50,0.12);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
   }
 `;
 
@@ -298,7 +297,7 @@ const BotanicalCardLabel = styled.h3`
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1B4332;
+  color: rgba(255,255,255,0.95);
   margin-bottom: 0.5rem;
 `;
 
@@ -306,7 +305,7 @@ const BotanicalCardQuote = styled.p`
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 0.95rem;
-  color: #52B788;
+  color: #90C9A8;
   margin-bottom: 1rem;
 `;
 
@@ -314,7 +313,7 @@ const BotanicalCardProblem = styled.p`
   font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
   line-height: 1.6;
-  color: rgba(45,106,79,0.6);
+  color: rgba(255,255,255,0.55);
   margin-bottom: 1rem;
 `;
 
@@ -322,12 +321,12 @@ const BotanicalCardSolution = styled.p`
   font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #1B4332;
+  color: rgba(255,255,255,0.9);
   line-height: 1.5;
 
   &::before {
     content: 'Bei uns: ';
-    color: #52B788;
+    color: #90C9A8;
     font-weight: 700;
   }
 `;
@@ -342,7 +341,7 @@ const BotanicalClosingHeadline = styled.h3`
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.3rem, 3vw, 1.8rem);
   font-weight: 500;
-  color: #1B4332;
+  color: rgba(255,255,255,0.95);
   margin-bottom: 1rem;
 `;
 
@@ -350,8 +349,7 @@ const BotanicalClosingText = styled.p`
   font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
   line-height: 1.7;
-  color: #2D6A4F;
-  opacity: 0.7;
+  color: rgba(255,255,255,0.5);
   margin-bottom: 2.5rem;
 `;
 
@@ -370,15 +368,16 @@ const BotanicalCTA = styled.button`
   text-transform: uppercase;
   padding: 1rem 2rem;
   border-radius: 30px;
-  border: 1.5px solid ${p => p.$primary ? '#1B4332' : 'rgba(27,67,50,0.3)'};
-  background: ${p => p.$primary ? '#1B4332' : 'transparent'};
-  color: ${p => p.$primary ? '#fff' : '#1B4332'};
+  border: 1.5px solid ${p => p.$primary ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.2)'};
+  background: ${p => p.$primary ? 'rgba(255,255,255,0.15)' : 'transparent'};
+  color: rgba(255,255,255,0.9);
   cursor: pointer;
   transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
 
   &:hover {
+    background: rgba(255,255,255,0.2);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(27,67,50,0.2);
   }
 `;
 

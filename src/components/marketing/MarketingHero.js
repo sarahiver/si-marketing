@@ -946,7 +946,7 @@ const MarketingHero = () => {
             Für Paare, die mehr wollen als ein Template.
           </BotanicalSubtitle>
           <BotanicalCTA onClick={() => scrollToSection('contact')}>Erzählt uns eure Geschichte</BotanicalCTA>
-          <TrustLine>Bereits von modernen Paaren in ganz Deutschland genutzt.</TrustLine>
+          <TrustLine $light>Bereits von modernen Paaren in ganz Deutschland genutzt.</TrustLine>
         </BotanicalCard>
         <BotanicalScroll>Entdecken</BotanicalScroll>
       </BotanicalSection>
@@ -975,7 +975,7 @@ const MarketingHero = () => {
             <ContemporaryCTA $primary onClick={() => scrollToSection('contact')}>Erzählt uns eure Geschichte →</ContemporaryCTA>
             <ContemporaryCTA onClick={() => scrollToSection('themes')}>Beispiele ansehen</ContemporaryCTA>
           </ContemporaryCTAs>
-          <TrustLine>Bereits von modernen Paaren in ganz Deutschland genutzt.</TrustLine>
+          <TrustLine $light>Bereits von modernen Paaren in ganz Deutschland genutzt.</TrustLine>
         </ContemporaryLeft>
         <ContemporaryRight />
         <ContemporaryScroll>Scroll</ContemporaryScroll>
