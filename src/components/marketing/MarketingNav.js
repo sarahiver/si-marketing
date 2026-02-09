@@ -384,6 +384,50 @@ const MobileMenu = styled.div`
   }
 `;
 
+const MobileCloseBtn = styled.button`
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid ${p => p.$theme === 'contemporary' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.2)'};
+  border-radius: ${p => p.$theme === 'contemporary' ? '8px' : p.$theme === 'botanical' ? '50%' : '0'};
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : p.$theme === 'neon' ? '#00ffff' : p.$theme === 'luxe' ? '#D4AF37' : 'rgba(255,255,255,0.8)'};
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  padding: 0;
+
+  &:hover {
+    border-color: ${p => {
+      switch(p.$theme) {
+        case 'contemporary': return '#FF6B6B';
+        case 'neon': return '#FF006E';
+        case 'luxe': return '#D4AF37';
+        case 'editorial': return '#C41E3A';
+        default: return 'rgba(255,255,255,0.4)';
+      }
+    }};
+    color: ${p => {
+      switch(p.$theme) {
+        case 'contemporary': return '#FF6B6B';
+        case 'neon': return '#FF006E';
+        case 'luxe': return '#D4AF37';
+        case 'editorial': return '#C41E3A';
+        default: return '#fff';
+      }
+    }};
+  }
+`;
+
 const MobileNavLink = styled.a`
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -571,6 +615,7 @@ const MarketingNav = () => {
     <>
       <MobileMenuOverlay $open={menuOpen} onClick={() => setMenuOpen(false)} />
       <MobileMenu $theme={currentTheme} $open={menuOpen}>
+        <MobileCloseBtn $theme={currentTheme} onClick={() => setMenuOpen(false)}>✕</MobileCloseBtn>
         {navItems.map(item => (
           <MobileNavLink 
             key={item.id} 
