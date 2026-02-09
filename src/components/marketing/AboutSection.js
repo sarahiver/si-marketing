@@ -21,23 +21,23 @@ const SARAH_IVER_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_
 const STORY_SECTIONS = [
   {
     id: 'origin',
-    title: 'Wie alles begann',
-    content: 'S&I. ist aus unserer eigenen Hochzeitsreise entstanden. Als wir unsere Hochzeit planten, wollten wir eine Website, die unsere Geschichte widerspiegelt – stilvoll, modern, emotional.',
+    title: 'Es begann mit unserer eigenen Hochzeit',
+    content: 'Als wir unsere Hochzeit planten, suchten wir eine Website, die sich nach uns anfühlt. Stilvoll. Modern. Emotional. Etwas, das wir stolz an unsere Gäste schicken können.',
   },
   {
     id: 'problem',
-    title: 'Das Problem',
-    content: 'Was wir fanden, war ernüchternd: Baukästen, die unpersönlich wirkten. Designs ohne Gefühl. Lösungen, die entweder kompliziert, zeitintensiv oder schlicht unschön waren.',
+    title: 'Was wir fanden, hat uns enttäuscht',
+    content: 'Baukästen ohne Seele. Designs, die aussahen wie jede andere Hochzeit. Komplizierte Tools, für die man einen Informatik-Abschluss braucht. Oder teure Agenturen, die monatelang brauchen.',
   },
   {
     id: 'solution',
-    title: 'Unsere Lösung',
-    content: 'Wir dachten: „Unsere Hochzeit verdient etwas Besonderes – warum gibt es das nicht?" Also haben wir es selbst gebaut. Aus einer Idee wurde Leidenschaft.',
+    title: 'Also haben wir es selbst gebaut',
+    content: 'Erst für uns. Dann für Freunde, die fragten: „Könnt ihr das auch für uns machen?" Und dann wurde aus einer Idee ein Versprechen: Jedes Paar verdient eine Website, die sich anfühlt wie der schönste Tag.',
   },
   {
     id: 'vision',
-    title: 'Unsere Vision',
-    content: 'Eine Hochzeitswebsite sollte mehr sein als eine Informationsseite. Sie sollte sich anfühlen wie ein Zuhause für eure Liebe – ein Ort für eure Geschichte, eure Gäste, eure Erinnerungen.',
+    title: 'Das steckt hinter jedem Pixel',
+    content: 'Sarah sorgt dafür, dass jede Website nicht nur schön aussieht — sondern sich richtig anfühlt. Iver baut die Technik, damit alles fließt. Zusammen sind wir S&I. — und wir geben nicht ab, bevor es perfekt ist.',
   },
 ];
 
@@ -46,20 +46,20 @@ const TEAM = {
     name: 'Sarah',
     role: 'Herz, Design & Gefühl',
     emoji: '🎨',
-    desc: 'Sarah sorgt dafür, dass jede Website nicht nur schön aussieht, sondern sich richtig anfühlt. Farben, Typografie, Bildsprache – alles wird mit Liebe gestaltet.',
+    desc: 'Sarah sorgt dafür, dass jede Website nicht nur schön aussieht, sondern sich richtig anfühlt. Farben, Typografie, Bildsprache — alles wird mit Liebe zum Detail gestaltet.',
   },
   iver: {
     name: 'Iver',
     role: 'Technik & persönliche Begleitung',
     emoji: '🧑‍💻',
-    desc: 'Iver kümmert sich um Technik, Umsetzung und Betreuung. Vom ersten Gespräch bis zur fertigen Website – ein echter Ansprechpartner, keine Massenabfertigung.',
+    desc: 'Iver kümmert sich um Technik, Umsetzung und Betreuung. Vom ersten Gespräch bis zur fertigen Website — ein echter Ansprechpartner, keine Massenabfertigung.',
   },
 };
 
 const CTA = {
-  headline: 'Wenn eure Hochzeit besonders ist, sollte eure Website es auch sein.',
-  button: 'Schreibt uns',
-  tagline: 'S&I. – Premium Hochzeitswebsites für Paare mit Anspruch.',
+  headline: 'Eure Hochzeit ist besonders. Eure Website sollte es auch sein.',
+  button: 'Erzählt uns eure Geschichte',
+  tagline: 'S&I. — Handgemachte Hochzeitswebsites für Paare mit Anspruch.',
 };
 
 // ============================================

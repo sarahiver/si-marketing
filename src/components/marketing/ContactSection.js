@@ -701,31 +701,31 @@ const ContactSection = () => {
     switch (currentTheme) {
       case 'contemporary':
         return {
-          eyebrow: '📧 Let\'s Talk',
-          title: 'Kontakt',
-          subtitle: 'Schreibt uns - wir beißen nicht! 😄',
-          button: 'Nachricht senden →',
+          eyebrow: '💌 Der erste Schritt',
+          title: 'Erzählt uns von euch',
+          subtitle: 'Kein Verkaufsgespräch. Nur ein ehrliches Kennenlernen.',
+          button: 'Nachricht schreiben →',
         };
       case 'neon':
         return {
-          eyebrow: '// Contact.init()',
-          title: 'Send Message',
-          subtitle: 'Initiating communication protocol...',
-          button: 'Execute.send()',
+          eyebrow: '// contact.init(your_story)',
+          title: 'Erzählt uns von euch',
+          subtitle: 'Keine Bots. Keine Formulare. Echte Menschen.',
+          button: 'Message.send() →',
         };
       case 'luxe':
         return {
-          eyebrow: 'Kontakt',
-          title: 'Sprechen wir',
-          subtitle: 'Wir freuen uns auf Ihre Anfrage',
-          button: 'Nachricht senden',
+          eyebrow: 'Der erste Schritt',
+          title: 'Erzählt uns von euch',
+          subtitle: 'Wir melden uns persönlich — versprochen.',
+          button: 'Nachricht schreiben',
         };
       default:
         return {
-          eyebrow: 'Kontakt',
-          title: 'Schreibt uns',
-          subtitle: 'Wir freuen uns auf eure Anfrage',
-          button: 'Nachricht senden',
+          eyebrow: 'Der erste Schritt',
+          title: 'Erzählt uns von euch',
+          subtitle: 'Kein Verkaufsgespräch. Nur ein ehrliches Kennenlernen. Ihr schreibt direkt an Sarah & Iver.',
+          button: 'Nachricht schreiben',
         };
     }
   };

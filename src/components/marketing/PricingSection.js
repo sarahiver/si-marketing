@@ -12,6 +12,7 @@ const PACKAGES = [
   { 
     id: 'starter', 
     name: 'Starter', 
+    tagline: 'Alles, was ihr für den Start braucht',
     price: '1.290', 
     duration: '6 Monate',
     features: [
@@ -33,6 +34,7 @@ const PACKAGES = [
   { 
     id: 'standard', 
     name: 'Standard', 
+    tagline: 'Für Paare, die es richtig machen wollen',
     price: '1.490', 
     duration: '8 Monate',
     popular: true,
@@ -56,6 +58,7 @@ const PACKAGES = [
   { 
     id: 'premium', 
     name: 'Premium', 
+    tagline: 'Das Rundum-Sorglos-Paket. Lehnt euch zurück.',
     price: '1.990', 
     duration: '12 Monate',
     features: [
@@ -252,6 +255,16 @@ const EditorialCard = styled.div`
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   }
+`;
+
+const PkgTagline = styled.p`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #888;
+  margin-bottom: 0.75rem;
+  margin-top: -0.25rem;
 `;
 
 const EditorialCardName = styled.h3`
@@ -1353,12 +1366,13 @@ const PricingSection = () => {
         <Container>
           <Header>
             <EditorialEyebrow>Preise</EditorialEyebrow>
-            <EditorialTitle>Unsere Pakete</EditorialTitle>
+            <EditorialTitle>Findet euer Paket</EditorialTitle>
           </Header>
           <Grid>
             {PACKAGES.map(pkg => (
               <EditorialCard key={pkg.id} $pop={pkg.popular}>
                 <EditorialCardName>{pkg.name}</EditorialCardName>
+                {pkg.tagline && <PkgTagline>{pkg.tagline}</PkgTagline>}
                 <EditorialCardPrice $pop={pkg.popular}>
                   <span>€</span>{pkg.price}
                 </EditorialCardPrice>
@@ -1387,12 +1401,13 @@ const PricingSection = () => {
         <Container>
           <Header>
             <BotanicalEyebrow>Preise</BotanicalEyebrow>
-            <BotanicalTitle>Unsere Pakete</BotanicalTitle>
+            <BotanicalTitle>Findet euer Paket</BotanicalTitle>
           </Header>
           <Grid>
             {PACKAGES.map(pkg => (
               <BotanicalCard key={pkg.id} $pop={pkg.popular}>
                 <BotanicalCardName>{pkg.name}</BotanicalCardName>
+                {pkg.tagline && <PkgTagline>{pkg.tagline}</PkgTagline>}
                 <BotanicalCardPrice $pop={pkg.popular}>
                   <span>€</span>{pkg.price}
                 </BotanicalCardPrice>
@@ -1427,6 +1442,7 @@ const PricingSection = () => {
             {PACKAGES.map(pkg => (
               <ContemporaryCard key={pkg.id} $pop={pkg.popular}>
                 <ContemporaryCardName>{pkg.name}</ContemporaryCardName>
+                {pkg.tagline && <PkgTagline>{pkg.tagline}</PkgTagline>}
                 <ContemporaryCardPrice $pop={pkg.popular}>
                   <span>€</span>{pkg.price}
                 </ContemporaryCardPrice>
@@ -1455,12 +1471,13 @@ const PricingSection = () => {
         <Container>
           <Header>
             <LuxeEyebrow>Preise</LuxeEyebrow>
-            <LuxeTitle>Unsere Pakete</LuxeTitle>
+            <LuxeTitle>Findet euer Paket</LuxeTitle>
           </Header>
           <Grid>
             {PACKAGES.map(pkg => (
               <LuxeCard key={pkg.id} $pop={pkg.popular}>
                 <LuxeCardName>{pkg.name}</LuxeCardName>
+                {pkg.tagline && <PkgTagline>{pkg.tagline}</PkgTagline>}
                 <LuxeCardPrice $pop={pkg.popular}>
                   <span>€</span>{pkg.price}
                 </LuxeCardPrice>
@@ -1495,6 +1512,7 @@ const PricingSection = () => {
             {PACKAGES.map(pkg => (
               <NeonCard key={pkg.id} $pop={pkg.popular}>
                 <NeonCardName>{pkg.name}</NeonCardName>
+                {pkg.tagline && <PkgTagline>{pkg.tagline}</PkgTagline>}
                 <NeonCardPrice $pop={pkg.popular}>
                   <span>€</span>{pkg.price}
                 </NeonCardPrice>
@@ -1522,12 +1540,13 @@ const PricingSection = () => {
       <Container>
         <Header>
           <VideoEyebrow>Preise</VideoEyebrow>
-          <VideoTitle>Unsere Pakete</VideoTitle>
+          <VideoTitle>Findet euer Paket</VideoTitle>
         </Header>
         <Grid>
           {PACKAGES.map(pkg => (
             <VideoCard key={pkg.id} $pop={pkg.popular}>
               <VideoCardName>{pkg.name}</VideoCardName>
+              {pkg.tagline && <PkgTagline>{pkg.tagline}</PkgTagline>}
               <VideoCardPrice $pop={pkg.popular}>
                 <span>€</span>{pkg.price}
               </VideoCardPrice>

@@ -350,8 +350,8 @@ const PromoBanner = () => {
       if (!supabase) {
         setPromo({
           active: true,
-          title: 'Frühbucher-Rabatt',
-          text: 'Jetzt buchen & sparen!',
+          title: 'Euer Ja-Wort steht fest?',
+          text: 'Die ersten 10 Paare sparen 10%.',
           badge: '-10%'
         });
         setLoading(false);
@@ -373,8 +373,8 @@ const PromoBanner = () => {
         console.log('Promo banner not configured');
         setPromo({
           active: true,
-          title: 'Frühbucher-Rabatt',
-          text: 'Jetzt buchen & sparen!',
+          title: 'Euer Ja-Wort steht fest?',
+          text: 'Die ersten 10 Paare sparen 10%.',
           badge: '-10%'
         });
       } finally {
