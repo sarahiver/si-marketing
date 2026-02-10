@@ -89,11 +89,11 @@ const MobileFallback = styled.div`
 // Add URLs here as screenshots are created
 const THEME_SCREENSHOTS = {
   editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770290063/editorial_demoShowcase_gmxabx.jpg',
-  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770726788/botanical_demoShowcase_combined_m3bynw.jpg',
+  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
   contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
-  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770726788/luxe_demoShowcase_combined_qfi3ze.jpg',
-  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770726788/neon_demoShowcase_combined_elfbt3.jpg',
-  video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770726786/video_demoShowcase_combined_zzvirs.jpg',
+  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
+  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
+  video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727740/video_demoShowcase_optimized_jrlsoh.jpg',
 };
 
 const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color, horizontal }) => {
