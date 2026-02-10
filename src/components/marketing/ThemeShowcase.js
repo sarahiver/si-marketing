@@ -36,13 +36,13 @@ const PreviewImage = styled.div`
   position: absolute;
   inset: 0;
   background-image: url(${p => p.$src});
-  background-size: 100% auto;
-  background-position: top center;
+  background-size: ${p => p.$horizontal ? 'auto 100%' : '100% auto'};
+  background-position: ${p => p.$horizontal ? 'left center' : 'top center'};
   background-repeat: no-repeat;
   transition: background-position 20s cubic-bezier(0.25, 0.1, 0.25, 1);
 
   ${PreviewWrapper}:hover & {
-    background-position: bottom center;
+    background-position: ${p => p.$horizontal ? 'right center' : 'bottom center'};
   }
 `;
 
@@ -89,14 +89,14 @@ const MobileFallback = styled.div`
 // Add URLs here as screenshots are created
 const THEME_SCREENSHOTS = {
   editorial: 'https://res.cloudinary.com/si-weddings/image/upload/v1770290063/editorial_demoShowcase_gmxabx.jpg',
-  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/v1770297669/botanical_demoShowcase_i4uatm.jpg',
+  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/v1770726788/botanical_demoShowcase_combined_m3bynw.jpg',
   contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
-  luxe: null,
-  neon: null,
-  video: null,
+  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/v1770726788/luxe_demoShowcase_combined_qfi3ze.jpg',
+  neon: 'https://res.cloudinary.com/si-weddings/image/upload/v1770726788/neon_demoShowcase_combined_elfbt3.jpg',
+  video: 'https://res.cloudinary.com/si-weddings/image/upload/v1770726786/video_demoShowcase_combined_zzvirs.jpg',
 };
 
-const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color }) => {
+const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color, horizontal }) => {
   const fallbackProps = { $fontFamily: fontFamily, $fontSize: fontSize, $fontWeight: fontWeight, $fontStyle: fontStyle, $textStroke: textStroke, $color: color };
   const wrapperProps = { $aspect: aspect, $bg: bg, $borderRadius: borderRadius, $border: border, $boxShadow: boxShadow, $margin: margin };
   const screenshotSrc = THEME_SCREENSHOTS[theme];
@@ -107,7 +107,7 @@ const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, 
       onClick={() => window.open(demoUrl, '_blank')}
       title="Demo ansehen"
     >
-      {screenshotSrc && <PreviewImage $src={screenshotSrc} />}
+      {screenshotSrc && <PreviewImage $src={screenshotSrc} $horizontal={horizontal} />}
       {!screenshotSrc && (
         <PreviewFallback {...fallbackProps}>
           {fallbackText}
@@ -1486,6 +1486,18 @@ const ThemeShowcase = () => {
               <NeonCommand><span>$</span> load_theme --name="neon" --preview=true</NeonCommand>
               <NeonTitle><span>Neon</span> Theme</NeonTitle>
               <NeonSubtitle>// Cyberpunk Hochzeits-Erlebnis</NeonSubtitle>
+              <ThemePreview
+                theme="neon"
+                demoUrl="https://siwedding.de/demo-neon"
+                fallbackText="F & F"
+                aspect="16/10"
+                bg="#0a0a0f"
+                border="1px solid rgba(0,255,255,0.2)"
+                margin="0 0 2rem 0"
+                fontFamily="'Space Grotesk', monospace"
+                fontSize="2rem"
+                color="rgba(0,255,255,0.15)"
+              />
               <NeonDesc>
                 Glow-Effekte, Terminal-Ästhetik und elektrische Farben.
                 Für Paare, deren Hochzeitswebsite sich anfühlen soll wie ein Schritt in die Zukunft.
@@ -1548,6 +1560,7 @@ const ThemeShowcase = () => {
           fontSize="clamp(1.5rem, 4vw, 3rem)"
           fontWeight="700"
           color="rgba(255,255,255,0.1)"
+          horizontal
         />
 
         <VideoFeatures>
