@@ -8,7 +8,7 @@ const blogPosts = [
     description: 'Erfahre, warum immer mehr Paare auf eine eigene Hochzeitswebsite setzen – und wie sie Hochzeitsplanung, Gästemanagement und Kommunikation enorm erleichtert.',
     date: '2026-02-15',
     category: 'Planung',
-    tags: ['Planung', 'Grundlagen', 'Hochzeitswebsite'],
+    tags: ['Planung', 'Ratgeber'],
     readTime: '8 min',
     keywords: ['hochzeitswebsite erstellen', 'brauche ich hochzeitswebsite', 'digitale hochzeitseinladung', 'hochzeitsplanung online', 'hochzeit website kostenlos', 'eigene hochzeitsseite', 'hochzeitshomepage'],
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
@@ -103,7 +103,7 @@ Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten 
     description: 'Ein digitales RSVP-System für die Hochzeit spart Wochen an Organisation. Erfahrt, wie Online-Zusagen, Gästemanagement und automatische Erinnerungen eure Hochzeitsplanung vereinfachen.',
     date: '2026-02-22',
     category: 'Features',
-    tags: ['Features', 'RSVP', 'Gästemanagement'],
+    tags: ['Features', 'Planung'],
     readTime: '7 min',
     keywords: ['rsvp hochzeit digital', 'online zusagen hochzeit', 'gästemanagement hochzeit', 'hochzeit zusagen verwalten', 'hochzeitsgäste organisieren', 'rsvp system online', 'digitale gästeliste hochzeit'],
     image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80',
@@ -208,7 +208,7 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
     description: 'Wir vergleichen die beliebtesten Hochzeitswebsite-Anbieter in Deutschland – von Zankyou und WeddyPlace bis Joy und S&I. Ehrlich, transparent und mit klarer Empfehlung.',
     date: '2026-03-01',
     category: 'Vergleich',
-    tags: ['Vergleich', 'Anbieter', 'Hochzeitswebsite'],
+    tags: ['Vergleich', 'Ratgeber'],
     readTime: '10 min',
     keywords: ['hochzeitswebsite vergleich', 'beste hochzeitswebsite', 'zankyou alternative', 'hochzeitswebsite anbieter deutschland', 'weddyplace erfahrungen', 'hochzeitsseite erstellen vergleich', 'joy hochzeit alternative'],
     image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80',
@@ -334,7 +334,7 @@ Jedes Brautpaar hat andere Ansprüche an seine Hochzeitswebsite. Die kostenlose 
     description: 'Von Tagesablauf über Anfahrt bis RSVP-Formular: Diese Checkliste zeigt euch, welche Inhalte auf eure Hochzeitswebsite gehören – damit eure Gäste bestens informiert sind.',
     date: '2026-03-08',
     category: 'Planung',
-    tags: ['Planung', 'Checkliste', 'Inhalte'],
+    tags: ['Planung', 'Ratgeber'],
     readTime: '9 min',
     keywords: ['hochzeitswebsite inhalt', 'was muss auf hochzeitswebsite', 'hochzeitshomepage gestalten', 'hochzeitswebsite texte', 'hochzeitsseite inhalte checkliste'],
     image: 'https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=1200&q=80',
@@ -431,7 +431,7 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
     description: 'Von kostenlos bis Premium: Wir zeigen euch, was eine Hochzeitswebsite kostet, welche Preismodelle es gibt und wann sich die Investition in eine professionelle Lösung wirklich auszahlt.',
     date: '2026-03-15',
     category: 'Ratgeber',
-    tags: ['Kosten', 'Preise', 'Ratgeber'],
+    tags: ['Ratgeber', 'Vergleich'],
     readTime: '8 min',
     keywords: ['hochzeitswebsite kosten', 'was kostet hochzeitswebsite', 'hochzeitswebsite preis', 'hochzeitshomepage kostenlos oder premium', 'hochzeitswebsite budget'],
     image: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=1200&q=80',
@@ -520,7 +520,7 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
     description: 'QR-Code auf der Hochzeitseinladung? So verbindet ihr eure gedruckte Einladungskarte perfekt mit eurer digitalen Hochzeitswebsite. Bei S&I. wird der QR-Code direkt mitgeneriert.',
     date: '2026-03-22',
     category: 'Tipps',
-    tags: ['QR-Code', 'Einladung', 'Print'],
+    tags: ['Features', 'Planung'],
     readTime: '8 min',
     keywords: ['hochzeitseinladung qr code', 'qr code hochzeitswebsite', 'hochzeitseinladung digital', 'hochzeitskarte qr code erstellen', 'einladung hochzeit link website', 'qr code hochzeitskarte drucken'],
     image: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1200&q=80',
@@ -633,7 +633,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
     description: 'Eigene Domain wie sarah-und-max.de statt Subdomain? Passwortschutz für eure Privatsphäre? Alles, was Brautpaare über Domain und Datenschutz ihrer Hochzeitswebsite wissen müssen.',
     date: '2026-03-29',
     category: 'Features',
-    tags: ['Features', 'Domain', 'Datenschutz'],
+    tags: ['Planung', 'Features'],
     readTime: '7 min',
     keywords: ['hochzeitswebsite eigene domain', 'hochzeitswebsite passwortschutz', 'hochzeitshomepage domain registrieren', 'hochzeitswebsite privat', 'hochzeitswebsite datenschutz'],
     image: 'https://images.unsplash.com/photo-1494955870715-979ca4f13bf0?w=1200&q=80',
@@ -702,7 +702,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
     description: 'Von minimalistisch bis glamourös: Entdeckt 6 einzigartige Designstile für eure Hochzeitswebsite und findet das Theme, das zu eurer Hochzeit passt.',
     date: '2026-04-05',
     category: 'Design',
-    tags: ['Design', 'Inspiration', 'Themes'],
+    tags: ['Inspiration', 'Features'],
     readTime: '8 min',
     keywords: ['hochzeitswebsite design', 'hochzeitswebsite beispiele', 'hochzeitshomepage inspiration', 'hochzeitswebsite themes', 'hochzeitswebsite gestalten ideen', 'moderne hochzeitswebsite'],
     image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80',
@@ -796,7 +796,7 @@ Das Design eurer Hochzeitswebsite ist kein oberflächliches Detail – es ist de
     description: 'Gebt euren Gästen eine Stimme – mit einer digitalen Musikwunschliste auf eurer Hochzeitswebsite. So entsteht eine Playlist, die alle zum Tanzen und Weinen vor Glück bringt.',
     date: '2026-04-12',
     category: 'Features',
-    tags: ['Features', 'Musikwünsche', 'Hochzeitswebsite', 'Planung'],
+    tags: ['Features', 'Inspiration'],
     readTime: '7 min',
     keywords: ['musikwünsche hochzeit website', 'hochzeit playlist erstellen', 'hochzeitswebsite musikwunschliste', 'hochzeit song wünschen gäste', 'dj hochzeit playlist', 'musik hochzeitsfeier planen', 'hochzeitswebsite features musik'],
     image: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=1200&q=80',
@@ -873,7 +873,7 @@ Und wenn dann um Mitternacht genau der Song läuft, den die beste Freundin sich 
     description: 'Ein digitales Gästebuch auf eurer Hochzeitswebsite bewahrt Glückwünsche, Erinnerungen und liebe Worte – für immer lesbar, nie vergilbt, immer da, wenn ihr sie braucht.',
     date: '2026-04-19',
     category: 'Features',
-    tags: ['Features', 'Gästebuch', 'Hochzeitswebsite', 'Erinnerungen'],
+    tags: ['Features', 'Inspiration'],
     readTime: '6 min',
     keywords: ['hochzeit gästebuch digital', 'hochzeitswebsite gästebuch', 'digitales gästebuch hochzeit', 'gästebuch hochzeitswebsite online', 'hochzeitsgästebuch ideen', 'gästebuch online hochzeitsfeier'],
     image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=1200&q=80',
@@ -950,7 +950,7 @@ Im S&I. Admin-Dashboard könnt ihr das Gästebuch mit einem Klick aktivieren. Es
     description: 'Eine digitale Wunschliste auf eurer Hochzeitswebsite ist der elegante Weg, eure Geschenkwünsche zu teilen – ohne peinliches Nachfragen und mit Herz.',
     date: '2026-04-26',
     category: 'Planung',
-    tags: ['Planung', 'Geschenke', 'Wunschliste', 'Hochzeitswebsite'],
+    tags: ['Features', 'Planung'],
     readTime: '7 min',
     keywords: ['hochzeit geschenke wunschliste', 'hochzeitswebsite wunschliste', 'geldgeschenke hochzeit website', 'hochzeit geschenkideen', 'hochzeitswunschliste online', 'polterabend geschenke hochzeit', 'hochzeitsgeschenke elegant kommunizieren'],
     image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=1200&q=80',
@@ -1021,7 +1021,7 @@ Eine Wunschliste auf der Hochzeitswebsite ist kein notwendiges Übel, sondern ei
     description: 'Mit einer interaktiven Karte, Anfahrtsbeschreibung und Parktipps auf eurer Hochzeitswebsite sorgt ihr dafür, dass jeder Gast entspannt und pünktlich ankommt.',
     date: '2026-05-03',
     category: 'Features',
-    tags: ['Features', 'Location', 'Anfahrt', 'Hochzeitswebsite'],
+    tags: ['Planung', 'Ratgeber'],
     readTime: '7 min',
     keywords: ['hochzeitswebsite location karte', 'hochzeit anfahrtsbeschreibung website', 'hochzeitslocation gäste informieren', 'interaktive karte hochzeitswebsite', 'location hochzeitswebsite einbinden', 'hochzeit parktipps gäste', 'hochzeitslocation wegbeschreibung'],
     image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=80',
@@ -1092,7 +1092,7 @@ Organisiert ihr einen Shuttle zwischen Hotel und Location? Zwischen Kirche und F
     description: 'Hotelempfehlungen auf eurer Hochzeitswebsite sind mehr als ein Service – sie zeigen euren Gästen: Wir haben an euch gedacht. Tipps für die perfekte Hotel-Seite.',
     date: '2026-05-10',
     category: 'Planung',
-    tags: ['Planung', 'Hotels', 'Übernachtung', 'Gästemanagement'],
+    tags: ['Planung', 'Ratgeber'],
     readTime: '6 min',
     keywords: ['hochzeitswebsite hotel empfehlung', 'hochzeit übernachtung gäste', 'hotel hochzeit website', 'zimmerkontingent hochzeit', 'hochzeitsgäste unterkunft tipps', 'hotelblock hochzeit buchen', 'übernachtung hochzeitsfeier'],
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80',
@@ -1165,7 +1165,7 @@ Erwähnt das auf eurer Website, wenn ihr so etwas plant. Es ist ein wunderschön
     description: 'Von A wie Anfahrt bis Z wie Zeitplan: Das Hochzeits-ABC auf eurer Website informiert eure Gäste mit Charme und Humor – und beantwortet jede Frage, bevor sie gestellt wird.',
     date: '2026-05-17',
     category: 'Inhalte',
-    tags: ['Inhalte', 'Hochzeits-ABC', 'Hochzeitswebsite', 'Kreativ'],
+    tags: ['Ratgeber', 'Planung'],
     readTime: '8 min',
     keywords: ['hochzeits abc website', 'hochzeits abc ideen', 'hochzeits abc vorlage', 'hochzeits abc hochzeitswebsite', 'hochzeitslexikon website', 'hochzeit a bis z gäste', 'hochzeits abc lustig'],
     image: 'https://images.unsplash.com/photo-1522748906645-95d8adfd52c7?w=1200&q=80',
@@ -1242,7 +1242,7 @@ Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäs
     description: 'Eine FAQ-Seite auf eurer Hochzeitswebsite spart euch hunderte Nachrichten und gibt euren Gästen Sicherheit. Die 15 häufigsten Fragen und die besten Antworten.',
     date: '2026-05-24',
     category: 'Inhalte',
-    tags: ['Inhalte', 'FAQ', 'Hochzeitswebsite', 'Gästemanagement'],
+    tags: ['Ratgeber', 'Features'],
     readTime: '8 min',
     keywords: ['hochzeitswebsite faq', 'hochzeit faq gäste', 'häufige fragen hochzeit website', 'hochzeit fragen antworten gäste', 'faq seite hochzeitswebsite erstellen', 'hochzeitsfragen vorlagen'],
     image: 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=1200&q=80',
@@ -1357,7 +1357,7 @@ Die Darstellung passt sich automatisch eurem Theme an. Und das Beste: Ihr könnt
     description: 'Mit dem Foto-Upload auf eurer Hochzeitswebsite sammelt ihr die Bilder aller Gäste an einem Ort – in voller Qualität, ohne Ablaufdatum und mit ganz viel Liebe.',
     date: '2026-05-31',
     category: 'Features',
-    tags: ['Features', 'Foto-Upload', 'Hochzeitswebsite', 'Erinnerungen'],
+    tags: ['Features', 'Inspiration'],
     readTime: '7 min',
     keywords: ['hochzeit foto upload gäste', 'hochzeitswebsite foto hochladen', 'gäste fotos hochzeit sammeln', 'hochzeitsfotos gäste website', 'hochzeit bilder sammeln online', 'foto sharing hochzeit', 'hochzeitswebsite galerie gäste'],
     image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80',
@@ -1428,6 +1428,361 @@ Die Galerie passt sich natürlich eurem Theme an. Im Editorial-Theme als clean G
 In zehn Jahren werdet ihr nicht an die Deko denken. Nicht an das Menü. Nicht an die Blumenarrangements. **Ihr werdet euch an die Gesichter erinnern. An die Momente. An die Geschichten hinter den Bildern.** Und je mehr Perspektiven ihr habt, desto vollständiger wird die Erinnerung.
 
 **Bei S&I. ist der Foto-Upload als Gäste-Fotos-Komponente in allen Themes verfügbar – mit Fortschrittsanzeige, voller Bildqualität und einer wunderschönen Galerie. Eure Gäste laden hoch, ihr genießt die Erinnerungen. So einfach ist das.**
+    `,
+  },
+  {
+    slug: 'hochzeitswebsite-premium-funktionen',
+    title: 'Das kann sonst keiner: Die Premium-Funktionen von S&I. im Detail',
+    description: 'Foto-Upload, RSVP mit Erinnerungsmails, Gästebuch, Musikwünsche, Geschenkeliste und mehr – entdeckt die Premium-Features, die eure Hochzeitswebsite von allen anderen abheben.',
+    date: '2026-06-07',
+    category: 'Features',
+    tags: ['Features', 'Vergleich'],
+    readTime: '9 min',
+    keywords: ['hochzeitswebsite premium funktionen', 'hochzeitswebsite features', 'beste hochzeitswebsite funktionen', 'hochzeitswebsite foto upload', 'hochzeitswebsite rsvp', 'hochzeitswebsite gästebuch', 'premium hochzeitshomepage'],
+    image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1200&q=80',
+    imageAlt: 'Elegante Hochzeitstafel mit goldenen Details und Blumenarrangements',
+    schema: {
+      "@type": "Article",
+      "headline": "Das kann sonst keiner: Die Premium-Funktionen von S&I. im Detail",
+      "description": "Alle Premium-Features von S&I. im Überblick – von Foto-Upload bis Echtzeit-Benachrichtigungen.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "datePublished": "2026-06-07",
+    },
+    content: `
+## Warum „gut genug" bei eurer Hochzeitswebsite nicht reicht
+
+Es gibt hunderte Anbieter für Hochzeitswebsites. Die meisten bieten ein hübsches Template, ein Kontaktformular und vielleicht eine Bildergalerie. Und ja – das funktioniert. Irgendwie.
+
+Aber eure Hochzeit ist nicht „irgendwie". Sie ist einmalig. Und genau deshalb verdient sie eine Website, die mehr kann als nur hübsch aussehen. **Bei S&I. haben wir jede einzelne Funktion so gebaut, dass sie euch echte Arbeit abnimmt – und gleichzeitig eure Gäste begeistert.**
+
+Hier sind die Premium-Funktionen, die S&I. von allen anderen Anbietern unterscheiden.
+
+![Elegante Hochzeitsdekoration in Gold und Weiß](https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80)
+
+## Foto-Upload: Vor, während und nach der Hochzeit
+
+Die meisten Hochzeitswebsites bieten eine Galerie – für Bilder, die ihr selbst hochladet. Bei S&I. geht das weiter: **Eure Gäste können eigene Fotos direkt auf eurer Website hochladen.** Keine App, kein Login, kein Ablaufdatum.
+
+Das funktioniert schon vor der Hochzeit (ihr zeigt Verlobungsfotos oder Getting-Ready-Bilder), während der Hochzeit (Gäste laden Schnappschüsse in Echtzeit hoch) und natürlich danach – so lange ihr wollt.
+
+Alle Bilder landen in voller Qualität in eurer persönlichen Galerie. Ihr könnt sie moderieren, sortieren und als ZIP-Paket herunterladen. **Das ist keine Galerie – das ist ein lebendiges, wachsendes Fotoalbum eurer Hochzeit.**
+
+## RSVP mit automatischen Erinnerungsmails
+
+Online-Zusagen gibt es bei vielen Anbietern. Aber nur wenige bieten das, was wirklich den Unterschied macht: **automatische Erinnerungs-E-Mails im Design eurer Hochzeitswebsite.**
+
+Wenn eure Gäste nach zwei Wochen noch nicht geantwortet haben, verschickt S&I. eine freundliche Erinnerung – automatisch, stilvoll und im Look eures Themes. Ihr müsst niemanden anrufen, niemandem hinterherschreiben. Das System erledigt das diskret für euch.
+
+Dazu kommt: Menüwahl (Fleisch, Fisch, vegetarisch, vegan), Allergieabfrage, Begleitpersonen, Kinderstühle und individuelle Kommentarfelder. **Alles in einem Formular, alles in eurem Dashboard.**
+
+## Gästebuch: Persönliche Glückwünsche, die bleiben
+
+Ein digitales Gästebuch klingt simpel – ist aber ein emotionales Highlight, das viele Paare unterschätzen. Eure Gäste hinterlassen persönliche Nachrichten, Anekdoten und Glückwünsche, die ihr auch Jahre später noch nachlesen könnt.
+
+Bei S&I. ist das Gästebuch **moderiert** – ihr entscheidet, welche Einträge sichtbar sind. Das schützt vor unpassenden Beiträgen und gibt euch die volle Kontrolle. Und das Design? Passt sich natürlich eurem Theme an – vom minimalistischen Editorial bis zum opulenten Luxe-Look.
+
+![Handgeschriebene Glückwünsche und Blumenstrauß](https://images.unsplash.com/photo-1455587734955-081b22074882?w=900&q=80)
+
+## Musikwünsche: Die Playlist eurer Gäste
+
+Stellt euch vor, eure Gäste können schon Wochen vor der Hochzeit ihre Lieblingssongs eintragen – und euer DJ hat eine fertige Wunschliste, bevor die Party überhaupt beginnt. **Genau das macht die Musikwünsche-Funktion bei S&I.**
+
+Eure Gäste öffnen die Website, tippen auf „Musikwunsch", geben Songtitel und Interpreten ein – fertig. Ihr seht alle Wünsche im Dashboard, könnt sie sortieren und als Liste exportieren. Kein DJ-Briefing mehr, keine „Könnt ihr noch XY spielen?"-Nachrichten am Hochzeitstag.
+
+## Geschenkeliste mit Reservierungssystem
+
+Die Frage „Was wünscht ihr euch?" wird mit S&I. zum Kinderspiel. Ihr erstellt eine digitale Wunschliste – von konkreten Geschenken bis zu Geldwünschen für die Flitterwochen. **Eure Gäste können einzelne Geschenke reservieren**, sodass nichts doppelt gekauft wird.
+
+Das Reservierungssystem ist diskret: Andere Gäste sehen nur, dass ein Geschenk bereits reserviert ist, aber nicht von wem. So bleibt die Überraschung erhalten, während ihr trotzdem den Überblick behaltet.
+
+## 6 Premium-Themes: Design auf Agentur-Niveau
+
+Keine vorgefertigten Templates von der Stange. Bei S&I. stehen euch **sechs handdesignte Premium-Themes** zur Wahl, die von professionellen Designern entwickelt wurden:
+
+**Editorial** – Klare Linien, große Typografie, Magazin-Ästhetik. Für Paare, die es modern und reduziert mögen.
+
+**Botanical** – Organische Formen, warme Farben, florale Akzente. Für Naturliebhaber und Gartenfreunde.
+
+**Contemporary** – Mutige Farben, asymmetrische Layouts, kreative Akzente. Für Paare mit eigenem Stil.
+
+**Luxe** – Dunkle Töne, Gold-Akzente, edle Typografie. Für eine glamouröse, elegante Hochzeit.
+
+**Neon** – Leuchtende Farben auf dunklem Grund, moderner Party-Vibe. Für Paare, die feiern wollen.
+
+**Video** – Bewegte Bilder im Fullscreen, cineastische Atmosphäre. Für Paare, die ihre Geschichte visuell erzählen.
+
+Jedes Theme beeinflusst nicht nur das Aussehen, sondern auch die Animationen, Übergänge und Micro-Interactions. **Das ist kein Baukasten – das ist Design.**
+
+![Minimalistisches Hochzeitsdesign mit Typografie](https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=900&q=80)
+
+## Echtzeit-Benachrichtigungen: Immer im Bild
+
+Neue RSVP-Zusage? Neuer Gästebucheintrag? Neues Foto hochgeladen? **Ihr werdet sofort per E-Mail benachrichtigt** – damit ihr nichts verpasst und immer wisst, was auf eurer Website passiert.
+
+Das klingt nach einem kleinen Feature, macht aber im Alltag einen riesigen Unterschied. Statt täglich ins Dashboard zu schauen, bekommt ihr Push-Updates, wenn etwas passiert. Besonders in der heißen RSVP-Phase ist das Gold wert.
+
+## Archiv-Modus: Eure Website als ewige Erinnerung
+
+Nach der Hochzeit wird eure Website nicht einfach abgeschaltet. **S&I. bietet einen Archiv-Modus**, der eure Seite in eine permanente Erinnerung verwandelt. Alle Fotos, Gästebucheinträge, Musikwünsche und Inhalte bleiben erhalten – als digitales Hochzeitsalbum, das ihr jederzeit aufrufen könnt.
+
+Der Archiv-Modus deaktiviert interaktive Funktionen wie RSVP (die nach der Hochzeit keinen Sinn mehr ergeben) und bewahrt alles andere. **Eure Hochzeitswebsite wird zum digitalen Andenken – für immer.**
+
+## Passwortschutz: Privatsphäre als Standard
+
+Eure Hochzeitswebsite ist eure Privatsache. Deshalb ist bei S&I. **Passwortschutz Standard**, nicht Option. Ihr teilt das Passwort mit euren Einladungen – per QR-Code, Papiereinladung oder persönlich. Nur eingeladene Gäste sehen eure Inhalte.
+
+Keine öffentlichen Profile, keine Social-Media-Verknüpfung, keine Datensammelei. Eure Hochzeit gehört euch – und das respektiert S&I. in jedem Detail.
+
+## Fazit: Premium heißt, dass alles zusammenpasst
+
+Einzelne Features findet man bei vielen Anbietern. Foto-Upload hier, RSVP dort, Gästebuch woanders. Aber bei S&I. ist alles **aus einem Guss**: ein Design, ein Dashboard, ein Login. Keine fünf verschiedenen Tools, keine Kompatibilitätsprobleme, keine unterschiedlichen Logins.
+
+**Das ist der Unterschied zwischen einer Hochzeitswebsite und einem Premium-Erlebnis.** Und genau das verdient eure Hochzeit.
+    `,
+  },
+  {
+    slug: 'hochzeitswebsite-admin-dashboard',
+    title: 'Euer Hochzeits-Cockpit: So funktioniert das S&I. Admin Dashboard',
+    description: 'Gästeliste, RSVP-Statistiken, Foto-Moderation und Content-Editor – das S&I. Admin Dashboard gibt euch die volle Kontrolle über eure Hochzeitswebsite.',
+    date: '2026-06-14',
+    category: 'Features',
+    tags: ['Features', 'Ratgeber'],
+    readTime: '8 min',
+    keywords: ['hochzeitswebsite admin dashboard', 'hochzeitswebsite verwalten', 'gästeliste dashboard hochzeit', 'rsvp dashboard hochzeit', 'hochzeitswebsite backend', 'hochzeitswebsite statistiken', 'hochzeitsplanung dashboard'],
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
+    imageAlt: 'Modernes Dashboard auf einem Laptop-Bildschirm',
+    schema: {
+      "@type": "Article",
+      "headline": "Euer Hochzeits-Cockpit: So funktioniert das S&I. Admin Dashboard",
+      "description": "Das S&I. Admin Dashboard im Detail – Gästeliste, RSVP, Foto-Moderation und Content-Editor.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "datePublished": "2026-06-14",
+    },
+    content: `
+## Eure Hochzeit, eure Kontrolle
+
+Eine Hochzeitswebsite ist nur so gut wie das Tool, mit dem ihr sie verwaltet. Die schönste Website nützt nichts, wenn ihr für jede Änderung eine E-Mail an den Support schreiben müsst oder euch durch verschachtelte Menüs kämpfen sollt.
+
+**Deshalb haben wir bei S&I. das Admin Dashboard als echtes Cockpit gebaut** – ein Ort, an dem ihr alles seht, alles steuert und alles in Echtzeit verfolgen könnt. Ohne technische Kenntnisse, ohne Einarbeitungszeit, ohne Frust.
+
+Willkommen in eurem Hochzeits-Cockpit.
+
+![Dashboard-Ansicht auf einem modernen Laptop](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80)
+
+## Die Dashboard-Übersicht: Alles auf einen Blick
+
+Wenn ihr euch einloggt, seht ihr sofort die wichtigsten Zahlen eurer Hochzeitsplanung:
+
+**Gäste-Statistiken in Echtzeit.** Wie viele Gäste haben zugesagt? Wie viele abgesagt? Wie viele sind noch offen? Die Zahlen aktualisieren sich live – kein Neuladen, kein manuelles Zählen.
+
+**Aktuelle Aktivitäten.** Wer hat gerade zugesagt? Welches Foto wurde hochgeladen? Welcher Gästebucheintrag ist neu? Euer Dashboard zeigt die neuesten Aktivitäten chronologisch – damit ihr immer wisst, was auf eurer Website passiert.
+
+**Schnellzugriff auf alle Bereiche.** Ein Klick zu den RSVPs, ein Klick zur Fotogalerie, ein Klick zum Content-Editor. Alles ist maximal zwei Klicks entfernt.
+
+## Gästeliste mit CSV-Import
+
+Eure Gästeliste ist das Herzstück der Hochzeitsplanung. Im S&I. Dashboard verwaltet ihr sie zentral:
+
+**Manuell Gäste hinzufügen.** Name, E-Mail, Tischzuordnung – ein kurzes Formular, und der Gast ist angelegt.
+
+**CSV-Import für große Listen.** Ihr habt bereits eine Excel-Tabelle mit 150 Gästen? Exportiert sie als CSV und importiert sie mit einem Klick ins Dashboard. Alle Daten werden automatisch zugeordnet – Name, E-Mail, Status.
+
+**Filtern und Sortieren.** Zeigt nur zugesagte Gäste, nur offene, nur die mit Menüwunsch „vegetarisch". Die Filterfunktionen sind so flexibel, dass ihr jede Information in Sekunden findet.
+
+**Export für Dienstleister.** Euer Caterer braucht die Menüzahlen? Die Hochzeitsplanerin will die Gesamtliste? Ein Klick auf „Exportieren" – und ihr habt eine fertige CSV-Datei mit allen relevanten Daten.
+
+## RSVP-Management: Mehr als nur Zu- und Absagen
+
+Das RSVP-System im Dashboard zeigt euch nicht nur, wer zugesagt hat – es gibt euch die **volle Kontrolle über den gesamten Zusageprozess:**
+
+**Status-Übersicht.** Auf einen Blick seht ihr: zugesagt, abgesagt, ausstehend. Mit Prozentwerten und Live-Diagrammen, die euch sofort zeigen, wo ihr steht.
+
+**Automatische Erinnerungen.** Legt fest, wann und wie oft Erinnerungs-E-Mails an Gäste verschickt werden, die noch nicht geantwortet haben. Die Mails kommen im Design eures Themes – professionell und persönlich.
+
+**Detailansicht pro Gast.** Klickt auf einen Gast und seht alle Details: Menüwahl, Allergien, Begleitpersonen, Sonderwünsche, Zeitpunkt der Zusage. Alles an einem Ort, klar strukturiert.
+
+![Hochzeitsplanung mit Notizen und Laptop](https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=900&q=80)
+
+## Foto-Moderation und ZIP-Download
+
+Wenn eure Gäste Fotos hochladen, wollt ihr die Kontrolle behalten. Das S&I. Dashboard bietet euch genau das:
+
+**Moderation.** Jedes hochgeladene Foto landet zuerst in einer Freigabe-Warteschlange. Ihr entscheidet mit einem Klick, welche Bilder auf eurer Website sichtbar werden – und welche lieber privat bleiben.
+
+**Galerie-Verwaltung.** Sortiert Fotos, löscht Duplikate, markiert Favoriten. Die Galerie-Verwaltung ist intuitiv und schnell – auch bei hunderten von Bildern.
+
+**ZIP-Download.** Alle Fotos auf einmal herunterladen? Ein Klick auf „Alle als ZIP" – und ihr habt sämtliche Gästefotos in voller Qualität auf eurem Rechner. Perfekt für das Fotobuch oder den Familien-Cloud-Ordner.
+
+## Gästebuch-Verwaltung
+
+Das digitale Gästebuch ist emotional – und genau deshalb braucht ihr die Möglichkeit, es zu kuratieren:
+
+**Einträge freigeben oder verbergen.** Nicht jeder Eintrag muss öffentlich sein. Ihr entscheidet, was eure Gäste sehen – und was nur für euch bestimmt ist.
+
+**Benachrichtigungen.** Jeder neue Gästebucheintrag löst eine E-Mail an euch aus. So verpasst ihr keinen lieben Gruß.
+
+## Musikwünsche verwalten
+
+Die Musikwünsche eurer Gäste sammeln sich automatisch im Dashboard. Ihr seht auf einen Blick, welche Songs gewünscht wurden und wie oft. **Die perfekte Grundlage für das DJ-Briefing** – exportierbar als Liste, sortierbar nach Häufigkeit.
+
+## Content-Editor: Eure Website, eure Inhalte
+
+Das Admin Dashboard ist nicht nur für Gästeverwaltung da – ihr könnt auch alle Inhalte eurer Website direkt bearbeiten:
+
+**Texte ändern.** Tagesablauf aktualisieren, Dresscode anpassen, neue Informationen hinzufügen – alles ohne technische Kenntnisse, direkt im Dashboard.
+
+**Sections verwalten.** Schaltet einzelne Bereiche eurer Website ein oder aus. Noch kein Tagesablauf geplant? Blendet die Section einfach aus und aktiviert sie später. Die FAQ ist fertig? Ein Klick, und sie ist live.
+
+**Bilder austauschen.** Neue Verlobungsfotos? Bessere Location-Bilder? Ladet sie hoch und tauscht sie im Editor aus – die Vorschau zeigt sofort, wie es aussieht.
+
+![Kreatives Arbeiten am Computer mit Kaffee](https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=900&q=80)
+
+## Status-Management: Von Save-the-Date bis Archiv
+
+Eure Hochzeitswebsite durchläuft verschiedene Phasen – und das Dashboard gibt euch die Kontrolle über jede einzelne:
+
+**Save-the-Date-Modus.** Zeigt euren Gästen nur das Wichtigste: Datum, eure Namen, vielleicht ein Bild. Der Rest bleibt verborgen, bis ihr bereit seid.
+
+**Live-Modus.** Alles ist sichtbar: Tagesablauf, RSVP, Location, Dresscode, alle Features. Eure Website ist komplett und bereit für eure Gäste.
+
+**Archiv-Modus.** Nach der Hochzeit verwandelt sich eure Website in ein digitales Andenken. Interaktive Features wie RSVP werden deaktiviert, alle Inhalte und Fotos bleiben erhalten. Für immer.
+
+Der Wechsel zwischen den Modi ist ein einziger Klick – kein Umbauen, kein Neukonfigurieren. Das Dashboard kümmert sich um den Rest.
+
+## Warum das Dashboard den Unterschied macht
+
+Bei vielen Hochzeitswebsite-Anbietern ist das Backend ein Nachgedanke – ein simples Formular, das gerade so funktioniert. Bei S&I. ist das Dashboard **das Herzstück eurer Hochzeitsplanung.** Es wurde nicht als Verwaltungstool gebaut, sondern als Erlebnis.
+
+Jede Funktion ist durchdacht, jeder Klick ist intuitiv, jede Information ist dort, wo ihr sie erwartet. **Weil die Wochen vor der Hochzeit stressig genug sind – euer Dashboard sollte es nicht sein.**
+    `,
+  },
+  {
+    slug: 'hochzeitswebsite-ablauf-customer-journey',
+    title: 'Von der Verlobung bis zum Danke: Eure Reise mit S&I.',
+    description: 'Vom Antrag über die Hochzeitsplanung bis zum digitalen Erinnerungsalbum – so begleitet euch S&I. durch jede Phase eurer Hochzeit.',
+    date: '2026-06-21',
+    category: 'Ratgeber',
+    tags: ['Ratgeber', 'Planung'],
+    readTime: '10 min',
+    keywords: ['hochzeitswebsite ablauf', 'hochzeitsplanung timeline', 'hochzeit vorbereitung schritte', 'hochzeitswebsite erstellen ablauf', 'von verlobung bis hochzeit', 'hochzeitsplanung schritt für schritt', 'customer journey hochzeit'],
+    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80',
+    imageAlt: 'Glückliches Brautpaar bei Sonnenuntergang',
+    schema: {
+      "@type": "Article",
+      "headline": "Von der Verlobung bis zum Danke: Eure Reise mit S&I.",
+      "description": "So begleitet S&I. euch durch jede Phase der Hochzeitsplanung – von der Verlobung bis zum digitalen Erinnerungsalbum.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "datePublished": "2026-06-21",
+    },
+    content: `
+## Der Anfang von allem
+
+Es gibt diesen einen Moment, in dem sich alles verändert. Vielleicht war es bei Sonnenuntergang am Strand, vielleicht bei einem gemütlichen Abendessen zu Hause, vielleicht auf einem Berggipfel oder mitten in der Großstadt. **Ihr habt „Ja" gesagt – und plötzlich ist alles anders.**
+
+Die Euphorie, die Anrufe bei der Familie, die Freudentränen der besten Freundin, das Gefühl, dass ab jetzt ein neues Kapitel beginnt. Und dann, irgendwann zwischen dem dritten Gratulationsanruf und dem ersten Pinterest-Board, kommt die Frage: **Und jetzt? Wie planen wir das eigentlich alles?**
+
+Genau hier beginnt eure Reise mit S&I.
+
+![Verlobungsring und Blumen in warmem Licht](https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=900&q=80)
+
+## Phase 1: Euer Theme wählen – der erste kreative Moment
+
+Bevor ihr euch in Excel-Tabellen und Dienstleisterlisten verliert, schenkt euch einen schönen Moment: **Wählt das Design, das zu eurer Liebe passt.**
+
+Bei S&I. stehen euch sechs handdesignte Premium-Themes zur Wahl. Jedes erzählt eine andere Geschichte:
+
+Das **Editorial-Theme** für Paare, die klare Linien und moderne Ästhetik lieben. Das **Botanical-Theme** für alle, die bei ihrer Hochzeit die Natur feiern. Das **Contemporary-Theme** für kreative Köpfe, die Farbe bekennen. Das **Luxe-Theme** für elegante Feiern mit Wow-Faktor. Das **Neon-Theme** für Paare, die eine unvergessliche Party schmeißen wollen. Und das **Video-Theme** für alle, die ihre Geschichte in bewegten Bildern erzählen.
+
+Nehmt euch Zeit für diese Entscheidung. Scrollt durch die Vorschauen, zeigt sie eurer besten Freundin, diskutiert zu zweit. **Dieses Theme wird der visuelle Rahmen eurer Hochzeit – und der erste Moment, in dem eure Gäste spüren, was sie erwartet.**
+
+## Phase 2: Inhalte befüllen – eure Geschichte erzählen
+
+Jetzt wird es persönlich. Im Admin Dashboard füllt ihr eure Website mit Leben:
+
+**Eure Geschichte.** Wie habt ihr euch kennengelernt? Was macht eure Beziehung besonders? Was war der lustigste Moment? Diese Texte müssen nicht perfekt sein – sie müssen ehrlich sein. Eure Gäste werden sie lieben.
+
+**Der Tagesablauf.** Von der Trauung über das Dinner bis zur Party – gebt euren Gästen einen Überblick, damit sie wissen, was sie erwartet. Zeiten, Orte, Dresscode.
+
+**Location und Anfahrt.** Mit interaktiver Karte, Parkplatzinfos und Tipps für die Anreise. Besonders für Gäste von auswärts Gold wert.
+
+**Hotels und Übernachtung.** Empfehlt Hotels in der Nähe, idealerweise mit Kontingenten, die ihr vorab reserviert habt.
+
+**Das Hochzeits-ABC.** Von A wie Anfahrt bis Z wie Zeitplan – ein liebevolles Glossar, das keine Frage offen lässt.
+
+**Ihr bestimmt das Tempo.** Füllt heute den Tagesablauf aus und nächste Woche die FAQ. Oder macht alles an einem Abend mit einer Flasche Wein. Es gibt keinen Zeitdruck – nur eure Vorfreude.
+
+![Paar plant Hochzeit gemeinsam am Tisch mit Notizbuch](https://images.unsplash.com/photo-1522426266214-ec2d2abb9ce0?w=900&q=80)
+
+## Phase 3: Save-the-Date – die Vorfreude wecken
+
+Euer Termin steht, euer Theme ist gewählt, die wichtigsten Infos sind eingetragen. Jetzt ist es Zeit für den magischen Moment: **Ihr schaltet eure Website in den Save-the-Date-Modus.**
+
+In diesem Modus sehen eure Gäste nur das Wesentliche: eure Namen, das Datum, vielleicht ein Foto und den Hinweis, dass mehr Infos folgen. **Es ist wie ein Teaser für den schönsten Tag eures Lebens.**
+
+Verschickt den Link per QR-Code auf einer Karte, per WhatsApp oder persönlich. Der Effekt ist immer derselbe: Vorfreude, Neugier und das Gefühl, Teil von etwas Besonderem zu sein.
+
+## Phase 4: RSVP-Phase – die Zusagen rollen rein
+
+Einige Wochen vor der Hochzeit schaltet ihr eure Website in den Live-Modus – und damit das RSVP-System frei. **Jetzt können eure Gäste offiziell zusagen.**
+
+Ihr seht in eurem Dashboard in Echtzeit, wie die Zusagen eintreffen. Jede neue Antwort löst eine Benachrichtigung aus. Die Statistiken aktualisieren sich live: zugesagt, abgesagt, ausstehend.
+
+Und die Gäste, die nicht antworten? Bekommen nach eurer festgelegten Frist eine automatische, liebevolle Erinnerungs-E-Mail – im Design eures Themes. **Kein peinliches Nachfragen, kein Hinterhertelefonieren.**
+
+Diese Phase ist aufregend. Mit jedem „Wir kommen!" wird eure Hochzeit ein Stück realer. Und das Dashboard zeigt euch, wie sich euer Fest zusammensetzt: die Menüzahlen für den Caterer, die Personenzahl für die Location, die Sonderwünsche für den Tischplan.
+
+## Phase 5: Der Hochzeitstag – Fotos in Echtzeit
+
+Der Tag ist da. Ihr seid nervös, aufgeregt, überglücklich – und eure Website arbeitet für euch im Hintergrund.
+
+**Eure Gäste laden Fotos hoch.** Den Moment der Trauung aus ihrer Perspektive. Die Kinder, die auf der Tanzfläche toben. Den Sonnenuntergang vom Balkon. Die Gruppe aus Studienzeiten, die sich seit Jahren nicht gesehen hat. Jeder Gast fängt andere Momente ein – und teilt sie direkt über eure Website.
+
+Auf den Tischen stehen QR-Code-Aufsteller, die direkt zum Foto-Upload führen. **So wird eure Website zum lebendigen, wachsenden Fotoalbum – in Echtzeit, während ihr feiert.**
+
+Ihr müsst euch um nichts kümmern. Genießt euren Tag. Die Fotos kommen von allein.
+
+![Hochzeitsgäste feiern und tanzen](https://images.unsplash.com/photo-1470290378698-263fa7ca60ab?w=900&q=80)
+
+## Phase 6: Die Tage danach – Erinnerungen sammeln
+
+Die Hochzeit ist vorbei. Ihr seid verheiratet. Und auf eurer Website passiert etwas Wunderschönes: **Die Fotos hören nicht auf.**
+
+In den Tagen nach der Hochzeit laden immer mehr Gäste ihre Bilder hoch. Die besten Fotos entstehen oft nicht am Tag selbst, sondern werden erst Tage später entdeckt – beim Durchscrollen der Handyfotos auf dem Sofa.
+
+Gleichzeitig füllt sich euer Gästebuch mit persönlichen Nachrichten. Manche Gäste finden erst nach der Hochzeit die richtigen Worte. Andere schreiben euch von unterwegs, auf dem Heimweg, noch voller Emotionen.
+
+**Schickt eine liebevolle Erinnerung** per E-Mail oder WhatsApp: „Habt ihr noch Fotos von unserem schönsten Tag? Wir würden sie so gerne sehen!" – mit dem Link zu eurer Website.
+
+## Phase 7: Archiv – eure ewige Erinnerung
+
+Wochen nach der Hochzeit, wenn sich alles gesetzt hat, schaltet ihr eure Website in den **Archiv-Modus.** Ein Klick im Dashboard – das war's.
+
+Eure Website verwandelt sich in ein digitales Hochzeitsalbum. Alle Fotos, alle Gästebucheinträge, alle Musikwünsche, eure Geschichte – alles bleibt erhalten. Interaktive Features wie RSVP werden deaktiviert, weil sie nicht mehr gebraucht werden.
+
+**Was bleibt, ist eine wunderschöne Zeitkapsel eures schönsten Tages.** Eine Website, die ihr in fünf, zehn, zwanzig Jahren öffnen könnt – und die euch sofort zurück in diesen Moment bringt. Die Fotos eurer Gäste, die lieben Worte im Gästebuch, die Songwünsche, die um 23 Uhr auf der Tanzfläche gespielt wurden.
+
+## Warum S&I. anders ist
+
+Es gibt viele Möglichkeiten, eine Hochzeit zu planen. Google Docs für den Tagesablauf. Google Forms für die Zusagen. Dropbox für die Fotos. WhatsApp für die Kommunikation. Ein Theme von irgendeinem Baukasten für die Website. **Zehn verschiedene Tools, zehn verschiedene Logins, zehn verschiedene Designs.**
+
+Oder: **S&I.**
+
+Alles aus einer Hand. Ein Design, ein Dashboard, ein Login. Foto-Upload, RSVP, Gästebuch, Musikwünsche, Geschenkeliste, Content-Editor, Archiv-Modus – alles integriert, alles aufeinander abgestimmt, alles in eurem Theme.
+
+Das ist kein Tool. **Das ist euer Begleiter von der Verlobung bis zum „Danke, dass ihr dabei wart."**
+
+![Brautpaar läuft Hand in Hand durch ein Blumenfeld](https://images.unsplash.com/photo-1529636798458-92182e662485?w=900&q=80)
+
+## Eure Reise beginnt jetzt
+
+Ihr seid verlobt. Die Vorfreude ist riesig. Die To-do-Liste wächst. Aber mit S&I. an eurer Seite wird die Planung nicht zum Stressfaktor – sondern zum Teil der Vorfreude.
+
+**Startet eure Reise.** Wählt euer Theme. Füllt eure Website mit eurer Geschichte. Und freut euch auf den schönsten Tag eures Lebens – mit der Gewissheit, dass eure Hochzeitswebsite alles im Griff hat.
+
+Von der Verlobung bis zum Danke. Von der ersten Idee bis zur letzten Erinnerung. **Das ist S&I.**
     `,
   },
 
