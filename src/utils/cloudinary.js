@@ -13,9 +13,10 @@ export async function uploadToCloudinary(file, preset, projectSlug) {
   const formData = new FormData()
   formData.append("file", compressedFile)
   formData.append("upload_preset", preset)
+  const section = preset.replace("wedding_", "")
   formData.append(
     "folder",
-    `weddings/${preset.replace("wedding_", "")}/${projectSlug}`
+    projectSlug ? `siwedding/${projectSlug}/${section}` : `siwedding/marketing/${section}`
   )
 
   const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME
