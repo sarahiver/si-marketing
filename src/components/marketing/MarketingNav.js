@@ -633,7 +633,7 @@ const MarketingNav = () => {
           </ThemeDropdown>
         </ThemeSwitcherWrapper>
         
-        <BurgerBtn $theme={currentTheme} onClick={() => setMenuOpen(!menuOpen)}>
+        <BurgerBtn $theme={currentTheme} onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'} aria-expanded={menuOpen}>
           <BurgerLine $theme={currentTheme} $open={menuOpen} />
         </BurgerBtn>
       </RightSection>

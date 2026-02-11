@@ -75,7 +75,7 @@ const EditorialTagline = styled.p`
 
 const EditorialColumn = styled.div``;
 
-const EditorialColumnTitle = styled.h4`
+const EditorialColumnTitle = styled.span`
   font-family: 'Oswald', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
@@ -268,7 +268,7 @@ const ContemporaryLinks = styled.div`
 
 const ContemporaryColumn = styled.div``;
 
-const ContemporaryColumnTitle = styled.h4`
+const ContemporaryColumnTitle = styled.span`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
@@ -464,7 +464,7 @@ const NeonTagline = styled.p`
 
 const NeonColumn = styled.div``;
 
-const NeonColumnTitle = styled.h4`
+const NeonColumnTitle = styled.span`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;

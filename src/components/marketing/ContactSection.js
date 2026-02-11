@@ -778,12 +778,15 @@ const ContactSection = () => {
                 onChange={handleChange}
                 tabIndex={-1}
                 autoComplete="off"
+                aria-hidden="true"
+                aria-label="Nicht ausfüllen"
               />
               
               <FormRow>
                 <FormGroup>
-                  <Label $theme={currentTheme} $config={config}>Name *</Label>
+                  <Label htmlFor="contact-name" $theme={currentTheme} $config={config}>Name *</Label>
                   <Input
+                    id="contact-name"
                     type="text"
                     name="name"
                     value={formData.name}
@@ -795,8 +798,9 @@ const ContactSection = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label $theme={currentTheme} $config={config}>E-Mail *</Label>
+                  <Label htmlFor="contact-email" $theme={currentTheme} $config={config}>E-Mail *</Label>
                   <Input
+                    id="contact-email"
                     type="email"
                     name="email"
                     value={formData.email}
@@ -811,8 +815,9 @@ const ContactSection = () => {
               
               <FormRow>
                 <FormGroup>
-                  <Label $theme={currentTheme} $config={config}>Telefon</Label>
+                  <Label htmlFor="contact-phone" $theme={currentTheme} $config={config}>Telefon</Label>
                   <Input
+                    id="contact-phone"
                     type="tel"
                     name="phone"
                     value={formData.phone}
@@ -823,8 +828,9 @@ const ContactSection = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label $theme={currentTheme} $config={config}>Hochzeitsdatum</Label>
+                  <Label htmlFor="contact-weddingDate" $theme={currentTheme} $config={config}>Hochzeitsdatum</Label>
                   <Input
+                    id="contact-weddingDate"
                     type="date"
                     name="weddingDate"
                     value={formData.weddingDate}
@@ -837,8 +843,9 @@ const ContactSection = () => {
               
               <FormRow>
                 <FormGroup>
-                  <Label $theme={currentTheme} $config={config}>Interesse an Theme</Label>
+                  <Label htmlFor="contact-theme" $theme={currentTheme} $config={config}>Interesse an Theme</Label>
                   <Select
+                    id="contact-theme"
                     name="interestedTheme"
                     value={formData.interestedTheme}
                     onChange={handleChange}
@@ -851,8 +858,9 @@ const ContactSection = () => {
                   </Select>
                 </FormGroup>
                 <FormGroup>
-                  <Label $theme={currentTheme} $config={config}>Interesse an Paket</Label>
+                  <Label htmlFor="contact-package" $theme={currentTheme} $config={config}>Interesse an Paket</Label>
                   <Select
+                    id="contact-package"
                     name="interestedPackage"
                     value={formData.interestedPackage}
                     onChange={handleChange}
@@ -867,8 +875,9 @@ const ContactSection = () => {
               </FormRow>
               
               <FormGroup>
-                <Label $theme={currentTheme} $config={config}>Nachricht *</Label>
+                <Label htmlFor="contact-message" $theme={currentTheme} $config={config}>Nachricht *</Label>
                 <Textarea
+                  id="contact-message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
