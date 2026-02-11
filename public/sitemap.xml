@@ -9,12 +9,12 @@
   </url>
   <url>
     <loc>https://sarahiver.com/blog</loc>
-    <lastmod>2026-02-11</lastmod>
+    <lastmod>2026-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Blog-Artikel -->
+  <!-- Blog-Artikel (Artikel 1-8) -->
   <url>
     <loc>https://sarahiver.com/blog/warum-hochzeitswebsite</loc>
     <lastmod>2026-02-15</lastmod>
@@ -60,6 +60,56 @@
   <url>
     <loc>https://sarahiver.com/blog/hochzeitswebsite-design-beispiele-inspiration</loc>
     <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog-Artikel (Artikel 9-16) -->
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitswebsite-musikwuensche-playlist</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitswebsite-gaestebuch-digital</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitswebsite-geschenke-wunschliste</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitswebsite-location-anfahrt-karte</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitswebsite-hotels-uebernachtung</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitswebsite-hochzeits-abc</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitswebsite-faq-haeufige-fragen</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitswebsite-foto-upload-gaeste</loc>
+    <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
