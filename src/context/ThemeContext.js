@@ -1,22 +1,33 @@
 // src/context/ThemeContext.js
 // Theme Context für Marketing - 6 echte Themes aus si-wedding-themes
+// Persistiert gewähltes Theme via localStorage über Routen und Sessions hinweg
 import React, { createContext, useContext, useState } from 'react';
 import { marketingThemes, themeOrder, isDarkTheme } from '../styles/marketingThemes';
 
 const ThemeContext = createContext();
 
+const STORAGE_KEY = 'si-wedding-theme';
+
+// Gespeichertes Theme aus localStorage laden (mit Fallback)
+const getSavedTheme = () => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved && marketingThemes[saved]) return saved;
+  } catch (e) { /* localStorage nicht verfügbar */ }
+  return 'editorial';
+};
+
 // ============================================
 // THEME PROVIDER
 // ============================================
 export const ThemeProvider = ({ children }) => {
-  // Default Theme: Editorial
-  const [currentTheme, setCurrentThemeState] = useState('editorial');
+  const [currentTheme, setCurrentThemeState] = useState(getSavedTheme);
   const [isLoading, setIsLoading] = useState(false);
   
   // Aktuelles Theme-Objekt
   const theme = marketingThemes[currentTheme] || marketingThemes.editorial;
   
-  // Theme wechseln mit Loading-Animation
+  // Theme wechseln mit Loading-Animation + localStorage
   const setCurrentTheme = (newTheme) => {
     if (newTheme === currentTheme) return;
     if (!marketingThemes[newTheme]) return;
@@ -29,6 +40,7 @@ export const ThemeProvider = ({ children }) => {
     // Kurze Verzögerung für Loading-Effekt
     setTimeout(() => {
       setCurrentThemeState(newTheme);
+      try { localStorage.setItem(STORAGE_KEY, newTheme); } catch (e) {}
       setTimeout(() => {
         setIsLoading(false);
       }, 300);

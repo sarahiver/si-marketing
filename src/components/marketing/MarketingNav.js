@@ -2,6 +2,7 @@
 // Theme Switcher + Mobile Burger Menu
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 
 const THEMES = [
@@ -540,10 +541,25 @@ const MarketingNav = () => {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  const handleLinkClick = (e, targetId) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLinkClick = (e, targetId, isRoute) => {
     e.preventDefault();
     setMenuOpen(false);
     setDropdownOpen(false);
+    
+    if (isRoute) {
+      navigate(`/${targetId}`);
+      return;
+    }
+    
+    // If we're not on the homepage, navigate there first
+    if (location.pathname !== '/') {
+      navigate(`/#${targetId}`);
+      return;
+    }
+    
     setTimeout(() => {
       document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
@@ -553,6 +569,7 @@ const MarketingNav = () => {
     { id: 'features', label: 'Features' },
     { id: 'themes', label: 'Designs' },
     { id: 'pricing', label: 'Preise' },
+    { id: 'blog', label: 'Ratgeber', isRoute: true },
     { id: 'contact', label: 'Kontakt' },
   ];
 
@@ -560,7 +577,7 @@ const MarketingNav = () => {
 
   const renderNavContent = () => (
     <>
-      <Logo href="#" onClick={(e) => handleLinkClick(e, 'hero')} $theme={currentTheme}>
+      <Logo href="#" onClick={(e) => { e.preventDefault(); if (location.pathname !== '/') { navigate('/'); } else { handleLinkClick(e, 'hero'); } }} $theme={currentTheme}>
         S&I.
       </Logo>
       
@@ -568,8 +585,8 @@ const MarketingNav = () => {
         {navItems.map(item => (
           <NavLink 
             key={item.id} 
-            href={`#${item.id}`} 
-            onClick={(e) => handleLinkClick(e, item.id)}
+            href={item.isRoute ? `/${item.id}` : `#${item.id}`} 
+            onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}
             $theme={currentTheme}
           >
             {item.label}
@@ -619,8 +636,8 @@ const MarketingNav = () => {
         {navItems.map(item => (
           <MobileNavLink 
             key={item.id} 
-            href={`#${item.id}`} 
-            onClick={(e) => handleLinkClick(e, item.id)}
+            href={item.isRoute ? `/${item.id}` : `#${item.id}`} 
+            onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}
             $theme={currentTheme}
           >
             {item.label}

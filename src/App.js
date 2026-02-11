@@ -33,6 +33,12 @@ import DatenschutzPage from './components/shared/DatenschutzPage';
 import CookieConsent from './components/shared/CookieConsent';
 
 // ============================================
+// BLOG PAGES
+// ============================================
+import BlogPage from './components/blog/BlogPage';
+import BlogArticle from './components/blog/BlogArticle';
+
+// ============================================
 // GOOGLE FONTS - Alle benötigten Fonts für alle Themes
 // ============================================
 const GOOGLE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500&family=Manrope:wght@300;400;500;600;700;800&display=swap';
@@ -152,9 +158,7 @@ function MainApp() {
   }, []);
   
   return (
-    <ThemeProvider>
-      <MarketingPage />
-    </ThemeProvider>
+    <MarketingPage />
   );
 }
 
@@ -164,22 +168,28 @@ function MainApp() {
 function App() {
   return (
     <ErrorBoundary>
-      <Router>
-        <GlobalStyles />
-        <Routes>
-          {/* Main Marketing Page */}
-          <Route path="/" element={<MainApp />} />
+      <ThemeProvider>
+        <Router>
+          <GlobalStyles />
+          <Routes>
+            {/* Main Marketing Page */}
+            <Route path="/" element={<MainApp />} />
 
-          {/* Legal Pages */}
-          <Route path="/impressum" element={<ImpressumPage />} />
-          <Route path="/datenschutz" element={<DatenschutzPage />} />
+            {/* Blog Pages */}
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
 
-          {/* Fallback - redirect to home */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-        {/* DSGVO Cookie Banner */}
-        <CookieConsent />
-      </Router>
+            {/* Legal Pages */}
+            <Route path="/impressum" element={<ImpressumPage />} />
+            <Route path="/datenschutz" element={<DatenschutzPage />} />
+
+            {/* Fallback - redirect to home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+          {/* DSGVO Cookie Banner */}
+          <CookieConsent />
+        </Router>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }

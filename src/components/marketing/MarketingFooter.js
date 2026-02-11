@@ -2,7 +2,7 @@
 // 1:1 Theme-Designs aus si-wedding-themes
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 
 // ============================================
@@ -600,18 +600,30 @@ const VideoLegalLink = styled(Link)`
 // ============================================
 const MarketingFooter = () => {
   const { currentTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
   const year = new Date().getFullYear();
 
   const navItems = [
     { id: 'features', label: 'Features' },
     { id: 'themes', label: 'Designs' },
     { id: 'pricing', label: 'Preise' },
+    { id: 'blog', label: 'Ratgeber', isRoute: true },
     { id: 'about', label: 'Über uns' },
     { id: 'contact', label: 'Kontakt' },
   ];
 
-  const handleLinkClick = (e, targetId) => {
+  const handleLinkClick = (e, targetId, isRoute) => {
     e.preventDefault();
+    if (isRoute) {
+      navigate(`/${targetId}`);
+      window.scrollTo(0, 0);
+      return;
+    }
+    if (location.pathname !== '/') {
+      navigate(`/#${targetId}`);
+      return;
+    }
     document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -627,7 +639,7 @@ const MarketingFooter = () => {
           <EditorialColumn>
             <EditorialColumnTitle>Navigation</EditorialColumnTitle>
             {navItems.map(item => (
-              <EditorialLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+              <EditorialLink key={item.id} href={item.isRoute ? `/${item.id}` : `#${item.id}`} onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}>
                 {item.label}
               </EditorialLink>
             ))}
@@ -658,7 +670,7 @@ const MarketingFooter = () => {
           <BotanicalTagline>Premium Hochzeitswebsites</BotanicalTagline>
           <BotanicalLinks>
             {navItems.map(item => (
-              <BotanicalLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+              <BotanicalLink key={item.id} href={item.isRoute ? `/${item.id}` : `#${item.id}`} onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}>
                 {item.label}
               </BotanicalLink>
             ))}
@@ -688,7 +700,7 @@ const MarketingFooter = () => {
               <ContemporaryColumn>
                 <ContemporaryColumnTitle>Navigation</ContemporaryColumnTitle>
                 {navItems.map(item => (
-                  <ContemporaryLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+                  <ContemporaryLink key={item.id} href={item.isRoute ? `/${item.id}` : `#${item.id}`} onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}>
                     {item.label}
                   </ContemporaryLink>
                 ))}
@@ -717,7 +729,7 @@ const MarketingFooter = () => {
           <LuxeDivider />
           <LuxeLinks>
             {navItems.map(item => (
-              <LuxeLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+              <LuxeLink key={item.id} href={item.isRoute ? `/${item.id}` : `#${item.id}`} onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}>
                 {item.label}
               </LuxeLink>
             ))}
@@ -744,7 +756,7 @@ const MarketingFooter = () => {
           <NeonColumn>
             <NeonColumnTitle>// Navigation</NeonColumnTitle>
             {navItems.map(item => (
-              <NeonLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+              <NeonLink key={item.id} href={item.isRoute ? `/${item.id}` : `#${item.id}`} onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}>
                 {item.label}
               </NeonLink>
             ))}
@@ -773,7 +785,7 @@ const MarketingFooter = () => {
         <VideoTagline>Eure Geschichte, cinematisch erzählt</VideoTagline>
         <VideoLinks>
           {navItems.map(item => (
-            <VideoLink key={item.id} href={`#${item.id}`} onClick={(e) => handleLinkClick(e, item.id)}>
+            <VideoLink key={item.id} href={item.isRoute ? `/${item.id}` : `#${item.id}`} onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}>
               {item.label}
             </VideoLink>
           ))}
