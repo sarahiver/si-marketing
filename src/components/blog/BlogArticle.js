@@ -301,14 +301,23 @@ const ArticleLi = styled.li`
 
 const ArticleTableWrapper = styled.div`
   overflow-x: auto;
-  margin: 1.5rem 0;
+  margin: 1.5rem -2rem;
+  padding: 0 2rem;
+  width: calc(100% + 4rem);
+
+  @media (min-width: 800px) {
+    margin: 2rem -6rem;
+    padding: 0 6rem;
+    width: calc(100% + 12rem);
+  }
 `;
 
 const ArticleTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   font-family: ${p => getBodyFont(p.$theme)};
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  min-width: 600px;
 `;
 
 const ArticleTh = styled.th`
