@@ -565,47 +565,56 @@ const ContactSection = () => {
   // Timing-based spam protection
   const formLoadTime = useRef(Date.now());
   const MIN_SUBMIT_TIME = 3000; // 3 seconds minimum
+  const sectionRef = useRef(null);
 
-  // Load hCaptcha script
-  useEffect(() => {
-    if (document.querySelector('script[src*="hcaptcha"]')) return;
-    
+  // --- hCaptcha lazy loading: only load when user interacts with form ---
+  const captchaLoading = useRef(false);
+
+  const loadCaptchaScript = useCallback(() => {
+    if (captchaLoading.current || document.querySelector('script[src*="hcaptcha"]')) return;
+    captchaLoading.current = true;
+
     const script = document.createElement('script');
     script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit';
     script.async = true;
     script.defer = true;
+    script.onload = () => {
+      // Script loaded → render widget
+      if (!captchaRef.current || captchaWidgetId.current !== null || !window.hcaptcha) return;
+      try {
+        captchaWidgetId.current = window.hcaptcha.render(captchaRef.current, {
+          sitekey: HCAPTCHA_SITE_KEY,
+          theme: ['editorial', 'botanical', 'luxe', 'neon', 'video'].includes(currentTheme) ? 'dark' : 'light',
+          size: 'normal',
+          callback: (token) => setCaptchaToken(token),
+          'expired-callback': () => setCaptchaToken(null),
+          'error-callback': () => setCaptchaToken(null),
+        });
+      } catch (e) { /* Widget already rendered */ }
+    };
     document.head.appendChild(script);
-  }, []);
-
-  // Render hCaptcha when script is loaded and container is ready
-  const renderCaptcha = useCallback(() => {
-    if (!captchaRef.current || captchaWidgetId.current !== null) return;
-    if (!window.hcaptcha) return;
-
-    try {
-      captchaWidgetId.current = window.hcaptcha.render(captchaRef.current, {
-        sitekey: HCAPTCHA_SITE_KEY,
-        theme: ['editorial', 'botanical', 'luxe', 'neon', 'video'].includes(currentTheme) ? 'dark' : 'light',
-        size: 'normal',
-        callback: (token) => setCaptchaToken(token),
-        'expired-callback': () => setCaptchaToken(null),
-        'error-callback': () => setCaptchaToken(null),
-      });
-    } catch (e) {
-      // Widget already rendered or error
-    }
   }, [currentTheme]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (window.hcaptcha && captchaRef.current && captchaWidgetId.current === null) {
-        renderCaptcha();
-        clearInterval(interval);
-      }
-    }, 200);
+  // Trigger hCaptcha load on first form interaction (focus, click, touch)
+  const handleFormInteraction = useCallback(() => {
+    loadCaptchaScript();
+  }, [loadCaptchaScript]);
 
-    return () => clearInterval(interval);
-  }, [renderCaptcha]);
+  // Also render captcha if script was already loaded (e.g. navigated back)
+  useEffect(() => {
+    if (window.hcaptcha && captchaRef.current && captchaWidgetId.current === null) {
+      try {
+        captchaWidgetId.current = window.hcaptcha.render(captchaRef.current, {
+          sitekey: HCAPTCHA_SITE_KEY,
+          theme: ['editorial', 'botanical', 'luxe', 'neon', 'video'].includes(currentTheme) ? 'dark' : 'light',
+          size: 'normal',
+          callback: (token) => setCaptchaToken(token),
+          'expired-callback': () => setCaptchaToken(null),
+          'error-callback': () => setCaptchaToken(null),
+        });
+      } catch (e) { /* already rendered */ }
+    }
+  }, [currentTheme]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -733,7 +742,7 @@ const ContactSection = () => {
   const content = getContent();
 
   return (
-    <Section id="contact" $theme={currentTheme} $config={config}>
+    <Section id="contact" ref={sectionRef} $theme={currentTheme} $config={config}>
       <Container>
         <Header>
           <Eyebrow $theme={currentTheme} $config={config}>{content.eyebrow}</Eyebrow>
@@ -760,7 +769,7 @@ const ContactSection = () => {
               </p>
             </SuccessMessage>
           ) : (
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} onFocus={handleFormInteraction} onClick={handleFormInteraction} onTouchStart={handleFormInteraction}>
               {/* Honeypot - invisible to users */}
               <Honeypot
                 type="text"
