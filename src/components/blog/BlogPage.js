@@ -153,11 +153,11 @@ const PostCard = styled(Link)`
   background: ${p => getCardBg(p.$theme)};
   border: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : `1px solid ${getCardBorder(p.$theme)}`};
   border-radius: ${p => p.$theme === 'botanical' ? '16px' : '0'};
-  padding: 2rem;
+  padding: 0;
+  overflow: hidden;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 
   ${p => p.$theme === 'contemporary' && css`
     box-shadow: 6px 6px 0 #0D0D0D;
@@ -184,6 +184,21 @@ const PostCard = styled(Link)`
   ${p => p.$theme === 'video' && css`
     &:hover { border-color: #6B8CAE; }
   `}
+`;
+
+const PostThumbnail = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+`;
+
+const PostContent = styled.div`
+  padding: 1.5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
 `;
 
 const PostCategory = styled.span`
@@ -273,13 +288,16 @@ const BlogPage = () => {
       <PostsGrid>
         {posts.map(post => (
           <PostCard key={post.slug} to={`/blog/${post.slug}`} $theme={currentTheme}>
-            <PostCategory $theme={currentTheme}>{post.category}</PostCategory>
-            <PostTitle $theme={currentTheme}>{post.title}</PostTitle>
-            <PostExcerpt $theme={currentTheme}>{post.description}</PostExcerpt>
-            <PostMeta $theme={currentTheme}>
-              <span>{formatDate(post.date)} · {post.readTime}</span>
-              <ReadMore $theme={currentTheme}>Weiterlesen →</ReadMore>
-            </PostMeta>
+            {post.image && <PostThumbnail src={post.image} alt={post.imageAlt || post.title} loading="lazy" />}
+            <PostContent>
+              <PostCategory $theme={currentTheme}>{post.category}</PostCategory>
+              <PostTitle $theme={currentTheme}>{post.title}</PostTitle>
+              <PostExcerpt $theme={currentTheme}>{post.description}</PostExcerpt>
+              <PostMeta $theme={currentTheme}>
+                <span>{formatDate(post.date)} · {post.readTime}</span>
+                <ReadMore $theme={currentTheme}>Weiterlesen →</ReadMore>
+              </PostMeta>
+            </PostContent>
           </PostCard>
         ))}
       </PostsGrid>

@@ -73,6 +73,13 @@ const renderMarkdown = (content, theme) => {
     } else if (line.startsWith('## ')) {
       elements.push({ type: 'h2', text: line.slice(3) });
     }
+    // Images: ![alt](url)
+    else if (line.match(/^!\[.*?\]\(.*?\)$/)) {
+      const match = line.match(/^!\[(.*?)\]\((.*?)\)$/);
+      if (match) {
+        elements.push({ type: 'image', alt: match[1], src: match[2] });
+      }
+    }
     // List items
     else if (line.startsWith('- ')) {
       const listItems = [line.slice(2)];
@@ -100,6 +107,8 @@ const renderMarkdown = (content, theme) => {
         return <ArticleH2 key={idx} $theme={theme}>{el.text}</ArticleH2>;
       case 'h3':
         return <ArticleH3 key={idx} $theme={theme}>{el.text}</ArticleH3>;
+      case 'image':
+        return <ArticleImage key={idx} src={el.src} alt={el.alt} loading="lazy" />;
       case 'p':
         return <ArticleP key={idx} $theme={theme} dangerouslySetInnerHTML={{ __html: processInline(el.text) }} />;
       case 'list':
@@ -197,6 +206,21 @@ const ArticleContent = styled.article`
   padding: 2rem clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 8rem);
 `;
 
+const HeroImageWrapper = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+`;
+
+const HeroImage = styled.img`
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+`;
+
 const ArticleH2 = styled.h2`
   font-family: ${p => getHeadlineFont(p.$theme)};
   font-size: clamp(1.5rem, 3vw, 2rem);
@@ -217,6 +241,17 @@ const ArticleH3 = styled.h3`
   color: ${p => getTextColor(p.$theme)};
   margin: 2rem 0 0.75rem;
   line-height: 1.3;
+`;
+
+const ArticleImage = styled.img`
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 2rem 0;
+  display: block;
 `;
 
 const ArticleP = styled.p`
@@ -415,7 +450,37 @@ const BlogArticle = () => {
     window.scrollTo(0, 0);
     if (post) {
       document.title = `${post.title} | S&I. Ratgeber`;
+
+      // Add Schema.org JSON-LD
+      const existingSchema = document.getElementById('blog-schema');
+      if (existingSchema) existingSchema.remove();
+
+      if (post.schema) {
+        const script = document.createElement('script');
+        script.id = 'blog-schema';
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          ...post.schema,
+          ...(post.image && { "image": post.image }),
+        });
+        document.head.appendChild(script);
+      }
+
+      // Update meta description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = 'description';
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.content = post.description;
     }
+
+    return () => {
+      const schema = document.getElementById('blog-schema');
+      if (schema) schema.remove();
+    };
   }, [slug, post]);
 
   if (!post) {
@@ -451,6 +516,12 @@ const BlogArticle = () => {
           {formatDate(post.date)} · {post.readTime} Lesezeit
         </ArticleMeta>
       </ArticleHero>
+
+      {post.image && (
+        <HeroImageWrapper>
+          <HeroImage src={post.image} alt={post.imageAlt || post.title} loading="eager" />
+        </HeroImageWrapper>
+      )}
 
       <ArticleContent>
         {renderMarkdown(post.content, currentTheme)}
