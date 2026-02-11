@@ -3,4 +3,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://siwedding.de/sitemap.xml
+Sitemap: https://sarahiver.com/sitemap.xml
