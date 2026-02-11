@@ -18,7 +18,7 @@ const blogPosts = [
       "headline": "Warum eine Hochzeitswebsite? 7 Gründe, die jedes Brautpaar überzeugen",
       "description": "Erfahre, warum eine eigene Hochzeitswebsite die Hochzeitsplanung revolutioniert.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
       "datePublished": "2026-02-15",
     },
     content: `
@@ -113,7 +113,7 @@ Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten 
       "headline": "Digitales RSVP: So organisiert ihr die Zusagen für eure Hochzeit stressfrei",
       "description": "Ein digitales RSVP-System spart Brautpaaren Wochen an Organisation.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
       "datePublished": "2026-02-22",
     },
     content: `
@@ -218,7 +218,7 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
       "headline": "Hochzeitswebsite-Anbieter im Vergleich 2026",
       "description": "Vergleich der besten Hochzeitswebsite-Anbieter in Deutschland 2026.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
       "datePublished": "2026-03-01",
     },
     content: `
@@ -344,7 +344,7 @@ Jedes Brautpaar hat andere Ansprüche an seine Hochzeitswebsite. Die kostenlose 
       "headline": "Was muss auf eine Hochzeitswebsite? Die ultimative Checkliste",
       "description": "Checkliste für den perfekten Inhalt eurer Hochzeitswebsite.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
       "datePublished": "2026-03-08",
     },
     content: `
@@ -441,7 +441,7 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
       "headline": "Was kostet eine Hochzeitswebsite?",
       "description": "Preisvergleich für Hochzeitswebsites: kostenlos, Baukasten, Premium.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
       "datePublished": "2026-03-15",
     },
     content: `
@@ -530,7 +530,7 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
       "headline": "Hochzeitseinladung mit QR-Code: Print trifft auf eure Hochzeitswebsite",
       "description": "So verbindet ihr eure Einladungskarte mit eurer Hochzeitswebsite per QR-Code – bei S&I. inklusive.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
       "datePublished": "2026-03-22",
     },
     content: `
@@ -643,7 +643,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
       "headline": "Eigene Domain und Passwortschutz für eure Hochzeitswebsite",
       "description": "Warum eine eigene Domain und Passwortschutz für die Hochzeitswebsite wichtig sind.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
       "datePublished": "2026-03-29",
     },
     content: `
@@ -712,7 +712,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
       "headline": "6 Hochzeitswebsite-Designs, die begeistern",
       "description": "Design-Inspiration für eure Hochzeitswebsite mit 6 unterschiedlichen Stilrichtungen.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
       "datePublished": "2026-04-05",
     },
     content: `
