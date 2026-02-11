@@ -8,6 +8,7 @@ const blogPosts = [
     description: 'Erfahre, warum immer mehr Paare auf eine eigene Hochzeitswebsite setzen – und wie sie Hochzeitsplanung, Gästemanagement und Kommunikation enorm erleichtert.',
     date: '2026-02-15',
     category: 'Planung',
+    tags: ['Planung', 'Grundlagen', 'Hochzeitswebsite'],
     readTime: '8 min',
     keywords: ['hochzeitswebsite erstellen', 'brauche ich hochzeitswebsite', 'digitale hochzeitseinladung', 'hochzeitsplanung online', 'hochzeit website kostenlos', 'eigene hochzeitsseite', 'hochzeitshomepage'],
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
@@ -102,6 +103,7 @@ Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten 
     description: 'Ein digitales RSVP-System für die Hochzeit spart Wochen an Organisation. Erfahrt, wie Online-Zusagen, Gästemanagement und automatische Erinnerungen eure Hochzeitsplanung vereinfachen.',
     date: '2026-02-22',
     category: 'Features',
+    tags: ['Features', 'RSVP', 'Gästemanagement'],
     readTime: '7 min',
     keywords: ['rsvp hochzeit digital', 'online zusagen hochzeit', 'gästemanagement hochzeit', 'hochzeit zusagen verwalten', 'hochzeitsgäste organisieren', 'rsvp system online', 'digitale gästeliste hochzeit'],
     image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80',
@@ -206,6 +208,7 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
     description: 'Wir vergleichen die beliebtesten Hochzeitswebsite-Anbieter in Deutschland – von Zankyou und WeddyPlace bis Joy und S&I. Ehrlich, transparent und mit klarer Empfehlung.',
     date: '2026-03-01',
     category: 'Vergleich',
+    tags: ['Vergleich', 'Anbieter', 'Hochzeitswebsite'],
     readTime: '10 min',
     keywords: ['hochzeitswebsite vergleich', 'beste hochzeitswebsite', 'zankyou alternative', 'hochzeitswebsite anbieter deutschland', 'weddyplace erfahrungen', 'hochzeitsseite erstellen vergleich', 'joy hochzeit alternative'],
     image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80',
@@ -331,6 +334,7 @@ Jedes Brautpaar hat andere Ansprüche an seine Hochzeitswebsite. Die kostenlose 
     description: 'Von Tagesablauf über Anfahrt bis RSVP-Formular: Diese Checkliste zeigt euch, welche Inhalte auf eure Hochzeitswebsite gehören – damit eure Gäste bestens informiert sind.',
     date: '2026-03-08',
     category: 'Planung',
+    tags: ['Planung', 'Checkliste', 'Inhalte'],
     readTime: '9 min',
     keywords: ['hochzeitswebsite inhalt', 'was muss auf hochzeitswebsite', 'hochzeitshomepage gestalten', 'hochzeitswebsite texte', 'hochzeitsseite inhalte checkliste'],
     image: 'https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=1200&q=80',
@@ -427,6 +431,7 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
     description: 'Von kostenlos bis Premium: Wir zeigen euch, was eine Hochzeitswebsite kostet, welche Preismodelle es gibt und wann sich die Investition in eine professionelle Lösung wirklich auszahlt.',
     date: '2026-03-15',
     category: 'Ratgeber',
+    tags: ['Kosten', 'Preise', 'Ratgeber'],
     readTime: '8 min',
     keywords: ['hochzeitswebsite kosten', 'was kostet hochzeitswebsite', 'hochzeitswebsite preis', 'hochzeitshomepage kostenlos oder premium', 'hochzeitswebsite budget'],
     image: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=1200&q=80',
@@ -512,75 +517,114 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
   {
     slug: 'hochzeitswebsite-qr-code-einladung',
     title: 'Hochzeitseinladung mit QR-Code: So verknüpft ihr Print und eure Hochzeitswebsite',
-    description: 'QR-Code auf der Hochzeitseinladung? So verbindet ihr eure gedruckte Einladungskarte perfekt mit eurer digitalen Hochzeitswebsite – mit praktischer Anleitung.',
+    description: 'QR-Code auf der Hochzeitseinladung? So verbindet ihr eure gedruckte Einladungskarte perfekt mit eurer digitalen Hochzeitswebsite. Bei S&I. wird der QR-Code direkt mitgeneriert.',
     date: '2026-03-22',
     category: 'Tipps',
-    readTime: '6 min',
-    keywords: ['hochzeitseinladung qr code', 'qr code hochzeitswebsite', 'hochzeitseinladung digital', 'hochzeitskarte qr code erstellen', 'einladung hochzeit link website'],
+    tags: ['QR-Code', 'Einladung', 'Print'],
+    readTime: '8 min',
+    keywords: ['hochzeitseinladung qr code', 'qr code hochzeitswebsite', 'hochzeitseinladung digital', 'hochzeitskarte qr code erstellen', 'einladung hochzeit link website', 'qr code hochzeitskarte drucken'],
     image: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1200&q=80',
     imageAlt: 'Hochzeitseinladung mit QR-Code und Blumendekoration',
     schema: {
       "@type": "Article",
       "headline": "Hochzeitseinladung mit QR-Code: Print trifft auf eure Hochzeitswebsite",
-      "description": "So verbindet ihr eure Einladungskarte mit eurer Hochzeitswebsite per QR-Code.",
+      "description": "So verbindet ihr eure Einladungskarte mit eurer Hochzeitswebsite per QR-Code – bei S&I. inklusive.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
       "datePublished": "2026-03-22",
     },
     content: `
-## Print trifft Digital: Warum ein QR-Code auf eurer Hochzeitseinladung euer bester Freund wird
+## Print trifft Digital: Warum ein QR-Code auf eurer Hochzeitseinladung unverzichtbar ist
 
-Die klassische Papiereinladung hat ihren Charme – sie ist persönlich, haptisch und ein echtes Erinnerungsstück. Aber seien wir ehrlich: Auf einer Karte ist nie genug Platz für alles. Tagesablauf, Anfahrt, Dresscode, Menüwahl, Hotelempfehlungen, RSVP-Formular – das passt nicht auf eine A6-Karte.
+Die klassische Papiereinladung hat ihren Charme – sie ist persönlich, haptisch und ein echtes Erinnerungsstück. Aber seien wir ehrlich: Auf einer Karte ist nie genug Platz für alles. Tagesablauf, Anfahrt mit Karte, Dresscode, Menüwahl, Hotelempfehlungen, RSVP-Formular, Geschenkewünsche – das passt nicht auf eine A6-Karte. Und selbst auf einer A5-Karte wird es schnell unübersichtlich.
 
 **Die Lösung: Ein QR-Code auf eurer Hochzeitseinladung, der direkt zu eurer Hochzeitswebsite führt.** So kombiniert ihr das Beste aus beiden Welten – die Eleganz einer gedruckten Hochzeitskarte mit dem vollen Funktionsumfang einer digitalen Hochzeitshomepage.
+
+Und das Beste daran: **Bei S&I. müsst ihr euch um den QR-Code überhaupt nicht kümmern. Er wird automatisch für euch generiert und steht euch direkt nach Vertragsabschluss als Download zur Verfügung.** Kein Googlen nach QR-Code-Generatoren, kein Rumfummeln mit Tools – ihr bekommt euren personalisierten QR-Code fix und fertig.
 
 ![Einladungskarten mit elegantem Design](https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&q=80)
 
 ## Wie funktioniert ein QR-Code auf der Hochzeitseinladung?
 
-Das Prinzip ist denkbar einfach: Ihr generiert einen QR-Code, der auf die URL eurer Hochzeitswebsite verweist. Diesen Code druckt ihr auf eure Einladungskarte. Eure Gäste scannen den QR-Code mit der Kamera ihres Smartphones – und landen direkt auf eurer persönlichen Hochzeitshomepage.
+Das Prinzip ist denkbar einfach: Ein QR-Code ist im Grunde eine URL, die als Grafik codiert ist. Eure Gäste scannen den Code mit der Kamera ihres Smartphones – und landen direkt auf eurer persönlichen Hochzeitshomepage. Kein Eintippen langer Webadressen, kein Suchen in WhatsApp-Verläufen, kein Rätselraten.
 
-Der gesamte Vorgang dauert für eure Gäste zwei bis drei Sekunden. Kein Eintippen langer URLs, kein Suchen in WhatsApp-Verläufen, kein Rätselraten. Und für euch als Brautpaar bedeutet das: Weniger Text auf der gedruckten Karte, mehr Platz für schönes Design – und trotzdem alle Informationen für eure Hochzeitsgäste verfügbar.
+Der gesamte Vorgang dauert für eure Gäste zwei bis drei Sekunden. Und für euch als Brautpaar bedeutet das: Weniger Text auf der gedruckten Karte, mehr Platz für schönes Design – und trotzdem alle Informationen zentral an einem Ort verfügbar.
 
-## Schritt-für-Schritt: So erstellt ihr den QR-Code für eure Hochzeitswebsite
+**Übrigens:** Auch ältere Gäste kommen mit QR-Codes gut zurecht. Seit der Corona-Pandemie ist das Scannen von QR-Codes für die meisten Menschen selbstverständlich geworden – im Restaurant, auf Veranstaltungen, beim Einchecken. Und für die wenigen Gäste, die damit unsicher sind: Ihr könnt die URL zusätzlich als Text unter dem QR-Code abdrucken.
 
-**Schritt 1: Eure Hochzeitswebsite einrichten.** Bevor ihr den QR-Code erstellt, sollte eure Hochzeitshomepage stehen – zumindest mit den wichtigsten Basisinformationen. Den Content könnt ihr später jederzeit ergänzen.
+## Bei S&I.: Euer QR-Code ist ab Tag 1 fertig
 
-**Schritt 2: QR-Code generieren.** Nutzt einen kostenlosen QR-Code-Generator wie qr-code-generator.com oder canva.com. Gebt als Ziel-URL die Adresse eurer Hochzeitswebsite ein (zum Beispiel sarah-und-max.de). Klickt auf „Generieren" – fertig.
+**Das unterscheidet S&I. von den meisten anderen Hochzeitswebsite-Anbietern:** Ihr müsst euren QR-Code nicht selbst erstellen. Sobald ihr euch für ein S&I.-Paket entschieden habt, wird euer persönlicher QR-Code automatisch generiert – passend zu eurer Domain und eurem Website-Link.
 
-**Schritt 3: Design anpassen.** Viele QR-Code-Generatoren erlauben es, die Farbe des Codes anzupassen. Haltet die Farbe dunkel auf hellem Grund – einige Smartphone-Kameras haben Probleme mit zu hellen oder kontrastarmen Codes.
+### Was ihr bekommt:
 
-**Schritt 4: QR-Code auf die Einladungskarte setzen.** Platziert den Code an einer sichtbaren Stelle eurer Hochzeitseinladung, idealerweise mit einem kurzen Hinweistext wie: „Alle Details zu unserem großen Tag findet ihr hier:" oder „Scannt den Code für unsere Hochzeitswebsite."
+**Sofort nach Vertragsabschluss** erhaltet ihr euren QR-Code als hochauflösende Datei zum Download. Ihr müsst nicht warten, bis eure Website komplett fertig ist. Der Code verweist auf eure persönliche Domain (z.B. sarah-und-max.de) und funktioniert vom ersten Moment an – auch wenn auf der Website zunächst nur eine „Coming Soon"-Seite steht.
 
-**Schritt 5: Testen!** Druckt eine Testkarte aus und scannt den Code mit verschiedenen Smartphones. Stellt sicher, dass der QR-Code in der gedruckten Größe lesbar ist. Eine Mindestgröße von 2 x 2 cm empfehlen wir als Richtwert.
+**Das heißt konkret:** Ihr könnt eure Einladungskarten sofort in Druck geben, sobald ihr euer S&I.-Paket gebucht habt. Die Website selbst gestaltet ihr in Ruhe weiter – parallel zum Kartenversand. Wenn eure Gäste den QR-Code scannen, sehen sie entweder eure fertige Website oder einen stilvollen Hinweis, dass es bald losgeht.
 
-## Was auf die Einladungskarte gehört – und was auf die Website
+**Warum ist das so wichtig?** Weil die Timeline bei vielen Brautpaaren eng ist. Die Einladungen müssen 8 bis 12 Wochen vor der Hochzeit raus – und zu dem Zeitpunkt ist die Website oft noch nicht zu 100% fertig. Mit dem sofort verfügbaren QR-Code von S&I. entkoppelt ihr den Kartenversand komplett von der Website-Fertigstellung.
 
-Die Faustformel lautet: Die gedruckte Hochzeitseinladung enthält die Emotion, die Hochzeitswebsite die Information.
+### Was im QR-Code steckt:
 
-**Auf die Karte:** Eure Namen, das Datum, der Ort (ohne Detailadresse), eine persönliche Einladung in wenigen Sätzen, der QR-Code mit kurzem Hinweis und die RSVP-Frist.
+Der generierte QR-Code enthält den direkten Link zu eurer persönlichen Hochzeitswebsite. Er ist ein statischer Code – das heißt, er funktioniert dauerhaft und ist nicht an ein Abo oder einen Drittanbieter-Service gebunden. Selbst Jahre nach eurer Hochzeit führt der Code noch zu eurer Seite (solange ihr die Domain behaltet).
 
-**Auf die Hochzeitswebsite:** Detaillierter Tagesablauf, genaue Anfahrtsbeschreibung mit Karte, Dresscode, Übernachtungstipps, Menüwahl, FAQ-Bereich, Geschenkewünsche, eure Geschichte als Paar und natürlich das digitale RSVP-Formular.
+**Das Dateiformat:** Ihr bekommt den QR-Code als PNG in druckfähiger Auflösung (mindestens 300 dpi). So könnt ihr ihn direkt in euer Einladungsdesign einbauen – egal ob ihr die Karten selbst gestaltet, mit Canva arbeitet oder einen Grafiker beauftragt.
 
 ![Detailaufnahme eines QR-Codes auf einer Karte](https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&q=80)
 
+## Selbst einen QR-Code erstellen: Die Alternative
+
+Falls ihr noch keinen S&I.-Vertrag habt oder einen anderen Anbieter nutzt, könnt ihr euren QR-Code natürlich auch selbst erstellen. Hier eine kurze Anleitung:
+
+**Schritt 1: URL festlegen.** Bevor ihr den QR-Code erstellt, braucht ihr die fertige URL eurer Hochzeitswebsite (z.B. sarah-und-max.de). Wichtig: Diese URL sollte sich nachträglich nicht mehr ändern, da der gedruckte QR-Code fest mit dieser Adresse verbunden ist.
+
+**Schritt 2: QR-Code generieren.** Nutzt einen kostenlosen QR-Code-Generator wie qr-code-generator.com oder die QR-Code-Funktion in Canva. Gebt als Ziel-URL die Adresse eurer Hochzeitswebsite ein und generiert den Code.
+
+**Schritt 3: Design anpassen.** Viele Generatoren erlauben es, die Farbe des Codes anzupassen. Haltet die Farbe dunkel auf hellem Grund – kontrastarme Codes können Scan-Probleme verursachen.
+
+**Schritt 4: In Druckauflösung exportieren.** Achtet darauf, den Code als PNG oder SVG in mindestens 300 dpi zu exportieren. Niedrig aufgelöste QR-Codes werden beim Druck unscharf und funktionieren dann möglicherweise nicht.
+
+**Der Nachteil beim Selbstmachen:** Ihr müsst euch um Generierung, Format und Qualität selbst kümmern. Außerdem setzt es voraus, dass eure Domain und URL zum Zeitpunkt des Kartendrucks bereits feststehen. Bei S&I. ist das alles bereits gelöst, bevor ihr überhaupt an eure Einladungskarten denkt.
+
+## Was auf die Einladungskarte gehört – und was auf die Website
+
+Die Faustformel lautet: **Die gedruckte Hochzeitseinladung enthält die Emotion, die Hochzeitswebsite die Information.**
+
+**Auf die Karte:** Eure Namen und das Hochzeitsdatum, der Ort der Feier (ohne Detailadresse), eine persönliche Einladung in wenigen, herzlichen Sätzen, der QR-Code mit kurzem Hinweis (z.B. „Alle Details auf unserer Website"), die RSVP-Frist und optional die URL als Text.
+
+**Auf die Hochzeitswebsite:** Der detaillierte Tagesablauf mit Uhrzeiten, die genaue Anfahrtsbeschreibung mit interaktiver Karte, Dresscode-Details und Beispielbilder, Übernachtungstipps mit Links und Preisen, die Menüwahl und Allergieabfrage, der FAQ-Bereich für häufige Fragen, Geschenkewünsche oder ein digitaler Geldwunsch, eure Geschichte als Paar, das digitale RSVP-Formular und natürlich euer Foto-Upload für die Gäste.
+
+**Das Ergebnis:** Eine schlanke, elegante Papiereinladung, die neugierig macht – und eine umfassende Website, die keine Frage offen lässt. Die perfekte Kombination.
+
 ## 5 Tipps für den perfekten QR-Code auf eurer Hochzeitseinladung
 
-**Kurze, merkbare Domain verwenden.** Statt einer kryptischen URL wie paare.anbieter.de/sarah-max-2026 ist eine eigene Domain wie sarah-und-max.de viel eleganter – und funktioniert auch, wenn jemand die URL doch manuell eintippen möchte.
+**1. Kurze, merkbare Domain verwenden.** Statt einer kryptischen URL wie paare.anbieter.de/sarah-max-2026 ist eine eigene Domain wie sarah-und-max.de viel eleganter. Sie funktioniert auch dann, wenn jemand die URL doch manuell eintippen möchte. Bei S&I. ist eine eigene Domain immer inklusive – perfekt für den QR-Code und die Einladungskarte.
 
-**Den QR-Code nicht zu klein drucken.** Mindestens 2 x 2 cm, besser 3 x 3 cm. Zu kleine Codes können von älteren Smartphones nicht zuverlässig gescannt werden.
+**2. Den QR-Code nicht zu klein drucken.** Mindestens 2 x 2 cm, besser 3 x 3 cm. Zu kleine Codes können von älteren Smartphones nicht zuverlässig gescannt werden. Plant den QR-Code also von Anfang an in euer Kartendesign ein und gebt ihm genug Platz.
 
-**Alternativ den Link als Text ergänzen.** Nicht alle Gäste sind mit QR-Codes vertraut – vor allem ältere Generationen tippen eine URL lieber ein. Ergänzt unter dem QR-Code die Webadresse in lesbarer Schrift.
+**3. URL als Text ergänzen.** Druckt unter dem QR-Code eure Webadresse in lesbarer Schrift ab. So haben auch Gäste, die den Code nicht scannen möchten, einen einfachen Zugang zu eurer Hochzeitswebsite.
 
-**Einen statischen QR-Code verwenden.** Statische Codes verlinken direkt auf eure URL und funktionieren unbegrenzt. Dynamische Codes (über Drittanbieter) können ablaufen oder erfordern ein Abo. Für eure Hochzeitseinladung reicht ein statischer Code völlig aus.
+**4. Einen statischen QR-Code verwenden.** Statische Codes verlinken direkt auf eure URL und funktionieren dauerhaft. Dynamische Codes über Drittanbieter können ablaufen, erfordern Accounts oder kosten Geld. Der QR-Code von S&I. ist immer statisch – kein Abo, keine Zusatzkosten, keine Ablaufdaten.
 
-**Den Code vor dem Druck testen.** Druckt eine Probekarte und testet den Scan mit mindestens drei verschiedenen Smartphones. Nichts ist ärgerlicher als ein QR-Code auf 200 gedruckten Hochzeitseinladungen, der nicht funktioniert.
+**5. Vor dem Druck testen!** Druckt eine Probekarte und testet den Scan mit mindestens drei verschiedenen Smartphones (iPhone, Samsung, ein älteres Modell). Nichts ist ärgerlicher als ein QR-Code auf 200 gedruckten Einladungen, der nicht funktioniert.
+
+## Zeitplan: Wann QR-Code und Einladungen planen?
+
+**12–10 Monate vor der Hochzeit:** S&I.-Paket buchen. Ihr erhaltet sofort eure Domain und den fertigen QR-Code.
+
+**8–6 Monate vorher:** Einladungsdesign finalisieren und den QR-Code integrieren. Die Website kann parallel weiter befüllt werden.
+
+**6–4 Monate vorher:** Einladungen drucken und verschicken. Eure Gäste scannen den Code und landen auf eurer (mittlerweile fertigen) Hochzeitswebsite.
+
+**Ab jetzt:** Gäste sagen direkt über die Website zu, wählen ihr Menü und finden alle Infos. Ihr seht die RSVPs in Echtzeit in eurem Dashboard – ohne eine einzige WhatsApp-Nachricht schreiben zu müssen.
 
 ## Fazit: QR-Code als Brücke zwischen analoger und digitaler Hochzeit
 
-Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen der traditionellen Papiereinladung und eurer digitalen Hochzeitswebsite. Er spart Platz, spart euren Gästen Zeit und sorgt dafür, dass alle Informationen zu eurer Hochzeit jederzeit griffbereit sind – auf jedem Smartphone.
+Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen der traditionellen Papiereinladung und eurer digitalen Hochzeitswebsite. Er spart Platz auf der Karte, spart euren Gästen Zeit und sorgt dafür, dass alle Informationen zu eurer Hochzeit jederzeit griffbereit sind – auf jedem Smartphone, jederzeit.
 
-**Bei S&I. bekommt ihr eine eigene Domain für eure Hochzeitswebsite, die sich perfekt für QR-Codes und Einladungskarten eignet – kurz, einprägsam und persönlich.**
+**Bei S&I. ist der QR-Code kein Extra, das ihr euch selbst zusammenbasteln müsst. Er wird automatisch generiert und steht euch sofort nach Vertragsabschluss als druckfertiger Download zur Verfügung.** Zusammen mit eurer eigenen Domain habt ihr vom ersten Tag an alles, was ihr für eure Hochzeitseinladungen braucht – ohne Stress, ohne Zusatztools, ohne Wartezeit.
+
+**Eure Hochzeitseinladung verdient mehr als nur Papier. Und euer QR-Code ist bei S&I. bereits fertig, wenn ihr ihn braucht.**
     `,
   },
   {
@@ -589,6 +633,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
     description: 'Eigene Domain wie sarah-und-max.de statt Subdomain? Passwortschutz für eure Privatsphäre? Alles, was Brautpaare über Domain und Datenschutz ihrer Hochzeitswebsite wissen müssen.',
     date: '2026-03-29',
     category: 'Features',
+    tags: ['Features', 'Domain', 'Datenschutz'],
     readTime: '7 min',
     keywords: ['hochzeitswebsite eigene domain', 'hochzeitswebsite passwortschutz', 'hochzeitshomepage domain registrieren', 'hochzeitswebsite privat', 'hochzeitswebsite datenschutz'],
     image: 'https://images.unsplash.com/photo-1494955870715-979ca4f13bf0?w=1200&q=80',
@@ -657,6 +702,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
     description: 'Von minimalistisch bis glamourös: Entdeckt 6 einzigartige Designstile für eure Hochzeitswebsite und findet das Theme, das zu eurer Hochzeit passt.',
     date: '2026-04-05',
     category: 'Design',
+    tags: ['Design', 'Inspiration', 'Themes'],
     readTime: '8 min',
     keywords: ['hochzeitswebsite design', 'hochzeitswebsite beispiele', 'hochzeitshomepage inspiration', 'hochzeitswebsite themes', 'hochzeitswebsite gestalten ideen', 'moderne hochzeitswebsite'],
     image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80',

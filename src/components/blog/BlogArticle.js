@@ -8,6 +8,7 @@ import { getPostBySlug, getAllPosts } from '../../content/blog/blogPosts';
 import MarketingNav from '../marketing/MarketingNav';
 import MarketingFooter from '../marketing/MarketingFooter';
 import BotanicalLeaves from '../marketing/BotanicalLeaves';
+import SEOHead from '../shared/SEOHead';
 
 // ============================================
 // THEME HELPERS (same as BlogPage)
@@ -52,6 +53,14 @@ const renderMarkdown = (content, theme) => {
       continue;
     }
 
+    // Images: ![alt](url)
+    const imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (imgMatch) {
+      elements.push({ type: 'image', alt: imgMatch[1], src: imgMatch[2] });
+      i++;
+      continue;
+    }
+
     // Table rows
     if (line.startsWith('|') && line.endsWith('|')) {
       // Skip separator rows
@@ -72,13 +81,6 @@ const renderMarkdown = (content, theme) => {
       elements.push({ type: 'h3', text: line.slice(4) });
     } else if (line.startsWith('## ')) {
       elements.push({ type: 'h2', text: line.slice(3) });
-    }
-    // Images: ![alt](url)
-    else if (line.match(/^!\[.*?\]\(.*?\)$/)) {
-      const match = line.match(/^!\[(.*?)\]\((.*?)\)$/);
-      if (match) {
-        elements.push({ type: 'image', alt: match[1], src: match[2] });
-      }
     }
     // List items
     else if (line.startsWith('- ')) {
@@ -108,7 +110,7 @@ const renderMarkdown = (content, theme) => {
       case 'h3':
         return <ArticleH3 key={idx} $theme={theme}>{el.text}</ArticleH3>;
       case 'image':
-        return <ArticleImage key={idx} src={el.src} alt={el.alt} loading="lazy" />;
+        return <ArticleImage key={idx} src={el.src} alt={el.alt} $theme={theme} loading="lazy" />;
       case 'p':
         return <ArticleP key={idx} $theme={theme} dangerouslySetInnerHTML={{ __html: processInline(el.text) }} />;
       case 'list':
@@ -153,6 +155,10 @@ const ArticleHero = styled.section`
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding-top: 6.5rem;
+  }
 `;
 
 const BackLink = styled(Link)`
@@ -206,21 +212,6 @@ const ArticleContent = styled.article`
   padding: 2rem clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 8rem);
 `;
 
-const HeroImageWrapper = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-`;
-
-const HeroImage = styled.img`
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 4px;
-  display: block;
-`;
-
 const ArticleH2 = styled.h2`
   font-family: ${p => getHeadlineFont(p.$theme)};
   font-size: clamp(1.5rem, 3vw, 2rem);
@@ -241,17 +232,6 @@ const ArticleH3 = styled.h3`
   color: ${p => getTextColor(p.$theme)};
   margin: 2rem 0 0.75rem;
   line-height: 1.3;
-`;
-
-const ArticleImage = styled.img`
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 4px;
-  margin: 2rem 0;
-  display: block;
 `;
 
 const ArticleP = styled.p`
@@ -299,25 +279,38 @@ const ArticleLi = styled.li`
   strong { color: ${p => getTextColor(p.$theme)}; font-weight: 600; }
 `;
 
+const ArticleImage = styled.img`
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  border-radius: ${p => p.$theme === 'botanical' ? '12px' : p.$theme === 'contemporary' ? '0' : '4px'};
+  margin: 1.5rem 0;
+  display: block;
+
+  ${p => p.$theme === 'contemporary' && css`
+    border: 3px solid #0D0D0D;
+    box-shadow: 6px 6px 0 #0D0D0D;
+  `}
+
+  ${p => p.$theme === 'neon' && css`
+    border: 1px solid rgba(0,255,255,0.2);
+  `}
+
+  ${p => p.$theme === 'luxe' && css`
+    border: 1px solid rgba(201,169,98,0.2);
+  `}
+`;
+
 const ArticleTableWrapper = styled.div`
   overflow-x: auto;
-  margin: 1.5rem -2rem;
-  padding: 0 2rem;
-  width: calc(100% + 4rem);
-
-  @media (min-width: 800px) {
-    margin: 2rem -6rem;
-    padding: 0 6rem;
-    width: calc(100% + 12rem);
-  }
+  margin: 1.5rem 0;
 `;
 
 const ArticleTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   font-family: ${p => getBodyFont(p.$theme)};
-  font-size: 0.85rem;
-  min-width: 600px;
+  font-size: 0.9rem;
 `;
 
 const ArticleTh = styled.th`
@@ -457,44 +450,17 @@ const BlogArticle = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (post) {
-      document.title = `${post.title} | S&I. Ratgeber`;
-
-      // Add Schema.org JSON-LD
-      const existingSchema = document.getElementById('blog-schema');
-      if (existingSchema) existingSchema.remove();
-
-      if (post.schema) {
-        const script = document.createElement('script');
-        script.id = 'blog-schema';
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify({
-          "@context": "https://schema.org",
-          ...post.schema,
-          ...(post.image && { "image": post.image }),
-        });
-        document.head.appendChild(script);
-      }
-
-      // Update meta description
-      let metaDesc = document.querySelector('meta[name="description"]');
-      if (!metaDesc) {
-        metaDesc = document.createElement('meta');
-        metaDesc.name = 'description';
-        document.head.appendChild(metaDesc);
-      }
-      metaDesc.content = post.description;
-    }
-
-    return () => {
-      const schema = document.getElementById('blog-schema');
-      if (schema) schema.remove();
-    };
-  }, [slug, post]);
+  }, [slug]);
 
   if (!post) {
     return (
       <PageWrapper $theme={currentTheme}>
+        <SEOHead
+          title="Artikel nicht gefunden | S&I. Ratgeber"
+          description="Der gesuchte Artikel wurde nicht gefunden."
+          path={`/blog/${slug}`}
+          noIndex={true}
+        />
         <MarketingNav />
         <ArticleHero>
           <ArticleTitle $theme={currentTheme}>Artikel nicht gefunden</ArticleTitle>
@@ -514,6 +480,21 @@ const BlogArticle = () => {
 
   return (
     <PageWrapper $theme={currentTheme}>
+      <SEOHead
+        title={`${post.title} | S&I. Ratgeber`}
+        description={post.description}
+        path={`/blog/${post.slug}`}
+        image={post.image}
+        type="article"
+        keywords={post.keywords}
+        schema={post.schema ? {
+          ...post.schema,
+          '@context': 'https://schema.org',
+          'url': `https://sarahiver.com/blog/${post.slug}`,
+          'image': post.image,
+          'dateModified': post.date,
+        } : null}
+      />
       {currentTheme === 'botanical' && <BotanicalLeaves />}
       <MarketingNav />
 
@@ -522,15 +503,9 @@ const BlogArticle = () => {
         <CategoryLabel $theme={currentTheme}>{post.category}</CategoryLabel>
         <ArticleTitle $theme={currentTheme}>{post.title}</ArticleTitle>
         <ArticleMeta $theme={currentTheme}>
-          {formatDate(post.date)} · {post.readTime} Lesezeit
+          <time dateTime={post.date}>{formatDate(post.date)}</time> · {post.readTime} Lesezeit
         </ArticleMeta>
       </ArticleHero>
-
-      {post.image && (
-        <HeroImageWrapper>
-          <HeroImage src={post.image} alt={post.imageAlt || post.title} loading="eager" />
-        </HeroImageWrapper>
-      )}
 
       <ArticleContent>
         {renderMarkdown(post.content, currentTheme)}
