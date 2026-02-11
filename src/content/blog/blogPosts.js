@@ -325,6 +325,424 @@ Jedes Brautpaar hat andere Ansprüche an seine Hochzeitswebsite. Die kostenlose 
 **Eure Hochzeit passiert nur einmal. Eure Hochzeitswebsite sollte das widerspiegeln.**
     `,
   },
+  {
+    slug: 'hochzeitswebsite-inhalt-checkliste',
+    title: 'Was muss auf eine Hochzeitswebsite? Die ultimative Checkliste für Brautpaare',
+    description: 'Von Tagesablauf über Anfahrt bis RSVP-Formular: Diese Checkliste zeigt euch, welche Inhalte auf eure Hochzeitswebsite gehören – damit eure Gäste bestens informiert sind.',
+    date: '2026-03-08',
+    category: 'Planung',
+    readTime: '9 min',
+    keywords: ['hochzeitswebsite inhalt', 'was muss auf hochzeitswebsite', 'hochzeitshomepage gestalten', 'hochzeitswebsite texte', 'hochzeitsseite inhalte checkliste'],
+    image: 'https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=1200&q=80',
+    imageAlt: 'Detailaufnahme von Hochzeitspapeterie und Planung',
+    schema: {
+      "@type": "Article",
+      "headline": "Was muss auf eine Hochzeitswebsite? Die ultimative Checkliste",
+      "description": "Checkliste für den perfekten Inhalt eurer Hochzeitswebsite.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "datePublished": "2026-03-08",
+    },
+    content: `
+## Die perfekte Hochzeitswebsite: Welche Inhalte wirklich wichtig sind
+
+Eure Hochzeitswebsite steht – aber was genau soll drauf? Viele Brautpaare unterschätzen, wie viel Planungsarbeit eine durchdachte Hochzeitshomepage abnehmen kann. Gleichzeitig wollen sie ihre Gäste nicht mit Informationen überschütten. Die Kunst liegt in der Balance: alle wichtigen Details präsentieren, ohne die Seite zu überladen.
+
+Wir haben die ultimative Checkliste zusammengestellt, damit ihr bei der Gestaltung eurer Hochzeitswebsite nichts vergesst – und trotzdem eine elegante, übersichtliche Seite bekommt.
+
+![Hochzeitsplanung mit Notizbuch und Blumen](https://images.unsplash.com/photo-1549416878-a9e8e7c831f0?w=900&q=80)
+
+## Die 10 wichtigsten Inhalte eurer Hochzeitswebsite
+
+### 1. Willkommenstext und eure Namen
+
+Das Erste, was eure Gäste sehen, sollte ein herzlicher Empfang sein. Eure Namen, das Hochzeitsdatum und ein kurzer Willkommenstext reichen völlig. Haltet es persönlich, aber prägnant – zwei bis drei Sätze genügen.
+
+Beispiel: „Schön, dass ihr hier seid! Am 14. September 2026 geben wir uns das Ja-Wort – und wir würden uns riesig freuen, wenn ihr dabei seid."
+
+### 2. Datum, Uhrzeit und Tagesablauf
+
+Der Tagesablauf gehört zu den meistgesuchten Informationen auf jeder Hochzeitshomepage. Eure Gäste wollen wissen: Wann beginnt die Trauung? Gibt es einen Sektempfang? Um wie viel Uhr startet das Abendessen? Bis wann geht die Party?
+
+Strukturiert den Ablauf eurer Hochzeitsfeier chronologisch und übersichtlich. Ein Zeitstrahl oder eine einfache Auflistung funktioniert perfekt. Gebt lieber etwas zu viele Uhrzeiten an als zu wenige – eure Gäste werden es euch danken.
+
+### 3. Location mit Anfahrtsbeschreibung
+
+Neben der genauen Adresse eurer Hochzeitslocation solltet ihr unbedingt eine interaktive Karte oder einen direkten Link zu Google Maps einbinden. Ergänzt Hinweise zu Parkmöglichkeiten, öffentlichen Verkehrsmitteln und gegebenenfalls einem organisierten Shuttle-Service zwischen verschiedenen Veranstaltungsorten.
+
+Wenn eure standesamtliche Trauung und die Feier an unterschiedlichen Orten stattfinden, macht das deutlich sichtbar – inklusive Fahrtzeit zwischen den Locations.
+
+### 4. RSVP-Formular für Online-Zusagen
+
+Ein digitales RSVP-System ist das Herzstück einer modernen Hochzeitswebsite. Eure Gäste können mit wenigen Klicks zu- oder absagen, Menüwünsche angeben und Sonderwünsche mitteilen. Ihr spart euch Stunden an Telefonaten und WhatsApp-Nachrichten.
+
+Achtet darauf, eine klare Frist für die Rückmeldung zu setzen: „Bitte antwortet bis zum 1. August 2026" wirkt verbindlicher als vage Formulierungen.
+
+### 5. Dresscode
+
+„Was ziehe ich an?" ist eine der häufigsten Fragen eurer Hochzeitsgäste. Ob Cocktailattire, sommerlich elegant oder Gartenparty-Style – gebt auf eurer Hochzeitswebsite einen klaren Dresscode an. Konkrete Beispiele oder Farbhinweise helfen euren Gästen bei der Auswahl.
+
+### 6. Übernachtungstipps und Anreise
+
+Besonders wenn Gäste von weiter weg anreisen, sind Hotelempfehlungen in der Nähe eurer Hochzeitslocation Gold wert. Nennt zwei bis drei Unterkünfte in verschiedenen Preisklassen und verlinkt direkt auf die Buchungsseiten. Falls ihr ein Zimmerkontingent reserviert habt, teilt das Stichwort für die Buchung mit.
+
+### 7. Geschenkewünsche
+
+Ein heikles, aber wichtiges Thema: Viele Brautpaare wünschen sich eher Geldgeschenke oder Beiträge zur Hochzeitsreise als klassische Sachgeschenke. Eure Hochzeitswebsite ist der perfekte Ort, das diskret und charmant zu kommunizieren.
+
+Formuliert es persönlich: „Der größte Wunsch für uns ist eure Anwesenheit. Wenn ihr uns zusätzlich eine Freude machen möchtet, freuen wir uns über einen Beitrag zu unserer Flitterwochenkasse."
+
+### 8. Eure Geschichte als Paar
+
+Eine kurze „Über uns"-Sektion mit eurer Kennenlerngeschichte macht eure Hochzeitshomepage persönlich und emotional. Erzählt in wenigen Sätzen, wie alles begann – das verbindet und stimmt eure Gäste auf die Feier ein. Ein gemeinsames Foto macht den Abschnitt lebendig.
+
+### 9. FAQ-Bereich für häufige Fragen
+
+Ein FAQ-Bereich beantwortet typische Gästefragen vorab und spart euch unzählige Nachfragen. Typische Fragen für den FAQ-Bereich eurer Hochzeitswebsite sind: Sind Kinder willkommen? Gibt es vegetarisches Essen? Kann ich eine Begleitperson mitbringen? Wo kann ich parken? Gibt es einen Shuttle-Service?
+
+### 10. Kontaktdaten der Trauzeugen
+
+Falls am Hochzeitstag Fragen auftauchen, sollten eure Gäste nicht euch als Brautpaar kontaktieren müssen, sondern eure Trauzeugen. Hinterlegt deren Kontaktdaten auf der Hochzeitswebsite – als zentrale Ansprechpartner für organisatorische Fragen.
+
+![Hochzeitstafel mit Blumendekoration](https://images.unsplash.com/photo-1478146059778-26028b07395a?w=900&q=80)
+
+## Bonus-Inhalte, die eure Hochzeitswebsite besonders machen
+
+Neben den Pflichtinhalten gibt es optionale Elemente, die eure Hochzeitshomepage von einer reinen Infoseite zu einem echten Erlebnis machen: ein Foto-Upload für Gäste, damit nach der Feier alle Bilder an einem Ort landen. Ein digitales Gästebuch für persönliche Glückwünsche und Anekdoten. Ein Countdown-Timer, der die Vorfreude steigert. Und natürlich ein stimmungsvolles Design, das den Stil eurer Hochzeit widerspiegelt.
+
+## Was ihr weglassen könnt
+
+Nicht alles gehört auf eine Hochzeitswebsite. Vermeidet zu viele persönliche Details, die nicht alle Gäste interessieren. Verzichtet auf endlose Textwände – haltet eure Abschnitte kurz und scanbar. Und lasst politische oder kontroverse Themen außen vor. Eure Hochzeitshomepage ist eine Feier der Liebe, keine Debatte.
+
+## Fazit: Weniger ist mehr – aber das Wichtige darf nicht fehlen
+
+Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit dieser Checkliste habt ihr alles im Blick, was auf eure Hochzeitshomepage gehört. Strukturiert die Inhalte klar, nutzt ein ansprechendes Design und denkt daran: Eure Gäste werden diese Seite mehrfach besuchen – vom ersten Blick auf die Einladung bis zum Tag nach der Hochzeit.
+
+**Bei S&I. bekommt ihr eine Hochzeitswebsite mit allen Inhalten, die eure Gäste brauchen – professionell gestaltet, intuitiv bedienbar und mit eigenem Admin-Dashboard zum einfachen Pflegen eurer Texte und Infos.**
+    `,
+  },
+  {
+    slug: 'hochzeitswebsite-kosten-was-kostet',
+    title: 'Was kostet eine Hochzeitswebsite? Preise, Optionen und was sich wirklich lohnt',
+    description: 'Von kostenlos bis Premium: Wir zeigen euch, was eine Hochzeitswebsite kostet, welche Preismodelle es gibt und wann sich die Investition in eine professionelle Lösung wirklich auszahlt.',
+    date: '2026-03-15',
+    category: 'Ratgeber',
+    readTime: '8 min',
+    keywords: ['hochzeitswebsite kosten', 'was kostet hochzeitswebsite', 'hochzeitswebsite preis', 'hochzeitshomepage kostenlos oder premium', 'hochzeitswebsite budget'],
+    image: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=1200&q=80',
+    imageAlt: 'Brautpaar mit Hochzeitsbudget und Planung',
+    schema: {
+      "@type": "Article",
+      "headline": "Was kostet eine Hochzeitswebsite?",
+      "description": "Preisvergleich für Hochzeitswebsites: kostenlos, Baukasten, Premium.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "datePublished": "2026-03-15",
+    },
+    content: `
+## Was kostet eine Hochzeitswebsite wirklich?
+
+Die Hochzeit ist gebucht, das Budget steht – und dann kommt die Frage: **Lohnt sich eine eigene Hochzeitswebsite? Und was kostet das überhaupt?** Die Preisspanne reicht von komplett kostenlos bis zu mehreren tausend Euro für eine individuell programmierte Seite. Aber was bekommt ihr für euer Geld?
+
+Wir schlüsseln die verschiedenen Preismodelle auf und zeigen euch, wann sich welche Option lohnt – damit ihr die richtige Entscheidung für euer Hochzeitsbudget treffen könnt.
+
+![Elegante Hochzeitseinladung auf einem Tisch](https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=900&q=80)
+
+## Überblick: Die vier Preiskategorien
+
+### Kostenlose Hochzeitswebsites (0 €)
+
+Anbieter wie Zankyou, WeddyBird (Basis) oder EHEMOMENTE (Basis) bieten kostenlose Hochzeitshomepages an. Für das Budget klingt das erstmal perfekt – aber es gibt Einschränkungen.
+
+**Was ihr bekommt:** Eine Basis-Hochzeitswebsite mit Standardvorlagen, grundlegende Infoseiten, ein einfaches Rückmeldeformular und eine Subdomain (euer-name.anbieter.de).
+
+**Was fehlt:** Eigene Domain, Passwortschutz (oft nur Premium), Werbung des Anbieters auf eurer Seite, eingeschränkte Designoptionen und kein oder limitierter Foto-Upload. Die Seite sieht häufig aus wie hundert andere Hochzeitswebsites, weil alle dasselbe Template nutzen.
+
+**Geeignet für:** Paare mit sehr knappem Budget, die eine rein funktionale Informationsseite brauchen und keine Ansprüche an Design oder Individualität haben.
+
+### Homepage-Baukästen (5–30 € pro Monat)
+
+Anbieter wie Wix, Squarespace oder Jimdo bieten allgemeine Website-Baukästen mit Hochzeitsvorlagen an. Ihr zahlt monatlich und könnt die Seite relativ frei gestalten.
+
+**Was ihr bekommt:** Mehr Designfreiheit als bei kostenlosen Hochzeitsportalen, eigene Domain möglich (oft im ersten Jahr inklusive), kein Anbieterbanner.
+
+**Was ihr beachten solltet:** Die monatlichen Kosten summieren sich. Wenn ihr eure Hochzeitswebsite 12 Monate betreibt, landet ihr bei Wix schnell bei 200–360 € – und das für ein Baukasten-Template. Außerdem müsst ihr alle Funktionen wie RSVP-Formulare, Gästebuch und Passwortschutz selbst zusammenbauen, was Zeit und Einarbeitung kostet.
+
+**Geeignet für:** Technikaffine Paare, die Spaß am Gestalten haben und bereit sind, Zeit in die Einrichtung zu investieren.
+
+### Spezialisierte Hochzeitswebsite-Anbieter (50–200 €)
+
+Anbieter wie WeddyBird Premium, EHEMOMENTE Premium oder Loveplanr bieten kostenpflichtige Pakete mit mehr Funktionen und besserem Design als die kostenlosen Versionen.
+
+**Was ihr bekommt:** Erweiterte Vorlagen, Online-Rückmeldung mit Menüwahl, Passwortschutz, teilweise eigene Subdomains und weniger Werbung.
+
+**Was fehlt:** Wirklich individuelle Designs, eigene Top-Level-Domains (eure-namen.de), persönlicher Support. Die Templates bleiben Baukasten-Templates – eure Website sieht aus wie die vielen anderen Paare, die denselben Anbieter nutzen.
+
+**Geeignet für:** Paare, die mehr wollen als die kostenlose Basis, aber kein großes Budget für die Hochzeitswebsite einplanen möchten.
+
+### Premium-Hochzeitswebsites (ab 500 €)
+
+Hier gibt es zwei Varianten: Zum einen Agenturen und Freelancer, die eine komplett individuelle Hochzeitswebsite programmieren (ab ca. 2.000–5.000 €). Zum anderen spezialisierte Premium-Anbieter wie S&I., die professionell gestaltete Themes mit umfassenden Funktionen als Paket anbieten.
+
+**Was ihr bekommt:** Bei S&I. zum Beispiel: sechs handgefertigte Hochzeitsthemes, eigene Domain inklusive, vollwertiges RSVP-System mit Gästemanagement, Foto-Upload, Gästebuch, Passwortschutz und persönlichen Support aus Hamburg – alles zu einem Einmalpreis ab 1.290 €.
+
+**Der entscheidende Unterschied:** Eine Einmalzahlung statt monatlicher Kosten. Kein Ablaufdatum, kein Abo, keine versteckten Gebühren. Eure Hochzeitswebsite bleibt online, so lange ihr wollt.
+
+**Geeignet für:** Paare, die eine Website wollen, die so durchdacht ist wie ihre Hochzeit – individuell, hochwertig und ohne Kompromisse.
+
+![Brautstrauß mit weißen Rosen](https://images.unsplash.com/photo-1522057306606-8d84b0e10ec6?w=900&q=80)
+
+## Versteckte Kosten: Worauf ihr achten solltet
+
+Bei der Kalkulation der Kosten für eure Hochzeitswebsite werden einige Posten leicht übersehen. Eine eigene Domain kostet in der Regel 10–15 € pro Jahr – bei manchen Anbietern ist sie im ersten Jahr kostenlos, danach wird sie kostenpflichtig. Bei monatlichen Abos müsst ihr die Gesamtlaufzeit rechnen: 18 Monate Planungszeit mal 20 € pro Monat sind 360 €. Und Premium-Features wie Passwortschutz oder Foto-Upload kosten bei vielen Anbietern extra.
+
+## Die ehrliche Rechnung: Was kostet eine Papiereinladung im Vergleich?
+
+Bevor ihr über die Kosten einer Hochzeitswebsite nachdenkt, rechnet gegen, was die Alternative kostet. Für 100 Gäste kalkuliert man in etwa: Papiereinladungen (Design + Druck) 300–600 €, Rückumschläge mit Porto 80–120 €, Save-the-Date-Karten 100–200 €, Programmhefte 50–100 €. Zusammen also 530–1.020 € – für einmalig gedruckte Karten, die nicht aktualisiert werden können.
+
+Eine Hochzeitswebsite ersetzt all das digital, ist jederzeit aktualisierbar und bleibt als Erinnerung bestehen. So betrachtet ist selbst eine Premium-Hochzeitswebsite eine sinnvolle Investition in euer Hochzeitsbudget.
+
+## Unser Fazit: Was lohnt sich für wen?
+
+Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite braucht und kein Wert auf eigenes Design legt. Ein Baukasten-Abo lohnt sich für technikaffine Paare mit Zeit und Geduld. Und eine Premium-Lösung wie S&I. ist die richtige Wahl, wenn eure Hochzeitswebsite genauso besonders sein soll wie eure Feier – professionell gestaltet, funktional durchdacht und ohne monatliche Kosten.
+
+**Eure Hochzeit ist einmalig. Eure Website sollte es auch sein.**
+    `,
+  },
+  {
+    slug: 'hochzeitswebsite-qr-code-einladung',
+    title: 'Hochzeitseinladung mit QR-Code: So verknüpft ihr Print und eure Hochzeitswebsite',
+    description: 'QR-Code auf der Hochzeitseinladung? So verbindet ihr eure gedruckte Einladungskarte perfekt mit eurer digitalen Hochzeitswebsite – mit praktischer Anleitung.',
+    date: '2026-03-22',
+    category: 'Tipps',
+    readTime: '6 min',
+    keywords: ['hochzeitseinladung qr code', 'qr code hochzeitswebsite', 'hochzeitseinladung digital', 'hochzeitskarte qr code erstellen', 'einladung hochzeit link website'],
+    image: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1200&q=80',
+    imageAlt: 'Hochzeitseinladung mit QR-Code und Blumendekoration',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeitseinladung mit QR-Code: Print trifft auf eure Hochzeitswebsite",
+      "description": "So verbindet ihr eure Einladungskarte mit eurer Hochzeitswebsite per QR-Code.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "datePublished": "2026-03-22",
+    },
+    content: `
+## Print trifft Digital: Warum ein QR-Code auf eurer Hochzeitseinladung euer bester Freund wird
+
+Die klassische Papiereinladung hat ihren Charme – sie ist persönlich, haptisch und ein echtes Erinnerungsstück. Aber seien wir ehrlich: Auf einer Karte ist nie genug Platz für alles. Tagesablauf, Anfahrt, Dresscode, Menüwahl, Hotelempfehlungen, RSVP-Formular – das passt nicht auf eine A6-Karte.
+
+**Die Lösung: Ein QR-Code auf eurer Hochzeitseinladung, der direkt zu eurer Hochzeitswebsite führt.** So kombiniert ihr das Beste aus beiden Welten – die Eleganz einer gedruckten Hochzeitskarte mit dem vollen Funktionsumfang einer digitalen Hochzeitshomepage.
+
+![Einladungskarten mit elegantem Design](https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&q=80)
+
+## Wie funktioniert ein QR-Code auf der Hochzeitseinladung?
+
+Das Prinzip ist denkbar einfach: Ihr generiert einen QR-Code, der auf die URL eurer Hochzeitswebsite verweist. Diesen Code druckt ihr auf eure Einladungskarte. Eure Gäste scannen den QR-Code mit der Kamera ihres Smartphones – und landen direkt auf eurer persönlichen Hochzeitshomepage.
+
+Der gesamte Vorgang dauert für eure Gäste zwei bis drei Sekunden. Kein Eintippen langer URLs, kein Suchen in WhatsApp-Verläufen, kein Rätselraten. Und für euch als Brautpaar bedeutet das: Weniger Text auf der gedruckten Karte, mehr Platz für schönes Design – und trotzdem alle Informationen für eure Hochzeitsgäste verfügbar.
+
+## Schritt-für-Schritt: So erstellt ihr den QR-Code für eure Hochzeitswebsite
+
+**Schritt 1: Eure Hochzeitswebsite einrichten.** Bevor ihr den QR-Code erstellt, sollte eure Hochzeitshomepage stehen – zumindest mit den wichtigsten Basisinformationen. Den Content könnt ihr später jederzeit ergänzen.
+
+**Schritt 2: QR-Code generieren.** Nutzt einen kostenlosen QR-Code-Generator wie qr-code-generator.com oder canva.com. Gebt als Ziel-URL die Adresse eurer Hochzeitswebsite ein (zum Beispiel sarah-und-max.de). Klickt auf „Generieren" – fertig.
+
+**Schritt 3: Design anpassen.** Viele QR-Code-Generatoren erlauben es, die Farbe des Codes anzupassen. Haltet die Farbe dunkel auf hellem Grund – einige Smartphone-Kameras haben Probleme mit zu hellen oder kontrastarmen Codes.
+
+**Schritt 4: QR-Code auf die Einladungskarte setzen.** Platziert den Code an einer sichtbaren Stelle eurer Hochzeitseinladung, idealerweise mit einem kurzen Hinweistext wie: „Alle Details zu unserem großen Tag findet ihr hier:" oder „Scannt den Code für unsere Hochzeitswebsite."
+
+**Schritt 5: Testen!** Druckt eine Testkarte aus und scannt den Code mit verschiedenen Smartphones. Stellt sicher, dass der QR-Code in der gedruckten Größe lesbar ist. Eine Mindestgröße von 2 x 2 cm empfehlen wir als Richtwert.
+
+## Was auf die Einladungskarte gehört – und was auf die Website
+
+Die Faustformel lautet: Die gedruckte Hochzeitseinladung enthält die Emotion, die Hochzeitswebsite die Information.
+
+**Auf die Karte:** Eure Namen, das Datum, der Ort (ohne Detailadresse), eine persönliche Einladung in wenigen Sätzen, der QR-Code mit kurzem Hinweis und die RSVP-Frist.
+
+**Auf die Hochzeitswebsite:** Detaillierter Tagesablauf, genaue Anfahrtsbeschreibung mit Karte, Dresscode, Übernachtungstipps, Menüwahl, FAQ-Bereich, Geschenkewünsche, eure Geschichte als Paar und natürlich das digitale RSVP-Formular.
+
+![Detailaufnahme eines QR-Codes auf einer Karte](https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&q=80)
+
+## 5 Tipps für den perfekten QR-Code auf eurer Hochzeitseinladung
+
+**Kurze, merkbare Domain verwenden.** Statt einer kryptischen URL wie paare.anbieter.de/sarah-max-2026 ist eine eigene Domain wie sarah-und-max.de viel eleganter – und funktioniert auch, wenn jemand die URL doch manuell eintippen möchte.
+
+**Den QR-Code nicht zu klein drucken.** Mindestens 2 x 2 cm, besser 3 x 3 cm. Zu kleine Codes können von älteren Smartphones nicht zuverlässig gescannt werden.
+
+**Alternativ den Link als Text ergänzen.** Nicht alle Gäste sind mit QR-Codes vertraut – vor allem ältere Generationen tippen eine URL lieber ein. Ergänzt unter dem QR-Code die Webadresse in lesbarer Schrift.
+
+**Einen statischen QR-Code verwenden.** Statische Codes verlinken direkt auf eure URL und funktionieren unbegrenzt. Dynamische Codes (über Drittanbieter) können ablaufen oder erfordern ein Abo. Für eure Hochzeitseinladung reicht ein statischer Code völlig aus.
+
+**Den Code vor dem Druck testen.** Druckt eine Probekarte und testet den Scan mit mindestens drei verschiedenen Smartphones. Nichts ist ärgerlicher als ein QR-Code auf 200 gedruckten Hochzeitseinladungen, der nicht funktioniert.
+
+## Fazit: QR-Code als Brücke zwischen analoger und digitaler Hochzeit
+
+Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen der traditionellen Papiereinladung und eurer digitalen Hochzeitswebsite. Er spart Platz, spart euren Gästen Zeit und sorgt dafür, dass alle Informationen zu eurer Hochzeit jederzeit griffbereit sind – auf jedem Smartphone.
+
+**Bei S&I. bekommt ihr eine eigene Domain für eure Hochzeitswebsite, die sich perfekt für QR-Codes und Einladungskarten eignet – kurz, einprägsam und persönlich.**
+    `,
+  },
+  {
+    slug: 'hochzeitswebsite-eigene-domain-passwortschutz',
+    title: 'Eigene Domain und Passwortschutz: So wird eure Hochzeitswebsite persönlich und sicher',
+    description: 'Eigene Domain wie sarah-und-max.de statt Subdomain? Passwortschutz für eure Privatsphäre? Alles, was Brautpaare über Domain und Datenschutz ihrer Hochzeitswebsite wissen müssen.',
+    date: '2026-03-29',
+    category: 'Features',
+    readTime: '7 min',
+    keywords: ['hochzeitswebsite eigene domain', 'hochzeitswebsite passwortschutz', 'hochzeitshomepage domain registrieren', 'hochzeitswebsite privat', 'hochzeitswebsite datenschutz'],
+    image: 'https://images.unsplash.com/photo-1494955870715-979ca4f13bf0?w=1200&q=80',
+    imageAlt: 'Laptop mit Hochzeitswebsite und Schloss-Symbol',
+    schema: {
+      "@type": "Article",
+      "headline": "Eigene Domain und Passwortschutz für eure Hochzeitswebsite",
+      "description": "Warum eine eigene Domain und Passwortschutz für die Hochzeitswebsite wichtig sind.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "datePublished": "2026-03-29",
+    },
+    content: `
+## sarah-und-max.de statt name.anbieter.de: Warum eure Domain zählt
+
+Stellt euch zwei Szenarien vor: Auf eurer Hochzeitseinladung steht entweder die Webadresse **sarah-und-max.de** – oder **sarah-max.zankyou.com/wedding-2026**. Welche URL ist leichter zu merken? Welche würdet ihr euren Gästen auf einer schönen Einladungskarte drucken?
+
+Eine eigene Domain für eure Hochzeitswebsite ist mehr als ein technisches Detail. Sie ist der erste Eindruck, den eure Gäste von eurer digitalen Hochzeitswelt bekommen – persönlich, elegant und einprägsam.
+
+![Hochzeitspaar mit Laptop bei der Planung](https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&q=80)
+
+## Was ist der Unterschied zwischen eigener Domain und Subdomain?
+
+**Eigene Domain (Top-Level-Domain):** sarah-und-max.de – eine eigene Webadresse, die exklusiv euch gehört. Sie ist kurz, professionell und unverwechselbar. Eure Gäste tippen sie einfach in den Browser, und landen direkt auf eurer Hochzeitshomepage.
+
+**Subdomain des Anbieters:** sarah-max.anbieter.de oder anbieter.de/sarah-max – eure Hochzeitswebsite läuft unter der Domain des Plattform-Anbieters. Das funktioniert technisch, wirkt aber weniger persönlich und ist oft schwerer zu merken.
+
+Der Unterschied mag subtil wirken, aber für eure Hochzeitsgäste macht er einen spürbaren Unterschied. Eine eigene Domain signalisiert: Hier haben sich zwei Menschen Gedanken gemacht. Das wird eine besondere Hochzeit.
+
+## So sichert ihr euch eure Wunschdomain für die Hochzeitswebsite
+
+Die beliebtesten Formate für Hochzeitsdomains sind: vorname-und-vorname.de, sarah-liebt-max.de, hochzeit-mustermann.de oder sarahundmax2026.de.
+
+**Unser Tipp: Sichert euch eure Wunschdomain frühzeitig.** Beliebte Namenskombinationen sind schnell vergriffen – besonders bei häufigen Vornamen. Prüft die Verfügbarkeit und registriert die Domain, sobald ihr wisst, dass ihr eine Hochzeitswebsite wollt.
+
+Bei manchen Anbietern kostet eine eigene Domain 10–15 € extra pro Jahr. Bei S&I. ist die eigene Domain bereits im Paket enthalten – ohne Aufpreis.
+
+## Passwortschutz: Warum eure Hochzeitswebsite nicht öffentlich sein sollte
+
+Eure Hochzeitswebsite enthält persönliche Informationen: eure vollständigen Namen, das Datum und den Ort eurer Hochzeit, möglicherweise Fotos von euch und eurer Familie, Kontaktdaten der Trauzeugen und die Anschrift der Hochzeitslocation.
+
+**All das muss nicht öffentlich im Internet stehen.** Ein Passwortschutz sorgt dafür, dass nur eingeladene Gäste Zugang zu eurer Hochzeitshomepage haben. Und so funktioniert das in der Praxis:
+
+Ihr legt ein Passwort für eure Hochzeitswebsite fest – zum Beispiel euer Hochzeitsdatum, einen Kosenamen oder ein für eure Gäste nachvollziehbares Wort. Dieses Passwort teilt ihr zusammen mit der Einladung: auf der gedruckten Karte, per QR-Code oder mündlich. Wenn eure Gäste eure Webadresse aufrufen, werden sie einmalig nach dem Passwort gefragt – danach haben sie vollen Zugang.
+
+![Vorhängeschloss als Symbol für Datenschutz](https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=900&q=80)
+
+## Datenschutz und DSGVO: Was ihr als Brautpaar beachten müsst
+
+Wenn eure Hochzeitswebsite öffentlich zugänglich ist, gelten streng genommen die Regeln der DSGVO – besonders wenn ihr personenbezogene Daten eurer Gäste verarbeitet (zum Beispiel über ein RSVP-Formular). Das bedeutet: Ihr braucht mindestens ein Impressum und eine Datenschutzerklärung.
+
+**Der einfachste Weg, Datenschutzfragen zu vermeiden:** Setzt euren Passwortschutz aktiv ein. Eine passwortgeschützte Hochzeitswebsite ist nur für eingeladene Gäste zugänglich und nicht öffentlich indexiert – das reduziert die datenschutzrechtlichen Anforderungen erheblich.
+
+Bei S&I. ist der Passwortschutz in allen Paketen inklusive. Eure Hochzeitswebsite ist standardmäßig nicht öffentlich – nur Gäste mit dem Passwort sehen eure Inhalte, Fotos und RSVP-Daten.
+
+## Fazit: Persönlich und geschützt
+
+Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind die Grundlage einer durchdachten Hochzeitswebsite. Die Domain macht eure Hochzeitshomepage einprägsam und persönlich, der Passwortschutz schützt eure Privatsphäre und die Daten eurer Gäste.
+
+**Bei S&I. ist beides immer inklusive – weil wir finden, dass Persönlichkeit und Privatsphäre keine Aufpreise verdienen.**
+    `,
+  },
+  {
+    slug: 'hochzeitswebsite-design-beispiele-inspiration',
+    title: '6 Hochzeitswebsite-Designs, die begeistern: Stile, Beispiele und Inspiration für Brautpaare',
+    description: 'Von minimalistisch bis glamourös: Entdeckt 6 einzigartige Designstile für eure Hochzeitswebsite und findet das Theme, das zu eurer Hochzeit passt.',
+    date: '2026-04-05',
+    category: 'Design',
+    readTime: '8 min',
+    keywords: ['hochzeitswebsite design', 'hochzeitswebsite beispiele', 'hochzeitshomepage inspiration', 'hochzeitswebsite themes', 'hochzeitswebsite gestalten ideen', 'moderne hochzeitswebsite'],
+    image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80',
+    imageAlt: 'Verschiedene Designbeispiele für Hochzeitswebsites',
+    schema: {
+      "@type": "Article",
+      "headline": "6 Hochzeitswebsite-Designs, die begeistern",
+      "description": "Design-Inspiration für eure Hochzeitswebsite mit 6 unterschiedlichen Stilrichtungen.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.siwedding.de" },
+      "datePublished": "2026-04-05",
+    },
+    content: `
+## Eure Hochzeit hat einen Stil – eure Hochzeitswebsite sollte ihn widerspiegeln
+
+Das Design eurer Hochzeitswebsite ist das Erste, was eure Gäste sehen, wenn sie den Link öffnen oder den QR-Code auf eurer Einladungskarte scannen. Innerhalb von Sekunden entsteht ein Eindruck – und dieser Eindruck sollte die Atmosphäre eurer Hochzeit einfangen: die Farben, die Stimmung, die Persönlichkeit, die euch als Paar ausmacht.
+
+Leider sehen viele Hochzeitswebsites aus wie austauschbare Baukasten-Templates. Gleiche Schriften, gleiche Layouts, gleiche Stockfotos. **Eure Hochzeit ist einzigartig – euer Webdesign sollte es auch sein.**
+
+Wir stellen euch sechs verschiedene Designrichtungen für Hochzeitswebsites vor, die euch als Inspiration dienen – von redaktionell-minimalistisch bis glamourös-elegant.
+
+![Stimmungsvolle Hochzeitsdekoration](https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80)
+
+## 1. Editorial: Für moderne Paare mit Sinn für klares Design
+
+Das Editorial-Design ist inspiriert von hochwertigen Magazinen und Printmedien. Klare Typografie, großzügige Weißräume, eine reduzierte Farbpalette in Schwarz, Weiß und einem markanten Akzent – etwa einem satten Rot. Dieses Design wirkt sofort professionell und modern.
+
+**Passt zu:** Stadthochzeiten, Loft-Locations, Paare mit minimalistischem Geschmack, die klare Linien und typografische Eleganz schätzen.
+
+**Stimmung:** Selbstbewusst, urban, zeitgemäß.
+
+## 2. Botanical: Für Naturliebhaber und Gartenhochzeiten
+
+Organische Formen, sanfte Grüntöne, florale Illustrationen und eine warme, natürliche Atmosphäre – das Botanical-Design bringt die Schönheit der Natur auf eure Hochzeitshomepage. Die Typografie ist elegant und geschwungen, mit Serifenschriften, die an handgeschriebene Einladungen erinnern.
+
+**Passt zu:** Gartenhochzeiten, Scheunenhochzeiten, Feiern im Grünen, Boho-Stil, nachhaltigkeitsbewusste Paare.
+
+**Stimmung:** Romantisch, natürlich, warm.
+
+## 3. Contemporary: Für kreative Paare mit Mut zur Farbe
+
+Kräftige Farben, spielerische Typografie, geometrische Elemente und ein Hauch Neobrutalism – das Contemporary-Design ist für Paare, die sich nicht in Konventionen pressen lassen. Dieses Hochzeitswebsite-Design fällt auf, macht Spaß und hat Charakter.
+
+**Passt zu:** Kreative Hochzeiten, Festival-Weddings, Paare aus der Design- oder Kunstszene, bunte Feiern mit Persönlichkeit.
+
+**Stimmung:** Energetisch, fröhlich, unkonventionell.
+
+## 4. Luxe: Für elegante Feiern mit Glamour-Faktor
+
+Dunkle Hintergründe, goldene Akzente, Serifenschriften in Kursiv und eine insgesamt opulente Anmutung – das Luxe-Design strahlt Exklusivität und Raffinesse aus. Jedes Detail eurer Hochzeitswebsite vermittelt: Dies wird eine besondere Feier.
+
+**Passt zu:** Schloss- und Hotelhochzeiten, Abendveranstaltungen mit Gala-Charakter, Paare mit einem Faible für klassische Eleganz und Luxus.
+
+**Stimmung:** Glamourös, edel, zeitlos.
+
+![Elegante Hochzeitslocation bei Nacht](https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=80)
+
+## 5. Neon: Für Paare, die das Außergewöhnliche lieben
+
+Leuchtende Cyan-Akzente auf dunklem Grund, futuristische Typografie, schimmernde Glow-Effekte – das Neon-Design ist der mutigste Stil in der Sammlung. Dieses Hochzeitswebsite-Design ist definitiv nichts für jeden, aber genau das macht es besonders.
+
+**Passt zu:** Abendveranstaltungen, Clubhochzeiten, Paare mit Affinität zu Technologie und modernem Design, Feiern mit Wow-Faktor.
+
+**Stimmung:** Futuristisch, edgy, unvergesslich.
+
+## 6. Video: Für Paare, die ihre Geschichte in Bildern erzählen
+
+Das Video-Design stellt bewegte Bilder in den Mittelpunkt. Ein cinematischer Look, zurückhaltende Farben und eine filmische Typografie schaffen eine emotionale Atmosphäre auf eurer Hochzeitswebsite. Perfekt für Paare, die bereits ein Verlobungsvideo oder Paar-Shooting als Video haben.
+
+**Passt zu:** Paare mit professionellem Foto-/Videomaterial, Destination Weddings, emotionale Feiern mit cinematischer Atmosphäre.
+
+**Stimmung:** Filmisch, emotional, persönlich.
+
+## Wie findet ihr den richtigen Stil für eure Hochzeitswebsite?
+
+Fragt euch: Welche Atmosphäre soll unsere Hochzeit haben? Wie sieht unsere Einladungskarte aus? Welche Farben und Materialien dominieren unsere Hochzeitsdekoration? Die Antworten auf diese Fragen zeigen euch, welches Hochzeitswebsite-Design am besten zu euch passt.
+
+Ein Tipp: Eure Hochzeitswebsite muss nicht exakt zur Papeterie passen – aber der Stil sollte sich ergänzen. Wenn eure Einladungskarten minimalistisch in Schwarz-Weiß gehalten sind, passt ein Editorial-Theme besser als ein buntes Contemporary-Design.
+
+## Fazit: Design macht den Unterschied
+
+Das Design eurer Hochzeitswebsite ist kein oberflächliches Detail – es ist der erste Eindruck, den eure Gäste von eurer Feier bekommen. Ein durchdachtes, professionelles Webdesign zeigt: Hier wird eine besondere Hochzeit gefeiert, auf die sich Nachdenken und Herzblut gelohnt haben.
+
+**Bei S&I. wählt ihr aus sechs professionell gestalteten Hochzeitsthemes – jedes mit über 25 individuellen Komponenten, perfekt abgestimmt auf verschiedene Hochzeitsstile. Kein Baukasten, kein Einheitsbrei, sondern echtes Designhandwerk.**
+    `,
+  }
 ];
 
 export default blogPosts;
