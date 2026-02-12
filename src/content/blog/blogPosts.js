@@ -287,7 +287,7 @@ S&I. ist ein auf hochwertige Hochzeitswebsites spezialisierter Anbieter aus Hamb
 **Was S&I. von anderen Anbietern unterscheidet:**
 
 - **Eigene Domain immer inklusive** – eure-namen.de, ohne Aufpreis und ohne Subdomain eines Anbieters
-- **6 handgefertigte Hochzeitsthemes** statt generischer Baukasten-Templates – jedes Theme ist von professionellen Designern gestaltet
+- **Handgefertigte Hochzeitsthemes** statt generischer Baukasten-Templates – jedes Theme ist von professionellen Designern gestaltet
 - **Vollwertiges RSVP-System** mit Menüwahl, Duplikate-Erkennung, Begleitpersonen und automatischen Erinnerungen per E-Mail
 - **Gästeliste mit RSVP-Abgleich** – ladet eure komplette Gästeliste hoch und seht sofort, wer noch nicht geantwortet hat
 - **Foto-Upload und Gästebuch** für eure Hochzeitsgäste
@@ -699,7 +699,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
   {
     slug: 'hochzeitswebsite-design-beispiele-inspiration',
     title: '6 Hochzeitswebsite-Designs, die begeistern: Stile, Beispiele und Inspiration für Brautpaare',
-    description: 'Von minimalistisch bis glamourös: Entdeckt 6 einzigartige Designstile für eure Hochzeitswebsite und findet das Theme, das zu eurer Hochzeit passt.',
+    description: 'Von minimalistisch bis glamourös: Entdeckt Einzigartige Designstile für eure Hochzeitswebsite und findet das Theme, das zu eurer Hochzeit passt.',
     date: '2026-04-05',
     category: 'Design',
     tags: ['Inspiration', 'Features'],
@@ -864,7 +864,7 @@ Für eure Gäste ist die Musikwunschliste mehr als ein praktisches Tool – **es
 
 Und wenn dann um Mitternacht genau der Song läuft, den die beste Freundin sich gewünscht hat, und alle zusammen losschreien – dann wisst ihr, dass sich die Musikwunschliste gelohnt hat.
 
-**Bei S&I. ist das Musikwünsche-Feature als Komponente in allen sechs Themes verfügbar – perfekt ins jeweilige Design integriert. Einfach im Admin-Dashboard aktivieren, und eure Gäste können ab sofort ihre Songs beitragen.**
+**Bei S&I. ist das Musikwünsche-Feature als Komponente in allen Themes verfügbar – perfekt ins jeweilige Design integriert. Einfach im Admin-Dashboard aktivieren, und eure Gäste können ab sofort ihre Songs beitragen.**
     `,
   },
   {
@@ -1156,7 +1156,7 @@ Ein oft vergessener Aspekt: **Was passiert am Morgen nach der Hochzeit?** Wenn v
 
 Erwähnt das auf eurer Website, wenn ihr so etwas plant. Es ist ein wunderschöner Abschluss und ein weiterer Grund, warum die Hotel-Seite auf eurer Hochzeitswebsite mehr ist als nur ein praktischer Service.
 
-**Bei S&I. ist die Hotel-Komponente in allen sechs Themes verfügbar – mit individuellen Karten, Entfernungsangaben und Direktlinks. Damit sich eure Gäste nicht nur auf eure Hochzeit freuen, sondern auf das ganze Wochenende.**
+**Bei S&I. ist die Hotel-Komponente in allen Themes verfügbar – mit individuellen Karten, Entfernungsangaben und Direktlinks. Damit sich eure Gäste nicht nur auf eure Hochzeit freuen, sondern auf das ganze Wochenende.**
     `,
   },
   {

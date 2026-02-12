@@ -54,7 +54,7 @@ function DesignShowcase() {
     <Section ref={sectionRef} $themeId={currentTheme} id="designs">
       <Container>
         <Header $visible={isVisible} $themeId={currentTheme}>
-          <Eyebrow $themeId={currentTheme}>— 6 einzigartige Designs —</Eyebrow>
+          <Eyebrow $themeId={currentTheme}>— Einzigartige Designs —</Eyebrow>
           <Title $themeId={currentTheme}>Wählt euren Stil</Title>
           <Subtitle $themeId={currentTheme}>
             Jedes Design erzählt eure Geschichte auf seine eigene Art

@@ -22,7 +22,7 @@ const neonPulse = keyframes`
 // Steps Data
 const steps = [
   { num: '01', title: 'Anfrage senden', desc: 'Erzählt uns von eurer Hochzeit und euren Wünschen' },
-  { num: '02', title: 'Design wählen', desc: 'Wählt euer Lieblingsdesign aus 6 einzigartigen Themes' },
+  { num: '02', title: 'Design wählen', desc: 'Wählt euer Lieblingsdesign aus unseren einzigartigen Themes' },
   { num: '03', title: 'Inhalte liefern', desc: 'Füllt das Formular mit euren Texten und Bildern aus' },
   { num: '04', title: 'Website live!', desc: 'Eure Traumwebsite geht online – bereit für eure Gäste' },
 ];

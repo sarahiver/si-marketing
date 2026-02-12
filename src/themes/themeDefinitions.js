@@ -111,9 +111,27 @@ export const themes = {
       border: '#E8E4DE',
     },
   },
+
+  classic: {
+    id: 'classic',
+    name: 'Classic',
+    description: 'Warm & Zeitlos',
+    fonts: {
+      heading: "'Cormorant Garamond', Georgia, serif",
+      body: "'Josefin Sans', -apple-system, sans-serif",
+    },
+    colors: {
+      bg: '#F5F0EB',
+      bgAlt: '#FFFDF9',
+      text: '#3A3A3A',
+      textMuted: '#7A7A7A',
+      accent: '#C4A87C',
+      border: 'rgba(196, 168, 124, 0.25)',
+    },
+  },
 };
 
-export const themeOrder = ['editorial', 'botanical', 'contemporary', 'luxe', 'neon', 'video'];
+export const themeOrder = ['editorial', 'botanical', 'contemporary', 'luxe', 'neon', 'video', 'classic'];
 export const isDarkTheme = (id) => id === 'neon';
 export const getTheme = (id) => themes[id] || themes.editorial;
 

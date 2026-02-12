@@ -28,9 +28,9 @@ const USPS = [
   },
   {
     icon: '🎨',
-    title: '6 Designwelten — angepasst an euren Stil',
+    title: 'Designwelten — angepasst an euren Stil',
     desc: 'Ob elegant, modern oder verspielt: Wir passen jedes Design individuell an eure Farben, Fotos und Geschichte an. Kein Theme bleibt „Standard".',
-    short: '6 Themes, individuell angepasst',
+    short: 'Themes, individuell angepasst',
   },
   {
     icon: '💬',

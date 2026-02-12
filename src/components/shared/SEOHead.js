@@ -8,7 +8,7 @@ const DEFAULT_OG_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/v1
 
 const SEOHead = ({
   title = 'S&I. — Premium Hochzeitswebsites',
-  description = 'S&I. — Premium Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. 6 einzigartige Themes. Ab 1.290€. Aus Hamburg.',
+  description = 'S&I. — Premium Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 1.290€. Aus Hamburg.',
   path = '/',
   image = DEFAULT_OG_IMAGE,
   type = 'website',

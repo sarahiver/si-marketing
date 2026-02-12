@@ -298,7 +298,7 @@ export const marketingThemes = {
 };
 
 // ============================================
-// THEME ORDER - Für Switcher (6 Themes, keine Fake-Themes mehr)
+// THEME ORDER - Für Switcher (Themes, keine Fake-Themes mehr)
 // ============================================
 export const themeOrder = [
   "editorial",

@@ -1,6 +1,6 @@
 // src/components/marketing/PricingSection.js
 // Erweiterte Pricing Section mit Addons/Zusatzoptionen
-// 6 Theme-spezifische Layouts
+// Theme-spezifische Layouts
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';

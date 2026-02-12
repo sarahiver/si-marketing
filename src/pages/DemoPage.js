@@ -41,6 +41,12 @@ const THEMES = {
     url: `${MULTI_THEME_BASE}/demo?theme=video`,
     vibe: 'Cineastisch & dramatisch',
     color: '#0d0d0d'
+  },
+  classic: {
+    name: 'Classic',
+    url: `${MULTI_THEME_BASE}/demo?theme=classic`,
+    vibe: 'Warm & zeitlos',
+    color: '#3A3A3A'
   }
 };
 

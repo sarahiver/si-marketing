@@ -1,6 +1,6 @@
 // src/components/marketing/WhyUsSection.js
 // "Warum S&I." - Vergleichssektion: S&I vs Agentur, KI, DIY
-// 6 Theme-Varianten mit jeweils passendem Design
+// Theme-Varianten mit jeweils passendem Design
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
