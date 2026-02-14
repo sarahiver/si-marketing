@@ -1277,7 +1277,7 @@ const ClassicTitle = styled.h2`
 const ClassicScript = styled.p`
   font-family: 'Mrs Saint Delafield', cursive;
   font-size: clamp(1.5rem, 3vw, 2rem);
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 2rem;
 `;
 
@@ -1306,7 +1306,7 @@ const ClassicFeature = styled.span`
   color: #1A1A1A;
   padding: 0.5rem 1.2rem;
   border: 1px solid rgba(0,0,0,0.08);
-  background: rgba(196,168,124,0.06);
+  background: rgba(0,0,0,0.02);
 `;
 
 const ClassicCTA = styled.a`
@@ -1359,11 +1359,11 @@ const ClassicDemoLink = styled.a`
   font-weight: ${p => p.$active ? '500' : '300'};
   letter-spacing: 0.05em;
   color: ${p => p.$active ? '#1A1A1A' : '#999'};
-  border-bottom: 1px solid ${p => p.$active ? '#C4A87C' : 'transparent'};
+  border-bottom: 1px solid ${p => p.$active ? '#999' : 'transparent'};
   padding: 0.3rem 0.5rem;
   text-decoration: none;
   transition: all 0.3s;
-  &:hover { color: #1A1A1A; border-color: #C4A87C; }
+  &:hover { color: #1A1A1A; border-color: #999; }
 `;
 
 // ============================================

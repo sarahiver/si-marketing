@@ -138,7 +138,7 @@ const EditorialText = styled.p`
 const ClassicStoerer = styled(StoererBadge)`
   background: #F5F0EB;
   color: #1A1A1A;
-  border: 1px solid #C4A87C;
+  border: 1px solid #999;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   animation: ${pulse} 4s ease-in-out infinite;
 `;
@@ -151,7 +151,7 @@ const ClassicTitle = styled.div`
 
 const ClassicBadge = styled.span`
   display: inline-block;
-  background: #C4A87C;
+  background: #1A1A1A;
   color: #FDFCFA;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.7rem;

@@ -206,7 +206,7 @@ const ClassicHeader = styled.div`
 
 const ClassicStar = styled.div`
   font-size: 1.5rem;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -215,7 +215,7 @@ const ClassicEyebrow = styled.p`
   font-size: 0.7rem;
   font-weight: 300;
   letter-spacing: 0.3em;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -258,7 +258,7 @@ const ClassicGrid = styled.div`
 
 const ClassicCard = styled.div`
   background: ${p => p.$included ? '#fff' : '#F5F0EB'};
-  border: ${p => p.$included ? '2px solid #C4A87C' : '1px solid rgba(196, 168, 124, 0.3)'};
+  border: ${p => p.$included ? '2px solid #999999' : '1px solid rgba(0,0,0,0.08)'};
   padding: 1.5rem 1rem;
   text-align: center;
   transition: all 0.3s ease;
@@ -279,7 +279,7 @@ const ClassicCard = styled.div`
       font-size: 0.5rem;
       font-weight: 300;
       letter-spacing: 0.05em;
-      color: #C4A87C;
+      color: #999999;
     }
   `}
 

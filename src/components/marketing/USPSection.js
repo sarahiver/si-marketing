@@ -259,7 +259,7 @@ const ClassicEyebrow = styled.p`
   font-size: 0.7rem;
   font-weight: 300;
   letter-spacing: 0.25em;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -292,7 +292,7 @@ const ClassicRow = styled.div`
   grid-template-columns: ${p => p.$reverse ? '1fr 100px' : '100px 1fr'};
   gap: 3rem;
   padding: 3rem 0;
-  border-bottom: 1px solid rgba(196, 168, 124, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   align-items: start;
 
   &:last-child { border-bottom: none; }
@@ -307,7 +307,7 @@ const ClassicNum = styled.div`
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 5rem;
   font-weight: 300;
-  color: rgba(196, 168, 124, 0.12);
+  color: rgba(0, 0, 0, 0.04);
   line-height: 1;
   text-align: ${p => p.$reverse ? 'left' : 'right'};
   order: ${p => p.$reverse ? 2 : 1};
@@ -360,7 +360,7 @@ const ClassicRSVPTitle = styled.h3`
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.5rem;
   font-weight: 400;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -1209,7 +1209,7 @@ const USPSection = () => {
             </CTAHeadline>
             <CTAButton
               onClick={scrollToThemes}
-              style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, letterSpacing: '0.2em', color: '#FDFCFA', background: '#C4A87C', border: 'none' }}
+              style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, letterSpacing: '0.2em', color: '#FDFCFA', background: '#1A1A1A', border: 'none' }}
             >
               {CTA_TEXT.button}
             </CTAButton>

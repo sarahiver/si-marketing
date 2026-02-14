@@ -305,18 +305,18 @@ export const marketingThemes = {
     description: "Warm & Zeitlos — Elegante Tradition",
     isDark: false,
     colors: {
-      primary: "#C4A87C",         // Warm Gold
+      primary: "#1A1A1A",         // Dark buttons
       secondary: "#1A1A1A",
-      accent: "#C4A87C",
+      accent: "#999999",          // Muted gray (matching wedding theme --c-accent)
       background: "#FDFCFA",      // Warm Cream
-      backgroundAlt: "#F5F0EB",   // Darker Cream
+      backgroundAlt: "#F5F2EE",   // Darker Cream
       surface: "#FFFFFF",
       text: "#1A1A1A",
       textLight: "#FDFCFA",
       textSecondary: "#555555",
       textMuted: "#999999",
       border: "rgba(0,0,0,0.06)",
-      borderHover: "#C4A87C",
+      borderHover: "#999999",
     },
     fonts: {
       headline: "'Cormorant Garamond', Georgia, serif",
@@ -333,7 +333,7 @@ export const marketingThemes = {
       borderRadius: "0",
       borderWidth: "1px",
       dividerWidth: "1px",
-      dividerColor: "#C4A87C",
+      dividerColor: "rgba(0,0,0,0.1)",
       buttonStyle: "solid",
       imageFilter: "grayscale(40%)",
       shadowStyle: "subtle",

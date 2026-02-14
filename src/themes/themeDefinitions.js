@@ -121,12 +121,12 @@ export const themes = {
       body: "'Josefin Sans', -apple-system, sans-serif",
     },
     colors: {
-      bg: '#F5F0EB',
-      bgAlt: '#FFFDF9',
-      text: '#3A3A3A',
-      textMuted: '#7A7A7A',
-      accent: '#C4A87C',
-      border: 'rgba(196, 168, 124, 0.25)',
+      bg: '#FDFCFA',
+      bgAlt: '#F5F2EE',
+      text: '#1A1A1A',
+      textMuted: '#999999',
+      accent: '#999999',
+      border: 'rgba(0, 0, 0, 0.06)',
     },
   },
 };

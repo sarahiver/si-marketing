@@ -389,7 +389,7 @@ const ClassicEyebrow = styled.p`
   font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -402,7 +402,7 @@ const ClassicTitle = styled.h2`
 
 const ClassicCard = styled.div`
   background: #fff;
-  border: ${p => p.$pop ? '1px solid #C4A87C' : '1px solid rgba(0,0,0,0.06)'};
+  border: ${p => p.$pop ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(0,0,0,0.06)'};
   padding: 2.5rem;
   position: relative;
   transition: all 0.4s ease;
@@ -416,7 +416,7 @@ const ClassicCard = styled.div`
       top: -12px;
       left: 50%;
       transform: translateX(-50%);
-      background: #C4A87C;
+      background: #1A1A1A;
       color: #fff;
       font-family: 'Josefin Sans', sans-serif;
       font-size: 0.65rem;
@@ -445,7 +445,7 @@ const ClassicCardPrice = styled.div`
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 2.5rem;
   font-weight: 300;
-  color: ${p => p.$pop ? '#C4A87C' : '#1A1A1A'};
+  color: ${p => p.$pop ? '#999999' : '#1A1A1A'};
   margin-bottom: 0.25rem;
   span { font-size: 1.2rem; }
 `;
@@ -476,7 +476,7 @@ const ClassicFeature = styled.li`
 
   &::before {
     content: '\u2014';
-    color: #C4A87C;
+    color: #999999;
     flex-shrink: 0;
   }
 `;
@@ -507,8 +507,8 @@ const ClassicAddonInfo = styled.div`
 const ClassicAddonCheck = styled.div`
   width: 16px;
   height: 16px;
-  border: 1px solid ${p => p.$included ? '#C4A87C' : '#CCC'};
-  background: ${p => p.$included ? '#C4A87C' : 'transparent'};
+  border: 1px solid ${p => p.$included ? '#999999' : '#CCC'};
+  background: ${p => p.$included ? '#1A1A1A' : 'transparent'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -526,7 +526,7 @@ const ClassicAddonName = styled.span`
 const ClassicAddonPrice = styled.span`
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 0.9rem;
-  color: ${p => p.$included ? '#C4A87C' : '#666'};
+  color: ${p => p.$included ? '#999999' : '#666'};
 `;
 
 const ClassicCTA = styled.button`
@@ -544,9 +544,9 @@ const ClassicCTA = styled.button`
   border: none;
 
   ${p => p.$pop ? css`
-    background: #C4A87C;
+    background: #1A1A1A;
     color: #fff;
-    &:hover { background: #B89A6E; }
+    &:hover { background: #333333; }
   ` : css`
     background: transparent;
     color: #1A1A1A;
@@ -1469,10 +1469,10 @@ const PricingSection = () => {
         };
       case 'classic':
         return {
-          box: { background: '#fff', border: '1px solid rgba(196,168,124,0.3)' },
+          box: { background: '#fff', border: '1px solid rgba(0,0,0,0.08)' },
           title: { fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem', fontWeight: 300, color: '#1A1A1A' },
           items: { fontFamily: "'Josefin Sans', sans-serif", fontSize: '0.9rem', fontWeight: 300, color: '#555' },
-          note: { fontFamily: "'Cormorant Garamond', serif", fontSize: '0.95rem', fontStyle: 'italic', color: '#C4A87C' }
+          note: { fontFamily: "'Cormorant Garamond', serif", fontSize: '0.95rem', fontStyle: 'italic', color: '#999999' }
         };
       case 'botanical':
         return {

@@ -80,7 +80,7 @@ const Feature = styled.div`
     content: '✓'; font-weight: 600;
     ${p => p.$themeId === 'video' && css`color: #B8976A;`}
     ${p => p.$themeId === 'editorial' && css`color: #FFFFFF;`}
-    ${p => p.$themeId === 'classic' && css`color: #C4A87C;`}
+    ${p => p.$themeId === 'classic' && css`color: #999999;`}
     ${p => p.$themeId === 'botanical' && css`color: #8B9D83;`}
     ${p => p.$themeId === 'contemporary' && css`color: #FF6B6B;`}
     ${p => p.$themeId === 'luxe' && css`color: #D4AF37;`}
@@ -147,7 +147,7 @@ const Arrow = styled.div`
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.5rem;
   ${p => p.$themeId === 'video' && css`color: #B8976A;`}
   ${p => p.$themeId === 'editorial' && css`color: #FFFFFF;`}
-  ${p => p.$themeId === 'classic' && css`color: #C4A87C;`}
+  ${p => p.$themeId === 'classic' && css`color: #999999;`}
   ${p => p.$themeId === 'botanical' && css`color: #8B9D83;`}
   ${p => p.$themeId === 'contemporary' && css`color: #FF6B6B;`}
   ${p => p.$themeId === 'luxe' && css`color: #D4AF37;`}
@@ -169,7 +169,7 @@ const Label = styled.div`
 const themeAccents = {
   video: { accent: '#B8976A', accentAlt: '#D4AF37', muted: 'rgba(255,255,255,0.4)' },
   editorial: { accent: '#1A1A1A', accentAlt: '#666', muted: '#999' },
-  classic: { accent: '#C4A87C', accentAlt: '#D4AF37', muted: '#999' },
+  classic: { accent: '#999999', accentAlt: '#666666', muted: '#999' },
   botanical: { accent: '#8B9D83', accentAlt: '#A8B8A0', muted: '#7D9D7C' },
   contemporary: { accent: '#FF6B6B', accentAlt: '#4ECDC4', muted: '#999' },
   luxe: { accent: '#D4AF37', accentAlt: '#F4D03F', muted: 'rgba(255,255,255,0.3)' },

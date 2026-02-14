@@ -48,7 +48,7 @@ const SwitcherContainer = styled.div`
   `}
   ${p => p.$themeId === 'classic' && css`
     background: rgba(253,252,250,0.97);
-    border: 1px solid rgba(196,168,124,0.3);
+    border: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   `}
 
@@ -72,7 +72,7 @@ const Label = styled.span`
   ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #0D0D0D;`}
   ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: rgba(212,175,55,0.6);`}
   ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #00ffff;`}
-  ${p => p.$themeId === 'classic' && css`font-family: 'Josefin Sans', sans-serif; color: #C4A87C;`}
+  ${p => p.$themeId === 'classic' && css`font-family: 'Josefin Sans', sans-serif; color: #999999;`}
 `;
 
 const ThemeButtons = styled.div`
@@ -100,7 +100,7 @@ const ThemeButton = styled.button`
                     p.$themeId === 'video' || p.$themeId === 'luxe' ? '#D4AF37' :
                     p.$themeId === 'botanical' ? '#8B9D83' :
                     p.$themeId === 'contemporary' ? '#FF6B6B' :
-                    p.$themeId === 'classic' ? '#C4A87C' : '#1A1A1A'};
+                    p.$themeId === 'classic' ? '#999999' : '#1A1A1A'};
     &::after {
       content: '✓';
       position: absolute;
@@ -121,7 +121,7 @@ const themes = [
   { id: 'contemporary', color: '#FF6B6B', border: '#FF6B6B' },
   { id: 'luxe', color: '#1A1520', border: '#D4AF37' },
   { id: 'neon', color: '#00ffff', border: '#00ffff' },
-  { id: 'classic', color: '#F5F0EB', border: '#C4A87C' }
+  { id: 'classic', color: '#F5F0EB', border: '#999999' }
 ];
 
 function ThemeSwitcher() {

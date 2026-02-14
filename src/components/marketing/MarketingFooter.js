@@ -131,7 +131,7 @@ const EditorialLegalLink = styled(Link)`
 // ============================================
 const ClassicFooter = styled(FooterBase)`
   background: #F5F0EB;
-  border-top: 1px solid rgba(196, 168, 124, 0.3);
+  border-top: 1px solid rgba(0,0,0,0.08);
 `;
 
 const ClassicInner = styled.div`
@@ -164,7 +164,7 @@ const ClassicColumnTitle = styled.span`
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1.5rem;
 `;
 
@@ -177,14 +177,14 @@ const ClassicLink = styled.a`
   margin-bottom: 0.75rem;
   transition: all 0.2s ease;
 
-  &:hover { color: #C4A87C; padding-left: 0.5rem; }
+  &:hover { color: #999999; padding-left: 0.5rem; }
 `;
 
 const ClassicBottom = styled.div`
   max-width: 1400px;
   margin: 3rem auto 0;
   padding-top: 2rem;
-  border-top: 1px solid rgba(196, 168, 124, 0.2);
+  border-top: 1px solid rgba(0,0,0,0.06);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -209,7 +209,7 @@ const ClassicLegalLink = styled(Link)`
   font-size: 0.75rem;
   font-weight: 300;
   color: #999;
-  &:hover { color: #C4A87C; }
+  &:hover { color: #999999; }
 `;
 
 // ============================================

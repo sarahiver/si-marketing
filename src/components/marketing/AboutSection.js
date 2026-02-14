@@ -273,7 +273,7 @@ const ClassicEyebrow = styled.p`
   font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.2em;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -311,7 +311,7 @@ const ClassicQuote = styled.blockquote`
   color: #1A1A1A;
   margin: 2rem 0;
   padding-left: 1.5rem;
-  border-left: 4px solid #C4A87C;
+  border-left: 4px solid rgba(0,0,0,0.1);
 `;
 
 const ClassicTeam = styled.div`
@@ -370,7 +370,7 @@ const ClassicTeamRole = styled.p`
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1rem;
   font-style: italic;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -1218,7 +1218,7 @@ const AboutSection = () => {
           </CTAHeadline>
           <CTAButton
             onClick={scrollToContact}
-            style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#FDFCFA', background: '#C4A87C', border: 'none' }}
+            style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#FDFCFA', background: '#1A1A1A', border: 'none' }}
           >
             {CTA.button}
           </CTAButton>

@@ -1097,7 +1097,7 @@ const ClassicEyebrow = styled.p`
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1.25rem;
 `;
 
@@ -1137,7 +1137,7 @@ const ClassicGrid = styled.div`
 
 const ClassicCard = styled.div`
   background: #FDFCFA;
-  border-left: 2px solid #C4A87C;
+  border-left: 2px solid rgba(0,0,0,0.1);
   padding: 2.25rem 2rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   transition: all 0.35s ease;
@@ -1160,7 +1160,7 @@ const ClassicCardLabel = styled.h3`
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 0.6rem;
 `;
 
@@ -1192,7 +1192,7 @@ const ClassicCardSolution = styled.p`
 
   &::before {
     content: 'Bei uns: ';
-    color: #C4A87C;
+    color: #999999;
     font-weight: 600;
   }
 `;
@@ -1233,15 +1233,15 @@ const ClassicCTA = styled.button`
   font-weight: 400;
   letter-spacing: 0.1em;
   padding: 0.95rem 2.25rem;
-  border: 1.5px solid ${p => p.$primary ? '#C4A87C' : '#C4A87C'};
-  background: ${p => p.$primary ? '#C4A87C' : 'transparent'};
-  color: ${p => p.$primary ? '#FDFCFA' : '#C4A87C'};
+  border: 1.5px solid ${p => p.$primary ? '#1A1A1A' : '#1A1A1A'};
+  background: ${p => p.$primary ? '#1A1A1A' : 'transparent'};
+  color: ${p => p.$primary ? '#FDFCFA' : '#1A1A1A'};
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background: ${p => p.$primary ? '#b89a6e' : 'rgba(196,168,124,0.08)'};
-    border-color: ${p => p.$primary ? '#b89a6e' : '#b89a6e'};
+    background: ${p => p.$primary ? '#333333' : 'rgba(0,0,0,0.04)'};
+    border-color: ${p => p.$primary ? '#333333' : '#333333'};
   }
 `;
 

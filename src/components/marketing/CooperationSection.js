@@ -107,7 +107,7 @@ const ClassicEyebrow = styled.p`
   font-size: 0.7rem;
   font-weight: 300;
   letter-spacing: 0.25em;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -144,13 +144,13 @@ const ClassicButton = styled.button`
   letter-spacing: 0.15em;
   padding: 1rem 2.5rem;
   color: #FDFCFA;
-  background: #C4A87C;
+  background: #1A1A1A;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background: #b0956a;
+    background: #333333;
   }
 `;
 

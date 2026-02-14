@@ -100,7 +100,7 @@ const EditorialItemDesc = styled.p`
 // CLASSIC - Alternating Image/Text Rows (warm, refined)
 // ============================================
 const ClassicSection = styled(Section)`background: #FDFCFA;`;
-const ClassicEyebrow = styled.p`font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: #C4A87C; margin-bottom: 1rem;`;
+const ClassicEyebrow = styled.p`font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: #999999; margin-bottom: 1rem;`;
 const ClassicTitle = styled.h2`font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; color: #1A1A1A;`;
 const ClassicSubtitle = styled.p`font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1rem; font-style: italic; color: #555555; max-width: 500px; margin: 1rem auto 0;`;
 
@@ -146,7 +146,7 @@ const ClassicNum = styled.span`
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 4rem;
   font-weight: 300;
-  color: rgba(196, 168, 124, 0.15);
+  color: rgba(0, 0, 0, 0.04);
   line-height: 1;
   margin-bottom: 1rem;
 `;

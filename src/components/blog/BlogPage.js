@@ -38,7 +38,7 @@ const getSecondaryText = (theme) => {
 const getAccent = (theme) => {
   const accents = {
     editorial: '#C41E3A', botanical: 'rgba(45,90,60,0.8)', contemporary: '#FF6B6B',
-    luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE', classic: '#C4A87C',
+    luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE', classic: '#999999',
   };
   return accents[theme] || '#C41E3A';
 };
@@ -57,7 +57,7 @@ const getCardBorder = (theme) => {
     editorial: '#E5E5E5', botanical: 'rgba(255,255,255,0.15)',
     contemporary: '#0D0D0D', luxe: 'rgba(201,169,98,0.25)',
     neon: 'rgba(0,255,255,0.3)', video: 'rgba(107,140,174,0.3)',
-    classic: 'rgba(196,168,124,0.25)',
+    classic: 'rgba(0,0,0,0.06)',
   };
   return borders[theme] || '#E5E5E5';
 };

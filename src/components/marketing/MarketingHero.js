@@ -938,7 +938,7 @@ const ClassicScript = styled.span`
   font-family: 'Mrs Saint Delafield', cursive;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 400;
-  color: #C4A87C;
+  color: #999999;
   display: block;
   margin-bottom: 0.5rem;
   animation: ${fadeInUp} 0.8s ease 0.15s both;
@@ -967,7 +967,7 @@ const ClassicSubtitle = styled.p`
 const ClassicDivider = styled.div`
   width: 60px;
   height: 1px;
-  background: #C4A87C;
+  background: #999999;
   margin: 1.5rem auto;
   animation: ${fadeInUp} 0.8s ease 0.5s both;
 `;
@@ -992,13 +992,13 @@ const ClassicCTA = styled.button`
   transition: all 0.4s ease;
 
   ${p => p.$primary ? css`
-    background: #C4A87C;
+    background: #1A1A1A;
     color: #FFFFFF;
-    border: 1px solid #C4A87C;
+    border: 1px solid #1A1A1A;
 
     &:hover {
-      background: #B89A6E;
-      border-color: #B89A6E;
+      background: #333333;
+      border-color: #333333;
     }
   ` : css`
     background: transparent;
@@ -1006,8 +1006,8 @@ const ClassicCTA = styled.button`
     border: 1px solid rgba(255,255,255,0.4);
 
     &:hover {
-      border-color: #C4A87C;
-      color: #C4A87C;
+      border-color: #999999;
+      color: #999999;
     }
   `}
 `;
@@ -1037,7 +1037,7 @@ const ClassicScroll = styled.div`
     content: '';
     width: 1px;
     height: 40px;
-    background: linear-gradient(to bottom, rgba(196,168,124,0.5), transparent);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15), transparent);
     animation: ${scrollBounce} 2s ease infinite;
   }
 `;

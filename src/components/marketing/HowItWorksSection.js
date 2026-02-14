@@ -822,7 +822,7 @@ const ClassicEyebrow = styled.p`
   font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #C4A87C;
+  color: #999999;
   margin-bottom: 1rem;
 `;
 
@@ -844,7 +844,7 @@ const ClassicTimeline = styled.div`
     top: 0;
     bottom: 0;
     width: 1px;
-    background: linear-gradient(180deg, #C4A87C 0%, rgba(196,168,124,0.2) 100%);
+    background: linear-gradient(180deg, #999999 0%, rgba(0,0,0,0.04) 100%);
   }
 `;
 
@@ -861,7 +861,7 @@ const ClassicStepMarker = styled.div`
   height: 50px;
   border-radius: 50%;
   background: #F5F0EB;
-  border: 1px solid #C4A87C;
+  border: 1px solid rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -873,7 +873,7 @@ const ClassicStepMarker = styled.div`
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 1rem;
     font-weight: 400;
-    color: #C4A87C;
+    color: #999999;
   }
 `;
 
@@ -902,7 +902,7 @@ const ClassicStepHighlight = styled.p`
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1rem;
   font-style: italic;
-  color: #C4A87C;
+  color: #999999;
   margin-top: 1rem;
 `;
 
@@ -976,7 +976,7 @@ const HowItWorksSection = () => {
             </CTAHeadline>
             <CTAButton
               onClick={scrollToContact}
-              style={{ fontFamily: "'Josefin Sans', sans-serif", color: '#FFFFFF', background: '#C4A87C', border: 'none' }}
+              style={{ fontFamily: "'Josefin Sans', sans-serif", color: '#FFFFFF', background: '#1A1A1A', border: 'none' }}
             >
               {CTA_TEXT.button}
             </CTAButton>

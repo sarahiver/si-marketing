@@ -151,7 +151,7 @@ const NavLink = styled.a`
   ${p => p.$theme === 'classic' && `font-family: 'Josefin Sans', sans-serif; font-weight: 300;`}
 
   &:hover {
-    color: ${p => p.$theme === 'classic' ? '#C4A87C' : p.$theme === 'contemporary' ? '#FF6B6B' : '#fff'};
+    color: ${p => p.$theme === 'classic' ? '#999999' : p.$theme === 'contemporary' ? '#FF6B6B' : '#fff'};
   }
 `;
 
@@ -191,7 +191,7 @@ const ThemeHint = styled.div`
       case 'luxe': return '#C9A962';
       case 'neon': return '#00ffff';
       case 'video': return '#6B8CAE';
-      case 'classic': return '#C4A87C';
+      case 'classic': return '#999999';
       default: return '#C9A962';
     }
   }};
@@ -275,8 +275,8 @@ const ThemeOption = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    background: ${p => p.$theme === 'classic' ? 'rgba(196,168,124,0.1)' : p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
-    color: ${p => p.$theme === 'classic' ? '#C4A87C' : p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
+    background: ${p => p.$theme === 'classic' ? 'rgba(0,0,0,0.04)' : p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
+    color: ${p => p.$theme === 'classic' ? '#999999' : p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
   }
 `;
 
@@ -419,7 +419,7 @@ const MobileCloseBtn = styled.button`
         case 'neon': return '#FF006E';
         case 'luxe': return '#D4AF37';
         case 'editorial': return '#C41E3A';
-        case 'classic': return '#C4A87C';
+        case 'classic': return '#999999';
         default: return 'rgba(255,255,255,0.4)';
       }
     }};
@@ -429,7 +429,7 @@ const MobileCloseBtn = styled.button`
         case 'neon': return '#FF006E';
         case 'luxe': return '#D4AF37';
         case 'editorial': return '#C41E3A';
-        case 'classic': return '#C4A87C';
+        case 'classic': return '#999999';
         default: return '#fff';
       }
     }};

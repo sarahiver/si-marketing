@@ -324,7 +324,7 @@ const CardInfo = styled.div`
   padding: 25px 20px;
   ${p => p.$themeId === 'video' && css`background: #FFFFFF; border: 1px solid rgba(184,151,106,0.15); border-top: none;`}
   ${p => p.$themeId === 'editorial' && css`background: #FFFFFF; border: 1px solid #E0E0E0; border-top: none;`}
-  ${p => p.$themeId === 'classic' && css`background: #FDFCFA; border: 1px solid rgba(196,168,124,0.2); border-top: none;`}
+  ${p => p.$themeId === 'classic' && css`background: #FDFCFA; border: 1px solid rgba(0,0,0,0.06); border-top: none;`}
   ${p => p.$themeId === 'botanical' && css`background: #FFFFFF; border: 1px solid rgba(139,157,131,0.2); border-top: none; border-radius: 0 0 16px 16px;`}
   ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF; border: 3px solid #0D0D0D; border-top: none;`}
   ${p => p.$themeId === 'luxe' && css`background: #FFFFFF; border: 1px solid rgba(212,175,55,0.1); border-top: none;`}
@@ -362,7 +362,7 @@ const DemoLink = styled.span`
   font-weight: 500;
   ${p => p.$themeId === 'video' && css`color: #B8976A;`}
   ${p => p.$themeId === 'editorial' && css`color: #1A1A1A;`}
-  ${p => p.$themeId === 'classic' && css`color: #C4A87C;`}
+  ${p => p.$themeId === 'classic' && css`color: #999999;`}
   ${p => p.$themeId === 'botanical' && css`color: #7A9972;`}
   ${p => p.$themeId === 'contemporary' && css`color: #FF6B6B;`}
   ${p => p.$themeId === 'luxe' && css`color: #D4AF37;`}
