@@ -929,12 +929,12 @@ const ClassicContent = styled.div`
 
 const ClassicEyebrow = styled.p`
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   font-weight: 300;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 1.5rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1.2rem;
   animation: ${fadeInUp} 0.8s ease 0.3s both;
 `;
 
@@ -942,16 +942,16 @@ const ClassicTitle = styled.h1`
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 300;
-  line-height: 1.05;
-  color: #FFFFFF;
+  line-height: 1;
+  color: white;
   animation: ${fadeInUp} 0.8s ease 0.5s both;
 `;
 
 const ClassicScript = styled.span`
   font-family: 'Mrs Saint Delafield', cursive;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 400;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.6);
   display: block;
   margin-top: 0.5rem;
   animation: ${fadeInUp} 0.8s ease 0.7s both;
@@ -963,8 +963,8 @@ const ClassicDateLine = styled.p`
   font-weight: 300;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-top: 2rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 1.5rem;
   animation: ${fadeInUp} 0.8s ease 1s both;
 `;
 
