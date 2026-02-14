@@ -1213,7 +1213,10 @@ const USPSection = () => {
     document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Wheel → nächste/vorherige Karte im Tiefenkarussell
+  // Wheel → nächste/vorherige Karte im Tiefenkarussell (mit Schwelle)
+  const wheelDelta = useRef(0);
+  const WHEEL_THRESHOLD = 80;
+
   useEffect(() => {
     const el = carouselRef.current;
     if (!el || currentTheme !== 'classic') return;
@@ -1222,11 +1225,15 @@ const USPSection = () => {
       const goNext = e.deltaY > 0;
       const atEnd = goNext && activeCard >= cardCount - 1;
       const atStart = !goNext && activeCard <= 0;
-      if (atStart || atEnd) return; // normales Seiten-Scroll erlauben
+      if (atStart || atEnd) { wheelDelta.current = 0; return; }
       e.preventDefault();
+      wheelDelta.current += e.deltaY;
+      if (Math.abs(wheelDelta.current) < WHEEL_THRESHOLD) return;
+      const direction = wheelDelta.current > 0 ? 1 : -1;
+      wheelDelta.current = 0;
       wheelLock.current = true;
-      setActiveCard(prev => Math.min(Math.max(prev + (goNext ? 1 : -1), 0), cardCount - 1));
-      setTimeout(() => { wheelLock.current = false; }, 500);
+      setActiveCard(prev => Math.min(Math.max(prev + direction, 0), cardCount - 1));
+      setTimeout(() => { wheelLock.current = false; }, 700);
     };
     el.addEventListener('wheel', onWheel, { passive: false });
     return () => el.removeEventListener('wheel', onWheel);
