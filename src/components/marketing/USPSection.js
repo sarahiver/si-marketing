@@ -277,58 +277,59 @@ const ClassicTitle = styled.h2`
   color: #1A1A1A;
 `;
 
+const ClassicCarouselRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+`;
+
 const ClassicCarousel = styled.div`
   position: relative;
-  width: 100%;
-  height: clamp(320px, 38vw, 440px);
-  margin: 0 auto;
-  perspective: 1400px;
+  flex: 1;
+  height: clamp(320px, 36vw, 420px);
+  overflow: visible;
 `;
 
 const ClassicCard = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
+  bottom: 0;
   height: 100%;
   display: flex;
+  flex-direction: ${p => (p.$reverse ? 'row-reverse' : 'row')};
   background: #FFFFFF;
-  box-shadow: ${p =>
-    p.$offset === 0
-      ? '0 8px 40px rgba(0, 0, 0, 0.12)'
-      : '0 4px 20px rgba(0, 0, 0, 0.08)'};
+  box-shadow: 0 2px 16px rgba(0, 0, 0, ${p => (p.$offset === 0 ? 0.10 : 0.06)});
   border-radius: 3px;
   overflow: hidden;
-  transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1),
-              opacity 0.65s cubic-bezier(0.23, 1, 0.32, 1),
-              box-shadow 0.65s ease,
-              filter 0.65s ease;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              filter 0.6s ease;
   transform-origin: center bottom;
   transform: ${p =>
     p.$offset === 0
-      ? 'translateZ(0) scale(1)'
+      ? 'translateY(0) scale(1)'
       : p.$offset > 0
-        ? `translateZ(${p.$offset * -50}px) translateY(${p.$offset * -14}px) scale(${1 - p.$offset * 0.04})`
-        : 'translateZ(50px) translateY(14px) scale(1.02)'};
+        ? `translateY(${p.$offset * -20}px) scale(${1 - p.$offset * 0.03})`
+        : 'translateY(20px) scale(1.01)'};
   opacity: ${p => (p.$offset < 0 ? 0 : p.$offset > 4 ? 0 : 1)};
   z-index: ${p => (p.$offset < 0 ? 0 : 100 - p.$offset)};
   pointer-events: ${p => (p.$offset === 0 ? 'auto' : 'none')};
-  filter: ${p => (p.$offset === 0 ? 'none' : `brightness(${1 - p.$offset * 0.05})`)};
+  filter: ${p => (p.$offset === 0 ? 'none' : `brightness(${1 - p.$offset * 0.04})`)};
 `;
 
 const ClassicCardImage = styled.div`
-  flex: 0 0 66%;
+  flex: 0 0 64%;
   height: 100%;
-  padding: 10px;
+  padding: 12px;
   box-sizing: border-box;
-  overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 6px solid #FFFFFF;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+    border: 5px solid #FFFFFF;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     filter: grayscale(15%);
     transition: filter 0.5s ease, transform 0.5s ease;
   }
@@ -348,13 +349,13 @@ const ClassicCardImage = styled.div`
 
 const ClassicCardBody = styled.div`
   flex: 1;
-  padding: 2rem 2rem 2rem 1rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   @media (max-width: 600px) {
-    padding: 1.25rem 1rem 1.25rem 0.75rem;
+    padding: 1.25rem 1rem;
   }
 `;
 
@@ -387,9 +388,9 @@ const ClassicCardDesc = styled.p`
 
 const ClassicDots = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2.5rem;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex-shrink: 0;
 `;
 
 const ClassicDot = styled.button`
@@ -1243,29 +1244,32 @@ const USPSection = () => {
             <ClassicTitle>Was uns besonders macht</ClassicTitle>
           </ClassicHeader>
 
-          <ClassicCarousel ref={carouselRef}>
-            {CLASSIC_ALL_CARDS.map((item, i) => {
-              const offset = i - activeCard;
-              return (
-                <ClassicCard key={i} $offset={offset} data-active={offset === 0}>
-                  <ClassicCardImage>
-                    <img src={item.image} alt={item.title} loading="lazy" />
-                  </ClassicCardImage>
-                  <ClassicCardBody>
-                    <ClassicCardNum>0{i + 1}</ClassicCardNum>
-                    <ClassicCardTitle>{item.title}</ClassicCardTitle>
-                    <ClassicCardDesc>{item.desc}</ClassicCardDesc>
-                  </ClassicCardBody>
-                </ClassicCard>
-              );
-            })}
-          </ClassicCarousel>
+          <ClassicCarouselRow>
+            <ClassicCarousel ref={carouselRef}>
+              {CLASSIC_ALL_CARDS.map((item, i) => {
+                const offset = i - activeCard;
+                const reverse = i % 2 === 1;
+                return (
+                  <ClassicCard key={i} $offset={offset} $reverse={reverse} data-active={offset === 0}>
+                    <ClassicCardImage>
+                      <img src={item.image} alt={item.title} loading="lazy" />
+                    </ClassicCardImage>
+                    <ClassicCardBody>
+                      <ClassicCardNum>0{i + 1}</ClassicCardNum>
+                      <ClassicCardTitle>{item.title}</ClassicCardTitle>
+                      <ClassicCardDesc>{item.desc}</ClassicCardDesc>
+                    </ClassicCardBody>
+                  </ClassicCard>
+                );
+              })}
+            </ClassicCarousel>
 
-          <ClassicDots>
-            {CLASSIC_ALL_CARDS.map((_, i) => (
-              <ClassicDot key={i} $active={i === activeCard} onClick={() => setActiveCard(i)} />
-            ))}
-          </ClassicDots>
+            <ClassicDots>
+              {CLASSIC_ALL_CARDS.map((_, i) => (
+                <ClassicDot key={i} $active={i === activeCard} onClick={() => setActiveCard(i)} />
+              ))}
+            </ClassicDots>
+          </ClassicCarouselRow>
 
           <CTABox>
             <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, color: '#555' }}>
