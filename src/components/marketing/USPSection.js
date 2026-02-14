@@ -19,36 +19,42 @@ const USPS = [
     title: 'Kein Paar ist wie das andere',
     desc: 'Deshalb ist keine Website wie die andere. Jede Hochzeit, die wir umsetzen, ist ein Unikat. Bereits Dutzende Paare haben ihre Liebesgeschichte mit uns digital verewigt — handgemacht, nicht von der Stange.',
     short: 'Jede Website ein Unikat',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769537648/siwedding/demo/hero/t4rsv6gjmwtow3k761d2.jpg',
   },
   {
     icon: '🌐',
     title: 'sarah-und-max.de',
     desc: 'Eure Liebe hat eine eigene Adresse. Keine Subdomain, kein Baukasten-Link. Ihr bekommt eure persönliche Domain — professionell eingerichtet, sofort startklar.',
     short: 'Eigene Domain inklusive',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770290063/editorial_demoShowcase_gmxabx.jpg',
   },
   {
     icon: '🎨',
     title: 'Designwelten — angepasst an euren Stil',
     desc: 'Ob elegant, modern oder verspielt: Wir passen jedes Design individuell an eure Farben, Fotos und Geschichte an. Kein Theme bleibt „Standard".',
     short: 'Themes, individuell angepasst',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
   },
   {
     icon: '💬',
     title: 'Direkter Kontakt statt Support-Tickets',
     desc: 'Ihr sprecht mit echten Menschen — Sarah & Iver. Keine Hotline, kein Bot, kein Ticketsystem. Persönlich, schnell, erreichbar.',
     short: 'Sarah & Iver persönlich',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769863906/iverlasting/demo/hero/v8il9fyd1u6dhj6se3tz.jpg',
   },
   {
     icon: '🕊️',
     title: 'So wenig Aufwand wie möglich',
     desc: 'Wir übernehmen den Rest. Ihr schickt uns Texte & Fotos. Wir bauen eure Website, optimieren Design & Technik und kümmern uns um den Feinschliff.',
     short: 'Ihr liefert Inhalte, wir den Rest',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
   },
   {
     icon: '⚡',
     title: 'In 7 Tagen live',
     desc: 'Oder wir sagen ehrlich warum nicht. Keine monatelangen Wartezeiten. Die meisten Websites gehen innerhalb einer Woche online — inklusive Korrekturschleife.',
     short: 'In einer Woche online',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
   },
 ];
 
@@ -57,6 +63,7 @@ const RSVP_FEATURE = {
   title: 'Alle Zusagen an einem Ort — ohne WhatsApp-Stress',
   desc: 'Gäste sagen direkt über eure Website zu. Ihr erhaltet eine übersichtliche Gästeliste, inklusive Essenswünschen & Begleitpersonen. Exportierbar als Excel für Catering, Sitzplan oder Einlasskontrolle.',
   short: 'RSVP, Gästeliste, Excel-Export',
+  image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
 };
 
 const CTA_TEXT = {
@@ -270,108 +277,87 @@ const ClassicTitle = styled.h2`
   color: #1A1A1A;
 `;
 
-const ClassicGrid = styled.div`
+const ClassicCarousel = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1.5rem;
+  padding: 1rem 2rem 2rem;
+  margin: 0 -2rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
 
-  @media (max-width: 768px) {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar { display: none; }
+  &::-webkit-scrollbar { display: none; }
+`;
+
+const ClassicCard = styled.div`
+  flex: 0 0 clamp(300px, 35vw, 420px);
+  scroll-snap-align: start;
+  background: #FFFFFF;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+
+  &:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &:first-child {
+    margin-left: 0;
   }
 `;
 
-const ClassicRow = styled.div`
-  display: grid;
-  grid-template-columns: ${p => p.$reverse ? '1fr 100px' : '100px 1fr'};
-  gap: 3rem;
-  padding: 3rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  align-items: start;
+const ClassicCardImage = styled.div`
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
 
-  &:last-child { border-bottom: none; }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: filter 0.5s ease, transform 0.5s ease;
+  }
 
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  ${ClassicCard}:hover & img {
+    filter: grayscale(0%);
+    transform: scale(1.03);
   }
 `;
 
-const ClassicNum = styled.div`
+const ClassicCardBody = styled.div`
+  padding: 1.5rem 1.75rem 2rem;
+`;
+
+const ClassicCardNum = styled.span`
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 5rem;
+  font-size: 0.85rem;
   font-weight: 300;
-  color: rgba(0, 0, 0, 0.04);
-  line-height: 1;
-  text-align: ${p => p.$reverse ? 'left' : 'right'};
-  order: ${p => p.$reverse ? 2 : 1};
-
-  @media (max-width: 600px) {
-    font-size: 3rem;
-    text-align: left;
-    order: 1;
-  }
-`;
-
-const ClassicRowContent = styled.div`
-  order: ${p => p.$reverse ? 1 : 2};
-
-  @media (max-width: 600px) {
-    order: 2;
-  }
-`;
-
-const ClassicRowIcon = styled.span`
-  font-size: 1.5rem;
-  display: inline-block;
+  color: #BBBBBB;
+  letter-spacing: 0.1em;
+  display: block;
   margin-bottom: 0.5rem;
 `;
 
-const ClassicRowTitle = styled.h3`
+const ClassicCardTitle = styled.h3`
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: #1A1A1A;
   margin-bottom: 0.75rem;
+  line-height: 1.35;
 `;
 
-const ClassicRowDesc = styled.p`
+const ClassicCardDesc = styled.p`
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 300;
   color: #555;
-  line-height: 1.8;
-`;
-
-const ClassicRSVP = styled.div`
-  margin-top: 4rem;
-  padding: 3rem;
-  background: #F5F0EB;
-  text-align: center;
-`;
-
-const ClassicRSVPTitle = styled.h3`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: #999999;
-  margin-bottom: 1rem;
-`;
-
-const ClassicRSVPDesc = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  color: #555;
-  line-height: 1.8;
-  max-width: 700px;
-  margin: 0 auto;
+  line-height: 1.75;
 `;
 
 // ============================================
@@ -1177,6 +1163,7 @@ const USPSection = () => {
   // CLASSIC - Elegante Magazin-Ästhetik
   // ==========================================
   if (currentTheme === 'classic') {
+    const allCards = [...USPS, RSVP_FEATURE];
     return (
       <ClassicSection id="features">
         <ClassicContainer>
@@ -1185,23 +1172,20 @@ const USPSection = () => {
             <ClassicTitle>Was uns besonders macht</ClassicTitle>
           </ClassicHeader>
 
-          <ClassicGrid>
-            {USPS.map((usp, i) => (
-              <ClassicRow key={i} $reverse={i % 2 === 1}>
-                <ClassicNum $reverse={i % 2 === 1}>0{i + 1}</ClassicNum>
-                <ClassicRowContent $reverse={i % 2 === 1}>
-                  <ClassicRowIcon>{usp.icon}</ClassicRowIcon>
-                  <ClassicRowTitle>{usp.title}</ClassicRowTitle>
-                  <ClassicRowDesc>{usp.desc}</ClassicRowDesc>
-                </ClassicRowContent>
-              </ClassicRow>
+          <ClassicCarousel>
+            {allCards.map((item, i) => (
+              <ClassicCard key={i}>
+                <ClassicCardImage>
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                </ClassicCardImage>
+                <ClassicCardBody>
+                  <ClassicCardNum>0{i + 1}</ClassicCardNum>
+                  <ClassicCardTitle>{item.title}</ClassicCardTitle>
+                  <ClassicCardDesc>{item.desc}</ClassicCardDesc>
+                </ClassicCardBody>
+              </ClassicCard>
             ))}
-          </ClassicGrid>
-
-          <ClassicRSVP>
-            <ClassicRSVPTitle>{RSVP_FEATURE.icon} {RSVP_FEATURE.title}</ClassicRSVPTitle>
-            <ClassicRSVPDesc>{RSVP_FEATURE.desc}</ClassicRSVPDesc>
-          </ClassicRSVP>
+          </ClassicCarousel>
 
           <CTABox>
             <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, color: '#555' }}>
