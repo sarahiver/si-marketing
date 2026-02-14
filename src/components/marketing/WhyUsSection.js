@@ -1082,7 +1082,7 @@ const WhyUsSection = () => {
   };
 
   // ---- EDITORIAL ----
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="why-us">
         <EditorialEyebrow>{CONTENT.eyebrow}</EditorialEyebrow>

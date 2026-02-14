@@ -398,7 +398,7 @@ const PromoBanner = () => {
   );
 
   // EDITORIAL
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <StoererWrapper $theme={currentTheme}>
         <EditorialStoerer>

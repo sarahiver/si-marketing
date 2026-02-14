@@ -135,6 +135,25 @@ const THEME_CONFIG = {
     inputStyle: 'underline',
     borderRadius: '0',
   },
+  classic: {
+    bg: '#FDFCFA',
+    cardBg: 'transparent',
+    text: '#1A1A1A',
+    textMuted: '#999999',
+    accent: '#C4A87C',
+    inputBg: 'transparent',
+    inputBorder: 'rgba(0,0,0,0.1)',
+    inputFocusBorder: '#C4A87C',
+    buttonBg: '#1A1A1A',
+    buttonText: '#FFFFFF',
+    buttonHoverBg: '#333333',
+    headlineFont: "'Cormorant Garamond', serif",
+    bodyFont: "'Josefin Sans', sans-serif",
+    accentFont: "'Mrs Saint Delafield', cursive",
+    labelStyle: 'uppercase',
+    inputStyle: 'border',
+    borderRadius: '0',
+  },
 };
 
 // ============================================
@@ -193,7 +212,7 @@ const Eyebrow = styled.p`
 const Title = styled.h2`
   font-family: ${p => p.$config.headlineFont};
   font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: ${p => ['botanical', 'luxe'].includes(p.$theme) ? '300' : '700'};
+  font-weight: ${p => ['botanical', 'luxe', 'classic'].includes(p.$theme) ? '300' : '700'};
   font-style: ${p => p.$theme === 'luxe' ? 'italic' : 'normal'};
   text-transform: ${p => ['editorial', 'contemporary', 'neon'].includes(p.$theme) ? 'uppercase' : 'none'};
   color: ${p => p.$config.text};
@@ -419,6 +438,7 @@ const Button = styled.button`
   font-family: ${p => p.$config.headlineFont};
   font-size: ${p => p.$theme === 'luxe' ? '0.7rem' : p.$theme === 'botanical' ? '0.7rem' : '0.9rem'};
   font-weight: ${p => ['editorial', 'contemporary', 'neon'].includes(p.$theme) ? '600' : '500'};
+
   letter-spacing: ${p => p.$theme === 'luxe' ? '0.25em' : p.$theme === 'botanical' ? '0.15em' : '0.1em'};
   text-transform: uppercase;
   color: ${p => p.$config.buttonText};

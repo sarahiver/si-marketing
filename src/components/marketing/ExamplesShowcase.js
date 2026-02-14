@@ -118,7 +118,7 @@ const Section = styled.section`
   padding: 140px 5%;
   position: relative;
   overflow: hidden;
-  ${(p) => p.$themeId === "editorial" && css`background: #ffffff;`}
+  ${(p) => (p.$themeId === "editorial" || p.$themeId === "classic") && css`background: #ffffff;`}
   ${(p) => p.$themeId === "video" && css`background: #0a0a0a;`}
   ${(p) => p.$themeId === "botanical" && css`background: #f8f6f0;`}
   ${(p) => p.$themeId === "contemporary" && css`background: #f5f5f5;`}
@@ -138,7 +138,7 @@ const Header = styled.div`
   opacity: ${(p) => (p.$visible ? 1 : 0)};
   transform: translateY(${(p) => (p.$visible ? 0 : "40px")});
   transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  ${(p) => p.$themeId === "editorial" && css`text-align: left; max-width: 600px;`}
+  ${(p) => (p.$themeId === "editorial" || p.$themeId === "classic") && css`text-align: left; max-width: 600px;`}
   ${(p) => p.$themeId === "video" && css`text-align: center;`}
   ${(p) => p.$themeId === "botanical" && css`text-align: center;`}
   ${(p) => p.$themeId === "contemporary" && css`text-align: left;`}
@@ -149,7 +149,7 @@ const Header = styled.div`
 const Eyebrow = styled.span`
   display: inline-block;
   margin-bottom: 1rem;
-  ${(p) => p.$themeId === "editorial" && css`
+  ${(p) => (p.$themeId === "editorial" || p.$themeId === "classic") && css`
     font-family: "Inter", sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
@@ -196,7 +196,7 @@ const Eyebrow = styled.span`
 
 const Title = styled.h2`
   margin: 0 0 1rem 0;
-  ${(p) => p.$themeId === "editorial" && css`
+  ${(p) => (p.$themeId === "editorial" || p.$themeId === "classic") && css`
     font-family: "Instrument Serif", Georgia, serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 400;
@@ -240,7 +240,7 @@ const Title = styled.h2`
 
 const Subtitle = styled.p`
   line-height: 1.7;
-  ${(p) => p.$themeId === "editorial" && css`font-family: "Inter", sans-serif; font-size: 1rem; color: #666; margin: 0;`}
+  ${(p) => (p.$themeId === "editorial" || p.$themeId === "classic") && css`font-family: "Inter", sans-serif; font-size: 1rem; color: #666; margin: 0;`}
   ${(p) => p.$themeId === "video" && css`font-family: "Montserrat", sans-serif; font-size: 1rem; color: rgba(255, 255, 255, 0.5); max-width: 500px; margin: 0 auto;`}
   ${(p) => p.$themeId === "botanical" && css`font-family: "Lato", sans-serif; font-size: 1.05rem; color: #5a6b5a; max-width: 500px; margin: 0 auto;`}
   ${(p) => p.$themeId === "contemporary" && css`font-family: "Space Grotesk", sans-serif; font-size: 1rem; color: #666; margin: 0;`}

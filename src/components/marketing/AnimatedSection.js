@@ -52,7 +52,7 @@ const videoFade = keyframes`
 const AnimatedWrapper = styled.div`
   opacity: 0;
   
-  ${p => p.$visible && p.$theme === 'editorial' && css`
+  ${p => p.$visible && (p.$theme === 'editorial' || p.$theme === 'classic') && css`
     animation: ${editorialFadeUp} 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     animation-delay: ${p.$delay || 0}ms;
   `}

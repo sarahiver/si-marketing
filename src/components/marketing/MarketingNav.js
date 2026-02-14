@@ -12,6 +12,7 @@ const THEMES = [
   { id: 'luxe', name: 'Luxe' },
   { id: 'neon', name: 'Neon' },
   { id: 'video', name: 'Video' },
+  { id: 'classic', name: 'Classic' },
 ];
 
 const fadeIn = keyframes`from { opacity: 0; } to { opacity: 1; }`;
@@ -189,6 +190,7 @@ const ThemeHint = styled.div`
       case 'luxe': return '#C9A962';
       case 'neon': return '#00ffff';
       case 'video': return '#6B8CAE';
+      case 'classic': return '#C4A87C';
       default: return '#C9A962';
     }
   }};
@@ -372,6 +374,7 @@ const MobileMenu = styled.div`
     switch(p.$theme) {
       case 'botanical': return '#040604';
       case 'contemporary': return '#FFFFFF';
+      case 'classic': return '#FDFCFA';
       case 'luxe': return '#0A0A0A';
       case 'neon': return '#0a0a0f';
       case 'editorial': return '#0A0A0A';
@@ -395,14 +398,14 @@ const MobileCloseBtn = styled.button`
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 1px solid ${p => p.$theme === 'contemporary' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.2)'};
+  border: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.2)'};
   border-radius: ${p => p.$theme === 'contemporary' ? '8px' : p.$theme === 'botanical' ? '50%' : '0'};
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10;
   font-size: 1.25rem;
   line-height: 1;
-  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : p.$theme === 'neon' ? '#00ffff' : p.$theme === 'luxe' ? '#D4AF37' : 'rgba(255,255,255,0.8)'};
+  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#0D0D0D' : p.$theme === 'neon' ? '#00ffff' : p.$theme === 'luxe' ? '#D4AF37' : 'rgba(255,255,255,0.8)'};
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   padding: 0;
@@ -414,6 +417,7 @@ const MobileCloseBtn = styled.button`
         case 'neon': return '#FF006E';
         case 'luxe': return '#D4AF37';
         case 'editorial': return '#C41E3A';
+        case 'classic': return '#C4A87C';
         default: return 'rgba(255,255,255,0.4)';
       }
     }};
@@ -423,6 +427,7 @@ const MobileCloseBtn = styled.button`
         case 'neon': return '#FF006E';
         case 'luxe': return '#D4AF37';
         case 'editorial': return '#C41E3A';
+        case 'classic': return '#C4A87C';
         default: return '#fff';
       }
     }};
@@ -437,10 +442,10 @@ const MobileNavLink = styled.a`
   text-transform: uppercase;
   text-decoration: none;
   padding: 1rem 0;
-  border-bottom: 1px solid ${p => p.$theme === 'contemporary' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
+  border-bottom: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
   transition: all 0.3s ease;
-  
-  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
+
+  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
   
   &:hover {
     color: ${p => {

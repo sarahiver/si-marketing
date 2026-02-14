@@ -810,7 +810,7 @@ const ComponentsShowcase = () => {
   // ==========================================
   // EDITORIAL - Magazin Grid
   // ==========================================
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="components">
         <EditorialContainer>

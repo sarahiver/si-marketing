@@ -1344,7 +1344,7 @@ const PricingSection = () => {
   };
 
   // EDITORIAL
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="pricing">
         <Container>

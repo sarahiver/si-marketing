@@ -909,7 +909,7 @@ const MarketingHero = () => {
   };
 
   // EDITORIAL
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="hero">
         <EditorialBg />

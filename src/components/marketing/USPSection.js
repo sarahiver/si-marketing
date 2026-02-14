@@ -1038,7 +1038,7 @@ const USPSection = () => {
   // ==========================================
   // EDITORIAL - Magazin-Style
   // ==========================================
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="features">
         <EditorialContainer>

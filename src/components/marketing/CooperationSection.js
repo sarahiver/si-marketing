@@ -468,7 +468,7 @@ const CooperationSection = () => {
   // ==========================================
   // EDITORIAL
   // ==========================================
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="cooperation">
         <EditorialContainer>

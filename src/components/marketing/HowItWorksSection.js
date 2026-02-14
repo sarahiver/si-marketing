@@ -842,7 +842,7 @@ const HowItWorksSection = () => {
   // ==========================================
   // EDITORIAL - Horizontale Timeline
   // ==========================================
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="howitworks">
         <EditorialContainer>

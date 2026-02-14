@@ -204,7 +204,7 @@ const Section = styled.section`
     padding: 140px 5%;
   }
   ${p => p.$themeId === 'video' && css`background: #FFFFFF;`}
-  ${p => p.$themeId === 'editorial' && css`background: #FAFAFA;`}
+  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`background: #FAFAFA;`}
   ${p => p.$themeId === 'botanical' && css`background: linear-gradient(180deg, #FAF9F6 0%, #F0EDE5 100%);`}
   ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF;`}
   ${p => p.$themeId === 'luxe' && css`background: #FAF9F7;`}
@@ -231,7 +231,7 @@ const Eyebrow = styled.span`
   letter-spacing: 0.3em;
   margin-bottom: 20px;
   ${p => p.$themeId === 'video' && css`font-family: 'Montserrat', sans-serif; color: #B8976A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #999;`}
+  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`font-family: 'Inter', sans-serif; color: #999;`}
   ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #7A9972;`}
   ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #FF6B6B;`}
   ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: #D4AF37;`}
@@ -243,7 +243,7 @@ const Title = styled.h2`
   font-weight: 300;
   margin-bottom: 20px;
   ${p => p.$themeId === 'video' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #1A1A1A; font-style: italic;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A; font-style: italic;`}
+  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A; font-style: italic;`}
   ${p => p.$themeId === 'botanical' && css`font-family: 'Playfair Display', Georgia, serif; color: #2C3E2D; font-style: italic;`}
   ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #0D0D0D; font-weight: 700;`}
   ${p => p.$themeId === 'luxe' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #2A2A2A; font-style: italic;`}
@@ -256,7 +256,7 @@ const Subtitle = styled.p`
   margin: 0 auto;
   line-height: 1.8;
   ${p => p.$themeId === 'video' && css`font-family: 'Montserrat', sans-serif; color: rgba(26,26,26,0.6);`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #666;`}
+  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`font-family: 'Inter', sans-serif; color: #666;`}
   ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #6B7B6C;`}
   ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #666;`}
   ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: rgba(42,42,42,0.6);`}
@@ -319,7 +319,7 @@ const PreviewWrapper = styled.div`
 const CardInfo = styled.div`
   padding: 25px 20px;
   ${p => p.$themeId === 'video' && css`background: #FFFFFF; border: 1px solid rgba(184,151,106,0.15); border-top: none;`}
-  ${p => p.$themeId === 'editorial' && css`background: #FFFFFF; border: 1px solid #E0E0E0; border-top: none;`}
+  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`background: #FFFFFF; border: 1px solid #E0E0E0; border-top: none;`}
   ${p => p.$themeId === 'botanical' && css`background: #FFFFFF; border: 1px solid rgba(139,157,131,0.2); border-top: none; border-radius: 0 0 16px 16px;`}
   ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF; border: 3px solid #0D0D0D; border-top: none;`}
   ${p => p.$themeId === 'luxe' && css`background: #FFFFFF; border: 1px solid rgba(212,175,55,0.1); border-top: none;`}
@@ -330,7 +330,7 @@ const CardName = styled.h4`
   font-size: 1.2rem;
   margin-bottom: 5px;
   ${p => p.$themeId === 'video' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #1A1A1A;`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A;`}
+  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`font-family: 'Instrument Serif', Georgia, serif; color: #1A1A1A;`}
   ${p => p.$themeId === 'botanical' && css`font-family: 'Playfair Display', Georgia, serif; color: #2D3B2D;`}
   ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #0D0D0D; font-weight: 600;`}
   ${p => p.$themeId === 'luxe' && css`font-family: 'Cormorant Garamond', Georgia, serif; color: #2A2A2A;`}
@@ -341,7 +341,7 @@ const CardDesc = styled.p`
   font-size: 0.85rem;
   margin: 0 0 12px 0;
   ${p => p.$themeId === 'video' && css`font-family: 'Montserrat', sans-serif; color: rgba(26,26,26,0.5);`}
-  ${p => p.$themeId === 'editorial' && css`font-family: 'Inter', sans-serif; color: #999;`}
+  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`font-family: 'Inter', sans-serif; color: #999;`}
   ${p => p.$themeId === 'botanical' && css`font-family: 'Lato', sans-serif; color: #7D9D7C;`}
   ${p => p.$themeId === 'contemporary' && css`font-family: 'Space Grotesk', sans-serif; color: #999;`}
   ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: rgba(42,42,42,0.5);`}
@@ -354,7 +354,7 @@ const DemoLink = styled.span`
   font-size: 0.8rem;
   font-weight: 500;
   ${p => p.$themeId === 'video' && css`color: #B8976A;`}
-  ${p => p.$themeId === 'editorial' && css`color: #1A1A1A;`}
+  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`color: #1A1A1A;`}
   ${p => p.$themeId === 'botanical' && css`color: #7A9972;`}
   ${p => p.$themeId === 'contemporary' && css`color: #FF6B6B;`}
   ${p => p.$themeId === 'luxe' && css`color: #D4AF37;`}

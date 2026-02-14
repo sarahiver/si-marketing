@@ -1017,7 +1017,7 @@ const AboutSection = () => {
   // ==========================================
   // EDITORIAL - Split Screen
   // ==========================================
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="about">
         <EditorialHero>

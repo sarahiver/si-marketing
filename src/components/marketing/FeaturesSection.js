@@ -411,7 +411,7 @@ const FeaturesSection = () => {
   const { currentTheme } = useTheme();
 
   // EDITORIAL
-  if (currentTheme === 'editorial') {
+  if (currentTheme === 'editorial' || currentTheme === 'classic') {
     return (
       <EditorialSection id="features">
         <Container>

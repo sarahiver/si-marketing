@@ -16,7 +16,7 @@ import SEOHead from '../shared/SEOHead';
 const getBackground = (theme) => {
   const bgs = {
     editorial: '#FAFAFA', botanical: '#040604', contemporary: '#FAFAFA',
-    luxe: '#0A0A0A', neon: '#0a0a0f', video: '#0A0A0A',
+    luxe: '#0A0A0A', neon: '#0a0a0f', video: '#0A0A0A', classic: '#FDFCFA',
   };
   return bgs[theme] || '#FAFAFA';
 };
@@ -30,6 +30,7 @@ const getSecondaryText = (theme) => {
   const colors = {
     editorial: '#666666', botanical: 'rgba(255,255,255,0.55)', contemporary: '#737373',
     luxe: 'rgba(248,246,243,0.5)', neon: 'rgba(255,255,255,0.6)', video: '#B0B0B0',
+    classic: '#555555',
   };
   return colors[theme] || '#666666';
 };
@@ -37,7 +38,7 @@ const getSecondaryText = (theme) => {
 const getAccent = (theme) => {
   const accents = {
     editorial: '#C41E3A', botanical: 'rgba(45,90,60,0.8)', contemporary: '#FF6B6B',
-    luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE',
+    luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE', classic: '#C4A87C',
   };
   return accents[theme] || '#C41E3A';
 };
@@ -46,7 +47,7 @@ const getCardBg = (theme) => {
   const cards = {
     editorial: '#FFFFFF', botanical: 'rgba(255,255,255,0.08)',
     contemporary: '#FFFFFF', luxe: '#1A1A1D',
-    neon: 'rgba(255,255,255,0.05)', video: '#252525',
+    neon: 'rgba(255,255,255,0.05)', video: '#252525', classic: '#FFFFFF',
   };
   return cards[theme] || '#FFFFFF';
 };
@@ -56,6 +57,7 @@ const getCardBorder = (theme) => {
     editorial: '#E5E5E5', botanical: 'rgba(255,255,255,0.15)',
     contemporary: '#0D0D0D', luxe: 'rgba(201,169,98,0.25)',
     neon: 'rgba(0,255,255,0.3)', video: 'rgba(107,140,174,0.3)',
+    classic: 'rgba(196,168,124,0.25)',
   };
   return borders[theme] || '#E5E5E5';
 };
@@ -65,6 +67,7 @@ const getHeadlineFont = (theme) => {
     editorial: "'Oswald', sans-serif", botanical: "'Cormorant Garamond', serif",
     contemporary: "'Space Grotesk', sans-serif", luxe: "'Cormorant', serif",
     neon: "'Space Grotesk', sans-serif", video: "'Manrope', sans-serif",
+    classic: "'Cormorant Garamond', serif",
   };
   return fonts[theme] || "'Oswald', sans-serif";
 };
@@ -74,6 +77,7 @@ const getBodyFont = (theme) => {
     editorial: "'Inter', sans-serif", botanical: "'Montserrat', sans-serif",
     contemporary: "'Space Grotesk', sans-serif", luxe: "'Outfit', sans-serif",
     neon: "'Space Grotesk', sans-serif", video: "'Inter', sans-serif",
+    classic: "'Josefin Sans', sans-serif",
   };
   return fonts[theme] || "'Inter', sans-serif";
 };
