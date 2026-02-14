@@ -278,36 +278,34 @@ const ClassicTitle = styled.h2`
 `;
 
 const ClassicCarousel = styled.div`
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 1.5rem;
-  padding: 1rem 2rem 2rem;
-  margin: 0 -2rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar { display: none; }
+  position: relative;
+  width: clamp(320px, 42vw, 480px);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto;
+  perspective: 1200px;
 `;
 
 const ClassicCard = styled.div`
-  flex: 0 0 clamp(300px, 35vw, 420px);
-  scroll-snap-align: start;
+  position: absolute;
+  inset: 0;
   background: #FFFFFF;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  border-radius: 2px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
   overflow: hidden;
-  transition: all 0.4s ease;
-
-  &:hover {
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-  }
-
-  &:first-child {
-    margin-left: 0;
-  }
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.6s ease;
+  transform-origin: center bottom;
+  transform: ${p =>
+    p.$offset === 0
+      ? 'translateZ(0) scale(1)'
+      : p.$offset > 0
+        ? `translateZ(${p.$offset * -60}px) translateY(${p.$offset * -18}px) scale(${1 - p.$offset * 0.05})`
+        : 'translateZ(60px) scale(1.02)'};
+  opacity: ${p => (p.$offset < 0 ? 0 : p.$offset > 3 ? 0 : 1)};
+  z-index: ${p => (p.$offset < 0 ? 0 : 100 - p.$offset)};
+  pointer-events: ${p => (p.$offset === 0 ? 'auto' : 'none')};
+  filter: ${p => (p.$offset === 0 ? 'none' : `brightness(${1 - p.$offset * 0.06})`)};
 `;
 
 const ClassicCardImage = styled.div`
@@ -319,12 +317,15 @@ const ClassicCardImage = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(30%);
+    filter: grayscale(20%);
     transition: filter 0.5s ease, transform 0.5s ease;
   }
 
-  ${ClassicCard}:hover & img {
+  ${ClassicCard}[data-active="true"] & img {
     filter: grayscale(0%);
+  }
+
+  ${ClassicCard}[data-active="true"]:hover & img {
     transform: scale(1.03);
   }
 `;
@@ -358,6 +359,28 @@ const ClassicCardDesc = styled.p`
   font-weight: 300;
   color: #555;
   line-height: 1.75;
+`;
+
+const ClassicDots = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+`;
+
+const ClassicDot = styled.button`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #CCCCCC;
+  background: ${p => (p.$active ? '#1A1A1A' : 'transparent')};
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background: ${p => (p.$active ? '#1A1A1A' : '#DDDDDD')};
+  }
 `;
 
 // ============================================
@@ -1154,35 +1177,40 @@ const CTASubline = styled.p`
 const USPSection = () => {
   const { currentTheme } = useTheme();
   const [openItem, setOpenItem] = useState(0);
+  const [activeCard, setActiveCard] = useState(0);
   const carouselRef = useRef(null);
+  const wheelLock = useRef(false);
+
+  const CLASSIC_ALL_CARDS = [...USPS, RSVP_FEATURE];
+  const cardCount = CLASSIC_ALL_CARDS.length;
 
   const scrollToThemes = () => {
     document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Wheel → horizontal scroll für Classic-Karussell
+  // Wheel → nächste/vorherige Karte im Tiefenkarussell
   useEffect(() => {
     const el = carouselRef.current;
-    if (!el) return;
+    if (!el || currentTheme !== 'classic') return;
     const onWheel = (e) => {
-      // Nur kapern wenn noch horizontal scrollbar
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      if (maxScroll <= 0) return;
-      const atStart = el.scrollLeft <= 0 && e.deltaY < 0;
-      const atEnd = el.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
+      if (wheelLock.current) { e.preventDefault(); return; }
+      const goNext = e.deltaY > 0;
+      const atEnd = goNext && activeCard >= cardCount - 1;
+      const atStart = !goNext && activeCard <= 0;
       if (atStart || atEnd) return; // normales Seiten-Scroll erlauben
       e.preventDefault();
-      el.scrollBy({ left: e.deltaY, behavior: 'smooth' });
+      wheelLock.current = true;
+      setActiveCard(prev => Math.min(Math.max(prev + (goNext ? 1 : -1), 0), cardCount - 1));
+      setTimeout(() => { wheelLock.current = false; }, 500);
     };
     el.addEventListener('wheel', onWheel, { passive: false });
     return () => el.removeEventListener('wheel', onWheel);
-  }, [currentTheme]);
+  }, [currentTheme, activeCard, cardCount]);
 
   // ==========================================
   // CLASSIC - Elegante Magazin-Ästhetik
   // ==========================================
   if (currentTheme === 'classic') {
-    const allCards = [...USPS, RSVP_FEATURE];
     return (
       <ClassicSection id="features">
         <ClassicContainer>
@@ -1192,19 +1220,28 @@ const USPSection = () => {
           </ClassicHeader>
 
           <ClassicCarousel ref={carouselRef}>
-            {allCards.map((item, i) => (
-              <ClassicCard key={i}>
-                <ClassicCardImage>
-                  <img src={item.image} alt={item.title} loading="lazy" />
-                </ClassicCardImage>
-                <ClassicCardBody>
-                  <ClassicCardNum>0{i + 1}</ClassicCardNum>
-                  <ClassicCardTitle>{item.title}</ClassicCardTitle>
-                  <ClassicCardDesc>{item.desc}</ClassicCardDesc>
-                </ClassicCardBody>
-              </ClassicCard>
-            ))}
+            {CLASSIC_ALL_CARDS.map((item, i) => {
+              const offset = i - activeCard;
+              return (
+                <ClassicCard key={i} $offset={offset} data-active={offset === 0}>
+                  <ClassicCardImage>
+                    <img src={item.image} alt={item.title} loading="lazy" />
+                  </ClassicCardImage>
+                  <ClassicCardBody>
+                    <ClassicCardNum>0{i + 1}</ClassicCardNum>
+                    <ClassicCardTitle>{item.title}</ClassicCardTitle>
+                    <ClassicCardDesc>{item.desc}</ClassicCardDesc>
+                  </ClassicCardBody>
+                </ClassicCard>
+              );
+            })}
           </ClassicCarousel>
+
+          <ClassicDots>
+            {CLASSIC_ALL_CARDS.map((_, i) => (
+              <ClassicDot key={i} $active={i === activeCard} onClick={() => setActiveCard(i)} />
+            ))}
+          </ClassicDots>
 
           <CTABox>
             <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, color: '#555' }}>
