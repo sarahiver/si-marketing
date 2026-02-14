@@ -34,6 +34,7 @@ const pulse = keyframes`
 // ============================================
 const THEME_BACKGROUNDS = {
   editorial: '#FAFAFA',
+  classic: '#FDFCFA',
   botanical: 'transparent',
   contemporary: '#FFE66D',
   luxe: '#0A0A0A',
@@ -129,6 +130,44 @@ const EditorialText = styled.p`
   font-size: 0.8rem;
   margin-top: 0.25rem;
   opacity: 0.9;
+`;
+
+// ============================================
+// CLASSIC - Warm Gold Störer
+// ============================================
+const ClassicStoerer = styled(StoererBadge)`
+  background: #F5F0EB;
+  color: #1A1A1A;
+  border: 1px solid #C4A87C;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: ${pulse} 4s ease-in-out infinite;
+`;
+
+const ClassicTitle = styled.div`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+`;
+
+const ClassicBadge = styled.span`
+  display: inline-block;
+  background: #C4A87C;
+  color: #FDFCFA;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+`;
+
+const ClassicText = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  margin-top: 0.25rem;
+  color: #555;
 `;
 
 // ============================================
@@ -397,8 +436,19 @@ const PromoBanner = () => {
     </>
   );
 
+  // CLASSIC
+  if (currentTheme === 'classic') {
+    return (
+      <StoererWrapper $theme={currentTheme}>
+        <ClassicStoerer>
+          {renderContent(ClassicTitle, ClassicText, ClassicBadge)}
+        </ClassicStoerer>
+      </StoererWrapper>
+    );
+  }
+
   // EDITORIAL
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <StoererWrapper $theme={currentTheme}>
         <EditorialStoerer>

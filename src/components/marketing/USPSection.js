@@ -237,6 +237,144 @@ const EditorialRSVPDesc = styled.p`
 `;
 
 // ============================================
+// CLASSIC - Elegante Magazin-Ästhetik mit warmem Gold
+// ============================================
+const ClassicSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FDFCFA;
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+`;
+
+const ClassicHeader = styled.div`
+  text-align: center;
+  margin-bottom: 5rem;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: #1A1A1A;
+`;
+
+const ClassicGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+`;
+
+const ClassicRow = styled.div`
+  display: grid;
+  grid-template-columns: ${p => p.$reverse ? '1fr 100px' : '100px 1fr'};
+  gap: 3rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(196, 168, 124, 0.2);
+  align-items: start;
+
+  &:last-child { border-bottom: none; }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+`;
+
+const ClassicNum = styled.div`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(196, 168, 124, 0.12);
+  line-height: 1;
+  text-align: ${p => p.$reverse ? 'left' : 'right'};
+  order: ${p => p.$reverse ? 2 : 1};
+
+  @media (max-width: 600px) {
+    font-size: 3rem;
+    text-align: left;
+    order: 1;
+  }
+`;
+
+const ClassicRowContent = styled.div`
+  order: ${p => p.$reverse ? 1 : 2};
+
+  @media (max-width: 600px) {
+    order: 2;
+  }
+`;
+
+const ClassicRowIcon = styled.span`
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+`;
+
+const ClassicRowTitle = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+`;
+
+const ClassicRowDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.8;
+`;
+
+const ClassicRSVP = styled.div`
+  margin-top: 4rem;
+  padding: 3rem;
+  background: #F5F0EB;
+  text-align: center;
+`;
+
+const ClassicRSVPTitle = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicRSVPDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+`;
+
+// ============================================
 // BOTANICAL - Schwebende Glassmorphism-Karten
 // ============================================
 const BotanicalSection = styled.section`
@@ -1036,9 +1174,58 @@ const USPSection = () => {
   };
 
   // ==========================================
+  // CLASSIC - Elegante Magazin-Ästhetik
+  // ==========================================
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="features">
+        <ClassicContainer>
+          <ClassicHeader>
+            <ClassicEyebrow>Warum S&I.</ClassicEyebrow>
+            <ClassicTitle>Was uns besonders macht</ClassicTitle>
+          </ClassicHeader>
+
+          <ClassicGrid>
+            {USPS.map((usp, i) => (
+              <ClassicRow key={i} $reverse={i % 2 === 1}>
+                <ClassicNum $reverse={i % 2 === 1}>0{i + 1}</ClassicNum>
+                <ClassicRowContent $reverse={i % 2 === 1}>
+                  <ClassicRowIcon>{usp.icon}</ClassicRowIcon>
+                  <ClassicRowTitle>{usp.title}</ClassicRowTitle>
+                  <ClassicRowDesc>{usp.desc}</ClassicRowDesc>
+                </ClassicRowContent>
+              </ClassicRow>
+            ))}
+          </ClassicGrid>
+
+          <ClassicRSVP>
+            <ClassicRSVPTitle>{RSVP_FEATURE.icon} {RSVP_FEATURE.title}</ClassicRSVPTitle>
+            <ClassicRSVPDesc>{RSVP_FEATURE.desc}</ClassicRSVPDesc>
+          </ClassicRSVP>
+
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, color: '#555' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton
+              onClick={scrollToThemes}
+              style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, letterSpacing: '0.2em', color: '#FDFCFA', background: '#C4A87C', border: 'none' }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#999' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </ClassicContainer>
+      </ClassicSection>
+    );
+  }
+
+  // ==========================================
   // EDITORIAL - Magazin-Style
   // ==========================================
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="features">
         <EditorialContainer>

@@ -240,7 +240,8 @@ const Section = styled.section`
   @media (min-width: 600px) { padding: 140px 5%; }
   position: relative;
   overflow: hidden;
-  ${p => (p.$themeId === 'editorial' || p.$themeId === 'classic') && css`background: #FAFAFA;`}
+  ${p => p.$themeId === 'editorial' && css`background: #FAFAFA;`}
+  ${p => p.$themeId === 'classic' && css`background: #FDFCFA;`}
   ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF;`}
   ${p => p.$themeId === 'botanical' && css`background: linear-gradient(180deg, #F5F1EB 0%, #FAF9F6 100%);`}
   ${p => p.$themeId === 'neon' && css`background: #0a0a0f;`}

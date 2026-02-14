@@ -379,6 +379,183 @@ const EditorialCTA = styled.button`
 `;
 
 // ============================================
+// CLASSIC THEME
+// ============================================
+const ClassicSection = styled(Section)`background: #FDFCFA;`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: #1A1A1A;
+`;
+
+const ClassicCard = styled.div`
+  background: #fff;
+  border: ${p => p.$pop ? '1px solid #C4A87C' : '1px solid rgba(0,0,0,0.06)'};
+  padding: 2.5rem;
+  position: relative;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+
+  ${p => p.$pop && css`
+    &::before {
+      content: 'Empfohlen';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #C4A87C;
+      color: #fff;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+    }
+  `}
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+`;
+
+const ClassicCardName = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  margin-bottom: 0.5rem;
+`;
+
+const ClassicCardPrice = styled.div`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: ${p => p.$pop ? '#C4A87C' : '#1A1A1A'};
+  margin-bottom: 0.25rem;
+  span { font-size: 1.2rem; }
+`;
+
+const ClassicCardDuration = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #999;
+  margin-bottom: 1.5rem;
+`;
+
+const ClassicFeatureList = styled.ul`
+  margin-bottom: 1.5rem;
+  flex: 1;
+`;
+
+const ClassicFeature = styled.li`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #555;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  &::before {
+    content: '\u2014';
+    color: #C4A87C;
+    flex-shrink: 0;
+  }
+`;
+
+const ClassicAddonsTitle = styled(AddonsTitle)`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  margin-top: auto;
+  padding-top: 1.5rem;
+`;
+
+const ClassicAddon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+`;
+
+const ClassicAddonInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+const ClassicAddonCheck = styled.div`
+  width: 16px;
+  height: 16px;
+  border: 1px solid ${p => p.$included ? '#C4A87C' : '#CCC'};
+  background: ${p => p.$included ? '#C4A87C' : 'transparent'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  color: #fff;
+`;
+
+const ClassicAddonName = styled.span`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #555;
+`;
+
+const ClassicAddonPrice = styled.span`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  color: ${p => p.$included ? '#C4A87C' : '#666'};
+`;
+
+const ClassicCTA = styled.button`
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border: none;
+
+  ${p => p.$pop ? css`
+    background: #C4A87C;
+    color: #fff;
+    &:hover { background: #B89A6E; }
+  ` : css`
+    background: transparent;
+    color: #1A1A1A;
+    border: 1px solid #1A1A1A;
+    &:hover { background: #1A1A1A; color: #FDFCFA; }
+  `}
+`;
+
+// ============================================
 // BOTANICAL THEME
 // ============================================
 const BotanicalSection = styled(Section)`
@@ -1290,6 +1467,13 @@ const PricingSection = () => {
           items: { fontFamily: "'Inter', sans-serif", fontSize: '0.9rem', color: '#666' },
           note: { fontFamily: "'Source Serif 4', serif", fontSize: '0.95rem', color: '#C41E3A' }
         };
+      case 'classic':
+        return {
+          box: { background: '#fff', border: '1px solid rgba(196,168,124,0.3)' },
+          title: { fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem', fontWeight: 300, color: '#1A1A1A' },
+          items: { fontFamily: "'Josefin Sans', sans-serif", fontSize: '0.9rem', fontWeight: 300, color: '#555' },
+          note: { fontFamily: "'Cormorant Garamond', serif", fontSize: '0.95rem', fontStyle: 'italic', color: '#C4A87C' }
+        };
       case 'botanical':
         return {
           box: { background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '24px' },
@@ -1343,8 +1527,43 @@ const PricingSection = () => {
     );
   };
 
+  // CLASSIC
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="pricing">
+        <Container>
+          <Header>
+            <ClassicEyebrow>Preise</ClassicEyebrow>
+            <ClassicTitle>Findet euer Paket</ClassicTitle>
+          </Header>
+          <Grid>
+            {PACKAGES.map(pkg => (
+              <ClassicCard key={pkg.id} $pop={pkg.popular}>
+                <ClassicCardName>{pkg.name}</ClassicCardName>
+                {pkg.tagline && <PkgTagline style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300 }}>{pkg.tagline}</PkgTagline>}
+                <ClassicCardPrice $pop={pkg.popular}>
+                  <span>€</span>{pkg.price}
+                </ClassicCardPrice>
+                <ClassicCardDuration>{pkg.duration}</ClassicCardDuration>
+                <ClassicFeatureList>
+                  {pkg.features.map((f, i) => <ClassicFeature key={i}>{f}</ClassicFeature>)}
+                </ClassicFeatureList>
+                <ClassicAddonsTitle>Zusatzoptionen</ClassicAddonsTitle>
+                <AddonsList>
+                  {ADDONS.map(addon => renderAddon(addon, pkg.addons, ClassicAddon, ClassicAddonInfo, ClassicAddonCheck, ClassicAddonName, ClassicAddonPrice))}
+                </AddonsList>
+                <ClassicCTA $pop={pkg.popular} onClick={scrollToContact}>{pkg.cta}</ClassicCTA>
+              </ClassicCard>
+            ))}
+          </Grid>
+          {renderOnRequest()}
+        </Container>
+      </ClassicSection>
+    );
+  }
+
   // EDITORIAL
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="pricing">
         <Container>

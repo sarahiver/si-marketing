@@ -97,6 +97,77 @@ const EditorialItemDesc = styled.p`
 `;
 
 // ============================================
+// CLASSIC - Alternating Image/Text Rows (warm, refined)
+// ============================================
+const ClassicSection = styled(Section)`background: #FDFCFA;`;
+const ClassicEyebrow = styled.p`font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: #C4A87C; margin-bottom: 1rem;`;
+const ClassicTitle = styled.h2`font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; color: #1A1A1A;`;
+const ClassicSubtitle = styled.p`font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1rem; font-style: italic; color: #555555; max-width: 500px; margin: 1rem auto 0;`;
+
+const ClassicStory = styled.div`display: flex; flex-direction: column; gap: 0;`;
+
+const ClassicRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  ${p => p.$reverse && css`
+    & > *:first-child { order: 2; }
+    & > *:last-child { order: 1; }
+    @media (max-width: 900px) {
+      & > *:first-child { order: 1; }
+      & > *:last-child { order: 2; }
+    }
+  `}
+`;
+
+const ClassicImage = styled.div`
+  background: url(${p => p.$src}) center/cover no-repeat;
+  min-height: 400px;
+  filter: grayscale(40%);
+
+  @media (max-width: 900px) { min-height: 300px; }
+`;
+
+const ClassicText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem);
+  background: ${p => p.$alt ? '#FDFCFA' : '#F5F0EB'};
+`;
+
+const ClassicNum = styled.span`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: rgba(196, 168, 124, 0.15);
+  line-height: 1;
+  margin-bottom: 1rem;
+`;
+
+const ClassicItemTitle = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  margin-bottom: 0.5rem;
+`;
+
+const ClassicItemDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #555555;
+  line-height: 1.6;
+`;
+
+// ============================================
 // BOTANICAL - Glassmorphism Cards in Timeline
 // ============================================
 const BotanicalSection = styled(Section)`
@@ -410,8 +481,35 @@ const VideoCardDesc = styled.p`font-family: 'Inter', sans-serif; font-size: 0.85
 const FeaturesSection = () => {
   const { currentTheme } = useTheme();
 
+  // CLASSIC
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="features">
+        <Container>
+          <Header>
+            <ClassicEyebrow>Unsere Geschichte</ClassicEyebrow>
+            <ClassicTitle>Unsere Geschichte</ClassicTitle>
+            <ClassicSubtitle>Eine Liebe, die Geschichten schreibt</ClassicSubtitle>
+          </Header>
+        </Container>
+        <ClassicStory>
+          {FEATURES.map((f, i) => (
+            <ClassicRow key={i} $reverse={i % 2 === 1}>
+              <ClassicImage $src={f.image} />
+              <ClassicText $alt={i % 2 === 0}>
+                <ClassicNum>{f.num}</ClassicNum>
+                <ClassicItemTitle>{f.title}</ClassicItemTitle>
+                <ClassicItemDesc>{f.desc}</ClassicItemDesc>
+              </ClassicText>
+            </ClassicRow>
+          ))}
+        </ClassicStory>
+      </ClassicSection>
+    );
+  }
+
   // EDITORIAL
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="features">
         <Container>

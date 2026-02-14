@@ -1072,6 +1072,180 @@ const VideoCTA = styled.button`
 `;
 
 // ============================================
+// CLASSIC THEME — Timeless/Warm/Elegant
+// ============================================
+const ClassicSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
+  background: #F5F0EB;
+  position: relative;
+  overflow: hidden;
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 1060px;
+  margin: 0 auto;
+`;
+
+const ClassicHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C4A87C;
+  margin-bottom: 1.25rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  color: #1A1A1A;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const ClassicSubline = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: #555;
+  max-width: 580px;
+  margin: 0 auto;
+`;
+
+const ClassicGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 5rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+`;
+
+const ClassicCard = styled.div`
+  background: #FDFCFA;
+  border-left: 2px solid #C4A87C;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  transition: all 0.35s ease;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+    transform: translateY(-3px);
+  }
+`;
+
+const ClassicCardIcon = styled.span`
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 0.85rem;
+`;
+
+const ClassicCardLabel = styled.h3`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #C4A87C;
+  margin-bottom: 0.6rem;
+`;
+
+const ClassicCardQuote = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+`;
+
+const ClassicCardProblem = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: #555;
+  margin-bottom: 1rem;
+`;
+
+const ClassicCardSolution = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  line-height: 1.55;
+
+  &::before {
+    content: 'Bei uns: ';
+    color: #C4A87C;
+    font-weight: 600;
+  }
+`;
+
+const ClassicClosing = styled.div`
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const ClassicClosingHeadline = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 300;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+`;
+
+const ClassicClosingText = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #555;
+  margin-bottom: 2.5rem;
+`;
+
+const ClassicCTAs = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+const ClassicCTA = styled.button`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  padding: 0.95rem 2.25rem;
+  border: 1.5px solid ${p => p.$primary ? '#C4A87C' : '#C4A87C'};
+  background: ${p => p.$primary ? '#C4A87C' : 'transparent'};
+  color: ${p => p.$primary ? '#FDFCFA' : '#C4A87C'};
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: ${p => p.$primary ? '#b89a6e' : 'rgba(196,168,124,0.08)'};
+    border-color: ${p => p.$primary ? '#b89a6e' : '#b89a6e'};
+  }
+`;
+
+// ============================================
 // MAIN COMPONENT
 // ============================================
 const WhyUsSection = () => {
@@ -1081,8 +1255,42 @@ const WhyUsSection = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // ---- CLASSIC ----
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="why-us">
+        <ClassicContainer>
+          <ClassicHeader>
+            <ClassicEyebrow>{CONTENT.eyebrow}</ClassicEyebrow>
+            <ClassicTitle>{CONTENT.headline}</ClassicTitle>
+            <ClassicSubline>{CONTENT.subline}</ClassicSubline>
+          </ClassicHeader>
+          <ClassicGrid>
+            {CARDS.map((card, i) => (
+              <ClassicCard key={i}>
+                <ClassicCardIcon>{card.icon}</ClassicCardIcon>
+                <ClassicCardLabel>{card.label}</ClassicCardLabel>
+                <ClassicCardQuote>{card.quote}</ClassicCardQuote>
+                <ClassicCardProblem>{card.problem}</ClassicCardProblem>
+                <ClassicCardSolution>{card.solution}</ClassicCardSolution>
+              </ClassicCard>
+            ))}
+          </ClassicGrid>
+          <ClassicClosing>
+            <ClassicClosingHeadline>{CONTENT.closingHeadline}</ClassicClosingHeadline>
+            <ClassicClosingText>{CONTENT.closingText}</ClassicClosingText>
+            <ClassicCTAs>
+              <ClassicCTA $primary onClick={() => scrollTo('themes')}>{CONTENT.ctaPrimary}</ClassicCTA>
+              <ClassicCTA onClick={() => scrollTo('contact')}>{CONTENT.ctaSecondary}</ClassicCTA>
+            </ClassicCTAs>
+          </ClassicClosing>
+        </ClassicContainer>
+      </ClassicSection>
+    );
+  }
+
   // ---- EDITORIAL ----
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="why-us">
         <EditorialEyebrow>{CONTENT.eyebrow}</EditorialEyebrow>

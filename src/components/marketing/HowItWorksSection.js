@@ -799,6 +799,114 @@ const VideoStepHighlight = styled.p`
 `;
 
 // ============================================
+// CLASSIC - Vertikale Timeline (elegant)
+// ============================================
+const ClassicSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #F5F0EB;
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 700px;
+  margin: 0 auto;
+`;
+
+const ClassicHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: #1A1A1A;
+`;
+
+const ClassicTimeline = styled.div`
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, #C4A87C 0%, rgba(196,168,124,0.2) 100%);
+  }
+`;
+
+const ClassicStep = styled.div`
+  display: flex;
+  gap: 2rem;
+  padding-bottom: 3rem;
+
+  &:last-child { padding-bottom: 0; }
+`;
+
+const ClassicStepMarker = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #F5F0EB;
+  border: 1px solid #C4A87C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+
+  span {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #C4A87C;
+  }
+`;
+
+const ClassicStepContent = styled.div`
+  flex: 1;
+  padding-top: 0.5rem;
+`;
+
+const ClassicStepTitle = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+`;
+
+const ClassicStepDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.7;
+`;
+
+const ClassicStepHighlight = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #C4A87C;
+  margin-top: 1rem;
+`;
+
+// ============================================
 // SHARED CTA
 // ============================================
 const CTABox = styled.div`
@@ -840,9 +948,51 @@ const HowItWorksSection = () => {
   };
 
   // ==========================================
+  // CLASSIC - Vertikale Timeline (elegant)
+  // ==========================================
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="howitworks">
+        <ClassicContainer>
+          <ClassicHeader>
+            <ClassicEyebrow>Euer Weg zur Website</ClassicEyebrow>
+            <ClassicTitle>In 4 einfachen Schritten</ClassicTitle>
+          </ClassicHeader>
+          <ClassicTimeline>
+            {STEPS.map((step, i) => (
+              <ClassicStep key={i}>
+                <ClassicStepMarker><span>{step.num}</span></ClassicStepMarker>
+                <ClassicStepContent>
+                  <ClassicStepTitle>{step.title}</ClassicStepTitle>
+                  <ClassicStepDesc>{step.desc}</ClassicStepDesc>
+                  <ClassicStepHighlight>{step.highlight}</ClassicStepHighlight>
+                </ClassicStepContent>
+              </ClassicStep>
+            ))}
+          </ClassicTimeline>
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', color: '#1A1A1A' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton
+              onClick={scrollToContact}
+              style={{ fontFamily: "'Josefin Sans', sans-serif", color: '#FFFFFF', background: '#C4A87C', border: 'none' }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Josefin Sans', sans-serif", color: '#999' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </ClassicContainer>
+      </ClassicSection>
+    );
+  }
+
+  // ==========================================
   // EDITORIAL - Horizontale Timeline
   // ==========================================
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="howitworks">
         <EditorialContainer>

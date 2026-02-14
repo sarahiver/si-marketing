@@ -89,6 +89,72 @@ const EditorialButton = styled.button`
 `;
 
 // ============================================
+// CLASSIC - Warm Elegant Card
+// ============================================
+const ClassicSection = styled.section`
+  padding: clamp(4rem, 10vh, 7rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FDFCFA;
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+`;
+
+const ClassicSubtitle = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 300;
+  color: #555;
+  margin-bottom: 1.5rem;
+`;
+
+const ClassicText = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+`;
+
+const ClassicButton = styled.button`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  padding: 1rem 2.5rem;
+  color: #FDFCFA;
+  background: #C4A87C;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #b0956a;
+  }
+`;
+
+// ============================================
 // BOTANICAL - Glassmorphism Card
 // ============================================
 const BotanicalSection = styled.section`
@@ -466,9 +532,28 @@ const CooperationSection = () => {
   };
 
   // ==========================================
+  // CLASSIC
+  // ==========================================
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="cooperation">
+        <ClassicContainer>
+          <ClassicEyebrow>{CONTENT.eyebrow}</ClassicEyebrow>
+          <ClassicTitle>{CONTENT.title}</ClassicTitle>
+          <ClassicSubtitle>{CONTENT.subtitle}</ClassicSubtitle>
+          <ClassicText>{CONTENT.text}</ClassicText>
+          <ClassicButton onClick={scrollToContact}>
+            {CONTENT.button}
+          </ClassicButton>
+        </ClassicContainer>
+      </ClassicSection>
+    );
+  }
+
+  // ==========================================
   // EDITORIAL
   // ==========================================
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="cooperation">
         <EditorialContainer>

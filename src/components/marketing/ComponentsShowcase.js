@@ -187,6 +187,131 @@ const EditorialItemDesc = styled.p`
 `;
 
 // ============================================
+// CLASSIC - Warm Elegant Grid
+// ============================================
+const ClassicSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FDFCFA;
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+`;
+
+const ClassicHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const ClassicStar = styled.div`
+  font-size: 1.5rem;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 300;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+`;
+
+const ClassicSubtitle = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.6;
+`;
+
+const ClassicGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+`;
+
+const ClassicCard = styled.div`
+  background: ${p => p.$included ? '#fff' : '#F5F0EB'};
+  border: ${p => p.$included ? '2px solid #C4A87C' : '1px solid rgba(196, 168, 124, 0.3)'};
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+
+  @media (max-width: 600px) {
+    flex: 0 0 140px;
+    scroll-snap-align: start;
+  }
+
+  ${p => p.$included && css`
+    &::after {
+      content: 'Inklusive';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: #C4A87C;
+    }
+  `}
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  }
+`;
+
+const ClassicIcon = styled.span`
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+`;
+
+const ClassicItemName = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 0.25rem;
+`;
+
+const ClassicItemDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #555;
+`;
+
+// ============================================
 // BOTANICAL - Organisches Grid mit Hover
 // ============================================
 const BotanicalSection = styled.section`
@@ -808,9 +933,39 @@ const ComponentsShowcase = () => {
       : COMPONENTS.filter(c => !c.included);
 
   // ==========================================
+  // CLASSIC - Warm Elegant Grid
+  // ==========================================
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="components">
+        <ClassicContainer>
+          <ClassicHeader>
+            <ClassicStar>&#10022;</ClassicStar>
+            <ClassicEyebrow>18 Komponenten</ClassicEyebrow>
+            <ClassicTitle>Alles was ihr braucht</ClassicTitle>
+            <ClassicSubtitle>
+              Wahlt aus 18 liebevoll gestalteten Komponenten - {INCLUDED_COUNT} davon immer inklusive.
+            </ClassicSubtitle>
+          </ClassicHeader>
+
+          <ClassicGrid>
+            {COMPONENTS.map((comp, i) => (
+              <ClassicCard key={comp.id} $included={comp.included}>
+                <ClassicIcon>{comp.icon}</ClassicIcon>
+                <ClassicItemName>{comp.name}</ClassicItemName>
+                <ClassicItemDesc>{comp.desc}</ClassicItemDesc>
+              </ClassicCard>
+            ))}
+          </ClassicGrid>
+        </ClassicContainer>
+      </ClassicSection>
+    );
+  }
+
+  // ==========================================
   // EDITORIAL - Magazin Grid
   // ==========================================
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="components">
         <EditorialContainer>
@@ -822,7 +977,7 @@ const ComponentsShowcase = () => {
               Wählt aus 18 liebevoll gestalteten Komponenten – {INCLUDED_COUNT} davon immer inklusive.
             </EditorialSubtitle>
           </EditorialHeader>
-          
+
           <EditorialGrid>
             {COMPONENTS.map((comp, i) => (
               <EditorialCard key={comp.id} $included={comp.included}>

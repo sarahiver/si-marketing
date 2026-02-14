@@ -888,6 +888,161 @@ const VideoNavItem = styled.span`
 `;
 
 // ============================================
+// CLASSIC HERO - Warm & Timeless
+// ============================================
+const ClassicSection = styled.section`
+  min-height: 100vh;
+  background: #FDFCFA;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
+
+const ClassicBg = styled.div`
+  position: absolute;
+  inset: 0;
+  background: url(${HERO_BG}) center/cover no-repeat;
+  filter: grayscale(40%) brightness(0.5) sepia(20%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(253,252,250,0.15) 0%, rgba(253,252,250,0.6) 100%);
+  }
+`;
+
+const ClassicContent = styled.div`
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 2rem;
+  max-width: 700px;
+  animation: ${fadeIn} 1.2s ease both;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1rem;
+  animation: ${fadeInUp} 0.8s ease both;
+`;
+
+const ClassicScript = styled.span`
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  color: #C4A87C;
+  display: block;
+  margin-bottom: 0.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.15s both;
+`;
+
+const ClassicTitle = styled.h1`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.3s both;
+`;
+
+const ClassicSubtitle = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.7);
+  margin-top: 1.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.45s both;
+`;
+
+const ClassicDivider = styled.div`
+  width: 60px;
+  height: 1px;
+  background: #C4A87C;
+  margin: 1.5rem auto;
+  animation: ${fadeInUp} 0.8s ease 0.5s both;
+`;
+
+const ClassicCTAs = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.6s both;
+`;
+
+const ClassicCTA = styled.button`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  ${p => p.$primary ? css`
+    background: #C4A87C;
+    color: #FFFFFF;
+    border: 1px solid #C4A87C;
+
+    &:hover {
+      background: #B89A6E;
+      border-color: #B89A6E;
+    }
+  ` : css`
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.4);
+
+    &:hover {
+      border-color: #C4A87C;
+      color: #C4A87C;
+    }
+  `}
+`;
+
+const ClassicScroll = styled.div`
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 20;
+  animation: ${fadeIn} 1s ease 1s both;
+
+  span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  &::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(196,168,124,0.5), transparent);
+    animation: ${scrollBounce} 2s ease infinite;
+  }
+`;
+
+// ============================================
 // MAIN COMPONENT
 // ============================================
 const MarketingHero = () => {
@@ -899,7 +1054,7 @@ const MarketingHero = () => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -908,8 +1063,32 @@ const MarketingHero = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // CLASSIC
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="hero">
+        <ClassicBg />
+        <ClassicContent>
+          <ClassicEyebrow>Von Paaren. Für Paare.</ClassicEyebrow>
+          <ClassicScript>Eure Hochzeit</ClassicScript>
+          <ClassicTitle>
+            Die Website, bei der<br/>eure Gäste „WOW" sagen.
+          </ClassicTitle>
+          <ClassicSubtitle>Handgemacht. Persönlich. In 7 Tagen live.</ClassicSubtitle>
+          <ClassicDivider />
+          <ClassicCTAs>
+            <ClassicCTA onClick={() => scrollToSection('themes')}>Beispiel ansehen</ClassicCTA>
+            <ClassicCTA $primary onClick={() => scrollToSection('contact')}>Erzählt uns eure Geschichte</ClassicCTA>
+          </ClassicCTAs>
+          <TrustLine $light>Bereits von modernen Paaren in ganz Deutschland genutzt — individuell, hochwertig, stressfrei.</TrustLine>
+        </ClassicContent>
+        <ClassicScroll><span>Entdecken</span></ClassicScroll>
+      </ClassicSection>
+    );
+  }
+
   // EDITORIAL
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="hero">
         <EditorialBg />

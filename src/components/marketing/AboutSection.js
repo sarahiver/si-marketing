@@ -234,6 +234,161 @@ const EditorialCTA = styled.div`
 `;
 
 // ============================================
+// CLASSIC - Elegant Warm Layout
+// ============================================
+const ClassicSection = styled.section`
+  background: #FDFCFA;
+`;
+
+const ClassicHero = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+`;
+
+const ClassicImage = styled.div`
+  background: url(${SARAH_IVER_IMAGE}) center/cover no-repeat;
+  min-height: 400px;
+  filter: grayscale(40%);
+
+  @media (max-width: 900px) {
+    min-height: 50vh;
+  }
+`;
+
+const ClassicContent = styled.div`
+  padding: clamp(3rem, 8vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: #1A1A1A;
+  margin-bottom: 0.5rem;
+`;
+
+const ClassicSubtitle = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 300;
+  color: #555;
+  margin-bottom: 2rem;
+`;
+
+const ClassicText = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+`;
+
+const ClassicQuote = styled.blockquote`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #1A1A1A;
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid #C4A87C;
+`;
+
+const ClassicTeam = styled.div`
+  padding: clamp(3rem, 8vw, 6rem);
+  background: #F5F0EB;
+`;
+
+const ClassicTeamGrid = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+`;
+
+const ClassicTeamCard = styled.div`
+  text-align: center;
+
+  @media (max-width: 768px) {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+    scroll-snap-align: center;
+  }
+`;
+
+const ClassicTeamEmoji = styled.div`
+  font-size: 3rem;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTeamName = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #1A1A1A;
+  margin-bottom: 0.25rem;
+`;
+
+const ClassicTeamRole = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #C4A87C;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTeamDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.7;
+`;
+
+const ClassicCTA = styled.div`
+  padding: clamp(3rem, 8vw, 5rem);
+  text-align: center;
+  background: #FDFCFA;
+`;
+
+// ============================================
 // BOTANICAL - Story Cards mit Parallax
 // ============================================
 const BotanicalSection = styled.section`
@@ -1015,9 +1170,70 @@ const AboutSection = () => {
   };
 
   // ==========================================
+  // CLASSIC - Elegant Warm
+  // ==========================================
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="about">
+        <ClassicHero>
+          <ClassicImage />
+          <ClassicContent>
+            <ClassicEyebrow>Über uns</ClassicEyebrow>
+            <ClassicTitle>Sarah & Iver</ClassicTitle>
+            <ClassicSubtitle>Warum es S&I. überhaupt gibt</ClassicSubtitle>
+            <ClassicText>
+              S&I. ist aus unserer eigenen Hochzeitsreise entstanden. Als wir unsere Hochzeit planten,
+              wollten wir eine Website, die unsere Geschichte widerspiegelt – stilvoll, modern, emotional.
+            </ClassicText>
+            <ClassicQuote>
+              „Unsere Hochzeit verdient etwas Besonderes – warum gibt es das nicht?"
+            </ClassicQuote>
+            <ClassicText>
+              Also haben wir es selbst gebaut. Aus einer Idee wurde Leidenschaft.
+              Aus Leidenschaft wurde S&I. Premium Hochzeitswebsites.
+            </ClassicText>
+          </ClassicContent>
+        </ClassicHero>
+
+        <ClassicTeam>
+          <ClassicTeamGrid>
+            <ClassicTeamCard>
+              <ClassicTeamEmoji>{TEAM.sarah.emoji}</ClassicTeamEmoji>
+              <ClassicTeamName>{TEAM.sarah.name}</ClassicTeamName>
+              <ClassicTeamRole>{TEAM.sarah.role}</ClassicTeamRole>
+              <ClassicTeamDesc>{TEAM.sarah.desc}</ClassicTeamDesc>
+            </ClassicTeamCard>
+            <ClassicTeamCard>
+              <ClassicTeamEmoji>{TEAM.iver.emoji}</ClassicTeamEmoji>
+              <ClassicTeamName>{TEAM.iver.name}</ClassicTeamName>
+              <ClassicTeamRole>{TEAM.iver.role}</ClassicTeamRole>
+              <ClassicTeamDesc>{TEAM.iver.desc}</ClassicTeamDesc>
+            </ClassicTeamCard>
+          </ClassicTeamGrid>
+        </ClassicTeam>
+
+        <ClassicCTA>
+          <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: 'italic', fontWeight: 300, color: '#555' }}>
+            {CTA.headline}
+          </CTAHeadline>
+          <CTAButton
+            onClick={scrollToContact}
+            style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#FDFCFA', background: '#C4A87C', border: 'none' }}
+          >
+            {CTA.button}
+          </CTAButton>
+          <CTATagline style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#999' }}>
+            {CTA.tagline}
+          </CTATagline>
+        </ClassicCTA>
+      </ClassicSection>
+    );
+  }
+
+  // ==========================================
   // EDITORIAL - Split Screen
   // ==========================================
-  if (currentTheme === 'editorial' || currentTheme === 'classic') {
+  if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="about">
         <EditorialHero>
