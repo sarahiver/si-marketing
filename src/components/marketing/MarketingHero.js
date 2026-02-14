@@ -888,147 +888,102 @@ const VideoNavItem = styled.span`
 `;
 
 // ============================================
-// CLASSIC HERO - Warm & Timeless
+// CLASSIC HERO - Cinematic Fullscreen (wie Wedding Theme)
 // ============================================
 const ClassicSection = styled.section`
   min-height: 100vh;
-  background: #FDFCFA;
+  background: #111;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
   overflow: hidden;
 `;
 
-const ClassicBg = styled.div`
+const ClassicVideoBg = styled.video`
   position: absolute;
   inset: 0;
-  background: url(${HERO_BG}) center/cover no-repeat;
-  filter: grayscale(40%) brightness(0.5) sepia(20%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+`;
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(253,252,250,0.15) 0%, rgba(253,252,250,0.6) 100%);
-  }
+const ClassicOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.5) 0%,
+    rgba(0,0,0,0.1) 40%,
+    rgba(0,0,0,0.15) 100%
+  );
 `;
 
 const ClassicContent = styled.div`
   position: relative;
   z-index: 10;
-  text-align: center;
-  padding: 0 2rem;
-  max-width: 700px;
+  padding: 0 clamp(2rem, 5vw, 6rem) clamp(5rem, 10vh, 8rem);
+  max-width: 800px;
   animation: ${fadeIn} 1.2s ease both;
 `;
 
 const ClassicEyebrow = styled.p`
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.4em;
+  font-size: 0.55rem;
+  font-weight: 300;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.6);
-  margin-bottom: 1rem;
-  animation: ${fadeInUp} 0.8s ease both;
+  margin-bottom: 1.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.3s both;
+`;
+
+const ClassicTitle = styled.h1`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: #FFFFFF;
+  animation: ${fadeInUp} 0.8s ease 0.5s both;
 `;
 
 const ClassicScript = styled.span`
   font-family: 'Mrs Saint Delafield', cursive;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 400;
-  color: #999999;
-  display: block;
-  margin-bottom: 0.5rem;
-  animation: ${fadeInUp} 0.8s ease 0.15s both;
-`;
-
-const ClassicTitle = styled.h1`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 300;
-  line-height: 1.15;
-  color: #FFFFFF;
-  margin-bottom: 0.5rem;
-  animation: ${fadeInUp} 0.8s ease 0.3s both;
-`;
-
-const ClassicSubtitle = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 300;
-  letter-spacing: 0.15em;
   color: rgba(255,255,255,0.7);
-  margin-top: 1.5rem;
-  animation: ${fadeInUp} 0.8s ease 0.45s both;
+  display: block;
+  margin-top: 0.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.7s both;
 `;
 
-const ClassicDivider = styled.div`
-  width: 60px;
-  height: 1px;
-  background: #999999;
-  margin: 1.5rem auto;
-  animation: ${fadeInUp} 0.8s ease 0.5s both;
-`;
-
-const ClassicCTAs = styled.div`
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-  animation: ${fadeInUp} 0.8s ease 0.6s both;
-`;
-
-const ClassicCTA = styled.button`
+const ClassicDateLine = styled.p`
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
+  font-size: 0.5rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  padding: 1rem 2.5rem;
-  cursor: pointer;
-  transition: all 0.4s ease;
-
-  ${p => p.$primary ? css`
-    background: #1A1A1A;
-    color: #FFFFFF;
-    border: 1px solid #1A1A1A;
-
-    &:hover {
-      background: #333333;
-      border-color: #333333;
-    }
-  ` : css`
-    background: transparent;
-    color: #FFFFFF;
-    border: 1px solid rgba(255,255,255,0.4);
-
-    &:hover {
-      border-color: #999999;
-      color: #999999;
-    }
-  `}
+  color: rgba(255,255,255,0.5);
+  margin-top: 2rem;
+  animation: ${fadeInUp} 0.8s ease 1s both;
 `;
 
 const ClassicScroll = styled.div`
   position: absolute;
   bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
   z-index: 20;
-  animation: ${fadeIn} 1s ease 1s both;
+  animation: ${fadeIn} 1s ease 1.2s both;
 
   span {
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 0.55rem;
-    font-weight: 400;
-    letter-spacing: 0.4em;
+    font-size: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.4);
   }
@@ -1037,7 +992,7 @@ const ClassicScroll = styled.div`
     content: '';
     width: 1px;
     height: 40px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.15), transparent);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
     animation: ${scrollBounce} 2s ease infinite;
   }
 `;
@@ -1063,26 +1018,23 @@ const MarketingHero = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // CLASSIC
+  // CLASSIC - Cinematic Fullscreen wie Wedding Theme
   if (currentTheme === 'classic') {
     return (
       <ClassicSection id="hero">
-        <ClassicBg />
+        <ClassicVideoBg autoPlay muted loop playsInline>
+          <source src={VIDEO_URL} type="video/mp4" />
+        </ClassicVideoBg>
+        <ClassicOverlay />
         <ClassicContent>
-          <ClassicEyebrow>Von Paaren. Für Paare.</ClassicEyebrow>
-          <ClassicScript>Eure Hochzeit</ClassicScript>
+          <ClassicEyebrow>Eure Hochzeitswebsite</ClassicEyebrow>
           <ClassicTitle>
-            Die Website, bei der<br/>eure Gäste „WOW" sagen.
+            Zeitlos schön.<br/>Persönlich erzählt.
           </ClassicTitle>
-          <ClassicSubtitle>Handgemacht. Persönlich. In 7 Tagen live.</ClassicSubtitle>
-          <ClassicDivider />
-          <ClassicCTAs>
-            <ClassicCTA onClick={() => scrollToSection('themes')}>Beispiel ansehen</ClassicCTA>
-            <ClassicCTA $primary onClick={() => scrollToSection('contact')}>Erzählt uns eure Geschichte</ClassicCTA>
-          </ClassicCTAs>
-          <TrustLine $light>Bereits von modernen Paaren in ganz Deutschland genutzt — individuell, hochwertig, stressfrei.</TrustLine>
+          <ClassicScript>handgemacht mit Liebe</ClassicScript>
+          <ClassicDateLine>Individuell · Hochwertig · In 7 Tagen live</ClassicDateLine>
         </ClassicContent>
-        <ClassicScroll><span>Entdecken</span></ClassicScroll>
+        <ClassicScroll><span>Scroll</span></ClassicScroll>
       </ClassicSection>
     );
   }
