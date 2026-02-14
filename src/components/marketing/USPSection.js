@@ -279,45 +279,57 @@ const ClassicTitle = styled.h2`
 
 const ClassicCarousel = styled.div`
   position: relative;
-  width: clamp(320px, 42vw, 480px);
-  aspect-ratio: 3 / 4;
+  width: 100%;
+  height: clamp(320px, 38vw, 440px);
   margin: 0 auto;
-  perspective: 1200px;
+  perspective: 1400px;
 `;
 
 const ClassicCard = styled.div`
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
   background: #FFFFFF;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: ${p =>
+    p.$offset === 0
+      ? '0 8px 40px rgba(0, 0, 0, 0.12)'
+      : '0 4px 20px rgba(0, 0, 0, 0.08)'};
   border-radius: 3px;
   overflow: hidden;
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
-              opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
-              box-shadow 0.6s ease;
+  transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.65s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.65s ease,
+              filter 0.65s ease;
   transform-origin: center bottom;
   transform: ${p =>
     p.$offset === 0
       ? 'translateZ(0) scale(1)'
       : p.$offset > 0
-        ? `translateZ(${p.$offset * -60}px) translateY(${p.$offset * -18}px) scale(${1 - p.$offset * 0.05})`
-        : 'translateZ(60px) scale(1.02)'};
-  opacity: ${p => (p.$offset < 0 ? 0 : p.$offset > 3 ? 0 : 1)};
+        ? `translateZ(${p.$offset * -50}px) translateY(${p.$offset * -14}px) scale(${1 - p.$offset * 0.04})`
+        : 'translateZ(50px) translateY(14px) scale(1.02)'};
+  opacity: ${p => (p.$offset < 0 ? 0 : p.$offset > 4 ? 0 : 1)};
   z-index: ${p => (p.$offset < 0 ? 0 : 100 - p.$offset)};
   pointer-events: ${p => (p.$offset === 0 ? 'auto' : 'none')};
-  filter: ${p => (p.$offset === 0 ? 'none' : `brightness(${1 - p.$offset * 0.06})`)};
+  filter: ${p => (p.$offset === 0 ? 'none' : `brightness(${1 - p.$offset * 0.05})`)};
 `;
 
 const ClassicCardImage = styled.div`
-  width: 100%;
-  aspect-ratio: 3 / 2;
+  flex: 0 0 66%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
   overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(20%);
+    border: 6px solid #FFFFFF;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+    filter: grayscale(15%);
     transition: filter 0.5s ease, transform 0.5s ease;
   }
 
@@ -326,12 +338,24 @@ const ClassicCardImage = styled.div`
   }
 
   ${ClassicCard}[data-active="true"]:hover & img {
-    transform: scale(1.03);
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 600px) {
+    flex: 0 0 55%;
   }
 `;
 
 const ClassicCardBody = styled.div`
-  padding: 1.5rem 1.75rem 2rem;
+  flex: 1;
+  padding: 2rem 2rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 600px) {
+    padding: 1.25rem 1rem 1.25rem 0.75rem;
+  }
 `;
 
 const ClassicCardNum = styled.span`
@@ -341,12 +365,12 @@ const ClassicCardNum = styled.span`
   color: #BBBBBB;
   letter-spacing: 0.1em;
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 `;
 
 const ClassicCardTitle = styled.h3`
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
   font-weight: 500;
   color: #1A1A1A;
   margin-bottom: 0.75rem;
@@ -355,7 +379,7 @@ const ClassicCardTitle = styled.h3`
 
 const ClassicCardDesc = styled.p`
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
   font-weight: 300;
   color: #555;
   line-height: 1.75;
@@ -365,7 +389,7 @@ const ClassicDots = styled.div`
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 `;
 
 const ClassicDot = styled.button`
@@ -376,7 +400,7 @@ const ClassicDot = styled.button`
   background: ${p => (p.$active ? '#1A1A1A' : 'transparent')};
   cursor: pointer;
   padding: 0;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: background 0.3s ease;
 
   &:hover {
     background: ${p => (p.$active ? '#1A1A1A' : '#DDDDDD')};
