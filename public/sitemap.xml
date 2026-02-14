@@ -9,7 +9,7 @@
   </url>
   <url>
     <loc>https://sarahiver.com/blog</loc>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -130,6 +130,20 @@
   <url>
     <loc>https://sarahiver.com/blog/hochzeitswebsite-ablauf-customer-journey</loc>
     <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog-Artikel (Artikel 20-21) -->
+  <url>
+    <loc>https://sarahiver.com/blog/hochzeitsfotos-teilen-fotoupload-archiv</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarahiver.com/blog/gaesteliste-rsvp-erinnerungsmail-export</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

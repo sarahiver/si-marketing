@@ -1786,6 +1786,254 @@ Von der Verlobung bis zum Danke. Von der ersten Idee bis zur letzten Erinnerung.
     `,
   },
 
+  {
+    slug: 'hochzeitsfotos-teilen-fotoupload-archiv',
+    title: 'Hochzeitsfotos teilen: Vom Gäste-Upload bis zur Archivseite – so verpasst ihr kein einziges Bild',
+    description: 'Vor der Hochzeit laden Gäste Fotos direkt auf eure Website hoch. Nach der Feier teilt ihr die schönsten Erinnerungen auf eurer Archivseite. So funktioniert das Foto-Erlebnis bei S&I.',
+    date: '2026-06-28',
+    category: 'Features',
+    tags: ['Features', 'Ratgeber'],
+    readTime: '8 min',
+    keywords: ['hochzeitsfotos teilen', 'hochzeit foto upload gäste', 'hochzeitsfotos sammeln', 'hochzeit archivseite', 'hochzeitsfotos online teilen', 'gästefotos hochzeit sammeln', 'hochzeitserinnerungen digital', 'hochzeitsfotos nach der hochzeit'],
+    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1200&q=80',
+    imageAlt: 'Brautpaar lacht mit Gästen und Kameras beim Empfang',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeitsfotos teilen: Vom Gäste-Upload bis zur Archivseite",
+      "description": "So sammelt ihr alle Hochzeitsfotos eurer Gäste und teilt eure schönsten Erinnerungen nach der Hochzeit.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "datePublished": "2026-06-28",
+    },
+    content: `
+## 237 Fotos. 48 Gäste. Ein Ort.
+
+Es gibt diesen einen Moment nach jeder Hochzeit. Ihr liegt auf dem Sofa, die Schuhe ausgezogen, ein Glas Wein in der Hand – und alles fühlt sich noch unwirklich an. **War das wirklich unser Tag?** Und dann greift ihr zum Handy, öffnet eure Hochzeitswebsite und seht: 237 Fotos. Von 48 Gästen. Perspektiven, die ihr nie gesehen habt. Momente, die ihr verpasst habt, weil ihr gerade woanders wart. Tränen eurer Mutter beim Einzug. Euren besten Freund, der heimlich weint. Eure Oma, die auf der Tanzfläche abgeht.
+
+**Das ist kein Fotoalbum. Das ist eure Hochzeit – durch die Augen aller, die dabei waren.**
+
+![Gäste machen Fotos mit Handys während der Trauung](https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80)
+
+## Vor der Hochzeit: Eure Gäste werden Teil der Geschichte
+
+Die meisten denken bei Hochzeitsfotos an den Tag selbst. Aber die schönsten Erinnerungen beginnen viel früher. Die Vorfreude. Das Outfit-Shopping. Die Anreise. Das Getting Ready.
+
+**Mit dem Foto-Upload auf eurer S&I. Hochzeitswebsite können eure Gäste schon vor der Hochzeit Bilder hochladen.** Kein Login, keine App, kein Passwort-Chaos. Einfach die Website öffnen, Foto auswählen, hochladen. Fertig.
+
+Stellt euch vor: Eure Trauzeugin teilt ein Bild von den Proben für ihre Rede. Eure Eltern laden das Verlobungsfoto hoch, das sie heimlich geschossen haben. Eure Freunde posten ihre Flugtickets zur Hochzeit mit dem Kommentar *„Wir kommen!"*
+
+Das sind die Momente, die eure Hochzeitswebsite lebendig machen – **schon bevor der DJ den ersten Song spielt.**
+
+## Am großen Tag: Jede Perspektive zählt
+
+Eure Fotografin ist großartig. Aber sie kann nicht überall gleichzeitig sein. Sie kann nicht sehen, wie euer Onkel auf der Terrasse seine Rede übt. Wie die Kinder unter dem Tisch Verstecken spielen. Wie euer Trauzeuge beim Anblick des Rings die Luft anhält.
+
+**Eure Gäste sehen das alles.** Und mit dem Foto-Upload geben sie euch genau diese Momente zurück.
+
+So macht ihr es euren Gästen leicht:
+
+**QR-Code auf den Tischen.** Ein kleiner Aufsteller mit dem Text *„Teilt eure Fotos mit uns!"* und einem QR-Code, der direkt zum Upload führt. Den QR-Code bekommt ihr bei S&I. automatisch – druckfertig und im Design eurer Website.
+
+**Erwähnt es in der Hochzeitsrede.** Eine kurze, liebevolle Ansage: *„Ihr habt Handys – benutzt sie! Wir wollen eure Perspektive."* Mehr braucht es nicht.
+
+**Echtzeit-Erlebnis.** Eure Gäste sehen den Fortschrittsbalken beim Upload, bekommen eine Bestätigung – und wissen, dass ihr Foto angekommen ist. Kein Rätselraten, kein „Hat das geklappt?".
+
+![Fotobox-Setup mit Polaroid-Kamera und Blumendeko](https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=900&q=80)
+
+## Nach der Hochzeit: Die Archivseite wird euer digitales Fotoalbum
+
+Und dann kommt der schönste Teil. Die Hochzeit ist vorbei, die Flitterwochen vielleicht auch – aber eure Website lebt weiter. **Weil eure S&I. Website nach der Hochzeit automatisch zur Archivseite wird.**
+
+Was bedeutet das? Eure Website verwandelt sich. Statt Countdown, RSVP und Tagesablauf zeigt sie jetzt das, was wirklich zählt: **eure Erinnerungen.**
+
+### Was auf der Archivseite passiert
+
+**Ihr teilt eure Lieblingsfotos.** Die Bilder von der Fotografin, die besten Gästefotos, die emotionalsten Momentaufnahmen. Alles in einer wunderschönen Galerie, die zu eurem Theme passt.
+
+**Eure Gäste können weiter Fotos hochladen.** Der Onkel, der drei Wochen nach der Hochzeit seine alten Handyfotos entdeckt? Kann sie immer noch hochladen. Kein Ablaufdatum, kein Stress.
+
+**Gästebucheinträge bleiben erhalten.** Die liebevollen Worte eurer Gäste verschwinden nicht. Sie bleiben auf eurer Archivseite – zum Nachlesen, wann immer ihr wollt.
+
+**Danke sagen.** Die Archivseite beginnt mit einer persönlichen Dankesnachricht von euch. *„Danke, dass ihr unseren Tag so unvergesslich gemacht habt."* Kurz, herzlich, von Herzen.
+
+## Warum das so viel mehr ist als eine Cloud
+
+Klar, ihr könntet einen Google-Drive-Ordner teilen. Oder 15 WeTransfer-Links einsammeln. Oder eine WhatsApp-Gruppe erstellen, in der 80 Leute wahllos Bilder reinwerfen.
+
+Aber mal ehrlich: **Wollt ihr in fünf Jahren durch einen chaotischen Google-Drive-Ordner scrollen – oder durch eine wunderschöne, persönliche Website, die eure Geschichte erzählt?**
+
+Bei S&I. sind eure Fotos nicht einfach „gespeichert". Sie sind **kuratiert, gestaltet und in den Kontext eurer Hochzeit eingebettet.** In eurem Design, mit euren Farben, neben euren Gästebucheinträgen. Das ist der Unterschied zwischen einem Ordner und einer Erinnerung.
+
+![Paar schaut gemeinsam Hochzeitsfotos auf einem Tablet an](https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=900&q=80)
+
+## Der Moment, der alles verändert
+
+Stellt euch vor: Es ist ein ganz normaler Dienstagabend, ein Jahr nach eurer Hochzeit. Ihr öffnet eure Website – und da ist alles. Die Fotos. Die Glückwünsche. Die Erinnerungen. Eure Nichte, die Blumenmädchen war und so stolz gelächelt hat. Euer Opa, der zum letzten Mal getanzt hat. Eure beste Freundin, die vor Rührung nicht sprechen konnte.
+
+**Das sind keine Dateien in der Cloud. Das sind die wertvollsten Erinnerungen eures Lebens.** Und sie verdienen einen Ort, der genauso besonders ist wie der Tag selbst.
+
+## So funktioniert's bei S&I.
+
+**1. Vor der Hochzeit:** Foto-Upload ist aktiv. Gäste laden Vorfreude-Bilder hoch. Ihr baut eure Galerie auf.
+
+**2. Am Hochzeitstag:** QR-Codes auf den Tischen. Gäste fotografieren und laden in Echtzeit hoch. Ihr genießt euren Tag.
+
+**3. Nach der Hochzeit:** Eure Website wird zur Archivseite. Ihr kuratiert eure Galerie mit den schönsten Bildern – von eurer Fotografin und euren Gästen. Und alle können noch wochenlang Fotos nachreichen.
+
+**4. Für immer:** Eure Archivseite bleibt bestehen. Eine lebendige Erinnerung an den schönsten Tag eures Lebens. Jederzeit aufrufbar, jederzeit teilbar.
+
+## Eure Erinnerungen verdienen mehr als eine WhatsApp-Gruppe
+
+237 Fotos. 48 Perspektiven. Tausend Emotionen. Und ein einziger Ort, an dem alles zusammenkommt.
+
+**Bereit, eure Hochzeitserinnerungen für immer festzuhalten?** Bei [S&I.](https://sarahiver.com) bekommt ihr eine Hochzeitswebsite, die vor, während und nach eurer Hochzeit für euch arbeitet – mit Foto-Upload, Archivseite, Gästebuch und einem Design, das eure Geschichte erzählt. Ab 1.290 Euro, alles inklusive.
+
+**[Jetzt eure Hochzeitswebsite erstellen](https://sarahiver.com)** und keinen einzigen Moment verpassen.
+    `,
+  },
+  {
+    slug: 'gaesteliste-rsvp-erinnerungsmail-export',
+    title: 'Gästeliste, Erinnerungsmails & Export: So behaltet ihr den Überblick über jede einzelne Zusage',
+    description: 'Gästeliste hochladen, automatisch mit Zusagen abgleichen, Erinnerungsmails versenden und am Ende alles für Caterer und Planer exportieren – so wird Gästemanagement stressfrei.',
+    date: '2026-07-05',
+    category: 'Features',
+    tags: ['Features', 'Planung'],
+    readTime: '9 min',
+    keywords: ['gästeliste hochzeit verwalten', 'hochzeit erinnerungsmail', 'rsvp erinnerung senden', 'gästeliste hochzeit exportieren', 'hochzeit zusagen verwalten', 'hochzeitsplanung gästemanagement', 'hochzeit caterer liste', 'hochzeit allergien exportieren'],
+    image: 'https://images.unsplash.com/photo-1529636798458-92182e662485?w=1200&q=80',
+    imageAlt: 'Elegante Tischkarten und Blumenarrangement auf festlicher Hochzeitstafel',
+    schema: {
+      "@type": "Article",
+      "headline": "Gästeliste, Erinnerungsmails & Export: So behaltet ihr den Überblick über jede Zusage",
+      "description": "Von der Gästeliste über automatische Erinnerungsmails bis zum Export für Caterer – so funktioniert smartes Gästemanagement bei S&I.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "datePublished": "2026-07-05",
+    },
+    content: `
+## Die Nachricht, die alles verändert
+
+Ihr kennt dieses Gefühl. 14 Wochen vor der Hochzeit. Die Einladungen sind raus. Und dann – Stille. Tage vergehen, eine Woche, zwei Wochen. Von 120 Gästen haben 34 geantwortet. **34.** Ihr starrt auf eure Excel-Tabelle und fragt euch: Kommen die anderen? Haben sie es vergessen? Seid ihr ihnen egal?
+
+Natürlich nicht. Das Leben ist einfach voll. Menschen vergessen. Sie nehmen sich vor, „morgen" zu antworten, und morgen wird nächste Woche, und nächste Woche wird *„Oh Gott, das war ja letzte Woche Deadline!"*
+
+**Aber wisst ihr, was noch schlimmer ist als das Warten?** Das Nachhaken. Jedem einzelnen eine Nachricht schreiben. „Hey, habt ihr unsere Einladung bekommen?" Es fühlt sich falsch an. Aufdringlich. Peinlich. Und das bei den Menschen, die euch am nächsten stehen.
+
+**Es gibt einen besseren Weg.** Und er beginnt damit, dass ihr eure Gästeliste einmal hochladet – und nie wieder jemandem hinterhertelefonieren müsst.
+
+![Brautpaar bei der Planung mit Gästeliste und Kaffeetassen](https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80)
+
+## Schritt 1: Gästeliste hochladen – und durchatmen
+
+Ihr habt eure Gästeliste. Vielleicht in Excel, vielleicht in Google Sheets, vielleicht auf einem zerknitterten Zettel am Kühlschrank. **Bei S&I. ladet ihr sie einmal in euer Dashboard hoch – und ab diesem Moment wird sie lebendig.**
+
+Euer Dashboard zeigt euch sofort den Status jedes einzelnen Gastes:
+
+- **Zugesagt** – Diese Gäste haben über eure Hochzeitswebsite mit Ja geantwortet
+- **Abgesagt** – Diese Gäste können leider nicht kommen
+- **Offen** – Diese Gäste haben noch nicht reagiert
+
+Keine Zettelwirtschaft. Keine manuellen Updates. Keine „Warte, hat Tante Margit jetzt zugesagt oder war das Tante Claudia?"-Momente. **Euer Dashboard gleicht automatisch ab, wer über eure Website geantwortet hat – in Echtzeit.**
+
+Und das Beste: Ihr seht auf einen Blick, wie viele Gäste kommen, wie viele Plätze noch offen sind und wie viele Absagen ihr habt. Eine Zahl, ein Blick, volle Klarheit.
+
+## Schritt 2: Erinnerungsmails – liebevoll, automatisch und in eurem Design
+
+Jetzt kommt der Teil, der euch Wochen an Stress erspart. Und der vielleicht der emotionalste Moment in der gesamten Hochzeitsplanung ist.
+
+**Bei S&I. könnt ihr mit einem einzigen Klick eine Erinnerungsmail an alle Gäste senden, die noch nicht geantwortet haben.**
+
+Nicht an alle. Nicht an die, die schon zugesagt haben. **Nur an die, die noch offen sind.** Das System weiß genau, wer noch aussteht – weil es eure Gästeliste in Echtzeit mit den eingegangenen RSVPs abgleicht.
+
+### Und so fühlt sich die Erinnerung an:
+
+Die Mail kommt nicht von einem gesichtslosen System. Sie kommt von euch. In eurem Design. Mit euren Farben, eurer Schrift, eurem Ton.
+
+*„Liebe Sarah, lieber Tom,*
+
+*unsere Hochzeit rückt immer näher und wir können es kaum erwarten! Falls ihr es noch nicht geschafft habt – wir würden uns riesig freuen, wenn ihr uns eure Rückmeldung gebt. Einfach auf den Link klicken und kurz ausfüllen. Dauert keine 2 Minuten.*
+
+*Wir freuen uns auf euch!*
+*Anna & Max"*
+
+**Das ist keine Mahnung. Das ist eine Umarmung in E-Mail-Form.** Und sie funktioniert. Weil sie persönlich ist. Weil sie direkt auf eure Website verlinkt. Und weil eure Gäste mit einem einzigen Klick antworten können.
+
+![Laptop mit E-Mail und Blumenstrauß auf einem Schreibtisch](https://images.unsplash.com/photo-1484807352052-23338990c6c6?w=900&q=80)
+
+## Das Dashboard: Euer Kontrollzentrum
+
+Während die Zusagen eintrudeln, verwandelt sich euer Dashboard in etwas Magisches. Mit jeder neuen Zusage steigt die Zahl. Jeder Name, der von „offen" auf „zugesagt" wechselt, bringt euch dem großen Tag näher. **Es fühlt sich an wie ein Countdown in Menschenform.**
+
+Was ihr in eurem Dashboard seht:
+
+**Die große Übersicht.** „74 von 120 Gästen haben zugesagt." Ein Satz, der alles sagt.
+
+**Detaillierte Infos pro Gast.** Name, E-Mail, Anzahl der Begleitpersonen, Menüwahl, Allergien, Sonderwünsche, Kommentare. Alles, was eure Gäste bei der Zusage angegeben haben – auf einen Blick.
+
+**Filterfunktionen.** Zeigt nur die Zusagen, nur die Absagen, nur die offenen. Sortiert nach Name, Datum der Antwort oder Anzahl der Personen.
+
+**Echtzeitaktualisierung.** Sobald jemand auf eurer Website zusagt, aktualisiert sich euer Dashboard. Kein Refresh nötig, kein Warten.
+
+## 6 Wochen vor der Hochzeit: Der Export, der alles zusammenführt
+
+Dann kommt der Moment, auf den alles hinausläuft. Die Hochzeit steht kurz bevor. Alle haben gemeldet. Euer Caterer braucht die finale Gästezahl. Euer Hochzeitsplaner will wissen, wer vegetarisch isst. Der DJ fragt nach besonderen Wünschen. Und ihr? **Ihr klickt auf „Exportieren".**
+
+### Was der Export enthält:
+
+**Für den Caterer:**
+- Gesamtzahl der Gäste (inkl. Begleitpersonen)
+- Menüwahl pro Person (Fleisch, Fisch, vegetarisch, vegan)
+- Alle Allergien und Unverträglichkeiten (Laktose, Gluten, Nüsse, ...)
+- Spezielle Essenswünsche und Kommentare
+
+**Für den Hochzeitsplaner:**
+- Vollständige Namensliste aller Gäste
+- Begleitpersonen und Kinderstühle
+- Sonderwünsche (Barrierefreiheit, Sitzplatzpräferenzen, ...)
+- Kontaktdaten für Rückfragen
+
+**Für euch:**
+- Die emotionalen Nachrichten eurer Gäste (*„Wir weinen jetzt schon!"*)
+- Ein Überblick, der euch ruhig schlafen lässt
+
+Der Export kommt als übersichtliche Datei – fertig zum Weiterleiten an jeden Dienstleister. Kein Abtippen, kein Nachfragen, kein „Moment, das hab ich in einer anderen Tabelle."
+
+![Hochzeitsmenü-Karte auf elegantem Tischgedeck](https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80)
+
+## Warum euch das den wichtigsten Abend eures Lebens rettet
+
+Lasst uns ehrlich sein. Die Gästeliste ist der unsichtbare Motor jeder Hochzeit. Wenn sie nicht stimmt, stimmt nichts. Zu wenig Stühle. Falsches Essen für den Allergiker. Ein Gast, der kommt, aber nicht gemeldet hat. Ein Platz, der leer bleibt, obwohl jemand zugesagt hatte.
+
+**Bei S&I. kann das nicht passieren.** Weil euer Dashboard jede Änderung in Echtzeit abbildet. Weil die automatische Erinnerung dafür sorgt, dass niemand vergessen wird. Und weil der Export am Ende genau die Daten liefert, die eure Dienstleister brauchen – fehlerfrei, vollständig, sofort.
+
+## Eine Geschichte, die wir oft hören
+
+*„Wir hatten 140 Gäste eingeladen. Nach drei Wochen hatten nur 50 geantwortet. Ich lag nachts wach und habe überlegt, wen ich anrufen soll. Dann haben wir die Erinnerungsmail rausgeschickt – einen Klick, fertig. Am nächsten Morgen hatten wir 30 neue Zusagen. Es war, als hätte jemand einen Schalter umgelegt. Am Ende haben alle geantwortet. Alle. Und der Export für unseren Caterer? Zwei Klicks. Ich hab geweint – vor Erleichterung."*
+
+Das ist keine Ausnahme. **Das ist der Normalfall bei S&I.**
+
+## So funktioniert euer Gästemanagement bei S&I.
+
+**1. Gästeliste hochladen.** Einmal im Dashboard importieren – fertig. Euer System weiß jetzt, wen ihr erwartet.
+
+**2. RSVP-Zusagen automatisch abgleichen.** Sobald Gäste über eure Website antworten, aktualisiert sich der Status automatisch. Ihr seht in Echtzeit, wer zugesagt hat, wer absagt und wer noch offen ist.
+
+**3. Erinnerungsmail senden.** Ein Klick. Alle offenen Gäste bekommen eine liebevolle Mail – in eurem Design, mit direktem Link zur Zusage-Seite. Keine peinlichen Anrufe. Keine vergessenen Gäste.
+
+**4. Dashboard nutzen.** Menüwahl, Allergien, Sonderwünsche, Begleitpersonen – alles auf einen Blick. Filtert, sortiert, staunt.
+
+**5. Exportieren.** Wenn es soweit ist: Ein Klick, fertig. Gesamtliste mit allen Details für Caterer, Planer, Location, DJ – wen auch immer ihr braucht. Saubere Datei, null Handarbeit.
+
+## Eure Hochzeit ist zu wichtig für Excel-Tabellen
+
+120 Gäste. 120 Geschichten. 120 Menschen, die euren besonderen Tag mit euch teilen wollen. **Sie verdienen eine Einladung, die sich besonders anfühlt. Und ihr verdient ein System, das euch die Arbeit abnimmt – damit ihr euch auf das konzentrieren könnt, was wirklich zählt: eure Liebe, eure Vorfreude, euer Tag.**
+
+**Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://sarahiver.com) bekommt ihr eine Hochzeitswebsite mit intelligenter Gästeliste, automatischem RSVP-Abgleich, Erinnerungsmails und One-Click-Export – alles in eurem Design, alles aus einer Hand. Ab 1.290 Euro.
+
+**[Jetzt eure Hochzeitswebsite erstellen](https://sarahiver.com)** – und nie wieder jemandem hinterhertelefonieren.
+    `,
+  },
+
 ];
 
 export default blogPosts;
