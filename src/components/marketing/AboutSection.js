@@ -278,9 +278,9 @@ const ClassicEyebrow = styled.p`
 `;
 
 const ClassicTitle = styled.h2`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 300;
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 400;
   color: #1A1A1A;
   margin-bottom: 0.5rem;
 `;
