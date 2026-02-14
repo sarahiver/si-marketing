@@ -1154,10 +1154,29 @@ const CTASubline = styled.p`
 const USPSection = () => {
   const { currentTheme } = useTheme();
   const [openItem, setOpenItem] = useState(0);
+  const carouselRef = useRef(null);
 
   const scrollToThemes = () => {
     document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Wheel → horizontal scroll für Classic-Karussell
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const onWheel = (e) => {
+      // Nur kapern wenn noch horizontal scrollbar
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (maxScroll <= 0) return;
+      const atStart = el.scrollLeft <= 0 && e.deltaY < 0;
+      const atEnd = el.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
+      if (atStart || atEnd) return; // normales Seiten-Scroll erlauben
+      e.preventDefault();
+      el.scrollBy({ left: e.deltaY, behavior: 'smooth' });
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, [currentTheme]);
 
   // ==========================================
   // CLASSIC - Elegante Magazin-Ästhetik
@@ -1172,7 +1191,7 @@ const USPSection = () => {
             <ClassicTitle>Was uns besonders macht</ClassicTitle>
           </ClassicHeader>
 
-          <ClassicCarousel>
+          <ClassicCarousel ref={carouselRef}>
             {allCards.map((item, i) => (
               <ClassicCard key={i}>
                 <ClassicCardImage>
