@@ -1123,6 +1123,17 @@ const ClassicSubline = styled.p`
   margin: 0 auto;
 `;
 
+// TODO: Replace with actual image
+const ClassicPanorama = styled.img`
+  width: calc(100% + clamp(3rem, 10vw, 12rem));
+  margin-left: calc(-1 * clamp(1.5rem, 5vw, 6rem));
+  height: clamp(140px, 18vh, 200px);
+  object-fit: cover;
+  display: block;
+  margin-bottom: clamp(3rem, 6vh, 5rem);
+  filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+`;
+
 const ClassicGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1265,6 +1276,11 @@ const WhyUsSection = () => {
             <ClassicTitle>{CONTENT.headline}</ClassicTitle>
             <ClassicSubline>{CONTENT.subline}</ClassicSubline>
           </ClassicHeader>
+          <ClassicPanorama
+            src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg"
+            alt=""
+            loading="lazy"
+          />
           <ClassicGrid>
             {CARDS.map((card, i) => (
               <ClassicCard key={i}>
