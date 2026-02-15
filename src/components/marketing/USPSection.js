@@ -19,42 +19,42 @@ const USPS = [
     title: 'Kein Paar ist wie das andere',
     desc: 'Deshalb ist keine Website wie die andere. Jede Hochzeit, die wir umsetzen, ist ein Unikat. Bereits Dutzende Paare haben ihre Liebesgeschichte mit uns digital verewigt — handgemacht, nicht von der Stange.',
     short: 'Jede Website ein Unikat',
-    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769537648/siwedding/demo/hero/t4rsv6gjmwtow3k761d2.jpg',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177763/_4b4bda8b-648e-46e7-8fba-a71164e792c3_xpup8j.jpg',
   },
   {
     icon: '🌐',
     title: 'sarah-und-max.de',
     desc: 'Eure Liebe hat eine eigene Adresse. Keine Subdomain, kein Baukasten-Link. Ihr bekommt eure persönliche Domain — professionell eingerichtet, sofort startklar.',
     short: 'Eigene Domain inklusive',
-    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770290063/editorial_demoShowcase_gmxabx.jpg',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177760/_be3646f6-0ef9-424c-990f-3215044a3917_oybnqr.jpg',
   },
   {
     icon: '🎨',
     title: 'Designwelten — angepasst an euren Stil',
     desc: 'Ob elegant, modern oder verspielt: Wir passen jedes Design individuell an eure Farben, Fotos und Geschichte an. Kein Theme bleibt „Standard".',
     short: 'Themes, individuell angepasst',
-    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_2ae91726-85c5-4bf1-a06c-a12df9457df4_l5awwk.jpg',
   },
   {
     icon: '💬',
     title: 'Direkter Kontakt statt Support-Tickets',
     desc: 'Ihr sprecht mit echten Menschen — Sarah & Iver. Keine Hotline, kein Bot, kein Ticketsystem. Persönlich, schnell, erreichbar.',
     short: 'Sarah & Iver persönlich',
-    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769863906/iverlasting/demo/hero/v8il9fyd1u6dhj6se3tz.jpg',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_39729c08-0893-4079-ab7e-ab4e31e99b01_j2pqsg.jpg',
   },
   {
     icon: '🕊️',
     title: 'So wenig Aufwand wie möglich',
     desc: 'Wir übernehmen den Rest. Ihr schickt uns Texte & Fotos. Wir bauen eure Website, optimieren Design & Technik und kümmern uns um den Feinschliff.',
     short: 'Ihr liefert Inhalte, wir den Rest',
-    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177760/_e16d2f97-8669-403a-af3a-96ff1bb6320d_okgyyq.jpg',
   },
   {
     icon: '⚡',
     title: 'In 7 Tagen live',
     desc: 'Oder wir sagen ehrlich warum nicht. Keine monatelangen Wartezeiten. Die meisten Websites gehen innerhalb einer Woche online — inklusive Korrekturschleife.',
     short: 'In einer Woche online',
-    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_32d7e2d5-591c-407d-9803-0d5ffece587b_fbbaoi.jpg',
   },
 ];
 
@@ -63,7 +63,7 @@ const RSVP_FEATURE = {
   title: 'Alle Zusagen an einem Ort — ohne WhatsApp-Stress',
   desc: 'Gäste sagen direkt über eure Website zu. Ihr erhaltet eine übersichtliche Gästeliste, inklusive Essenswünschen & Begleitpersonen. Exportierbar als Excel für Catering, Sitzplan oder Einlasskontrolle.',
   short: 'RSVP, Gästeliste, Excel-Export',
-  image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
+  image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_3e7500cb-db46-4166-8f90-0d5ad7e18c3f_twzsjs.jpg',
 };
 
 const CTA_TEXT = {
