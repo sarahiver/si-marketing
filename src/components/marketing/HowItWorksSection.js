@@ -799,21 +799,38 @@ const VideoStepHighlight = styled.p`
 `;
 
 // ============================================
-// CLASSIC - Vertikale Timeline (elegant)
+// CLASSIC - Alternierend mit Bildern (organisch)
 // ============================================
+
+// TODO: Replace with actual step images
+const CLASSIC_STEP_IMAGES = [
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg',
+];
+
+// Organische Offsets pro Schritt — kein starres Grid
+const CLASSIC_STEP_LAYOUT = [
+  { reverse: false, imgAspect: '4/5', textPt: '1.5rem', shiftX: '0' },
+  { reverse: true, imgAspect: '3/4', textPt: '3rem', shiftX: '5%' },
+  { reverse: false, imgAspect: '1/1', textPt: '0.5rem', shiftX: '-3%' },
+  { reverse: true, imgAspect: '4/5', textPt: '2.5rem', shiftX: '7%' },
+];
+
 const ClassicSection = styled.section`
   padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
   background: #F5F0EB;
 `;
 
 const ClassicContainer = styled.div`
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
 `;
 
 const ClassicHeader = styled.div`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(3rem, 8vh, 5rem);
 `;
 
 const ClassicEyebrow = styled.p`
@@ -834,57 +851,67 @@ const ClassicTitle = styled.h2`
   color: #1A1A1A;
 `;
 
-const ClassicTimeline = styled.div`
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 24px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, #999999 0%, rgba(0,0,0,0.04) 100%);
-  }
+const ClassicSteps = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 7vh, 5rem);
 `;
 
 const ClassicStep = styled.div`
   display: flex;
-  gap: 2rem;
-  padding-bottom: 3rem;
+  align-items: flex-start;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  flex-direction: ${p => p.$reverse ? 'row-reverse' : 'row'};
+  margin-left: ${p => p.$shiftX || '0'};
 
-  &:last-child { padding-bottom: 0; }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+  }
 `;
 
-const ClassicStepMarker = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #F5F0EB;
-  border: 1px solid rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const ClassicStepImage = styled.div`
+  width: clamp(160px, 22vw, 260px);
   flex-shrink: 0;
-  position: relative;
-  z-index: 2;
+  overflow: hidden;
 
-  span {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #999999;
+  img {
+    width: 100%;
+    aspect-ratio: ${p => p.$aspect || '4/5'};
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    width: clamp(180px, 50vw, 240px);
   }
 `;
 
 const ClassicStepContent = styled.div`
   flex: 1;
-  padding-top: 0.5rem;
+  padding-top: ${p => p.$pt || '0'};
+  max-width: 480px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    padding-top: 0;
+  }
+`;
+
+const ClassicStepNum = styled.span`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #999999;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.75rem;
 `;
 
 const ClassicStepTitle = styled.h3`
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.3rem;
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
   font-weight: 400;
   color: #1A1A1A;
   margin-bottom: 0.75rem;
@@ -958,18 +985,24 @@ const HowItWorksSection = () => {
             <ClassicEyebrow>Euer Weg zur Website</ClassicEyebrow>
             <ClassicTitle>In 4 einfachen Schritten</ClassicTitle>
           </ClassicHeader>
-          <ClassicTimeline>
-            {STEPS.map((step, i) => (
-              <ClassicStep key={i}>
-                <ClassicStepMarker><span>{step.num}</span></ClassicStepMarker>
-                <ClassicStepContent>
-                  <ClassicStepTitle>{step.title}</ClassicStepTitle>
-                  <ClassicStepDesc>{step.desc}</ClassicStepDesc>
-                  <ClassicStepHighlight>{step.highlight}</ClassicStepHighlight>
-                </ClassicStepContent>
-              </ClassicStep>
-            ))}
-          </ClassicTimeline>
+          <ClassicSteps>
+            {STEPS.map((step, i) => {
+              const layout = CLASSIC_STEP_LAYOUT[i];
+              return (
+                <ClassicStep key={i} $reverse={layout.reverse} $shiftX={layout.shiftX}>
+                  <ClassicStepImage $aspect={layout.imgAspect}>
+                    <img src={CLASSIC_STEP_IMAGES[i]} alt="" loading="lazy" />
+                  </ClassicStepImage>
+                  <ClassicStepContent $pt={layout.textPt}>
+                    <ClassicStepNum>{step.num}</ClassicStepNum>
+                    <ClassicStepTitle>{step.title}</ClassicStepTitle>
+                    <ClassicStepDesc>{step.desc}</ClassicStepDesc>
+                    <ClassicStepHighlight>{step.highlight}</ClassicStepHighlight>
+                  </ClassicStepContent>
+                </ClassicStep>
+              );
+            })}
+          </ClassicSteps>
           <CTABox>
             <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', color: '#1A1A1A' }}>
               {CTA_TEXT.headline}
