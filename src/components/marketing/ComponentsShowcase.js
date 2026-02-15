@@ -206,7 +206,7 @@ const ClassicSection = styled.section`
     bottom: 0;
     height: 55%;
     background: url(${CLASSIC_COMPONENTS_IMAGE}) center/cover no-repeat;
-    filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+    /* filter removed */
   }
 
   &::after {

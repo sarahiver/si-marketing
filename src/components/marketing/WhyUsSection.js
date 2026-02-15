@@ -1131,7 +1131,7 @@ const ClassicPanorama = styled.img`
   object-fit: cover;
   display: block;
   margin-bottom: clamp(3rem, 6vh, 5rem);
-  filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+  /* filter removed */
 `;
 
 const ClassicGrid = styled.div`

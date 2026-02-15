@@ -254,7 +254,7 @@ const ClassicHero = styled.div`
 const ClassicImage = styled.div`
   background: url(${SARAH_IVER_IMAGE}) center/cover no-repeat;
   min-height: 400px;
-  filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+  /* filter removed */
 
   @media (max-width: 900px) {
     min-height: 50vh;

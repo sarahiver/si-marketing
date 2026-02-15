@@ -330,12 +330,12 @@ const ClassicCardImage = styled.div`
     object-fit: cover;
     border: 5px solid #FFFFFF;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-    filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+    /* filter removed */
     transition: filter 0.5s ease, transform 0.5s ease;
   }
 
   ${ClassicCard}[data-active="true"] & img {
-    filter: saturate(0.9) sepia(0.05) hue-rotate(40deg) brightness(1.03);
+    /* filter removed */
   }
 
   ${ClassicCard}[data-active="true"]:hover & img {

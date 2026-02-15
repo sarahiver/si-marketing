@@ -880,7 +880,7 @@ const ClassicStepImage = styled.div`
     aspect-ratio: ${p => p.$aspect || '4/5'};
     object-fit: cover;
     display: block;
-    filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+    /* filter removed */
   }
 
   @media (max-width: 768px) {

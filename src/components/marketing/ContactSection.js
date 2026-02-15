@@ -559,7 +559,7 @@ const ClassicImage = styled.img`
   height: 100vh;
   object-fit: cover;
   display: block;
-  filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+  /* filter removed */
 
   @media (max-width: 900px) {
     position: relative;
