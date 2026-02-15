@@ -1277,7 +1277,7 @@ const WhyUsSection = () => {
             <ClassicSubline>{CONTENT.subline}</ClassicSubline>
           </ClassicHeader>
           <ClassicPanorama
-            src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg"
+            src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/WhyUS_azpejd.jpg"
             alt=""
             loading="lazy"
           />

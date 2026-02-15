@@ -525,7 +525,7 @@ const PrivacyNote = styled.p`
 // ============================================
 // CLASSIC-SPECIFIC COMPONENTS
 // ============================================
-const CLASSIC_CONTACT_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg'; // TODO: Replace with real photo
+const CLASSIC_CONTACT_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771173517/Contact_akucsg.jpg';
 
 const ClassicSection = styled.section`
   padding: 0;

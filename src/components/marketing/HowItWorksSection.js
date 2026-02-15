@@ -802,12 +802,11 @@ const VideoStepHighlight = styled.p`
 // CLASSIC - Alternierend mit Bildern (organisch)
 // ============================================
 
-// TODO: Replace with actual step images
 const CLASSIC_STEP_IMAGES = [
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg',
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg',
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg',
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771173517/HowItWorks01_ggf1jp.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771173517/HowItWorks02_sgdpjk.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771173518/HowItWorks03_gkuv1v.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771173517/HowItWorks04_gbjx3o.jpg',
 ];
 
 // Organische Offsets pro Schritt — kein starres Grid

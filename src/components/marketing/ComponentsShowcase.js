@@ -189,8 +189,7 @@ const EditorialItemDesc = styled.p`
 // ============================================
 // CLASSIC - Warm Elegant Grid
 // ============================================
-// TODO: Replace with actual image
-const CLASSIC_COMPONENTS_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
+const CLASSIC_COMPONENTS_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/ComponentShowcase_nxugwi.jpg';
 
 const ClassicSection = styled.section`
   padding-top: clamp(5rem, 12vh, 10rem);

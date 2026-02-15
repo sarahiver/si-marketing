@@ -94,7 +94,7 @@ const THEME_SCREENSHOTS = {
   luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
   neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
   video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727740/video_demoShowcase_optimized_jrlsoh.jpg',
-  classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg', // TODO: Replace with actual classic demo screenshot
+  classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173518/ThemeShowCasePreview_mku2c4.jpg',
 };
 
 const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color, horizontal }) => {
@@ -1713,7 +1713,7 @@ const ThemeShowcase = () => {
     return (
       <ClassicSection id="themes">
         <ClassicHeroImage
-          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg"
+          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/ThemeShowCase_ewc7q8.jpg"
           alt=""
           loading="lazy"
         />
