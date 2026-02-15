@@ -1255,33 +1255,42 @@ const ClassicHeroImage = styled.img`
 const ClassicContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(2.5rem, 4vw, 4rem);
+  align-items: start;
   padding: 0 clamp(1.5rem, 5vw, 4rem);
-`;
-
-const ClassicPreviewCard = styled.div`
   margin-top: clamp(-200px, -15vh, -140px);
-  max-width: clamp(300px, 40vw, 450px);
-  width: 100%;
-  border: 8px solid #FFFFFF;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
   position: relative;
   z-index: 2;
-  border-radius: 4px;
-  overflow: hidden;
 
-  @media (max-width: 768px) {
-    max-width: 280px;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
     margin-top: -100px;
   }
 `;
 
+const ClassicPreviewCard = styled.div`
+  max-width: clamp(300px, 28vw, 400px);
+  width: 100%;
+  border: 8px solid #FFFFFF;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+
+  @media (max-width: 900px) {
+    max-width: 280px;
+  }
+`;
+
 const ClassicTextContent = styled.div`
-  max-width: 700px;
-  text-align: center;
-  margin-top: 3rem;
+  padding-top: clamp(10rem, 15vh, 14rem);
+
+  @media (max-width: 900px) {
+    text-align: center;
+    padding-top: 2rem;
+  }
 `;
 
 const ClassicLabel = styled.p`
@@ -1322,9 +1331,12 @@ const ClassicDesc = styled.p`
 const ClassicFeatures = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.75rem;
   margin-bottom: 2.5rem;
+
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
 `;
 
 const ClassicFeature = styled.span`
@@ -1376,8 +1388,11 @@ const ClassicAllDemosTitle = styled.h3`
 const ClassicDemoGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.5rem;
+
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
 `;
 
 const ClassicDemoLink = styled.a`
