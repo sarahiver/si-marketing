@@ -515,11 +515,93 @@ const PrivacyNote = styled.p`
   text-align: center;
   margin-top: 1rem;
   opacity: 0.7;
-  
+
   a {
     color: ${p => p.$config.accent};
     text-decoration: underline;
   }
+`;
+
+// ============================================
+// CLASSIC-SPECIFIC COMPONENTS
+// ============================================
+const CLASSIC_CONTACT_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg'; // TODO: Replace with real photo
+
+const ClassicSection = styled.section`
+  padding: 0;
+  background: #FFFFFF;
+  position: relative;
+`;
+
+const ClassicGrid = styled.div`
+  display: grid;
+  grid-template-columns: clamp(280px, 38vw, 500px) 1fr;
+  min-height: 100vh;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+`;
+
+const ClassicImageCol = styled.div`
+  position: relative;
+
+  @media (max-width: 900px) {
+    height: 300px;
+  }
+`;
+
+const ClassicImage = styled.img`
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+
+  @media (max-width: 900px) {
+    position: relative;
+    height: 300px;
+  }
+`;
+
+const ClassicFormCol = styled.div`
+  padding: clamp(3rem, 6vh, 6rem) clamp(2rem, 5vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const ClassicHeader = styled.div`
+  margin-bottom: clamp(2rem, 4vh, 3.5rem);
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999999;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+  line-height: 1.15;
+`;
+
+const ClassicSubtitle = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #999999;
+  line-height: 1.6;
 `;
 
 // ============================================
@@ -761,6 +843,192 @@ const ContactSection = () => {
   
   const content = getContent();
 
+  // Shared form JSX (used by both default and classic)
+  const formContent = submitStatus === 'success' ? (
+    <SuccessMessage $theme={currentTheme} $config={config}>
+      <h3>✓ Vielen Dank!</h3>
+      <p>
+        Wir haben eure Anfrage erhalten und melden uns
+        <span className="highlight"> innerhalb von 24 Stunden</span> bei euch.
+      </p>
+      <p>
+        Wir freuen uns auf das Gespräch!
+      </p>
+      <p style={{ marginTop: '1.5rem', fontSize: '0.85rem' }}>
+        Fragen? Schreibt uns direkt an{' '}
+        <a href="mailto:wedding@sarahiver.de" style={{ color: config.accent }}>
+          wedding@sarahiver.de
+        </a>
+      </p>
+    </SuccessMessage>
+  ) : (
+    <Form onSubmit={handleSubmit} onFocus={handleFormInteraction} onClick={handleFormInteraction} onTouchStart={handleFormInteraction}>
+      <Honeypot
+        type="text"
+        name="honeypot"
+        value={formData.honeypot}
+        onChange={handleChange}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        aria-label="Nicht ausfüllen"
+      />
+
+      <FormRow>
+        <FormGroup>
+          <Label htmlFor="contact-name" $theme={currentTheme} $config={config}>Name *</Label>
+          <Input
+            id="contact-name"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Euer Name"
+            required
+            $theme={currentTheme}
+            $config={config}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="contact-email" $theme={currentTheme} $config={config}>E-Mail *</Label>
+          <Input
+            id="contact-email"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="email@beispiel.de"
+            required
+            $theme={currentTheme}
+            $config={config}
+          />
+        </FormGroup>
+      </FormRow>
+
+      <FormRow>
+        <FormGroup>
+          <Label htmlFor="contact-phone" $theme={currentTheme} $config={config}>Telefon</Label>
+          <Input
+            id="contact-phone"
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+49 123 456789"
+            $theme={currentTheme}
+            $config={config}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="contact-weddingDate" $theme={currentTheme} $config={config}>Hochzeitsdatum</Label>
+          <Input
+            id="contact-weddingDate"
+            type="date"
+            name="weddingDate"
+            value={formData.weddingDate}
+            onChange={handleChange}
+            $theme={currentTheme}
+            $config={config}
+          />
+        </FormGroup>
+      </FormRow>
+
+      <FormRow>
+        <FormGroup>
+          <Label htmlFor="contact-theme" $theme={currentTheme} $config={config}>Interesse an Theme</Label>
+          <Select
+            id="contact-theme"
+            name="interestedTheme"
+            value={formData.interestedTheme}
+            onChange={handleChange}
+            $theme={currentTheme}
+            $config={config}
+          >
+            {THEME_OPTIONS.map(opt => (
+              <option key={opt.id} value={opt.id}>{opt.label}</option>
+            ))}
+          </Select>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="contact-package" $theme={currentTheme} $config={config}>Interesse an Paket</Label>
+          <Select
+            id="contact-package"
+            name="interestedPackage"
+            value={formData.interestedPackage}
+            onChange={handleChange}
+            $theme={currentTheme}
+            $config={config}
+          >
+            {PACKAGES.map(opt => (
+              <option key={opt.id} value={opt.id}>{opt.label}</option>
+            ))}
+          </Select>
+        </FormGroup>
+      </FormRow>
+
+      <FormGroup>
+        <Label htmlFor="contact-message" $theme={currentTheme} $config={config}>Nachricht *</Label>
+        <Textarea
+          id="contact-message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Erzählt uns von eurer Hochzeit..."
+          required
+          $theme={currentTheme}
+          $config={config}
+        />
+      </FormGroup>
+
+      {errorMessage && (
+        <ErrorMessage $config={config}>{errorMessage}</ErrorMessage>
+      )}
+
+      <CaptchaWrapper>
+        <div ref={captchaRef}></div>
+      </CaptchaWrapper>
+
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        $theme={currentTheme}
+        $config={config}
+      >
+        {isSubmitting ? 'Wird gesendet...' : content.button}
+      </Button>
+
+      <PrivacyNote $config={config}>
+        Mit dem Absenden stimmst du unserer{' '}
+        <a href="/datenschutz">Datenschutzerklärung</a> zu.{' '}
+        Wir melden uns innerhalb von 24 Stunden.
+      </PrivacyNote>
+    </Form>
+  );
+
+  // ── Classic: sticky photo left, form right ──
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="contact" ref={sectionRef}>
+        <ClassicGrid>
+          <ClassicImageCol>
+            <ClassicImage src={CLASSIC_CONTACT_IMAGE} alt="" loading="lazy" />
+          </ClassicImageCol>
+          <ClassicFormCol>
+            <ClassicHeader>
+              <ClassicEyebrow>Der erste Schritt</ClassicEyebrow>
+              <ClassicTitle>Erzählt uns von euch</ClassicTitle>
+              <ClassicSubtitle>
+                Kein Verkaufsgespräch. Nur ein ehrliches Kennenlernen. Ihr schreibt direkt an Sarah &amp; Iver.
+              </ClassicSubtitle>
+            </ClassicHeader>
+            {formContent}
+          </ClassicFormCol>
+        </ClassicGrid>
+      </ClassicSection>
+    );
+  }
+
+  // ── All other themes: centered layout ──
   return (
     <Section id="contact" ref={sectionRef} $theme={currentTheme} $config={config}>
       <Container>
@@ -769,169 +1037,9 @@ const ContactSection = () => {
           <Title $theme={currentTheme} $config={config}>{content.title}</Title>
           <Subtitle $theme={currentTheme} $config={config}>{content.subtitle}</Subtitle>
         </Header>
-        
+
         <FormCard $theme={currentTheme} $config={config}>
-          {submitStatus === 'success' ? (
-            <SuccessMessage $theme={currentTheme} $config={config}>
-              <h3>✓ Vielen Dank!</h3>
-              <p>
-                Wir haben eure Anfrage erhalten und melden uns
-                <span className="highlight"> innerhalb von 24 Stunden</span> bei euch.
-              </p>
-              <p>
-                Wir freuen uns auf das Gespräch!
-              </p>
-              <p style={{ marginTop: '1.5rem', fontSize: '0.85rem' }}>
-                Fragen? Schreibt uns direkt an{' '}
-                <a href="mailto:wedding@sarahiver.de" style={{ color: config.accent }}>
-                  wedding@sarahiver.de
-                </a>
-              </p>
-            </SuccessMessage>
-          ) : (
-            <Form onSubmit={handleSubmit} onFocus={handleFormInteraction} onClick={handleFormInteraction} onTouchStart={handleFormInteraction}>
-              {/* Honeypot - invisible to users */}
-              <Honeypot
-                type="text"
-                name="honeypot"
-                value={formData.honeypot}
-                onChange={handleChange}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                aria-label="Nicht ausfüllen"
-              />
-              
-              <FormRow>
-                <FormGroup>
-                  <Label htmlFor="contact-name" $theme={currentTheme} $config={config}>Name *</Label>
-                  <Input
-                    id="contact-name"
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Euer Name"
-                    required
-                    $theme={currentTheme}
-                    $config={config}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label htmlFor="contact-email" $theme={currentTheme} $config={config}>E-Mail *</Label>
-                  <Input
-                    id="contact-email"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="email@beispiel.de"
-                    required
-                    $theme={currentTheme}
-                    $config={config}
-                  />
-                </FormGroup>
-              </FormRow>
-              
-              <FormRow>
-                <FormGroup>
-                  <Label htmlFor="contact-phone" $theme={currentTheme} $config={config}>Telefon</Label>
-                  <Input
-                    id="contact-phone"
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+49 123 456789"
-                    $theme={currentTheme}
-                    $config={config}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label htmlFor="contact-weddingDate" $theme={currentTheme} $config={config}>Hochzeitsdatum</Label>
-                  <Input
-                    id="contact-weddingDate"
-                    type="date"
-                    name="weddingDate"
-                    value={formData.weddingDate}
-                    onChange={handleChange}
-                    $theme={currentTheme}
-                    $config={config}
-                  />
-                </FormGroup>
-              </FormRow>
-              
-              <FormRow>
-                <FormGroup>
-                  <Label htmlFor="contact-theme" $theme={currentTheme} $config={config}>Interesse an Theme</Label>
-                  <Select
-                    id="contact-theme"
-                    name="interestedTheme"
-                    value={formData.interestedTheme}
-                    onChange={handleChange}
-                    $theme={currentTheme}
-                    $config={config}
-                  >
-                    {THEME_OPTIONS.map(opt => (
-                      <option key={opt.id} value={opt.id}>{opt.label}</option>
-                    ))}
-                  </Select>
-                </FormGroup>
-                <FormGroup>
-                  <Label htmlFor="contact-package" $theme={currentTheme} $config={config}>Interesse an Paket</Label>
-                  <Select
-                    id="contact-package"
-                    name="interestedPackage"
-                    value={formData.interestedPackage}
-                    onChange={handleChange}
-                    $theme={currentTheme}
-                    $config={config}
-                  >
-                    {PACKAGES.map(opt => (
-                      <option key={opt.id} value={opt.id}>{opt.label}</option>
-                    ))}
-                  </Select>
-                </FormGroup>
-              </FormRow>
-              
-              <FormGroup>
-                <Label htmlFor="contact-message" $theme={currentTheme} $config={config}>Nachricht *</Label>
-                <Textarea
-                  id="contact-message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Erzählt uns von eurer Hochzeit..."
-                  required
-                  $theme={currentTheme}
-                  $config={config}
-                />
-              </FormGroup>
-              
-              {errorMessage && (
-                <ErrorMessage $config={config}>{errorMessage}</ErrorMessage>
-              )}
-              
-              <CaptchaWrapper>
-                <div ref={captchaRef}></div>
-              </CaptchaWrapper>
-              
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                $theme={currentTheme}
-                $config={config}
-              >
-                {isSubmitting ? 'Wird gesendet...' : content.button}
-              </Button>
-              
-              <PrivacyNote $config={config}>
-                Mit dem Absenden stimmst du unserer{' '}
-                <a href="/datenschutz">Datenschutzerklärung</a> zu.{' '}
-                Wir melden uns innerhalb von 24 Stunden.
-              </PrivacyNote>
-            </Form>
-          )}
+          {formContent}
         </FormCard>
       </Container>
     </Section>
