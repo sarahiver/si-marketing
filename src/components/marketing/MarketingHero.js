@@ -891,11 +891,10 @@ const VideoNavItem = styled.span`
 // CLASSIC HERO - Cinematic Fullscreen (wie Wedding Theme)
 // ============================================
 const ClassicSection = styled.section`
-  min-height: 100vh;
-  background: #111;
   position: relative;
-  display: flex;
-  align-items: flex-end;
+  height: 100vh;
+  min-height: 650px;
+  background: #111;
   overflow: hidden;
 `;
 
@@ -905,26 +904,21 @@ const ClassicVideoBg = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.45);
+  filter: grayscale(40%) brightness(0.42);
 `;
 
 const ClassicOverlay = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.5) 0%,
-    rgba(0,0,0,0.1) 40%,
-    rgba(0,0,0,0.15) 100%
-  );
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,0,0,0.35) 100%);
 `;
 
 const ClassicContent = styled.div`
-  position: relative;
+  position: absolute;
+  bottom: clamp(3rem, 8vh, 6rem);
+  left: clamp(2rem, 5vw, 5rem);
   z-index: 10;
-  padding: 0 clamp(2rem, 5vw, 6rem) clamp(5rem, 10vh, 8rem);
-  max-width: 800px;
-  animation: ${fadeIn} 1.2s ease both;
+  max-width: 600px;
 `;
 
 const ClassicEyebrow = styled.p`
@@ -948,11 +942,10 @@ const ClassicTitle = styled.h1`
 `;
 
 const ClassicScript = styled.span`
+  display: block;
   font-family: 'Mrs Saint Delafield', cursive;
   font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 400;
   color: rgba(255,255,255,0.6);
-  display: block;
   margin-top: 0.5rem;
   animation: ${fadeInUp} 0.8s ease 0.7s both;
 `;
