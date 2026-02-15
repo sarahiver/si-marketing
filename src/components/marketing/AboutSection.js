@@ -237,7 +237,7 @@ const EditorialCTA = styled.div`
 // CLASSIC - Elegant Warm Layout
 // ============================================
 const ClassicSection = styled.section`
-  background: #FDFCFA;
+  background: #FFFFFF;
 `;
 
 const ClassicHero = styled.div`
@@ -254,7 +254,7 @@ const ClassicHero = styled.div`
 const ClassicImage = styled.div`
   background: url(${SARAH_IVER_IMAGE}) center/cover no-repeat;
   min-height: 400px;
-  filter: grayscale(40%);
+  filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
 
   @media (max-width: 900px) {
     min-height: 50vh;
@@ -316,7 +316,7 @@ const ClassicQuote = styled.blockquote`
 
 const ClassicTeam = styled.div`
   padding: clamp(3rem, 8vw, 6rem);
-  background: #F5F0EB;
+  background: #FFFFFF;
 `;
 
 const ClassicTeamGrid = styled.div`
@@ -385,7 +385,7 @@ const ClassicTeamDesc = styled.p`
 const ClassicCTA = styled.div`
   padding: clamp(3rem, 8vw, 5rem);
   text-align: center;
-  background: #FDFCFA;
+  background: #FFFFFF;
 `;
 
 // ============================================
@@ -1218,7 +1218,7 @@ const AboutSection = () => {
           </CTAHeadline>
           <CTAButton
             onClick={scrollToContact}
-            style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#FDFCFA', background: '#1A1A1A', border: 'none' }}
+            style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#FFFFFF', background: '#1A1A1A', border: 'none' }}
           >
             {CTA.button}
           </CTAButton>

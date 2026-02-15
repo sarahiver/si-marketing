@@ -1241,7 +1241,7 @@ const VideoDemoLink = styled.a`
 // CLASSIC STYLED COMPONENTS
 // ============================================
 const ClassicSection = styled(Section)`
-  background: #FDFCFA;
+  background: #FFFFFF;
   padding-top: 0;
   overflow: visible;
 `;
@@ -1724,7 +1724,7 @@ const ThemeShowcase = () => {
               demoUrl="https://siwedding.de/demo-classic"
               fallbackText="A & M"
               aspect="3/4"
-              bg="#F5F0EB"
+              bg="#FFFFFF"
               fontFamily="'Cormorant Garamond', serif"
               fontSize="3rem"
               fontWeight="300"

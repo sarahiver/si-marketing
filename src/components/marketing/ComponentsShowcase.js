@@ -191,7 +191,7 @@ const EditorialItemDesc = styled.p`
 // ============================================
 const ClassicSection = styled.section`
   padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
-  background: #FDFCFA;
+  background: #FFFFFF;
 `;
 
 const ClassicContainer = styled.div`
@@ -257,7 +257,7 @@ const ClassicGrid = styled.div`
 `;
 
 const ClassicCard = styled.div`
-  background: ${p => p.$included ? '#fff' : '#F5F0EB'};
+  background: ${p => p.$included ? '#fff' : '#FFFFFF'};
   border: ${p => p.$included ? '2px solid #999999' : '1px solid rgba(0,0,0,0.08)'};
   padding: 1.5rem 1rem;
   text-align: center;

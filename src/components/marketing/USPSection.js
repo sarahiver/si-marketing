@@ -248,7 +248,7 @@ const EditorialRSVPDesc = styled.p`
 // ============================================
 const ClassicSection = styled.section`
   padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
-  background: #FDFCFA;
+  background: #FFFFFF;
 `;
 
 const ClassicContainer = styled.div`
@@ -330,12 +330,12 @@ const ClassicCardImage = styled.div`
     object-fit: cover;
     border: 5px solid #FFFFFF;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-    filter: grayscale(15%);
+    filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
     transition: filter 0.5s ease, transform 0.5s ease;
   }
 
   ${ClassicCard}[data-active="true"] & img {
-    filter: grayscale(0%);
+    filter: saturate(0.9) sepia(0.05) hue-rotate(40deg) brightness(1.03);
   }
 
   ${ClassicCard}[data-active="true"]:hover & img {
@@ -1284,7 +1284,7 @@ const USPSection = () => {
             </CTAHeadline>
             <CTAButton
               onClick={scrollToThemes}
-              style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, letterSpacing: '0.2em', color: '#FDFCFA', background: '#1A1A1A', border: 'none' }}
+              style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, letterSpacing: '0.2em', color: '#FFFFFF', background: '#1A1A1A', border: 'none' }}
             >
               {CTA_TEXT.button}
             </CTAButton>

@@ -820,7 +820,7 @@ const CLASSIC_STEP_LAYOUT = [
 
 const ClassicSection = styled.section`
   padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
-  background: #F5F0EB;
+  background: #FFFFFF;
 `;
 
 const ClassicContainer = styled.div`
@@ -881,6 +881,7 @@ const ClassicStepImage = styled.div`
     aspect-ratio: ${p => p.$aspect || '4/5'};
     object-fit: cover;
     display: block;
+    filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
   }
 
   @media (max-width: 768px) {

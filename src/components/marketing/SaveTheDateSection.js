@@ -13,7 +13,7 @@ const Section = styled.section`
   @media (min-width: 600px) { padding: 140px 5%; }
   ${p => p.$themeId === 'video' && css`background: #0A0A0A;`}
   ${p => p.$themeId === 'editorial' && css`background: #1A1A1A;`}
-  ${p => p.$themeId === 'classic' && css`background: #F5F0EB;`}
+  ${p => p.$themeId === 'classic' && css`background: #FFFFFF;`}
   ${p => p.$themeId === 'botanical' && css`background: #2D3B2D;`}
   ${p => p.$themeId === 'contemporary' && css`background: #0D0D0D;`}
   ${p => p.$themeId === 'luxe' && css`background: #0A0A0A;`}
@@ -101,7 +101,7 @@ const Phone = styled.div`
   width: 160px; height: 320px; border-radius: 25px; padding: 8px; position: relative;
   ${p => p.$themeId === 'video' && css`background: #1a1a1a; box-shadow: 0 30px 60px rgba(0,0,0,0.4);`}
   ${p => p.$themeId === 'editorial' && css`background: #333; box-shadow: 0 30px 60px rgba(0,0,0,0.3);`}
-  ${p => p.$themeId === 'classic' && css`background: #FDFCFA; box-shadow: 0 20px 40px rgba(0,0,0,0.08);`}
+  ${p => p.$themeId === 'classic' && css`background: #FFFFFF; box-shadow: 0 20px 40px rgba(0,0,0,0.08);`}
   ${p => p.$themeId === 'botanical' && css`background: #1a2a1a; box-shadow: 0 30px 60px rgba(0,0,0,0.3);`}
   ${p => p.$themeId === 'contemporary' && css`background: #1a1a1a; box-shadow: 6px 6px 0 #FF6B6B;`}
   ${p => p.$themeId === 'luxe' && css`background: #1a1a1a; box-shadow: 0 30px 60px rgba(212,175,55,0.1);`}
@@ -115,7 +115,7 @@ const Screen = styled.div`
   ${p => p.$dark && css`
     ${p.$themeId === 'video' && css`background: #0a0a0a;`}
     ${p.$themeId === 'editorial' && css`background: #1A1A1A;`}
-    ${p.$themeId === 'classic' && css`background: #F5F0EB;`}
+    ${p.$themeId === 'classic' && css`background: #F5F5F5;`}
     ${p.$themeId === 'botanical' && css`background: #2D3B2D;`}
     ${p.$themeId === 'contemporary' && css`background: #0D0D0D;`}
     ${p.$themeId === 'luxe' && css`background: #0a0a0a;`}
@@ -124,7 +124,7 @@ const Screen = styled.div`
   ${p => !p.$dark && css`
     ${p.$themeId === 'video' && css`background: #FAF8F5;`}
     ${p.$themeId === 'editorial' && css`background: #FFFFFF;`}
-    ${p.$themeId === 'classic' && css`background: #FDFCFA;`}
+    ${p.$themeId === 'classic' && css`background: #FFFFFF;`}
     ${p.$themeId === 'botanical' && css`background: #F5F1EB;`}
     ${p.$themeId === 'contemporary' && css`background: #FAFAFA;`}
     ${p.$themeId === 'luxe' && css`background: #FAF9F7;`}

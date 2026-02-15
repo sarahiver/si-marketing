@@ -381,7 +381,7 @@ const EditorialCTA = styled.button`
 // ============================================
 // CLASSIC THEME
 // ============================================
-const ClassicSection = styled(Section)`background: #FDFCFA;`;
+const ClassicSection = styled(Section)`background: #FFFFFF;`;
 
 const ClassicEyebrow = styled.p`
   font-family: 'Josefin Sans', sans-serif;
@@ -551,7 +551,7 @@ const ClassicCTA = styled.button`
     background: transparent;
     color: #1A1A1A;
     border: 1px solid #1A1A1A;
-    &:hover { background: #1A1A1A; color: #FDFCFA; }
+    &:hover { background: #1A1A1A; color: #FFFFFF; }
   `}
 `;
 

@@ -34,7 +34,7 @@ const pulse = keyframes`
 // ============================================
 const THEME_BACKGROUNDS = {
   editorial: '#FAFAFA',
-  classic: '#FDFCFA',
+  classic: '#FFFFFF',
   botanical: 'transparent',
   contemporary: '#FFE66D',
   luxe: '#0A0A0A',
@@ -136,7 +136,7 @@ const EditorialText = styled.p`
 // CLASSIC - Warm Gold Störer
 // ============================================
 const ClassicStoerer = styled(StoererBadge)`
-  background: #F5F0EB;
+  background: #FFFFFF;
   color: #1A1A1A;
   border: 1px solid #999;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -152,7 +152,7 @@ const ClassicTitle = styled.div`
 const ClassicBadge = styled.span`
   display: inline-block;
   background: #1A1A1A;
-  color: #FDFCFA;
+  color: #FFFFFF;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.7rem;
   font-weight: 300;

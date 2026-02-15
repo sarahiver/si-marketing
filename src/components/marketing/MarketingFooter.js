@@ -130,7 +130,7 @@ const EditorialLegalLink = styled(Link)`
 // CLASSIC FOOTER
 // ============================================
 const ClassicFooter = styled(FooterBase)`
-  background: #F5F0EB;
+  background: #FFFFFF;
   border-top: 1px solid rgba(0,0,0,0.08);
 `;
 

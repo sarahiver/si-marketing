@@ -136,7 +136,7 @@ const THEME_CONFIG = {
     borderRadius: '0',
   },
   classic: {
-    bg: '#FDFCFA',
+    bg: '#FFFFFF',
     cardBg: 'transparent',
     text: '#1A1A1A',
     textMuted: '#999999',

@@ -119,7 +119,7 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
   ${(p) => p.$themeId === "editorial" && css`background: #ffffff;`}
-  ${(p) => p.$themeId === "classic" && css`background: #FDFCFA;`}
+  ${(p) => p.$themeId === "classic" && css`background: #FFFFFF;`}
   ${(p) => p.$themeId === "video" && css`background: #0a0a0a;`}
   ${(p) => p.$themeId === "botanical" && css`background: #f8f6f0;`}
   ${(p) => p.$themeId === "contemporary" && css`background: #f5f5f5;`}

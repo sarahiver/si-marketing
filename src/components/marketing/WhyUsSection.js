@@ -1076,7 +1076,7 @@ const VideoCTA = styled.button`
 // ============================================
 const ClassicSection = styled.section`
   padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
-  background: #F5F0EB;
+  background: #FFFFFF;
   position: relative;
   overflow: hidden;
 `;
@@ -1136,7 +1136,7 @@ const ClassicGrid = styled.div`
 `;
 
 const ClassicCard = styled.div`
-  background: #FDFCFA;
+  background: #FFFFFF;
   border-left: 2px solid rgba(0,0,0,0.1);
   padding: 2.25rem 2rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
@@ -1235,7 +1235,7 @@ const ClassicCTA = styled.button`
   padding: 0.95rem 2.25rem;
   border: 1.5px solid ${p => p.$primary ? '#1A1A1A' : '#1A1A1A'};
   background: ${p => p.$primary ? '#1A1A1A' : 'transparent'};
-  color: ${p => p.$primary ? '#FDFCFA' : '#1A1A1A'};
+  color: ${p => p.$primary ? '#FFFFFF' : '#1A1A1A'};
   cursor: pointer;
   transition: all 0.3s ease;
 

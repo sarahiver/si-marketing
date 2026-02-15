@@ -121,7 +121,7 @@ const themes = [
   { id: 'contemporary', color: '#FF6B6B', border: '#FF6B6B' },
   { id: 'luxe', color: '#1A1520', border: '#D4AF37' },
   { id: 'neon', color: '#00ffff', border: '#00ffff' },
-  { id: 'classic', color: '#F5F0EB', border: '#999999' }
+  { id: 'classic', color: '#FFFFFF', border: '#999999' }
 ];
 
 function ThemeSwitcher() {

@@ -99,7 +99,7 @@ const EditorialItemDesc = styled.p`
 // ============================================
 // CLASSIC - Alternating Image/Text Rows (warm, refined)
 // ============================================
-const ClassicSection = styled(Section)`background: #FDFCFA;`;
+const ClassicSection = styled(Section)`background: #FFFFFF;`;
 const ClassicEyebrow = styled.p`font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: #999999; margin-bottom: 1rem;`;
 const ClassicTitle = styled.h2`font-family: 'Mrs Saint Delafield', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 400; line-height: 1.15; color: #1A1A1A;`;
 const ClassicSubtitle = styled.p`font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1rem; font-style: italic; color: #555555; max-width: 500px; margin: 1rem auto 0;`;
@@ -129,7 +129,7 @@ const ClassicRow = styled.div`
 const ClassicImage = styled.div`
   background: url(${p => p.$src}) center/cover no-repeat;
   min-height: 400px;
-  filter: grayscale(40%);
+  filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
 
   @media (max-width: 900px) { min-height: 300px; }
 `;
@@ -139,7 +139,7 @@ const ClassicText = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: clamp(2rem, 5vw, 4rem);
-  background: ${p => p.$alt ? '#FDFCFA' : '#F5F0EB'};
+  background: ${p => p.$alt ? '#FFFFFF' : '#FFFFFF'};
 `;
 
 const ClassicNum = styled.span`

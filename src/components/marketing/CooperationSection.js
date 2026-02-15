@@ -93,7 +93,7 @@ const EditorialButton = styled.button`
 // ============================================
 const ClassicSection = styled.section`
   padding: clamp(4rem, 10vh, 7rem) clamp(1.5rem, 5vw, 4rem);
-  background: #FDFCFA;
+  background: #FFFFFF;
 `;
 
 const ClassicContainer = styled.div`
@@ -143,7 +143,7 @@ const ClassicButton = styled.button`
   font-weight: 300;
   letter-spacing: 0.15em;
   padding: 1rem 2.5rem;
-  color: #FDFCFA;
+  color: #FFFFFF;
   background: #1A1A1A;
   border: none;
   cursor: pointer;

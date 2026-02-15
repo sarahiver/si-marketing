@@ -35,13 +35,13 @@ const Nav = styled.nav`
 
   /* Mobile: Immer Hintergrund für bessere Lesbarkeit */
   @media (max-width: 768px) {
-    background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
-    backdrop-filter: blur(10px);
+    background: ${p => p.$theme === 'classic' ? 'transparent' : p.$theme === 'contemporary' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
+    backdrop-filter: ${p => p.$theme === 'classic' ? 'none' : 'blur(10px)'};
     padding: 1rem 1.5rem;
   }
 
-  ${p => p.$scrolled && css`
-    background: ${p.$theme === 'contemporary' || p.$theme === 'classic' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
+  ${p => p.$scrolled && p.$theme !== 'classic' && css`
+    background: ${p.$theme === 'contemporary' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
     backdrop-filter: blur(10px);
     padding: 1rem clamp(1.5rem, 5vw, 4rem);
   `}
@@ -246,7 +246,7 @@ const ThemeDropdown = styled.div`
   top: calc(100% + 10px);
   right: 0;
   min-width: 140px;
-  background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#FDFCFA' : 'rgba(10, 10, 10, 0.95)'};
+  background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#FFFFFF' : 'rgba(10, 10, 10, 0.95)'};
   border: ${p => p.$theme === 'contemporary' ? '2px solid #0D0D0D' : p.$theme === 'classic' ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.15)'};
   ${p => p.$theme === 'contemporary' && css`box-shadow: 4px 4px 0 #0D0D0D;`}
   ${p => p.$theme === 'classic' && css`box-shadow: 0 10px 30px rgba(0,0,0,0.08);`}
@@ -376,7 +376,7 @@ const MobileMenu = styled.div`
     switch(p.$theme) {
       case 'botanical': return '#040604';
       case 'contemporary': return '#FFFFFF';
-      case 'classic': return '#FDFCFA';
+      case 'classic': return '#FFFFFF';
       case 'luxe': return '#0A0A0A';
       case 'neon': return '#0a0a0f';
       case 'editorial': return '#0A0A0A';
