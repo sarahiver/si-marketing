@@ -1256,7 +1256,7 @@ const ClassicContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: clamp(280px, 28vw, 400px) 1fr;
   gap: clamp(2.5rem, 4vw, 4rem);
   align-items: start;
   padding: 0 clamp(1.5rem, 5vw, 4rem);
@@ -1272,7 +1272,6 @@ const ClassicContainer = styled.div`
 `;
 
 const ClassicPreviewCard = styled.div`
-  max-width: clamp(300px, 28vw, 400px);
   width: 100%;
   border: 8px solid #FFFFFF;
   box-shadow: 0 8px 40px rgba(0,0,0,0.1);
