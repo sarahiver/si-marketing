@@ -1241,19 +1241,48 @@ const VideoDemoLink = styled.a`
 // ============================================
 const ClassicSection = styled(Section)`
   background: #FDFCFA;
+  padding-top: 0;
+  overflow: visible;
+`;
+
+const ClassicHeroImage = styled.img`
+  width: 100%;
+  height: clamp(300px, 45vh, 500px);
+  object-fit: cover;
+  display: block;
 `;
 
 const ClassicContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem, 6vw, 6rem);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  @media (max-width: 900px) { grid-template-columns: 1fr; }
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
 `;
 
-const ClassicContent = styled.div``;
+const ClassicPreviewCard = styled.div`
+  margin-top: clamp(-200px, -15vh, -140px);
+  max-width: clamp(300px, 40vw, 450px);
+  width: 100%;
+  border: 8px solid #FFFFFF;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2;
+  border-radius: 4px;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    max-width: 280px;
+    margin-top: -100px;
+  }
+`;
+
+const ClassicTextContent = styled.div`
+  max-width: 700px;
+  text-align: center;
+  margin-top: 3rem;
+`;
 
 const ClassicLabel = styled.p`
   font-family: 'Josefin Sans', sans-serif;
@@ -1293,6 +1322,7 @@ const ClassicDesc = styled.p`
 const ClassicFeatures = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
   margin-bottom: 2.5rem;
 `;
@@ -1327,10 +1357,6 @@ const ClassicCTA = styled.a`
   &:hover { opacity: 0.8; }
 `;
 
-const ClassicPreview = styled.div`
-  @media (max-width: 900px) { order: -1; }
-`;
-
 const ClassicAllDemos = styled.div`
   margin-top: 3rem;
   padding-top: 2rem;
@@ -1350,6 +1376,7 @@ const ClassicAllDemosTitle = styled.h3`
 const ClassicDemoGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
 `;
 
@@ -1670,8 +1697,26 @@ const ThemeShowcase = () => {
   if (currentTheme === 'classic') {
     return (
       <ClassicSection id="themes">
+        <ClassicHeroImage
+          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg"
+          alt=""
+          loading="lazy"
+        />
         <ClassicContainer>
-          <ClassicContent>
+          <ClassicPreviewCard>
+            <ThemePreview
+              theme="classic"
+              demoUrl="https://siwedding.de/demo-classic"
+              fallbackText="A & M"
+              aspect="3/4"
+              bg="#F5F0EB"
+              fontFamily="'Cormorant Garamond', serif"
+              fontSize="3rem"
+              fontWeight="300"
+              color="rgba(26,26,26,0.15)"
+            />
+          </ClassicPreviewCard>
+          <ClassicTextContent>
             <ClassicLabel>Theme Vorschau</ClassicLabel>
             <ClassicTitle>Classic</ClassicTitle>
             <ClassicScript>füreinander bestimmt</ClassicScript>
@@ -1704,20 +1749,7 @@ const ThemeShowcase = () => {
                 ))}
               </ClassicDemoGrid>
             </ClassicAllDemos>
-          </ClassicContent>
-          <ClassicPreview>
-            <ThemePreview
-              theme="classic"
-              demoUrl="https://siwedding.de/demo-classic"
-              fallbackText="A & M"
-              aspect="3/4"
-              bg="#F5F0EB"
-              fontFamily="'Cormorant Garamond', serif"
-              fontSize="3rem"
-              fontWeight="300"
-              color="rgba(26,26,26,0.15)"
-            />
-          </ClassicPreview>
+          </ClassicTextContent>
         </ClassicContainer>
       </ClassicSection>
     );
