@@ -189,37 +189,23 @@ const EditorialItemDesc = styled.p`
 // ============================================
 // CLASSIC - Warm Elegant Grid
 // ============================================
-const ClassicSection = styled.section`
-  background: #FFFFFF;
-  padding-top: clamp(5rem, 12vh, 10rem);
-  padding-bottom: 0;
-  overflow: hidden;
-`;
-
-const ClassicContainer = styled.div`
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-`;
-
-const ClassicHeader = styled.div`
-  text-align: center;
-  margin-bottom: 4rem;
-`;
-
 // TODO: Replace with actual image
 const CLASSIC_COMPONENTS_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
 
-const ClassicImageSection = styled.div`
-  position: relative;
-  margin-top: -12rem;
-  padding-top: 12rem;
+const ClassicSection = styled.section`
+  padding-top: clamp(5rem, 12vh, 10rem);
   padding-bottom: clamp(4rem, 10vh, 8rem);
+  position: relative;
+  overflow: hidden;
+  background: #FFFFFF;
 
   &::before {
     content: '';
     position: absolute;
-    inset: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55%;
     background: url(${CLASSIC_COMPONENTS_IMAGE}) center/cover no-repeat;
     filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
   }
@@ -227,13 +213,26 @@ const ClassicImageSection = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: 0;
     left: 0;
     right: 0;
-    height: 12rem;
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0) 100%);
+    bottom: 0;
+    height: 55%;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0) 30%);
     pointer-events: none;
   }
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  z-index: 2;
+`;
+
+const ClassicHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
 `;
 
 const ClassicStar = styled.div`
@@ -269,14 +268,9 @@ const ClassicSubtitle = styled.p`
 `;
 
 const ClassicGrid = styled.div`
-  position: relative;
-  z-index: 2;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1.25rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
 
   @media (max-width: 600px) {
     display: flex;
@@ -984,9 +978,7 @@ const ComponentsShowcase = () => {
               Wahlt aus 18 liebevoll gestalteten Komponenten - {INCLUDED_COUNT} davon immer inklusive.
             </ClassicSubtitle>
           </ClassicHeader>
-        </ClassicContainer>
 
-        <ClassicImageSection>
           <ClassicGrid>
             {COMPONENTS.map((comp, i) => (
               <ClassicCard key={comp.id} $included={comp.included}>
@@ -996,7 +988,7 @@ const ComponentsShowcase = () => {
               </ClassicCard>
             ))}
           </ClassicGrid>
-        </ClassicImageSection>
+        </ClassicContainer>
       </ClassicSection>
     );
   }
