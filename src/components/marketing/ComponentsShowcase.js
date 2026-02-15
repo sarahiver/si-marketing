@@ -190,18 +190,50 @@ const EditorialItemDesc = styled.p`
 // CLASSIC - Warm Elegant Grid
 // ============================================
 const ClassicSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
   background: #FFFFFF;
+  padding-top: clamp(5rem, 12vh, 10rem);
+  padding-bottom: 0;
+  overflow: hidden;
 `;
 
 const ClassicContainer = styled.div`
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
 `;
 
 const ClassicHeader = styled.div`
   text-align: center;
   margin-bottom: 4rem;
+`;
+
+// TODO: Replace with actual image
+const CLASSIC_COMPONENTS_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
+
+const ClassicImageSection = styled.div`
+  position: relative;
+  margin-top: -12rem;
+  padding-top: 12rem;
+  padding-bottom: clamp(4rem, 10vh, 8rem);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url(${CLASSIC_COMPONENTS_IMAGE}) center/cover no-repeat;
+    filter: saturate(0.85) sepia(0.08) hue-rotate(50deg) brightness(1.02);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 12rem;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+  }
 `;
 
 const ClassicStar = styled.div`
@@ -237,9 +269,14 @@ const ClassicSubtitle = styled.p`
 `;
 
 const ClassicGrid = styled.div`
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
 
   @media (max-width: 600px) {
     display: flex;
@@ -247,9 +284,6 @@ const ClassicGrid = styled.div`
     scroll-snap-type: x mandatory;
     gap: 1rem;
     padding-bottom: 1rem;
-    margin: 0 -1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     &::-webkit-scrollbar { display: none; }
@@ -257,8 +291,9 @@ const ClassicGrid = styled.div`
 `;
 
 const ClassicCard = styled.div`
-  background: ${p => p.$included ? '#fff' : '#FFFFFF'};
-  border: ${p => p.$included ? '2px solid #999999' : '1px solid rgba(0,0,0,0.08)'};
+  background: rgba(255, 255, 255, 0.97);
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   padding: 1.5rem 1rem;
   text-align: center;
   transition: all 0.3s ease;
@@ -270,6 +305,8 @@ const ClassicCard = styled.div`
   }
 
   ${p => p.$included && css`
+    border-color: #999999;
+
     &::after {
       content: 'Inklusive';
       position: absolute;
@@ -285,7 +322,7 @@ const ClassicCard = styled.div`
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   }
 `;
 
@@ -947,7 +984,9 @@ const ComponentsShowcase = () => {
               Wahlt aus 18 liebevoll gestalteten Komponenten - {INCLUDED_COUNT} davon immer inklusive.
             </ClassicSubtitle>
           </ClassicHeader>
+        </ClassicContainer>
 
+        <ClassicImageSection>
           <ClassicGrid>
             {COMPONENTS.map((comp, i) => (
               <ClassicCard key={comp.id} $included={comp.included}>
@@ -957,7 +996,7 @@ const ComponentsShowcase = () => {
               </ClassicCard>
             ))}
           </ClassicGrid>
-        </ClassicContainer>
+        </ClassicImageSection>
       </ClassicSection>
     );
   }
