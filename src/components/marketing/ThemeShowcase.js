@@ -1713,7 +1713,7 @@ const ThemeShowcase = () => {
     return (
       <ClassicSection id="themes">
         <ClassicHeroImage
-          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/ThemeShowCase_ewc7q8.jpg"
+          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769863906/iverlasting/demo/hero/v8il9fyd1u6dhj6se3tz.jpg"
           alt=""
           loading="lazy"
         />
@@ -1736,11 +1736,11 @@ const ThemeShowcase = () => {
             <ClassicTitle>Classic</ClassicTitle>
             <ClassicScript>füreinander bestimmt</ClassicScript>
             <ClassicDesc>
-              Warme Cremetöne, elegante Serifen und eine zeitlose Ästhetik, die nie aus der Mode kommt.
-              Für Paare, die ihre Hochzeitswebsite so klassisch und elegant wollen wie den Tag selbst.
+              Schwarz-Weiß-Fotografie, die bei Hover in Farbe übergeht, elegante Serifen und eine zeitlose Ästhetik.
+              Bildlastig und editorial – für Paare, die ihre Fotos in Szene setzen wollen.
             </ClassicDesc>
             <ClassicFeatures>
-              <ClassicFeature>Warme Cremetöne</ClassicFeature>
+              <ClassicFeature>Grayscale → Farbe</ClassicFeature>
               <ClassicFeature>Elegante Serifen</ClassicFeature>
               <ClassicFeature>Schreibschrift-Akzente</ClassicFeature>
             </ClassicFeatures>
