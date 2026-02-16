@@ -903,13 +903,13 @@ const ArrowIcon = () => (
 // ALL DEMOS DATA
 // ============================================
 const ALL_DEMOS = [
-  { id: 'editorial', name: 'Editorial', url: 'https://siwedding.de/demo-editorial' },
+  { id: 'classic', name: 'Classic', url: 'https://siwedding.de/demo-classic' },
   { id: 'botanical', name: 'Botanical', url: 'https://siwedding.de/demo-botanical' },
   { id: 'contemporary', name: 'Contemporary', url: 'https://siwedding.de/demo-contemporary' },
+  { id: 'editorial', name: 'Editorial', url: 'https://siwedding.de/demo-editorial' },
   { id: 'luxe', name: 'Luxe', url: 'https://siwedding.de/demo-luxe' },
   { id: 'neon', name: 'Neon', url: 'https://siwedding.de/demo-neon' },
   { id: 'video', name: 'Video', url: 'https://siwedding.de/demo-video' },
-  { id: 'classic', name: 'Classic', url: 'https://siwedding.de/demo-classic' },
 ];
 
 // ============================================
@@ -1713,7 +1713,7 @@ const ThemeShowcase = () => {
     return (
       <ClassicSection id="themes">
         <ClassicHeroImage
-          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769863906/iverlasting/demo/hero/v8il9fyd1u6dhj6se3tz.jpg"
+          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771225849/foto3_fn6ovc.jpg"
           alt=""
           loading="lazy"
         />
