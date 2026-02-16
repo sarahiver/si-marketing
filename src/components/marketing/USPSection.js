@@ -19,36 +19,42 @@ const USPS = [
     title: 'Kein Paar ist wie das andere',
     desc: 'Deshalb ist keine Website wie die andere. Jede Hochzeit, die wir umsetzen, ist ein Unikat. Bereits Dutzende Paare haben ihre Liebesgeschichte mit uns digital verewigt — handgemacht, nicht von der Stange.',
     short: 'Jede Website ein Unikat',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177763/_4b4bda8b-648e-46e7-8fba-a71164e792c3_xpup8j.jpg',
   },
   {
     icon: '🌐',
     title: 'sarah-und-max.de',
     desc: 'Eure Liebe hat eine eigene Adresse. Keine Subdomain, kein Baukasten-Link. Ihr bekommt eure persönliche Domain — professionell eingerichtet, sofort startklar.',
     short: 'Eigene Domain inklusive',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177760/_be3646f6-0ef9-424c-990f-3215044a3917_oybnqr.jpg',
   },
   {
     icon: '🎨',
     title: 'Designwelten — angepasst an euren Stil',
     desc: 'Ob elegant, modern oder verspielt: Wir passen jedes Design individuell an eure Farben, Fotos und Geschichte an. Kein Theme bleibt „Standard".',
     short: 'Themes, individuell angepasst',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_2ae91726-85c5-4bf1-a06c-a12df9457df4_l5awwk.jpg',
   },
   {
     icon: '💬',
     title: 'Direkter Kontakt statt Support-Tickets',
     desc: 'Ihr sprecht mit echten Menschen — Sarah & Iver. Keine Hotline, kein Bot, kein Ticketsystem. Persönlich, schnell, erreichbar.',
     short: 'Sarah & Iver persönlich',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_39729c08-0893-4079-ab7e-ab4e31e99b01_j2pqsg.jpg',
   },
   {
     icon: '🕊️',
     title: 'So wenig Aufwand wie möglich',
     desc: 'Wir übernehmen den Rest. Ihr schickt uns Texte & Fotos. Wir bauen eure Website, optimieren Design & Technik und kümmern uns um den Feinschliff.',
     short: 'Ihr liefert Inhalte, wir den Rest',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177760/_e16d2f97-8669-403a-af3a-96ff1bb6320d_okgyyq.jpg',
   },
   {
     icon: '⚡',
     title: 'In 7 Tagen live',
     desc: 'Oder wir sagen ehrlich warum nicht. Keine monatelangen Wartezeiten. Die meisten Websites gehen innerhalb einer Woche online — inklusive Korrekturschleife.',
     short: 'In einer Woche online',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_32d7e2d5-591c-407d-9803-0d5ffece587b_fbbaoi.jpg',
   },
 ];
 
@@ -57,6 +63,7 @@ const RSVP_FEATURE = {
   title: 'Alle Zusagen an einem Ort — ohne WhatsApp-Stress',
   desc: 'Gäste sagen direkt über eure Website zu. Ihr erhaltet eine übersichtliche Gästeliste, inklusive Essenswünschen & Begleitpersonen. Exportierbar als Excel für Catering, Sitzplan oder Einlasskontrolle.',
   short: 'RSVP, Gästeliste, Excel-Export',
+  image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_3e7500cb-db46-4166-8f90-0d5ad7e18c3f_twzsjs.jpg',
 };
 
 const CTA_TEXT = {
@@ -234,6 +241,171 @@ const EditorialRSVPDesc = styled.p`
   line-height: 1.8;
   max-width: 700px;
   margin: 0 auto;
+`;
+
+// ============================================
+// CLASSIC - Elegante Magazin-Ästhetik mit warmem Gold
+// ============================================
+const ClassicSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FFFFFF;
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+`;
+
+const ClassicHeader = styled.div`
+  text-align: center;
+  margin-bottom: 5rem;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: #999999;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 400;
+  color: #1A1A1A;
+`;
+
+const ClassicCarouselRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+`;
+
+const ClassicCarousel = styled.div`
+  position: relative;
+  flex: 1;
+  height: clamp(320px, 36vw, 420px);
+  overflow: visible;
+`;
+
+const ClassicCard = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: ${p => (p.$reverse ? 'row-reverse' : 'row')};
+  background: #FFFFFF;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, ${p => (p.$offset === 0 ? 0.10 : 0.06)});
+  border-radius: 3px;
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              filter 0.6s ease;
+  transform-origin: center bottom;
+  transform: ${p =>
+    p.$offset === 0
+      ? 'translateY(0) scale(1)'
+      : p.$offset > 0
+        ? `translateY(${p.$offset * -20}px) scale(${1 - p.$offset * 0.03})`
+        : 'translateY(20px) scale(1.01)'};
+  opacity: ${p => (p.$offset < 0 ? 0 : p.$offset > 4 ? 0 : 1)};
+  z-index: ${p => (p.$offset < 0 ? 0 : 100 - p.$offset)};
+  pointer-events: ${p => (p.$offset === 0 ? 'auto' : 'none')};
+  filter: ${p => (p.$offset === 0 ? 'none' : `brightness(${1 - p.$offset * 0.04})`)};
+`;
+
+const ClassicCardImage = styled.div`
+  flex: 0 0 64%;
+  height: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 5px solid #FFFFFF;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    /* filter removed */
+    transition: filter 0.5s ease, transform 0.5s ease;
+  }
+
+  ${ClassicCard}[data-active="true"] & img {
+    /* filter removed */
+  }
+
+  ${ClassicCard}[data-active="true"]:hover & img {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 600px) {
+    flex: 0 0 55%;
+  }
+`;
+
+const ClassicCardBody = styled.div`
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 600px) {
+    padding: 1.25rem 1rem;
+  }
+`;
+
+const ClassicCardNum = styled.span`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #BBBBBB;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.75rem;
+`;
+
+const ClassicCardTitle = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+`;
+
+const ClassicCardDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  font-weight: 300;
+  color: #555;
+  line-height: 1.75;
+`;
+
+const ClassicDots = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex-shrink: 0;
+`;
+
+const ClassicDot = styled.button`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #CCCCCC;
+  background: ${p => (p.$active ? '#1A1A1A' : 'transparent')};
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: ${p => (p.$active ? '#1A1A1A' : '#DDDDDD')};
+  }
 `;
 
 // ============================================
@@ -1030,10 +1202,100 @@ const CTASubline = styled.p`
 const USPSection = () => {
   const { currentTheme } = useTheme();
   const [openItem, setOpenItem] = useState(0);
+  const [activeCard, setActiveCard] = useState(0);
+  const carouselRef = useRef(null);
+  const wheelLock = useRef(false);
+
+  const CLASSIC_ALL_CARDS = [...USPS, RSVP_FEATURE];
+  const cardCount = CLASSIC_ALL_CARDS.length;
 
   const scrollToThemes = () => {
     document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Wheel → nächste/vorherige Karte im Tiefenkarussell (mit Schwelle)
+  const wheelDelta = useRef(0);
+  const WHEEL_THRESHOLD = 80;
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el || currentTheme !== 'classic') return;
+    const onWheel = (e) => {
+      if (wheelLock.current) { e.preventDefault(); return; }
+      const goNext = e.deltaY > 0;
+      const atEnd = goNext && activeCard >= cardCount - 1;
+      const atStart = !goNext && activeCard <= 0;
+      if (atStart || atEnd) { wheelDelta.current = 0; return; }
+      e.preventDefault();
+      wheelDelta.current += e.deltaY;
+      if (Math.abs(wheelDelta.current) < WHEEL_THRESHOLD) return;
+      const direction = wheelDelta.current > 0 ? 1 : -1;
+      wheelDelta.current = 0;
+      wheelLock.current = true;
+      setActiveCard(prev => Math.min(Math.max(prev + direction, 0), cardCount - 1));
+      setTimeout(() => { wheelLock.current = false; }, 700);
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, [currentTheme, activeCard, cardCount]);
+
+  // ==========================================
+  // CLASSIC - Elegante Magazin-Ästhetik
+  // ==========================================
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="features">
+        <ClassicContainer>
+          <ClassicHeader>
+            <ClassicEyebrow>Warum S&I.</ClassicEyebrow>
+            <ClassicTitle>Was uns besonders macht</ClassicTitle>
+          </ClassicHeader>
+
+          <ClassicCarouselRow>
+            <ClassicCarousel ref={carouselRef}>
+              {CLASSIC_ALL_CARDS.map((item, i) => {
+                const offset = i - activeCard;
+                const reverse = i % 2 === 1;
+                return (
+                  <ClassicCard key={i} $offset={offset} $reverse={reverse} data-active={offset === 0}>
+                    <ClassicCardImage>
+                      <img src={item.image} alt={item.title} loading="lazy" />
+                    </ClassicCardImage>
+                    <ClassicCardBody>
+                      <ClassicCardNum>0{i + 1}</ClassicCardNum>
+                      <ClassicCardTitle>{item.title}</ClassicCardTitle>
+                      <ClassicCardDesc>{item.desc}</ClassicCardDesc>
+                    </ClassicCardBody>
+                  </ClassicCard>
+                );
+              })}
+            </ClassicCarousel>
+
+            <ClassicDots>
+              {CLASSIC_ALL_CARDS.map((_, i) => (
+                <ClassicDot key={i} $active={i === activeCard} onClick={() => setActiveCard(i)} />
+              ))}
+            </ClassicDots>
+          </ClassicCarouselRow>
+
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, color: '#555' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton
+              onClick={scrollToThemes}
+              style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, letterSpacing: '0.2em', color: '#FFFFFF', background: '#1A1A1A', border: 'none' }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#999' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </ClassicContainer>
+      </ClassicSection>
+    );
+  }
 
   // ==========================================
   // EDITORIAL - Magazin-Style

@@ -187,6 +187,161 @@ const EditorialItemDesc = styled.p`
 `;
 
 // ============================================
+// CLASSIC - Warm Elegant Grid
+// ============================================
+const CLASSIC_COMPONENTS_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/ComponentShowcase_nxugwi.jpg';
+
+const ClassicSection = styled.section`
+  padding-top: clamp(5rem, 12vh, 10rem);
+  padding-bottom: clamp(4rem, 10vh, 8rem);
+  position: relative;
+  overflow: hidden;
+  background: #FFFFFF;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55%;
+    background: url(${CLASSIC_COMPONENTS_IMAGE}) center/cover no-repeat;
+    /* filter removed */
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55%;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0) 30%);
+    pointer-events: none;
+  }
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  z-index: 2;
+`;
+
+const ClassicHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const ClassicStar = styled.div`
+  font-size: 1.5rem;
+  color: #999999;
+  margin-bottom: 1rem;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: #999999;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 400;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+`;
+
+const ClassicSubtitle = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.6;
+`;
+
+const ClassicGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
+
+  @media (max-width: 600px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+`;
+
+const ClassicCard = styled.div`
+  background: rgba(255, 255, 255, 0.97);
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+
+  @media (max-width: 600px) {
+    flex: 0 0 140px;
+    scroll-snap-align: start;
+  }
+
+  ${p => p.$included && css`
+    border-color: #999999;
+
+    &::after {
+      content: 'Inklusive';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: #999999;
+    }
+  `}
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  }
+`;
+
+const ClassicIcon = styled.span`
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+`;
+
+const ClassicItemName = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 0.25rem;
+`;
+
+const ClassicItemDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #555;
+`;
+
+// ============================================
 // BOTANICAL - Organisches Grid mit Hover
 // ============================================
 const BotanicalSection = styled.section`
@@ -808,6 +963,36 @@ const ComponentsShowcase = () => {
       : COMPONENTS.filter(c => !c.included);
 
   // ==========================================
+  // CLASSIC - Warm Elegant Grid
+  // ==========================================
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="components">
+        <ClassicContainer>
+          <ClassicHeader>
+            <ClassicStar>&#10022;</ClassicStar>
+            <ClassicEyebrow>18 Komponenten</ClassicEyebrow>
+            <ClassicTitle>Alles was ihr braucht</ClassicTitle>
+            <ClassicSubtitle>
+              Wahlt aus 18 liebevoll gestalteten Komponenten - {INCLUDED_COUNT} davon immer inklusive.
+            </ClassicSubtitle>
+          </ClassicHeader>
+
+          <ClassicGrid>
+            {COMPONENTS.map((comp, i) => (
+              <ClassicCard key={comp.id} $included={comp.included}>
+                <ClassicIcon>{comp.icon}</ClassicIcon>
+                <ClassicItemName>{comp.name}</ClassicItemName>
+                <ClassicItemDesc>{comp.desc}</ClassicItemDesc>
+              </ClassicCard>
+            ))}
+          </ClassicGrid>
+        </ClassicContainer>
+      </ClassicSection>
+    );
+  }
+
+  // ==========================================
   // EDITORIAL - Magazin Grid
   // ==========================================
   if (currentTheme === 'editorial') {
@@ -822,7 +1007,7 @@ const ComponentsShowcase = () => {
               Wählt aus 18 liebevoll gestalteten Komponenten – {INCLUDED_COUNT} davon immer inklusive.
             </EditorialSubtitle>
           </EditorialHeader>
-          
+
           <EditorialGrid>
             {COMPONENTS.map((comp, i) => (
               <EditorialCard key={comp.id} $included={comp.included}>

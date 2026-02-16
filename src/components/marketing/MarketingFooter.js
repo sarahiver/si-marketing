@@ -127,6 +127,92 @@ const EditorialLegalLink = styled(Link)`
 `;
 
 // ============================================
+// CLASSIC FOOTER
+// ============================================
+const ClassicFooter = styled(FooterBase)`
+  background: #FFFFFF;
+  border-top: 1px solid rgba(0,0,0,0.08);
+`;
+
+const ClassicInner = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+`;
+
+const ClassicBrand = styled.div``;
+
+const ClassicTagline = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #555;
+  max-width: 300px;
+`;
+
+const ClassicColumn = styled.div``;
+
+const ClassicColumnTitle = styled.span`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #999999;
+  margin-bottom: 1.5rem;
+`;
+
+const ClassicLink = styled.a`
+  display: block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #555;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
+
+  &:hover { color: #999999; padding-left: 0.5rem; }
+`;
+
+const ClassicBottom = styled.div`
+  max-width: 1400px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+const ClassicCopy = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #999;
+`;
+
+const ClassicLegalLinks = styled.div`
+  display: flex;
+  gap: 1.5rem;
+`;
+
+const ClassicLegalLink = styled(Link)`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #999;
+  &:hover { color: #999999; }
+`;
+
+// ============================================
 // BOTANICAL FOOTER
 // ============================================
 const BotanicalFooter = styled(FooterBase)`
@@ -635,6 +721,40 @@ const MarketingFooter = () => {
     };
     setTimeout(scrollAfterNav, 150);
   };
+
+  // CLASSIC
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicFooter>
+        <ClassicInner>
+          <ClassicBrand>
+            <UnifiedLogo href="#">S&I.</UnifiedLogo>
+            <ClassicTagline>Premium Hochzeitswebsites für unvergessliche Momente.</ClassicTagline>
+          </ClassicBrand>
+          <ClassicColumn>
+            <ClassicColumnTitle>Navigation</ClassicColumnTitle>
+            {navItems.map(item => (
+              <ClassicLink key={item.id} href={item.isRoute ? `/${item.id}` : `#${item.id}`} onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}>
+                {item.label}
+              </ClassicLink>
+            ))}
+          </ClassicColumn>
+          <ClassicColumn>
+            <ClassicColumnTitle>Kontakt</ClassicColumnTitle>
+            <ClassicLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</ClassicLink>
+            <ClassicLink href="#">Hamburg, Deutschland</ClassicLink>
+          </ClassicColumn>
+        </ClassicInner>
+        <ClassicBottom>
+          <ClassicCopy>&copy; {year} S&I Wedding. Alle Rechte vorbehalten.</ClassicCopy>
+          <ClassicLegalLinks>
+            <ClassicLegalLink to="/impressum">Impressum</ClassicLegalLink>
+            <ClassicLegalLink to="/datenschutz">Datenschutz</ClassicLegalLink>
+          </ClassicLegalLinks>
+        </ClassicBottom>
+      </ClassicFooter>
+    );
+  }
 
   // EDITORIAL
   if (currentTheme === 'editorial') {

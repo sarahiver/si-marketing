@@ -241,6 +241,7 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
   ${p => p.$themeId === 'editorial' && css`background: #FAFAFA;`}
+  ${p => p.$themeId === 'classic' && css`background: #FFFFFF;`}
   ${p => p.$themeId === 'contemporary' && css`background: #FFFFFF;`}
   ${p => p.$themeId === 'botanical' && css`background: linear-gradient(180deg, #F5F1EB 0%, #FAF9F6 100%);`}
   ${p => p.$themeId === 'neon' && css`background: #0a0a0f;`}

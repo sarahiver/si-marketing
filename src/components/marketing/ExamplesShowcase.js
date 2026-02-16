@@ -119,6 +119,7 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
   ${(p) => p.$themeId === "editorial" && css`background: #ffffff;`}
+  ${(p) => p.$themeId === "classic" && css`background: #FFFFFF;`}
   ${(p) => p.$themeId === "video" && css`background: #0a0a0a;`}
   ${(p) => p.$themeId === "botanical" && css`background: #f8f6f0;`}
   ${(p) => p.$themeId === "contemporary" && css`background: #f5f5f5;`}
@@ -139,6 +140,7 @@ const Header = styled.div`
   transform: translateY(${(p) => (p.$visible ? 0 : "40px")});
   transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   ${(p) => p.$themeId === "editorial" && css`text-align: left; max-width: 600px;`}
+  ${(p) => p.$themeId === "classic" && css`text-align: left; max-width: 600px;`}
   ${(p) => p.$themeId === "video" && css`text-align: center;`}
   ${(p) => p.$themeId === "botanical" && css`text-align: center;`}
   ${(p) => p.$themeId === "contemporary" && css`text-align: left;`}
@@ -155,6 +157,13 @@ const Eyebrow = styled.span`
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
+    color: #999;
+  `}
+  ${(p) => p.$themeId === "classic" && css`
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
     color: #999;
   `}
   ${(p) => p.$themeId === "video" && css`
@@ -203,6 +212,12 @@ const Title = styled.h2`
     font-style: italic;
     color: #1a1a1a;
   `}
+  ${(p) => p.$themeId === "classic" && css`
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #1a1a1a;
+  `}
   ${(p) => p.$themeId === "video" && css`
     font-family: "Cormorant Garamond", Georgia, serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -241,6 +256,7 @@ const Title = styled.h2`
 const Subtitle = styled.p`
   line-height: 1.7;
   ${(p) => p.$themeId === "editorial" && css`font-family: "Inter", sans-serif; font-size: 1rem; color: #666; margin: 0;`}
+  ${(p) => p.$themeId === "classic" && css`font-family: "Josefin Sans", sans-serif; font-size: 1rem; color: #555; margin: 0;`}
   ${(p) => p.$themeId === "video" && css`font-family: "Montserrat", sans-serif; font-size: 1rem; color: rgba(255, 255, 255, 0.5); max-width: 500px; margin: 0 auto;`}
   ${(p) => p.$themeId === "botanical" && css`font-family: "Lato", sans-serif; font-size: 1.05rem; color: #5a6b5a; max-width: 500px; margin: 0 auto;`}
   ${(p) => p.$themeId === "contemporary" && css`font-family: "Space Grotesk", sans-serif; font-size: 1rem; color: #666; margin: 0;`}

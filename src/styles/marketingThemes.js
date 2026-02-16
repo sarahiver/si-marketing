@@ -295,6 +295,53 @@ export const marketingThemes = {
       sectionSpacing: "clamp(4rem, 10vh, 8rem)",
     },
   },
+  // ═══════════════════════════════════════════════════════════
+  // CLASSIC - Warm & Zeitlos
+  // Cormorant Garamond + Josefin Sans, cremefarbene Wärme
+  // ═══════════════════════════════════════════════════════════
+  classic: {
+    id: "classic",
+    name: "Classic",
+    description: "Warm & Zeitlos — Elegante Tradition",
+    isDark: false,
+    colors: {
+      primary: "#1A1A1A",         // Dark buttons
+      secondary: "#1A1A1A",
+      accent: "#999999",          // Muted gray (matching wedding theme --c-accent)
+      background: "#FDFCFA",      // Warm Cream
+      backgroundAlt: "#F5F2EE",   // Darker Cream
+      surface: "#FFFFFF",
+      text: "#1A1A1A",
+      textLight: "#FDFCFA",
+      textSecondary: "#555555",
+      textMuted: "#999999",
+      border: "rgba(0,0,0,0.06)",
+      borderHover: "#999999",
+    },
+    fonts: {
+      headline: "'Cormorant Garamond', Georgia, serif",
+      script: "'Mrs Saint Delafield', cursive",
+      body: "'Josefin Sans', sans-serif",
+    },
+    style: {
+      headingWeight: "300",
+      headingLetterSpacing: "0",
+      headingTextTransform: "none",
+      headingLineHeight: "1.1",
+      bodyWeight: "300",
+      bodyLetterSpacing: "0",
+      borderRadius: "0",
+      borderWidth: "1px",
+      dividerWidth: "1px",
+      dividerColor: "rgba(0,0,0,0.1)",
+      buttonStyle: "solid",
+      imageFilter: "grayscale(40%)",
+      shadowStyle: "subtle",
+      animationStyle: "smooth",
+      transitionEase: "cubic-bezier(0.16, 1, 0.3, 1)",
+      sectionSpacing: "clamp(4rem, 10vh, 8rem)",
+    },
+  },
 };
 
 // ============================================
@@ -302,11 +349,12 @@ export const marketingThemes = {
 // ============================================
 export const themeOrder = [
   "editorial",
-  "botanical", 
+  "botanical",
   "contemporary",
   "luxe",
   "neon",
   "video",
+  "classic",
 ];
 
 // ============================================

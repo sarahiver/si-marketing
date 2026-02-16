@@ -888,6 +888,109 @@ const VideoNavItem = styled.span`
 `;
 
 // ============================================
+// CLASSIC HERO - Cinematic Fullscreen (wie Wedding Theme)
+// ============================================
+const ClassicSection = styled.section`
+  position: relative;
+  height: 100vh;
+  min-height: 650px;
+  background: #111;
+  overflow: hidden;
+`;
+
+const ClassicVideoBg = styled.video`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(40%) brightness(0.42);
+`;
+
+const ClassicOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,0,0,0.35) 100%);
+`;
+
+const ClassicContent = styled.div`
+  position: absolute;
+  bottom: clamp(3rem, 8vh, 6rem);
+  left: clamp(2rem, 5vw, 5rem);
+  z-index: 10;
+  max-width: 600px;
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1.2rem;
+  animation: ${fadeInUp} 0.8s ease 0.3s both;
+`;
+
+const ClassicTitle = styled.h1`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: white;
+  animation: ${fadeInUp} 0.8s ease 0.5s both;
+`;
+
+const ClassicScript = styled.span`
+  display: block;
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: rgba(255,255,255,0.6);
+  margin-top: 0.5rem;
+  animation: ${fadeInUp} 0.8s ease 0.7s both;
+`;
+
+const ClassicDateLine = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 1.5rem;
+  animation: ${fadeInUp} 0.8s ease 1s both;
+`;
+
+const ClassicScroll = styled.div`
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 20;
+  animation: ${fadeIn} 1s ease 1.2s both;
+
+  span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  &::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: ${scrollBounce} 2s ease infinite;
+  }
+`;
+
+// ============================================
 // MAIN COMPONENT
 // ============================================
 const MarketingHero = () => {
@@ -899,7 +1002,7 @@ const MarketingHero = () => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -907,6 +1010,27 @@ const MarketingHero = () => {
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // CLASSIC - Cinematic Fullscreen wie Wedding Theme
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="hero">
+        <ClassicVideoBg autoPlay muted loop playsInline>
+          <source src={VIDEO_URL} type="video/mp4" />
+        </ClassicVideoBg>
+        <ClassicOverlay />
+        <ClassicContent>
+          <ClassicEyebrow>Eure Hochzeitswebsite</ClassicEyebrow>
+          <ClassicTitle>
+            Zeitlos schön.<br/>Persönlich erzählt.
+          </ClassicTitle>
+          <ClassicScript>handgemacht mit Liebe</ClassicScript>
+          <ClassicDateLine>Individuell · Hochwertig · In 7 Tagen live</ClassicDateLine>
+        </ClassicContent>
+        <ClassicScroll><span>Scroll</span></ClassicScroll>
+      </ClassicSection>
+    );
+  }
 
   // EDITORIAL
   if (currentTheme === 'editorial') {

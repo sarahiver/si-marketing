@@ -799,6 +799,141 @@ const VideoStepHighlight = styled.p`
 `;
 
 // ============================================
+// CLASSIC - Alternierend mit Bildern (organisch)
+// ============================================
+
+const CLASSIC_STEP_IMAGES = [
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771173517/HowItWorks01_ggf1jp.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771173517/HowItWorks02_sgdpjk.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771173518/HowItWorks03_gkuv1v.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771173517/HowItWorks04_gbjx3o.jpg',
+];
+
+// Organische Offsets pro Schritt — kein starres Grid
+const CLASSIC_STEP_LAYOUT = [
+  { reverse: false, imgAspect: '4/5', textPt: '1.5rem', shiftX: '0' },
+  { reverse: true, imgAspect: '3/4', textPt: '3rem', shiftX: '5%' },
+  { reverse: false, imgAspect: '1/1', textPt: '0.5rem', shiftX: '-3%' },
+  { reverse: true, imgAspect: '4/5', textPt: '2.5rem', shiftX: '7%' },
+];
+
+const ClassicSection = styled.section`
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  background: #FFFFFF;
+`;
+
+const ClassicContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;
+
+const ClassicHeader = styled.div`
+  text-align: center;
+  margin-bottom: clamp(3rem, 8vh, 5rem);
+`;
+
+const ClassicEyebrow = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #999999;
+  margin-bottom: 1rem;
+`;
+
+const ClassicTitle = styled.h2`
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #1A1A1A;
+`;
+
+const ClassicSteps = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 7vh, 5rem);
+`;
+
+const ClassicStep = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  flex-direction: ${p => p.$reverse ? 'row-reverse' : 'row'};
+  margin-left: ${p => p.$shiftX || '0'};
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+  }
+`;
+
+const ClassicStepImage = styled.div`
+  width: clamp(160px, 22vw, 260px);
+  flex-shrink: 0;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    aspect-ratio: ${p => p.$aspect || '4/5'};
+    object-fit: cover;
+    display: block;
+    /* filter removed */
+  }
+
+  @media (max-width: 768px) {
+    width: clamp(180px, 50vw, 240px);
+  }
+`;
+
+const ClassicStepContent = styled.div`
+  flex: 1;
+  padding-top: ${p => p.$pt || '0'};
+  max-width: 480px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    padding-top: 0;
+  }
+`;
+
+const ClassicStepNum = styled.span`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #999999;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.75rem;
+`;
+
+const ClassicStepTitle = styled.h3`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+`;
+
+const ClassicStepDesc = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.7;
+`;
+
+const ClassicStepHighlight = styled.p`
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #999999;
+  margin-top: 1rem;
+`;
+
+// ============================================
 // SHARED CTA
 // ============================================
 const CTABox = styled.div`
@@ -838,6 +973,54 @@ const HowItWorksSection = () => {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // ==========================================
+  // CLASSIC - Vertikale Timeline (elegant)
+  // ==========================================
+  if (currentTheme === 'classic') {
+    return (
+      <ClassicSection id="howitworks">
+        <ClassicContainer>
+          <ClassicHeader>
+            <ClassicEyebrow>Euer Weg zur Website</ClassicEyebrow>
+            <ClassicTitle>In 4 einfachen Schritten</ClassicTitle>
+          </ClassicHeader>
+          <ClassicSteps>
+            {STEPS.map((step, i) => {
+              const layout = CLASSIC_STEP_LAYOUT[i];
+              return (
+                <ClassicStep key={i} $reverse={layout.reverse} $shiftX={layout.shiftX}>
+                  <ClassicStepImage $aspect={layout.imgAspect}>
+                    <img src={CLASSIC_STEP_IMAGES[i]} alt="" loading="lazy" />
+                  </ClassicStepImage>
+                  <ClassicStepContent $pt={layout.textPt}>
+                    <ClassicStepNum>{step.num}</ClassicStepNum>
+                    <ClassicStepTitle>{step.title}</ClassicStepTitle>
+                    <ClassicStepDesc>{step.desc}</ClassicStepDesc>
+                    <ClassicStepHighlight>{step.highlight}</ClassicStepHighlight>
+                  </ClassicStepContent>
+                </ClassicStep>
+              );
+            })}
+          </ClassicSteps>
+          <CTABox>
+            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', color: '#1A1A1A' }}>
+              {CTA_TEXT.headline}
+            </CTAHeadline>
+            <CTAButton
+              onClick={scrollToContact}
+              style={{ fontFamily: "'Josefin Sans', sans-serif", color: '#FFFFFF', background: '#1A1A1A', border: 'none' }}
+            >
+              {CTA_TEXT.button}
+            </CTAButton>
+            <CTASubline style={{ fontFamily: "'Josefin Sans', sans-serif", color: '#999' }}>
+              {CTA_TEXT.subline}
+            </CTASubline>
+          </CTABox>
+        </ClassicContainer>
+      </ClassicSection>
+    );
+  }
 
   // ==========================================
   // EDITORIAL - Horizontale Timeline

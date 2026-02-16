@@ -56,6 +56,11 @@ const AnimatedWrapper = styled.div`
     animation: ${editorialFadeUp} 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     animation-delay: ${p.$delay || 0}ms;
   `}
+
+  ${p => p.$visible && p.$theme === 'classic' && css`
+    animation: ${editorialFadeUp} 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: ${p.$delay || 0}ms;
+  `}
   
   ${p => p.$visible && p.$theme === 'botanical' && css`
     animation: ${botanicalFade} 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
