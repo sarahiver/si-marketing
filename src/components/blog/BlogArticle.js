@@ -35,8 +35,13 @@ const renderMarkdown = (content, theme) => {
   let inTable = false;
 
   const processInline = (text) => {
-    // Bold
-    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    return text
+      // Links: [text](url)
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" style="color: ' + getAccent(theme) + '; text-decoration: underline; text-underline-offset: 2px;">$1</a>')
+      // Bold
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      // Italic
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>');
   };
 
   while (i < lines.length) {
@@ -471,7 +476,18 @@ const BlogArticle = () => {
     );
   }
 
-  const relatedPosts = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
+  // Smart related posts: prioritize same category, then shared tags
+  const relatedPosts = allPosts
+    .filter(p => p.slug !== post.slug)
+    .map(p => {
+      let score = 0;
+      if (p.category === post.category) score += 3;
+      const sharedTags = p.tags?.filter(t => post.tags?.includes(t)) || [];
+      score += sharedTags.length;
+      return { ...p, _score: score };
+    })
+    .sort((a, b) => b._score - a._score || new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
 
   const formatDate = (dateStr) => {
     const d = new Date(dateStr);

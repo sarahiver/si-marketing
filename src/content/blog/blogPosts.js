@@ -44,13 +44,13 @@ Statt einzelne Nachrichten zu beantworten, schickt ihr euren Gästen einfach ein
 
 Die Zusagen eurer Hochzeitsgäste zu sammeln ist traditionell einer der zeitaufwändigsten Teile der Hochzeitsvorbereitung. Rückumschläge, die nie zurückkommen. WhatsApp-Nachrichten mit vagen Antworten wie \"Ja, wahrscheinlich\". Und dann die endlose Telefoniererei mit denen, die sich einfach nicht melden.
 
-**Ein digitales RSVP-System auf eurer Hochzeitswebsite löst all diese Probleme auf einen Schlag.** Eure Gäste klicken auf eurer Hochzeitshomepage auf \"Zusagen\", geben ihre Daten ein – fertig. Inklusive Menüwahl (Fleisch, Fisch, vegetarisch oder vegan), Allergien und Unverträglichkeiten, Anzahl der Begleitpersonen und Sonderwünsche wie einen Kinderstuhl.
+**Ein [digitales RSVP-System](/blog/digitales-rsvp-hochzeit) auf eurer Hochzeitswebsite löst all diese Probleme auf einen Schlag.** Eure Gäste klicken auf eurer Hochzeitshomepage auf \"Zusagen\", geben ihre Daten ein – fertig. Inklusive Menüwahl (Fleisch, Fisch, vegetarisch oder vegan), Allergien und Unverträglichkeiten, Anzahl der Begleitpersonen und Sonderwünsche wie einen Kinderstuhl.
 
 Ihr seht alle Zu- und Absagen in Echtzeit in eurem persönlichen Dashboard. Keine Excel-Tabelle, kein manuelles Nachzählen. Und wer nach zwei Wochen noch nicht geantwortet hat? Bekommt eine automatische, freundliche Erinnerung per E-Mail – ohne dass ihr peinlich nachhaken müsst.
 
 ## 3. Passwortschutz für eure Privatsphäre
 
-Eure Hochzeit ist eure persönliche Feier – und nicht jeder muss im Internet die Details eurer Trauung sehen. Mit einer passwortgeschützten Hochzeitswebsite entscheidet ihr selbst, wer Zugang zu euren Hochzeitsinformationen bekommt.
+Eure Hochzeit ist eure persönliche Feier – und nicht jeder muss im Internet die Details eurer Trauung sehen. Mit einer [passwortgeschützten Hochzeitswebsite](/blog/hochzeitswebsite-eigene-domain-passwortschutz) entscheidet ihr selbst, wer Zugang zu euren Hochzeitsinformationen bekommt.
 
 **So funktioniert es:** Ihr teilt das Passwort zusammen mit der Einladung (auf der Papierkarte, per QR-Code oder persönlich). Nur eure eingeladenen Gäste können die Website aufrufen – keine ungebetenen Besucher, keine neugierigen Bekannten, keine öffentlichen Social-Media-Posts.
 
@@ -82,7 +82,7 @@ Nachhaltigkeit ist vielen modernen Brautpaaren wichtig – und eine Hochzeitsweb
 
 ## 7. Professionelles Design, das zu euch als Paar passt
 
-Eure Hochzeit hat einen eigenen Stil – eure Hochzeitswebsite sollte diesen Stil widerspiegeln. Moderne Hochzeitswebsites sind längst keine langweiligen Online-Formulare mehr. Mit professionell gestalteten Themes wird eure Website zu einem echten Hingucker.
+Eure Hochzeit hat einen eigenen Stil – eure Hochzeitswebsite sollte diesen Stil widerspiegeln. Moderne Hochzeitswebsites sind längst keine langweiligen Online-Formulare mehr. Mit professionell gestalteten [Themes](/blog/hochzeitswebsite-design-beispiele-inspiration) wird eure Website zu einem echten Hingucker.
 
 **Bei S&I. stehen euch sechs einzigartige Hochzeitsthemes zur Wahl:** Das minimalistische Editorial-Design mit klarer Typografie für moderne Paare. Das Botanical-Theme mit organischen Formen für Naturliebhaber und Gartenfreunde. Das Contemporary-Design mit mutigen Farben für kreative Köpfe. Das elegante Luxe-Theme in dunklem Gold für stilbewusste Paare. Das Neon-Theme mit leuchtenden Akzenten für Paare, die das Besondere lieben. Und das Video-Theme für Paare, die mit bewegten Bildern ihre Geschichte erzählen wollen.
 
@@ -135,7 +135,7 @@ Das klingt simpel, spart aber unglaublich viel Zeit und vermeidet Missverständn
 
 ## Was ein gutes RSVP-System für Hochzeiten können muss
 
-Nicht jedes Online-Formular ist ein gutes RSVP-System. Die Unterschiede zwischen einem simplen Google Form und einem professionellen Hochzeits-RSVP sind enorm. Hier sind die Features, auf die ihr bei der Wahl eurer Hochzeitswebsite achten solltet:
+Nicht jedes Online-Formular ist ein gutes RSVP-System. (Übrigens: In unserer [Checkliste für Hochzeitswebsites](/blog/hochzeitswebsite-inhalt-checkliste) erfahrt ihr, welche Inhalte neben dem RSVP noch wichtig sind.) Die Unterschiede zwischen einem simplen Google Form und einem professionellen Hochzeits-RSVP sind enorm. Hier sind die Features, auf die ihr bei der Wahl eurer Hochzeitswebsite achten solltet:
 
 ### Zusage mit wenigen Klicks – ohne Registrierung
 
@@ -199,7 +199,7 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
 
 **Für euch als Brautpaar:** Im Admin-Dashboard seht ihr alle Antworten in Echtzeit. Ihr könnt nach Status filtern (zugesagt, abgesagt, offen), die Gästeliste hochladen und automatische Erinnerungen an säumige Gäste versenden – im Design eurer Hochzeitswebsite.
 
-**Kein Extra-Tool, kein Extra-Login, kein Excel-Chaos.** Alles an einem Ort, alles im Griff.
+**Kein Extra-Tool, kein Extra-Login, kein Excel-Chaos.** Alles an einem Ort, alles im Griff. Noch mehr dazu, wie das Zusammenspiel von [Gästeliste, Erinnerungsmails und Export](/blog/gaesteliste-rsvp-erinnerungsmail-export) funktioniert, lest ihr in unserem ausführlichen Guide.
     `,
   },
   {
@@ -244,7 +244,7 @@ Bevor wir die einzelnen Anbieter vorstellen, sind hier die Kriterien, die bei de
 
 **Foto-Upload und Gästebuch:** Können eure Hochzeitsgäste eigene Fotos hochladen und Grüße im Gästebuch hinterlassen?
 
-**Preismodell:** Einmalzahlung oder monatliche Kosten? Bei monatlichen Abos summieren sich die Kosten über die gesamte Planungszeit schnell.
+**Preismodell:** Einmalzahlung oder monatliche Kosten? Bei monatlichen Abos summieren sich die Kosten über die gesamte Planungszeit schnell. Mehr dazu in unserem Artikel [Was kostet eine Hochzeitswebsite?](/blog/hochzeitswebsite-kosten-was-kostet)
 
 ## Die Anbieter im Detail
 
@@ -378,7 +378,7 @@ Wenn eure standesamtliche Trauung und die Feier an unterschiedlichen Orten statt
 
 ### 4. RSVP-Formular für Online-Zusagen
 
-Ein digitales RSVP-System ist das Herzstück einer modernen Hochzeitswebsite. Eure Gäste können mit wenigen Klicks zu- oder absagen, Menüwünsche angeben und Sonderwünsche mitteilen. Ihr spart euch Stunden an Telefonaten und WhatsApp-Nachrichten.
+Ein [digitales RSVP-System](/blog/digitales-rsvp-hochzeit) ist das Herzstück einer modernen Hochzeitswebsite. Eure Gäste können mit wenigen Klicks zu- oder absagen, Menüwünsche angeben und Sonderwünsche mitteilen. Ihr spart euch Stunden an Telefonaten und WhatsApp-Nachrichten.
 
 Achtet darauf, eine klare Frist für die Rückmeldung zu setzen: „Bitte antwortet bis zum 1. August 2026" wirkt verbindlicher als vage Formulierungen.
 
@@ -507,6 +507,8 @@ Bevor ihr über die Kosten einer Hochzeitswebsite nachdenkt, rechnet gegen, was 
 
 Eine Hochzeitswebsite ersetzt all das digital, ist jederzeit aktualisierbar und bleibt als Erinnerung bestehen. So betrachtet ist selbst eine Premium-Hochzeitswebsite eine sinnvolle Investition in euer Hochzeitsbudget.
 
+Einen vollständigen [Vergleich aller Anbieter in Deutschland 2026](/blog/hochzeitswebsite-vergleich-2026) haben wir in einem eigenen Artikel zusammengestellt.
+
 ## Unser Fazit: Was lohnt sich für wen?
 
 Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite braucht und kein Wert auf eigenes Design legt. Ein Baukasten-Abo lohnt sich für technikaffine Paare mit Zeit und Geduld. Und eine Premium-Lösung wie S&I. ist die richtige Wahl, wenn eure Hochzeitswebsite genauso besonders sein soll wie eure Feier – professionell gestaltet, funktional durchdacht und ohne monatliche Kosten.
@@ -618,6 +620,8 @@ Die Faustformel lautet: **Die gedruckte Hochzeitseinladung enthält die Emotion,
 
 **Ab jetzt:** Gäste sagen direkt über die Website zu, wählen ihr Menü und finden alle Infos. Ihr seht die RSVPs in Echtzeit in eurem Dashboard – ohne eine einzige WhatsApp-Nachricht schreiben zu müssen.
 
+**Tipp:** Falls ihr euch noch fragt, warum eine eigene Hochzeitswebsite überhaupt sinnvoll ist – hier sind [7 überzeugende Gründe](/blog/warum-hochzeitswebsite).
+
 ## Fazit: QR-Code als Brücke zwischen analoger und digitaler Hochzeit
 
 Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen der traditionellen Papiereinladung und eurer digitalen Hochzeitswebsite. Er spart Platz auf der Karte, spart euren Gästen Zeit und sorgt dafür, dass alle Informationen zu eurer Hochzeit jederzeit griffbereit sind – auf jedem Smartphone, jederzeit.
@@ -688,6 +692,8 @@ Wenn eure Hochzeitswebsite öffentlich zugänglich ist, gelten streng genommen d
 **Der einfachste Weg, Datenschutzfragen zu vermeiden:** Setzt euren Passwortschutz aktiv ein. Eine passwortgeschützte Hochzeitswebsite ist nur für eingeladene Gäste zugänglich und nicht öffentlich indexiert – das reduziert die datenschutzrechtlichen Anforderungen erheblich.
 
 Bei S&I. ist der Passwortschutz in allen Paketen inklusive. Eure Hochzeitswebsite ist standardmäßig nicht öffentlich – nur Gäste mit dem Passwort sehen eure Inhalte, Fotos und RSVP-Daten.
+
+**Praxistipp:** Druckt eure persönliche Domain als [QR-Code auf eure Papiereinladungen](/blog/hochzeitswebsite-qr-code-einladung) – so finden eure Gäste den Weg zu eurer Website mit einem einzigen Scan.
 
 ## Fazit: Persönlich und geschützt
 
@@ -781,6 +787,8 @@ Das Video-Design stellt bewegte Bilder in den Mittelpunkt. Ein cinematischer Loo
 Fragt euch: Welche Atmosphäre soll unsere Hochzeit haben? Wie sieht unsere Einladungskarte aus? Welche Farben und Materialien dominieren unsere Hochzeitsdekoration? Die Antworten auf diese Fragen zeigen euch, welches Hochzeitswebsite-Design am besten zu euch passt.
 
 Ein Tipp: Eure Hochzeitswebsite muss nicht exakt zur Papeterie passen – aber der Stil sollte sich ergänzen. Wenn eure Einladungskarten minimalistisch in Schwarz-Weiß gehalten sind, passt ein Editorial-Theme besser als ein buntes Contemporary-Design.
+
+Neugierig, was S&I. neben dem Design noch bietet? In unserem Artikel über [Premium-Funktionen](/blog/hochzeitswebsite-premium-funktionen) zeigen wir euch das volle Paket.
 
 ## Fazit: Design macht den Unterschied
 
@@ -1008,6 +1016,8 @@ Beispiel: *"Unser Zuhause steht, unser Glück ist komplett – und deshalb wüns
 
 Auf eurer S&I. Website könnt ihr dazu eure Kontodaten oder einen PayPal-Link hinterlegen – dezent und trotzdem leicht zu finden.
 
+Noch unsicher, wie ihr das Thema Geschenke kommuniziert? In unserem Artikel über [häufige Fragen auf der Hochzeitswebsite](/blog/hochzeitswebsite-faq-haeufige-fragen) zeigen wir, wie andere Paare das elegant lösen.
+
 ## Fazit: Geschenke dürfen Freude machen – auf beiden Seiten
 
 Eine Wunschliste auf der Hochzeitswebsite ist kein notwendiges Übel, sondern eine Chance. **Die Chance, eure Gäste zu entlasten, Missverständnisse zu vermeiden und Geschenke zu bekommen, die wirklich Bedeutung haben.** Ob materiell oder immateriell, teuer oder symbolisch – was zählt, ist die Geste dahinter.
@@ -1128,7 +1138,7 @@ Eine Hotel-Seite auf eurer Website nimmt diesen Stress. Sie gibt euren Gästen e
 
 **Empfehlt 2-3 Hotels in verschiedenen Preisklassen.** Nicht jeder Gast hat das gleiche Budget. Ein gehobenes Hotel für die, die sich etwas gönnen wollen, ein solides Mittelklassehotel für die Praktischen und vielleicht eine Pension oder ein Bed & Breakfast für die Abenteuerlustigen.
 
-**Nennt Entfernung und Fahrzeit zur Location.** "10 Minuten mit dem Auto" oder "5 Gehminuten von der Location" – das reicht, aber es hilft enorm.
+**Nennt Entfernung und Fahrzeit zur [Location](/blog/hochzeitswebsite-location-anfahrt-karte).** "10 Minuten mit dem Auto" oder "5 Gehminuten von der Location" – das reicht, aber es hilft enorm.
 
 **Erwähnt Zimmerkontingente.** Wenn ihr bei einem Hotel ein Kontingent reserviert habt, schreibt das prominent dazu – inklusive des Stichworts, unter dem eure Gäste buchen sollen, und bis wann die Zimmer reserviert sind.
 
@@ -1193,7 +1203,7 @@ Jede einzelne Frage ist berechtigt. Und jede einzelne Nachricht kostet euch Zeit
 
 Ein Hochzeits-ABC ist eine alphabetische Liste mit allen wichtigen Informationen rund um eure Hochzeit. Von **A** wie Anfahrt über **D** wie Dresscode bis **Z** wie Zeitplan. Jeder Buchstabe steht für ein Thema – mal praktisch, mal lustig, mal emotional.
 
-Das Besondere: **Es ist kein trockener FAQ-Bereich.** Ein gutes Hochzeits-ABC erzählt eure Geschichte, zeigt eure Persönlichkeit und gibt euren Gästen das Gefühl, schon vor der Feier Teil eures Tages zu sein.
+Das Besondere: **Es ist kein trockener [FAQ-Bereich](/blog/hochzeitswebsite-faq-haeufige-fragen).** Ein gutes Hochzeits-ABC erzählt eure Geschichte, zeigt eure Persönlichkeit und gibt euren Gästen das Gefühl, schon vor der Feier Teil eures Tages zu sein.
 
 ## So könnte euer Hochzeits-ABC aussehen
 
@@ -1229,7 +1239,7 @@ Auf Papier wäre ein Hochzeits-ABC ein eigener Beileger – noch mehr Druck, noc
 
 ## Das Hochzeits-ABC bei S&I.
 
-Bei S&I. lässt sich das Hochzeits-ABC wunderbar über die **FAQ-Komponente** umsetzen. Statt klassischer Frage-Antwort-Paare nutzt ihr einfach die Buchstaben als Überschriften und eure Texte als Inhalte.
+Bei S&I. lässt sich das [Hochzeits-ABC](/blog/hochzeitswebsite-hochzeits-abc) wunderbar über die **FAQ-Komponente** umsetzen. Statt klassischer Frage-Antwort-Paare nutzt ihr einfach die Buchstaben als Überschriften und eure Texte als Inhalte.
 
 Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäste gezielt die Buchstaben öffnen können, die sie interessieren. Das Ganze sieht je nach Theme unterschiedlich aus: Elegant aufklappende Karten im Editorial-Theme, blumenverzierte Akkordeons im Botanical-Theme, knallige Drop-Downs im Contemporary-Theme.
 
@@ -1534,6 +1544,8 @@ Eure Hochzeitswebsite ist eure Privatsache. Deshalb ist bei S&I. **Passwortschut
 
 Keine öffentlichen Profile, keine Social-Media-Verknüpfung, keine Datensammelei. Eure Hochzeit gehört euch – und das respektiert S&I. in jedem Detail.
 
+Wie das alles zusammenspielt, zeigen wir euch im Detail in unserem Guide zum [Admin Dashboard](/blog/hochzeitswebsite-admin-dashboard) – eurem persönlichen Hochzeits-Cockpit.
+
 ## Fazit: Premium heißt, dass alles zusammenpasst
 
 Einzelne Features findet man bei vielen Anbietern. Foto-Upload hier, RSVP dort, Gästebuch woanders. Aber bei S&I. ist alles **aus einem Guss**: ein Design, ein Dashboard, ein Login. Keine fünf verschiedenen Tools, keine Kompatibilitätsprobleme, keine unterschiedlichen Logins.
@@ -1565,9 +1577,9 @@ Einzelne Features findet man bei vielen Anbietern. Foto-Upload hier, RSVP dort, 
 
 Eine Hochzeitswebsite ist nur so gut wie das Tool, mit dem ihr sie verwaltet. Die schönste Website nützt nichts, wenn ihr für jede Änderung eine E-Mail an den Support schreiben müsst oder euch durch verschachtelte Menüs kämpfen sollt.
 
-**Deshalb haben wir bei S&I. das Admin Dashboard als echtes Cockpit gebaut** – ein Ort, an dem ihr alles seht, alles steuert und alles in Echtzeit verfolgen könnt. Ohne technische Kenntnisse, ohne Einarbeitungszeit, ohne Frust.
+**Deshalb haben wir bei S&I. das Admin Dashboard als echtes Cockpit gebaut** – Teil der [gesamten Reise von der Verlobung bis zum Danke](/blog/hochzeitswebsite-ablauf-customer-journey) – ein Ort, an dem ihr alles seht, alles steuert und alles in Echtzeit verfolgen könnt. Ohne technische Kenntnisse, ohne Einarbeitungszeit, ohne Frust.
 
-Willkommen in eurem Hochzeits-Cockpit.
+Willkommen in eurem [Hochzeits-Cockpit](/blog/hochzeitswebsite-admin-dashboard).
 
 ![Dashboard-Ansicht auf einem modernen Laptop](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80)
 
@@ -1886,6 +1898,8 @@ Stellt euch vor: Es ist ein ganz normaler Dienstagabend, ein Jahr nach eurer Hoc
 
 237 Fotos. 48 Perspektiven. Tausend Emotionen. Und ein einziger Ort, an dem alles zusammenkommt.
 
+Neben den Fotos gibt es noch eine weitere wunderschöne Erinnerung: das [digitale Gästebuch](/blog/hochzeitswebsite-gaestebuch-digital), in dem eure Gäste ihre persönlichsten Worte hinterlassen können.
+
 **Bereit, eure Hochzeitserinnerungen für immer festzuhalten?** Bei [S&I.](https://sarahiver.com) bekommt ihr eine Hochzeitswebsite, die vor, während und nach eurer Hochzeit für euch arbeitet – mit Foto-Upload, Archivseite, Gästebuch und einem Design, das eure Geschichte erzählt. Ab 1.290 Euro, alles inklusive.
 
 **[Jetzt eure Hochzeitswebsite erstellen](https://sarahiver.com)** und keinen einzigen Moment verpassen.
@@ -2027,6 +2041,8 @@ Das ist keine Ausnahme. **Das ist der Normalfall bei S&I.**
 ## Eure Hochzeit ist zu wichtig für Excel-Tabellen
 
 120 Gäste. 120 Geschichten. 120 Menschen, die euren besonderen Tag mit euch teilen wollen. **Sie verdienen eine Einladung, die sich besonders anfühlt. Und ihr verdient ein System, das euch die Arbeit abnimmt – damit ihr euch auf das konzentrieren könnt, was wirklich zählt: eure Liebe, eure Vorfreude, euer Tag.**
+
+Mehr zum Thema RSVP findet ihr in unserem ausführlichen Artikel über [digitales RSVP für Hochzeiten](/blog/digitales-rsvp-hochzeit). Und wie das alles im [Admin Dashboard](/blog/hochzeitswebsite-admin-dashboard) zusammenläuft, zeigen wir euch ebenfalls.
 
 **Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://sarahiver.com) bekommt ihr eine Hochzeitswebsite mit intelligenter Gästeliste, automatischem RSVP-Abgleich, Erinnerungsmails und One-Click-Export – alles in eurem Design, alles aus einer Hand. Ab 1.290 Euro.
 
