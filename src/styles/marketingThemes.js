@@ -348,13 +348,13 @@ export const marketingThemes = {
 // THEME ORDER - Für Switcher (Themes, keine Fake-Themes mehr)
 // ============================================
 export const themeOrder = [
-  "editorial",
+  "classic",
   "botanical",
   "contemporary",
+  "editorial",
   "luxe",
   "neon",
   "video",
-  "classic",
 ];
 
 // ============================================
@@ -363,7 +363,7 @@ export const themeOrder = [
 
 // Get theme by id
 export const getTheme = (themeId) => {
-  return marketingThemes[themeId] || marketingThemes.editorial;
+  return marketingThemes[themeId] || marketingThemes.classic;
 };
 
 // Check if theme is dark

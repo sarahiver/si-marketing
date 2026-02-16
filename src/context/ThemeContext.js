@@ -14,7 +14,7 @@ const getSavedTheme = () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved && marketingThemes[saved]) return saved;
   } catch (e) { /* localStorage nicht verfügbar */ }
-  return 'editorial';
+  return 'classic';
 };
 
 // ============================================
@@ -25,7 +25,7 @@ export const ThemeProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   
   // Aktuelles Theme-Objekt
-  const theme = marketingThemes[currentTheme] || marketingThemes.editorial;
+  const theme = marketingThemes[currentTheme] || marketingThemes.classic;
   
   // Theme wechseln mit Loading-Animation + localStorage
   const setCurrentTheme = (newTheme) => {

@@ -131,7 +131,7 @@ export const themes = {
   },
 };
 
-export const themeOrder = ['editorial', 'botanical', 'contemporary', 'luxe', 'neon', 'video', 'classic'];
+export const themeOrder = ['classic', 'botanical', 'contemporary', 'editorial', 'luxe', 'neon', 'video'];
 export const isDarkTheme = (id) => id === 'neon';
 export const getTheme = (id) => themes[id] || themes.editorial;
 

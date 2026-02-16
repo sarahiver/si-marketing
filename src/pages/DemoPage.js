@@ -6,17 +6,11 @@ import styled from 'styled-components';
 const MULTI_THEME_BASE = 'https://siwedding.de';
 
 const THEMES = {
-  editorial: {
-    name: 'Editorial',
-    url: `${MULTI_THEME_BASE}/demo?theme=editorial`,
-    vibe: 'Zeitlose Magazin-Ästhetik',
-    color: '#1a1a1a'
-  },
-  contemporary: {
-    name: 'Contemporary',
-    url: `${MULTI_THEME_BASE}/demo?theme=contemporary`,
-    vibe: 'Modern & minimalistisch',
-    color: '#2d3436'
+  classic: {
+    name: 'Classic',
+    url: `${MULTI_THEME_BASE}/demo?theme=classic`,
+    vibe: 'Warm & zeitlos',
+    color: '#3A3A3A'
   },
   botanical: {
     name: 'Botanical',
@@ -24,11 +18,17 @@ const THEMES = {
     vibe: 'Organisch & natürlich',
     color: '#4a5c4e'
   },
-  neon: {
-    name: 'Neon',
-    url: `${MULTI_THEME_BASE}/demo?theme=neon`,
-    vibe: 'Bold & leuchtend',
-    color: '#0a0a0f'
+  contemporary: {
+    name: 'Contemporary',
+    url: `${MULTI_THEME_BASE}/demo?theme=contemporary`,
+    vibe: 'Modern & minimalistisch',
+    color: '#2d3436'
+  },
+  editorial: {
+    name: 'Editorial',
+    url: `${MULTI_THEME_BASE}/demo?theme=editorial`,
+    vibe: 'Zeitlose Magazin-Ästhetik',
+    color: '#1a1a1a'
   },
   luxe: {
     name: 'Luxe',
@@ -36,17 +36,17 @@ const THEMES = {
     vibe: 'Opulent & glamourös',
     color: '#1a1a2e'
   },
+  neon: {
+    name: 'Neon',
+    url: `${MULTI_THEME_BASE}/demo?theme=neon`,
+    vibe: 'Bold & leuchtend',
+    color: '#0a0a0f'
+  },
   video: {
     name: 'Video',
     url: `${MULTI_THEME_BASE}/demo?theme=video`,
     vibe: 'Cineastisch & dramatisch',
     color: '#0d0d0d'
-  },
-  classic: {
-    name: 'Classic',
-    url: `${MULTI_THEME_BASE}/demo?theme=classic`,
-    vibe: 'Warm & zeitlos',
-    color: '#3A3A3A'
   }
 };
 
@@ -160,7 +160,7 @@ const NoTheme = styled.div`
 
 export default function DemoPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentThemeId = searchParams.get('theme') || 'editorial';
+  const currentThemeId = searchParams.get('theme') || 'classic';
   const currentTheme = THEMES[currentThemeId];
 
   const handleThemeChange = (themeId) => {
