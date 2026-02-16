@@ -1713,7 +1713,7 @@ const ThemeShowcase = () => {
     return (
       <ClassicSection id="themes">
         <ClassicHeroImage
-          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771225849/foto3_fn6ovc.jpg"
+          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/ThemeShowCase_ewc7q8.jpg"
           alt=""
           loading="lazy"
         />
