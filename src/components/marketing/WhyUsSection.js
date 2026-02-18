@@ -1141,17 +1141,7 @@ const ClassicScrollWrapper = styled.div`
   margin-bottom: 5rem;
 
   @media (max-width: 900px) {
-    /* Full-bleed horizontaler Scroll */
-    max-width: 100%;
-    padding: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    &::-webkit-scrollbar { display: none; }
+    display: none;
   }
 `;
 
@@ -1159,16 +1149,70 @@ const ClassicGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  align-items: stretch;
+`;
 
+/* ---- Mobile Karussell ---- */
+const ClassicCarousel = styled.div`
+  display: none;
   @media (max-width: 900px) {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    padding: 0.5rem clamp(1.5rem, 5vw, 6rem) 2rem;
-    width: max-content;
-    min-width: 100%;
+    display: block;
+    position: relative;
+    margin-bottom: 3rem;
+    padding: 0 clamp(1.5rem, 5vw, 6rem);
   }
 `;
+
+const ClassicCarouselTrack = styled.div`
+  overflow: hidden;
+`;
+
+const ClassicCarouselSlide = styled.div`
+  display: none;
+  &.active { display: flex; }
+`;
+
+const ClassicCarouselNav = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+`;
+
+const ClassicCarouselBtn = styled.button`
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(0,0,0,0.15);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #1A1A1A;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: #1A1A1A;
+    background: #f5f5f5;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+`;
+
+const ClassicCarouselCounter = styled.span`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: #999;
+`;
+
 
 const ClassicCard = styled.div`
   background: #FFFFFF;
@@ -1176,13 +1220,8 @@ const ClassicCard = styled.div`
   padding: 2.25rem 2rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   transition: all 0.35s ease;
-
-  @media (max-width: 900px) {
-    width: 78vw;
-    max-width: 320px;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
+  height: 100%;
+  box-sizing: border-box;
 
   &:hover {
     box-shadow: 0 6px 24px rgba(0,0,0,0.07);
@@ -1239,20 +1278,6 @@ const ClassicCardSolution = styled.p`
   }
 `;
 
-const ClassicScrollHint = styled.p`
-  display: none;
-  @media (max-width: 900px) {
-    display: block;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    color: #bbbbbb;
-    text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 3rem;
-  }
-`;
 
 const ClassicClosing = styled.div`
   text-align: center;
@@ -1319,6 +1344,23 @@ const WhyUsSection = () => {
 
   // ---- CLASSIC ----
   if (currentTheme === 'classic') {
+    const [activeCard, setActiveCard] = React.useState(0);
+    const touchStartX = React.useRef(null);
+
+    const handleTouchStart = (e) => {
+      touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e) => {
+      if (touchStartX.current === null) return;
+      const delta = touchStartX.current - e.changedTouches[0].clientX;
+      if (Math.abs(delta) > 40) {
+        if (delta > 0 && activeCard < CARDS.length - 1) setActiveCard(activeCard + 1);
+        if (delta < 0 && activeCard > 0) setActiveCard(activeCard - 1);
+      }
+      touchStartX.current = null;
+    };
+
     return (
       <ClassicSection id="why-us">
         <ClassicContainer>
@@ -1333,6 +1375,8 @@ const WhyUsSection = () => {
             loading="lazy"
           />
         </ClassicContainer>
+
+        {/* Desktop: 3-Spalten-Grid */}
         <ClassicScrollWrapper>
           <ClassicGrid>
             {CARDS.map((card, i) => (
@@ -1346,7 +1390,40 @@ const WhyUsSection = () => {
             ))}
           </ClassicGrid>
         </ClassicScrollWrapper>
-        <ClassicScrollHint>← wischen →</ClassicScrollHint>
+
+        {/* Mobile: Touch-Karussell */}
+        <ClassicCarousel>
+          <ClassicCarouselTrack
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {CARDS.map((card, i) => (
+              <ClassicCarouselSlide key={i} className={i === activeCard ? 'active' : ''}>
+                <ClassicCard>
+                  <ClassicCardIcon>{card.icon}</ClassicCardIcon>
+                  <ClassicCardLabel>{card.label}</ClassicCardLabel>
+                  <ClassicCardQuote>{card.quote}</ClassicCardQuote>
+                  <ClassicCardProblem>{card.problem}</ClassicCardProblem>
+                  <ClassicCardSolution>{card.solution}</ClassicCardSolution>
+                </ClassicCard>
+              </ClassicCarouselSlide>
+            ))}
+          </ClassicCarouselTrack>
+          <ClassicCarouselNav>
+            <ClassicCarouselBtn
+              onClick={() => setActiveCard(Math.max(0, activeCard - 1))}
+              disabled={activeCard === 0}
+              aria-label="Vorherige Karte"
+            >←</ClassicCarouselBtn>
+            <ClassicCarouselCounter>{activeCard + 1} / {CARDS.length}</ClassicCarouselCounter>
+            <ClassicCarouselBtn
+              onClick={() => setActiveCard(Math.min(CARDS.length - 1, activeCard + 1))}
+              disabled={activeCard === CARDS.length - 1}
+              aria-label="Nächste Karte"
+            >→</ClassicCarouselBtn>
+          </ClassicCarouselNav>
+        </ClassicCarousel>
+
         <ClassicContainer>
           <ClassicClosing>
             <ClassicClosingHeadline>{CONTENT.closingHeadline}</ClassicClosingHeadline>
