@@ -1134,6 +1134,25 @@ const ClassicPanorama = styled.img`
   /* filter removed */
 `;
 
+const ClassicScrollWrapper = styled.div`
+  @media (max-width: 900px) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    margin-left: calc(-1 * clamp(1.5rem, 5vw, 6rem));
+    margin-right: calc(-1 * clamp(1.5rem, 5vw, 6rem));
+    padding-left: clamp(1.5rem, 5vw, 6rem);
+    padding-right: clamp(1.5rem, 5vw, 6rem);
+    padding-bottom: 1rem;
+    /* scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.15) transparent;
+    &::-webkit-scrollbar { height: 4px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+  }
+`;
+
 const ClassicGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1141,8 +1160,10 @@ const ClassicGrid = styled.div`
   margin-bottom: 5rem;
 
   @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: repeat(3, 80vw);
+    gap: 1.25rem;
+    margin-bottom: 0;
+    padding-right: clamp(1.5rem, 5vw, 6rem);
   }
 `;
 
@@ -1152,6 +1173,11 @@ const ClassicCard = styled.div`
   padding: 2.25rem 2rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   transition: all 0.35s ease;
+
+  @media (max-width: 900px) {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
 
   &:hover {
     box-shadow: 0 6px 24px rgba(0,0,0,0.07);
@@ -1208,7 +1234,20 @@ const ClassicCardSolution = styled.p`
   }
 `;
 
-const ClassicClosing = styled.div`
+const ClassicScrollHint = styled.p`
+  display: none;
+  @media (max-width: 900px) {
+    display: block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: #bbbbbb;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+`;
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
@@ -1281,17 +1320,20 @@ const WhyUsSection = () => {
             alt=""
             loading="lazy"
           />
-          <ClassicGrid>
-            {CARDS.map((card, i) => (
-              <ClassicCard key={i}>
-                <ClassicCardIcon>{card.icon}</ClassicCardIcon>
-                <ClassicCardLabel>{card.label}</ClassicCardLabel>
-                <ClassicCardQuote>{card.quote}</ClassicCardQuote>
-                <ClassicCardProblem>{card.problem}</ClassicCardProblem>
-                <ClassicCardSolution>{card.solution}</ClassicCardSolution>
-              </ClassicCard>
-            ))}
-          </ClassicGrid>
+          <ClassicScrollWrapper>
+            <ClassicGrid>
+              {CARDS.map((card, i) => (
+                <ClassicCard key={i}>
+                  <ClassicCardIcon>{card.icon}</ClassicCardIcon>
+                  <ClassicCardLabel>{card.label}</ClassicCardLabel>
+                  <ClassicCardQuote>{card.quote}</ClassicCardQuote>
+                  <ClassicCardProblem>{card.problem}</ClassicCardProblem>
+                  <ClassicCardSolution>{card.solution}</ClassicCardSolution>
+                </ClassicCard>
+              ))}
+            </ClassicGrid>
+          </ClassicScrollWrapper>
+          <ClassicScrollHint>← wischen →</ClassicScrollHint>
           <ClassicClosing>
             <ClassicClosingHeadline>{CONTENT.closingHeadline}</ClassicClosingHeadline>
             <ClassicClosingText>{CONTENT.closingText}</ClassicClosingText>
