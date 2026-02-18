@@ -1337,30 +1337,29 @@ const ClassicCTA = styled.button`
 // ============================================
 const WhyUsSection = () => {
   const { currentTheme } = useTheme();
+  const [activeCard, setActiveCard] = React.useState(0);
+  const touchStartX = React.useRef(null);
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) {
+      if (delta > 0 && activeCard < CARDS.length - 1) setActiveCard(activeCard + 1);
+      if (delta < 0 && activeCard > 0) setActiveCard(activeCard - 1);
+    }
+    touchStartX.current = null;
+  };
+
   // ---- CLASSIC ----
   if (currentTheme === 'classic') {
-    const [activeCard, setActiveCard] = React.useState(0);
-    const touchStartX = React.useRef(null);
-
-    const handleTouchStart = (e) => {
-      touchStartX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchEnd = (e) => {
-      if (touchStartX.current === null) return;
-      const delta = touchStartX.current - e.changedTouches[0].clientX;
-      if (Math.abs(delta) > 40) {
-        if (delta > 0 && activeCard < CARDS.length - 1) setActiveCard(activeCard + 1);
-        if (delta < 0 && activeCard > 0) setActiveCard(activeCard - 1);
-      }
-      touchStartX.current = null;
-    };
-
     return (
       <ClassicSection id="why-us">
         <ClassicContainer>
