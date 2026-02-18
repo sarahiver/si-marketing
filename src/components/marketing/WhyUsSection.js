@@ -1248,6 +1248,8 @@ const ClassicScrollHint = styled.p`
     margin-bottom: 3rem;
   }
 `;
+
+const ClassicClosing = styled.div`
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
