@@ -31,6 +31,7 @@ import AnimatedSection from './components/marketing/AnimatedSection';
 import ImpressumPage from './components/shared/ImpressumPage';
 import DatenschutzPage from './components/shared/DatenschutzPage';
 import CookieConsent from './components/shared/CookieConsent';
+import SEOHead from './components/shared/SEOHead';
 
 // ============================================
 // BLOG PAGES
@@ -39,7 +40,7 @@ import BlogPage from './components/blog/BlogPage';
 import BlogArticle from './components/blog/BlogArticle';
 
 // ============================================
-// GOOGLE FONTS - Alle benötigten Fonts für alle Themes
+// GOOGLE FONTS - Alle Fonts für alle Themes (werden in Theme-Previews gebraucht)
 // ============================================
 const GOOGLE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500&family=Manrope:wght@300;400;500;600;700;800&family=Josefin+Sans:wght@300;400;600&family=Mrs+Saint+Delafield&display=swap';
 
@@ -95,8 +96,56 @@ function MarketingPage() {
     document.title = 'S&I. wedding — Premium Hochzeitswebsites';
   }, []);
 
+  const productSchema = {
+    '@type': 'Product',
+    name: 'Premium Hochzeitswebsite von S&I.',
+    description: 'Individuelle Hochzeitswebsite mit eigenem Design, eigener Domain, digitalem RSVP, Foto-Upload und Gästeverwaltung. 6 einzigartige Themes.',
+    brand: { '@type': 'Brand', name: 'S&I.' },
+    url: 'https://sarahiver.com',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/v1770798416/si_og_image_nx5blq.png',
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'Starter Paket',
+        price: '1290',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        availability: 'https://schema.org/InStock',
+        url: 'https://sarahiver.com/#preise',
+        seller: { '@type': 'Organization', name: 'S&I.' },
+      },
+      {
+        '@type': 'Offer',
+        name: 'Standard Paket',
+        price: '1590',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        availability: 'https://schema.org/InStock',
+        url: 'https://sarahiver.com/#preise',
+        seller: { '@type': 'Organization', name: 'S&I.' },
+      },
+      {
+        '@type': 'Offer',
+        name: 'Premium Paket',
+        price: '1990',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        availability: 'https://schema.org/InStock',
+        url: 'https://sarahiver.com/#preise',
+        seller: { '@type': 'Organization', name: 'S&I.' },
+      },
+    ],
+  };
+
   return (
     <AppWrapper>
+      <SEOHead
+        title="S&I. — Premium Hochzeitswebsites ab 1.290 €"
+        description="Individuelle Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. 6 einzigartige Themes. Ab 1.290 €. Aus Hamburg."
+        path="/"
+        schema={productSchema}
+        keywords={['Hochzeitswebsite', 'Hochzeitswebsite erstellen', 'Wedding Website', 'digitale Hochzeitseinladung', 'RSVP Hochzeit', 'Premium Hochzeitswebsite', 'Hochzeitswebsite Hamburg']}
+      />
       <LoadingOverlay $show={isLoading} $theme={currentTheme}>
         <LoadingLogo>S&I.</LoadingLogo>
         <LoadingText>Laden...</LoadingText>
@@ -143,20 +192,7 @@ function MarketingPage() {
 // MAIN APP WITH THEME PROVIDER
 // ============================================
 function MainApp() {
-  // Load Google Fonts
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.href = GOOGLE_FONTS_URL;
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-    
-    return () => {
-      if (link.parentNode) {
-        document.head.removeChild(link);
-      }
-    };
-  }, []);
-  
+  // Fonts werden statisch in index.html geladen (kein JS-Overhead)
   return (
     <MarketingPage />
   );
