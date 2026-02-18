@@ -356,10 +356,10 @@ Bei S&I. zahlt ihr einmal. Ihr bekommt ein Design das wirklich zu eurer Hochzeit
 Bereit für eure eigene Hochzeitswebsite? [Alle Pakete und Preise ansehen →](https://sarahiver.com/#preise)
 
 Noch nicht sicher welches Design zu euch passt? Lest unseren Artikel über [Hochzeitswebsite Designs und Beispiele](/blog/hochzeitswebsite-design-beispiele-inspiration) – mit direkten Links zu allen Demo-Seiten.
-    \`,
+    `,
   },
   {
-    slug: 'hochzeitswebsite-inhalt-checkliste',    slug: 'hochzeitswebsite-inhalt-checkliste',    slug: 'hochzeitswebsite-inhalt-checkliste',
+    slug: 'hochzeitswebsite-inhalt-checkliste',
     title: 'Was muss auf eine Hochzeitswebsite? Die ultimative Checkliste für Brautpaare',
     description: 'Von Tagesablauf über Anfahrt bis RSVP-Formular: Diese Checkliste zeigt euch, welche Inhalte auf eure Hochzeitswebsite gehören – damit eure Gäste bestens informiert sind.',
     date: '2024-11-04',
@@ -911,10 +911,10 @@ Schaut euch alle Demo-Seiten in Ruhe an. Und wenn ihr Fragen habt – wir sind d
 👉 **[Alle Pakete und Preise ansehen →](https://sarahiver.com/#preise)**
 
 Oder lest zuerst unseren ehrlichen [Hochzeitswebsite-Anbieter-Vergleich](/blog/hochzeitswebsite-vergleich-2026) – da zeigen wir wie S&I. im direkten Vergleich abschneidet.
-    \`,
+    `,
   },
   {
-    slug: 'hochzeitswebsite-musikwuensche-playlist',    slug: 'hochzeitswebsite-musikwuensche-playlist',    slug: 'hochzeitswebsite-musikwuensche-playlist',
+    slug: 'hochzeitswebsite-musikwuensche-playlist',
     title: 'Musikwünsche auf der Hochzeitswebsite: So entsteht die Playlist, zu der alle tanzen',
     description: 'Gebt euren Gästen eine Stimme – mit einer digitalen Musikwunschliste auf eurer Hochzeitswebsite. So entsteht eine Playlist, die alle zum Tanzen und Weinen vor Glück bringt.',
     date: '2024-12-09',
