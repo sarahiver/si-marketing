@@ -281,6 +281,10 @@ const ClassicCarouselRow = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const ClassicCarousel = styled.div`
@@ -316,6 +320,72 @@ const ClassicCard = styled.div`
   z-index: ${p => (p.$offset < 0 ? 0 : 100 - p.$offset)};
   pointer-events: ${p => (p.$offset === 0 ? 'auto' : 'none')};
   filter: ${p => (p.$offset === 0 ? 'none' : `brightness(${1 - p.$offset * 0.04})`)};
+`;
+
+/* ---- Mobile-only Karussell ---- */
+const ClassicMobileCarousel = styled.div`
+  display: none;
+  @media (max-width: 700px) {
+    display: block;
+    margin-bottom: 3rem;
+  }
+`;
+
+const ClassicMobileSlide = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+`;
+
+const ClassicMobileImage = styled.div`
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const ClassicMobileBody = styled.div`
+  padding: 1.5rem;
+`;
+
+const ClassicMobileNav = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+`;
+
+const ClassicMobileBtn = styled.button`
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(0,0,0,0.15);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #1A1A1A;
+  transition: all 0.2s ease;
+
+  &:disabled { opacity: 0.25; cursor: default; }
+  &:not(:disabled):hover { border-color: #1A1A1A; }
+`;
+
+const ClassicMobileCounter = styled.span`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: #999;
 `;
 
 const ClassicCardImage = styled.div`
@@ -1205,9 +1275,21 @@ const USPSection = () => {
   const [activeCard, setActiveCard] = useState(0);
   const carouselRef = useRef(null);
   const wheelLock = useRef(false);
+  const touchStartX = useRef(null);
 
   const CLASSIC_ALL_CARDS = [...USPS, RSVP_FEATURE];
   const cardCount = CLASSIC_ALL_CARDS.length;
+
+  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) {
+      if (delta > 0) setActiveCard(prev => Math.min(prev + 1, cardCount - 1));
+      else setActiveCard(prev => Math.max(prev - 1, 0));
+    }
+    touchStartX.current = null;
+  };
 
   const scrollToThemes = () => {
     document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
@@ -1277,6 +1359,36 @@ const USPSection = () => {
               ))}
             </ClassicDots>
           </ClassicCarouselRow>
+
+          {/* Mobile: Touch-Karussell (einfach, fullwidth, vertikal) */}
+          <ClassicMobileCarousel>
+            <ClassicMobileSlide
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              <ClassicMobileImage>
+                <img src={CLASSIC_ALL_CARDS[activeCard].image} alt={CLASSIC_ALL_CARDS[activeCard].title} loading="lazy" />
+              </ClassicMobileImage>
+              <ClassicMobileBody>
+                <ClassicCardNum>0{activeCard + 1}</ClassicCardNum>
+                <ClassicCardTitle>{CLASSIC_ALL_CARDS[activeCard].title}</ClassicCardTitle>
+                <ClassicCardDesc>{CLASSIC_ALL_CARDS[activeCard].desc}</ClassicCardDesc>
+              </ClassicMobileBody>
+            </ClassicMobileSlide>
+            <ClassicMobileNav>
+              <ClassicMobileBtn
+                onClick={() => setActiveCard(prev => Math.max(prev - 1, 0))}
+                disabled={activeCard === 0}
+                aria-label="Vorherige"
+              >←</ClassicMobileBtn>
+              <ClassicMobileCounter>{activeCard + 1} / {cardCount}</ClassicMobileCounter>
+              <ClassicMobileBtn
+                onClick={() => setActiveCard(prev => Math.min(prev + 1, cardCount - 1))}
+                disabled={activeCard === cardCount - 1}
+                aria-label="Nächste"
+              >→</ClassicMobileBtn>
+            </ClassicMobileNav>
+          </ClassicMobileCarousel>
 
           <CTABox>
             <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, color: '#555' }}>
