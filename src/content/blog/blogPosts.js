@@ -6,7 +6,7 @@ const blogPosts = [
     slug: 'warum-hochzeitswebsite',
     title: 'Warum eine Hochzeitswebsite? 7 Gründe, die jedes Brautpaar überzeugen',
     description: 'Erfahre, warum immer mehr Paare auf eine eigene Hochzeitswebsite setzen – und wie sie Hochzeitsplanung, Gästemanagement und Kommunikation enorm erleichtert.',
-    date: '2026-02-15',
+    date: '2024-10-14',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
     readTime: '8 min',
@@ -19,7 +19,7 @@ const blogPosts = [
       "description": "Erfahre, warum eine eigene Hochzeitswebsite die Hochzeitsplanung revolutioniert.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-02-15",
+      "datePublished": "2024-10-14",
     },
     content: `
 ## Eure Hochzeit verdient mehr als eine WhatsApp-Gruppe
@@ -101,7 +101,7 @@ Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten 
     slug: 'digitales-rsvp-hochzeit',
     title: 'Digitales RSVP: So organisiert ihr die Zusagen für eure Hochzeit stressfrei',
     description: 'Ein digitales RSVP-System für die Hochzeit spart Wochen an Organisation. Erfahrt, wie Online-Zusagen, Gästemanagement und automatische Erinnerungen eure Hochzeitsplanung vereinfachen.',
-    date: '2026-02-22',
+    date: '2024-10-21',
     category: 'Features',
     tags: ['Features', 'Planung'],
     readTime: '7 min',
@@ -114,7 +114,7 @@ Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten 
       "description": "Ein digitales RSVP-System spart Brautpaaren Wochen an Organisation.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-02-22",
+      "datePublished": "2024-10-21",
     },
     content: `
 ## Schluss mit Excel-Chaos: Warum ein digitales RSVP die Hochzeitsplanung revolutioniert
@@ -204,135 +204,165 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
   },
   {
     slug: 'hochzeitswebsite-vergleich-2026',
-    title: 'Hochzeitswebsite-Anbieter im Vergleich 2026: Die besten Lösungen in Deutschland',
-    description: 'Wir vergleichen die beliebtesten Hochzeitswebsite-Anbieter in Deutschland – von Zankyou und WeddyPlace bis Joy und S&I. Ehrlich, transparent und mit klarer Empfehlung.',
-    date: '2026-03-01',
+    title: 'Hochzeitswebsite Vergleich 2026: Alle Anbieter ehrlich bewertet – und warum S&I. gewinnt',
+    description: 'Zankyou, WeddyPlace, Joy oder S&I.? Wir vergleichen alle großen Hochzeitswebsite-Anbieter ehrlich – mit Preisen, Funktionen und dem entscheidenden Unterschied.',
+    date: '2024-10-28',
     category: 'Vergleich',
     tags: ['Vergleich', 'Ratgeber'],
-    readTime: '10 min',
-    keywords: ['hochzeitswebsite vergleich', 'beste hochzeitswebsite', 'zankyou alternative', 'hochzeitswebsite anbieter deutschland', 'weddyplace erfahrungen', 'hochzeitsseite erstellen vergleich', 'joy hochzeit alternative'],
-    image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80',
-    imageAlt: 'Brautpaar beim Sonnenuntergang am Meer',
+    readTime: '14 min',
+    keywords: ['hochzeitswebsite vergleich', 'hochzeitshomepage vergleich', 'beste hochzeitswebsite', 'zankyou alternative', 'hochzeitswebsite anbieter deutschland', 'weddyplace erfahrungen', 'hochzeitsseite erstellen vergleich', 'joy hochzeit alternative'],
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png',
+    imageAlt: 'Editorial Theme Hochzeitswebsite von S&I.',
     schema: {
       "@type": "Article",
-      "headline": "Hochzeitswebsite-Anbieter im Vergleich 2026",
-      "description": "Vergleich der besten Hochzeitswebsite-Anbieter in Deutschland 2026.",
+      "headline": "Hochzeitswebsite Vergleich 2026: Alle Anbieter ehrlich bewertet",
+      "description": "Ehrlicher Vergleich aller großen Hochzeitswebsite-Anbieter in Deutschland 2026.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-03-01",
+      "datePublished": "2024-10-28",
     },
     content: `
-## Die besten Hochzeitswebsite-Anbieter in Deutschland 2026
+## Hochzeitswebsite Vergleich 2026: Wer liefert wirklich was?
 
-Ihr habt euch entschieden: Eine eigene Hochzeitswebsite soll her. Aber welcher Anbieter ist der richtige für euch? Das Angebot an Hochzeitswebsite-Baukästen und Plattformen im deutschsprachigen Raum ist groß – und die Unterschiede in Qualität, Funktionsumfang und Preis sind erheblich.
+Ihr habt Ja gesagt – und jetzt beginnt die Planung. Eine eigene Hochzeitswebsite steht auf fast jeder To-do-Liste weit oben: Sie ersetzt hundert WhatsApp-Nachrichten, beantwortet die immer gleichen Fragen eurer Gäste automatisch und ist für viele Paare der erste sichtbare Schritt in die gemeinsame Zukunft.
 
-**Wir haben die beliebtesten Hochzeitswebsite-Anbieter in Deutschland verglichen** – ehrlich, transparent und mit klarer Einordnung, welcher Anbieter zu welchem Paar passt. Denn die \"beste\" Hochzeitswebsite gibt es nicht – nur die richtige für eure individuellen Wünsche.
+Aber welcher Anbieter ist der richtige? Das Angebot ist groß, die Marketing-Versprechen klingen überall ähnlich gut – und die Unterschiede zeigen sich erst wenn es zu spät ist, um zu wechseln.
 
-![Moderne Hochzeitsdekoration in minimalistischem Setting](https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=900&q=80)
+**Dieser Vergleich ist ehrlich. Auch gegenüber uns selbst.** Wir zeigen euch, wer was kann, was es wirklich kostet und für wen welcher Anbieter tatsächlich Sinn ergibt. Am Ende werden wir nicht verschweigen, warum wir glauben dass S&I. für die meisten Paare die beste Wahl ist – aber wir werden es euch zeigen, nicht einfach behaupten.
 
-## Die entscheidenden Kriterien für eure Hochzeitswebsite
+![Editorial Theme – eine der sechs Hochzeitswebsite-Designs von S&I.](https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png)
 
-Bevor wir die einzelnen Anbieter vorstellen, sind hier die Kriterien, die bei der Wahl einer Hochzeitswebsite wirklich zählen – und die ihr bei eurem Vergleich im Blick behalten solltet:
+---
 
-**Design-Qualität und Individualität:** Sieht die Hochzeitswebsite modern und hochwertig aus? Oder wirkt sie wie ein Standard-Template aus dem Baukasten? Euer Hochzeitsdesign ist ein Ausdruck eurer Persönlichkeit als Paar – eure Website sollte das widerspiegeln.
+## Die Kriterien die wirklich zählen
 
-**Eigene Domain:** Könnt ihr eine eigene Webadresse nutzen (zum Beispiel sarah-und-max.de)? Oder läuft eure Seite unter einer Subdomain des Anbieters (euer-name.anbieter.de)? Eine eigene Domain wirkt professioneller und ist leichter zu merken.
+Bevor wir die Anbieter vorstellen: Das sind die Punkte die den Unterschied machen – nicht die die im Marketing-Prospekt groß stehen.
 
-**RSVP-System und Gästemanagement:** Ist ein vollwertiges RSVP-System integriert – mit Menüwahl, Begleitpersonen, Allergien und automatischen Erinnerungen? Oder gibt es nur ein simples Kontaktformular?
+**Design-Qualität:** Sieht die Seite wirklich gut aus? Oder wie ein Template das tausend andere Paare vor euch schon genutzt haben? Euer Hochzeitswebsite-Design ist das Erste was eure Gäste sehen – oft noch bevor sie die Einladungskarte in den Händen halten.
 
-**Passwortschutz und Datenschutz:** Können unbefugte Personen eure Hochzeitsseite einsehen? Gerade in Zeiten von DSGVO und zunehmendem Datenschutzbewusstsein ein wichtiger Punkt.
+**Eigene Domain:** Läuft eure Seite unter anna-und-max.de – oder unter anna-und-max.zankyou.com? Letzteres sieht unprofessionell aus, ist schwerer zu merken und gehört am Ende nicht wirklich euch.
 
-**Foto-Upload und Gästebuch:** Können eure Hochzeitsgäste eigene Fotos hochladen und Grüße im Gästebuch hinterlassen?
+**RSVP und Gästemanagement:** Gibt es ein echtes digitales RSVP-System mit Menüwahl, Begleitpersonen, Allergien und automatischen Erinnerungen? Oder nur ein einfaches Formular das ihr manuell auswerten müsst?
 
-**Preismodell:** Einmalzahlung oder monatliche Kosten? Bei monatlichen Abos summieren sich die Kosten über die gesamte Planungszeit schnell. Mehr dazu in unserem Artikel [Was kostet eine Hochzeitswebsite?](/blog/hochzeitswebsite-kosten-was-kostet)
+**Passwortschutz:** Kann jeder eure Hochzeitswebsite aufrufen – oder nur eingeladene Gäste? Gerade wenn Fotos, Adressen und persönliche Informationen online stehen ist das kein Detail.
 
-## Die Anbieter im Detail
+**Preis und Laufzeit:** Einmalig oder monatliches Abo? Bei 10–15€/Monat und 18 Monaten Planungszeit summiert sich das auf 180–270€ – für eine Lösung die ihr nach der Hochzeit nie wieder nutzt.
 
-### Zankyou: Der Klassiker im deutschsprachigen Raum
+**Support auf Deutsch:** Klingt selbstverständlich, ist es aber nicht. Viele Anbieter kommen aus den USA.
 
-Zankyou ist einer der bekanntesten Namen in der Hochzeitsbranche und bietet neben einem Hochzeitsportal auch kostenlose Basis-Hochzeitswebsites. Die Plattform ist vor allem in Südeuropa und im DACH-Raum verbreitet.
+---
 
-**Stärken:** Zankyou ist komplett kostenlos in der Basisversion, bietet eine große Auswahl an Vorlagen für Hochzeitswebsites und hat eine eingebaute Geschenkeliste. Die Einrichtung geht schnell und unkompliziert – ideal für Paare, die eine einfache Lösung suchen.
+## Zankyou: Kostenlos klingt gut – bis man genauer hinschaut
 
-**Schwächen:** Die Designs wirken oft generisch und wenig individuell. Eigene Domains sind nicht möglich – eure Hochzeitswebsite läuft immer unter zankyou.com/... Das RSVP ist auf ein Basisformular beschränkt, und die kostenlose Version enthält Werbung des Anbieters.
+Zankyou ist in Deutschland einer der bekanntesten Namen im Hochzeitsbereich. Die kostenlose Basisversion klingt verlockend.
 
-**Geeignet für:** Paare mit kleinem Budget, die eine einfache, funktionale Lösung suchen und keinen Wert auf individuelles Design legen.
+**Was stimmt:** Die Einrichtung geht schnell. Es gibt Templates und eine integrierte Geschenkeliste. Für Paare die einfach irgendetwas online haben wollen, ist das eine Option.
 
-### WeddyPlace: Deutsches Startup mit App-Fokus
+**Was verschwiegen wird:** Die kostenlosen Designs wirken veraltet und sind kaum individualisierbar. Eine eigene Domain gibt es nur in der Bezahlversion – ab ca. 10€/Monat. Das RSVP-System ist eingeschränkt. Und am Ende zahlt man für 18 Monate Planung schnell 180€ oder mehr – für ein Design das aussieht wie 2014.
 
-WeddyPlace ist ein deutsches Startup, das Hochzeitsplanung und Website in einer App vereint. Der Fokus liegt klar auf der Planungsfunktion – die Hochzeitswebsite ist eher ein Add-on.
+**Fazit:** Kostenlos ist kein Vorteil wenn das Ergebnis eure Hochzeit nicht würdig repräsentiert.
 
-**Stärken:** WeddyPlace bietet umfangreiche Planungstools: Budgetrechner, Aufgabenlisten, Dienstleister-Suche. Als All-in-One-Lösung für die gesamte Hochzeitsplanung hat die App durchaus ihre Berechtigung. Deutsche Entwicklung bedeutet auch DSGVO-Konformität.
+---
 
-**Schwächen:** Die Website-Funktion ist designtechnisch eingeschränkt. Die Templates wirken weniger hochwertig als bei spezialisierten Website-Anbietern. Wer primär eine schöne Hochzeitshomepage sucht, wird hier nicht optimal bedient.
+## WeddyPlace: Solide, aber ohne Persönlichkeit
 
-**Geeignet für:** Paare, die ein umfassendes Planungstool suchen und die Website als nettes Extra betrachten.
+WeddyPlace ist ein deutschsprachiger Anbieter mit überschaubarer Template-Auswahl. Bedienung einfach, Preise fair, Design ordentlich – aber selten wirklich begeisternd.
 
-### Joy: Amerikanischer Anbieter mit starkem RSVP
+**Was stimmt:** Deutschsprachig, unkompliziert, keine versteckten Kosten.
 
-Joy ist ein amerikanischer Anbieter, der auch in Deutschland zunehmend beliebt wird. Die Plattform bietet ansprechende Templates und eine solide RSVP-Funktionalität.
+**Was fehlt:** Die Designs sind begrenzt und wirken nicht modern. Wer eine Hochzeitswebsite möchte die wirklich zu ihrem Stil passt, stößt schnell an Grenzen. Foto-Upload für Gäste, professionelles RSVP, Passwortschutz – Fehlanzeige oder nur rudimentär vorhanden.
 
-**Stärken:** Joy bietet hübsche, moderne Designs und ein gutes RSVP-System mit Menüwahl und Begleitpersonen. Die Bedienung ist intuitiv, und die kostenlose Version bietet bereits brauchbare Grundfunktionen. Foto-Upload für Gäste ist ebenfalls verfügbar.
+**Fazit:** Eine ehrliche Basisoption – aber keine die man sich in zehn Jahren noch gerne ansieht.
 
-**Schwächen:** Die Premium-Version kostet monatlich – bei einer Planungszeit von 12–18 Monaten summiert sich das erheblich. Als amerikanischer Anbieter gelten US-Datenschutzstandards, was für datenschutzbewusste Paare in Deutschland ein Nachteil sein kann. Support auf Deutsch ist eingeschränkt.
+---
 
-**Geeignet für:** Paare, die eine englischsprachige Plattform nicht stört und ein solides Allround-Paket suchen – aber die monatlichen Kosten im Blick behalten wollen.
+## Joy: Viel Funktionsumfang, falsche Zielgruppe
 
-![Brautstrauß mit Rosen auf einem Vintage-Tisch](https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=900&q=80)
+Joy kommt aus den USA und bietet beeindruckend viele Funktionen: RSVP, Geschenkeliste, Gästeverwaltung, App für Gäste.
 
-### S&I.: Premium-Hochzeitswebsites aus Hamburg
+**Was stimmt:** Der Funktionsumfang ist stark. Das RSVP-System ist ausgereift, die App-Integration für Gäste ist durchdacht.
 
-S&I. ist ein auf hochwertige Hochzeitswebsites spezialisierter Anbieter aus Hamburg. Statt eines Baukastens setzt S&I. auf professionell gestaltete Themes mit individuellem Design und einem umfassenden Funktionspaket.
+**Was nicht passt:** Joy ist für den amerikanischen Markt gemacht. Viele Texte sind auf Englisch oder lückenhaft übersetzt. Die Designs wirken amerikanisch – was für eine deutsche Hochzeit oft einfach nicht passt. Und: Eure Gästedaten liegen auf US-Servern. DSGVO ist ein echtes Thema, kein bürokratisches Detail.
 
-**Was S&I. von anderen Anbietern unterscheidet:**
+**Fazit:** Technisch stark – aber für deutschsprachige Paare mit dem Wunsch nach echtem Design und Datenschutz keine Empfehlung.
 
-- **Eigene Domain immer inklusive** – eure-namen.de, ohne Aufpreis und ohne Subdomain eines Anbieters
-- **Handgefertigte Hochzeitsthemes** statt generischer Baukasten-Templates – jedes Theme ist von professionellen Designern gestaltet
-- **Vollwertiges RSVP-System** mit Menüwahl, Duplikate-Erkennung, Begleitpersonen und automatischen Erinnerungen per E-Mail
-- **Gästeliste mit RSVP-Abgleich** – ladet eure komplette Gästeliste hoch und seht sofort, wer noch nicht geantwortet hat
-- **Foto-Upload und Gästebuch** für eure Hochzeitsgäste
-- **Passwortschutz** für eure Privatsphäre
-- **Persönlicher Support aus Hamburg** – keine anonymen Chatbots, echte Menschen
-- **Einmalzahlung statt Abo** – keine monatlichen Kosten, keine versteckten Gebühren
+---
 
-**Geeignet für:** Paare, die eine Website wollen, die so individuell ist wie ihre Hochzeit – mit durchdachtem Design, allen wichtigen Features und persönlicher Betreuung.
+## S&I. Wedding: Warum wir anders sind – und warum das den Preis rechtfertigt
 
-## Hochzeitswebsite-Anbieter im direkten Vergleich
+Wir sind befangen. Das ist klar. Aber wir können euch zeigen was andere nicht können.
 
-| Kriterium | Zankyou | WeddyPlace | Joy | S&I. |
+S&I. ist kein Baukasten. Kein Portal. Kein Template-System wo ihr selbst herumbastelt bis es irgendwie aussieht. **S&I. ist ein persönlicher Service:** Ihr wählt euer Wunsch-Theme, wir richten eure Hochzeitswebsite ein – professionell, durchdacht, fertig. Ihr verwaltet danach Inhalte, Gäste und RSVP über euer eigenes Dashboard.
+
+![Luxe Theme – für Paare die Eleganz und Raffinesse lieben](https://res.cloudinary.com/si-weddings/image/upload/v1771410207/luxe-demo_ztbbeh.png)
+
+**Was S&I. von allen anderen unterscheidet:**
+
+**6 professionell gestaltete Themes** – kein einziges davon ist ein Standard-Template. Jedes hat seinen eigenen Designcharakter, seine eigene Typografie, seine eigene Farbwelt. Entworfen für Paare die wissen dass Design einen Unterschied macht:
+
+- [Editorial →](https://www.siwedding.de/demo-editorial) — minimalistisch, modern, selbstbewusst
+- [Botanical →](https://www.siwedding.de/demo-botanical) — romantisch, natürlich, warm
+- [Contemporary →](https://www.siwedding.de/demo-contemporary) — lebendig, bunt, unkonventionell
+- [Luxe →](https://www.siwedding.de/demo-luxe) — glamourös, edel, zeitlos
+- [Neon →](https://www.siwedding.de/demo-neon) — futuristisch, mutig, unvergesslich
+- [Classic →](https://www.siwedding.de/demo-classic) — elegant, warm, unvergänglich
+- [Video →](https://www.siwedding.de/demo-video) — cinematisch, emotional, persönlich
+
+**Vollständiges RSVP-System** – Menüwahl, Begleitpersonen, Allergien, automatische E-Mail-Erinnerungen. Kein Excel, kein WhatsApp-Chaos, kein manuelles Nachfassen. Mehr dazu: [Digitales RSVP für eure Hochzeit](/blog/digitales-rsvp-hochzeit).
+
+**Foto-Upload für Gäste** – alle Hochzeitsfotos eurer Gäste an einem Ort. Nach der Feier direkt verfügbar, kein Google Drive-Chaos, keine geteilten Dropbox-Links.
+
+**Eigene Domain** – eure Seite läuft unter anna-und-max.de. Nicht unter anna-und-max.irgendeinportal.de.
+
+**Passwortschutz** – eure Website ist nur für eingeladene Gäste zugänglich. Vollständige Kontrolle über eure Privatsphäre. Details: [Eigene Domain und Passwortschutz](/blog/hochzeitswebsite-eigene-domain-passwortschutz).
+
+**Einmalige Zahlung, kein Abo** – ihr zahlt einmal. Keine monatlichen Kosten, keine Überraschungen. Bei anderen Anbietern zahlt ihr über 18 Monate oft mehr.
+
+**Persönlicher Support auf Deutsch** – von einem echten Team aus Hamburg das selbst geheiratet hat und weiß was Paare in dieser Phase brauchen.
+
+![Botanical Theme – für romantische Garten- und Naturhochzeiten](https://res.cloudinary.com/si-weddings/image/upload/v1771410205/botanical-demo_gzsgef.png)
+
+---
+
+## Der direkte Vergleich
+
+| | Zankyou | WeddyPlace | Joy | **S&I.** |
 |---|---|---|---|---|
-| Eigene Domain | Nein | Nein | Premium | Immer inklusive |
-| RSVP-System | Basis | Basis | Gut | Vollständig |
-| Designs | Standard | Einfach | Modern | Premium |
-| Foto-Upload | Nein | Nein | Ja | Ja |
-| Gästebuch | Nein | Nein | Ja | Ja |
-| Passwortschutz | Nein | Ja | Premium | Immer inklusive |
-| Preis | Kostenlos | Kostenlos/Premium | Abo ab ~30€/Monat | Einmalig ab 1.290€ |
-| Support | Community | App-Support | Englisch | Persönlich (deutsch) |
-| Datenschutz | EU | Deutschland | USA | Deutschland |
+| Design-Qualität | Mittel | Mittel | Gut | **Premium** |
+| Eigene Domain | Nur Premium | Ja | Ja | **Ja** |
+| RSVP-System | Basis | Basis | Sehr gut | **Vollständig** |
+| Foto-Upload Gäste | Nein | Nein | Ja | **Ja** |
+| Passwortschutz | Nein | Teilweise | Ja | **Ja** |
+| Deutschsprachig | Ja | Ja | Nein | **Ja** |
+| DSGVO-konform | Teilweise | Ja | Nein | **Ja** |
+| Preismodell | Abo | Einmalig | Abo | **Einmalig** |
+| Anzahl Themes | ~20 | ~10 | ~15 | **7 Premium** |
+| Persönlicher Service | Nein | Nein | Nein | **Ja** |
 
-## Welcher Anbieter passt zu euch?
+---
 
-Die Wahl des richtigen Anbieters für eure Hochzeitswebsite hängt von euren Prioritäten ab.
+## Ist der Preis gerechtfertigt?
 
-**Wenn das Budget im Vordergrund steht** und ihr eine funktionale Basis-Lösung für die Hochzeitskommunikation sucht, sind kostenlose Anbieter wie Zankyou oder die Basisversion von WeddyPlace gute Optionen. Ihr bekommt eine solide Grundlage – müsst aber Abstriche bei Design, Individualität und Funktionsumfang machen.
+Das ist die ehrlichste Frage – und sie verdient eine ehrliche Antwort.
 
-**Wenn ihr ein gutes Gesamtpaket für die Hochzeitsplanung sucht** und die Website nicht im Mittelpunkt steht, bietet WeddyPlace als deutsches All-in-One-Tool mit Budgetrechner und Dienstleister-Suche einen Mehrwert.
+**Ja.** Und zwar aus einem einfachen Grund: Ihr heiratet einmal. Eure Hochzeitswebsite ist für 12–18 Monate euer digitales Aushängeschild – das Erste was eure Gäste sehen, das System mit dem ihr hundert RSVP-Antworten verwaltet, der Ort wo eure Gäste ihre Fotos hochladen.
 
-**Wenn euch Design und Qualität wichtig sind** und eure Hochzeitswebsite genauso durchdacht sein soll wie eure Feier selbst, lohnt sich die Investition in eine Premium-Lösung. Bei S&I. bekommt ihr eine Website, die nicht nach Baukasten aussieht, sondern nach einer individuell gestalteten Hochzeitshomepage.
+Wenn ihr bei Zankyou oder einer anderen Basis-Lösung 18 Monate lang 10–15€/Monat zahlt, kommt ihr auf 180–270€ – für ein Design das aussieht wie ein Standard-Template und eine Funktionalität die ihr immer wieder an Grenzen bringt.
 
-## Unser ehrliches Fazit
+Bei S&I. zahlt ihr einmal. Ihr bekommt ein Design das wirklich zu eurer Hochzeit passt, einen vollen Funktionsumfang ohne Kompromisse und persönlichen Support wenn ihr ihn braucht.
 
-Jedes Brautpaar hat andere Ansprüche an seine Hochzeitswebsite. Die kostenlose Variante erfüllt ihren Zweck – aber wer eine Website möchte, die das Hochzeitserlebnis für die Gäste von der ersten Sekunde an besonders macht, kommt um einen spezialisierten Anbieter mit professionellem Design nicht herum.
+**Der Unterschied ist nicht der Preis. Der Unterschied ist was ihr dafür bekommt.**
 
-**Eure Hochzeit passiert nur einmal. Eure Hochzeitswebsite sollte das widerspiegeln.**
-    `,
+Bereit für eure eigene Hochzeitswebsite? [Alle Pakete und Preise ansehen →](https://sarahiver.com/#preise)
+
+Noch nicht sicher welches Design zu euch passt? Lest unseren Artikel über [Hochzeitswebsite Designs und Beispiele](/blog/hochzeitswebsite-design-beispiele-inspiration) – mit direkten Links zu allen Demo-Seiten.
+    \`,
   },
   {
-    slug: 'hochzeitswebsite-inhalt-checkliste',
+    slug: 'hochzeitswebsite-inhalt-checkliste',    slug: 'hochzeitswebsite-inhalt-checkliste',    slug: 'hochzeitswebsite-inhalt-checkliste',
     title: 'Was muss auf eine Hochzeitswebsite? Die ultimative Checkliste für Brautpaare',
     description: 'Von Tagesablauf über Anfahrt bis RSVP-Formular: Diese Checkliste zeigt euch, welche Inhalte auf eure Hochzeitswebsite gehören – damit eure Gäste bestens informiert sind.',
-    date: '2026-03-08',
+    date: '2024-11-04',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
     readTime: '9 min',
@@ -345,7 +375,7 @@ Jedes Brautpaar hat andere Ansprüche an seine Hochzeitswebsite. Die kostenlose 
       "description": "Checkliste für den perfekten Inhalt eurer Hochzeitswebsite.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-03-08",
+      "datePublished": "2024-11-04",
     },
     content: `
 ## Die perfekte Hochzeitswebsite: Welche Inhalte wirklich wichtig sind
@@ -429,7 +459,7 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
     slug: 'hochzeitswebsite-kosten-was-kostet',
     title: 'Was kostet eine Hochzeitswebsite? Preise, Optionen und was sich wirklich lohnt',
     description: 'Von kostenlos bis Premium: Wir zeigen euch, was eine Hochzeitswebsite kostet, welche Preismodelle es gibt und wann sich die Investition in eine professionelle Lösung wirklich auszahlt.',
-    date: '2026-03-15',
+    date: '2024-11-11',
     category: 'Ratgeber',
     tags: ['Ratgeber', 'Vergleich'],
     readTime: '8 min',
@@ -442,7 +472,7 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
       "description": "Preisvergleich für Hochzeitswebsites: kostenlos, Baukasten, Premium.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-03-15",
+      "datePublished": "2024-11-11",
     },
     content: `
 ## Was kostet eine Hochzeitswebsite wirklich?
@@ -520,7 +550,7 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
     slug: 'hochzeitswebsite-qr-code-einladung',
     title: 'Hochzeitseinladung mit QR-Code: So verknüpft ihr Print und eure Hochzeitswebsite',
     description: 'QR-Code auf der Hochzeitseinladung? So verbindet ihr eure gedruckte Einladungskarte perfekt mit eurer digitalen Hochzeitswebsite. Bei S&I. wird der QR-Code direkt mitgeneriert.',
-    date: '2026-03-22',
+    date: '2024-11-18',
     category: 'Tipps',
     tags: ['Features', 'Planung'],
     readTime: '8 min',
@@ -533,7 +563,7 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
       "description": "So verbindet ihr eure Einladungskarte mit eurer Hochzeitswebsite per QR-Code – bei S&I. inklusive.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-03-22",
+      "datePublished": "2024-11-18",
     },
     content: `
 ## Print trifft Digital: Warum ein QR-Code auf eurer Hochzeitseinladung unverzichtbar ist
@@ -635,7 +665,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
     slug: 'hochzeitswebsite-eigene-domain-passwortschutz',
     title: 'Eigene Domain und Passwortschutz: So wird eure Hochzeitswebsite persönlich und sicher',
     description: 'Eigene Domain wie sarah-und-max.de statt Subdomain? Passwortschutz für eure Privatsphäre? Alles, was Brautpaare über Domain und Datenschutz ihrer Hochzeitswebsite wissen müssen.',
-    date: '2026-03-29',
+    date: '2024-11-25',
     category: 'Features',
     tags: ['Planung', 'Features'],
     readTime: '7 min',
@@ -648,7 +678,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
       "description": "Warum eine eigene Domain und Passwortschutz für die Hochzeitswebsite wichtig sind.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-03-29",
+      "datePublished": "2024-11-25",
     },
     content: `
 ## sarah-und-max.de statt name.anbieter.de: Warum eure Domain zählt
@@ -704,105 +734,190 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
   },
   {
     slug: 'hochzeitswebsite-design-beispiele-inspiration',
-    title: '6 Hochzeitswebsite-Designs, die begeistern: Stile, Beispiele und Inspiration für Brautpaare',
-    description: 'Von minimalistisch bis glamourös: Entdeckt Einzigartige Designstile für eure Hochzeitswebsite und findet das Theme, das zu eurer Hochzeit passt.',
-    date: '2026-04-05',
+    title: 'Hochzeitswebsite Beispiele 2026: 7 echte Designs zum Anklicken und Erleben',
+    description: 'Entdeckt 7 echte Hochzeitswebsite-Beispiele von S&I. – von minimalistisch bis glamourös. Mit direkten Links zu unseren Demo-Seiten. Findet euren Stil.',
+    date: '2024-12-02',
     category: 'Design',
     tags: ['Inspiration', 'Features'],
-    readTime: '8 min',
-    keywords: ['hochzeitswebsite design', 'hochzeitswebsite beispiele', 'hochzeitshomepage inspiration', 'hochzeitswebsite themes', 'hochzeitswebsite gestalten ideen', 'moderne hochzeitswebsite'],
-    image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80',
-    imageAlt: 'Verschiedene Designbeispiele für Hochzeitswebsites',
+    readTime: '12 min',
+    keywords: ['hochzeitswebsite beispiele', 'hochzeitshomepage beispiele', 'hochzeitswebsite design', 'hochzeitshomepage inspiration', 'hochzeitswebsite themes', 'hochzeitswebsite gestalten ideen', 'moderne hochzeitswebsite beispiele', 'hochzeitswebsite vorlage'],
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png',
+    imageAlt: 'Editorial Theme Hochzeitswebsite – ein Beispiel von S&I.',
     schema: {
       "@type": "Article",
-      "headline": "6 Hochzeitswebsite-Designs, die begeistern",
-      "description": "Design-Inspiration für eure Hochzeitswebsite mit 6 unterschiedlichen Stilrichtungen.",
+      "headline": "Hochzeitswebsite Beispiele 2026: 7 echte Designs zum Anklicken",
+      "description": "7 echte Hochzeitswebsite-Beispiele mit Links zu Demo-Seiten.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-04-05",
+      "datePublished": "2024-12-02",
     },
     content: `
-## Eure Hochzeit hat einen Stil – eure Hochzeitswebsite sollte ihn widerspiegeln
+## Hochzeitswebsite Beispiele: So könnte eure aussehen
 
-Das Design eurer Hochzeitswebsite ist das Erste, was eure Gäste sehen, wenn sie den Link öffnen oder den QR-Code auf eurer Einladungskarte scannen. Innerhalb von Sekunden entsteht ein Eindruck – und dieser Eindruck sollte die Atmosphäre eurer Hochzeit einfangen: die Farben, die Stimmung, die Persönlichkeit, die euch als Paar ausmacht.
+Der Moment in dem ihr den Link zu eurer Hochzeitswebsite zum ersten Mal verschickt – an eure Eltern, besten Freunde, Trauzeugen – ist besonders. Sie öffnen den Link und sehen zum ersten Mal wie eure Hochzeit aussehen wird. Noch bevor die Location dekoriert ist. Noch bevor die Blumen bestellt sind.
 
-Leider sehen viele Hochzeitswebsites aus wie austauschbare Baukasten-Templates. Gleiche Schriften, gleiche Layouts, gleiche Stockfotos. **Eure Hochzeit ist einzigartig – euer Webdesign sollte es auch sein.**
+**Eure Hochzeitswebsite ist das erste visuelle Statement eurer Hochzeit.**
 
-Wir stellen euch sechs verschiedene Designrichtungen für Hochzeitswebsites vor, die euch als Inspiration dienen – von redaktionell-minimalistisch bis glamourös-elegant.
+Wir zeigen euch sieben echte Beispiele – alle live, alle anklickbar, alle von S&I. Schaut sie euch in Ruhe an. Zeigt sie eurer Partnerin, eurem Partner, eurer besten Freundin. Der richtige Stil ist der bei dem ihr sagt: Das sind wir.
 
-![Stimmungsvolle Hochzeitsdekoration](https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80)
+---
 
-## 1. Editorial: Für moderne Paare mit Sinn für klares Design
+## Beispiel 1: Editorial – Für Paare mit Sinn für klares Design
 
-Das Editorial-Design ist inspiriert von hochwertigen Magazinen und Printmedien. Klare Typografie, großzügige Weißräume, eine reduzierte Farbpalette in Schwarz, Weiß und einem markanten Akzent – etwa einem satten Rot. Dieses Design wirkt sofort professionell und modern.
+![Editorial Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png)
 
-**Passt zu:** Stadthochzeiten, Loft-Locations, Paare mit minimalistischem Geschmack, die klare Linien und typografische Eleganz schätzen.
+Das Editorial-Theme ist inspiriert von hochwertigen Magazinen. Klare Typografie, viel Weißraum, ein kraftvoller roter Akzent auf tiefem Schwarz. Nichts Überflüssiges. Alles Absicht.
 
-**Stimmung:** Selbstbewusst, urban, zeitgemäß.
+Wenn eure Tischdekoration aus drei sorgfältig platzierten weißen Rosen besteht statt aus üppigen Arrangements – dann ist das euer Design.
 
-## 2. Botanical: Für Naturliebhaber und Gartenhochzeiten
+**Was eure Gäste beim Öffnen denken:** "Die haben wirklich Stil."
 
-Organische Formen, sanfte Grüntöne, florale Illustrationen und eine warme, natürliche Atmosphäre – das Botanical-Design bringt die Schönheit der Natur auf eure Hochzeitshomepage. Die Typografie ist elegant und geschwungen, mit Serifenschriften, die an handgeschriebene Einladungen erinnern.
+**Passt zu:** Stadthochzeiten, Loft- und Industrie-Locations, moderne Hochzeiten, Paare die Typografie und zeitgemäßes Design lieben.
 
-**Passt zu:** Gartenhochzeiten, Scheunenhochzeiten, Feiern im Grünen, Boho-Stil, nachhaltigkeitsbewusste Paare.
+👉 **[Editorial Demo-Seite live erleben →](https://www.siwedding.de/demo-editorial)**
 
-**Stimmung:** Romantisch, natürlich, warm.
+---
 
-## 3. Contemporary: Für kreative Paare mit Mut zur Farbe
+## Beispiel 2: Botanical – Für Naturliebhaber und Romantiker
 
-Kräftige Farben, spielerische Typografie, geometrische Elemente und ein Hauch Neobrutalism – das Contemporary-Design ist für Paare, die sich nicht in Konventionen pressen lassen. Dieses Hochzeitswebsite-Design fällt auf, macht Spaß und hat Charakter.
+![Botanical Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410205/botanical-demo_gzsgef.png)
 
-**Passt zu:** Kreative Hochzeiten, Festival-Weddings, Paare aus der Design- oder Kunstszene, bunte Feiern mit Persönlichkeit.
+Tiefe Grüntöne, organische Formen, florale Elemente – das Botanical-Theme holt die Natur auf eure Hochzeitswebsite. Die Typografie ist elegant und leicht geschwungen, die Atmosphäre warm und einladend.
 
-**Stimmung:** Energetisch, fröhlich, unkonventionell.
+Wenn euer Brautstrauß aus Pfingstrosen besteht und eure Location von Efeu umrankt ist – dann ist das euer Design.
 
-## 4. Luxe: Für elegante Feiern mit Glamour-Faktor
+**Was eure Gäste beim Öffnen denken:** "Das wird eine wunderschöne Feier."
 
-Dunkle Hintergründe, goldene Akzente, Serifenschriften in Kursiv und eine insgesamt opulente Anmutung – das Luxe-Design strahlt Exklusivität und Raffinesse aus. Jedes Detail eurer Hochzeitswebsite vermittelt: Dies wird eine besondere Feier.
+**Passt zu:** Garten- und Scheunenhochzeiten, Boho-Stil, Feiern in der Natur, nachhaltige Hochzeiten.
 
-**Passt zu:** Schloss- und Hotelhochzeiten, Abendveranstaltungen mit Gala-Charakter, Paare mit einem Faible für klassische Eleganz und Luxus.
+👉 **[Botanical Demo-Seite live erleben →](https://www.siwedding.de/demo-botanical)**
 
-**Stimmung:** Glamourös, edel, zeitlos.
+---
 
-![Elegante Hochzeitslocation bei Nacht](https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=80)
+## Beispiel 3: Contemporary – Für Paare die auffallen wollen
 
-## 5. Neon: Für Paare, die das Außergewöhnliche lieben
+![Contemporary Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410203/cont-demo_gpvcbz.png)
 
-Leuchtende Cyan-Akzente auf dunklem Grund, futuristische Typografie, schimmernde Glow-Effekte – das Neon-Design ist der mutigste Stil in der Sammlung. Dieses Hochzeitswebsite-Design ist definitiv nichts für jeden, aber genau das macht es besonders.
+Kräftige Farben, spielerische Typografie, grafische Energie – das Contemporary-Theme ist für Paare die keine Lust auf das haben was "man so macht". Dieses Design fällt sofort auf, macht Lust auf die Feier und hat echten Charakter.
 
-**Passt zu:** Abendveranstaltungen, Clubhochzeiten, Paare mit Affinität zu Technologie und modernem Design, Feiern mit Wow-Faktor.
+Wenn euer DJ-Set um Mitternacht startet und eure Hochzeitstorte aus Donuts besteht – dann ist das euer Design.
 
-**Stimmung:** Futuristisch, edgy, unvergesslich.
+**Was eure Gäste beim Öffnen denken:** "Das wird die beste Party des Jahres."
 
-## 6. Video: Für Paare, die ihre Geschichte in Bildern erzählen
+**Passt zu:** Festival-Hochzeiten, kreative Berufe, Paare die sich nicht an Konventionen halten wollen.
 
-Das Video-Design stellt bewegte Bilder in den Mittelpunkt. Ein cinematischer Look, zurückhaltende Farben und eine filmische Typografie schaffen eine emotionale Atmosphäre auf eurer Hochzeitswebsite. Perfekt für Paare, die bereits ein Verlobungsvideo oder Paar-Shooting als Video haben.
+👉 **[Contemporary Demo-Seite live erleben →](https://www.siwedding.de/demo-contemporary)**
 
-**Passt zu:** Paare mit professionellem Foto-/Videomaterial, Destination Weddings, emotionale Feiern mit cinematischer Atmosphäre.
+---
 
-**Stimmung:** Filmisch, emotional, persönlich.
+## Beispiel 4: Luxe – Für elegante Feiern mit Glamour-Faktor
 
-## Wie findet ihr den richtigen Stil für eure Hochzeitswebsite?
+![Luxe Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410207/luxe-demo_ztbbeh.png)
 
-Fragt euch: Welche Atmosphäre soll unsere Hochzeit haben? Wie sieht unsere Einladungskarte aus? Welche Farben und Materialien dominieren unsere Hochzeitsdekoration? Die Antworten auf diese Fragen zeigen euch, welches Hochzeitswebsite-Design am besten zu euch passt.
+Dunkler Hintergrund, goldene Akzente, opulente Serifenschriften in Kursiv – das Luxe-Theme flüstert Exklusivität. Jedes Detail vermittelt: Dies ist eine besondere Feier. Eine die man nicht vergisst.
 
-Ein Tipp: Eure Hochzeitswebsite muss nicht exakt zur Papeterie passen – aber der Stil sollte sich ergänzen. Wenn eure Einladungskarten minimalistisch in Schwarz-Weiß gehalten sind, passt ein Editorial-Theme besser als ein buntes Contemporary-Design.
+Wenn eure Hochzeitslocation ein Schloss ist und die Einladungskarten auf Büttenpapier gedruckt wurden – dann ist das euer Design.
 
-Neugierig, was S&I. neben dem Design noch bietet? In unserem Artikel über [Premium-Funktionen](/blog/hochzeitswebsite-premium-funktionen) zeigen wir euch das volle Paket.
+**Was eure Gäste beim Öffnen denken:** "Wir werden uns das für immer merken."
 
-## Fazit: Design macht den Unterschied
+**Passt zu:** Schloss- und Villen-Hochzeiten, Abendveranstaltungen mit Dresscode, Paare mit Faible für Luxus und Raffinesse.
 
-Das Design eurer Hochzeitswebsite ist kein oberflächliches Detail – es ist der erste Eindruck, den eure Gäste von eurer Feier bekommen. Ein durchdachtes, professionelles Webdesign zeigt: Hier wird eine besondere Hochzeit gefeiert, auf die sich Nachdenken und Herzblut gelohnt haben.
+👉 **[Luxe Demo-Seite live erleben →](https://www.siwedding.de/demo-luxe)**
 
-**Bei S&I. wählt ihr aus sechs professionell gestalteten Hochzeitsthemes – jedes mit über 25 individuellen Komponenten, perfekt abgestimmt auf verschiedene Hochzeitsstile. Kein Baukasten, kein Einheitsbrei, sondern echtes Designhandwerk.**
-    `,
-  }
-,
+---
+
+## Beispiel 5: Neon – Für Paare die das Außergewöhnliche lieben
+
+![Neon Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410203/neon-demo_eza4jx.png)
+
+Leuchtende Cyan-Akzente auf tiefem Schwarz, Glow-Effekte, futuristische Typografie – das Neon-Theme ist nichts für jeden. Und das ist der Punkt. Diese Hochzeitswebsite sieht aus wie die Zukunft sich anfühlt.
+
+Wenn eure Gäste um 3 Uhr morgens noch tanzen und das Venue wie ein Club aussieht – dann ist das euer Design.
+
+**Was eure Gäste beim Öffnen denken:** "Ich war noch nie auf so einer Hochzeit. Das wird legendär."
+
+**Passt zu:** Abendveranstaltungen, Club-Hochzeiten, Paare mit Affinität zu Technologie und moderner Kunst.
+
+👉 **[Neon Demo-Seite live erleben →](https://www.siwedding.de/demo-neon)**
+
+---
+
+## Beispiel 6: Classic – Für Paare die Zeitlosigkeit über Trends stellen
+
+![Classic Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410205/classic-demo_w3oj6o.png)
+
+Warme Cremetöne, edle Serifenschriften, ein Design das in zehn Jahren noch genauso schön aussieht wie heute. Das Classic-Theme ist Hochzeitswebsite in ihrer reinsten Form – ohne Trends, ohne Spielereien, nur pure zeitlose Eleganz.
+
+Wenn euer Lieblingsfilm "Pride & Prejudice" ist und ihr beim Betreten der Kirche Gänsehaut bekommt – dann ist das euer Design.
+
+**Was eure Gäste beim Öffnen denken:** "Wie wunderschön. Genau so soll eine Hochzeit sein."
+
+**Passt zu:** Kirchenhochzeiten, historische Locations, Paare für die eine Hochzeit vor allem eines sein soll: unvergesslich schön.
+
+👉 **[Classic Demo-Seite live erleben →](https://www.siwedding.de/demo-classic)**
+
+---
+
+## Beispiel 7: Video – Für Paare die ihre Geschichte in Bildern erzählen
+
+![Video Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410203/video-demo_bny15e.png)
+
+Ein cinematischer Look, zurückhaltende Farben, filmische Typografie – das Video-Theme stellt bewegte Bilder in den Mittelpunkt. Es schafft eine emotionale Atmosphäre die sofort berührt.
+
+Wenn ihr ein Verlobungsvideo habt das euch zum Weinen gebracht hat und eure Hochzeit sich anfühlt wie ein Film – dann ist das euer Design.
+
+**Was eure Gäste beim Öffnen denken:** "Ich muss weinen. Wie schön."
+
+**Passt zu:** Paare mit professionellem Foto- und Videomaterial, Destination Weddings, emotionale Feiern mit cinematischer Atmosphäre.
+
+👉 **[Video Demo-Seite live erleben →](https://www.siwedding.de/demo-video)**
+
+---
+
+## Wie findet ihr den richtigen Stil?
+
+Keine Beschreibung der Welt ersetzt den Moment in dem ihr einen Link öffnet und sofort spürt: Das sind wir.
+
+Trotzdem ein paar Fragen die helfen:
+
+**Wie ist eure Location?** Loft oder Industrie-Halle → Editorial oder Contemporary. Schloss oder Villa → Luxe oder Classic. Garten oder Scheune → Botanical. Club oder urbanes Event-Venue → Neon oder Video.
+
+**Welche Atmosphäre soll eure Hochzeit haben?** Energie und Freude → Contemporary oder Neon. Romantik und Wärme → Botanical oder Classic. Eleganz und Stil → Editorial oder Luxe. Emotion und Film → Video.
+
+**Seid ihr uneinig?** Zeigt die Demo-Seiten euren Trauzeugen. Eine zweite Meinung hilft – und oft sind sich alle schnell einig.
+
+![Glückliches Brautpaar am Hochzeitstag](https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80)
+
+## Was alle Themes gemeinsam haben
+
+Egal welches Design ihr wählt:
+
+**Vollständiges RSVP-System** mit Menüwahl, Begleitpersonen, Allergien und automatischen E-Mail-Erinnerungen. Mehr: [Digitales RSVP für eure Hochzeit](/blog/digitales-rsvp-hochzeit).
+
+**Foto-Upload für Gäste** – alle Bilder an einem Ort. Mehr: [Hochzeitsfotos teilen](/blog/hochzeitsfotos-teilen-fotoupload-archiv).
+
+**Eigene Domain** – eure persönliche Webadresse, kein Portal-Subdomain.
+
+**Passwortschutz** – nur für eingeladene Gäste. Mehr: [Domain und Passwortschutz](/blog/hochzeitswebsite-eigene-domain-passwortschutz).
+
+**Einmalige Zahlung** – kein Abo, keine monatlichen Kosten.
+
+**Persönlicher Support** – auf Deutsch, aus Hamburg.
+
+## Bereit?
+
+Schaut euch alle Demo-Seiten in Ruhe an. Und wenn ihr Fragen habt – wir sind da.
+
+👉 **[Alle Pakete und Preise ansehen →](https://sarahiver.com/#preise)**
+
+Oder lest zuerst unseren ehrlichen [Hochzeitswebsite-Anbieter-Vergleich](/blog/hochzeitswebsite-vergleich-2026) – da zeigen wir wie S&I. im direkten Vergleich abschneidet.
+    \`,
+  },
   {
-    slug: 'hochzeitswebsite-musikwuensche-playlist',
+    slug: 'hochzeitswebsite-musikwuensche-playlist',    slug: 'hochzeitswebsite-musikwuensche-playlist',    slug: 'hochzeitswebsite-musikwuensche-playlist',
     title: 'Musikwünsche auf der Hochzeitswebsite: So entsteht die Playlist, zu der alle tanzen',
     description: 'Gebt euren Gästen eine Stimme – mit einer digitalen Musikwunschliste auf eurer Hochzeitswebsite. So entsteht eine Playlist, die alle zum Tanzen und Weinen vor Glück bringt.',
-    date: '2026-04-12',
+    date: '2024-12-09',
     category: 'Features',
     tags: ['Features', 'Inspiration'],
     readTime: '7 min',
@@ -815,7 +930,7 @@ Das Design eurer Hochzeitswebsite ist kein oberflächliches Detail – es ist de
       "description": "Gebt euren Gästen eine Stimme mit einer digitalen Musikwunschliste auf eurer Hochzeitswebsite.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-04-12",
+      "datePublished": "2024-12-09",
     },
     content: `
 ## Der Moment, wenn euer Lied läuft
@@ -879,7 +994,7 @@ Und wenn dann um Mitternacht genau der Song läuft, den die beste Freundin sich 
     slug: 'hochzeitswebsite-gaestebuch-digital',
     title: 'Digitales Gästebuch: Warum die schönsten Worte nicht auf Papier stehen müssen',
     description: 'Ein digitales Gästebuch auf eurer Hochzeitswebsite bewahrt Glückwünsche, Erinnerungen und liebe Worte – für immer lesbar, nie vergilbt, immer da, wenn ihr sie braucht.',
-    date: '2026-04-19',
+    date: '2024-12-16',
     category: 'Features',
     tags: ['Features', 'Inspiration'],
     readTime: '6 min',
@@ -892,7 +1007,7 @@ Und wenn dann um Mitternacht genau der Song läuft, den die beste Freundin sich 
       "description": "Ein digitales Gästebuch auf eurer Hochzeitswebsite bewahrt Glückwünsche und Erinnerungen für immer.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-04-19",
+      "datePublished": "2024-12-16",
     },
     content: `
 ## Die Worte, die bleiben
@@ -956,7 +1071,7 @@ Im S&I. Admin-Dashboard könnt ihr das Gästebuch mit einem Klick aktivieren. Es
     slug: 'hochzeitswebsite-geschenke-wunschliste',
     title: 'Geschenke und Wunschliste auf der Hochzeitswebsite: So bekommt ihr, was euch wirklich glücklich macht',
     description: 'Eine digitale Wunschliste auf eurer Hochzeitswebsite ist der elegante Weg, eure Geschenkwünsche zu teilen – ohne peinliches Nachfragen und mit Herz.',
-    date: '2026-04-26',
+    date: '2025-01-06',
     category: 'Planung',
     tags: ['Features', 'Planung'],
     readTime: '7 min',
@@ -969,7 +1084,7 @@ Im S&I. Admin-Dashboard könnt ihr das Gästebuch mit einem Klick aktivieren. Es
       "description": "Eine digitale Wunschliste auf der Hochzeitswebsite – elegant, ehrlich und hilfreich für alle.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-04-26",
+      "datePublished": "2025-01-06",
     },
     content: `
 ## Die Frage, die sich jeder Gast stellt
@@ -1029,7 +1144,7 @@ Eine Wunschliste auf der Hochzeitswebsite ist kein notwendiges Übel, sondern ei
     slug: 'hochzeitswebsite-location-anfahrt-karte',
     title: 'Location und Anfahrt auf der Hochzeitswebsite: Damit sich niemand verfährt (und alle pünktlich weinen)',
     description: 'Mit einer interaktiven Karte, Anfahrtsbeschreibung und Parktipps auf eurer Hochzeitswebsite sorgt ihr dafür, dass jeder Gast entspannt und pünktlich ankommt.',
-    date: '2026-05-03',
+    date: '2025-01-13',
     category: 'Features',
     tags: ['Planung', 'Ratgeber'],
     readTime: '7 min',
@@ -1042,7 +1157,7 @@ Eine Wunschliste auf der Hochzeitswebsite ist kein notwendiges Übel, sondern ei
       "description": "Interaktive Karte und Anfahrtsbeschreibung auf der Hochzeitswebsite – damit jeder Gast entspannt ankommt.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-05-03",
+      "datePublished": "2025-01-13",
     },
     content: `
 ## Der Moment vor dem Moment
@@ -1100,7 +1215,7 @@ Organisiert ihr einen Shuttle zwischen Hotel und Location? Zwischen Kirche und F
     slug: 'hochzeitswebsite-hotels-uebernachtung',
     title: 'Hotels und Übernachtung: So fühlen sich eure Gäste von Anfang bis Ende willkommen',
     description: 'Hotelempfehlungen auf eurer Hochzeitswebsite sind mehr als ein Service – sie zeigen euren Gästen: Wir haben an euch gedacht. Tipps für die perfekte Hotel-Seite.',
-    date: '2026-05-10',
+    date: '2025-01-20',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
     readTime: '6 min',
@@ -1113,7 +1228,7 @@ Organisiert ihr einen Shuttle zwischen Hotel und Location? Zwischen Kirche und F
       "description": "Hotelempfehlungen auf der Hochzeitswebsite – mehr als ein Service, ein Zeichen von Fürsorge.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-05-10",
+      "datePublished": "2025-01-20",
     },
     content: `
 ## Gastfreundschaft beginnt vor dem großen Tag
@@ -1173,7 +1288,7 @@ Erwähnt das auf eurer Website, wenn ihr so etwas plant. Es ist ein wunderschön
     slug: 'hochzeitswebsite-hochzeits-abc',
     title: 'Das Hochzeits-ABC: Die kreativste Art, euren Gästen alles Wichtige zu verraten',
     description: 'Von A wie Anfahrt bis Z wie Zeitplan: Das Hochzeits-ABC auf eurer Website informiert eure Gäste mit Charme und Humor – und beantwortet jede Frage, bevor sie gestellt wird.',
-    date: '2026-05-17',
+    date: '2025-01-27',
     category: 'Inhalte',
     tags: ['Ratgeber', 'Planung'],
     readTime: '8 min',
@@ -1186,7 +1301,7 @@ Erwähnt das auf eurer Website, wenn ihr so etwas plant. Es ist ein wunderschön
       "description": "Von A wie Anfahrt bis Z wie Zeitplan – das Hochzeits-ABC auf der Hochzeitswebsite.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-05-17",
+      "datePublished": "2025-01-27",
     },
     content: `
 ## A wie: "Ach, das hätte ich mal vorher wissen sollen"
@@ -1250,7 +1365,7 @@ Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäs
     slug: 'hochzeitswebsite-faq-haeufige-fragen',
     title: 'FAQ auf der Hochzeitswebsite: 15 Fragen, die eure Gäste garantiert haben (und wie ihr sie elegant beantwortet)',
     description: 'Eine FAQ-Seite auf eurer Hochzeitswebsite spart euch hunderte Nachrichten und gibt euren Gästen Sicherheit. Die 15 häufigsten Fragen und die besten Antworten.',
-    date: '2026-05-24',
+    date: '2025-02-03',
     category: 'Inhalte',
     tags: ['Ratgeber', 'Features'],
     readTime: '8 min',
@@ -1263,7 +1378,7 @@ Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäs
       "description": "Die 15 häufigsten Gästefragen und wie ihr sie auf eurer Hochzeitswebsite beantwortet.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-05-24",
+      "datePublished": "2025-02-03",
     },
     content: `
 ## Die Nachricht, die um 23:47 Uhr kommt
@@ -1365,7 +1480,7 @@ Die Darstellung passt sich automatisch eurem Theme an. Und das Beste: Ihr könnt
     slug: 'hochzeitswebsite-foto-upload-gaeste',
     title: 'Foto-Upload für Hochzeitsgäste: Alle Perspektiven eures schönsten Tages an einem Ort',
     description: 'Mit dem Foto-Upload auf eurer Hochzeitswebsite sammelt ihr die Bilder aller Gäste an einem Ort – in voller Qualität, ohne Ablaufdatum und mit ganz viel Liebe.',
-    date: '2026-05-31',
+    date: '2025-02-10',
     category: 'Features',
     tags: ['Features', 'Inspiration'],
     readTime: '7 min',
@@ -1378,7 +1493,7 @@ Die Darstellung passt sich automatisch eurem Theme an. Und das Beste: Ihr könnt
       "description": "Foto-Upload auf der Hochzeitswebsite – alle Gästefotos an einem Ort, in voller Qualität.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-05-31",
+      "datePublished": "2025-02-10",
     },
     content: `
 ## Die Bilder, die der Fotograf nicht macht
@@ -1444,7 +1559,7 @@ In zehn Jahren werdet ihr nicht an die Deko denken. Nicht an das Menü. Nicht an
     slug: 'hochzeitswebsite-premium-funktionen',
     title: 'Das kann sonst keiner: Die Premium-Funktionen von S&I. im Detail',
     description: 'Foto-Upload, RSVP mit Erinnerungsmails, Gästebuch, Musikwünsche, Geschenkeliste und mehr – entdeckt die Premium-Features, die eure Hochzeitswebsite von allen anderen abheben.',
-    date: '2026-06-07',
+    date: '2025-02-17',
     category: 'Features',
     tags: ['Features', 'Vergleich'],
     readTime: '9 min',
@@ -1457,7 +1572,7 @@ In zehn Jahren werdet ihr nicht an die Deko denken. Nicht an das Menü. Nicht an
       "description": "Alle Premium-Features von S&I. im Überblick – von Foto-Upload bis Echtzeit-Benachrichtigungen.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-06-07",
+      "datePublished": "2025-02-17",
     },
     content: `
 ## Warum „gut genug" bei eurer Hochzeitswebsite nicht reicht
@@ -1557,7 +1672,7 @@ Einzelne Features findet man bei vielen Anbietern. Foto-Upload hier, RSVP dort, 
     slug: 'hochzeitswebsite-admin-dashboard',
     title: 'Euer Hochzeits-Cockpit: So funktioniert das S&I. Admin Dashboard',
     description: 'Gästeliste, RSVP-Statistiken, Foto-Moderation und Content-Editor – das S&I. Admin Dashboard gibt euch die volle Kontrolle über eure Hochzeitswebsite.',
-    date: '2026-06-14',
+    date: '2025-02-24',
     category: 'Features',
     tags: ['Features', 'Ratgeber'],
     readTime: '8 min',
@@ -1570,7 +1685,7 @@ Einzelne Features findet man bei vielen Anbietern. Foto-Upload hier, RSVP dort, 
       "description": "Das S&I. Admin Dashboard im Detail – Gästeliste, RSVP, Foto-Moderation und Content-Editor.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-06-14",
+      "datePublished": "2025-02-24",
     },
     content: `
 ## Eure Hochzeit, eure Kontrolle
@@ -1674,7 +1789,7 @@ Jede Funktion ist durchdacht, jeder Klick ist intuitiv, jede Information ist dor
     slug: 'hochzeitswebsite-ablauf-customer-journey',
     title: 'Von der Verlobung bis zum Danke: Eure Reise mit S&I.',
     description: 'Vom Antrag über die Hochzeitsplanung bis zum digitalen Erinnerungsalbum – so begleitet euch S&I. durch jede Phase eurer Hochzeit.',
-    date: '2026-06-21',
+    date: '2025-03-03',
     category: 'Ratgeber',
     tags: ['Ratgeber', 'Planung'],
     readTime: '10 min',
@@ -1687,7 +1802,7 @@ Jede Funktion ist durchdacht, jeder Klick ist intuitiv, jede Information ist dor
       "description": "So begleitet S&I. euch durch jede Phase der Hochzeitsplanung – von der Verlobung bis zum digitalen Erinnerungsalbum.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-06-21",
+      "datePublished": "2025-03-03",
     },
     content: `
 ## Der Anfang von allem
@@ -1802,7 +1917,7 @@ Von der Verlobung bis zum Danke. Von der ersten Idee bis zur letzten Erinnerung.
     slug: 'hochzeitsfotos-teilen-fotoupload-archiv',
     title: 'Hochzeitsfotos teilen: Vom Gäste-Upload bis zur Archivseite – so verpasst ihr kein einziges Bild',
     description: 'Vor der Hochzeit laden Gäste Fotos direkt auf eure Website hoch. Nach der Feier teilt ihr die schönsten Erinnerungen auf eurer Archivseite. So funktioniert das Foto-Erlebnis bei S&I.',
-    date: '2026-06-28',
+    date: '2025-03-10',
     category: 'Features',
     tags: ['Features', 'Ratgeber'],
     readTime: '8 min',
@@ -1815,7 +1930,7 @@ Von der Verlobung bis zum Danke. Von der ersten Idee bis zur letzten Erinnerung.
       "description": "So sammelt ihr alle Hochzeitsfotos eurer Gäste und teilt eure schönsten Erinnerungen nach der Hochzeit.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-06-28",
+      "datePublished": "2025-03-10",
     },
     content: `
 ## 237 Fotos. 48 Gäste. Ein Ort.
@@ -1909,7 +2024,7 @@ Neben den Fotos gibt es noch eine weitere wunderschöne Erinnerung: das [digital
     slug: 'gaesteliste-rsvp-erinnerungsmail-export',
     title: 'Gästeliste, Erinnerungsmails & Export: So behaltet ihr den Überblick über jede einzelne Zusage',
     description: 'Gästeliste hochladen, automatisch mit Zusagen abgleichen, Erinnerungsmails versenden und am Ende alles für Caterer und Planer exportieren – so wird Gästemanagement stressfrei.',
-    date: '2026-07-05',
+    date: '2025-03-17',
     category: 'Features',
     tags: ['Features', 'Planung'],
     readTime: '9 min',
@@ -1922,7 +2037,7 @@ Neben den Fotos gibt es noch eine weitere wunderschöne Erinnerung: das [digital
       "description": "Von der Gästeliste über automatische Erinnerungsmails bis zum Export für Caterer – so funktioniert smartes Gästemanagement bei S&I.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
-      "datePublished": "2026-07-05",
+      "datePublished": "2025-03-17",
     },
     content: `
 ## Die Nachricht, die alles verändert
