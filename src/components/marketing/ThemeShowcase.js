@@ -1251,6 +1251,10 @@ const ClassicHeroImage = styled.img`
   height: clamp(300px, 45vh, 500px);
   object-fit: cover;
   display: block;
+
+  @media (max-width: 900px) {
+    height: 260px;
+  }
 `;
 
 const ClassicContainer = styled.div`
@@ -1268,7 +1272,9 @@ const ClassicContainer = styled.div`
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     justify-items: center;
-    margin-top: -100px;
+    margin-top: 0;
+    padding-top: 2.5rem;
+    background: #FFFFFF;
   }
 `;
 
@@ -1289,7 +1295,7 @@ const ClassicTextContent = styled.div`
 
   @media (max-width: 900px) {
     text-align: center;
-    padding-top: 2rem;
+    padding-top: 0;
   }
 `;
 
@@ -1734,14 +1740,13 @@ const ThemeShowcase = () => {
           <ClassicTextContent>
             <ClassicLabel>Theme Vorschau</ClassicLabel>
             <ClassicTitle>Classic</ClassicTitle>
-            <ClassicScript>füreinander bestimmt</ClassicScript>
+            <ClassicScript>warm &amp; zeitlos</ClassicScript>
             <ClassicDesc>
-              Schwarz-Weiß-Fotografie, die bei Hover in Farbe übergeht, elegante Serifen und eine zeitlose Ästhetik.
-              Bildlastig und editorial – für Paare, die ihre Fotos in Szene setzen wollen.
+              Cremeweiße Töne, elegante Serifen und feine Schreibschrift-Akzente. Ein warmes, zeitloses Design für Paare, die Wert auf Stil und Persönlichkeit legen — ohne Schnörkel.
             </ClassicDesc>
             <ClassicFeatures>
-              <ClassicFeature>Grayscale → Farbe</ClassicFeature>
-              <ClassicFeature>Elegante Serifen</ClassicFeature>
+              <ClassicFeature>Cormorant Garamond Serif</ClassicFeature>
+              <ClassicFeature>Warme Cremetöne</ClassicFeature>
               <ClassicFeature>Schreibschrift-Akzente</ClassicFeature>
             </ClassicFeatures>
             <ClassicCTA href="https://siwedding.de/demo-classic" target="_blank" rel="noopener noreferrer">
