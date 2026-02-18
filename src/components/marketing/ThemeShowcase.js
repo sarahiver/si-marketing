@@ -1740,13 +1740,13 @@ const ThemeShowcase = () => {
           <ClassicTextContent>
             <ClassicLabel>Theme Vorschau</ClassicLabel>
             <ClassicTitle>Classic</ClassicTitle>
-            <ClassicScript>warm &amp; zeitlos</ClassicScript>
+            <ClassicScript>zeitlos &amp; elegant</ClassicScript>
             <ClassicDesc>
-              Cremeweiße Töne, elegante Serifen und feine Schreibschrift-Akzente. Ein warmes, zeitloses Design für Paare, die Wert auf Stil und Persönlichkeit legen — ohne Schnörkel.
+              Klares Schwarz-Weiß, elegante Serifen und feine Schreibschrift-Akzente. Ein zeitloses Design für Paare, die Stil und Klarheit einer verspielten Ästhetik vorziehen.
             </ClassicDesc>
             <ClassicFeatures>
-              <ClassicFeature>Cormorant Garamond Serif</ClassicFeature>
-              <ClassicFeature>Warme Cremetöne</ClassicFeature>
+              <ClassicFeature>Schwarz &amp; Weiß</ClassicFeature>
+              <ClassicFeature>Cormorant Garamond</ClassicFeature>
               <ClassicFeature>Schreibschrift-Akzente</ClassicFeature>
             </ClassicFeatures>
             <ClassicCTA href="https://siwedding.de/demo-classic" target="_blank" rel="noopener noreferrer">
