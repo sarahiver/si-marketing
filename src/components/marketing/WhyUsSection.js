@@ -1078,7 +1078,6 @@ const ClassicSection = styled.section`
   padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
   background: #FFFFFF;
   position: relative;
-  overflow: hidden;
 `;
 
 const ClassicContainer = styled.div`
@@ -1135,21 +1134,24 @@ const ClassicPanorama = styled.img`
 `;
 
 const ClassicScrollWrapper = styled.div`
+  /* Desktop: zentriert wie Container */
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 6rem);
+  margin-bottom: 5rem;
+
   @media (max-width: 900px) {
-    overflow-x: auto;
+    /* Full-bleed horizontaler Scroll */
+    max-width: 100%;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
-    margin-left: calc(-1 * clamp(1.5rem, 5vw, 6rem));
-    margin-right: calc(-1 * clamp(1.5rem, 5vw, 6rem));
-    padding-left: clamp(1.5rem, 5vw, 6rem);
-    padding-right: clamp(1.5rem, 5vw, 6rem);
-    padding-bottom: 1rem;
-    /* scrollbar styling */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.15) transparent;
-    &::-webkit-scrollbar { height: 4px; }
-    &::-webkit-scrollbar-track { background: transparent; }
-    &::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
 `;
 
@@ -1157,13 +1159,14 @@ const ClassicGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 5rem;
 
   @media (max-width: 900px) {
-    grid-template-columns: repeat(3, 80vw);
-    gap: 1.25rem;
-    margin-bottom: 0;
-    padding-right: clamp(1.5rem, 5vw, 6rem);
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0.5rem clamp(1.5rem, 5vw, 6rem) 2rem;
+    width: max-content;
+    min-width: 100%;
   }
 `;
 
@@ -1175,8 +1178,10 @@ const ClassicCard = styled.div`
   transition: all 0.35s ease;
 
   @media (max-width: 900px) {
-    scroll-snap-align: start;
+    width: 78vw;
+    max-width: 320px;
     flex-shrink: 0;
+    scroll-snap-align: start;
   }
 
   &:hover {
@@ -1252,7 +1257,12 @@ const ClassicScrollHint = styled.p`
 const ClassicClosing = styled.div`
   text-align: center;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 4rem auto 0;
+
+  @media (max-width: 900px) {
+    margin-top: 0;
+    padding-top: 0;
+  }
 `;
 
 const ClassicClosingHeadline = styled.h3`
@@ -1322,20 +1332,22 @@ const WhyUsSection = () => {
             alt=""
             loading="lazy"
           />
-          <ClassicScrollWrapper>
-            <ClassicGrid>
-              {CARDS.map((card, i) => (
-                <ClassicCard key={i}>
-                  <ClassicCardIcon>{card.icon}</ClassicCardIcon>
-                  <ClassicCardLabel>{card.label}</ClassicCardLabel>
-                  <ClassicCardQuote>{card.quote}</ClassicCardQuote>
-                  <ClassicCardProblem>{card.problem}</ClassicCardProblem>
-                  <ClassicCardSolution>{card.solution}</ClassicCardSolution>
-                </ClassicCard>
-              ))}
-            </ClassicGrid>
-          </ClassicScrollWrapper>
-          <ClassicScrollHint>← wischen →</ClassicScrollHint>
+        </ClassicContainer>
+        <ClassicScrollWrapper>
+          <ClassicGrid>
+            {CARDS.map((card, i) => (
+              <ClassicCard key={i}>
+                <ClassicCardIcon>{card.icon}</ClassicCardIcon>
+                <ClassicCardLabel>{card.label}</ClassicCardLabel>
+                <ClassicCardQuote>{card.quote}</ClassicCardQuote>
+                <ClassicCardProblem>{card.problem}</ClassicCardProblem>
+                <ClassicCardSolution>{card.solution}</ClassicCardSolution>
+              </ClassicCard>
+            ))}
+          </ClassicGrid>
+        </ClassicScrollWrapper>
+        <ClassicScrollHint>← wischen →</ClassicScrollHint>
+        <ClassicContainer>
           <ClassicClosing>
             <ClassicClosingHeadline>{CONTENT.closingHeadline}</ClassicClosingHeadline>
             <ClassicClosingText>{CONTENT.closingText}</ClassicClosingText>
