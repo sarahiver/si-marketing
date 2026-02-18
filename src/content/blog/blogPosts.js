@@ -336,7 +336,6 @@ S&I. ist kein Baukasten. Kein Portal. Kein Template-System wo ihr selbst herumba
 | Deutschsprachig | Ja | Ja | Nein | **Ja** |
 | DSGVO-konform | Teilweise | Ja | Nein | **Ja** |
 | Preismodell | Abo | Einmalig | Abo | **Einmalig** |
-| Anzahl Themes | ~20 | ~10 | ~15 | **7 Premium** |
 | Persönlicher Service | Nein | Nein | Nein | **Ja** |
 
 ---
