@@ -558,12 +558,29 @@ const MarketingNav = () => {
     setMenuOpen(false);
     setDropdownOpen(false);
     
-    // Modern theme: dispatch custom event to open modals
+    // Modern theme: open modals instead of scrolling
     if (currentTheme === 'modern' && !isRoute) {
       const modalMap = { features: 'features', themes: 'designs', pricing: 'pricing', contact: 'contact' };
       const modalId = modalMap[targetId];
       if (modalId) {
-        window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: modalId } }));
+        if (location.pathname === '/') {
+          // Already on homepage — dispatch immediately
+          window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: modalId } }));
+        } else {
+          // Navigate to homepage first, then open modal after ModernParallaxPage mounts
+          navigate('/');
+          const tryDispatch = (attempts = 0) => {
+            if (attempts > 30) return; // give up after ~3s
+            // Check if the ParallaxPage event listener is ready by looking for a title ref
+            const titleEl = document.querySelector(`[data-title-id="${modalId}"]`);
+            if (titleEl) {
+              window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: modalId } }));
+            } else {
+              setTimeout(() => tryDispatch(attempts + 1), 100);
+            }
+          };
+          setTimeout(tryDispatch, 200);
+        }
         return;
       }
     }
