@@ -558,6 +558,16 @@ const MarketingNav = () => {
     setMenuOpen(false);
     setDropdownOpen(false);
     
+    // Modern theme: dispatch custom event to open modals
+    if (currentTheme === 'modern' && !isRoute) {
+      const modalMap = { features: 'features', themes: 'designs', pricing: 'pricing', contact: 'contact' };
+      const modalId = modalMap[targetId];
+      if (modalId) {
+        window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: modalId } }));
+        return;
+      }
+    }
+    
     if (isRoute) {
       navigate(`/${targetId}`);
       window.scrollTo(0, 0);

@@ -306,57 +306,55 @@ function ModalContent({ id, onClose, onOpenContact }) {
 
     case 'components': {
       const COMPS = [
-        { emoji: '🏠', name: 'Hero', desc: 'Der erste Moment' },
-        { emoji: '💕', name: 'Love Story', desc: 'Wie aus Fremden ein Wir wurde' },
-        { emoji: '💌', name: 'RSVP', desc: 'Zu- und Absagen digital' },
-        { emoji: '🔔', name: 'Countdown', desc: 'Die Vorfreude wächst' },
-        { emoji: '📅', name: 'Ablauf', desc: 'Wann, wo, was' },
-        { emoji: '⏰', name: 'Timeline', desc: 'Euer Tag, Stunde für Stunde' },
-        { emoji: '📍', name: 'Location', desc: 'Mit Karte, damit niemand sucht' },
-        { emoji: '🚗', name: 'Anfahrt', desc: 'Navigation und Parktipps' },
-        { emoji: '🏨', name: 'Hotels', desc: 'Die besten Betten in der Nähe' },
-        { emoji: '👗', name: 'Dresscode', desc: 'Damit alle wissen, wie schick' },
-        { emoji: '🎁', name: 'Wunschliste', desc: 'Wünsche von Herzen' },
-        { emoji: '📸', name: 'Galerie', desc: 'Bilder, die Gänsehaut machen' },
-        { emoji: '🤳', name: 'Gäste-Fotos', desc: 'Eure Gäste als Fotografen' },
-        { emoji: '❓', name: 'FAQ', desc: 'Damit keiner zweimal fragt' },
-        { emoji: '🎵', name: 'Musikwünsche', desc: 'Die Playlist für die Party' },
-        { emoji: '👥', name: 'Trauzeugen', desc: 'Die wichtigsten Menschen' },
-        { emoji: '💍', name: 'Footer', desc: 'Der schöne Abschluss' },
-        { emoji: '📄', name: 'Impressum', desc: 'Muss sein — sieht gut aus' },
+        { emoji: '🏠', name: 'Hero', desc: 'Der erste Moment — der Bildschirm, der alles sagt.' },
+        { emoji: '💕', name: 'Love Story', desc: 'Wie aus Fremden ein Wir wurde.' },
+        { emoji: '💌', name: 'RSVP', desc: 'Zu- und Absagen digital sammeln.' },
+        { emoji: '🔔', name: 'Countdown', desc: 'Die Vorfreude bis zum großen Tag.' },
+        { emoji: '📅', name: 'Ablauf', desc: 'Wann, wo, was — auf einen Blick.' },
+        { emoji: '⏰', name: 'Timeline', desc: 'Euer Tag, Stunde für Stunde.' },
+        { emoji: '📍', name: 'Location', desc: 'Mit Karte, damit niemand sucht.' },
+        { emoji: '🚗', name: 'Anfahrt', desc: 'Navigation, Parken, ÖPNV.' },
+        { emoji: '🏨', name: 'Hotels', desc: 'Die besten Betten in der Nähe.' },
+        { emoji: '👗', name: 'Dresscode', desc: 'Damit alle wissen, wie schick.' },
+        { emoji: '🎁', name: 'Wunschliste', desc: 'Wünsche, die von Herzen kommen.' },
+        { emoji: '📸', name: 'Galerie', desc: 'Bilder, die Gänsehaut machen.' },
+        { emoji: '🤳', name: 'Gäste-Fotos', desc: 'Eure Gäste als Fotografen.' },
+        { emoji: '❓', name: 'FAQ', desc: 'Damit keiner zweimal fragen muss.' },
+        { emoji: '🎵', name: 'Musikwünsche', desc: 'Die Playlist für die Party.' },
+        { emoji: '👥', name: 'Trauzeugen', desc: 'Die wichtigsten Menschen vorstellen.' },
+        { emoji: '💍', name: 'Footer', desc: 'Der liebevolle Abschluss.' },
+        { emoji: '📄', name: 'Impressum', desc: 'Muss sein — sieht trotzdem gut aus.' },
       ];
-      // Individual parallax: each card drifts at different speeds
-      const cardDrift = (i) => {
-        const row = Math.floor(i / 3);
-        const col = i % 3;
-        const yDrift = scrollTop * (0.02 + row * 0.008);
-        const xDrift = scrollTop * ((col - 1) * 0.006);
-        return `translateY(${yDrift}px) translateX(${xDrift}px)`;
-      };
+      // Each card has its own scroll speed based on position
+      const speeds = [0.18, 0.28, 0.14, 0.32, 0.2, 0.26, 0.16, 0.3, 0.22, 0.34, 0.12, 0.28, 0.24, 0.16, 0.3, 0.2, 0.26, 0.14];
       return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner style={{ maxWidth: 'none', padding: '0 1.5rem', position: 'relative', overflow: 'hidden' }}>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
           <DecoGlyph char="18" scrollTop={scrollTop} top="2rem" left="65%" size="clamp(8rem, 20vw, 16rem)" speed={-0.1} />
           <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
-            <ModalHeader style={{ padding: '0 0.5rem' }}>
-              <ModalLabel>ALLES INKLUSIVE</ModalLabel>
+            <ModalHeader>
+              <ModalLabel>EURE WEBSITE</ModalLabel>
               <ScalingTitle scrollTop={scrollTop}>18 Komponenten</ScalingTitle>
-              <ModalBody style={{ marginTop: '0.5rem' }}>Jede Website besteht aus Bausteinen. Wählt, was zu eurer Hochzeit passt.</ModalBody>
+              <ModalBody style={{ marginTop: '0.5rem' }}>Wählt die Bausteine, die zu eurer Hochzeit passen.</ModalBody>
             </ModalHeader>
           </Stagger>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '1px', background: 'rgba(255,255,255,0.06)' }}>
-            {COMPS.map((comp, i) => (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'rgba(255,255,255,0.06)' }}>
+            {COMPS.map((comp, i) => {
+              const drift = scrollTop * speeds[i];
+              const isLeft = i % 2 === 0;
+              return (
               <div key={i} style={{
-                background: 'rgba(0,0,0,0.9)', padding: '1.5rem 1rem', textAlign: 'center',
-                animation: `modalStaggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${0.25 + i * 0.04}s both`,
-                transform: cardDrift(i),
-                transition: 'transform 0.15s ease-out',
+                background: 'rgba(0,0,0,0.92)', padding: '2rem 1.5rem',
+                animation: `modalStaggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${0.2 + i * 0.05}s both`,
+                transform: `translateY(${drift}px) translateX(${scrollTop * (isLeft ? -0.008 : 0.008)}px)`,
+                transition: 'transform 0.12s ease-out',
               }}>
-                <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{comp.emoji}</span>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800, color: '#fff', display: 'block', marginBottom: '0.3rem' }}>{comp.name}</span>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.35)', lineHeight: 1.4, display: 'block' }}>{comp.desc}</span>
+                <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.75rem' }}>{comp.emoji}</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', fontWeight: 800, color: '#fff', display: 'block', marginBottom: '0.4rem' }}>{comp.name}</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 500, color: 'rgba(255,255,255,0.4)', lineHeight: 1.5, display: 'block' }}>{comp.desc}</span>
               </div>
-            ))}
+              );
+            })}
           </div>
         </ModalInner>
       </ModalScroll>
@@ -777,6 +775,17 @@ export default function ModernParallaxPage() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [activeModal, closeModal]);
+
+  // Listen for nav menu modal opens
+  useEffect(() => {
+    const handleNavOpen = (e) => {
+      const { id } = e.detail;
+      const titleEl = titleRefs.current[id];
+      if (titleEl) openModal(id, titleEl);
+    };
+    window.addEventListener('modernOpenModal', handleNavOpen);
+    return () => window.removeEventListener('modernOpenModal', handleNavOpen);
+  }, [openModal]);
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
