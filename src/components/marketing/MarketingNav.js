@@ -276,8 +276,8 @@ const ThemeOption = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    background: ${p => p.$theme === 'classic' ? 'rgba(0,0,0,0.04)' : p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
-    color: ${p => p.$theme === 'classic' ? '#999999' : p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
+    background: ${p => p.$theme === 'classic' || p.$theme === 'modern' ? 'rgba(0,0,0,0.04)' : p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
+    color: ${p => p.$theme === 'classic' || p.$theme === 'modern' ? '#000' : p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
   }
 `;
 
@@ -466,7 +466,7 @@ const MobileNavLink = styled.a`
 const MobileThemeSection = styled.div`
   margin-top: auto;
   padding-top: 2rem;
-  border-top: 1px solid ${p => p.$theme === 'contemporary' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
+  border-top: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
 `;
 
 const MobileThemeTitle = styled.p`
@@ -475,7 +475,7 @@ const MobileThemeTitle = styled.p`
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' ? '#999' : 'rgba(255,255,255,0.4)'};
+  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#999' : 'rgba(255,255,255,0.4)'};
   margin-bottom: 1rem;
 `;
 
@@ -484,6 +484,8 @@ const MobileThemeGrid = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
 `;
+
+const LIGHT_THEME = (t) => t === 'contemporary' || t === 'classic' || t === 'modern';
 
 const MobileThemeBtn = styled.button`
   font-family: 'Inter', sans-serif;
@@ -496,19 +498,22 @@ const MobileThemeBtn = styled.button`
   transition: all 0.2s ease;
   
   background: ${p => p.$active 
-    ? (p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.15)') 
-    : (p.$theme === 'contemporary' ? '#F5F5F5' : 'rgba(255,255,255,0.05)')
+    ? (LIGHT_THEME(p.$theme) ? (p.$theme === 'contemporary' ? '#FFE66D' : '#000') : 'rgba(255,255,255,0.15)') 
+    : (LIGHT_THEME(p.$theme) ? '#F5F5F5' : 'rgba(255,255,255,0.05)')
   };
   
-  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
+  color: ${p => p.$active
+    ? (LIGHT_THEME(p.$theme) ? (p.$theme === 'contemporary' ? '#0D0D0D' : '#fff') : 'rgba(255,255,255,0.95)')
+    : (LIGHT_THEME(p.$theme) ? '#1A1A1A' : 'rgba(255,255,255,0.8)')
+  };
   
   border: ${p => p.$active 
-    ? (p.$theme === 'contemporary' ? '2px solid #0D0D0D' : '1px solid rgba(255,255,255,0.3)') 
-    : (p.$theme === 'contemporary' ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.1)')
+    ? (LIGHT_THEME(p.$theme) ? (p.$theme === 'contemporary' ? '2px solid #0D0D0D' : '2px solid #000') : '1px solid rgba(255,255,255,0.3)') 
+    : (LIGHT_THEME(p.$theme) ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.1)')
   };
   
   &:hover {
-    background: ${p => p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
+    background: ${p => LIGHT_THEME(p.$theme) ? (p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(0,0,0,0.08)') : 'rgba(255,255,255,0.1)'};
   }
 `;
 

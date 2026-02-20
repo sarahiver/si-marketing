@@ -110,7 +110,10 @@ function ParallaxScene({ scrollY }) {
   const w = viewport.width;
   const h = viewport.height;
   const isMobile = w < 5;
-  const s = isMobile ? 0.55 : 1;
+  // Mobile: images bigger (0.85x) and repositioned to fill viewport
+  const s = isMobile ? 0.85 : 1;
+  // Mobile: tighter x-range so images stay in viewport
+  const xMul = isMobile ? 0.6 : 1;
   const pageHeight = typeof document !== 'undefined'
     ? (document.documentElement.scrollHeight - window.innerHeight) || 1
     : 1;
@@ -121,9 +124,9 @@ function ParallaxScene({ scrollY }) {
         <ParallaxImg
           key={i}
           url={FLOAT_IMAGES[cfg.img]}
-          basePos={[w * cfg.x, h * cfg.y, cfg.z]}
+          basePos={[w * cfg.x * xMul, h * cfg.y * (isMobile ? 1.2 : 1), cfg.z]}
           scaleArr={[w * cfg.w * s, h * cfg.h * s, 1]}
-          speed={h * cfg.speed}
+          speed={h * cfg.speed * (isMobile ? 0.7 : 1)}
           scrollY={scrollY}
           pageHeight={pageHeight}
           zoom={cfg.zoom || 0}
@@ -137,15 +140,15 @@ function ParallaxScene({ scrollY }) {
 // SCATTERED TITLES DATA
 // ============================================
 const TITLES = [
-  { id: 'features', text: 'Features', left: '3%', mLeft: '4%', top: 105, speed: 0.7, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2.2rem, 10vw, 3rem)' },
-  { id: 'designs', text: 'Designs', left: '55%', mLeft: '30%', top: 118, speed: 1.35, size: 'clamp(3.2rem, 8vw, 7rem)', mSize: 'clamp(2.5rem, 11vw, 3.5rem)' },
-  { id: 'howItWorks', text: 'So funktioniert\'s', left: '22%', mLeft: '3%', top: 140, speed: 0.75, size: 'clamp(1.8rem, 4.5vw, 3.5rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
-  { id: 'components', text: '18 Komponenten', left: '58%', mLeft: '15%', top: 156, speed: 1.4, size: 'clamp(2rem, 5vw, 4.5rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
-  { id: 'pricing', text: 'Preise', left: '8%', mLeft: '5%', top: 178, speed: 0.65, size: 'clamp(3.5rem, 9vw, 8rem)', mSize: 'clamp(2.8rem, 12vw, 4rem)' },
-  { id: 'about', text: 'Sarah & Iver', left: '42%', mLeft: '25%', top: 196, speed: 1.3, size: 'clamp(2.2rem, 5.5vw, 4.5rem)', mSize: 'clamp(1.8rem, 8vw, 2.5rem)' },
-  { id: 'whyUs', text: 'Warum wir', left: '18%', mLeft: '8%', top: 216, speed: 0.72, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2rem, 9vw, 3rem)' },
-  { id: 'cooperation', text: 'Kooperationen', left: '52%', mLeft: '12%', top: 234, speed: 1.25, size: 'clamp(2rem, 5vw, 4rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
-  { id: 'contact', text: 'Kontakt', left: '6%', mLeft: '5%', top: 255, speed: 0.68, size: 'clamp(3rem, 7.5vw, 6.5rem)', mSize: 'clamp(2.2rem, 10vw, 3.2rem)' },
+  { id: 'features', text: 'Features', left: '3%', mLeft: '4%', top: 105, mTop: 108, speed: 0.7, mSpeed: 0.3, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2.5rem, 11vw, 3.5rem)' },
+  { id: 'designs', text: 'Designs', left: '55%', mLeft: '5%', top: 118, mTop: 132, speed: 1.35, mSpeed: 0.5, size: 'clamp(3.2rem, 8vw, 7rem)', mSize: 'clamp(2.8rem, 12vw, 4rem)' },
+  { id: 'howItWorks', text: 'So funktioniert\'s', left: '22%', mLeft: '4%', top: 140, mTop: 158, speed: 0.75, mSpeed: 0.35, size: 'clamp(1.8rem, 4.5vw, 3.5rem)', mSize: 'clamp(1.6rem, 8vw, 2.5rem)' },
+  { id: 'components', text: 'Komponenten', left: '58%', mLeft: '5%', top: 156, mTop: 182, speed: 1.4, mSpeed: 0.45, size: 'clamp(2rem, 5vw, 4.5rem)', mSize: 'clamp(1.8rem, 9vw, 2.8rem)' },
+  { id: 'pricing', text: 'Preise', left: '8%', mLeft: '5%', top: 178, mTop: 210, speed: 0.65, mSpeed: 0.3, size: 'clamp(3.5rem, 9vw, 8rem)', mSize: 'clamp(3rem, 13vw, 4.5rem)' },
+  { id: 'about', text: 'Sarah & Iver', left: '42%', mLeft: '4%', top: 196, mTop: 238, speed: 1.3, mSpeed: 0.4, size: 'clamp(2.2rem, 5.5vw, 4.5rem)', mSize: 'clamp(2rem, 10vw, 3rem)' },
+  { id: 'whyUs', text: 'Warum wir', left: '18%', mLeft: '5%', top: 216, mTop: 264, speed: 0.72, mSpeed: 0.35, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2.2rem, 10vw, 3.2rem)' },
+  { id: 'cooperation', text: 'Kooperationen', left: '52%', mLeft: '4%', top: 234, mTop: 292, speed: 1.25, mSpeed: 0.4, size: 'clamp(2rem, 5vw, 4rem)', mSize: 'clamp(1.8rem, 9vw, 2.8rem)' },
+  { id: 'contact', text: 'Kontakt', left: '6%', mLeft: '5%', top: 255, mTop: 320, speed: 0.68, mSpeed: 0.3, size: 'clamp(3rem, 7.5vw, 6.5rem)', mSize: 'clamp(2.5rem, 11vw, 3.5rem)' },
 ];
 
 // ============================================
@@ -845,7 +848,7 @@ export default function ModernParallaxPage() {
       </div>
 
       {/* ── SCATTERED TITLES ── */}
-      <div style={{ position: 'relative', zIndex: 2, minHeight: '310vh' }}>
+      <div style={{ position: 'relative', zIndex: 2, minHeight: isMobile ? '380vh' : '310vh' }}>
         {TITLES.map((t, idx) => {
           const mobile = typeof window !== 'undefined' && window.innerWidth < 768;
           return (
@@ -854,7 +857,7 @@ export default function ModernParallaxPage() {
             id={t.id === 'contact' ? 'modern-contact-title' : undefined}
             data-title-id={t.id}
             ref={el => { titleRefs.current[t.id] = el; }}
-            data-speed={t.speed}
+            data-speed={mobile ? (t.mSpeed || t.speed * 0.4) : t.speed}
             onClick={(e) => openModal(t.id, e.currentTarget)}
             onMouseEnter={(e) => {
               const spans = e.currentTarget.querySelectorAll('.bounce-letter');
@@ -868,7 +871,7 @@ export default function ModernParallaxPage() {
             }}
             style={{
               position: 'absolute',
-              top: `${t.top}vh`,
+              top: `${mobile ? (t.mTop || t.top) : t.top}vh`,
               left: mobile ? t.mLeft : t.left,
               fontSize: mobile ? t.mSize : t.size,
               fontFamily: "'DM Sans', sans-serif",
@@ -910,7 +913,7 @@ export default function ModernParallaxPage() {
         {isMobile && (
           <div style={{
             position: 'absolute',
-            top: '115vh',
+            top: '120vh',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 3,
@@ -934,7 +937,7 @@ export default function ModernParallaxPage() {
 
         {/* ── FOOTER ── */}
         <div style={{
-          position: 'absolute', top: '290vh', left: 0, width: '100vw',
+          position: 'absolute', top: isMobile ? '360vh' : '290vh', left: 0, width: '100vw',
           background: '#000', padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem)',
           zIndex: 2,
         }}>
