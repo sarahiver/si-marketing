@@ -35,14 +35,21 @@ const Nav = styled.nav`
 
   /* Mobile: Immer Hintergrund für bessere Lesbarkeit */
   @media (max-width: 768px) {
-    background: ${p => p.$theme === 'classic' ? 'transparent' : p.$theme === 'contemporary' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
-    backdrop-filter: ${p => p.$theme === 'classic' ? 'none' : 'blur(10px)'};
+    background: ${p => p.$theme === 'classic' ? 'rgba(253,252,250,0.97)' : p.$theme === 'contemporary' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
+    backdrop-filter: ${p => p.$theme === 'classic' ? 'blur(10px)' : 'blur(10px)'};
     padding: 1rem 1.5rem;
   }
 
   ${p => p.$scrolled && p.$theme !== 'classic' && css`
     background: ${p.$theme === 'contemporary' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
     backdrop-filter: blur(10px);
+    padding: 1rem clamp(1.5rem, 5vw, 4rem);
+  `}
+  
+  ${p => p.$scrolled && p.$theme === 'classic' && css`
+    background: rgba(253,252,250,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     padding: 1rem clamp(1.5rem, 5vw, 4rem);
   `}
   
@@ -145,7 +152,7 @@ const NavLink = styled.a`
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : 'rgba(255,255,255,0.7)'};
+  color: ${p => p.$theme === 'contemporary' ? '#1A1A1A' : p.$theme === 'classic' ? (p.$scrolled ? '#1A1A1A' : 'rgba(255,255,255,0.85)') : 'rgba(255,255,255,0.7)'};
   text-decoration: none;
   transition: all 0.3s ease;
   ${p => p.$theme === 'classic' && `font-family: 'Josefin Sans', sans-serif; font-weight: 300;`}
@@ -191,7 +198,7 @@ const ThemeHint = styled.div`
       case 'luxe': return '#C9A962';
       case 'neon': return '#00ffff';
       case 'video': return '#6B8CAE';
-      case 'classic': return '#999999';
+      case 'classic': return 'rgba(255,255,255,0.6)';
       default: return '#C9A962';
     }
   }};
@@ -211,7 +218,7 @@ const ThemeSwitcherWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-left: 1rem;
-  border-left: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)'};
+  border-left: 1px solid ${p => p.$theme === 'contemporary' ? 'rgba(0,0,0,0.1)' : p.$theme === 'classic' ? (p.$scrolled ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)') : 'rgba(255,255,255,0.2)'};
   
   @media (max-width: 768px) { display: none; }
 `;
@@ -222,7 +229,7 @@ const CurrentThemeBtn = styled.button`
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : '#fff'};
+  color: ${p => p.$theme === 'contemporary' ? '#1A1A1A' : p.$theme === 'classic' ? (p.$scrolled ? '#1A1A1A' : 'rgba(255,255,255,0.85)') : '#fff'};
   background: transparent;
   border: none;
   cursor: pointer;
@@ -304,7 +311,7 @@ const BurgerLine = styled.span`
   display: block;
   width: 22px;
   height: 2px;
-  background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : '#fff'};
+  background: ${p => p.$theme === 'contemporary' ? '#1A1A1A' : p.$theme === 'classic' ? '#1A1A1A' : '#fff'};
   position: relative;
   transition: all 0.3s ease;
 
@@ -318,7 +325,7 @@ const BurgerLine = styled.span`
     left: 0;
     width: 22px;
     height: 2px;
-    background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : '#fff'};
+    background: ${p => p.$theme === 'contemporary' ? '#1A1A1A' : p.$theme === 'classic' ? '#1A1A1A' : '#fff'};
     transition: all 0.3s ease;
   }
   
@@ -607,6 +614,7 @@ const MarketingNav = () => {
             href={item.isRoute ? `/${item.id}` : `#${item.id}`} 
             onClick={(e) => handleLinkClick(e, item.id, item.isRoute)}
             $theme={currentTheme}
+            $scrolled={scrolled}
           >
             {item.label}
           </NavLink>
@@ -619,9 +627,10 @@ const MarketingNav = () => {
             Design wechseln <span>→</span>
           </ThemeHint>
         )}
-        <ThemeSwitcherWrapper $theme={currentTheme} ref={dropdownRef}>
+        <ThemeSwitcherWrapper $theme={currentTheme} $scrolled={scrolled} ref={dropdownRef}>
           <CurrentThemeBtn 
             $theme={currentTheme} 
+            $scrolled={scrolled}
             $open={dropdownOpen}
             onClick={() => { setDropdownOpen(!dropdownOpen); if (!hintDismissed) { setHintDismissed(true); setTimeout(() => setHintGone(true), 500); } }}
           >

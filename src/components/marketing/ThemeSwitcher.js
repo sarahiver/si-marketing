@@ -115,13 +115,13 @@ const ThemeButton = styled.button`
 `;
 
 const themes = [
-  { id: 'editorial', color: '#FFFFFF', border: '#E0E0E0' },
+  { id: 'editorial', color: '#F5F0EB', border: '#C41E3A' },
   { id: 'video', color: '#B8976A', border: '#B8976A' },
   { id: 'botanical', color: '#8B9D83', border: '#8B9D83' },
   { id: 'contemporary', color: '#FF6B6B', border: '#FF6B6B' },
   { id: 'luxe', color: '#1A1520', border: '#D4AF37' },
   { id: 'neon', color: '#00ffff', border: '#00ffff' },
-  { id: 'classic', color: '#FFFFFF', border: '#999999' }
+  { id: 'classic', color: '#2C2C2C', border: '#999999' }
 ];
 
 function ThemeSwitcher() {
