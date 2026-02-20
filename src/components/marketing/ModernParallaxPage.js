@@ -63,37 +63,37 @@ function ParallaxImg({ url, basePos, scaleArr, speed, scrollY, pageHeight }) {
       position={basePos}
       scale={scaleArr}
       transparent
-      opacity={0.8}
+      opacity={1}
     />
   );
 }
 
-// Image config: each maps to FLOAT_IMAGES index, format matches the photo
+// Image config: bigger, more overlap, constrained to ~80vw (-0.4 to +0.4 x)
 const IMG_CONFIG = [
-  // #1 Hero links — Hochformat schmal
-  { x: -0.32, y: 0, z: -2, w: 0.18, h: 0.55, speed: 0.8, img: 0 },
+  // #1 Hero links — Hochformat schmal, groß
+  { x: -0.3, y: 0.05, z: -2, w: 0.24, h: 0.65, speed: 0.8, img: 0 },
   // #2 Hero rechts — Querformat breit
-  { x: 0.28, y: -0.12, z: 1, w: 0.4, h: 0.22, speed: 1.4, img: 1 },
-  // #3 Obere Mitte — Hochformat schmal
-  { x: -0.05, y: -0.65, z: 0, w: 0.16, h: 0.48, speed: 1.1, img: 2 },
+  { x: 0.25, y: -0.08, z: 1, w: 0.48, h: 0.28, speed: 1.4, img: 1 },
+  // #3 Obere Mitte — Hochformat, überlappt mit #1/#2
+  { x: 0.0, y: -0.45, z: 0, w: 0.22, h: 0.58, speed: 1.1, img: 2 },
   // #4 Mid rechts — Querformat breit
-  { x: 0.3, y: -0.85, z: -1, w: 0.38, h: 0.24, speed: 0.6, img: 3 },
-  // #5 Mid links — Quadratisch
-  { x: -0.3, y: -1.15, z: 2, w: 0.26, h: 0.26, speed: 1.5, img: 4 },
-  // #6 Untere Mitte — Hochformat schmal
-  { x: 0.1, y: -1.4, z: -2, w: 0.17, h: 0.5, speed: 0.9, img: 5 },
-  // #7 Unterer links — Querformat breit (Panorama)
-  { x: -0.24, y: -1.75, z: 1, w: 0.44, h: 0.2, speed: 1.3, img: 6 },
-  // #8 Unterer rechts — Hochformat schmal
-  { x: 0.3, y: -2.0, z: 0, w: 0.15, h: 0.44, speed: 0.7, img: 7 },
-  // #9 Boden links — Querformat breit
-  { x: -0.18, y: -2.35, z: -1, w: 0.36, h: 0.22, speed: 1.45, img: 8 },
-  // #10 Boden rechts — Hochformat
-  { x: 0.25, y: -2.6, z: 2, w: 0.2, h: 0.52, speed: 0.85, img: 9 },
-  // #11 Zusatz Mitte — Querformat extra breit (Overlay)
-  { x: -0.05, y: -2.9, z: -2, w: 0.48, h: 0.18, speed: 1.2, img: 10 },
-  // #12 Zusatz — Hochformat schmal (Tiefe)
-  { x: 0.2, y: -3.2, z: 1, w: 0.14, h: 0.42, speed: 1.0, img: 11 },
+  { x: 0.25, y: -0.65, z: -1, w: 0.46, h: 0.3, speed: 0.6, img: 3 },
+  // #5 Mid links — Quadratisch groß
+  { x: -0.25, y: -0.9, z: 2, w: 0.34, h: 0.34, speed: 1.5, img: 4 },
+  // #6 Untere Mitte — Hochformat, überlappt #5
+  { x: 0.12, y: -1.1, z: -2, w: 0.22, h: 0.6, speed: 0.9, img: 5 },
+  // #7 Links — Querformat Panorama, groß
+  { x: -0.2, y: -1.4, z: 1, w: 0.52, h: 0.26, speed: 1.3, img: 6 },
+  // #8 Rechts — Hochformat schmal
+  { x: 0.3, y: -1.6, z: 0, w: 0.2, h: 0.55, speed: 0.7, img: 7 },
+  // #9 Links — Querformat breit, überlappt #8
+  { x: -0.15, y: -1.85, z: -1, w: 0.44, h: 0.28, speed: 1.45, img: 8 },
+  // #10 Rechts — Hochformat groß
+  { x: 0.22, y: -2.05, z: 2, w: 0.26, h: 0.62, speed: 0.85, img: 9 },
+  // #11 Mitte — Querformat extra breit (fast volle Breite)
+  { x: -0.02, y: -2.35, z: -2, w: 0.56, h: 0.24, speed: 1.2, img: 10 },
+  // #12 Rechts — Hochformat schmal, Tiefe
+  { x: 0.18, y: -2.55, z: 1, w: 0.18, h: 0.5, speed: 1.0, img: 11 },
 ];
 
 function ParallaxScene({ scrollY }) {
@@ -622,7 +622,7 @@ export default function ModernParallaxPage() {
   return (
     <>
       {/* ── THREE.JS CANVAS BACKGROUND ── */}
-      <div style={{ position: 'fixed', inset: 0, zIndex: 0, opacity: 0.85 }}>
+      <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
         <CanvasErrorBoundary>
           <Canvas
             gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
