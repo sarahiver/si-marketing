@@ -506,7 +506,7 @@ const BlogArticle = () => {
         schema={post.schema ? {
           ...post.schema,
           '@context': 'https://schema.org',
-          'url': `https://sarahiver.com/blog/${post.slug}`,
+          'url': `https://www.sarahiver.com/blog/${post.slug}`,
           'image': post.image,
           'dateModified': post.date,
         } : null}

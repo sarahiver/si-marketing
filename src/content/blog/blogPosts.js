@@ -18,7 +18,7 @@ const blogPosts = [
       "headline": "Warum eine Hochzeitswebsite? 7 Gründe, die jedes Brautpaar überzeugen",
       "description": "Erfahre, warum eine eigene Hochzeitswebsite die Hochzeitsplanung revolutioniert.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-10-14",
     },
     content: `
@@ -113,7 +113,7 @@ Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten 
       "headline": "Digitales RSVP: So organisiert ihr die Zusagen für eure Hochzeit stressfrei",
       "description": "Ein digitales RSVP-System spart Brautpaaren Wochen an Organisation.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-10-21",
     },
     content: `
@@ -218,7 +218,7 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
       "headline": "Hochzeitswebsite Vergleich 2026: Alle Anbieter ehrlich bewertet",
       "description": "Ehrlicher Vergleich aller großen Hochzeitswebsite-Anbieter in Deutschland 2026.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-10-28",
     },
     content: `
@@ -352,7 +352,7 @@ Bei S&I. zahlt ihr einmal. Ihr bekommt ein Design das wirklich zu eurer Hochzeit
 
 **Der Unterschied ist nicht der Preis. Der Unterschied ist was ihr dafür bekommt.**
 
-Bereit für eure eigene Hochzeitswebsite? [Alle Pakete und Preise ansehen →](https://sarahiver.com/#preise)
+Bereit für eure eigene Hochzeitswebsite? [Alle Pakete und Preise ansehen →](https://www.sarahiver.com/#preise)
 
 Noch nicht sicher welches Design zu euch passt? Lest unseren Artikel über [Hochzeitswebsite Designs und Beispiele](/blog/hochzeitswebsite-design-beispiele-inspiration) – mit direkten Links zu allen Demo-Seiten.
     `,
@@ -373,7 +373,7 @@ Noch nicht sicher welches Design zu euch passt? Lest unseren Artikel über [Hoch
       "headline": "Was muss auf eine Hochzeitswebsite? Die ultimative Checkliste",
       "description": "Checkliste für den perfekten Inhalt eurer Hochzeitswebsite.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-11-04",
     },
     content: `
@@ -470,7 +470,7 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
       "headline": "Was kostet eine Hochzeitswebsite?",
       "description": "Preisvergleich für Hochzeitswebsites: kostenlos, Baukasten, Premium.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-11-11",
     },
     content: `
@@ -561,7 +561,7 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
       "headline": "Hochzeitseinladung mit QR-Code: Print trifft auf eure Hochzeitswebsite",
       "description": "So verbindet ihr eure Einladungskarte mit eurer Hochzeitswebsite per QR-Code – bei S&I. inklusive.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-11-18",
     },
     content: `
@@ -676,7 +676,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
       "headline": "Eigene Domain und Passwortschutz für eure Hochzeitswebsite",
       "description": "Warum eine eigene Domain und Passwortschutz für die Hochzeitswebsite wichtig sind.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-11-25",
     },
     content: `
@@ -747,7 +747,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
       "headline": "Hochzeitswebsite Beispiele 2026: 7 echte Designs zum Anklicken",
       "description": "7 echte Hochzeitswebsite-Beispiele mit Links zu Demo-Seiten.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-12-02",
     },
     content: `
@@ -907,7 +907,7 @@ Egal welches Design ihr wählt:
 
 Schaut euch alle Demo-Seiten in Ruhe an. Und wenn ihr Fragen habt – wir sind da.
 
-👉 **[Alle Pakete und Preise ansehen →](https://sarahiver.com/#preise)**
+👉 **[Alle Pakete und Preise ansehen →](https://www.sarahiver.com/#preise)**
 
 Oder lest zuerst unseren ehrlichen [Hochzeitswebsite-Anbieter-Vergleich](/blog/hochzeitswebsite-vergleich-2026) – da zeigen wir wie S&I. im direkten Vergleich abschneidet.
     `,
@@ -928,7 +928,7 @@ Oder lest zuerst unseren ehrlichen [Hochzeitswebsite-Anbieter-Vergleich](/blog/h
       "headline": "Musikwünsche auf der Hochzeitswebsite: So entsteht die Playlist, zu der alle tanzen",
       "description": "Gebt euren Gästen eine Stimme mit einer digitalen Musikwunschliste auf eurer Hochzeitswebsite.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-12-09",
     },
     content: `
@@ -1005,7 +1005,7 @@ Und wenn dann um Mitternacht genau der Song läuft, den die beste Freundin sich 
       "headline": "Digitales Gästebuch: Warum die schönsten Worte nicht auf Papier stehen müssen",
       "description": "Ein digitales Gästebuch auf eurer Hochzeitswebsite bewahrt Glückwünsche und Erinnerungen für immer.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-12-16",
     },
     content: `
@@ -1082,7 +1082,7 @@ Im S&I. Admin-Dashboard könnt ihr das Gästebuch mit einem Klick aktivieren. Es
       "headline": "Geschenke und Wunschliste auf der Hochzeitswebsite: So bekommt ihr, was euch wirklich glücklich macht",
       "description": "Eine digitale Wunschliste auf der Hochzeitswebsite – elegant, ehrlich und hilfreich für alle.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-01-06",
     },
     content: `
@@ -1155,7 +1155,7 @@ Eine Wunschliste auf der Hochzeitswebsite ist kein notwendiges Übel, sondern ei
       "headline": "Location und Anfahrt auf der Hochzeitswebsite: Damit sich niemand verfährt",
       "description": "Interaktive Karte und Anfahrtsbeschreibung auf der Hochzeitswebsite – damit jeder Gast entspannt ankommt.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-01-13",
     },
     content: `
@@ -1226,7 +1226,7 @@ Organisiert ihr einen Shuttle zwischen Hotel und Location? Zwischen Kirche und F
       "headline": "Hotels und Übernachtung: So fühlen sich eure Gäste von Anfang bis Ende willkommen",
       "description": "Hotelempfehlungen auf der Hochzeitswebsite – mehr als ein Service, ein Zeichen von Fürsorge.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-01-20",
     },
     content: `
@@ -1299,7 +1299,7 @@ Erwähnt das auf eurer Website, wenn ihr so etwas plant. Es ist ein wunderschön
       "headline": "Das Hochzeits-ABC: Die kreativste Art, euren Gästen alles Wichtige zu verraten",
       "description": "Von A wie Anfahrt bis Z wie Zeitplan – das Hochzeits-ABC auf der Hochzeitswebsite.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-01-27",
     },
     content: `
@@ -1376,7 +1376,7 @@ Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäs
       "headline": "FAQ auf der Hochzeitswebsite: 15 Fragen, die eure Gäste garantiert haben",
       "description": "Die 15 häufigsten Gästefragen und wie ihr sie auf eurer Hochzeitswebsite beantwortet.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-02-03",
     },
     content: `
@@ -1491,7 +1491,7 @@ Die Darstellung passt sich automatisch eurem Theme an. Und das Beste: Ihr könnt
       "headline": "Foto-Upload für Hochzeitsgäste: Alle Perspektiven eures schönsten Tages",
       "description": "Foto-Upload auf der Hochzeitswebsite – alle Gästefotos an einem Ort, in voller Qualität.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-02-10",
     },
     content: `
@@ -1570,7 +1570,7 @@ In zehn Jahren werdet ihr nicht an die Deko denken. Nicht an das Menü. Nicht an
       "headline": "Das kann sonst keiner: Die Premium-Funktionen von S&I. im Detail",
       "description": "Alle Premium-Features von S&I. im Überblick – von Foto-Upload bis Echtzeit-Benachrichtigungen.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-02-17",
     },
     content: `
@@ -1683,7 +1683,7 @@ Einzelne Features findet man bei vielen Anbietern. Foto-Upload hier, RSVP dort, 
       "headline": "Euer Hochzeits-Cockpit: So funktioniert das S&I. Admin Dashboard",
       "description": "Das S&I. Admin Dashboard im Detail – Gästeliste, RSVP, Foto-Moderation und Content-Editor.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-02-24",
     },
     content: `
@@ -1800,7 +1800,7 @@ Jede Funktion ist durchdacht, jeder Klick ist intuitiv, jede Information ist dor
       "headline": "Von der Verlobung bis zum Danke: Eure Reise mit S&I.",
       "description": "So begleitet S&I. euch durch jede Phase der Hochzeitsplanung – von der Verlobung bis zum digitalen Erinnerungsalbum.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-03-03",
     },
     content: `
@@ -1928,7 +1928,7 @@ Von der Verlobung bis zum Danke. Von der ersten Idee bis zur letzten Erinnerung.
       "headline": "Hochzeitsfotos teilen: Vom Gäste-Upload bis zur Archivseite",
       "description": "So sammelt ihr alle Hochzeitsfotos eurer Gäste und teilt eure schönsten Erinnerungen nach der Hochzeit.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-03-10",
     },
     content: `
@@ -2014,9 +2014,9 @@ Stellt euch vor: Es ist ein ganz normaler Dienstagabend, ein Jahr nach eurer Hoc
 
 Neben den Fotos gibt es noch eine weitere wunderschöne Erinnerung: das [digitale Gästebuch](/blog/hochzeitswebsite-gaestebuch-digital), in dem eure Gäste ihre persönlichsten Worte hinterlassen können.
 
-**Bereit, eure Hochzeitserinnerungen für immer festzuhalten?** Bei [S&I.](https://sarahiver.com) bekommt ihr eine Hochzeitswebsite, die vor, während und nach eurer Hochzeit für euch arbeitet – mit Foto-Upload, Archivseite, Gästebuch und einem Design, das eure Geschichte erzählt. Ab 1.290 Euro, alles inklusive.
+**Bereit, eure Hochzeitserinnerungen für immer festzuhalten?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Hochzeitswebsite, die vor, während und nach eurer Hochzeit für euch arbeitet – mit Foto-Upload, Archivseite, Gästebuch und einem Design, das eure Geschichte erzählt. Ab 1.290 Euro, alles inklusive.
 
-**[Jetzt eure Hochzeitswebsite erstellen](https://sarahiver.com)** und keinen einzigen Moment verpassen.
+**[Jetzt eure Hochzeitswebsite erstellen](https://www.sarahiver.com)** und keinen einzigen Moment verpassen.
     `,
   },
   {
@@ -2035,7 +2035,7 @@ Neben den Fotos gibt es noch eine weitere wunderschöne Erinnerung: das [digital
       "headline": "Gästeliste, Erinnerungsmails & Export: So behaltet ihr den Überblick über jede Zusage",
       "description": "Von der Gästeliste über automatische Erinnerungsmails bis zum Export für Caterer – so funktioniert smartes Gästemanagement bei S&I.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
-      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://sarahiver.com" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2025-03-17",
     },
     content: `
@@ -2158,9 +2158,9 @@ Das ist keine Ausnahme. **Das ist der Normalfall bei S&I.**
 
 Mehr zum Thema RSVP findet ihr in unserem ausführlichen Artikel über [digitales RSVP für Hochzeiten](/blog/digitales-rsvp-hochzeit). Und wie das alles im [Admin Dashboard](/blog/hochzeitswebsite-admin-dashboard) zusammenläuft, zeigen wir euch ebenfalls.
 
-**Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://sarahiver.com) bekommt ihr eine Hochzeitswebsite mit intelligenter Gästeliste, automatischem RSVP-Abgleich, Erinnerungsmails und One-Click-Export – alles in eurem Design, alles aus einer Hand. Ab 1.290 Euro.
+**Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Hochzeitswebsite mit intelligenter Gästeliste, automatischem RSVP-Abgleich, Erinnerungsmails und One-Click-Export – alles in eurem Design, alles aus einer Hand. Ab 1.290 Euro.
 
-**[Jetzt eure Hochzeitswebsite erstellen](https://sarahiver.com)** – und nie wieder jemandem hinterhertelefonieren.
+**[Jetzt eure Hochzeitswebsite erstellen](https://www.sarahiver.com)** – und nie wieder jemandem hinterhertelefonieren.
     `,
   },
 

@@ -101,7 +101,7 @@ function MarketingPage() {
     name: 'Premium Hochzeitswebsite von S&I.',
     description: 'Individuelle Hochzeitswebsite mit eigenem Design, eigener Domain, digitalem RSVP, Foto-Upload und Gästeverwaltung. 6 einzigartige Themes.',
     brand: { '@type': 'Brand', name: 'S&I.' },
-    url: 'https://sarahiver.com',
+    url: 'https://www.sarahiver.com',
     image: 'https://res.cloudinary.com/si-weddings/image/upload/v1770798416/si_og_image_nx5blq.png',
     offers: [
       {
@@ -111,7 +111,7 @@ function MarketingPage() {
         priceCurrency: 'EUR',
         priceValidUntil: '2026-12-31',
         availability: 'https://schema.org/InStock',
-        url: 'https://sarahiver.com/#preise',
+        url: 'https://www.sarahiver.com/#preise',
         seller: { '@type': 'Organization', name: 'S&I.' },
       },
       {
@@ -121,7 +121,7 @@ function MarketingPage() {
         priceCurrency: 'EUR',
         priceValidUntil: '2026-12-31',
         availability: 'https://schema.org/InStock',
-        url: 'https://sarahiver.com/#preise',
+        url: 'https://www.sarahiver.com/#preise',
         seller: { '@type': 'Organization', name: 'S&I.' },
       },
       {
@@ -131,7 +131,7 @@ function MarketingPage() {
         priceCurrency: 'EUR',
         priceValidUntil: '2026-12-31',
         availability: 'https://schema.org/InStock',
-        url: 'https://sarahiver.com/#preise',
+        url: 'https://www.sarahiver.com/#preise',
         seller: { '@type': 'Organization', name: 'S&I.' },
       },
     ],
