@@ -149,8 +149,59 @@ const TITLES = [
 ];
 
 // ============================================
-// MODAL CONTENT
+// MODAL CONTENT — with parallax effects
 // ============================================
+
+// Decorative background glyph that drifts slowly
+function DecoGlyph({ char, scrollTop, top, left, size, speed }) {
+  return (
+    <span style={{
+      position: 'absolute', top, left,
+      fontFamily: "'DM Sans', sans-serif", fontSize: size || 'clamp(8rem, 20vw, 16rem)',
+      fontWeight: 800, color: 'rgba(255,255,255,0.03)', lineHeight: 1,
+      pointerEvents: 'none', zIndex: 0, whiteSpace: 'nowrap',
+      transform: `translateY(${scrollTop * (speed || -0.15)}px)`,
+    }}>{char}</span>
+  );
+}
+
+// Staggered reveal wrapper — each child fades in with delay
+function Stagger({ children, delay = 0, scrollTop, speed = 0.3, driftX = 0 }) {
+  return (
+    <div style={{
+      opacity: 1,
+      animation: `modalStaggerIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s both`,
+      transform: `translateY(${scrollTop * (speed - 0.5) * 1.2}px) translateX(${scrollTop * driftX}px)`,
+    }}>
+      {children}
+    </div>
+  );
+}
+
+// Expanding divider line
+function ExpandDivider({ scrollTop, delay = 0 }) {
+  return (
+    <div style={{ overflow: 'hidden', padding: '0', height: '1px' }}>
+      <div style={{
+        height: '1px', background: 'rgba(255,255,255,0.08)',
+        animation: `expandLine 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s both`,
+      }} />
+    </div>
+  );
+}
+
+// Modal title that scales down on scroll
+function ScalingTitle({ children, scrollTop }) {
+  const scale = Math.max(0.75, 1 - scrollTop * 0.0008);
+  return (
+    <ModalTitle style={{
+      transform: `scale(${scale})`,
+      transformOrigin: 'left top',
+      transition: 'transform 0.1s ease-out',
+    }}>{children}</ModalTitle>
+  );
+}
+
 function ModalContent({ id, onClose, onOpenContact }) {
   const [scrollTop, setScrollTop] = useState(0);
   const px = (speed) => scrollTop * (speed - 0.5) * 1.2;
@@ -158,11 +209,15 @@ function ModalContent({ id, onClose, onOpenContact }) {
   switch (id) {
     case 'features': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
-            <ModalLabel>WARUM S&I.</ModalLabel>
-            <ModalTitle>Was uns besonders macht</ModalTitle>
-          </ModalHeader>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="✦" scrollTop={scrollTop} top="5rem" left="75%" speed={-0.12} />
+          <DecoGlyph char="S&I" scrollTop={scrollTop} top="60%" left="-5%" size="clamp(6rem, 15vw, 12rem)" speed={-0.08} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader>
+              <ModalLabel>WARUM S&I.</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>Was uns besonders macht</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
           {[
             { n: '01', t: 'Kein Paar ist wie das andere', d: 'Jede Website ein Unikat — handgemacht, nicht von der Stange. Bereits Dutzende Paare haben ihre Liebesgeschichte mit uns digital verewigt.' },
             { n: '02', t: 'sarah-und-max.de', d: 'Eure Liebe hat eine eigene Adresse. Keine Subdomain, kein Baukasten-Link. Professionell eingerichtet, sofort startklar.' },
@@ -171,11 +226,14 @@ function ModalContent({ id, onClose, onOpenContact }) {
             { n: '05', t: 'So wenig Aufwand wie möglich', d: 'Wir übernehmen den Rest. Ihr schickt uns Texte & Fotos.' },
             { n: '06', t: 'In 7 Tagen live', d: 'Die meisten Websites gehen innerhalb einer Woche online — inklusive Korrekturschleife.' },
           ].map((item, i) => (
-            <ModalItem key={i} style={{ transform: `translateY(${px(0.25 + i * 0.06)}px)` }}>
-              <ModalItemNum>{item.n}</ModalItemNum>
-              <ModalItemTitle>{item.t}</ModalItemTitle>
-              <ModalItemDesc>{item.d}</ModalItemDesc>
-            </ModalItem>
+            <Stagger key={i} delay={0.2 + i * 0.08} scrollTop={scrollTop} speed={0.25 + i * 0.06} driftX={0}>
+              <ExpandDivider scrollTop={scrollTop} delay={0.2 + i * 0.08} />
+              <ModalItem style={{ borderBottom: 'none' }}>
+                <ModalItemNum style={{ transform: `translateX(${scrollTop * -0.03}px)` }}>{item.n}</ModalItemNum>
+                <ModalItemTitle style={{ transform: `translateX(${scrollTop * 0.015}px)` }}>{item.t}</ModalItemTitle>
+                <ModalItemDesc>{item.d}</ModalItemDesc>
+              </ModalItem>
+            </Stagger>
           ))}
         </ModalInner>
       </ModalScroll>
@@ -183,26 +241,34 @@ function ModalContent({ id, onClose, onOpenContact }) {
 
     case 'designs': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
-            <ModalLabel>8 THEMES</ModalLabel>
-            <ModalTitle>Eure Designwelt</ModalTitle>
-          </ModalHeader>
-          <ModalBody style={{ transform: `translateY(${px(0.25)}px)` }}>
-            Jedes Theme erzählt eure Geschichte anders. Von minimalistisch-elegant über cinematic-luxuriös bis hin zu modern-interaktiv mit 3D-Effekten.
-          </ModalBody>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="8" scrollTop={scrollTop} top="3rem" left="70%" size="clamp(10rem, 25vw, 20rem)" speed={-0.1} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader>
+              <ModalLabel>8 THEMES</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>Eure Designwelt</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
+          <Stagger delay={0.2} scrollTop={scrollTop} speed={0.25}>
+            <ModalBody>
+              Jedes Theme erzählt eure Geschichte anders. Von minimalistisch-elegant über cinematic-luxuriös bis hin zu modern-interaktiv mit 3D-Effekten.
+            </ModalBody>
+          </Stagger>
           {['Classic', 'Botanical', 'Contemporary', 'Editorial', 'Luxe', 'Modern', 'Neon', 'Video'].map((name, i) => {
             const slug = name === 'Modern' ? 'parallax' : name.toLowerCase();
             return (
-            <ModalItem key={i} style={{ transform: `translateY(${px(0.3 + i * 0.04)}px)` }}>
-              <ModalItemTitle>{name}</ModalItemTitle>
-              <ModalItemDesc>
-                <a href={`https://siwedding.de/demo-${slug}`} target="_blank" rel="noopener noreferrer"
-                  style={{ color: '#fff', textDecoration: 'underline', textUnderlineOffset: '3px', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                  Demo ansehen →
-                </a>
-              </ModalItemDesc>
-            </ModalItem>
+            <Stagger key={i} delay={0.25 + i * 0.06} scrollTop={scrollTop} speed={0.3 + i * 0.04} driftX={i % 2 === 0 ? 0.01 : -0.01}>
+              <ExpandDivider scrollTop={scrollTop} delay={0.25 + i * 0.06} />
+              <ModalItem style={{ borderBottom: 'none' }}>
+                <ModalItemTitle style={{ transform: `translateX(${scrollTop * 0.012}px)` }}>{name}</ModalItemTitle>
+                <ModalItemDesc>
+                  <a href={`https://siwedding.de/demo-${slug}`} target="_blank" rel="noopener noreferrer"
+                    style={{ color: '#fff', textDecoration: 'underline', textUnderlineOffset: '3px', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                    Demo ansehen →
+                  </a>
+                </ModalItemDesc>
+              </ModalItem>
+            </Stagger>
             );
           })}
         </ModalInner>
@@ -211,22 +277,28 @@ function ModalContent({ id, onClose, onOpenContact }) {
 
     case 'howItWorks': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
-            <ModalLabel>EUER WEG</ModalLabel>
-            <ModalTitle>4 einfache Schritte</ModalTitle>
-          </ModalHeader>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="→" scrollTop={scrollTop} top="4rem" left="72%" size="clamp(8rem, 18vw, 14rem)" speed={-0.14} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader>
+              <ModalLabel>EUER WEG</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>4 einfache Schritte</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
           {[
             { n: '01', t: 'Ihr entdeckt uns', d: 'Schreibt uns — unverbindlich, ohne Haken. Wir melden uns persönlich, meistens noch am selben Tag.' },
             { n: '02', t: 'Wir lernen euch kennen', d: 'In einem persönlichen Gespräch erfahren wir, wer ihr seid. Was euch wichtig ist. Wie eure Hochzeit sich anfühlen soll.' },
             { n: '03', t: 'Ihr erzählt eure Geschichte', d: 'Über ein einfaches Dashboard tragt ihr Texte ein, ladet Fotos hoch. Kein technisches Wissen nötig.' },
             { n: '04', t: 'Eure Website geht live', d: 'Wir bauen, optimieren und schicken euch die fertige Seite zur Freigabe. In der Regel in 7 Tagen.' },
           ].map((step, i) => (
-            <ModalItem key={i} style={{ transform: `translateY(${px(0.25 + i * 0.08)}px)` }}>
-              <ModalItemNum>{step.n}</ModalItemNum>
-              <ModalItemTitle>{step.t}</ModalItemTitle>
-              <ModalItemDesc>{step.d}</ModalItemDesc>
-            </ModalItem>
+            <Stagger key={i} delay={0.2 + i * 0.1} scrollTop={scrollTop} speed={0.25 + i * 0.08} driftX={0}>
+              <ExpandDivider scrollTop={scrollTop} delay={0.2 + i * 0.1} />
+              <ModalItem style={{ borderBottom: 'none' }}>
+                <ModalItemNum style={{ transform: `translateX(${scrollTop * -0.04}px)`, fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', color: 'rgba(255,255,255,0.06)' }}>{step.n}</ModalItemNum>
+                <ModalItemTitle style={{ transform: `translateX(${scrollTop * 0.018}px)` }}>{step.t}</ModalItemTitle>
+                <ModalItemDesc>{step.d}</ModalItemDesc>
+              </ModalItem>
+            </Stagger>
           ))}
         </ModalInner>
       </ModalScroll>
@@ -234,90 +306,110 @@ function ModalContent({ id, onClose, onOpenContact }) {
 
     case 'components': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner style={{ maxWidth: 'none', padding: '0 1.5rem' }}>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)`, padding: '0 0.5rem' }}>
-            <ModalLabel>BAUKASTEN</ModalLabel>
-            <ModalTitle>18 Komponenten</ModalTitle>
-          </ModalHeader>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1px', background: 'rgba(255,255,255,0.08)', transform: `translateY(${px(0.25)}px)` }}>
-            {[
-              '🏠 Hero', '💕 Love Story', '💌 RSVP', '🔔 Countdown', '📅 Ablauf', '⏰ Timeline',
-              '📍 Location', '🚗 Anfahrt', '🏨 Hotels', '👗 Dresscode', '🎁 Wunschliste',
-              '📸 Galerie', '🤳 Gäste-Fotos', '❓ FAQ', '🎵 Musikwünsche', '👥 Trauzeugen',
-              '💍 Footer', '📄 Impressum',
-            ].map((comp, i) => (
-              <div key={i} style={{ background: 'rgba(0,0,0,0.9)', padding: '1.2rem 1rem', textAlign: 'center' }}>
-                <span style={{ fontSize: '1.3rem', display: 'block', marginBottom: '0.4rem' }}>{comp.split(' ')[0]}</span>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.75rem', fontWeight: 700, color: '#fff' }}>{comp.split(' ').slice(1).join(' ')}</span>
-              </div>
-            ))}
-          </div>
+        <ModalInner style={{ maxWidth: 'none', padding: '0 1.5rem', position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="18" scrollTop={scrollTop} top="2rem" left="65%" size="clamp(8rem, 20vw, 16rem)" speed={-0.1} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader style={{ padding: '0 0.5rem' }}>
+              <ModalLabel>BAUKASTEN</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>18 Komponenten</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
+          <Stagger delay={0.25} scrollTop={scrollTop} speed={0.25}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1px', background: 'rgba(255,255,255,0.08)' }}>
+              {[
+                '🏠 Hero', '💕 Love Story', '💌 RSVP', '🔔 Countdown', '📅 Ablauf', '⏰ Timeline',
+                '📍 Location', '🚗 Anfahrt', '🏨 Hotels', '👗 Dresscode', '🎁 Wunschliste',
+                '📸 Galerie', '🤳 Gäste-Fotos', '❓ FAQ', '🎵 Musikwünsche', '👥 Trauzeugen',
+                '💍 Footer', '📄 Impressum',
+              ].map((comp, i) => (
+                <div key={i} style={{
+                  background: 'rgba(0,0,0,0.9)', padding: '1.2rem 1rem', textAlign: 'center',
+                  animation: `modalStaggerIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) ${0.3 + i * 0.04}s both`,
+                }}>
+                  <span style={{ fontSize: '1.3rem', display: 'block', marginBottom: '0.4rem' }}>{comp.split(' ')[0]}</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.75rem', fontWeight: 700, color: '#fff' }}>{comp.split(' ').slice(1).join(' ')}</span>
+                </div>
+              ))}
+            </div>
+          </Stagger>
         </ModalInner>
       </ModalScroll>
     );
 
     case 'pricing': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
-            <ModalLabel>PAKETE</ModalLabel>
-            <ModalTitle>Preise</ModalTitle>
-          </ModalHeader>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="€" scrollTop={scrollTop} top="6rem" left="68%" size="clamp(10rem, 25vw, 18rem)" speed={-0.12} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader>
+              <ModalLabel>PAKETE</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>Preise</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
           {[
             { name: 'Starter', price: '1.290', duration: '6 Monate', features: ['Eigene Domain', '4 Basis-Komponenten', '6 Monate Hosting', '1 Revision'] },
             { name: 'Standard', price: '1.490', duration: '8 Monate', popular: true, features: ['Eigene Domain', '4 Basis + 3 Extra', '8 Monate Hosting', '2 Revisionen'] },
             { name: 'Premium', price: '1.990', duration: '12 Monate', features: ['Eigene Domain', '4 Basis + 6 Extra', 'Save the Date + Archiv', 'Unbegrenzte Revisionen'] },
           ].map((pkg, i) => (
-            <div key={i} style={{
-              padding: '2rem 0',
-              borderBottom: '1px solid rgba(255,255,255,0.08)',
-              transform: `translateY(${px(0.25 + i * 0.08)}px)`,
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
-                <ModalItemTitle style={{ marginBottom: 0 }}>
-                  {pkg.name}
-                  {pkg.popular && <span style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.3)', marginLeft: '0.75rem', textTransform: 'uppercase' }}>BELIEBT</span>}
-                </ModalItemTitle>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 800, color: '#fff' }}>
-                  <span style={{ fontSize: '0.5em', opacity: 0.4 }}>€</span>{pkg.price}
-                </span>
+            <Stagger key={i} delay={0.2 + i * 0.12} scrollTop={scrollTop} speed={0.25 + i * 0.08} driftX={0}>
+              <ExpandDivider scrollTop={scrollTop} delay={0.2 + i * 0.12} />
+              <div style={{ padding: '2rem 0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
+                  <ModalItemTitle style={{ marginBottom: 0, transform: `translateX(${scrollTop * 0.015}px)` }}>
+                    {pkg.name}
+                    {pkg.popular && <span style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.3)', marginLeft: '0.75rem', textTransform: 'uppercase' }}>BELIEBT</span>}
+                  </ModalItemTitle>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 800, color: '#fff', transform: `translateX(${scrollTop * -0.02}px)` }}>
+                    <span style={{ fontSize: '0.5em', opacity: 0.4 }}>€</span>{pkg.price}
+                  </span>
+                </div>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)', marginBottom: '1rem', textTransform: 'uppercase' }}>{pkg.duration}</p>
+                {pkg.features.map((f, fi) => (
+                  <p key={fi} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.55)', padding: '0.3rem 0' }}>{f}</p>
+                ))}
               </div>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)', marginBottom: '1rem', textTransform: 'uppercase' }}>{pkg.duration}</p>
-              {pkg.features.map((f, fi) => (
-                <p key={fi} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.55)', padding: '0.3rem 0' }}>{f}</p>
-              ))}
-            </div>
+            </Stagger>
           ))}
-          <div style={{ marginTop: '2rem', transform: `translateY(${px(0.5)}px)` }}>
-            <button onClick={() => { onClose(); setTimeout(() => onOpenContact(), 600); }}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#000', background: '#fff', padding: '1rem 2rem', border: 'none', cursor: 'pointer', display: 'inline-block' }}>
-              Jetzt anfragen →
-            </button>
-          </div>
+          <Stagger delay={0.6} scrollTop={scrollTop} speed={0.5}>
+            <div style={{ marginTop: '1rem' }}>
+              <button onClick={() => { onClose(); setTimeout(() => onOpenContact(), 600); }}
+                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#000', background: '#fff', padding: '1rem 2rem', border: 'none', cursor: 'pointer', display: 'inline-block' }}>
+                Jetzt anfragen →
+              </button>
+            </div>
+          </Stagger>
         </ModalInner>
       </ModalScroll>
     );
 
     case 'about': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
-            <ModalLabel>ÜBER UNS</ModalLabel>
-            <ModalTitle>Sarah & Iver</ModalTitle>
-          </ModalHeader>
-          <ModalBody style={{ transform: `translateY(${px(0.25)}px)` }}>
-            Wir sind kein Startup, keine Agentur. Wir sind ein Paar, das Hochzeitswebsites baut — weil wir wissen, wie es sich anfühlt.
-          </ModalBody>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="&" scrollTop={scrollTop} top="8rem" left="65%" size="clamp(12rem, 28vw, 22rem)" speed={-0.1} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader>
+              <ModalLabel>ÜBER UNS</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>Sarah & Iver</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
+          <Stagger delay={0.2} scrollTop={scrollTop} speed={0.25}>
+            <ModalBody>
+              Wir sind kein Startup, keine Agentur. Wir sind ein Paar, das Hochzeitswebsites baut — weil wir wissen, wie es sich anfühlt.
+            </ModalBody>
+          </Stagger>
           {[
             { emoji: '🎨', name: 'Sarah', role: 'Herz, Design & Gefühl', desc: 'Sarah sorgt dafür, dass jede Website nicht nur schön aussieht, sondern sich richtig anfühlt. Farben, Typografie, Bildsprache — alles wird mit Liebe zum Detail gestaltet.' },
             { emoji: '🧑‍💻', name: 'Iver', role: 'Technik & Begleitung', desc: 'Iver kümmert sich um Technik, Umsetzung und Betreuung. Vom ersten Gespräch bis zur fertigen Website — ein echter Ansprechpartner, keine Massenabfertigung.' },
           ].map((person, i) => (
-            <ModalItem key={i} style={{ transform: `translateY(${px(0.3 + i * 0.1)}px)` }}>
-              <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.75rem' }}>{person.emoji}</span>
-              <ModalItemTitle>{person.name}</ModalItemTitle>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', textTransform: 'uppercase' }}>{person.role}</p>
-              <ModalItemDesc>{person.desc}</ModalItemDesc>
-            </ModalItem>
+            <Stagger key={i} delay={0.3 + i * 0.15} scrollTop={scrollTop} speed={0.3 + i * 0.1} driftX={i === 0 ? -0.008 : 0.008}>
+              <ExpandDivider scrollTop={scrollTop} delay={0.3 + i * 0.15} />
+              <ModalItem style={{ borderBottom: 'none' }}>
+                <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.75rem' }}>{person.emoji}</span>
+                <ModalItemTitle style={{ transform: `translateX(${scrollTop * 0.012}px)` }}>{person.name}</ModalItemTitle>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', textTransform: 'uppercase' }}>{person.role}</p>
+                <ModalItemDesc>{person.desc}</ModalItemDesc>
+              </ModalItem>
+            </Stagger>
           ))}
         </ModalInner>
       </ModalScroll>
@@ -325,22 +417,28 @@ function ModalContent({ id, onClose, onOpenContact }) {
 
     case 'whyUs': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
-            <ModalLabel>WARUM S&I.</ModalLabel>
-            <ModalTitle>Weil eure Hochzeit zu wichtig ist.</ModalTitle>
-          </ModalHeader>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="≠" scrollTop={scrollTop} top="5rem" left="70%" size="clamp(10rem, 22vw, 18rem)" speed={-0.13} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader>
+              <ModalLabel>WARUM S&I.</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>Weil eure Hochzeit zu wichtig ist.</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
           {[
             { icon: '💼', label: 'Statt Agentur', problem: 'Oft teuer, langsam und anonym.', solution: 'Boutique statt Massenbetrieb.' },
             { icon: '🤖', label: 'Statt KI-Tools', problem: 'Schnell — aber ohne Herz.', solution: 'Menschen, Geschmack & Feingefühl.' },
             { icon: '🛠️', label: 'Statt selber machen', problem: 'Günstig — aber auf Kosten eurer Zeit.', solution: 'Ihr gebt Inhalte — wir den Rest.' },
           ].map((card, i) => (
-            <ModalItem key={i} style={{ transform: `translateY(${px(0.25 + i * 0.1)}px)` }}>
-              <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{card.icon}</span>
-              <ModalItemTitle>{card.label}</ModalItemTitle>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'rgba(255,255,255,0.3)', textDecoration: 'line-through', marginBottom: '0.5rem' }}>{card.problem}</p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.95rem', fontWeight: 700, color: '#fff' }}>{card.solution}</p>
-            </ModalItem>
+            <Stagger key={i} delay={0.2 + i * 0.12} scrollTop={scrollTop} speed={0.25 + i * 0.1} driftX={i % 2 === 0 ? 0.01 : -0.01}>
+              <ExpandDivider scrollTop={scrollTop} delay={0.2 + i * 0.12} />
+              <ModalItem style={{ borderBottom: 'none' }}>
+                <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{card.icon}</span>
+                <ModalItemTitle style={{ transform: `translateX(${scrollTop * 0.015}px)` }}>{card.label}</ModalItemTitle>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'rgba(255,255,255,0.3)', textDecoration: 'line-through', marginBottom: '0.5rem' }}>{card.problem}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.95rem', fontWeight: 700, color: '#fff' }}>{card.solution}</p>
+              </ModalItem>
+            </Stagger>
           ))}
         </ModalInner>
       </ModalScroll>
@@ -348,57 +446,75 @@ function ModalContent({ id, onClose, onOpenContact }) {
 
     case 'cooperation': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
-            <ModalLabel>ZUSAMMENARBEIT</ModalLabel>
-            <ModalTitle>Kooperationen</ModalTitle>
-          </ModalHeader>
-          <ModalBody style={{ transform: `translateY(${px(0.25)}px)` }}>
-            Ob Hochzeitsplaner, Fotografen, Locations oder andere Dienstleister — wir freuen uns über Kooperationsanfragen.
-          </ModalBody>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="∞" scrollTop={scrollTop} top="5rem" left="68%" size="clamp(8rem, 18vw, 14rem)" speed={-0.11} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader>
+              <ModalLabel>ZUSAMMENARBEIT</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>Kooperationen</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
+          <Stagger delay={0.2} scrollTop={scrollTop} speed={0.25}>
+            <ModalBody>
+              Ob Hochzeitsplaner, Fotografen, Locations oder andere Dienstleister — wir freuen uns über Kooperationsanfragen.
+            </ModalBody>
+          </Stagger>
           {[
             { icon: '📸', t: 'Fotografen', d: 'Empfehlt uns euren Paaren — wir bauen Websites, die eure Bilder perfekt in Szene setzen.' },
             { icon: '💐', t: 'Wedding Planner', d: 'Bietet euren Kunden eine Premium-Website als Teil eures Pakets an.' },
             { icon: '🏰', t: 'Locations', d: 'Zeigt euren Paaren, wie ihre Hochzeitswebsite aussehen könnte — mit eurer Location als Highlight.' },
           ].map((item, i) => (
-            <ModalItem key={i} style={{ transform: `translateY(${px(0.3 + i * 0.1)}px)` }}>
-              <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{item.icon}</span>
-              <ModalItemTitle>{item.t}</ModalItemTitle>
-              <ModalItemDesc>{item.d}</ModalItemDesc>
-            </ModalItem>
+            <Stagger key={i} delay={0.3 + i * 0.1} scrollTop={scrollTop} speed={0.3 + i * 0.1} driftX={0}>
+              <ExpandDivider scrollTop={scrollTop} delay={0.3 + i * 0.1} />
+              <ModalItem style={{ borderBottom: 'none' }}>
+                <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{item.icon}</span>
+                <ModalItemTitle style={{ transform: `translateX(${scrollTop * 0.012}px)` }}>{item.t}</ModalItemTitle>
+                <ModalItemDesc>{item.d}</ModalItemDesc>
+              </ModalItem>
+            </Stagger>
           ))}
-          <div style={{ marginTop: '2rem', transform: `translateY(${px(0.5)}px)` }}>
-            <button
-              onClick={() => { onClose(); setTimeout(() => onOpenContact(), 600); }}
-              style={{
-                fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800,
-                letterSpacing: '0.1em', textTransform: 'uppercase', color: '#000',
-                background: '#fff', padding: '1rem 2rem', border: 'none', cursor: 'pointer',
-              }}>
-              Jetzt anfragen →
-            </button>
-          </div>
+          <Stagger delay={0.6} scrollTop={scrollTop} speed={0.5}>
+            <div style={{ marginTop: '2rem' }}>
+              <button
+                onClick={() => { onClose(); setTimeout(() => onOpenContact(), 600); }}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800,
+                  letterSpacing: '0.1em', textTransform: 'uppercase', color: '#000',
+                  background: '#fff', padding: '1rem 2rem', border: 'none', cursor: 'pointer',
+                }}>
+                Jetzt anfragen →
+              </button>
+            </div>
+          </Stagger>
         </ModalInner>
       </ModalScroll>
     );
 
     case 'contact': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
-        <ModalInner>
-          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
-            <ModalLabel>DER ERSTE SCHRITT</ModalLabel>
-            <ModalTitle>Erzählt uns von euch</ModalTitle>
-          </ModalHeader>
-          <ModalBody style={{ transform: `translateY(${px(0.25)}px)` }}>
-            Unverbindlich, ohne Haken. Wir freuen uns auf eure Geschichte.
-          </ModalBody>
-          <div style={{ transform: `translateY(${px(0.3)}px)` }}>
+        <ModalInner style={{ position: 'relative', overflow: 'hidden' }}>
+          <DecoGlyph char="✉" scrollTop={scrollTop} top="6rem" left="70%" size="clamp(8rem, 18vw, 14rem)" speed={-0.1} />
+          <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
+            <ModalHeader>
+              <ModalLabel>DER ERSTE SCHRITT</ModalLabel>
+              <ScalingTitle scrollTop={scrollTop}>Erzählt uns von euch</ScalingTitle>
+            </ModalHeader>
+          </Stagger>
+          <Stagger delay={0.2} scrollTop={scrollTop} speed={0.25}>
+            <ModalBody>
+              Unverbindlich, ohne Haken. Wir freuen uns auf eure Geschichte.
+            </ModalBody>
+          </Stagger>
+          <Stagger delay={0.3} scrollTop={scrollTop} speed={0.3}>
             <ContactModalForm onClose={onClose} />
-          </div>
-          <div style={{ marginTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '2rem', transform: `translateY(${px(0.4)}px)` }}>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.25)', marginBottom: '0.75rem', textTransform: 'uppercase' }}>Oder direkt per E-Mail</p>
-            <a href="mailto:wedding@sarahiver.de" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: '#fff', textDecoration: 'none' }}>wedding@sarahiver.de</a>
-          </div>
+          </Stagger>
+          <Stagger delay={0.45} scrollTop={scrollTop} speed={0.4}>
+            <ExpandDivider scrollTop={scrollTop} delay={0.45} />
+            <div style={{ paddingTop: '2rem' }}>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.25)', marginBottom: '0.75rem', textTransform: 'uppercase' }}>Oder direkt per E-Mail</p>
+              <a href="mailto:wedding@sarahiver.de" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: '#fff', textDecoration: 'none' }}>wedding@sarahiver.de</a>
+            </div>
+          </Stagger>
         </ModalInner>
       </ModalScroll>
     );
@@ -549,6 +665,14 @@ function ensureModalKeyframes() {
     @keyframes modernSpinIn {
       from { transform: rotate(0deg) scale(0); opacity: 0; }
       to { transform: rotate(360deg) scale(1); opacity: 1; }
+    }
+    @keyframes modalStaggerIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes expandLine {
+      from { width: 0%; }
+      to { width: 100%; }
     }
   `;
   document.head.appendChild(style);
