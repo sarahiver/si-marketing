@@ -16,7 +16,7 @@ import SEOHead from '../shared/SEOHead';
 const getBackground = (theme) => {
   const bgs = {
     editorial: '#FAFAFA', botanical: '#040604', contemporary: '#FAFAFA',
-    luxe: '#0A0A0A', neon: '#0a0a0f', video: '#0A0A0A', classic: '#FDFCFA',
+    luxe: '#0A0A0A', neon: '#0a0a0f', video: '#0A0A0A', classic: '#FDFCFA', modern: '#FAFAFA',
   };
   return bgs[theme] || '#FAFAFA';
 };
@@ -30,7 +30,7 @@ const getSecondaryText = (theme) => {
   const colors = {
     editorial: '#666666', botanical: 'rgba(255,255,255,0.55)', contemporary: '#737373',
     luxe: 'rgba(248,246,243,0.5)', neon: 'rgba(255,255,255,0.6)', video: '#B0B0B0',
-    classic: '#555555',
+    classic: '#555555', modern: 'rgba(0,0,0,0.45)',
   };
   return colors[theme] || '#666666';
 };
@@ -38,7 +38,7 @@ const getSecondaryText = (theme) => {
 const getAccent = (theme) => {
   const accents = {
     editorial: '#C41E3A', botanical: 'rgba(45,90,60,0.8)', contemporary: '#FF6B6B',
-    luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE', classic: '#999999',
+    luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE', classic: '#999999', modern: '#000000',
   };
   return accents[theme] || '#C41E3A';
 };
@@ -47,7 +47,7 @@ const getCardBg = (theme) => {
   const cards = {
     editorial: '#FFFFFF', botanical: 'rgba(255,255,255,0.08)',
     contemporary: '#FFFFFF', luxe: '#1A1A1D',
-    neon: 'rgba(255,255,255,0.05)', video: '#252525', classic: '#FFFFFF',
+    neon: 'rgba(255,255,255,0.05)', video: '#252525', classic: '#FFFFFF', modern: '#FFFFFF',
   };
   return cards[theme] || '#FFFFFF';
 };
@@ -57,7 +57,7 @@ const getCardBorder = (theme) => {
     editorial: '#E5E5E5', botanical: 'rgba(255,255,255,0.15)',
     contemporary: '#0D0D0D', luxe: 'rgba(201,169,98,0.25)',
     neon: 'rgba(0,255,255,0.3)', video: 'rgba(107,140,174,0.3)',
-    classic: 'rgba(0,0,0,0.06)',
+    classic: 'rgba(0,0,0,0.06)', modern: 'rgba(0,0,0,0.1)',
   };
   return borders[theme] || '#E5E5E5';
 };
@@ -67,7 +67,7 @@ const getHeadlineFont = (theme) => {
     editorial: "'Oswald', sans-serif", botanical: "'Cormorant Garamond', serif",
     contemporary: "'Space Grotesk', sans-serif", luxe: "'Cormorant', serif",
     neon: "'Space Grotesk', sans-serif", video: "'Manrope', sans-serif",
-    classic: "'Cormorant Garamond', serif",
+    classic: "'Cormorant Garamond', serif", modern: "'DM Sans', sans-serif",
   };
   return fonts[theme] || "'Oswald', sans-serif";
 };
@@ -77,7 +77,7 @@ const getBodyFont = (theme) => {
     editorial: "'Inter', sans-serif", botanical: "'Montserrat', sans-serif",
     contemporary: "'Space Grotesk', sans-serif", luxe: "'Outfit', sans-serif",
     neon: "'Space Grotesk', sans-serif", video: "'Inter', sans-serif",
-    classic: "'Josefin Sans', sans-serif",
+    classic: "'Josefin Sans', sans-serif", modern: "'DM Sans', sans-serif",
   };
   return fonts[theme] || "'Inter', sans-serif";
 };
@@ -116,15 +116,16 @@ const HeroLabel = styled.span`
 const HeroTitle = styled.h1`
   font-family: ${p => getHeadlineFont(p.$theme)};
   font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: ${p => ['botanical', 'luxe'].includes(p.$theme) ? '300' : '700'};
+  font-weight: ${p => ['botanical', 'luxe'].includes(p.$theme) ? '300' : p.$theme === 'modern' ? '800' : '700'};
   color: ${p => getTextColor(p.$theme)};
   line-height: 1;
   margin-bottom: 1.5rem;
-  letter-spacing: ${p => ['editorial', 'contemporary'].includes(p.$theme) ? '-0.02em' : '0'};
+  letter-spacing: ${p => ['editorial', 'contemporary', 'modern'].includes(p.$theme) ? '-0.02em' : '0'};
   text-transform: ${p => ['editorial', 'contemporary', 'neon', 'video'].includes(p.$theme) ? 'uppercase' : 'none'};
 
   ${p => p.$theme === 'luxe' && css` font-style: italic; `}
   ${p => p.$theme === 'neon' && css` text-shadow: 0 0 20px rgba(0,255,255,0.5); `}
+  ${p => p.$theme === 'modern' && css` font-weight: 800; letter-spacing: -0.03em; `}
 `;
 
 const HeroDescription = styled.p`
@@ -182,6 +183,14 @@ const TagButton = styled.button`
           color: #00ffff;
           border: 1px solid #00ffff;
           box-shadow: 0 0 10px rgba(0,255,255,0.3);
+        `;
+      }
+      if (p.$theme === 'modern') {
+        return css`
+          background: #000;
+          color: #fff;
+          border: 1px solid #000;
+          font-weight: 800;
         `;
       }
       return css`
@@ -270,6 +279,11 @@ const PostCard = styled(Link)`
 
   ${p => p.$theme === 'video' && css`
     &:hover { border-color: #6B8CAE; }
+  `}
+
+  ${p => p.$theme === 'modern' && css`
+    border: 1px solid rgba(0,0,0,0.1);
+    &:hover { border-color: #000; }
   `}
 `;
 
@@ -409,6 +423,16 @@ const ShowMoreButton = styled.button`
     color: #6B8CAE;
     border: 1px solid #6B8CAE;
     &:hover { background: #6B8CAE; color: #0A0A0A; }
+  `}
+  ${p => p.$theme === 'modern' && css`
+    background: #000;
+    color: #fff;
+    border: none;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    &:hover { background: #333; }
   `}
 `;
 

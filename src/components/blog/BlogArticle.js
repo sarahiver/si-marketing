@@ -13,14 +13,14 @@ import SEOHead from '../shared/SEOHead';
 // ============================================
 // THEME HELPERS (same as BlogPage)
 // ============================================
-const getBackground = (t) => ({ editorial: '#FAFAFA', botanical: '#040604', contemporary: '#FAFAFA', luxe: '#0A0A0A', neon: '#0a0a0f', video: '#0A0A0A', classic: '#FDFCFA' }[t] || '#FAFAFA');
+const getBackground = (t) => ({ editorial: '#FAFAFA', botanical: '#040604', contemporary: '#FAFAFA', luxe: '#0A0A0A', neon: '#0a0a0f', video: '#0A0A0A', classic: '#FDFCFA', modern: '#FAFAFA' }[t] || '#FAFAFA');
 const getTextColor = (t) => ['botanical', 'luxe', 'neon', 'video'].includes(t) ? '#FFFFFF' : '#0A0A0A';
-const getSecondaryText = (t) => ({ editorial: '#666666', botanical: 'rgba(255,255,255,0.55)', contemporary: '#737373', luxe: 'rgba(248,246,243,0.5)', neon: 'rgba(255,255,255,0.6)', video: '#B0B0B0', classic: '#555555' }[t] || '#666666');
-const getAccent = (t) => ({ editorial: '#C41E3A', botanical: 'rgba(45,90,60,0.8)', contemporary: '#FF6B6B', luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE', classic: '#999999' }[t] || '#C41E3A');
-const getCardBg = (t) => ({ editorial: '#FFFFFF', botanical: 'rgba(255,255,255,0.08)', contemporary: '#FFFFFF', luxe: '#1A1A1D', neon: 'rgba(255,255,255,0.05)', video: '#252525', classic: '#FFFFFF' }[t] || '#FFFFFF');
-const getCardBorder = (t) => ({ editorial: '#E5E5E5', botanical: 'rgba(255,255,255,0.15)', contemporary: '#0D0D0D', luxe: 'rgba(201,169,98,0.25)', neon: 'rgba(0,255,255,0.3)', video: 'rgba(107,140,174,0.3)', classic: 'rgba(0,0,0,0.06)' }[t] || '#E5E5E5');
-const getHeadlineFont = (t) => ({ editorial: "'Oswald', sans-serif", botanical: "'Cormorant Garamond', serif", contemporary: "'Space Grotesk', sans-serif", luxe: "'Cormorant', serif", neon: "'Space Grotesk', sans-serif", video: "'Manrope', sans-serif", classic: "'Cormorant Garamond', serif" }[t] || "'Oswald', sans-serif");
-const getBodyFont = (t) => ({ editorial: "'Inter', sans-serif", botanical: "'Montserrat', sans-serif", contemporary: "'Space Grotesk', sans-serif", luxe: "'Outfit', sans-serif", neon: "'Space Grotesk', sans-serif", video: "'Inter', sans-serif", classic: "'Josefin Sans', sans-serif" }[t] || "'Inter', sans-serif");
+const getSecondaryText = (t) => ({ editorial: '#666666', botanical: 'rgba(255,255,255,0.55)', contemporary: '#737373', luxe: 'rgba(248,246,243,0.5)', neon: 'rgba(255,255,255,0.6)', video: '#B0B0B0', classic: '#555555', modern: 'rgba(0,0,0,0.45)' }[t] || '#666666');
+const getAccent = (t) => ({ editorial: '#C41E3A', botanical: 'rgba(45,90,60,0.8)', contemporary: '#FF6B6B', luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE', classic: '#999999', modern: '#000000' }[t] || '#C41E3A');
+const getCardBg = (t) => ({ editorial: '#FFFFFF', botanical: 'rgba(255,255,255,0.08)', contemporary: '#FFFFFF', luxe: '#1A1A1D', neon: 'rgba(255,255,255,0.05)', video: '#252525', classic: '#FFFFFF', modern: '#FFFFFF' }[t] || '#FFFFFF');
+const getCardBorder = (t) => ({ editorial: '#E5E5E5', botanical: 'rgba(255,255,255,0.15)', contemporary: '#0D0D0D', luxe: 'rgba(201,169,98,0.25)', neon: 'rgba(0,255,255,0.3)', video: 'rgba(107,140,174,0.3)', classic: 'rgba(0,0,0,0.06)', modern: 'rgba(0,0,0,0.1)' }[t] || '#E5E5E5');
+const getHeadlineFont = (t) => ({ editorial: "'Oswald', sans-serif", botanical: "'Cormorant Garamond', serif", contemporary: "'Space Grotesk', sans-serif", luxe: "'Cormorant', serif", neon: "'Space Grotesk', sans-serif", video: "'Manrope', sans-serif", classic: "'Cormorant Garamond', serif", modern: "'DM Sans', sans-serif" }[t] || "'Oswald', sans-serif");
+const getBodyFont = (t) => ({ editorial: "'Inter', sans-serif", botanical: "'Montserrat', sans-serif", contemporary: "'Space Grotesk', sans-serif", luxe: "'Outfit', sans-serif", neon: "'Space Grotesk', sans-serif", video: "'Inter', sans-serif", classic: "'Josefin Sans', sans-serif", modern: "'DM Sans', sans-serif" }[t] || "'Inter', sans-serif");
 
 // ============================================
 // SIMPLE MARKDOWN RENDERER
@@ -203,6 +203,7 @@ const ArticleTitle = styled.h1`
 
   ${p => p.$theme === 'luxe' && css` font-style: italic; `}
   ${p => p.$theme === 'neon' && css` text-shadow: 0 0 20px rgba(0,255,255,0.4); `}
+  ${p => p.$theme === 'modern' && css` font-weight: 800; letter-spacing: -0.03em; `}
 `;
 
 const ArticleMeta = styled.div`
@@ -344,6 +345,7 @@ const CTASection = styled.div`
 
   ${p => p.$theme === 'contemporary' && css` box-shadow: 6px 6px 0 #0D0D0D; `}
   ${p => p.$theme === 'botanical' && css` backdrop-filter: blur(40px); `}
+  ${p => p.$theme === 'modern' && css` border: 1px solid rgba(0,0,0,0.1); `}
 `;
 
 const CTATitle = styled.h3`
@@ -398,6 +400,11 @@ const CTAButton = styled.a`
   ${p => p.$theme === 'video' && css`
     background: transparent; color: #6B8CAE; border: 1px solid #6B8CAE;
     &:hover { background: #6B8CAE; color: #0A0A0A; }
+  `}
+  ${p => p.$theme === 'modern' && css`
+    background: #000; color: #fff; border: none; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.8rem;
+    &:hover { background: #333; }
   `}
 `;
 
@@ -532,7 +539,19 @@ const BlogArticle = () => {
         <CTAText $theme={currentTheme}>
           Premium-Design, eigene Domain, RSVP und Foto-Upload – alles inklusive ab 1.290€.
         </CTAText>
-        <CTAButton href="/#contact" $theme={currentTheme}>
+        <CTAButton
+          href="/#contact"
+          $theme={currentTheme}
+          onClick={(e) => {
+            if (currentTheme === 'modern') {
+              e.preventDefault();
+              navigate('/');
+              setTimeout(() => {
+                window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: 'contact' } }));
+              }, 400);
+            }
+          }}
+        >
           Jetzt anfragen
         </CTAButton>
       </CTASection>
