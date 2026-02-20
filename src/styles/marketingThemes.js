@@ -342,6 +342,50 @@ export const marketingThemes = {
       sectionSpacing: "clamp(4rem, 10vh, 8rem)",
     },
   },
+
+  // ═══════════════════════════════════════════════════════════
+  // MODERN - Three.js Parallax
+  // DM Sans, weißer Hintergrund, große Typografie, 3D-Bilder
+  // ═══════════════════════════════════════════════════════════
+  modern: {
+    id: "modern",
+    name: "Modern",
+    description: "3D Parallax — Immersiv & Frisch",
+    isDark: false,
+    colors: {
+      primary: "#000000",
+      secondary: "#333333",
+      accent: "#000000",
+      background: "#FFFFFF",
+      backgroundAlt: "#F8F8F8",
+      surface: "#FFFFFF",
+      text: "#000000",
+      textLight: "#FFFFFF",
+      textSecondary: "#666666",
+      textMuted: "rgba(0,0,0,0.3)",
+      border: "rgba(0,0,0,0.08)",
+      borderHover: "#000000",
+    },
+    fonts: {
+      headline: "'DM Sans', sans-serif",
+      body: "'DM Sans', sans-serif",
+    },
+    style: {
+      headingWeight: "800",
+      headingLetterSpacing: "-0.03em",
+      headingTextTransform: "none",
+      headingLineHeight: "0.95",
+      bodyWeight: "400",
+      bodyLetterSpacing: "0",
+      borderRadius: "0",
+      borderWidth: "0",
+      dividerWidth: "0",
+      buttonStyle: "solid",
+      shadowStyle: "none",
+      animationStyle: "parallax",
+      sectionSpacing: "clamp(4rem, 10vh, 8rem)",
+    },
+  },
 };
 
 // ============================================
@@ -353,6 +397,7 @@ export const themeOrder = [
   "contemporary",
   "editorial",
   "luxe",
+  "modern",
   "neon",
   "video",
 ];

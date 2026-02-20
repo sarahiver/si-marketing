@@ -167,17 +167,20 @@ function ModalContent({ id, onClose }) {
           <ModalBody style={{ transform: `translateY(${px(0.25)}px)` }}>
             Jedes Theme erzählt eure Geschichte anders. Von minimalistisch-elegant über cinematic-luxuriös bis hin zu modern-interaktiv mit 3D-Effekten.
           </ModalBody>
-          {['Classic', 'Botanical', 'Contemporary', 'Editorial', 'Luxe', 'Modern', 'Neon', 'Video'].map((name, i) => (
+          {['Classic', 'Botanical', 'Contemporary', 'Editorial', 'Luxe', 'Modern', 'Neon', 'Video'].map((name, i) => {
+            const slug = name === 'Modern' ? 'parallax' : name.toLowerCase();
+            return (
             <ModalItem key={i} style={{ transform: `translateY(${px(0.3 + i * 0.04)}px)` }}>
               <ModalItemTitle>{name}</ModalItemTitle>
               <ModalItemDesc>
-                <a href={`https://siwedding.de/demo-${name.toLowerCase()}`} target="_blank" rel="noopener noreferrer"
+                <a href={`https://siwedding.de/demo-${slug}`} target="_blank" rel="noopener noreferrer"
                   style={{ color: '#fff', textDecoration: 'underline', textUnderlineOffset: '3px', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                   Demo ansehen →
                 </a>
               </ModalItemDesc>
             </ModalItem>
-          ))}
+            );
+          })}
         </ModalInner>
       </ModalScroll>
     );

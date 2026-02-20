@@ -908,6 +908,7 @@ const ALL_DEMOS = [
   { id: 'contemporary', name: 'Contemporary', url: 'https://siwedding.de/demo-contemporary' },
   { id: 'editorial', name: 'Editorial', url: 'https://siwedding.de/demo-editorial' },
   { id: 'luxe', name: 'Luxe', url: 'https://siwedding.de/demo-luxe' },
+  { id: 'modern', name: 'Modern', url: 'https://siwedding.de/demo-parallax' },
   { id: 'neon', name: 'Neon', url: 'https://siwedding.de/demo-neon' },
   { id: 'video', name: 'Video', url: 'https://siwedding.de/demo-video' },
 ];
@@ -1415,6 +1416,214 @@ const ClassicDemoLink = styled.a`
 `;
 
 // ============================================
+// MODERN SHOWCASE STYLES
+// ============================================
+const modernShowFloat1 = keyframes`
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-5px, -10px); }
+`;
+const modernShowFloat2 = keyframes`
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(8px, -6px); }
+`;
+
+const ModernShowSection = styled(Section)`
+  background: #FFFFFF;
+  padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);
+`;
+
+const ModernShowContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+`;
+
+const ModernShowContent = styled.div``;
+
+const ModernShowLabel = styled.p`
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.3);
+  margin-bottom: 1rem;
+`;
+
+const ModernShowTitle = styled.h2`
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: #000;
+  margin-bottom: 0.5rem;
+`;
+
+const ModernShowTagline = styled.p`
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(0,0,0,0.25);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+`;
+
+const ModernShowDesc = styled.p`
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 2rem;
+  max-width: 420px;
+`;
+
+const ModernShowFeatures = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+`;
+
+const ModernShowFeature = styled.span`
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,0,0,0.08);
+`;
+
+const ModernShowCTA = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #000;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #333;
+  }
+
+  svg { width: 14px; height: 14px; }
+`;
+
+const ModernShowPreview = styled.div`
+  position: relative;
+  min-height: 450px;
+
+  @media (max-width: 900px) {
+    min-height: 300px;
+  }
+`;
+
+const ModernShowMockup = styled.div`
+  position: relative;
+  width: 100%;
+  height: 450px;
+
+  @media (max-width: 900px) {
+    height: 300px;
+  }
+`;
+
+const ModernMockupImg1 = styled.img`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 65%;
+  height: 90%;
+  object-fit: cover;
+  animation: ${modernShowFloat1} 6s ease-in-out infinite;
+`;
+
+const ModernMockupImg2 = styled.img`
+  position: absolute;
+  right: 0;
+  top: 15%;
+  width: 45%;
+  height: 70%;
+  object-fit: cover;
+  animation: ${modernShowFloat2} 8s ease-in-out infinite;
+  z-index: 2;
+`;
+
+const ModernMockupNames = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: rgba(0,0,0,0.06);
+  z-index: 3;
+  pointer-events: none;
+  white-space: nowrap;
+`;
+
+const ModernAllDemos = styled.div`
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+`;
+
+const ModernAllDemosTitle = styled.p`
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.25);
+  margin-bottom: 1rem;
+`;
+
+const ModernDemoGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
+
+const ModernDemoLink = styled.a`
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: ${p => p.$active ? '700' : '500'};
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: ${p => p.$active ? '#000' : 'rgba(0,0,0,0.35)'};
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid ${p => p.$active ? '#000' : 'rgba(0,0,0,0.08)'};
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #000;
+    border-color: #000;
+  }
+`;
+
+// ============================================
 // MAIN COMPONENT
 // ============================================
 const ThemeShowcase = () => {
@@ -1711,6 +1920,64 @@ const ThemeShowcase = () => {
           </NeonTerminal>
         </NeonContainer>
       </NeonSection>
+    );
+  }
+
+  // MODERN — Parallax 3D Style
+  if (currentTheme === 'modern') {
+    return (
+      <ModernShowSection id="themes">
+        <ModernShowContainer>
+          <ModernShowContent>
+            <ModernShowLabel>Theme Vorschau</ModernShowLabel>
+            <ModernShowTitle>Modern</ModernShowTitle>
+            <ModernShowTagline>immersiv &amp; interaktiv</ModernShowTagline>
+            <ModernShowDesc>
+              Ein komplett neues Erlebnis: Eure Hochzeitswebsite als interaktive 3D-Reise. 
+              Bilder schweben im Raum, Texte erscheinen beim Scrollen, 
+              alles fühlt sich lebendig und einzigartig an.
+            </ModernShowDesc>
+            <ModernShowFeatures>
+              <ModernShowFeature>Three.js 3D-Engine</ModernShowFeature>
+              <ModernShowFeature>Parallax-Effekte</ModernShowFeature>
+              <ModernShowFeature>DM Sans Typografie</ModernShowFeature>
+            </ModernShowFeatures>
+            <ModernShowCTA href="https://siwedding.de/demo-parallax" target="_blank" rel="noopener noreferrer">
+              Demo ansehen <ArrowIcon />
+            </ModernShowCTA>
+          </ModernShowContent>
+          <ModernShowPreview>
+            <ModernShowMockup>
+              <ModernMockupImg1
+                src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg"
+                alt=""
+              />
+              <ModernMockupImg2
+                src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_400/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg"
+                alt=""
+              />
+              <ModernMockupNames>L &amp; J</ModernMockupNames>
+            </ModernShowMockup>
+          </ModernShowPreview>
+        </ModernShowContainer>
+
+        <ModernAllDemos>
+          <ModernAllDemosTitle>Alle Themes ansehen</ModernAllDemosTitle>
+          <ModernDemoGrid>
+            {ALL_DEMOS.map(demo => (
+              <ModernDemoLink
+                key={demo.id}
+                href={demo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                $active={demo.id === 'modern'}
+              >
+                {demo.name}
+              </ModernDemoLink>
+            ))}
+          </ModernDemoGrid>
+        </ModernAllDemos>
+      </ModernShowSection>
     );
   }
 

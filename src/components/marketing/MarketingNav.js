@@ -10,6 +10,7 @@ const THEMES = [
   { id: 'botanical', name: 'Botanical' },
   { id: 'contemporary', name: 'Contemporary' },
   { id: 'luxe', name: 'Luxe' },
+  { id: 'modern', name: 'Modern' },
   { id: 'neon', name: 'Neon' },
   { id: 'video', name: 'Video' },
   { id: 'classic', name: 'Classic' },
@@ -35,13 +36,13 @@ const Nav = styled.nav`
 
   /* Mobile: Immer Hintergrund für bessere Lesbarkeit */
   @media (max-width: 768px) {
-    background: ${p => p.$theme === 'classic' ? 'transparent' : p.$theme === 'contemporary' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
+    background: ${p => p.$theme === 'classic' ? 'transparent' : p.$theme === 'contemporary' || p.$theme === 'modern' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
     backdrop-filter: ${p => p.$theme === 'classic' ? 'none' : 'blur(10px)'};
     padding: 1rem 1.5rem;
   }
 
   ${p => p.$scrolled && p.$theme !== 'classic' && css`
-    background: ${p.$theme === 'contemporary' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
+    background: ${p.$theme === 'contemporary' || p.$theme === 'modern' ? 'rgba(253,252,250,0.97)' : 'rgba(10, 10, 10, 0.95)'};
     backdrop-filter: blur(10px);
     padding: 1rem clamp(1.5rem, 5vw, 4rem);
   `}
@@ -145,7 +146,7 @@ const NavLink = styled.a`
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : 'rgba(255,255,255,0.7)'};
+  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#1A1A1A' : 'rgba(255,255,255,0.7)'};
   text-decoration: none;
   transition: all 0.3s ease;
   ${p => p.$theme === 'classic' && `font-family: 'Josefin Sans', sans-serif; font-weight: 300;`}
@@ -211,7 +212,7 @@ const ThemeSwitcherWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-left: 1rem;
-  border-left: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)'};
+  border-left: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)'};
   
   @media (max-width: 768px) { display: none; }
 `;
@@ -222,7 +223,7 @@ const CurrentThemeBtn = styled.button`
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : '#fff'};
+  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#1A1A1A' : '#fff'};
   background: transparent;
   border: none;
   cursor: pointer;
@@ -246,7 +247,7 @@ const ThemeDropdown = styled.div`
   top: calc(100% + 10px);
   right: 0;
   min-width: 140px;
-  background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#FFFFFF' : 'rgba(10, 10, 10, 0.95)'};
+  background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#FFFFFF' : 'rgba(10, 10, 10, 0.95)'};
   border: ${p => p.$theme === 'contemporary' ? '2px solid #0D0D0D' : p.$theme === 'classic' ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.15)'};
   ${p => p.$theme === 'contemporary' && css`box-shadow: 4px 4px 0 #0D0D0D;`}
   ${p => p.$theme === 'classic' && css`box-shadow: 0 10px 30px rgba(0,0,0,0.08);`}
@@ -268,7 +269,7 @@ const ThemeOption = styled.button`
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : 'rgba(255,255,255,0.7)'};
+  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#1A1A1A' : 'rgba(255,255,255,0.7)'};
   background: transparent;
   border: none;
   cursor: pointer;
@@ -304,7 +305,7 @@ const BurgerLine = styled.span`
   display: block;
   width: 22px;
   height: 2px;
-  background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : '#fff'};
+  background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#1A1A1A' : '#fff'};
   position: relative;
   transition: all 0.3s ease;
 
@@ -318,7 +319,7 @@ const BurgerLine = styled.span`
     left: 0;
     width: 22px;
     height: 2px;
-    background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#1A1A1A' : '#fff'};
+    background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#1A1A1A' : '#fff'};
     transition: all 0.3s ease;
   }
   
@@ -377,6 +378,7 @@ const MobileMenu = styled.div`
       case 'botanical': return '#040604';
       case 'contemporary': return '#FFFFFF';
       case 'classic': return '#FFFFFF';
+      case 'modern': return '#FFFFFF';
       case 'luxe': return '#0A0A0A';
       case 'neon': return '#0a0a0f';
       case 'editorial': return '#0A0A0A';
@@ -400,14 +402,14 @@ const MobileCloseBtn = styled.button`
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.2)'};
+  border: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.2)'};
   border-radius: ${p => p.$theme === 'contemporary' ? '8px' : p.$theme === 'botanical' ? '50%' : '0'};
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10;
   font-size: 1.25rem;
   line-height: 1;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#0D0D0D' : p.$theme === 'neon' ? '#00ffff' : p.$theme === 'luxe' ? '#D4AF37' : 'rgba(255,255,255,0.8)'};
+  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#0D0D0D' : p.$theme === 'neon' ? '#00ffff' : p.$theme === 'luxe' ? '#D4AF37' : 'rgba(255,255,255,0.8)'};
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   padding: 0;
@@ -444,10 +446,10 @@ const MobileNavLink = styled.a`
   text-transform: uppercase;
   text-decoration: none;
   padding: 1rem 0;
-  border-bottom: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
+  border-bottom: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
   transition: all 0.3s ease;
 
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
+  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
   
   &:hover {
     color: ${p => {
@@ -464,7 +466,7 @@ const MobileNavLink = styled.a`
 const MobileThemeSection = styled.div`
   margin-top: auto;
   padding-top: 2rem;
-  border-top: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
+  border-top: 1px solid ${p => p.$theme === 'contemporary' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
 `;
 
 const MobileThemeTitle = styled.p`
@@ -473,7 +475,7 @@ const MobileThemeTitle = styled.p`
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#999' : 'rgba(255,255,255,0.4)'};
+  color: ${p => p.$theme === 'contemporary' ? '#999' : 'rgba(255,255,255,0.4)'};
   margin-bottom: 1rem;
 `;
 
@@ -494,19 +496,19 @@ const MobileThemeBtn = styled.button`
   transition: all 0.2s ease;
   
   background: ${p => p.$active 
-    ? (p.$theme === 'contemporary' || p.$theme === 'classic' ? '#F0F0F0' : 'rgba(255,255,255,0.15)') 
-    : (p.$theme === 'contemporary' || p.$theme === 'classic' ? '#F5F5F5' : 'rgba(255,255,255,0.05)')
+    ? (p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.15)') 
+    : (p.$theme === 'contemporary' ? '#F5F5F5' : 'rgba(255,255,255,0.05)')
   };
   
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
+  color: ${p => p.$theme === 'contemporary' ? '#0D0D0D' : 'rgba(255,255,255,0.8)'};
   
   border: ${p => p.$active 
-    ? (p.$theme === 'contemporary' || p.$theme === 'classic' ? '2px solid #0D0D0D' : '1px solid rgba(255,255,255,0.3)') 
-    : (p.$theme === 'contemporary' || p.$theme === 'classic' ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.1)')
+    ? (p.$theme === 'contemporary' ? '2px solid #0D0D0D' : '1px solid rgba(255,255,255,0.3)') 
+    : (p.$theme === 'contemporary' ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.1)')
   };
   
   &:hover {
-    background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' ? '#EBEBEB' : 'rgba(255,255,255,0.1)'};
+    background: ${p => p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
   }
 `;
 

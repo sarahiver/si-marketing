@@ -51,6 +51,11 @@ const SwitcherContainer = styled.div`
     border: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   `}
+  ${p => p.$themeId === 'modern' && css`
+    background: rgba(255,255,255,0.97);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  `}
 
   @media (max-width: 600px) {
     bottom: 15px;
@@ -73,6 +78,7 @@ const Label = styled.span`
   ${p => p.$themeId === 'luxe' && css`font-family: 'Montserrat', sans-serif; color: rgba(212,175,55,0.6);`}
   ${p => p.$themeId === 'neon' && css`font-family: 'Space Grotesk', sans-serif; color: #00ffff;`}
   ${p => p.$themeId === 'classic' && css`font-family: 'Josefin Sans', sans-serif; color: #999999;`}
+  ${p => p.$themeId === 'modern' && css`font-family: 'DM Sans', sans-serif; color: rgba(0,0,0,0.3);`}
 `;
 
 const ThemeButtons = styled.div`
@@ -115,13 +121,14 @@ const ThemeButton = styled.button`
 `;
 
 const themes = [
-  { id: 'editorial', color: '#F5F0EB', border: '#C41E3A' },
+  { id: 'editorial', color: '#FFFFFF', border: '#E0E0E0' },
   { id: 'video', color: '#B8976A', border: '#B8976A' },
   { id: 'botanical', color: '#8B9D83', border: '#8B9D83' },
   { id: 'contemporary', color: '#FF6B6B', border: '#FF6B6B' },
   { id: 'luxe', color: '#1A1520', border: '#D4AF37' },
   { id: 'neon', color: '#00ffff', border: '#00ffff' },
-  { id: 'classic', color: '#2C2C2C', border: '#999999' }
+  { id: 'modern', color: '#000000', border: '#000000' },
+  { id: 'classic', color: '#FFFFFF', border: '#999999' }
 ];
 
 function ThemeSwitcher() {

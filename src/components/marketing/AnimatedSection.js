@@ -86,6 +86,11 @@ const AnimatedWrapper = styled.div`
     animation: ${videoFade} 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     animation-delay: ${p.$delay || 0}ms;
   `}
+
+  ${p => p.$visible && p.$theme === 'modern' && css`
+    animation: ${editorialFadeUp} 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: ${p.$delay || 0}ms;
+  `}
 `;
 
 // ============================================

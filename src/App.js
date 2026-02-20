@@ -1,6 +1,6 @@
 // src/App.js
 // S&I Wedding Marketing - Hauptseite für siwedding.de
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -25,6 +25,9 @@ import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
 
+// Modern Theme
+import ModernOverride from './components/marketing/ModernOverride';
+
 // ============================================
 // SHARED / STANDALONE PAGES
 // ============================================
@@ -40,9 +43,14 @@ import BlogPage from './components/blog/BlogPage';
 import BlogArticle from './components/blog/BlogArticle';
 
 // ============================================
+// LAZY IMPORTS (must come after all regular imports)
+// ============================================
+const ModernParallaxPage = React.lazy(() => import('./components/marketing/ModernParallaxPage'));
+
+// ============================================
 // GOOGLE FONTS - Alle Fonts für alle Themes (werden in Theme-Previews gebraucht)
 // ============================================
-const GOOGLE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500&family=Manrope:wght@300;400;500;600;700;800&family=Josefin+Sans:wght@300;400;600&family=Mrs+Saint+Delafield&display=swap';
+const GOOGLE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500&family=Manrope:wght@300;400;500;600;700;800&family=Josefin+Sans:wght@300;400;600&family=Mrs+Saint+Delafield&family=DM+Sans:wght@400;500;700;800&display=swap';
 
 // ============================================
 // GLOBAL STYLES
@@ -95,6 +103,8 @@ function MarketingPage() {
   useEffect(() => {
     document.title = 'S&I. wedding — Premium Hochzeitswebsites';
   }, []);
+
+  const isModern = currentTheme === 'modern';
 
   const productSchema = {
     '@type': 'Product',
@@ -153,37 +163,46 @@ function MarketingPage() {
       
       <BotanicalLeaves />
       <MarketingNav />
-      <MarketingHero />
-      <AnimatedSection>
-        <USPSection />
-      </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <ThemeShowcase />
-      </AnimatedSection>
-      {/* ExamplesShowcase - wird später mit echten Kunden-URLs eingebunden */}
-      <AnimatedSection delay={100}>
-        <HowItWorksSection />
-      </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <ComponentsShowcase />
-      </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <PromoBanner />
-        <PricingSection />
-      </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <AboutSection />
-      </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <WhyUsSection />
-      </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <ContactSection />
-      </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <CooperationSection />
-      </AnimatedSection>
-      <MarketingFooter />
+
+      {isModern ? (
+        <Suspense fallback={<div style={{ height: '100vh', background: '#fff' }} />}>
+          <ModernParallaxPage />
+        </Suspense>
+      ) : (
+        <>
+          <MarketingHero />
+          <AnimatedSection>
+            <USPSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <ThemeShowcase />
+          </AnimatedSection>
+          {/* ExamplesShowcase - wird später mit echten Kunden-URLs eingebunden */}
+          <AnimatedSection delay={100}>
+            <HowItWorksSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <ComponentsShowcase />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <PromoBanner />
+            <PricingSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <AboutSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <WhyUsSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <ContactSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <CooperationSection />
+          </AnimatedSection>
+          <MarketingFooter />
+        </>
+      )}
     </AppWrapper>
   );
 }
