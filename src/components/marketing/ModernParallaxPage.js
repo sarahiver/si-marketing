@@ -45,15 +45,23 @@ const FLOAT_IMAGES = [
 // THREE.JS SCENE — Scroll-only parallax, no auto-float
 // Each image has its own scroll speed for layered depth
 // ============================================
-function ParallaxImg({ url, basePos, scaleArr, speed, scrollY, pageHeight }) {
+function ParallaxImg({ url, basePos, scaleArr, speed, scrollY, pageHeight, zoom }) {
   const ref = useRef();
+  const baseScale = useRef(scaleArr);
 
   useFrame(() => {
     if (!ref.current) return;
     const scrollFactor = (scrollY.current / pageHeight) || 0;
-    // Each image drifts at its own speed relative to the base group scroll
     const drift = scrollFactor * speed;
     ref.current.position.y = basePos[1] + drift;
+
+    // Zoom: scale pulses based on scroll position
+    if (zoom) {
+      // zoom > 0 = zoom in, zoom < 0 = zoom out
+      const zoomAmount = 1 + scrollFactor * zoom * 0.4;
+      ref.current.scale.x = baseScale.current[0] * zoomAmount;
+      ref.current.scale.y = baseScale.current[1] * zoomAmount;
+    }
   });
 
   return (
@@ -69,30 +77,31 @@ function ParallaxImg({ url, basePos, scaleArr, speed, scrollY, pageHeight }) {
 }
 
 // Image config: bigger, more overlap, constrained to ~80vw (-0.4 to +0.4 x)
+// zoom: positive = zoom in on scroll, negative = zoom out
 const IMG_CONFIG = [
   // #1 Hero links — Hochformat schmal, groß
   { x: -0.3, y: 0.05, z: -2, w: 0.24, h: 0.65, speed: 0.8, img: 0 },
-  // #2 Hero rechts — Querformat breit
-  { x: 0.25, y: -0.08, z: 1, w: 0.48, h: 0.28, speed: 1.4, img: 1 },
-  // #3 Obere Mitte — Hochformat, überlappt mit #1/#2
+  // #2 Hero rechts — Querformat breit, ZOOM IN
+  { x: 0.25, y: -0.08, z: 1, w: 0.48, h: 0.28, speed: 1.4, img: 1, zoom: 0.6 },
+  // #3 Obere Mitte — Hochformat
   { x: 0.0, y: -0.45, z: 0, w: 0.22, h: 0.58, speed: 1.1, img: 2 },
   // #4 Mid rechts — Querformat breit
   { x: 0.25, y: -0.65, z: -1, w: 0.46, h: 0.3, speed: 0.6, img: 3 },
-  // #5 Mid links — Quadratisch groß
-  { x: -0.25, y: -0.9, z: 2, w: 0.34, h: 0.34, speed: 1.5, img: 4 },
-  // #6 Untere Mitte — Hochformat, überlappt #5
+  // #5 Mid links — Quadratisch groß, ZOOM OUT
+  { x: -0.25, y: -0.9, z: 2, w: 0.34, h: 0.34, speed: 1.5, img: 4, zoom: -0.5 },
+  // #6 Untere Mitte — Hochformat
   { x: 0.12, y: -1.1, z: -2, w: 0.22, h: 0.6, speed: 0.9, img: 5 },
   // #7 Links — Querformat Panorama, groß
   { x: -0.2, y: -1.4, z: 1, w: 0.52, h: 0.26, speed: 1.3, img: 6 },
-  // #8 Rechts — Hochformat schmal
-  { x: 0.3, y: -1.6, z: 0, w: 0.2, h: 0.55, speed: 0.7, img: 7 },
-  // #9 Links — Querformat breit, überlappt #8
+  // #8 Rechts — Hochformat schmal, ZOOM IN
+  { x: 0.3, y: -1.6, z: 0, w: 0.2, h: 0.55, speed: 0.7, img: 7, zoom: 0.5 },
+  // #9 Links — Querformat breit
   { x: -0.15, y: -1.85, z: -1, w: 0.44, h: 0.28, speed: 1.45, img: 8 },
-  // #10 Rechts — Hochformat groß
-  { x: 0.22, y: -2.05, z: 2, w: 0.26, h: 0.62, speed: 0.85, img: 9 },
-  // #11 Mitte — Querformat extra breit (fast volle Breite)
+  // #10 Rechts — Hochformat groß, ZOOM OUT
+  { x: 0.22, y: -2.05, z: 2, w: 0.26, h: 0.62, speed: 0.85, img: 9, zoom: -0.4 },
+  // #11 Mitte — Querformat extra breit
   { x: -0.02, y: -2.35, z: -2, w: 0.56, h: 0.24, speed: 1.2, img: 10 },
-  // #12 Rechts — Hochformat schmal, Tiefe
+  // #12 Rechts — Hochformat schmal
   { x: 0.18, y: -2.55, z: 1, w: 0.18, h: 0.5, speed: 1.0, img: 11 },
 ];
 
@@ -117,6 +126,7 @@ function ParallaxScene({ scrollY }) {
           speed={h * cfg.speed}
           scrollY={scrollY}
           pageHeight={pageHeight}
+          zoom={cfg.zoom || 0}
         />
       ))}
     </group>
@@ -644,21 +654,21 @@ export default function ModernParallaxPage() {
       }}>
         <p style={{
           fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', fontWeight: 700,
-          letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)',
-          marginBottom: '1.5rem',
+          letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)',
+          marginBottom: '1.5rem', background: '#fff', padding: '0.3em 0.6em',
         }}>PREMIUM HOCHZEITSWEBSITES</p>
         <h1 style={{
           fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(3.5rem, 9vw, 8rem)',
           fontWeight: 800, lineHeight: 0.95, letterSpacing: '-0.03em', color: '#000', margin: 0,
           background: '#fff', padding: '0.1em 0.3em',
         }}>
-          Eure<br />Geschichte.<br />Immersiv<br />erzählt.
+          Eure Liebe.<br />Handgemacht<br />erzählt.
         </h1>
         <p style={{
           fontFamily: "'DM Sans', sans-serif", fontSize: '0.75rem', fontWeight: 700,
-          letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.2)',
-          marginTop: '2rem',
-        }}>HANDGEMACHT · IN 7 TAGEN LIVE</p>
+          letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.25)',
+          marginTop: '2rem', background: '#fff', padding: '0.3em 0.6em',
+        }}>AB 1.290 € · IN 7 TAGEN LIVE</p>
       </div>
 
       {/* ── SCATTERED TITLES ── */}
