@@ -60,7 +60,7 @@ Das ist besonders wichtig für Paare, die Wert auf Datenschutz legen oder eine i
 
 ## 4. Eure ganz persönliche Hochzeitsdomain
 
-Stellt euch vor, eure Hochzeitsgäste tippen einfach **sarah-und-max.de** in ihren Browser – und landen auf einer wunderschön gestalteten Website, die eure gemeinsame Geschichte erzählt. Das ist persönlicher als jede Papiereinladung, eleganter als jede WhatsApp-Nachricht und moderner als jedes Hochzeitsportal.
+Stellt euch vor, eure Hochzeitsgäste tippen einfach **eurenamen.de** in ihren Browser – und landen auf einer wunderschön gestalteten Website, die eure gemeinsame Geschichte erzählt. Das ist persönlicher als jede Papiereinladung, eleganter als jede WhatsApp-Nachricht und moderner als jedes Hochzeitsportal.
 
 **Eine eigene Domain für eure Hochzeitswebsite** ist nicht nur praktisch, sondern auch ein echtes Statement. Sie zeigt euren Gästen, dass ihr euch Gedanken gemacht habt und eure Hochzeit bis ins Detail durchgeplant ist. Und nach der Hochzeit? Bleibt die Website als digitale Erinnerung bestehen – mit allen Fotos, Gästebucheinträgen und Erinnerungen an euren schönsten Tag.
 
@@ -298,7 +298,7 @@ S&I. ist kein Baukasten. Kein Portal. Kein Template-System wo ihr selbst herumba
 
 **Was S&I. von allen anderen unterscheidet:**
 
-**6 professionell gestaltete Themes** – kein einziges davon ist ein Standard-Template. Jedes hat seinen eigenen Designcharakter, seine eigene Typografie, seine eigene Farbwelt. Entworfen für Paare die wissen dass Design einen Unterschied macht:
+**Professionell gestaltete Themes** – kein einziges davon ist ein Standard-Template. Jedes hat seinen eigenen Designcharakter, seine eigene Typografie, seine eigene Farbwelt. Entworfen für Paare die wissen dass Design einen Unterschied macht:
 
 - [Editorial →](https://www.siwedding.de/demo-editorial) — minimalistisch, modern, selbstbewusst
 - [Botanical →](https://www.siwedding.de/demo-botanical) — romantisch, natürlich, warm
@@ -589,7 +589,7 @@ Der gesamte Vorgang dauert für eure Gäste zwei bis drei Sekunden. Und für euc
 
 ### Was ihr bekommt:
 
-**Sofort nach Vertragsabschluss** erhaltet ihr euren QR-Code als hochauflösende Datei zum Download. Ihr müsst nicht warten, bis eure Website komplett fertig ist. Der Code verweist auf eure persönliche Domain (z.B. sarah-und-max.de) und funktioniert vom ersten Moment an – auch wenn auf der Website zunächst nur eine „Coming Soon"-Seite steht.
+**Sofort nach Vertragsabschluss** erhaltet ihr euren QR-Code als hochauflösende Datei zum Download. Ihr müsst nicht warten, bis eure Website komplett fertig ist. Der Code verweist auf eure persönliche Domain (z.B. eurenamen.de) und funktioniert vom ersten Moment an – auch wenn auf der Website zunächst nur eine „Coming Soon"-Seite steht.
 
 **Das heißt konkret:** Ihr könnt eure Einladungskarten sofort in Druck geben, sobald ihr euer S&I.-Paket gebucht habt. Die Website selbst gestaltet ihr in Ruhe weiter – parallel zum Kartenversand. Wenn eure Gäste den QR-Code scannen, sehen sie entweder eure fertige Website oder einen stilvollen Hinweis, dass es bald losgeht.
 
@@ -607,7 +607,7 @@ Der generierte QR-Code enthält den direkten Link zu eurer persönlichen Hochzei
 
 Falls ihr noch keinen S&I.-Vertrag habt oder einen anderen Anbieter nutzt, könnt ihr euren QR-Code natürlich auch selbst erstellen. Hier eine kurze Anleitung:
 
-**Schritt 1: URL festlegen.** Bevor ihr den QR-Code erstellt, braucht ihr die fertige URL eurer Hochzeitswebsite (z.B. sarah-und-max.de). Wichtig: Diese URL sollte sich nachträglich nicht mehr ändern, da der gedruckte QR-Code fest mit dieser Adresse verbunden ist.
+**Schritt 1: URL festlegen.** Bevor ihr den QR-Code erstellt, braucht ihr die fertige URL eurer Hochzeitswebsite (z.B. eurenamen.de). Wichtig: Diese URL sollte sich nachträglich nicht mehr ändern, da der gedruckte QR-Code fest mit dieser Adresse verbunden ist.
 
 **Schritt 2: QR-Code generieren.** Nutzt einen kostenlosen QR-Code-Generator wie qr-code-generator.com oder die QR-Code-Funktion in Canva. Gebt als Ziel-URL die Adresse eurer Hochzeitswebsite ein und generiert den Code.
 
@@ -629,7 +629,7 @@ Die Faustformel lautet: **Die gedruckte Hochzeitseinladung enthält die Emotion,
 
 ## 5 Tipps für den perfekten QR-Code auf eurer Hochzeitseinladung
 
-**1. Kurze, merkbare Domain verwenden.** Statt einer kryptischen URL wie paare.anbieter.de/sarah-max-2026 ist eine eigene Domain wie sarah-und-max.de viel eleganter. Sie funktioniert auch dann, wenn jemand die URL doch manuell eintippen möchte. Bei S&I. ist eine eigene Domain immer inklusive – perfekt für den QR-Code und die Einladungskarte.
+**1. Kurze, merkbare Domain verwenden.** Statt einer kryptischen URL wie paare.anbieter.de/sarah-max-2026 ist eine eigene Domain wie eurenamen.de viel eleganter. Sie funktioniert auch dann, wenn jemand die URL doch manuell eintippen möchte. Bei S&I. ist eine eigene Domain immer inklusive – perfekt für den QR-Code und die Einladungskarte.
 
 **2. Den QR-Code nicht zu klein drucken.** Mindestens 2 x 2 cm, besser 3 x 3 cm. Zu kleine Codes können von älteren Smartphones nicht zuverlässig gescannt werden. Plant den QR-Code also von Anfang an in euer Kartendesign ein und gebt ihm genug Platz.
 
@@ -663,7 +663,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
   {
     slug: 'hochzeitswebsite-eigene-domain-passwortschutz',
     title: 'Eigene Domain und Passwortschutz: So wird eure Hochzeitswebsite persönlich und sicher',
-    description: 'Eigene Domain wie sarah-und-max.de statt Subdomain? Passwortschutz für eure Privatsphäre? Alles, was Brautpaare über Domain und Datenschutz ihrer Hochzeitswebsite wissen müssen.',
+    description: 'Eigene Domain wie eurenamen.de statt Subdomain? Passwortschutz für eure Privatsphäre? Alles, was Brautpaare über Domain und Datenschutz ihrer Hochzeitswebsite wissen müssen.',
     date: '2024-11-25',
     category: 'Features',
     tags: ['Planung', 'Features'],
@@ -680,9 +680,9 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
       "datePublished": "2024-11-25",
     },
     content: `
-## sarah-und-max.de statt name.anbieter.de: Warum eure Domain zählt
+## eurenamen.de statt name.anbieter.de: Warum eure Domain zählt
 
-Stellt euch zwei Szenarien vor: Auf eurer Hochzeitseinladung steht entweder die Webadresse **sarah-und-max.de** – oder **sarah-max.zankyou.com/wedding-2026**. Welche URL ist leichter zu merken? Welche würdet ihr euren Gästen auf einer schönen Einladungskarte drucken?
+Stellt euch zwei Szenarien vor: Auf eurer Hochzeitseinladung steht entweder die Webadresse **eurenamen.de** – oder **sarah-max.zankyou.com/wedding-2026**. Welche URL ist leichter zu merken? Welche würdet ihr euren Gästen auf einer schönen Einladungskarte drucken?
 
 Eine eigene Domain für eure Hochzeitswebsite ist mehr als ein technisches Detail. Sie ist der erste Eindruck, den eure Gäste von eurer digitalen Hochzeitswelt bekommen – persönlich, elegant und einprägsam.
 
@@ -690,7 +690,7 @@ Eine eigene Domain für eure Hochzeitswebsite ist mehr als ein technisches Detai
 
 ## Was ist der Unterschied zwischen eigener Domain und Subdomain?
 
-**Eigene Domain (Top-Level-Domain):** sarah-und-max.de – eine eigene Webadresse, die exklusiv euch gehört. Sie ist kurz, professionell und unverwechselbar. Eure Gäste tippen sie einfach in den Browser, und landen direkt auf eurer Hochzeitshomepage.
+**Eigene Domain (Top-Level-Domain):** eurenamen.de – eine eigene Webadresse, die exklusiv euch gehört. Sie ist kurz, professionell und unverwechselbar. Eure Gäste tippen sie einfach in den Browser, und landen direkt auf eurer Hochzeitshomepage.
 
 **Subdomain des Anbieters:** sarah-max.anbieter.de oder anbieter.de/sarah-max – eure Hochzeitswebsite läuft unter der Domain des Plattform-Anbieters. Das funktioniert technisch, wirkt aber weniger persönlich und ist oft schwerer zu merken.
 
@@ -1620,7 +1620,7 @@ Die Frage „Was wünscht ihr euch?" wird mit S&I. zum Kinderspiel. Ihr erstellt
 
 Das Reservierungssystem ist diskret: Andere Gäste sehen nur, dass ein Geschenk bereits reserviert ist, aber nicht von wem. So bleibt die Überraschung erhalten, während ihr trotzdem den Überblick behaltet.
 
-## 6 Premium-Themes: Design auf Agentur-Niveau
+## Premium-Themes: Design auf Agentur-Niveau
 
 Keine vorgefertigten Templates von der Stange. Bei S&I. stehen euch **sechs handdesignte Premium-Themes** zur Wahl, die von professionellen Designern entwickelt wurden:
 

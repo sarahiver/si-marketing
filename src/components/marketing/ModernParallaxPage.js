@@ -220,7 +220,7 @@ function ModalContent({ id, onClose, onOpenContact }) {
           </Stagger>
           {[
             { n: '01', t: 'Kein Paar ist wie das andere', d: 'Jede Website ein Unikat — handgemacht, nicht von der Stange. Bereits Dutzende Paare haben ihre Liebesgeschichte mit uns digital verewigt.' },
-            { n: '02', t: 'sarah-und-max.de', d: 'Eure Liebe hat eine eigene Adresse. Keine Subdomain, kein Baukasten-Link. Professionell eingerichtet, sofort startklar.' },
+            { n: '02', t: 'eurenamen.de', d: 'Eure Liebe hat eine eigene Adresse. Keine Subdomain, kein Baukasten-Link. Professionell eingerichtet, sofort startklar.' },
             { n: '03', t: 'Designwelten', d: 'Ob elegant, modern oder verspielt: Wir passen jedes Design individuell an eure Farben, Fotos und Geschichte an.' },
             { n: '04', t: 'Direkter Kontakt', d: 'Ihr sprecht mit echten Menschen — Sarah & Iver. Keine Hotline, kein Bot, kein Ticketsystem.' },
             { n: '05', t: 'So wenig Aufwand wie möglich', d: 'Wir übernehmen den Rest. Ihr schickt uns Texte & Fotos.' },
@@ -245,7 +245,7 @@ function ModalContent({ id, onClose, onOpenContact }) {
           <DecoGlyph char="8" scrollTop={scrollTop} top="3rem" left="70%" size="clamp(10rem, 25vw, 20rem)" speed={-0.1} />
           <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
             <ModalHeader>
-              <ModalLabel>8 THEMES</ModalLabel>
+              <ModalLabel>THEMES</ModalLabel>
               <ScalingTitle scrollTop={scrollTop}>Eure Designwelt</ScalingTitle>
             </ModalHeader>
           </Stagger>

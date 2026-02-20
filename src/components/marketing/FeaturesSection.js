@@ -13,7 +13,7 @@ const DEMO_IMAGES = [
 
 const FEATURES = [
   { num: '01', title: 'Responsive Design', desc: 'Perfekt auf Desktop, Tablet und Smartphone', image: DEMO_IMAGES[0] },
-  { num: '02', title: '6 Einzigartige Themes', desc: 'Von elegant bis modern - für jeden Geschmack', image: DEMO_IMAGES[1] },
+  { num: '02', title: 'Einzigartige Themes', desc: 'Von elegant bis modern - für jeden Geschmack', image: DEMO_IMAGES[1] },
   { num: '03', title: 'RSVP & Gästebuch', desc: 'Digitale Zusagen und Glückwünsche sammeln', image: DEMO_IMAGES[2] },
 ];
 
@@ -482,7 +482,7 @@ const FeaturesSection = () => {
   const { currentTheme } = useTheme();
 
   // CLASSIC
-  if (currentTheme === 'classic') {
+  if (currentTheme === 'classic' || currentTheme === 'modern') {
     return (
       <ClassicSection id="features">
         <Container>

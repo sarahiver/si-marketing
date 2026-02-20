@@ -23,7 +23,7 @@ const USPS = [
   },
   {
     icon: '🌐',
-    title: 'sarah-und-max.de',
+    title: 'eurenamen.de',
     desc: 'Eure Liebe hat eine eigene Adresse. Keine Subdomain, kein Baukasten-Link. Ihr bekommt eure persönliche Domain — professionell eingerichtet, sofort startklar.',
     short: 'Eigene Domain inklusive',
     image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177760/_be3646f6-0ef9-424c-990f-3215044a3917_oybnqr.jpg',
@@ -1324,7 +1324,7 @@ const USPSection = () => {
   // ==========================================
   // CLASSIC - Elegante Magazin-Ästhetik
   // ==========================================
-  if (currentTheme === 'classic') {
+  if (currentTheme === 'classic' || currentTheme === 'modern') {
     return (
       <ClassicSection id="features">
         <ClassicContainer>

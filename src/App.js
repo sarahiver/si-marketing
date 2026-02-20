@@ -109,7 +109,7 @@ function MarketingPage() {
   const productSchema = {
     '@type': 'Product',
     name: 'Premium Hochzeitswebsite von S&I.',
-    description: 'Individuelle Hochzeitswebsite mit eigenem Design, eigener Domain, digitalem RSVP, Foto-Upload und Gästeverwaltung. 6 einzigartige Themes.',
+    description: 'Individuelle Hochzeitswebsite mit eigenem Design, eigener Domain, digitalem RSVP, Foto-Upload und Gästeverwaltung. Einzigartige Themes.',
     brand: { '@type': 'Brand', name: 'S&I.' },
     url: 'https://www.sarahiver.com',
     image: 'https://res.cloudinary.com/si-weddings/image/upload/v1770798416/si_og_image_nx5blq.png',
@@ -151,7 +151,7 @@ function MarketingPage() {
     <AppWrapper>
       <SEOHead
         title="S&I. — Premium Hochzeitswebsites ab 1.290 €"
-        description="Individuelle Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. 6 einzigartige Themes. Ab 1.290 €. Aus Hamburg."
+        description="Individuelle Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 1.290 €. Aus Hamburg."
         path="/"
         schema={productSchema}
         keywords={['Hochzeitswebsite', 'Hochzeitswebsite erstellen', 'Wedding Website', 'digitale Hochzeitseinladung', 'RSVP Hochzeit', 'Premium Hochzeitswebsite', 'Hochzeitswebsite Hamburg']}
