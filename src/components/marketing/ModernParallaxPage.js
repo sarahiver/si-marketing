@@ -699,6 +699,19 @@ function ensureModalKeyframes() {
       from { width: 0%; }
       to { width: 100%; }
     }
+    @keyframes letterBounce {
+      0% { transform: translateY(0); }
+      30% { transform: translateY(-0.25em); }
+      50% { transform: translateY(0.04em); }
+      70% { transform: translateY(-0.06em); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes hintFadeInOut {
+      0% { opacity: 0; transform: translateY(8px); }
+      15% { opacity: 1; transform: translateY(0); }
+      75% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-5px); }
+    }
   `;
   document.head.appendChild(style);
 }
@@ -833,7 +846,7 @@ export default function ModernParallaxPage() {
 
       {/* ── SCATTERED TITLES ── */}
       <div style={{ position: 'relative', zIndex: 2, minHeight: '310vh' }}>
-        {TITLES.map(t => {
+        {TITLES.map((t, idx) => {
           const mobile = typeof window !== 'undefined' && window.innerWidth < 768;
           return (
           <h2
@@ -843,6 +856,16 @@ export default function ModernParallaxPage() {
             ref={el => { titleRefs.current[t.id] = el; }}
             data-speed={t.speed}
             onClick={(e) => openModal(t.id, e.currentTarget)}
+            onMouseEnter={(e) => {
+              const spans = e.currentTarget.querySelectorAll('.bounce-letter');
+              spans.forEach((span, i) => {
+                span.style.animation = `letterBounce 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${i * 0.03}s both`;
+              });
+            }}
+            onMouseLeave={(e) => {
+              const spans = e.currentTarget.querySelectorAll('.bounce-letter');
+              spans.forEach(span => { span.style.animation = 'none'; });
+            }}
             style={{
               position: 'absolute',
               top: `${t.top}vh`,
@@ -863,10 +886,51 @@ export default function ModernParallaxPage() {
               userSelect: 'none',
             }}
           >
-            {t.text}
+            {t.text.split('').map((char, i) => (
+              <span
+                key={i}
+                className="bounce-letter"
+                style={{
+                  display: 'inline-block',
+                  whiteSpace: char === ' ' ? 'pre' : 'normal',
+                  // Auto-wink: first title plays bounce once on load (desktop + mobile)
+                  ...(idx === 0 ? {
+                    animation: `letterBounce 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${2.5 + i * 0.03}s both`,
+                  } : {}),
+                }}
+              >
+                {char}
+              </span>
+            ))}
           </h2>
           );
         })}
+
+        {/* ── MOBILE TAP HINT ── */}
+        {isMobile && (
+          <div style={{
+            position: 'absolute',
+            top: '115vh',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 3,
+            animation: 'hintFadeInOut 4s ease 3.5s both',
+            pointerEvents: 'none',
+            textAlign: 'center',
+          }}>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.7rem',
+              fontWeight: 700,
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color: 'rgba(0,0,0,0.35)',
+              background: '#fff',
+              padding: '0.5em 1em',
+              display: 'inline-block',
+            }}>↑ Tippe auf eine Headline</p>
+          </div>
+        )}
 
         {/* ── FOOTER ── */}
         <div style={{
