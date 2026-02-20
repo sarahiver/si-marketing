@@ -128,19 +128,20 @@ function ParallaxScene({ scrollY }) {
 // ============================================
 const TITLES = [
   { id: 'features', text: 'Features', left: '3%', mLeft: '4%', top: 105, speed: 0.7, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2.2rem, 10vw, 3rem)' },
-  { id: 'designs', text: 'Designs', left: '55%', mLeft: '30%', top: 120, speed: 1.35, size: 'clamp(3.2rem, 8vw, 7rem)', mSize: 'clamp(2.5rem, 11vw, 3.5rem)' },
-  { id: 'howItWorks', text: 'So funktioniert\'s', left: '22%', mLeft: '3%', top: 148, speed: 0.75, size: 'clamp(1.8rem, 4.5vw, 3.5rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
-  { id: 'components', text: '18 Komponenten', left: '58%', mLeft: '15%', top: 168, speed: 1.4, size: 'clamp(2rem, 5vw, 4.5rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
-  { id: 'pricing', text: 'Preise', left: '8%', mLeft: '5%', top: 198, speed: 0.65, size: 'clamp(3.5rem, 9vw, 8rem)', mSize: 'clamp(2.8rem, 12vw, 4rem)' },
-  { id: 'about', text: 'Sarah & Iver', left: '42%', mLeft: '25%', top: 218, speed: 1.3, size: 'clamp(2.2rem, 5.5vw, 4.5rem)', mSize: 'clamp(1.8rem, 8vw, 2.5rem)' },
-  { id: 'whyUs', text: 'Warum wir', left: '18%', mLeft: '8%', top: 242, speed: 0.72, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2rem, 9vw, 3rem)' },
-  { id: 'contact', text: 'Kontakt', left: '50%', mLeft: '28%', top: 262, speed: 1.38, size: 'clamp(3rem, 7.5vw, 6.5rem)', mSize: 'clamp(2.2rem, 10vw, 3.2rem)' },
+  { id: 'designs', text: 'Designs', left: '55%', mLeft: '30%', top: 118, speed: 1.35, size: 'clamp(3.2rem, 8vw, 7rem)', mSize: 'clamp(2.5rem, 11vw, 3.5rem)' },
+  { id: 'howItWorks', text: 'So funktioniert\'s', left: '22%', mLeft: '3%', top: 140, speed: 0.75, size: 'clamp(1.8rem, 4.5vw, 3.5rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
+  { id: 'components', text: '18 Komponenten', left: '58%', mLeft: '15%', top: 156, speed: 1.4, size: 'clamp(2rem, 5vw, 4.5rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
+  { id: 'pricing', text: 'Preise', left: '8%', mLeft: '5%', top: 178, speed: 0.65, size: 'clamp(3.5rem, 9vw, 8rem)', mSize: 'clamp(2.8rem, 12vw, 4rem)' },
+  { id: 'about', text: 'Sarah & Iver', left: '42%', mLeft: '25%', top: 196, speed: 1.3, size: 'clamp(2.2rem, 5.5vw, 4.5rem)', mSize: 'clamp(1.8rem, 8vw, 2.5rem)' },
+  { id: 'whyUs', text: 'Warum wir', left: '18%', mLeft: '8%', top: 216, speed: 0.72, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2rem, 9vw, 3rem)' },
+  { id: 'cooperation', text: 'Kooperationen', left: '52%', mLeft: '12%', top: 234, speed: 1.25, size: 'clamp(2rem, 5vw, 4rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
+  { id: 'contact', text: 'Kontakt', left: '6%', mLeft: '5%', top: 255, speed: 0.68, size: 'clamp(3rem, 7.5vw, 6.5rem)', mSize: 'clamp(2.2rem, 10vw, 3.2rem)' },
 ];
 
 // ============================================
 // MODAL CONTENT
 // ============================================
-function ModalContent({ id, onClose }) {
+function ModalContent({ id, onClose, onOpenContact }) {
   const [scrollTop, setScrollTop] = useState(0);
   const px = (speed) => scrollTop * (speed - 0.5) * 1.2;
 
@@ -278,10 +279,10 @@ function ModalContent({ id, onClose }) {
             </div>
           ))}
           <div style={{ marginTop: '2rem', transform: `translateY(${px(0.5)}px)` }}>
-            <a href="#contact" onClick={e => { e.preventDefault(); onClose(); setTimeout(() => document.getElementById('modern-contact-title')?.scrollIntoView({ behavior: 'smooth' }), 600); }}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#000', background: '#fff', padding: '1rem 2rem', textDecoration: 'none', display: 'inline-block' }}>
-              Jetzt anfragen
-            </a>
+            <button onClick={() => { onClose(); setTimeout(() => onOpenContact(), 600); }}
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#000', background: '#fff', padding: '1rem 2rem', border: 'none', cursor: 'pointer', display: 'inline-block' }}>
+              Jetzt anfragen →
+            </button>
           </div>
         </ModalInner>
       </ModalScroll>
@@ -331,6 +332,42 @@ function ModalContent({ id, onClose }) {
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.95rem', fontWeight: 700, color: '#fff' }}>{card.solution}</p>
             </ModalItem>
           ))}
+        </ModalInner>
+      </ModalScroll>
+    );
+
+    case 'cooperation': return (
+      <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
+        <ModalInner>
+          <ModalHeader style={{ transform: `translateY(${px(0.15)}px)` }}>
+            <ModalLabel>ZUSAMMENARBEIT</ModalLabel>
+            <ModalTitle>Kooperationen</ModalTitle>
+          </ModalHeader>
+          <ModalBody style={{ transform: `translateY(${px(0.25)}px)` }}>
+            Ob Hochzeitsplaner, Fotografen, Locations oder andere Dienstleister — wir freuen uns über Kooperationsanfragen.
+          </ModalBody>
+          {[
+            { icon: '📸', t: 'Fotografen', d: 'Empfehlt uns euren Paaren — wir bauen Websites, die eure Bilder perfekt in Szene setzen.' },
+            { icon: '💐', t: 'Wedding Planner', d: 'Bietet euren Kunden eine Premium-Website als Teil eures Pakets an.' },
+            { icon: '🏰', t: 'Locations', d: 'Zeigt euren Paaren, wie ihre Hochzeitswebsite aussehen könnte — mit eurer Location als Highlight.' },
+          ].map((item, i) => (
+            <ModalItem key={i} style={{ transform: `translateY(${px(0.3 + i * 0.1)}px)` }}>
+              <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{item.icon}</span>
+              <ModalItemTitle>{item.t}</ModalItemTitle>
+              <ModalItemDesc>{item.d}</ModalItemDesc>
+            </ModalItem>
+          ))}
+          <div style={{ marginTop: '2rem', transform: `translateY(${px(0.5)}px)` }}>
+            <button
+              onClick={() => { onClose(); setTimeout(() => onOpenContact(), 600); }}
+              style={{
+                fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800,
+                letterSpacing: '0.1em', textTransform: 'uppercase', color: '#000',
+                background: '#fff', padding: '1rem 2rem', border: 'none', cursor: 'pointer',
+              }}>
+              Jetzt anfragen →
+            </button>
+          </div>
         </ModalInner>
       </ModalScroll>
     );
@@ -625,13 +662,14 @@ export default function ModernParallaxPage() {
       </div>
 
       {/* ── SCATTERED TITLES ── */}
-      <div style={{ position: 'relative', zIndex: 2, minHeight: '290vh' }}>
+      <div style={{ position: 'relative', zIndex: 2, minHeight: '310vh' }}>
         {TITLES.map(t => {
           const mobile = typeof window !== 'undefined' && window.innerWidth < 768;
           return (
           <h2
             key={t.id}
             id={t.id === 'contact' ? 'modern-contact-title' : undefined}
+            data-title-id={t.id}
             ref={el => { titleRefs.current[t.id] = el; }}
             data-speed={t.speed}
             onClick={(e) => openModal(t.id, e.currentTarget)}
@@ -650,7 +688,7 @@ export default function ModernParallaxPage() {
               margin: 0,
               cursor: 'pointer',
               zIndex: 2,
-              maxWidth: mobile ? '85vw' : '70vw',
+              maxWidth: '80%',
               transition: 'transform 0.1s ease-out',
               userSelect: 'none',
             }}
@@ -662,7 +700,7 @@ export default function ModernParallaxPage() {
 
         {/* ── FOOTER ── */}
         <div style={{
-          position: 'absolute', top: '275vh', left: 0, width: '100vw',
+          position: 'absolute', top: '290vh', left: 0, width: '100vw',
           background: '#000', padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem)',
           zIndex: 2,
         }}>
@@ -745,7 +783,10 @@ export default function ModernParallaxPage() {
               pointerEvents: modalPhase === 'open' ? 'auto' : 'none',
             }}
           >
-            {modalPhase === 'open' && <ModalContent id={activeModal.id} onClose={closeModal} />}
+            {modalPhase === 'open' && <ModalContent id={activeModal.id} onClose={closeModal} onOpenContact={() => {
+              const contactEl = titleRefs.current['contact'];
+              if (contactEl) openModal('contact', contactEl);
+            }} />}
           </div>
         </div>
       )}
