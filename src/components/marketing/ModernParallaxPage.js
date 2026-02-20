@@ -27,12 +27,18 @@ class CanvasErrorBoundary extends Component {
 // CLOUDINARY IMAGES (Demo Screenshots)
 // ============================================
 const FLOAT_IMAGES = [
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_700/v1770290063/editorial_demoShowcase_gmxabx.jpg',
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_700/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_700/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_700/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_700/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
-  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_700/v1770727740/video_demoShowcase_optimized_jrlsoh.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510436/siwedding/demo-parallax/hero/qtcokh2opdtikmaxe8ov.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510335/siwedding/demo-parallax/gallery/yfmq6n2hijlwl0fg2zbx.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510336/siwedding/demo-parallax/gallery/g2aep3i71jaoaai0dcbg.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510330/siwedding/demo-parallax/gallery/zy3kvru0kw3f02nrxkeg.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510331/siwedding/demo-parallax/gallery/vli5nx0ndgn11ka70lqd.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510337/siwedding/demo-parallax/gallery/ivmucfauc3opjui51d8i.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510339/siwedding/demo-parallax/gallery/np1oj8v4j2zwafjtqj2q.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510327/siwedding/demo-parallax/gallery/tulcytyfqy60vrpxqihj.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510340/siwedding/demo-parallax/gallery/cr0y8rl7dlappqmk44kq.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771512249/siwedding/demo-parallax/locations/yimhskdjd9w3eimktpv0.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771510327/siwedding/demo-parallax/gallery/tulcytyfqy60vrpxqihj.jpg',
+  'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771326063/siwedding/demo-luxe/lovestory/xx5ldbmgslwugjnj7wa7.jpg',
 ];
 
 // ============================================
@@ -62,25 +68,32 @@ function ParallaxImg({ url, basePos, scaleArr, speed, scrollY, pageHeight }) {
   );
 }
 
-// Image config: varied formats (tall/narrow, wide/short, square-ish)
+// Image config: each maps to FLOAT_IMAGES index, format matches the photo
 const IMG_CONFIG = [
-  // { x%, y (in vh units), z, w, h, speed, imgIndex }
-  // Hero area — first visible images
-  { x: -0.32, y: 0, z: -2, w: 0.22, h: 0.55, speed: 0.8, img: 0 },    // tall narrow left
-  { x: 0.28, y: -0.15, z: 1, w: 0.38, h: 0.22, speed: 1.4, img: 1 },   // wide short right
-  // Mid section
-  { x: -0.08, y: -0.7, z: 0, w: 0.18, h: 0.48, speed: 1.1, img: 2 },   // tall narrow center-left
-  { x: 0.32, y: -0.9, z: -1, w: 0.35, h: 0.28, speed: 0.6, img: 3 },   // wide right
-  { x: -0.28, y: -1.2, z: 2, w: 0.28, h: 0.28, speed: 1.6, img: 4 },   // square-ish left
-  // Lower section  
-  { x: 0.12, y: -1.5, z: -2, w: 0.2, h: 0.52, speed: 0.9, img: 5 },    // tall narrow center
-  { x: -0.22, y: -1.85, z: 1, w: 0.4, h: 0.24, speed: 1.3, img: 0 },   // wide left
-  { x: 0.3, y: -2.1, z: 0, w: 0.16, h: 0.42, speed: 0.7, img: 1 },     // tall narrow right
-  // Bottom area
-  { x: -0.15, y: -2.5, z: -1, w: 0.32, h: 0.26, speed: 1.5, img: 2 },  // wide center-left
-  { x: 0.22, y: -2.75, z: 2, w: 0.24, h: 0.5, speed: 0.85, img: 3 },   // tall right
-  { x: -0.3, y: -3.0, z: 0, w: 0.36, h: 0.2, speed: 1.2, img: 4 },     // extra wide left
-  { x: 0.08, y: -3.3, z: -2, w: 0.2, h: 0.45, speed: 1.0, img: 5 },    // tall center
+  // #1 Hero links — Hochformat schmal
+  { x: -0.32, y: 0, z: -2, w: 0.18, h: 0.55, speed: 0.8, img: 0 },
+  // #2 Hero rechts — Querformat breit
+  { x: 0.28, y: -0.12, z: 1, w: 0.4, h: 0.22, speed: 1.4, img: 1 },
+  // #3 Obere Mitte — Hochformat schmal
+  { x: -0.05, y: -0.65, z: 0, w: 0.16, h: 0.48, speed: 1.1, img: 2 },
+  // #4 Mid rechts — Querformat breit
+  { x: 0.3, y: -0.85, z: -1, w: 0.38, h: 0.24, speed: 0.6, img: 3 },
+  // #5 Mid links — Quadratisch
+  { x: -0.3, y: -1.15, z: 2, w: 0.26, h: 0.26, speed: 1.5, img: 4 },
+  // #6 Untere Mitte — Hochformat schmal
+  { x: 0.1, y: -1.4, z: -2, w: 0.17, h: 0.5, speed: 0.9, img: 5 },
+  // #7 Unterer links — Querformat breit (Panorama)
+  { x: -0.24, y: -1.75, z: 1, w: 0.44, h: 0.2, speed: 1.3, img: 6 },
+  // #8 Unterer rechts — Hochformat schmal
+  { x: 0.3, y: -2.0, z: 0, w: 0.15, h: 0.44, speed: 0.7, img: 7 },
+  // #9 Boden links — Querformat breit
+  { x: -0.18, y: -2.35, z: -1, w: 0.36, h: 0.22, speed: 1.45, img: 8 },
+  // #10 Boden rechts — Hochformat
+  { x: 0.25, y: -2.6, z: 2, w: 0.2, h: 0.52, speed: 0.85, img: 9 },
+  // #11 Zusatz Mitte — Querformat extra breit (Overlay)
+  { x: -0.05, y: -2.9, z: -2, w: 0.48, h: 0.18, speed: 1.2, img: 10 },
+  // #12 Zusatz — Hochformat schmal (Tiefe)
+  { x: 0.2, y: -3.2, z: 1, w: 0.14, h: 0.42, speed: 1.0, img: 11 },
 ];
 
 function ParallaxScene({ scrollY }) {
@@ -114,14 +127,14 @@ function ParallaxScene({ scrollY }) {
 // SCATTERED TITLES DATA
 // ============================================
 const TITLES = [
-  { id: 'features', text: 'Features', left: '4%', top: 105, speed: 0.7, size: 'clamp(3rem, 7vw, 6rem)' },
-  { id: 'designs', text: 'Designs', left: '40%', top: 118, speed: 1.35, size: 'clamp(3.5rem, 8vw, 7rem)' },
-  { id: 'howItWorks', text: 'So funktioniert\'s', left: '6%', top: 145, speed: 0.75, size: 'clamp(2rem, 5vw, 4rem)' },
-  { id: 'components', text: '18 Komponenten', left: '38%', top: 162, speed: 1.4, size: 'clamp(2.5rem, 6vw, 5rem)' },
-  { id: 'pricing', text: 'Preise', left: '10%', top: 190, speed: 0.65, size: 'clamp(4rem, 9vw, 8rem)' },
-  { id: 'about', text: 'Sarah & Iver', left: '44%', top: 210, speed: 1.3, size: 'clamp(2.5rem, 6vw, 5rem)' },
-  { id: 'whyUs', text: 'Warum wir', left: '2%', top: 235, speed: 0.72, size: 'clamp(3rem, 7vw, 6rem)' },
-  { id: 'contact', text: 'Kontakt', left: '42%', top: 255, speed: 1.38, size: 'clamp(3.5rem, 8vw, 7rem)' },
+  { id: 'features', text: 'Features', left: '3%', mLeft: '4%', top: 105, speed: 0.7, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2.2rem, 10vw, 3rem)' },
+  { id: 'designs', text: 'Designs', left: '55%', mLeft: '30%', top: 120, speed: 1.35, size: 'clamp(3.2rem, 8vw, 7rem)', mSize: 'clamp(2.5rem, 11vw, 3.5rem)' },
+  { id: 'howItWorks', text: 'So funktioniert\'s', left: '22%', mLeft: '3%', top: 148, speed: 0.75, size: 'clamp(1.8rem, 4.5vw, 3.5rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
+  { id: 'components', text: '18 Komponenten', left: '58%', mLeft: '15%', top: 168, speed: 1.4, size: 'clamp(2rem, 5vw, 4.5rem)', mSize: 'clamp(1.5rem, 7vw, 2.2rem)' },
+  { id: 'pricing', text: 'Preise', left: '8%', mLeft: '5%', top: 198, speed: 0.65, size: 'clamp(3.5rem, 9vw, 8rem)', mSize: 'clamp(2.8rem, 12vw, 4rem)' },
+  { id: 'about', text: 'Sarah & Iver', left: '42%', mLeft: '25%', top: 218, speed: 1.3, size: 'clamp(2.2rem, 5.5vw, 4.5rem)', mSize: 'clamp(1.8rem, 8vw, 2.5rem)' },
+  { id: 'whyUs', text: 'Warum wir', left: '18%', mLeft: '8%', top: 242, speed: 0.72, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2rem, 9vw, 3rem)' },
+  { id: 'contact', text: 'Kontakt', left: '50%', mLeft: '28%', top: 262, speed: 1.38, size: 'clamp(3rem, 7.5vw, 6.5rem)', mSize: 'clamp(2.2rem, 10vw, 3.2rem)' },
 ];
 
 // ============================================
@@ -613,7 +626,9 @@ export default function ModernParallaxPage() {
 
       {/* ── SCATTERED TITLES ── */}
       <div style={{ position: 'relative', zIndex: 2, minHeight: '290vh' }}>
-        {TITLES.map(t => (
+        {TITLES.map(t => {
+          const mobile = typeof window !== 'undefined' && window.innerWidth < 768;
+          return (
           <h2
             key={t.id}
             id={t.id === 'contact' ? 'modern-contact-title' : undefined}
@@ -623,8 +638,8 @@ export default function ModernParallaxPage() {
             style={{
               position: 'absolute',
               top: `${t.top}vh`,
-              left: t.left,
-              fontSize: t.size,
+              left: mobile ? t.mLeft : t.left,
+              fontSize: mobile ? t.mSize : t.size,
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 800,
               color: '#000',
@@ -635,14 +650,15 @@ export default function ModernParallaxPage() {
               margin: 0,
               cursor: 'pointer',
               zIndex: 2,
-              whiteSpace: 'nowrap',
+              maxWidth: mobile ? '85vw' : '70vw',
               transition: 'transform 0.1s ease-out',
               userSelect: 'none',
             }}
           >
             {t.text}
           </h2>
-        ))}
+          );
+        })}
 
         {/* ── FOOTER ── */}
         <div style={{
