@@ -304,37 +304,64 @@ function ModalContent({ id, onClose, onOpenContact }) {
       </ModalScroll>
     );
 
-    case 'components': return (
+    case 'components': {
+      const COMPS = [
+        { emoji: '🏠', name: 'Hero', desc: 'Der erste Moment' },
+        { emoji: '💕', name: 'Love Story', desc: 'Wie aus Fremden ein Wir wurde' },
+        { emoji: '💌', name: 'RSVP', desc: 'Zu- und Absagen digital' },
+        { emoji: '🔔', name: 'Countdown', desc: 'Die Vorfreude wächst' },
+        { emoji: '📅', name: 'Ablauf', desc: 'Wann, wo, was' },
+        { emoji: '⏰', name: 'Timeline', desc: 'Euer Tag, Stunde für Stunde' },
+        { emoji: '📍', name: 'Location', desc: 'Mit Karte, damit niemand sucht' },
+        { emoji: '🚗', name: 'Anfahrt', desc: 'Navigation und Parktipps' },
+        { emoji: '🏨', name: 'Hotels', desc: 'Die besten Betten in der Nähe' },
+        { emoji: '👗', name: 'Dresscode', desc: 'Damit alle wissen, wie schick' },
+        { emoji: '🎁', name: 'Wunschliste', desc: 'Wünsche von Herzen' },
+        { emoji: '📸', name: 'Galerie', desc: 'Bilder, die Gänsehaut machen' },
+        { emoji: '🤳', name: 'Gäste-Fotos', desc: 'Eure Gäste als Fotografen' },
+        { emoji: '❓', name: 'FAQ', desc: 'Damit keiner zweimal fragt' },
+        { emoji: '🎵', name: 'Musikwünsche', desc: 'Die Playlist für die Party' },
+        { emoji: '👥', name: 'Trauzeugen', desc: 'Die wichtigsten Menschen' },
+        { emoji: '💍', name: 'Footer', desc: 'Der schöne Abschluss' },
+        { emoji: '📄', name: 'Impressum', desc: 'Muss sein — sieht gut aus' },
+      ];
+      // Individual parallax: each card drifts at different speeds
+      const cardDrift = (i) => {
+        const row = Math.floor(i / 3);
+        const col = i % 3;
+        const yDrift = scrollTop * (0.02 + row * 0.008);
+        const xDrift = scrollTop * ((col - 1) * 0.006);
+        return `translateY(${yDrift}px) translateX(${xDrift}px)`;
+      };
+      return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
         <ModalInner style={{ maxWidth: 'none', padding: '0 1.5rem', position: 'relative', overflow: 'hidden' }}>
           <DecoGlyph char="18" scrollTop={scrollTop} top="2rem" left="65%" size="clamp(8rem, 20vw, 16rem)" speed={-0.1} />
           <Stagger delay={0.1} scrollTop={scrollTop} speed={0.15}>
             <ModalHeader style={{ padding: '0 0.5rem' }}>
-              <ModalLabel>BAUKASTEN</ModalLabel>
+              <ModalLabel>ALLES INKLUSIVE</ModalLabel>
               <ScalingTitle scrollTop={scrollTop}>18 Komponenten</ScalingTitle>
+              <ModalBody style={{ marginTop: '0.5rem' }}>Jede Website besteht aus Bausteinen. Wählt, was zu eurer Hochzeit passt.</ModalBody>
             </ModalHeader>
           </Stagger>
-          <Stagger delay={0.25} scrollTop={scrollTop} speed={0.25}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1px', background: 'rgba(255,255,255,0.08)' }}>
-              {[
-                '🏠 Hero', '💕 Love Story', '💌 RSVP', '🔔 Countdown', '📅 Ablauf', '⏰ Timeline',
-                '📍 Location', '🚗 Anfahrt', '🏨 Hotels', '👗 Dresscode', '🎁 Wunschliste',
-                '📸 Galerie', '🤳 Gäste-Fotos', '❓ FAQ', '🎵 Musikwünsche', '👥 Trauzeugen',
-                '💍 Footer', '📄 Impressum',
-              ].map((comp, i) => (
-                <div key={i} style={{
-                  background: 'rgba(0,0,0,0.9)', padding: '1.2rem 1rem', textAlign: 'center',
-                  animation: `modalStaggerIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) ${0.3 + i * 0.04}s both`,
-                }}>
-                  <span style={{ fontSize: '1.3rem', display: 'block', marginBottom: '0.4rem' }}>{comp.split(' ')[0]}</span>
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.75rem', fontWeight: 700, color: '#fff' }}>{comp.split(' ').slice(1).join(' ')}</span>
-                </div>
-              ))}
-            </div>
-          </Stagger>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '1px', background: 'rgba(255,255,255,0.06)' }}>
+            {COMPS.map((comp, i) => (
+              <div key={i} style={{
+                background: 'rgba(0,0,0,0.9)', padding: '1.5rem 1rem', textAlign: 'center',
+                animation: `modalStaggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${0.25 + i * 0.04}s both`,
+                transform: cardDrift(i),
+                transition: 'transform 0.15s ease-out',
+              }}>
+                <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{comp.emoji}</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800, color: '#fff', display: 'block', marginBottom: '0.3rem' }}>{comp.name}</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.35)', lineHeight: 1.4, display: 'block' }}>{comp.desc}</span>
+              </div>
+            ))}
+          </div>
         </ModalInner>
       </ModalScroll>
-    );
+      );
+    }
 
     case 'pricing': return (
       <ModalScroll onScroll={e => setScrollTop(e.target.scrollTop)}>
