@@ -34,7 +34,8 @@ import ModernOverride from './components/marketing/ModernOverride';
 import ImpressumPage from './components/shared/ImpressumPage';
 import DatenschutzPage from './components/shared/DatenschutzPage';
 import CookieConsent from './components/shared/CookieConsent';
-import { trackPageView } from './utils/analytics';
+import { trackPageView, isNotrack } from './utils/analytics';
+import { Analytics } from '@vercel/analytics/react';
 import SEOHead from './components/shared/SEOHead';
 
 // ============================================
@@ -254,6 +255,7 @@ function App() {
           </Routes>
           {/* DSGVO Cookie Banner */}
           <CookieConsent />
+          {!isNotrack && <Analytics />}
         </Router>
       </ThemeProvider>
     </ErrorBoundary>
