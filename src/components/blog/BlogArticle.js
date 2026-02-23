@@ -1,6 +1,6 @@
 // src/components/blog/BlogArticle.js
 // Einzelner Blog-Artikel mit Theme-Support + einfacher Markdown-Rendering
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
@@ -9,6 +9,7 @@ import MarketingNav from '../marketing/MarketingNav';
 import MarketingFooter from '../marketing/MarketingFooter';
 import BotanicalLeaves from '../marketing/BotanicalLeaves';
 import SEOHead from '../shared/SEOHead';
+import { trackBlogArticleView, trackBlogScrollDepth, trackBlogCTAClick } from '../../utils/analytics';
 
 // ============================================
 // THEME HELPERS (same as BlogPage)
@@ -464,6 +465,35 @@ const BlogArticle = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  // Article view tracking
+  useEffect(() => {
+    if (post) {
+      trackBlogArticleView(post.slug, post.title);
+    }
+  }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Scroll depth tracking (25%, 50%, 75%, 100%)
+  const scrollMilestones = useRef(new Set());
+  const handleScroll = useCallback(() => {
+    if (!post) return;
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) return;
+    const percent = Math.round((scrollTop / docHeight) * 100);
+    [25, 50, 75, 100].forEach(milestone => {
+      if (percent >= milestone && !scrollMilestones.current.has(milestone)) {
+        scrollMilestones.current.add(milestone);
+        trackBlogScrollDepth(post.slug, milestone);
+      }
+    });
+  }, [post]);
+
+  useEffect(() => {
+    scrollMilestones.current = new Set();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll, slug]);
+
   if (!post) {
     return (
       <PageWrapper $theme={currentTheme}>
@@ -543,6 +573,7 @@ const BlogArticle = () => {
           href="/#contact"
           $theme={currentTheme}
           onClick={(e) => {
+            trackBlogCTAClick(post.slug, 'contact_cta');
             if (currentTheme === 'modern') {
               e.preventDefault();
               navigate('/');
