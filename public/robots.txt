@@ -3,4 +3,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://sarahiver.com/sitemap.xml
+Sitemap: https://www.sarahiver.com/sitemap.xml
