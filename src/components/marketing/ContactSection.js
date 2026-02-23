@@ -5,6 +5,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import { trackFormStart, trackFormSubmit, trackFormError } from '../../utils/analytics';
 
 // ============================================
 // THEME CONFIGURATIONS
@@ -698,8 +699,13 @@ const ContactSection = () => {
   }, [currentTheme]);
 
   // Trigger hCaptcha load on first form interaction (focus, click, touch)
+  const formStartTracked = useRef(false);
   const handleFormInteraction = useCallback(() => {
     loadCaptchaScript();
+    if (!formStartTracked.current) {
+      trackFormStart();
+      formStartTracked.current = true;
+    }
   }, [loadCaptchaScript]);
 
   // Also render captcha if script was already loaded (e.g. navigated back)
@@ -791,6 +797,7 @@ const ContactSection = () => {
       }
       
       setSubmitStatus('success');
+      trackFormSubmit(currentTheme, formData.interestedPackage);
       
       // Reset captcha
       if (window.hcaptcha && captchaWidgetId.current !== null) {
@@ -802,6 +809,7 @@ const ContactSection = () => {
       console.error('Contact form error:', error);
       setErrorMessage(error.message || 'Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
       setSubmitStatus('error');
+      trackFormError(error.message || 'unknown_error');
     } finally {
       setIsSubmitting(false);
     }

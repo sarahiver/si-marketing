@@ -1,7 +1,7 @@
 // src/App.js
 // S&I Wedding Marketing - Hauptseite für siwedding.de
 import React, { useEffect, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import ErrorBoundary from './components/shared/ErrorBoundary';
@@ -34,6 +34,7 @@ import ModernOverride from './components/marketing/ModernOverride';
 import ImpressumPage from './components/shared/ImpressumPage';
 import DatenschutzPage from './components/shared/DatenschutzPage';
 import CookieConsent from './components/shared/CookieConsent';
+import { trackPageView } from './utils/analytics';
 import SEOHead from './components/shared/SEOHead';
 
 // ============================================
@@ -220,11 +221,21 @@ function MainApp() {
 // ============================================
 // APP WITH ROUTER
 // ============================================
+// SPA Pageview Tracker — sendet Pageviews bei jeder Routenänderung
+const PageViewTracker = () => {
+  const location = useLocation();
+  useEffect(() => {
+    trackPageView(location.pathname, document.title);
+  }, [location.pathname]);
+  return null;
+};
+
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
         <Router>
+          <PageViewTracker />
           <GlobalStyles />
           <Routes>
             {/* Main Marketing Page */}

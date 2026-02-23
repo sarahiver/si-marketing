@@ -32,6 +32,16 @@ export const ThemeProvider = ({ children }) => {
     if (newTheme === currentTheme) return;
     if (!marketingThemes[newTheme]) return;
     
+    // Analytics: Theme-Wechsel tracken
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'theme_switch', {
+        event_category: 'engagement',
+        event_label: newTheme,
+        from_theme: currentTheme,
+        to_theme: newTheme,
+      });
+    }
+    
     setIsLoading(true);
     
     // Smooth scroll nach oben
