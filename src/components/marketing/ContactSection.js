@@ -640,6 +640,8 @@ const THEME_OPTIONS = [
   { id: 'luxe', label: 'Luxe' },
   { id: 'neon', label: 'Neon' },
   { id: 'video', label: 'Video' },
+  { id: 'classic', label: 'Classic' },
+  { id: 'modern', label: 'Modern' },
 ];
 
 const ContactSection = () => {
