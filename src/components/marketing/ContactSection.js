@@ -5,7 +5,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
-import { trackFormStart, trackFormSubmit, trackFormError } from '../../utils/analytics';
 
 // ============================================
 // THEME CONFIGURATIONS
@@ -640,8 +639,6 @@ const THEME_OPTIONS = [
   { id: 'luxe', label: 'Luxe' },
   { id: 'neon', label: 'Neon' },
   { id: 'video', label: 'Video' },
-  { id: 'classic', label: 'Classic' },
-  { id: 'modern', label: 'Modern' },
 ];
 
 const ContactSection = () => {
@@ -672,6 +669,35 @@ const ContactSection = () => {
   const MIN_SUBMIT_TIME = 3000; // 3 seconds minimum
   const sectionRef = useRef(null);
 
+  // Listen for package selection from PricingSection
+  useEffect(() => {
+    const handleSelectPackage = (e) => {
+      const pkgId = e.detail;
+      if (pkgId && PACKAGES.find(p => p.id === pkgId)) {
+        setFormData(prev => ({ ...prev, interestedPackage: pkgId }));
+      }
+    };
+    window.addEventListener('selectPackage', handleSelectPackage);
+
+    // Also check URL hash on mount (e.g. #contact?package=starter)
+    const hash = window.location.hash;
+    if (hash.includes('package=')) {
+      const match = hash.match(/package=([a-z]+)/);
+      if (match && PACKAGES.find(p => p.id === match[1])) {
+        setFormData(prev => ({ ...prev, interestedPackage: match[1] }));
+      }
+    }
+
+    return () => window.removeEventListener('selectPackage', handleSelectPackage);
+  }, []);
+
+  // Pre-fill current theme when user scrolls to contact
+  useEffect(() => {
+    if (currentTheme && THEME_OPTIONS.find(t => t.id === currentTheme)) {
+      setFormData(prev => prev.interestedTheme ? prev : { ...prev, interestedTheme: currentTheme });
+    }
+  }, [currentTheme]);
+
   // --- hCaptcha lazy loading: only load when user interacts with form ---
   const captchaLoading = useRef(false);
 
@@ -701,13 +727,8 @@ const ContactSection = () => {
   }, [currentTheme]);
 
   // Trigger hCaptcha load on first form interaction (focus, click, touch)
-  const formStartTracked = useRef(false);
   const handleFormInteraction = useCallback(() => {
     loadCaptchaScript();
-    if (!formStartTracked.current) {
-      trackFormStart();
-      formStartTracked.current = true;
-    }
   }, [loadCaptchaScript]);
 
   // Also render captcha if script was already loaded (e.g. navigated back)
@@ -799,7 +820,6 @@ const ContactSection = () => {
       }
       
       setSubmitStatus('success');
-      trackFormSubmit(currentTheme, formData.interestedPackage);
       
       // Reset captcha
       if (window.hcaptcha && captchaWidgetId.current !== null) {
@@ -811,7 +831,6 @@ const ContactSection = () => {
       console.error('Contact form error:', error);
       setErrorMessage(error.message || 'Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
       setSubmitStatus('error');
-      trackFormError(error.message || 'unknown_error');
     } finally {
       setIsSubmitting(false);
     }

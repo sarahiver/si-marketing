@@ -1436,13 +1436,12 @@ const VideoCTA = styled.button`
 const PricingSection = () => {
   const { currentTheme } = useTheme();
   
-  const scrollToContact = (packageName) => {
-    if (packageName && window.gtag) {
-      window.gtag('event', 'select_item', {
-        event_category: 'pricing',
-        event_label: packageName,
-        items: [{ item_name: packageName }],
-      });
+  const scrollToContact = (packageId) => {
+    if (packageId) {
+      // Set hash so ContactSection can pick it up
+      window.history.replaceState(null, '', `#contact?package=${packageId}`);
+      // Dispatch custom event for ContactSection to listen to
+      window.dispatchEvent(new CustomEvent('selectPackage', { detail: packageId }));
     }
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -1559,7 +1558,7 @@ const PricingSection = () => {
                 <AddonsList>
                   {ADDONS.map(addon => renderAddon(addon, pkg.addons, ClassicAddon, ClassicAddonInfo, ClassicAddonCheck, ClassicAddonName, ClassicAddonPrice))}
                 </AddonsList>
-                <ClassicCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.name)}>{pkg.cta}</ClassicCTA>
+                <ClassicCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.id)}>{pkg.cta}</ClassicCTA>
               </ClassicCard>
             ))}
           </Grid>
@@ -1594,7 +1593,7 @@ const PricingSection = () => {
                 <AddonsList>
                   {ADDONS.map(addon => renderAddon(addon, pkg.addons, EditorialAddon, EditorialAddonInfo, EditorialAddonCheck, EditorialAddonName, EditorialAddonPrice))}
                 </AddonsList>
-                <EditorialCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.name)}>{pkg.cta}</EditorialCTA>
+                <EditorialCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.id)}>{pkg.cta}</EditorialCTA>
               </EditorialCard>
             ))}
           </Grid>
@@ -1629,7 +1628,7 @@ const PricingSection = () => {
                 <AddonsList>
                   {ADDONS.map(addon => renderAddon(addon, pkg.addons, BotanicalAddon, BotanicalAddonInfo, BotanicalAddonCheck, BotanicalAddonName, BotanicalAddonPrice))}
                 </AddonsList>
-                <BotanicalCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.name)}>{pkg.cta}</BotanicalCTA>
+                <BotanicalCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.id)}>{pkg.cta}</BotanicalCTA>
               </BotanicalCard>
             ))}
           </Grid>
@@ -1664,7 +1663,7 @@ const PricingSection = () => {
                 <AddonsList>
                   {ADDONS.map(addon => renderAddon(addon, pkg.addons, ContemporaryAddon, ContemporaryAddonInfo, ContemporaryAddonCheck, ContemporaryAddonName, ContemporaryAddonPrice))}
                 </AddonsList>
-                <ContemporaryCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.name)}>{pkg.cta}</ContemporaryCTA>
+                <ContemporaryCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.id)}>{pkg.cta}</ContemporaryCTA>
               </ContemporaryCard>
             ))}
           </Grid>
@@ -1699,7 +1698,7 @@ const PricingSection = () => {
                 <AddonsList>
                   {ADDONS.map(addon => renderAddon(addon, pkg.addons, LuxeAddon, LuxeAddonInfo, LuxeAddonCheck, LuxeAddonName, LuxeAddonPrice))}
                 </AddonsList>
-                <LuxeCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.name)}>{pkg.cta}</LuxeCTA>
+                <LuxeCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.id)}>{pkg.cta}</LuxeCTA>
               </LuxeCard>
             ))}
           </Grid>
@@ -1734,7 +1733,7 @@ const PricingSection = () => {
                 <AddonsList>
                   {ADDONS.map(addon => renderAddon(addon, pkg.addons, NeonAddon, NeonAddonInfo, NeonAddonCheck, NeonAddonName, NeonAddonPrice))}
                 </AddonsList>
-                <NeonCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.name)}>{pkg.cta}</NeonCTA>
+                <NeonCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.id)}>{pkg.cta}</NeonCTA>
               </NeonCard>
             ))}
           </Grid>
@@ -1768,7 +1767,7 @@ const PricingSection = () => {
               <AddonsList>
                 {ADDONS.map(addon => renderAddon(addon, pkg.addons, VideoAddon, VideoAddonInfo, VideoAddonCheck, VideoAddonName, VideoAddonPrice))}
               </AddonsList>
-              <VideoCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.name)}>{pkg.cta}</VideoCTA>
+              <VideoCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.id)}>{pkg.cta}</VideoCTA>
             </VideoCard>
           ))}
         </Grid>
