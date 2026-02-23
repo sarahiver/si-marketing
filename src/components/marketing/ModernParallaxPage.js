@@ -551,13 +551,133 @@ function ModalContent({ id, onClose, onOpenContact }) {
   }
 }
 
+const HCAPTCHA_SITE_KEY = process.env.REACT_APP_HCAPTCHA_SITE_KEY || '10000000-ffff-ffff-ffff-000000000001';
+
+const PACKAGES = [
+  { id: '', label: 'Bitte wählen...' },
+  { id: 'starter', label: 'Starter (€1.290)' },
+  { id: 'standard', label: 'Standard (€1.490)' },
+  { id: 'premium', label: 'Premium (€1.990)' },
+];
+
+const THEME_OPTIONS = [
+  { id: '', label: 'Bitte wählen...' },
+  { id: 'classic', label: 'Classic' },
+  { id: 'editorial', label: 'Editorial' },
+  { id: 'botanical', label: 'Botanical' },
+  { id: 'contemporary', label: 'Contemporary' },
+  { id: 'luxe', label: 'Luxe' },
+  { id: 'neon', label: 'Neon' },
+  { id: 'video', label: 'Video' },
+  { id: 'modern', label: 'Modern' },
+];
+
 function ContactModalForm({ onClose }) {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const handleSubmit = (e) => {
+  const [form, setForm] = useState({
+    name: '', email: '', phone: '', weddingDate: '',
+    interestedTheme: 'modern', interestedPackage: '', message: '', honeypot: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const captchaRef = useRef(null);
+  const captchaWidgetId = useRef(null);
+  const formLoadTime = useRef(Date.now());
+
+  // Lazy-load hCaptcha on first interaction
+  const captchaLoading = useRef(false);
+  const loadCaptcha = useCallback(() => {
+    if (captchaLoading.current || document.querySelector('script[src*="hcaptcha"]')) {
+      // Script already present → try render
+      if (window.hcaptcha && captchaRef.current && captchaWidgetId.current === null) {
+        try {
+          captchaWidgetId.current = window.hcaptcha.render(captchaRef.current, {
+            sitekey: HCAPTCHA_SITE_KEY, theme: 'dark', size: 'normal',
+            callback: (t) => setCaptchaToken(t),
+            'expired-callback': () => setCaptchaToken(null),
+            'error-callback': () => setCaptchaToken(null),
+          });
+        } catch (e) { /* already rendered */ }
+      }
+      return;
+    }
+    captchaLoading.current = true;
+    const script = document.createElement('script');
+    script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit';
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      if (!captchaRef.current || captchaWidgetId.current !== null || !window.hcaptcha) return;
+      try {
+        captchaWidgetId.current = window.hcaptcha.render(captchaRef.current, {
+          sitekey: HCAPTCHA_SITE_KEY, theme: 'dark', size: 'normal',
+          callback: (t) => setCaptchaToken(t),
+          'expired-callback': () => setCaptchaToken(null),
+          'error-callback': () => setCaptchaToken(null),
+        });
+      } catch (e) { /* already rendered */ }
+    };
+    document.head.appendChild(script);
+  }, []);
+
+  // Try render if script already loaded
+  useEffect(() => {
+    if (window.hcaptcha && captchaRef.current && captchaWidgetId.current === null) {
+      try {
+        captchaWidgetId.current = window.hcaptcha.render(captchaRef.current, {
+          sitekey: HCAPTCHA_SITE_KEY, theme: 'dark', size: 'normal',
+          callback: (t) => setCaptchaToken(t),
+          'expired-callback': () => setCaptchaToken(null),
+          'error-callback': () => setCaptchaToken(null),
+        });
+      } catch (e) { /* already rendered */ }
+    }
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Anfrage von ${form.name}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nE-Mail: ${form.email}\n\n${form.message}`);
-    window.location.href = `mailto:wedding@sarahiver.de?subject=${subject}&body=${body}`;
+    setErrorMessage('');
+
+    // Spam checks
+    if (form.honeypot) { setSubmitStatus('success'); return; }
+    if (Date.now() - formLoadTime.current < 3000) { setSubmitStatus('success'); return; }
+    if (!captchaToken) { setErrorMessage('Bitte bestätige, dass du kein Roboter bist.'); return; }
+
+    // Validation
+    if (!form.name.trim()) { setErrorMessage('Bitte gib deinen Namen ein.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { setErrorMessage('Bitte gib eine gültige E-Mail-Adresse ein.'); return; }
+    if (!form.message.trim()) { setErrorMessage('Bitte schreibe uns eine Nachricht.'); return; }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim().toLowerCase(),
+          phone: form.phone.trim(),
+          weddingDate: form.weddingDate,
+          interestedTheme: form.interestedTheme,
+          interestedPackage: form.interestedPackage,
+          message: form.message.trim(),
+          captchaToken,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Ein Fehler ist aufgetreten.');
+      setSubmitStatus('success');
+      if (window.hcaptcha && captchaWidgetId.current !== null) {
+        window.hcaptcha.reset(captchaWidgetId.current);
+      }
+      setCaptchaToken(null);
+    } catch (err) {
+      setErrorMessage(err.message || 'Ein Fehler ist aufgetreten.');
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputStyle = {
@@ -565,18 +685,100 @@ function ContactModalForm({ onClose }) {
     borderRadius: 0, fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', fontWeight: 500,
     color: '#fff', background: 'transparent', outline: 'none', boxSizing: 'border-box',
   };
+  const selectStyle = {
+    ...inputStyle, appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.5)' fill='none' stroke-width='1.5'/%3E%3C/svg%3E")`,
+    backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center',
+  };
+  const labelStyle = {
+    fontFamily: "'DM Sans', sans-serif", fontSize: '0.65rem', fontWeight: 700,
+    letterSpacing: '0.15em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', marginBottom: '0.3rem',
+  };
+
+  if (submitStatus === 'success') {
+    return (
+      <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1.5rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>Danke! 💛</p>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7 }}>
+          Eure Nachricht ist bei uns angekommen. Wir melden uns innerhalb von 24 Stunden persönlich bei euch.
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <input style={inputStyle} type="text" placeholder="Eure Namen" value={form.name} onChange={e => setForm(s => ({ ...s, name: e.target.value }))} required />
-      <input style={inputStyle} type="email" placeholder="E-Mail" value={form.email} onChange={e => setForm(s => ({ ...s, email: e.target.value }))} required />
-      <textarea style={{ ...inputStyle, minHeight: '120px', resize: 'vertical' }} placeholder="Erzählt uns von eurer Hochzeit..." value={form.message} onChange={e => setForm(s => ({ ...s, message: e.target.value }))} />
-      <button type="submit" style={{
-        padding: '1rem 2rem', border: 'none', background: '#fff', color: '#000',
-        fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800,
-        letterSpacing: '0.1em', cursor: 'pointer', textTransform: 'uppercase', alignSelf: 'flex-start',
+    <form onSubmit={handleSubmit} onClick={loadCaptcha} onFocus={loadCaptcha}
+      style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+
+      {/* Honeypot — hidden from users */}
+      <div style={{ position: 'absolute', left: '-9999px' }}>
+        <input name="website" value={form.honeypot} onChange={e => setForm(s => ({ ...s, honeypot: e.target.value }))} tabIndex={-1} autoComplete="off" />
+      </div>
+
+      <div>
+        <p style={labelStyle}>Eure Namen *</p>
+        <input style={inputStyle} type="text" placeholder="z.B. Sarah & Iver" value={form.name}
+          onChange={e => setForm(s => ({ ...s, name: e.target.value }))} required />
+      </div>
+
+      <div>
+        <p style={labelStyle}>E-Mail *</p>
+        <input style={inputStyle} type="email" placeholder="eure@email.de" value={form.email}
+          onChange={e => setForm(s => ({ ...s, email: e.target.value }))} required />
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div>
+          <p style={labelStyle}>Telefon</p>
+          <input style={inputStyle} type="tel" placeholder="Optional" value={form.phone}
+            onChange={e => setForm(s => ({ ...s, phone: e.target.value }))} />
+        </div>
+        <div>
+          <p style={labelStyle}>Hochzeitsdatum</p>
+          <input style={{ ...inputStyle, colorScheme: 'dark' }} type="date" value={form.weddingDate}
+            onChange={e => setForm(s => ({ ...s, weddingDate: e.target.value }))} />
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div>
+          <p style={labelStyle}>Wunsch-Theme</p>
+          <select style={selectStyle} value={form.interestedTheme}
+            onChange={e => setForm(s => ({ ...s, interestedTheme: e.target.value }))}>
+            {THEME_OPTIONS.map(t => <option key={t.id} value={t.id} style={{ background: '#1a1a1a' }}>{t.label}</option>)}
+          </select>
+        </div>
+        <div>
+          <p style={labelStyle}>Paket</p>
+          <select style={selectStyle} value={form.interestedPackage}
+            onChange={e => setForm(s => ({ ...s, interestedPackage: e.target.value }))}>
+            {PACKAGES.map(p => <option key={p.id} value={p.id} style={{ background: '#1a1a1a' }}>{p.label}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <p style={labelStyle}>Eure Nachricht *</p>
+        <textarea style={{ ...inputStyle, minHeight: '120px', resize: 'vertical' }}
+          placeholder="Erzählt uns von eurer Hochzeit..."
+          value={form.message} onChange={e => setForm(s => ({ ...s, message: e.target.value }))} required />
+      </div>
+
+      {/* hCaptcha */}
+      <div style={{ display: 'flex', justifyContent: 'center', minHeight: '78px' }}>
+        <div ref={captchaRef} />
+      </div>
+
+      {errorMessage && (
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', color: '#ff6b6b', margin: 0 }}>{errorMessage}</p>
+      )}
+
+      <button type="submit" disabled={isSubmitting} style={{
+        padding: '1rem 2rem', border: 'none', background: isSubmitting ? 'rgba(255,255,255,0.5)' : '#fff',
+        color: '#000', fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 800,
+        letterSpacing: '0.1em', cursor: isSubmitting ? 'wait' : 'pointer', textTransform: 'uppercase',
+        alignSelf: 'flex-start', transition: 'opacity 0.2s',
       }}>
-        Nachricht senden
+        {isSubmitting ? '⏳ Wird gesendet...' : 'Nachricht senden'}
       </button>
     </form>
   );
