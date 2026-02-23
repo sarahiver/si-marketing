@@ -4,13 +4,49 @@
 //
 // GA4 Events werden nur gefeuert, wenn der User Cookies akzeptiert hat.
 // Alle Funktionen prüfen ob gtag verfügbar ist, bevor sie feuern.
+//
+// DEV-MODUS: ?notrack=1 an die URL hängen → GA4 + Vercel Analytics deaktiviert.
+// Merkt sich die Einstellung per localStorage. Aufheben mit ?notrack=0
 
 const GA_MEASUREMENT_ID = 'G-G9DKBTJRJJ';
+const NOTRACK_KEY = 'si_notrack';
+
+// ============================================
+// NOTRACK CHECK
+// ============================================
+const initNotrack = () => {
+  if (typeof window === 'undefined') return false;
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('notrack')) {
+    const val = params.get('notrack');
+    if (val === '0') {
+      localStorage.removeItem(NOTRACK_KEY);
+      return false;
+    }
+    localStorage.setItem(NOTRACK_KEY, '1');
+    // URL aufräumen – Parameter entfernen damit er nicht sichtbar bleibt
+    params.delete('notrack');
+    const clean = params.toString();
+    const newUrl = window.location.pathname + (clean ? '?' + clean : '') + window.location.hash;
+    window.history.replaceState({}, '', newUrl);
+    return true;
+  }
+  return localStorage.getItem(NOTRACK_KEY) === '1';
+};
+
+export const isNotrack = initNotrack();
+
+// Vercel Analytics blockieren wenn notrack aktiv
+if (isNotrack && typeof window !== 'undefined') {
+  window.va = function() {}; // Stub Vercel Analytics
+  window.vaq = []; // Stub Vercel Analytics queue
+}
 
 // ============================================
 // HELPER
 // ============================================
 const isAnalyticsReady = () => {
+  if (isNotrack) return false;
   return typeof window !== 'undefined' && typeof window.gtag === 'function';
 };
 
@@ -24,6 +60,7 @@ const trackEvent = (eventName, params = {}) => {
 // ============================================
 export const loadGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
+  if (isNotrack) return; // Dev-Modus: nichts laden
   if (window.gtag) return; // Already loaded
 
   const script = document.createElement('script');
