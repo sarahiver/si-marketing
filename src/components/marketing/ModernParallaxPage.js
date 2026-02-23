@@ -140,15 +140,15 @@ function ParallaxScene({ scrollY }) {
 // SCATTERED TITLES DATA
 // ============================================
 const TITLES = [
-  { id: 'features', text: 'Features', left: '3%', mLeft: '5%', top: 105, mTop: 108, speed: 0.7, mSpeed: 0.3, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: '2.8rem' },
-  { id: 'designs', text: 'Designs', left: '55%', mLeft: '5%', top: 118, mTop: 126, speed: 1.35, mSpeed: 0.35, size: 'clamp(3.2rem, 8vw, 7rem)', mSize: '3.2rem' },
-  { id: 'howItWorks', text: 'So funktioniert\'s', left: '22%', mLeft: '5%', top: 140, mTop: 144, speed: 0.75, mSpeed: 0.3, size: 'clamp(1.8rem, 4.5vw, 3.5rem)', mSize: '1.8rem' },
-  { id: 'components', text: 'Komponenten', left: '58%', mLeft: '5%', top: 156, mTop: 160, speed: 1.4, mSpeed: 0.4, size: 'clamp(2rem, 5vw, 4.5rem)', mSize: '2rem' },
-  { id: 'pricing', text: 'Preise', left: '8%', mLeft: '5%', top: 178, mTop: 180, speed: 0.65, mSpeed: 0.3, size: 'clamp(3.5rem, 9vw, 8rem)', mSize: '3.5rem' },
-  { id: 'about', text: 'Sarah & Iver', left: '42%', mLeft: '5%', top: 196, mTop: 198, speed: 1.3, mSpeed: 0.35, size: 'clamp(2.2rem, 5.5vw, 4.5rem)', mSize: '2.2rem' },
-  { id: 'whyUs', text: 'Warum wir', left: '18%', mLeft: '5%', top: 216, mTop: 216, speed: 0.72, mSpeed: 0.3, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: '2.6rem' },
-  { id: 'cooperation', text: 'Kooperationen', left: '52%', mLeft: '5%', top: 234, mTop: 234, speed: 1.25, mSpeed: 0.35, size: 'clamp(2rem, 5vw, 4rem)', mSize: '2rem' },
-  { id: 'contact', text: 'Kontakt', left: '6%', mLeft: '5%', top: 255, mTop: 254, speed: 0.68, mSpeed: 0.3, size: 'clamp(3rem, 7.5vw, 6.5rem)', mSize: '3rem' },
+  { id: 'features', text: 'Features', left: '3%', mLeft: '4%', top: 105, mTop: 108, speed: 0.7, mSpeed: 0.3, size: 'clamp(2.8rem, 7vw, 6rem)', mSize: 'clamp(2.2rem, 10vw, 3rem)' },
+  { id: 'designs', text: 'Designs', left: '55%', mLeft: '25%', top: 118, mTop: 126, speed: 1.35, mSpeed: 0.35, size: 'clamp(3.2rem, 8vw, 7rem)', mSize: 'clamp(2.5rem, 11vw, 3.5rem)' },
+  { id: 'howItWorks', text: 'So funktioniert\'s', left: '22%', mLeft: '4%', top: 140, mTop: 144, speed: 0.75, mSpeed: 0.3, size: 'clamp(1.8rem, 4.5vw, 3.5rem)', mSize: 'clamp(1.3rem, 6vw, 1.8rem)' },
+  { id: 'components', text: 'Komponenten', left: '58%', mLeft: '8%', top: 156, mTop: 160, speed: 1.4, mSpeed: 0.4, size: 'clamp(2rem, 5vw, 4.5rem)', mSize: 'clamp(1.5rem, 7vw, 2rem)' },
+  { id: 'pricing', text: 'Preise', left: '8%', mLeft: '6%', top: 178, mTop: 180, speed: 0.65, mSpeed: 0.3, size: 'clamp(3.5rem, 9vw, 8rem)', mSize: 'clamp(2.5rem, 11vw, 3.5rem)' },
+  { id: 'about', text: 'Sarah & Iver', left: '42%', mLeft: '20%', top: 196, mTop: 198, speed: 1.3, mSpeed: 0.35, size: 'clamp(2.2rem, 5.5vw, 4.5rem)', mSize: 'clamp(1.6rem, 7vw, 2.2rem)' },
+  { id: 'whyUs', text: 'Warum wir', left: '18%', mLeft: '5%', top: 216, mTop: 216, speed: 0.72, mSpeed: 0.3, size: 'clamp(2.2rem, 7vw, 6rem)', mSize: 'clamp(1.6rem, 8vw, 2.5rem)' },
+  { id: 'cooperation', text: 'Kooperationen', left: '52%', mLeft: '8%', top: 234, mTop: 234, speed: 1.25, mSpeed: 0.35, size: 'clamp(2rem, 5vw, 4rem)', mSize: 'clamp(1.3rem, 6vw, 1.8rem)' },
+  { id: 'contact', text: 'Kontakt', left: '6%', mLeft: '4%', top: 255, mTop: 254, speed: 0.68, mSpeed: 0.3, size: 'clamp(3rem, 7.5vw, 6.5rem)', mSize: 'clamp(2.2rem, 10vw, 3rem)' },
 ];
 
 // ============================================
@@ -884,7 +884,8 @@ export default function ModernParallaxPage() {
               margin: 0,
               cursor: 'pointer',
               zIndex: 2,
-              maxWidth: mobile ? '90%' : '80%',
+              maxWidth: '85vw',
+              whiteSpace: 'nowrap',
               transition: 'transform 0.1s ease-out',
               userSelect: 'none',
             }}
