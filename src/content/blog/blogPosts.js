@@ -2188,7 +2188,7 @@ Mehr zum Thema RSVP findet ihr in unserem ausführlichen Artikel über [digitale
 
 Ihr habt euch verlobt, die Hochzeitsplanung läuft, und jetzt steht die Frage im Raum: **Brauchen wir eine eigene Hochzeitswebsite – und wenn ja, erstellen wir sie selbst oder lassen wir sie professionell erstellen?**
 
-Google zeigt euch hunderte Ergebnisse für „Hochzeitswebsite erstellen". Baukästen wie Wix, Squarespace oder spezialisierte Anbieter wie WeddyBird und Zankyou versprechen: „In 5 Minuten fertig!" Klingt verlockend. Aber ist es wirklich so einfach? Und vor allem: **Wird das Ergebnis so aussehen, wie ihr euch eure Hochzeit vorstellt?**
+Google zeigt euch hunderte Ergebnisse für „Hochzeitswebsite erstellen". Kostenlose Portale und Homepage-Baukästen versprechen: „In 5 Minuten fertig!" Klingt verlockend. Aber ist es wirklich so einfach? Und vor allem: **Wird das Ergebnis so aussehen, wie ihr euch eure Hochzeit vorstellt?**
 
 Wir machen den ehrlichen Vergleich – mit echten Preisen, echtem Zeitaufwand und den Unterschieden, die man erst merkt, wenn es zu spät ist.
 
@@ -2196,7 +2196,7 @@ Wir machen den ehrlichen Vergleich – mit echten Preisen, echtem Zeitaufwand un
 
 ## Option 1: Hochzeitswebsite selber machen mit einem Baukasten
 
-**Anbieter:** Wix, Jimdo, Squarespace, WeddyBird, WeddyPlace, Zankyou, Ehemomente
+**Anbieter:** Diverse Homepage-Baukästen und spezialisierte Hochzeitsportale
 
 **Was ihr bekommt:** Eine Hochzeitshomepage aus einem Template-Baukasten. Ihr wählt ein Design, tragt eure Texte ein und veröffentlicht die Seite. Die meisten Anbieter haben 5–20 Hochzeitsvorlagen zur Auswahl.
 
@@ -2204,7 +2204,7 @@ Wir machen den ehrlichen Vergleich – mit echten Preisen, echtem Zeitaufwand un
 
 **Zeitaufwand:** Realistisch 8–20 Stunden. Ja, die Werbung sagt „5 Minuten" – aber das ist die Zeit, bis ihr ein Template ausgewählt habt. Bis Texte geschrieben, Fotos bearbeitet, das Layout angepasst, RSVP eingerichtet und alles auf dem Handy getestet ist, vergehen schnell zwei bis drei Abende.
 
-**Die Wahrheit über kostenlose Hochzeitswebsites:** Sie kommen mit Subdomain (euerename.weddybird.com statt eurenamen.de), Anbieter-Werbung auf eurer persönlichen Hochzeitsseite und eingeschränkten Funktionen. Gästebuch? Nur im Premium-Tarif. Passwortschutz? Aufpreis. Eigene Domain? Extra. Am Ende zahlt ihr trotzdem – und habt trotzdem ein Standard-Template, das hunderte andere Paare auch nutzen.
+**Die Wahrheit über kostenlose Hochzeitswebsites:** Sie kommen mit Subdomain (euerename.anbieter.com statt eurenamen.de), Anbieter-Werbung auf eurer persönlichen Hochzeitsseite und eingeschränkten Funktionen. Gästebuch? Nur im Premium-Tarif. Passwortschutz? Aufpreis. Eigene Domain? Extra. Am Ende zahlt ihr trotzdem – und habt trotzdem ein Standard-Template, das hunderte andere Paare auch nutzen.
 
 **Was gut ist:** Für Paare mit kleinem Budget und viel Zeit eine solide Lösung. Ihr habt volle Kontrolle und könnt jederzeit Änderungen vornehmen.
 
