@@ -2164,6 +2164,342 @@ Mehr zum Thema RSVP findet ihr in unserem ausführlichen Artikel über [digitale
     `,
   },
 
+  {
+    slug: 'hochzeitswebsite-erstellen-lassen',
+    title: 'Hochzeitswebsite erstellen lassen: Warum Profis das besser können als jeder Baukasten',
+    description: 'Hochzeitswebsite selber machen oder erstellen lassen? Wir vergleichen Baukasten, WordPress und professionellen Service – mit echten Preisen, Zeitaufwand und dem entscheidenden Unterschied.',
+    date: '2025-02-20',
+    category: 'Ratgeber',
+    tags: ['Ratgeber', 'Vergleich'],
+    readTime: '10 min',
+    keywords: ['hochzeitswebsite erstellen lassen', 'individuelle hochzeitswebsite', 'professionelle hochzeitswebsite', 'hochzeitswebsite selber machen oder machen lassen', 'hochzeitshomepage erstellen lassen', 'premium hochzeitswebsite', 'hochzeitswebsite agentur', 'hochzeitswebsite service', 'hochzeitswebsite beauftragen', 'hochzeitswebsite maßgeschneidert'],
+    image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&q=80',
+    imageAlt: 'Professionell gestaltete Hochzeitswebsite auf Laptop und Smartphone',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeitswebsite erstellen lassen: Warum Profis das besser können als jeder Baukasten",
+      "description": "Hochzeitswebsite selber machen oder erstellen lassen? Der ehrliche Vergleich mit Preisen und Zeitaufwand.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2025-02-20",
+    },
+    content: `
+## Selber machen oder machen lassen? Die ehrlichste Antwort, die euch niemand gibt
+
+Ihr habt euch verlobt, die Hochzeitsplanung läuft, und jetzt steht die Frage im Raum: **Brauchen wir eine eigene Hochzeitswebsite – und wenn ja, erstellen wir sie selbst oder lassen wir sie professionell erstellen?**
+
+Google zeigt euch hunderte Ergebnisse für „Hochzeitswebsite erstellen". Baukästen wie Wix, Squarespace oder spezialisierte Anbieter wie WeddyBird und Zankyou versprechen: „In 5 Minuten fertig!" Klingt verlockend. Aber ist es wirklich so einfach? Und vor allem: **Wird das Ergebnis so aussehen, wie ihr euch eure Hochzeit vorstellt?**
+
+Wir machen den ehrlichen Vergleich – mit echten Preisen, echtem Zeitaufwand und den Unterschieden, die man erst merkt, wenn es zu spät ist.
+
+![Brautpaar plant Hochzeit am Laptop](https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=900&q=80)
+
+## Option 1: Hochzeitswebsite selber machen mit einem Baukasten
+
+**Anbieter:** Wix, Jimdo, Squarespace, WeddyBird, WeddyPlace, Zankyou, Ehemomente
+
+**Was ihr bekommt:** Eine Hochzeitshomepage aus einem Template-Baukasten. Ihr wählt ein Design, tragt eure Texte ein und veröffentlicht die Seite. Die meisten Anbieter haben 5–20 Hochzeitsvorlagen zur Auswahl.
+
+**Kosten:** Kostenlos (mit Einschränkungen und Werbung) bis ca. 15–40 €/Monat für Premium-Tarife. Eigene Domain oft nur im Bezahltarif.
+
+**Zeitaufwand:** Realistisch 8–20 Stunden. Ja, die Werbung sagt „5 Minuten" – aber das ist die Zeit, bis ihr ein Template ausgewählt habt. Bis Texte geschrieben, Fotos bearbeitet, das Layout angepasst, RSVP eingerichtet und alles auf dem Handy getestet ist, vergehen schnell zwei bis drei Abende.
+
+**Die Wahrheit über kostenlose Hochzeitswebsites:** Sie kommen mit Subdomain (euerename.weddybird.com statt eurenamen.de), Anbieter-Werbung auf eurer persönlichen Hochzeitsseite und eingeschränkten Funktionen. Gästebuch? Nur im Premium-Tarif. Passwortschutz? Aufpreis. Eigene Domain? Extra. Am Ende zahlt ihr trotzdem – und habt trotzdem ein Standard-Template, das hunderte andere Paare auch nutzen.
+
+**Was gut ist:** Für Paare mit kleinem Budget und viel Zeit eine solide Lösung. Ihr habt volle Kontrolle und könnt jederzeit Änderungen vornehmen.
+
+**Was nicht so gut ist:** Templates sehen bei vielen Paaren gleich aus. Funktionen sind oft eingeschränkt. Technische Probleme löst ihr selbst. Und wenn die Hochzeit vorbei ist, läuft das Abo weiter – oder die Seite verschwindet.
+
+## Option 2: Hochzeitswebsite mit WordPress erstellen
+
+**Was ihr bekommt:** Maximale Flexibilität – wenn ihr wisst, was ihr tut. WordPress-Themes für Hochzeiten gibt es ab 30–80 €, dazu Hosting (5–15 €/Monat) und eine Domain (10–15 €/Jahr).
+
+**Kosten:** Ca. 100–200 € für Theme + Hosting + Domain im ersten Jahr.
+
+**Zeitaufwand:** 20–40 Stunden. Ihr braucht grundlegende technische Kenntnisse: WordPress installieren, Theme konfigurieren, Plugins einrichten (RSVP, Galerie, Kontaktformular), SSL-Zertifikat, Backup, Updates. Für Nicht-Techniker kann das schnell frustrierend werden.
+
+**Was gut ist:** Volle Kontrolle, eigene Domain, keine Anbieter-Werbung, unbegrenzte Anpassungsmöglichkeiten.
+
+**Was nicht so gut ist:** Hoher technischer Aufwand. Plugin-Konflikte, Sicherheitsupdates, langsame Ladezeiten ohne Optimierung. Und wer kümmert sich darum, wenn am Tag vor der Hochzeit die Seite nicht mehr lädt?
+
+## Option 3: Hochzeitswebsite professionell erstellen lassen
+
+**Was ihr bekommt:** Eine individuelle, maßgeschneiderte Hochzeitswebsite, die genau so aussieht und funktioniert, wie ihr es euch vorstellt. Kein Template-Einerlei, keine technischen Baustellen, keine eigene Wartung.
+
+**Kosten:** Bei Agenturen 2.000–10.000 €. Bei spezialisierten Hochzeitswebsite-Services wie S&I. ab 1.290 €.
+
+**Zeitaufwand für euch:** 1–2 Stunden. Ihr füllt einen kurzen Fragebogen aus, schickt eure Fotos und Texte – und bekommt eine fertige, professionelle Hochzeitswebsite mit allem, was dazugehört.
+
+**Was ihr euch spart:** Abende am Laptop mit Template-Frust. Technische Probleme. Die Suche nach dem richtigen Plugin. Die Frage „Warum sieht das auf dem Handy anders aus?" Und das ungute Gefühl, dass eure Hochzeitswebsite aussieht wie die von tausend anderen Paaren.
+
+![Elegante Hochzeitswebsite auf verschiedenen Geräten](https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80)
+
+## Der ehrliche Vergleich: Baukasten vs. WordPress vs. erstellen lassen
+
+**Design-Qualität:** Baukästen bieten solide Templates, aber eure Seite sieht aus wie viele andere. WordPress bietet mehr Freiheit, erfordert aber Design-Kenntnisse. Eine professionell erstellte Hochzeitswebsite wird individuell auf euer Farbkonzept, eure Fotos und euren Stil abgestimmt – sie ist so einzigartig wie eure Hochzeit selbst.
+
+**Funktionsumfang:** Kostenlose Baukästen begrenzen RSVP, Gästebuch und Fotoupload hinter Paywalls. Eine professionelle Lösung beinhaltet von Anfang an alles: digitales RSVP mit automatischer Gästeliste, Passwortschutz, interaktive Anfahrtskarte, Musikwünsche, Foto-Upload für Gäste, digitales Gästebuch und eigene Domain.
+
+**Zeitersparnis:** Ein Baukasten kostet euch 8–20 Stunden eurer Freizeit. WordPress 20–40 Stunden. Eine professionelle Hochzeitswebsite erstellen zu lassen kostet euch 1–2 Stunden – den Rest übernehmen Profis. In der stressigen Hochzeitsplanung ist Zeit euer wertvollstes Gut.
+
+**Support:** Bei Baukästen schreibt ihr ein Ticket und wartet. Bei WordPress seid ihr auf euch selbst gestellt. Bei S&I. habt ihr einen persönlichen Ansprechpartner, der euch durch den gesamten Prozess begleitet und auch kurzfristige Änderungen vor der Hochzeit umsetzt.
+
+**Langfristigkeit:** Baukasten-Seiten verschwinden, wenn das Abo endet. WordPress-Seiten brauchen permanente Wartung. Eine professionelle Hochzeitswebsite bleibt als Archiv erhalten – mit allen Fotos, Gästebucheinträgen und Erinnerungen.
+
+## Wann lohnt es sich, die Hochzeitswebsite erstellen zu lassen?
+
+**Die professionelle Lösung lohnt sich besonders, wenn:**
+
+Ihr wenig Zeit habt, weil beide berufstätig seid und die Hochzeitsplanung neben dem Alltag läuft. Ihr Wert auf ein individuelles, hochwertiges Design legt, das perfekt zu eurem Hochzeitskonzept passt. Ihr keine Lust auf Technik habt und euch auf die schönen Seiten der Hochzeitsplanung konzentrieren wollt. Ihr viele Gäste einladet (50+) und ein zuverlässiges RSVP-System mit automatischen Erinnerungen braucht. Ihr die Hochzeitswebsite auch nach der Hochzeit als Erinnerung behalten möchtet – mit Fotogalerie, Gästebuch und Danksagung.
+
+**Und die Rechnung geht auf:** Vergleicht mal realistisch: Ein Baukasten-Premium-Tarif kostet 20–40 €/Monat über 12 Monate = 240–480 €. Plus eure Arbeitszeit von 15+ Stunden. Wenn ihr eurer Freizeit auch nur 20 €/Stunde Wert zuschreibt, seid ihr bei 540–780 € – für ein Standard-Template. Die Differenz zu einer professionellen Lösung ab 1.290 € ist plötzlich gar nicht mehr so groß, oder?
+
+![Brautpaar schaut sich gemeinsam die Hochzeitswebsite an](https://images.unsplash.com/photo-1525258946800-98cbbe049ecd?w=900&q=80)
+
+## Wie läuft das bei S&I. ab?
+
+Bei S&I. haben wir den Prozess so gestaltet, dass ihr möglichst wenig Aufwand habt und trotzdem eine individuelle Hochzeitswebsite bekommt, die eure Gäste begeistert:
+
+**Schritt 1 – Theme wählen:** Ihr wählt aus 8 handgefertigten [Hochzeitswebsite-Designs](/blog/hochzeitswebsite-design-beispiele-inspiration) euer Lieblingstheme. Von minimalistisch-elegant über romantisch-botanisch bis hin zu modern und mutig – für jeden Geschmack ist etwas dabei.
+
+**Schritt 2 – Inhalte liefern:** Ihr schickt uns eure Fotos, Texte und alle Details zu eurer Hochzeit (Location, Ablauf, Dresscode, Hotelempfehlungen). Wir helfen euch gerne bei den Texten, wenn ihr nicht sicher seid, was ihr schreiben sollt.
+
+**Schritt 3 – Wir bauen eure Website:** Innerhalb weniger Tage steht eure individuelle Hochzeitswebsite – komplett eingerichtet mit eigener Domain, Passwortschutz, RSVP-System, interaktiver Karte, Gästebuch, Musikwunsch-Funktion und Foto-Upload.
+
+**Schritt 4 – Feedback und Feinschliff:** Ihr schaut euch die Vorschau an, gebt Feedback, wir passen an. Erst wenn ihr 100% zufrieden seid, geht die Seite live.
+
+**Schritt 5 – Live und begleitet:** Eure Hochzeitswebsite ist online, eure Gäste können sich anmelden, und ihr habt jederzeit Zugriff auf euer Admin-Dashboard. Fragen oder Änderungswünsche? Wir sind für euch da.
+
+## Fazit: Die klügste Investition in eure Hochzeitsplanung
+
+Eine Hochzeitswebsite erstellen zu lassen ist keine Luxus-Entscheidung – es ist eine smarte Investition in stressfreie Hochzeitsplanung. Ihr gewinnt Zeit, die ihr für die wirklich wichtigen Dinge nutzen könnt: gemeinsame Vorfreude, Vorbereitungen genießen und die Aufregung vor eurem großen Tag.
+
+Für Paare, die Wert auf Design, Funktionalität und persönlichen Service legen, ist eine professionelle Hochzeitswebsite die klügste Entscheidung der gesamten Hochzeitsplanung. Und mit S&I. bekommt ihr genau das – zu einem fairen Preis, mit persönlichem Service und einem Ergebnis, das eure Gäste garantiert beeindruckt.
+
+**Bereit, eure Hochzeitswebsite erstellen zu lassen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite mit eigener Domain, RSVP-System, Foto-Upload, Gästebuch und individuellem Design – alles aus einer Hand, ab 1.290 €.
+
+**[Jetzt unverbindlich anfragen](https://www.sarahiver.com)** – und die Hochzeitsplanung genießen statt stundenlang an Templates zu schrauben.
+    `,
+  },
+
+  {
+    slug: 'digitale-hochzeitseinladung',
+    title: 'Digitale Hochzeitseinladung: Warum die schönste Einladung kein Papier braucht',
+    description: 'Digitale Hochzeitseinladung statt Papier? Alles über digitale Einladungskarten, Online-Einladungen zur Hochzeit und wie ihr Print und Digital perfekt kombiniert.',
+    date: '2025-02-22',
+    category: 'Planung',
+    tags: ['Planung', 'Ratgeber'],
+    readTime: '9 min',
+    keywords: ['digitale hochzeitseinladung', 'hochzeitseinladung online', 'hochzeitseinladung digital', 'online einladung hochzeit', 'hochzeitseinladung website', 'digitale einladungskarte hochzeit', 'hochzeitseinladung per link', 'einladung hochzeit digital oder papier', 'hochzeitseinladung modern', 'hochzeitseinladung nachhaltig'],
+    image: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=1200&q=80',
+    imageAlt: 'Elegante digitale Hochzeitseinladung auf dem Smartphone',
+    schema: {
+      "@type": "Article",
+      "headline": "Digitale Hochzeitseinladung: Warum die schönste Einladung kein Papier braucht",
+      "description": "Alles über digitale Hochzeitseinladungen, Online-Einladungen und die perfekte Kombination aus Print und Digital.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2025-02-22",
+    },
+    content: `
+## Die Hochzeitseinladung neu gedacht
+
+Es gibt Momente, die eine Hochzeit einleiten – und die Einladung ist einer davon. Sie ist der erste offizielle Hinweis an eure Liebsten: **Wir heiraten, und ihr sollt dabei sein.** Traditionell kommt diese Nachricht auf schwerem Büttenpapier, mit Kalligrafie und Goldprägung. Wunderschön, keine Frage.
+
+Aber immer mehr Paare stellen sich die Frage: **Muss eine Hochzeitseinladung wirklich aus Papier sein?** Oder gibt es einen moderneren, nachhaltigeren und gleichzeitig persönlicheren Weg, eure Gäste einzuladen?
+
+Die Antwort: **Ja, den gibt es. Die digitale Hochzeitseinladung.** Und sie ist weit mehr als eine schnöde E-Mail mit einem PDF im Anhang.
+
+![Smartphone zeigt elegante Hochzeitseinladung](https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=900&q=80)
+
+## Was genau ist eine digitale Hochzeitseinladung?
+
+Eine digitale Hochzeitseinladung ist eine Online-Einladung zu eurer Hochzeit, die eure Gäste über einen Link oder QR-Code aufrufen. Statt eines gedruckten Kartons öffnen eure Gäste eine wunderschön gestaltete Hochzeitswebsite, die alle Informationen enthält – und noch viel mehr kann als jede Papierkarte.
+
+**Was eine digitale Einladung beinhaltet:** Euer Hochzeitsdatum und die Uhrzeit der Trauung, die Location mit interaktiver Karte und Anfahrtsbeschreibung, den Tagesablauf von der Zeremonie bis zur Party, den gewünschten Dresscode, Hotelempfehlungen für Gäste von auswärts und – der größte Vorteil – ein integriertes RSVP-Formular, über das eure Gäste direkt online zu- oder absagen können.
+
+Das alles in einem einheitlichen, professionellen Design, das perfekt zu eurem Hochzeitskonzept passt. Keine zweite Karte für den Ablauf, kein extra Zettel für die Anfahrt, kein Rückumschlag für die Zusage.
+
+## Digital vs. Papier: Der ehrliche Vergleich
+
+**Kosten:** Eine klassische Papiereinladung für 80 Gäste kostet schnell 400–800 € (Design, Druck, Porto, Rückumschläge). Eine digitale Hochzeitseinladung über eure Hochzeitswebsite? Ist Teil des Pakets – keine Zusatzkosten, kein Porto, keine Nachdrucke bei Änderungen.
+
+**Aktualität:** Eure Papiereinladung ist gedruckt – und dann fix. Ändert sich der Zeitplan, die Location oder ein Detail? Nachdrucken oder telefonieren. Eure digitale Einladung aktualisiert ihr mit einem Klick. Alle Gäste sehen sofort die aktuelle Version.
+
+**Interaktivität:** Eine Papierkarte ist passiv. Eine digitale Hochzeitseinladung ist interaktiv: Eure Gäste können direkt auf der Website zusagen, Menüwünsche angeben, Allergien melden und sogar Musikwünsche für die Party einreichen. Das spart euch Wochen an Nachhaken und Organisation.
+
+**Nachhaltigkeit:** 80 Einladungen + Rückumschläge + Save-the-Date-Karten + Menükarten = ein Stapel Papier, der nach der Hochzeit in der Schublade verstaubt. Die digitale Alternative: null Papier, null Plastik, null Verschwendung. Für umweltbewusste Paare ein echtes Argument.
+
+**Persönlichkeit:** Und hier kommt der Punkt, bei dem viele Paare skeptisch sind. „Ist digital nicht unpersönlich?" Ganz im Gegenteil. Eine professionell gestaltete Hochzeitswebsite mit eurer Love Story, euren Fotos, eurem individuellen Design und einem persönlichen Willkommenstext ist **persönlicher als jede standardisierte Druckkarte**. Eure Gäste tauchen in eure Welt ein – mit Animationen, Musik und echten Emotionen.
+
+## Die beste Lösung: Print und Digital kombinieren
+
+Ihr müsst euch nicht entscheiden. Die smarteste Variante für 2026? **Eine schöne Papiereinladung als Ankündigung – mit einem [QR-Code](/blog/hochzeitswebsite-qr-code-einladung), der auf eure digitale Hochzeitswebsite führt.**
+
+So funktioniert es: Eure Gäste bekommen eine elegante Karte in die Hand – das haptische Erlebnis bleibt erhalten. Auf der Karte steht das Datum, die Location und ein QR-Code mit einem persönlichen Text wie: „Alle Details und eure Zusage findet ihr auf unserer Hochzeitswebsite." Eure Gäste scannen den QR-Code mit dem Smartphone und landen auf eurer wunderschön gestalteten Hochzeitswebsite mit allen Details, RSVP-Formular und mehr.
+
+**Das Beste aus beiden Welten:** Die Wertigkeit einer physischen Einladung kombiniert mit der Funktionalität einer digitalen Hochzeitseinladung. Die Karte selbst braucht nur das Nötigste – alle Details stehen auf der Website. Das spart Druckkosten, weil die Karte kleiner und einfacher sein kann.
+
+![QR-Code auf eleganter Hochzeitseinladung](https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=900&q=80)
+
+## Save the Date – der perfekte Einstieg
+
+Bevor die eigentliche Hochzeitseinladung kommt, verschicken viele Paare eine Save-the-Date-Nachricht – und genau hier zeigt die digitale Variante ihre volle Stärke.
+
+**Eine digitale Save-the-Date über eure Hochzeitswebsite** ist mehr als eine Terminankündigung. Eure Gäste bekommen einen ersten Eindruck von eurem Hochzeitsstil, können sich das Datum direkt im Kalender speichern und wissen sofort, wo sie später alle Informationen finden werden. Ihr baut Vorfreude auf – und müsst bei der eigentlichen Einladung nicht bei null anfangen.
+
+## Für wen eignet sich die digitale Hochzeitseinladung?
+
+**Für fast alle Paare.** Besonders gut funktioniert sie wenn eure Gäste über verschiedene Städte oder Länder verteilt sind und ihr Porto sparen wollt. Wenn ihr kurzfristig heiratet und keine Wochen auf die Druckerei warten könnt. Wenn ihr Wert auf Nachhaltigkeit legt und eure Hochzeit möglichst umweltfreundlich gestalten möchtet. Wenn ihr ein einheitliches Design-Konzept wollt, das sich von der Einladung bis zur Danksagung durchzieht. Wenn ihr ein funktionierendes RSVP-System braucht, statt hundert WhatsApp-Nachrichten zu sortieren.
+
+**Tipp für Gäste der älteren Generation:** Auch Oma und Opa kommen mit einer digitalen Einladung klar – solange jemand ihnen kurz zeigt, wie man den QR-Code scannt. Alternativ könnt ihr der älteren Generation die wichtigsten Infos ausgedruckt beilegen und den Link zur Website dazuschreiben.
+
+## Was eure Gäste wirklich darüber denken
+
+Spoiler: **Die meisten Gäste lieben digitale Hochzeitseinladungen.** Weil sie alle Infos sofort auf dem Smartphone haben. Weil sie nicht umständlich einen Rückumschlag ausfüllen und zur Post bringen müssen. Weil sie jederzeit nachschauen können, wann die Trauung beginnt, welcher Dresscode gilt und wie sie zur Location kommen. Und weil sie nach der Hochzeit über die gleiche Website Fotos hochladen und Grüße im Gästebuch hinterlassen können.
+
+Eine gut gemachte digitale Hochzeitseinladung vermittelt euren Gästen: **Dieses Paar hat sich Gedanken gemacht. Diese Hochzeit wird besonders.**
+
+## Fazit: Die moderne Hochzeitseinladung ist digital – und persönlicher als je zuvor
+
+Eine digitale Hochzeitseinladung ist nicht der Ersatz für eine persönliche Einladung – sie ist die **Weiterentwicklung**. Sie ist günstiger, nachhaltiger, aktueller, interaktiver und kann – richtig gemacht – persönlicher sein als jede Papierkarte.
+
+Ob als alleinige Einladung oder in Kombination mit einer schönen Karte plus QR-Code: Die digitale Hochzeitseinladung über eure eigene Hochzeitswebsite ist 2026 der Standard für moderne Brautpaare.
+
+**Bereit für eure digitale Hochzeitseinladung?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die gleichzeitig eure schönste Einladung ist – mit individuellem Design, RSVP-System, QR-Code und eigener Domain. Ab 1.290 €.
+
+**[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)** – und eure Gäste mit der schönsten Einladung überraschen, die sie je bekommen haben.
+    `,
+  },
+
+  {
+    slug: 'hochzeitswebsite-save-the-date-bis-danksagung',
+    title: 'Von Save the Date bis Danksagung: Wie eure Hochzeitswebsite euch ein Leben lang begleitet',
+    description: 'Eine Hochzeitswebsite ist mehr als eine Einladung – sie begleitet euch von der Save-the-Date-Ankündigung über die Live-Hochzeit bis zur Fotogalerie, Danksagung und dem digitalen Archiv eurer schönsten Erinnerungen.',
+    date: '2025-02-24',
+    category: 'Features',
+    tags: ['Features', 'Ratgeber'],
+    readTime: '11 min',
+    keywords: ['save the date website', 'save the date digital', 'hochzeitswebsite archiv', 'hochzeitswebsite nach hochzeit', 'hochzeitswebsite danksagung', 'hochzeitsfotos teilen website', 'hochzeitsgalerie online', 'hochzeitswebsite erinnerung', 'gäste fotos hochladen hochzeit', 'digitale danksagung hochzeit', 'hochzeitswebsite lebenslang', 'hochzeitsfotos gäste sammeln', 'fotoupload hochzeit gäste'],
+    image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1200&q=80',
+    imageAlt: 'Brautpaar schaut Hochzeitsfotos auf der Hochzeitswebsite an',
+    schema: {
+      "@type": "Article",
+      "headline": "Von Save the Date bis Danksagung: Wie eure Hochzeitswebsite euch ein Leben lang begleitet",
+      "description": "Die Hochzeitswebsite als lebenslanger Begleiter – von der Save-the-Date-Ankündigung bis zum Foto-Archiv.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2025-02-24",
+    },
+    content: `
+## Eure Hochzeitswebsite endet nicht mit dem Ja-Wort
+
+Die meisten Paare denken bei „Hochzeitswebsite" an eine digitale Einladung. Logisch – das ist der offensichtlichste Nutzen. Aber was wäre, wenn eure Hochzeitswebsite nicht nur für die paar Wochen vor der Hochzeit da wäre, sondern **euch und eure Gäste über Monate begleitet – und danach als digitales Erinnerungsalbum für immer bestehen bleibt?**
+
+Genau das ist die Idee hinter einer Premium-Hochzeitswebsite: Sie wächst mit eurer Hochzeitsplanung, begleitet den großen Tag live und verwandelt sich danach in ein wunderschönes digitales Archiv eurer schönsten Erinnerungen.
+
+Wir zeigen euch die fünf Phasen einer Hochzeitswebsite – von der ersten Ankündigung bis zur letzten Erinnerung.
+
+![Hochzeitszeitstrahl von Save the Date bis Danksagung](https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=900&q=80)
+
+## Phase 1: Save the Date – Die Vorfreude beginnt
+
+**Wann:** 8–12 Monate vor der Hochzeit
+
+Ihr habt euch verlobt, das Datum steht, die Location ist gebucht. Jetzt wollt ihr es der Welt mitteilen – oder zumindest euren engsten Freunden und der Familie. Das ist der perfekte Moment für eine **digitale Save-the-Date-Seite**.
+
+**Was eure Gäste sehen:** Eine wunderschön gestaltete Seite mit eurem Hochzeitsdatum, euren Namen, einem Countdown bis zum großen Tag und vielleicht einem Verlobungsfoto. Dazu ein kurzer, persönlicher Text: „Haltet euch den 15. August frei – wir heiraten! Alle Details folgen. Wir freuen uns auf euch."
+
+**Was im Hintergrund passiert:** Eure Gäste können sich das Datum direkt im Kalender speichern. Ihr sammelt erste E-Mail-Adressen für spätere Updates. Und ihr baut Vorfreude auf – ohne bereits alle Details preiszugeben.
+
+**Der Vorteil gegenüber einer Papier-Save-the-Date-Karte:** Kein Druck, kein Porto, sofort bei allen angekommen. Und eure Gäste haben direkt den Link zu eurer Hochzeitswebsite gespeichert – wenn die Einladung kommt, wissen sie schon, wo sie klicken müssen.
+
+**Tipp:** Nutzt für die Save-the-Date-Phase einen eigenen, einfacheren Passwortschutz. So bleibt die Überraschung erhalten und ihr steuert, wer schon Bescheid weiß.
+
+## Phase 2: Die Einladung – Alle Infos, ein Link
+
+**Wann:** 3–6 Monate vor der Hochzeit
+
+Jetzt wird es ernst. Eure Hochzeitswebsite verwandelt sich von der Save-the-Date-Seite in die **vollständige digitale Hochzeitseinladung**. Alle Sektionen werden freigeschaltet: der komplette Tagesablauf, Location mit interaktiver Karte, Dresscode, Menüoptionen, Hotelempfehlungen und – das Herzstück – das [digitale RSVP-System](/blog/digitales-rsvp-hochzeit).
+
+**Was eure Gäste jetzt tun können:** Online zusagen oder absagen, direkt auf eurer Website. Menüwahl treffen (Fleisch, Fisch, vegetarisch, vegan). Allergien und Unverträglichkeiten angeben. Angeben, ob sie Begleitpersonen mitbringen. [Musikwünsche](/blog/hochzeitswebsite-musikwuensche-playlist) für die Party einreichen. Hotels in der Nähe ansehen und direkt buchen.
+
+**Was ihr als Brautpaar bekommt:** Ein übersichtliches Dashboard mit allen Zu- und Absagen in Echtzeit. Automatische Erinnerungsmails an Gäste, die noch nicht geantwortet haben. Eine exportierbare [Gästeliste](/blog/gaesteliste-rsvp-erinnerungsmail-export) für Caterer, Sitzplan und Location. Und den Überblick über alle Sonderwünsche – ohne eine einzige WhatsApp-Nachricht.
+
+**Der Moment, in dem sich eure Hochzeitswebsite bezahlt macht:** Stellt euch vor, 80 Gäste sagen online zu, mit allen Details – automatisch sortiert, direkt in eurem Dashboard. Kein einziger Anruf, keine einzige vergessene Rückmeldung. Das allein spart euch Wochen an Organisationsarbeit.
+
+![Gäste nutzen RSVP auf dem Smartphone](https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=80)
+
+## Phase 3: Der Hochzeitstag – Eure Website live erleben
+
+**Wann:** Am Tag der Hochzeit und die Tage danach
+
+Euer großer Tag ist da – und eure Hochzeitswebsite ist mittendrin. Kein Gast muss mehr nach dem Zeitplan fragen, denn alles steht auf der Website. Die interaktive Karte navigiert jeden direkt zur Location. Und während der Feier?
+
+**Live-Features für den Hochzeitstag:** Eure Gäste können über die Website [Fotos hochladen](/blog/hochzeitswebsite-foto-upload-gaeste) – direkt vom Smartphone, in voller Qualität. Keine komprimierten WhatsApp-Bilder, kein Verfallsdatum. Jedes Bild, jedes Video, jede Perspektive eures Tages wird gesammelt. Das [digitale Gästebuch](/blog/hochzeitswebsite-gaestebuch-digital) füllt sich mit Glückwünschen, Anekdoten und lieben Worten – manche Gäste schreiben am Tisch, manche am nächsten Morgen, manche erst Tage später. Alles an einem Ort, für immer bewahrt.
+
+**Der Foto-Upload eurer Gäste:** Das ist einer der wertvollsten Features überhaupt. Der Hochzeitsfotograf fängt die großen Momente ein – aber die spontanen, ehrlichen, witzigen Aufnahmen kommen von euren Gästen. Das Getting Ready aus der Perspektive der Brautjungfern. Die Überraschung des Bräutigams beim First Look. Die Kinder auf der Tanzfläche. Oma, die weint. Der beste Freund, der seine Rede übt. All diese Momente gehen verloren, wenn sie in hundert verschiedenen Smartphone-Galerien verschwinden. Mit dem Foto-Upload auf eurer Hochzeitswebsite landen sie alle an einem Ort – und ihr habt jedes einzelne Bild.
+
+## Phase 4: Nach der Hochzeit – Das digitale Erinnerungsalbum
+
+**Wann:** 1–8 Wochen nach der Hochzeit
+
+Die Flitterwochen sind vorbei, ihr seid zurück im Alltag – und eure Hochzeitswebsite beginnt ihre schönste Verwandlung. Sie wird vom Planungstool zum **digitalen Erinnerungsarchiv**.
+
+**Die Fotogalerie wächst:** Die professionellen Fotos eures Hochzeitsfotografen kommen dazu. Plötzlich habt ihr auf eurer Website eine komplette Galerie: die professionellen Bilder neben den spontanen Gästefotos. Die Perspektive des Fotografen neben der eurer besten Freundin. Das Gesamtbild eures Tages – so vollständig wie nirgendwo sonst.
+
+**Die Danksagung – digital und von Herzen:** Statt für 80+ Gäste individuelle Dankeskarten zu drucken (nochmal 200–400 € plus Porto), nutzt ihr eure Hochzeitswebsite für eine wunderschöne, persönliche Danksagung. Ein liebevoller Text, eure schönsten Hochzeitsfotos, vielleicht ein kurzes Video – und ein herzliches Dankeschön an alle, die euren Tag so besonders gemacht haben. Eure Gäste öffnen den vertrauten Link und werden noch einmal in die Emotionen eures Tages hineingezogen.
+
+**Das Gästebuch wird zur Zeitkapsel:** Wochen nach der Hochzeit schreiben noch Gäste ins digitale Gästebuch. Manche brauchen Zeit, um die richtigen Worte zu finden. Andere wollen erst die Fotos sehen, bevor sie ihren Beitrag schreiben. Das ist das Schöne am digitalen Gästebuch – es hat kein Verfallsdatum. Und in fünf, zehn oder zwanzig Jahren lest ihr diese Worte noch einmal und erinnert euch an jeden einzelnen Moment.
+
+![Paar schaut gemeinsam Hochzeitsfotos an](https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80)
+
+## Phase 5: Für immer – Euer digitales Hochzeitsarchiv
+
+**Wann:** Ab jetzt und für immer
+
+Die Hochzeit ist vorbei, aber die Erinnerungen bleiben. Und genau hier unterscheidet sich eine Premium-Hochzeitswebsite von einem Baukasten: **Bei S&I. bleibt eure Website als Archiv erhalten – auch wenn die Hochzeit längst vorbei ist.**
+
+**Was euer Archiv enthält:** Eure Love Story, wie ihr sie auf der Website erzählt habt. Alle Fotos – eure professionellen Bilder und die eurer Gäste. Das komplette Gästebuch mit allen Glückwünschen. Die Danksagung an eure Liebsten. Eure Hochzeitsdetails als Erinnerung: Datum, Location, Tagesablauf, Menü.
+
+**Warum das wichtig ist:** Digitale Erinnerungen gehen schneller verloren, als man denkt. Fotos verschwinden in Cloud-Speichern, die man irgendwann kündigt. WhatsApp-Chats werden gelöscht. Instagram-Stories verschwinden nach 24 Stunden. Aber eure Hochzeitswebsite? Die bleibt. Ein fester Ort im Internet, an dem eure schönsten Erinnerungen bewahrt werden.
+
+Stellt euch vor, in zehn Jahren tippt ihr eurenamen.de in den Browser – und da ist alles wieder. Die Fotos, die Worte, die Emotionen. **Das ist kein Template, das nach einem Jahr gelöscht wird. Das ist euer digitales Hochzeitsalbum.**
+
+## Der komplette Zeitstrahl: Eure Hochzeitswebsite im Überblick
+
+**12 Monate vorher:** Save the Date online, Countdown läuft, erste Vorfreude.
+
+**6 Monate vorher:** Vollständige Einladung live, RSVP-System offen, alle Details für Gäste verfügbar.
+
+**3 Monate vorher:** Gästeliste füllt sich, automatische Erinnerungen an säumige Gäste, Menüwahl abgeschlossen.
+
+**1 Monat vorher:** Letzte Updates (Ablauf, Wetter-Backup, Parkplätze), finale Gästeliste für Caterer exportieren.
+
+**Am Hochzeitstag:** Gäste nutzen die Website für Navigation, Foto-Upload und Gästebuch beginnen.
+
+**1–4 Wochen danach:** Professionelle Fotos ergänzen, Danksagung veröffentlichen, Gästebuch wächst.
+
+**Für immer:** Eure Website wird zum digitalen Archiv – alle Erinnerungen an einem Ort.
+
+## Warum Baukasten-Seiten das nicht können
+
+Bei kostenlosen oder günstigen Hochzeitswebsite-Baukästen passiert nach der Hochzeit meistens eines von zwei Dingen: Entweder läuft das Abo weiter und ihr zahlt jeden Monat für eine Website, die niemand mehr besucht. Oder ihr kündigt – und die Website ist weg. Inklusive aller Fotos, Gästebucheinträge und Erinnerungen.
+
+**Bei S&I. ist das anders.** Eure Hochzeitswebsite wird nach der aktiven Phase ins Archiv überführt. Alle Inhalte bleiben erhalten, die Fotos sind gesichert, das Gästebuch ist zugänglich. Kein laufendes Abo, das ihr vergessen könnt. Keine Deadline, nach der alles gelöscht wird.
+
+## Fazit: Mehr als eine Website – eine Zeitkapsel eurer Liebe
+
+Eine Hochzeitswebsite, die diesen Namen verdient, begleitet euch durch jede Phase eurer Hochzeitsreise. Sie beginnt als Save-the-Date-Ankündigung voller Vorfreude, wird zur vollständigen digitalen Einladung mit allem, was eure Gäste brauchen, begleitet euren Hochzeitstag live und verwandelt sich danach in ein wunderschönes digitales Erinnerungsalbum – mit Fotos, Gästebuch und Danksagung.
+
+Das ist keine Standard-Hochzeitshomepage. Das ist die Geschichte eurer Liebe, digital erzählt und für immer bewahrt.
+
+**Bereit für eine Hochzeitswebsite, die euch ein Leben lang begleitet?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr genau das – von Save the Date über RSVP und Foto-Upload bis zum digitalen Archiv. Mit individuellem Design, persönlichem Service und einer Website, die so einzigartig ist wie eure Liebe.
+
+**[Jetzt eure Hochzeitswebsite erstellen lassen](https://www.sarahiver.com)** – und den Beginn einer wunderschönen Geschichte starten.
+    `,
+  },
+
 ];
 
 export default blogPosts;
