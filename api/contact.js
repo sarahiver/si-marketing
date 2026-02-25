@@ -61,6 +61,77 @@ async function verifyCaptcha(token) {
 }
 
 // ============================================
+// PARTNER CODE VALIDATION (via Supabase REST API)
+// ============================================
+async function validatePartnerCode(couponCode) {
+  if (!couponCode || !SUPABASE_URL || !SUPABASE_SERVICE_KEY) return null;
+
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/partner_codes?coupon_code=eq.${encodeURIComponent(couponCode)}&is_active=eq.true&select=id,partner_name,partner_email,discount_amount,discount_type,slug`,
+    {
+      headers: {
+        'apikey': SUPABASE_SERVICE_KEY,
+        'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
+      },
+    }
+  );
+
+  if (!response.ok) return null;
+  const data = await response.json();
+  return data[0] || null;
+}
+
+async function sendPartnerNotification(partnerCode, formData) {
+  if (!BREVO_API_KEY || !partnerCode.partner_email) return;
+
+  const esc = (s) => String(s || '–').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'api-key': BREVO_API_KEY,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      to: [{ email: partnerCode.partner_email, name: partnerCode.partner_name }],
+      sender: { email: 'wedding@sarahiver.de', name: 'S&I. Wedding' },
+      subject: `Neuer Lead über euren Partnercode ${partnerCode.slug.toUpperCase()}`,
+      htmlContent: `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
+          <div style="background: #000; color: #fff; display: inline-block; padding: 8px 16px; font-weight: 700; font-size: 18px; letter-spacing: -0.06em; margin-bottom: 30px;">S&amp;I.</div>
+          <h1 style="font-size: 22px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a;">Neuer Lead über eure Partner-URL!</h1>
+          <p style="color: #666; font-size: 14px; margin-bottom: 24px;">Ein Paar hat sich über euren Empfehlungslink bei uns gemeldet.</p>
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px 0; color: #888; width: 130px;">Name</td>
+              <td style="padding: 12px 0; color: #1a1a1a; font-weight: 500;">${esc(formData.name)}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px 0; color: #888;">E-Mail</td>
+              <td style="padding: 12px 0; color: #1a1a1a;">${esc(formData.email)}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px 0; color: #888;">Hochzeitsdatum</td>
+              <td style="padding: 12px 0; color: #1a1a1a;">${esc(formData.weddingDate)}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px 0; color: #888;">Gutscheincode</td>
+              <td style="padding: 12px 0; color: #1a1a1a; font-weight: 600;">${esc(formData.couponCode)}</td>
+            </tr>
+          </table>
+          <p style="color: #666; font-size: 14px; line-height: 1.6;">
+            Wir kümmern uns um alles Weitere und halten euch über den Status auf dem Laufenden.
+            Bei einer Buchung erhaltet ihr automatisch eure Provision.
+          </p>
+          <p style="color: #ccc; font-size: 12px; margin-top: 40px;">Automatische Benachrichtigung von S&I. Wedding</p>
+        </div>
+      `,
+    }),
+  }).catch(err => console.error('Partner notification error:', err));
+}
+
+// ============================================
 // SUPABASE INSERT (via REST API)
 // ============================================
 async function saveToSupabase(contactData) {
@@ -197,6 +268,10 @@ function buildNotificationHtml(formData, contactId) {
           <td style="padding: 12px 0; color: #888;">Paket</td>
           <td style="padding: 12px 0; color: #1a1a1a;">${esc(formData.interestedPackage)}</td>
         </tr>
+        ${formData.couponCode ? `<tr style="border-bottom: 1px solid #eee;">
+          <td style="padding: 12px 0; color: #888;">Gutscheincode</td>
+          <td style="padding: 12px 0; color: #1a1a1a; font-weight: 600;">🎟 ${esc(formData.couponCode)}</td>
+        </tr>` : ''}
       </table>
       <div style="background: #f8f8f8; border-left: 3px solid #000; padding: 20px; margin-bottom: 30px;">
         <p style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0;">Nachricht</p>
@@ -279,6 +354,8 @@ export default async function handler(req, res) {
       interestedTheme: sanitize(body.interestedTheme, 50),
       interestedPackage: sanitize(body.interestedPackage, 50),
       message: sanitize(body.message, 2000),
+      couponCode: sanitize(body.couponCode, 50),
+      partnerRef: sanitize(body.partnerRef, 100),
     };
 
     if (!formData.name) {
@@ -291,7 +368,14 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Nachricht ist erforderlich.' });
     }
 
-    // 3. Save to Supabase
+    // 3. Validate partner/coupon code (if provided)
+    let partnerCode = null;
+    if (formData.couponCode) {
+      partnerCode = await validatePartnerCode(formData.couponCode);
+      // Invalid codes are silently ignored (not a blocking error)
+    }
+
+    // 4. Save to Supabase
     let contactId = null;
     const savedContact = await saveToSupabase({
       name: formData.name,
@@ -301,15 +385,22 @@ export default async function handler(req, res) {
       interested_theme: formData.interestedTheme || null,
       interested_package: formData.interestedPackage || null,
       message: formData.message,
-      source: 'website_contact',
+      source: formData.partnerRef ? `partner_${formData.partnerRef}` : 'website_contact',
       status: 'new',
       email_confirmed: true,
+      coupon_code: formData.couponCode || null,
+      partner_code_id: partnerCode?.id || null,
     });
     contactId = savedContact?.id || null;
 
-    // 4. Brevo: Add contact + send notification
+    // 5. Brevo: Add contact + send notification to S&I
     await addBrevoContact(formData);
     await sendNotificationEmail(formData, contactId);
+
+    // 6. Send partner notification (if valid partner code)
+    if (partnerCode) {
+      await sendPartnerNotification(partnerCode, formData);
+    }
 
     return res.status(200).json({ success: true, message: 'Anfrage erfolgreich gesendet.' });
 

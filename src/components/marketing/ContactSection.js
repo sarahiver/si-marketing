@@ -5,6 +5,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import usePartnerRef from '../../hooks/usePartnerRef';
 
 // ============================================
 // THEME CONFIGURATIONS
@@ -644,6 +645,7 @@ const THEME_OPTIONS = [
 const ContactSection = () => {
   const { currentTheme } = useTheme();
   const config = THEME_CONFIG[currentTheme] || THEME_CONFIG.video;
+  const { partnerRef, couponCode: partnerCoupon } = usePartnerRef();
   
   const [formData, setFormData] = useState({
     name: '',
@@ -653,6 +655,7 @@ const ContactSection = () => {
     interestedTheme: '',
     interestedPackage: '',
     message: '',
+    couponCode: '',
     honeypot: '', // Spam trap
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -697,6 +700,13 @@ const ContactSection = () => {
       setFormData(prev => prev.interestedTheme ? prev : { ...prev, interestedTheme: currentTheme });
     }
   }, [currentTheme]);
+
+  // Pre-fill coupon code from partner referral
+  useEffect(() => {
+    if (partnerCoupon) {
+      setFormData(prev => prev.couponCode ? prev : { ...prev, couponCode: partnerCoupon });
+    }
+  }, [partnerCoupon]);
 
   // --- hCaptcha lazy loading: only load when user interacts with form ---
   const captchaLoading = useRef(false);
@@ -809,6 +819,8 @@ const ContactSection = () => {
           interestedTheme: formData.interestedTheme,
           interestedPackage: formData.interestedPackage,
           message: formData.message.trim(),
+          couponCode: formData.couponCode.trim() || null,
+          partnerRef: partnerRef || null,
           captchaToken,
         }),
       });
@@ -994,6 +1006,22 @@ const ContactSection = () => {
           </Select>
         </FormGroup>
       </FormRow>
+
+      {/* Gutscheincode — vorausgefüllt bei Partner-Referral, sonst optional */}
+      <FormGroup>
+        <Label htmlFor="contact-coupon" $theme={currentTheme} $config={config}>Gutscheincode</Label>
+        <Input
+          id="contact-coupon"
+          type="text"
+          name="couponCode"
+          value={formData.couponCode}
+          onChange={handleChange}
+          placeholder="z.B. PLAZA150"
+          $theme={currentTheme}
+          $config={config}
+          style={partnerCoupon && formData.couponCode === partnerCoupon ? { opacity: 0.8 } : {}}
+        />
+      </FormGroup>
 
       <FormGroup>
         <Label htmlFor="contact-message" $theme={currentTheme} $config={config}>Nachricht *</Label>
