@@ -37,11 +37,12 @@ export default function handler(req, res) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>S&I. Partner-Programm</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F5F5F5; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
     .card { background: #fff; max-width: 400px; width: 90%; }
     .header { background: #0A0A0A; padding: 24px 32px; }
-    .logo { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: -0.06em; }
+    .logo { color: #fff; font-family: 'Roboto', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.06em; }
     .body { padding: 32px; }
     h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #0A0A0A; }
     p { font-size: 14px; color: #666; margin-bottom: 24px; }
@@ -54,7 +55,7 @@ export default function handler(req, res) {
 </head>
 <body>
   <div class="card">
-    <div class="header"><span class="logo">S & I .</span></div>
+    <div class="header"><span class="logo">S&I.</span></div>
     <div class="body">
       <h2>Partner-Programm</h2>
       <p>Bitte Passwort eingeben, um die Übersicht herunterzuladen.</p>
