@@ -52,7 +52,12 @@ const isAnalyticsReady = () => {
 
 const trackEvent = (eventName, params = {}) => {
   if (!isAnalyticsReady()) return;
-  window.gtag('event', eventName, params);
+  // engagement_time_msec > 0 signalisiert GA4, dass die Session engaged ist
+  // Das löst das 100% Bounce-Rate-Problem bei interagierenden Usern
+  window.gtag('event', eventName, {
+    ...params,
+    engagement_time_msec: 100,
+  });
 };
 
 // ============================================
