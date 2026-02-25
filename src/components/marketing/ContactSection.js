@@ -1016,7 +1016,7 @@ const ContactSection = () => {
           name="couponCode"
           value={formData.couponCode}
           onChange={handleChange}
-          placeholder="z.B. PLAZA150"
+          placeholder=""
           $theme={currentTheme}
           $config={config}
           style={partnerCoupon && formData.couponCode === partnerCoupon ? { opacity: 0.8 } : {}}
