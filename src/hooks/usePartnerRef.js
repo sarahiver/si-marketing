@@ -53,7 +53,7 @@ export default function usePartnerRef() {
     try {
       // Partner-Code auflösen
       const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/partner_codes?slug=eq.${encodeURIComponent(slug)}&is_active=eq.true&select=id,coupon_code,partner_name,discount_amount,discount_type`,
+        `${SUPABASE_URL}/rest/v1/partner_codes?ref_slug=eq.${encodeURIComponent(slug)}&is_active=eq.true&select=id,code,partner_name,discount_amount,discount_percent`,
         {
           headers: {
             'apikey': SUPABASE_ANON_KEY,
@@ -67,7 +67,7 @@ export default function usePartnerRef() {
       if (!data.length) return;
 
       const partner = data[0];
-      const code = partner.coupon_code;
+      const code = partner.code;
 
       // Coupon speichern
       try {
@@ -90,7 +90,8 @@ export default function usePartnerRef() {
           },
           body: JSON.stringify({
             partner_code_id: partner.id,
-            page: window.location.pathname,
+            ref_slug: slug,
+            landing_page: window.location.pathname,
             referrer: document.referrer || null,
           }),
         }).catch(() => { /* Silent fail */ });

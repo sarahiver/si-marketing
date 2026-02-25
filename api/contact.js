@@ -67,7 +67,7 @@ async function validatePartnerCode(couponCode) {
   if (!couponCode || !SUPABASE_URL || !SUPABASE_SERVICE_KEY) return null;
 
   const response = await fetch(
-    `${SUPABASE_URL}/rest/v1/partner_codes?coupon_code=eq.${encodeURIComponent(couponCode)}&is_active=eq.true&select=id,partner_name,partner_email,discount_amount,discount_type,slug`,
+    `${SUPABASE_URL}/rest/v1/partner_codes?code=eq.${encodeURIComponent(couponCode)}&is_active=eq.true&select=id,partner_name,partner_email,discount_amount,discount_percent,ref_slug,commission_percent`,
     {
       headers: {
         'apikey': SUPABASE_SERVICE_KEY,
@@ -96,7 +96,7 @@ async function sendPartnerNotification(partnerCode, formData) {
     body: JSON.stringify({
       to: [{ email: partnerCode.partner_email, name: partnerCode.partner_name }],
       sender: { email: 'wedding@sarahiver.de', name: 'S&I. Wedding' },
-      subject: `Neuer Lead über euren Partnercode ${partnerCode.slug.toUpperCase()}`,
+      subject: `Neuer Lead über euren Partnercode ${partnerCode.ref_slug.toUpperCase()}`,
       htmlContent: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
           <div style="background: #000; color: #fff; display: inline-block; padding: 8px 16px; font-weight: 700; font-size: 18px; letter-spacing: -0.06em; margin-bottom: 30px;">S&amp;I.</div>
