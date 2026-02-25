@@ -83,7 +83,7 @@ export default function handler(req, res) {
 
   // Autorisiert → PDF ausliefern
   try {
-    const pdfPath = join(process.cwd(), 'public', 'partner.pdf');
+    const pdfPath = join(process.cwd(), 'api', 'assets', 'partner.pdf');
     const pdf = readFileSync(pdfPath);
     
     res.setHeader('Content-Type', 'application/pdf');
