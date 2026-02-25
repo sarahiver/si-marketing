@@ -70,7 +70,7 @@ export default function handler(req, res) {
       e.preventDefault();
       const pw = document.getElementById('pw').value;
       if (!pw) return;
-      window.location.href = '/partner.pdf?pw=' + encodeURIComponent(pw);
+      window.location.href = '/partner?pw=' + encodeURIComponent(pw);
     }
     // Show error if redirected back (wrong pw)
     if (new URLSearchParams(window.location.search).has('error')) {
