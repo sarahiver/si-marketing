@@ -1,7 +1,7 @@
 // src/App.js
 // S&I Wedding Marketing - Hauptseite für siwedding.de
 import React, { useEffect, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import ErrorBoundary from './components/shared/ErrorBoundary';
@@ -34,8 +34,6 @@ import ModernOverride from './components/marketing/ModernOverride';
 import ImpressumPage from './components/shared/ImpressumPage';
 import DatenschutzPage from './components/shared/DatenschutzPage';
 import CookieConsent from './components/shared/CookieConsent';
-import { trackPageView, isNotrack } from './utils/analytics';
-import { Analytics } from '@vercel/analytics/react';
 import SEOHead from './components/shared/SEOHead';
 
 // ============================================
@@ -125,6 +123,22 @@ function MarketingPage() {
         availability: 'https://schema.org/InStock',
         url: 'https://www.sarahiver.com/#preise',
         seller: { '@type': 'Organization', name: 'S&I.' },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'DE',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          merchantReturnDays: 0,
+        },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+          },
+        },
       },
       {
         '@type': 'Offer',
@@ -135,6 +149,22 @@ function MarketingPage() {
         availability: 'https://schema.org/InStock',
         url: 'https://www.sarahiver.com/#preise',
         seller: { '@type': 'Organization', name: 'S&I.' },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'DE',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          merchantReturnDays: 0,
+        },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+          },
+        },
       },
       {
         '@type': 'Offer',
@@ -145,6 +175,22 @@ function MarketingPage() {
         availability: 'https://schema.org/InStock',
         url: 'https://www.sarahiver.com/#preise',
         seller: { '@type': 'Organization', name: 'S&I.' },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'DE',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          merchantReturnDays: 0,
+        },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+          },
+        },
       },
     ],
   };
@@ -222,21 +268,11 @@ function MainApp() {
 // ============================================
 // APP WITH ROUTER
 // ============================================
-// SPA Pageview Tracker — sendet Pageviews bei jeder Routenänderung
-const PageViewTracker = () => {
-  const location = useLocation();
-  useEffect(() => {
-    trackPageView(location.pathname, document.title);
-  }, [location.pathname]);
-  return null;
-};
-
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
         <Router>
-          <PageViewTracker />
           <GlobalStyles />
           <Routes>
             {/* Main Marketing Page */}
@@ -255,7 +291,6 @@ function App() {
           </Routes>
           {/* DSGVO Cookie Banner */}
           <CookieConsent />
-          {!isNotrack && <Analytics />}
         </Router>
       </ThemeProvider>
     </ErrorBoundary>
