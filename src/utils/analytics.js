@@ -50,7 +50,7 @@ const isAnalyticsReady = () => {
   return typeof window !== 'undefined' && typeof window.gtag === 'function';
 };
 
-const trackEvent = (eventName, params = {}) => {
+export const trackEvent = (eventName, params = {}) => {
   if (!isAnalyticsReady()) return;
   // engagement_time_msec > 0 signalisiert GA4, dass die Session engaged ist
   // Das löst das 100% Bounce-Rate-Problem bei interagierenden Usern
@@ -78,11 +78,19 @@ export const loadGoogleAnalytics = () => {
     window.dataLayer.push(arguments);
   };
   window.gtag('js', new Date());
+  // A/B-Test Variante als Custom Dimension setzen
+  // Diese muss in GA4 unter Admin > Custom Definitions angelegt werden:
+  // Name: ab_variant, Scope: User, Parameter: ab_variant
+  const abVariant = (() => { try { return localStorage.getItem('si_ab_variant') || 'unknown'; } catch { return 'unknown'; } })();
+  
   window.gtag('config', GA_MEASUREMENT_ID, {
     anonymize_ip: true,
     cookie_flags: 'SameSite=None;Secure',
-    // Enhanced pageview tracking for SPA
     send_page_view: true,
+    // Custom User Properties für A/B-Segmentierung
+    user_properties: {
+      ab_variant: abVariant,
+    },
   });
 };
 
@@ -228,6 +236,31 @@ export const trackSectionView = (sectionName) => {
   trackEvent('section_view', {
     event_category: 'engagement',
     event_label: sectionName,
+  });
+};
+
+
+// ============================================
+// A/B TEST EVENTS
+// ============================================
+export const trackABConversion = (variant, theme, packageName) => {
+  trackEvent('ab_conversion', {
+    event_category: 'ab_test',
+    ab_variant: variant,
+    theme: theme || 'unknown',
+    package: packageName || 'unknown',
+  });
+};
+
+export const trackEngagementScrollDepth = (percent, variant, theme) => {
+  // Nur bei 25%, 50%, 75%, 90% feuern
+  const milestones = [25, 50, 75, 90];
+  if (!milestones.includes(percent)) return;
+  trackEvent('scroll_depth_milestone', {
+    event_category: 'engagement',
+    ab_variant: variant,
+    percent_scrolled: percent,
+    theme: theme || 'unknown',
   });
 };
 

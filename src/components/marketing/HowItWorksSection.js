@@ -177,7 +177,7 @@ const EditorialStep = styled.div`
   padding: 0 1rem;
   
   @media (max-width: 900px) {
-    flex: 0 0 250px;
+    flex: 0 0 min(75vw, 250px);
     scroll-snap-align: start;
     padding: 0;
   }
@@ -226,6 +226,41 @@ const EditorialHighlight = styled.p`
   font-style: italic;
   color: #C41E3A;
   margin-top: 1rem;
+`;
+
+const SwipeHint = styled.div`
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  
+  @media (max-width: 900px) {
+    display: flex;
+    justify-content: center;
+    color: #FAFAFA;
+    
+    &::before {
+      content: '←';
+      font-size: 0.8rem;
+      animation: swipeHint 1.5s ease-in-out infinite;
+    }
+    &::after {
+      content: '→';
+      font-size: 0.8rem;
+      animation: swipeHint 1.5s ease-in-out infinite reverse;
+    }
+  }
+  
+  @keyframes swipeHint {
+    0%, 100% { transform: translateX(0); opacity: 0.4; }
+    50% { transform: translateX(4px); opacity: 0.8; }
+  }
 `;
 
 // ============================================
@@ -1044,6 +1079,8 @@ const HowItWorksSection = () => {
               </EditorialStep>
             ))}
           </EditorialTimeline>
+          
+          <SwipeHint>Wischen</SwipeHint>
           
           <CTABox>
             <CTAHeadline style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', color: 'rgba(255,255,255,0.8)' }}>

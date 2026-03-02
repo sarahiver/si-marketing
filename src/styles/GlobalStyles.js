@@ -14,6 +14,9 @@ const GlobalStyles = createGlobalStyle`
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevent font inflation on mobile */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -21,11 +24,15 @@ const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
+    /* Prevent horizontal bounce on iOS */
+    overscroll-behavior-x: none;
   }
 
   a {
     color: inherit;
     text-decoration: none;
+    /* Remove tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
   }
 
   button {
@@ -33,17 +40,34 @@ const GlobalStyles = createGlobalStyle`
     cursor: pointer;
     border: none;
     background: none;
+    /* Remove tap highlight and improve touch targets */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    /* Minimum touch target */
+    min-height: 44px;
+    min-width: 44px;
   }
 
   input, textarea, select {
     font-family: inherit;
-    font-size: inherit;
+    /* Force 16px on mobile to prevent iOS zoom on focus */
+    font-size: max(16px, 1rem);
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   img, video {
     max-width: 100%;
     height: auto;
     display: block;
+  }
+
+  /* Smooth scrolling for horizontal scroll containers on mobile */
+  [data-scroll-x] {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
   }
 
   ul, ol {

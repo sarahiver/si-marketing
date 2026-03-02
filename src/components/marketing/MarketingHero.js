@@ -64,6 +64,18 @@ const HeroCTAs = styled.div`
     background: #C41E3A;
     border-color: #C41E3A;
   }
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    
+    button, a {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+  }
 `;
 
 // ============================================
@@ -249,13 +261,18 @@ const BotanicalCard = styled.div`
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 28px;
-  padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 5vw, 4rem);
   text-align: center;
   max-width: 480px;
-  width: calc(100% - 3rem);
+  width: calc(100% - 2rem);
   margin: 0 auto;
   animation: ${fadeIn} 1s ease both;
   box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+  
+  @media (max-width: 480px) {
+    border-radius: 20px;
+    width: calc(100% - 1.5rem);
+  }
 `;
 
 const BotanicalEyebrow = styled.p`
@@ -562,8 +579,10 @@ const LuxeContent = styled.div`
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 0 2rem;
+  padding: 0 clamp(1.25rem, 5vw, 2rem);
   animation: ${fadeIn} 1.5s ease both;
+  width: 100%;
+  max-width: 600px;
 `;
 
 const LuxeEyebrow = styled.p`
@@ -692,7 +711,9 @@ const NeonContent = styled.div`
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 0 2rem;
+  padding: 0 clamp(1.25rem, 5vw, 2rem);
+  width: 100%;
+  max-width: 600px;
 `;
 
 const NeonEyebrow = styled.p`
@@ -801,8 +822,10 @@ const VideoContent = styled.div`
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 0 2rem;
+  padding: 0 clamp(1.25rem, 5vw, 2rem);
   animation: ${fadeIn} 1.5s ease both;
+  width: 100%;
+  max-width: 600px;
 `;
 
 const VideoEyebrow = styled.p`

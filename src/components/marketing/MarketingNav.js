@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
+import { useABTest } from '../../context/ABTestContext';
 
 const THEMES = [
   { id: 'editorial', name: 'Editorial' },
@@ -522,6 +523,7 @@ const MobileThemeBtn = styled.button`
 // ============================================
 const MarketingNav = () => {
   const { currentTheme, setCurrentTheme } = useTheme();
+  const { isVariantB } = useABTest();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -648,8 +650,9 @@ const MarketingNav = () => {
       </NavLinks>
       
       <RightSection>
-        {!hintGone && (
-          <ThemeHint $theme={currentTheme} $dismissed={hintDismissed}>
+        {/* Variante B: Hint permanent sichtbar; Variante A: einmalig dann weg */}
+        {(isVariantB || !hintGone) && (
+          <ThemeHint $theme={currentTheme} $dismissed={!isVariantB && hintDismissed}>
             Design wechseln <span>→</span>
           </ThemeHint>
         )}

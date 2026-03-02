@@ -6,6 +6,8 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import usePartnerRef from '../../hooks/usePartnerRef';
+import { useABTest } from '../../context/ABTestContext';
+import { trackFormSubmit } from '../../utils/analytics';
 
 // ============================================
 // THEME CONFIGURATIONS
@@ -644,6 +646,7 @@ const THEME_OPTIONS = [
 
 const ContactSection = () => {
   const { currentTheme } = useTheme();
+  const { variant: abVariant, trackConversion } = useABTest();
   const config = THEME_CONFIG[currentTheme] || THEME_CONFIG.video;
   const { partnerRef, couponCode: partnerCoupon } = usePartnerRef();
   
@@ -821,6 +824,7 @@ const ContactSection = () => {
           message: formData.message.trim(),
           couponCode: formData.couponCode.trim() || null,
           partnerRef: partnerRef || null,
+          abVariant: abVariant || 'unknown',
           captchaToken,
         }),
       });
@@ -832,6 +836,10 @@ const ContactSection = () => {
       }
       
       setSubmitStatus('success');
+      
+      // A/B Test Conversion tracken
+      trackConversion(currentTheme, formData.interestedPackage);
+      trackFormSubmit(currentTheme, formData.interestedPackage);
       
       // Reset captcha
       if (window.hcaptcha && captchaWidgetId.current !== null) {

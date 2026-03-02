@@ -3,6 +3,7 @@
 // Persistiert gewähltes Theme via localStorage über Routen und Sessions hinweg
 import React, { createContext, useContext, useState } from 'react';
 import { marketingThemes, themeOrder, isDarkTheme } from '../styles/marketingThemes';
+import { trackThemeSwitch } from '../utils/analytics';
 
 const ThemeContext = createContext();
 
@@ -33,14 +34,7 @@ export const ThemeProvider = ({ children }) => {
     if (!marketingThemes[newTheme]) return;
     
     // Analytics: Theme-Wechsel tracken
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'theme_switch', {
-        event_category: 'engagement',
-        event_label: newTheme,
-        from_theme: currentTheme,
-        to_theme: newTheme,
-      });
-    }
+    trackThemeSwitch(currentTheme, newTheme);
     
     setIsLoading(true);
     

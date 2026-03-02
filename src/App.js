@@ -34,6 +34,9 @@ import ModernOverride from './components/marketing/ModernOverride';
 import ImpressumPage from './components/shared/ImpressumPage';
 import DatenschutzPage from './components/shared/DatenschutzPage';
 import CookieConsent from './components/shared/CookieConsent';
+import { ABTestProvider } from './context/ABTestContext';
+import ThemeOnboardingModal from './components/marketing/ThemeOnboardingModal';
+import useScrollDepth from './hooks/useScrollDepth';
 import SEOHead from './components/shared/SEOHead';
 
 // ============================================
@@ -99,6 +102,9 @@ const GlobalStyles = createGlobalStyle`
 // ============================================
 function MarketingPage() {
   const { currentTheme, isLoading } = useTheme();
+  
+  // Scroll-Tiefe für A/B-Test tracken
+  useScrollDepth();
   
   useEffect(() => {
     document.title = 'S&I. wedding — Premium Hochzeitswebsites';
@@ -272,28 +278,31 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <Router>
-          <GlobalStyles />
-          <Routes>
-            {/* Main Marketing Page */}
-            <Route path="/" element={<MainApp />} />
+        <ABTestProvider>
+          <Router>
+            <GlobalStyles />
+            <ThemeOnboardingModal />
+            <Routes>
+              {/* Main Marketing Page */}
+              <Route path="/" element={<MainApp />} />
 
-            {/* Blog Pages */}
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogArticle />} />
+              {/* Blog Pages */}
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogArticle />} />
 
-            {/* Legal Pages */}
-            <Route path="/impressum" element={<ImpressumPage />} />
-            <Route path="/datenschutz" element={<DatenschutzPage />} />
+              {/* Legal Pages */}
+              <Route path="/impressum" element={<ImpressumPage />} />
+              <Route path="/datenschutz" element={<DatenschutzPage />} />
 
-            {/* Fallback - redirect to home */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-          {/* DSGVO Cookie Banner */}
-          <CookieConsent />
-        </Router>
-      </ThemeProvider>
-    </ErrorBoundary>
+              {/* Fallback - redirect to home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+              {/* DSGVO Cookie Banner */}
+              <CookieConsent />
+            </Router>
+          </ABTestProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
   );
 }
 
