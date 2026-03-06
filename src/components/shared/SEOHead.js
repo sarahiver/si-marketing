@@ -3,7 +3,7 @@
 // Wird per useEffect ins <head> injiziert – kein React Helmet nötig
 import { useEffect } from 'react';
 
-const BASE_URL = 'https://www.sarahiver.com';
+const BASE_URL = 'https://sarahiver.com';
 const DEFAULT_OG_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/v1770798416/si_og_image_nx5blq.png';
 
 const SEOHead = ({
