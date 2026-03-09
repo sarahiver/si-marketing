@@ -1533,6 +1533,70 @@ const PricingSection = () => {
     );
   };
 
+  const renderVoucher = () => {
+    const isDark = ['botanical', 'luxe', 'neon', 'video'].includes(currentTheme);
+    const isContemporary = currentTheme === 'contemporary';
+    return (
+      <div style={{
+        marginTop: '1.5rem',
+        padding: '1.25rem 1.75rem',
+        background: isDark ? 'rgba(245, 158, 11, 0.08)' : isContemporary ? '#fff' : '#FFF9F0',
+        border: isContemporary ? '3px solid #F59E0B' : `2px solid ${isDark ? 'rgba(245,158,11,0.4)' : '#F59E0B'}`,
+        borderRadius: isContemporary ? '0' : '4px',
+        boxShadow: isContemporary ? '4px 4px 0 #F59E0B' : 'none',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1.25rem',
+        flexWrap: 'wrap',
+      }}>
+        <div style={{ fontSize: '1.75rem', flexShrink: 0 }}>🎁</div>
+        <div style={{ flex: 1, minWidth: '200px' }}>
+          <p style={{
+            margin: '0 0 4px 0',
+            fontSize: '0.65rem',
+            fontWeight: 700,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: isDark ? 'rgba(245,158,11,0.7)' : '#92400E',
+          }}>Exklusiv für alle Pakete</p>
+          <p style={{
+            margin: '0 0 6px 0',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            color: isDark ? '#fff' : '#1A1A1A',
+          }}>15 € Gutschein auf Karten – ohne Mindestbestellwert</p>
+          <p style={{
+            margin: 0,
+            fontSize: '0.8rem',
+            color: isDark ? 'rgba(255,255,255,0.55)' : '#666',
+            lineHeight: 1.5,
+          }}>
+            Einlösbar bei{' '}
+            <a
+              href="https://www.hochzeitsplaza.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: isDark ? '#F59E0B' : '#D97706', fontWeight: 600, textDecoration: 'underline' }}
+            >
+              hochzeitsplaza.de
+            </a>
+          </p>
+        </div>
+        <div style={{
+          background: isDark ? 'rgba(255,255,255,0.08)' : '#0A0A0A',
+          color: isDark ? '#F59E0B' : '#fff',
+          padding: '0.6rem 1.2rem',
+          fontFamily: 'monospace',
+          fontSize: '1.1rem',
+          fontWeight: 700,
+          letterSpacing: '0.2em',
+          flexShrink: 0,
+          border: isDark ? '1px solid rgba(245,158,11,0.4)' : 'none',
+        }}>SUI15</div>
+      </div>
+    );
+  };
+
   // CLASSIC
   if (currentTheme === 'classic') {
     return (
@@ -1563,6 +1627,7 @@ const PricingSection = () => {
             ))}
           </Grid>
           {renderOnRequest()}
+          {renderVoucher()}
         </Container>
       </ClassicSection>
     );
@@ -1598,6 +1663,7 @@ const PricingSection = () => {
             ))}
           </Grid>
           {renderOnRequest()}
+          {renderVoucher()}
         </Container>
       </EditorialSection>
     );
@@ -1633,6 +1699,7 @@ const PricingSection = () => {
             ))}
           </Grid>
           {renderOnRequest()}
+          {renderVoucher()}
         </Container>
       </BotanicalSection>
     );
@@ -1668,6 +1735,7 @@ const PricingSection = () => {
             ))}
           </Grid>
           {renderOnRequest()}
+          {renderVoucher()}
         </Container>
       </ContemporarySection>
     );
@@ -1703,6 +1771,7 @@ const PricingSection = () => {
             ))}
           </Grid>
           {renderOnRequest()}
+          {renderVoucher()}
         </Container>
       </LuxeSection>
     );
@@ -1738,6 +1807,7 @@ const PricingSection = () => {
             ))}
           </Grid>
           {renderOnRequest()}
+          {renderVoucher()}
         </Container>
       </NeonSection>
     );
@@ -1772,6 +1842,7 @@ const PricingSection = () => {
           ))}
         </Grid>
         {renderOnRequest()}
+          {renderVoucher()}
       </Container>
     </VideoSection>
   );
