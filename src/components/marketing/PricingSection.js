@@ -1580,19 +1580,9 @@ const PricingSection = () => {
             >
               hochzeitsplaza.de
             </a>
+            {' '}– euer persönlicher Code kommt mit der Willkommensmail.
           </p>
         </div>
-        <div style={{
-          background: isDark ? 'rgba(255,255,255,0.08)' : '#0A0A0A',
-          color: isDark ? '#F59E0B' : '#fff',
-          padding: '0.6rem 1.2rem',
-          fontFamily: 'monospace',
-          fontSize: '1.1rem',
-          fontWeight: 700,
-          letterSpacing: '0.2em',
-          flexShrink: 0,
-          border: isDark ? '1px solid rgba(245,158,11,0.4)' : 'none',
-        }}>SUI15</div>
       </div>
     );
   };
