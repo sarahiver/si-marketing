@@ -1,17 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.sarahiver.com"
-        }
-      ],
-      "destination": "https://sarahiver.com/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/static/(.*)",
