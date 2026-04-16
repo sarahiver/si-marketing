@@ -1063,7 +1063,7 @@ const MarketingHero = () => {
         <EditorialContent>
           <EditorialEyebrow>Von Paaren. Für Paare.</EditorialEyebrow>
           <EditorialTitle>
-            Die Hochzeits-<br/>website, bei der<br/>eure Gäste<br/><span>„WOW"</span> sagen.
+            Die Hochzeits-<br/>website, bei der<br/>eure Gäste „WOW“ sagen.
           </EditorialTitle>
           <EditorialDate>Handgemacht. Persönlich. In 7 Tagen live.</EditorialDate>
           <HeroCTAs>
@@ -1112,7 +1112,7 @@ const MarketingHero = () => {
           <ContemporaryEyebrow>Von Paaren. Für Paare.</ContemporaryEyebrow>
           <ContemporaryTitle>
             Die Website,<br/>
-            <span className="name2">bei der eure<br/>Gäste „WOW"<br/>sagen.</span>
+            bei der eure Gäste „WOW“ sagen.
           </ContemporaryTitle>
           <ContemporaryTags>
             <ContemporaryTag>✨ Handgemacht</ContemporaryTag>

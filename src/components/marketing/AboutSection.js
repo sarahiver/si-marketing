@@ -1300,7 +1300,7 @@ const AboutSection = () => {
       <BotanicalSection id="about">
         <BotanicalContainer>
           <BotanicalImageCard>
-            <BotanicalImg src={SARAH_IVER_IMAGE} alt="Sarah und Iver" loading="lazy" />
+            <BotanicalImg src={SARAH_IVER_IMAGE} alt="Sarah und Iver – Gründer von S&I. Premium Hochzeitswebsites" loading="lazy" />
             <BotanicalImageCaption>
               <BotanicalEyebrow>Über uns</BotanicalEyebrow>
               <BotanicalTitle>Sarah & Iver</BotanicalTitle>
@@ -1475,7 +1475,7 @@ const AboutSection = () => {
             
             <NeonTerminalBody>
               <NeonImage>
-                <img src={SARAH_IVER_IMAGE} alt="Sarah und Iver" loading="lazy" />
+                <img src={SARAH_IVER_IMAGE} alt="Sarah und Iver – Das Paar hinter S&I. Hochzeitswebsites" loading="lazy" />
               </NeonImage>
               
               <NeonLine>
@@ -1535,7 +1535,7 @@ const AboutSection = () => {
     <VideoSection id="about">
       <VideoContainer>
         <VideoHeader>
-          <VideoImage src={SARAH_IVER_IMAGE} alt="Sarah und Iver" loading="lazy" />
+          <VideoImage src={SARAH_IVER_IMAGE} alt="Sarah und Iver – Unsere Geschichte als Gründerpaar" loading="lazy" />
           <VideoHeaderContent>
             <VideoEyebrow>Über uns</VideoEyebrow>
             <VideoTitle>Sarah & Iver</VideoTitle>
