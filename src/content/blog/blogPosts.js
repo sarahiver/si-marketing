@@ -4,8 +4,8 @@
 const blogPosts = [
   {
     slug: 'warum-hochzeitswebsite',
-    title: 'Warum eine Hochzeitswebsite? 7 Gründe, die jedes Brautpaar überzeugen',
-    description: 'Erfahre, warum immer mehr Paare auf eine eigene Hochzeitswebsite setzen – und wie sie Hochzeitsplanung, Gästemanagement und Kommunikation enorm erleichtert.',
+    title: 'Warum eine Hochzeitswebsite? 7 überzeugende Gründe',
+    description: 'Erfahre, warum immer mehr Paare auf eine eigene Hochzeitswebsite setzen – und wie sie Hochzeitsplanung und Gästemanagement erleichtern.',
     date: '2024-10-14',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
@@ -99,8 +99,8 @@ Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten 
   },
   {
     slug: 'digitales-rsvp-hochzeit',
-    title: 'Digitales RSVP: So organisiert ihr die Zusagen für eure Hochzeit stressfrei',
-    description: 'Ein digitales RSVP-System für die Hochzeit spart Wochen an Organisation. Erfahrt, wie Online-Zusagen, Gästemanagement und automatische Erinnerungen eure Hochzeitsplanung vereinfachen.',
+    title: 'Digitales RSVP für eure Hochzeit – so geht's',
+    description: 'Digitales RSVP statt Rückumschlägen: So sammelt ihr Zusagen, Menüwünsche und Allergien automatisch – ohne Excel und ohne Nachfragen.',
     date: '2024-10-21',
     category: 'Features',
     tags: ['Features', 'Planung'],
@@ -204,8 +204,8 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
   },
   {
     slug: 'hochzeitswebsite-vergleich-2026',
-    title: 'Hochzeitswebsite Vergleich 2026: Alle Anbieter ehrlich bewertet – und warum S&I. gewinnt',
-    description: 'Kostenlose Portale, Baukästen oder Premium-Service? Wir vergleichen alle Hochzeitswebsite-Modelle ehrlich – mit Preisen, Funktionen und dem entscheidenden Unterschied.',
+    title: 'Hochzeitswebsite-Anbieter im Vergleich 2026',
+    description: 'Welcher Hochzeitswebsite-Anbieter passt zu euch? Wir vergleichen die besten Tools nach Design, Funktionen und Preis-Leistung.',
     date: '2024-10-28',
     category: 'Vergleich',
     tags: ['Vergleich', 'Ratgeber'],
@@ -359,8 +359,8 @@ Noch nicht sicher welches Design zu euch passt? Lest unseren Artikel über [Hoch
   },
   {
     slug: 'hochzeitswebsite-inhalt-checkliste',
-    title: 'Was muss auf eine Hochzeitswebsite? Die ultimative Checkliste für Brautpaare',
-    description: 'Von Tagesablauf über Anfahrt bis RSVP-Formular: Diese Checkliste zeigt euch, welche Inhalte auf eure Hochzeitswebsite gehören – damit eure Gäste bestens informiert sind.',
+    title: 'Hochzeitswebsite Inhalt: Die ultimative Checkliste',
+    description: 'Was gehört auf eine Hochzeitswebsite? Unsere Checkliste zeigt alle wichtigen Inhalte – von Location bis Dresscode und RSVP.',
     date: '2024-11-04',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
@@ -456,8 +456,8 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
   },
   {
     slug: 'hochzeitswebsite-kosten-was-kostet',
-    title: 'Was kostet eine Hochzeitswebsite? Preise, Optionen und was sich wirklich lohnt',
-    description: 'Von kostenlos bis Premium: Wir zeigen euch, was eine Hochzeitswebsite kostet, welche Preismodelle es gibt und wann sich die Investition in eine professionelle Lösung wirklich auszahlt.',
+    title: 'Was kostet eine Hochzeitswebsite? Kosten im Überblick',
+    description: 'Hochzeitswebsite kostenlos oder professionell? Alle Kostenmodelle erklärt – von Baukästen bis zur maßgeschneiderten Premium-Website.',
     date: '2024-11-11',
     category: 'Ratgeber',
     tags: ['Ratgeber', 'Vergleich'],
@@ -547,8 +547,8 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
   },
   {
     slug: 'hochzeitswebsite-qr-code-einladung',
-    title: 'Hochzeitseinladung mit QR-Code: So verknüpft ihr Print und eure Hochzeitswebsite',
-    description: 'QR-Code auf der Hochzeitseinladung? So verbindet ihr eure gedruckte Einladungskarte perfekt mit eurer digitalen Hochzeitswebsite. Bei S&I. wird der QR-Code direkt mitgeneriert.',
+    title: 'QR-Code auf der Hochzeitseinladung – so geht's',
+    description: 'QR-Code auf der Einladung: Wie ihr Gäste direkt auf eure Hochzeitswebsite leitet und warum das die moderne Alternative ist.',
     date: '2024-11-18',
     category: 'Tipps',
     tags: ['Features', 'Planung'],
@@ -662,8 +662,8 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
   },
   {
     slug: 'hochzeitswebsite-eigene-domain-passwortschutz',
-    title: 'Eigene Domain und Passwortschutz: So wird eure Hochzeitswebsite persönlich und sicher',
-    description: 'Eigene Domain wie eurenamen.de statt Subdomain? Passwortschutz für eure Privatsphäre? Alles, was Brautpaare über Domain und Datenschutz ihrer Hochzeitswebsite wissen müssen.',
+    title: 'Eigene Domain & Passwortschutz für Hochzeitswebsites',
+    description: 'Eigene Domain statt generischer URL: So schützt ihr eure Hochzeitswebsite mit Passwort und sichert euch eure Wunschdomain.',
     date: '2024-11-25',
     category: 'Features',
     tags: ['Planung', 'Features'],
@@ -680,7 +680,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
       "datePublished": "2024-11-25",
     },
     content: `
-## eurenamen.de statt name.anbieter.de: Warum eure Domain zählt
+## EureNamen.de statt name.anbieter.de: Warum eure Domain zählt
 
 Stellt euch zwei Szenarien vor: Auf eurer Hochzeitseinladung steht entweder die Webadresse **eurenamen.de** – oder **sarah-max.zankyou.com/wedding-2026**. Welche URL ist leichter zu merken? Welche würdet ihr euren Gästen auf einer schönen Einladungskarte drucken?
 
@@ -733,7 +733,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
   },
   {
     slug: 'hochzeitswebsite-design-beispiele-inspiration',
-    title: 'Hochzeitswebsite Beispiele 2026: 7 echte Designs zum Anklicken und Erleben',
+    title: 'Hochzeitswebsite Beispiele 2026: 7 echte Designs',
     description: 'Entdeckt 7 echte Hochzeitswebsite-Beispiele von S&I. – von minimalistisch bis glamourös. Mit direkten Links zu unseren Demo-Seiten. Findet euren Stil.',
     date: '2024-12-02',
     category: 'Design',
@@ -914,8 +914,8 @@ Oder lest zuerst unseren ehrlichen [Hochzeitswebsite-Anbieter-Vergleich](/blog/h
   },
   {
     slug: 'hochzeitswebsite-musikwuensche-playlist',
-    title: 'Musikwünsche auf der Hochzeitswebsite: So entsteht die Playlist, zu der alle tanzen',
-    description: 'Gebt euren Gästen eine Stimme – mit einer digitalen Musikwunschliste auf eurer Hochzeitswebsite. So entsteht eine Playlist, die alle zum Tanzen und Weinen vor Glück bringt.',
+    title: 'Musikwünsche zur Hochzeit digital sammeln',
+    description: 'Musikwünsche der Gäste einfach digital sammeln – direkt über eure Hochzeitswebsite. So wird eure Playlist ein Gemeinschaftsprojekt.',
     date: '2024-12-09',
     category: 'Features',
     tags: ['Features', 'Inspiration'],
@@ -991,8 +991,8 @@ Und wenn dann um Mitternacht genau der Song läuft, den die beste Freundin sich 
   },
   {
     slug: 'hochzeitswebsite-gaestebuch-digital',
-    title: 'Digitales Gästebuch: Warum die schönsten Worte nicht auf Papier stehen müssen',
-    description: 'Ein digitales Gästebuch auf eurer Hochzeitswebsite bewahrt Glückwünsche, Erinnerungen und liebe Worte – für immer lesbar, nie vergilbt, immer da, wenn ihr sie braucht.',
+    title: 'Digitales Gästebuch für eure Hochzeitswebsite',
+    description: 'Digitales Gästebuch auf der Hochzeitswebsite: Gäste hinterlassen Glückwünsche online – persönlicher und nachhaltiger als Papier.',
     date: '2024-12-16',
     category: 'Features',
     tags: ['Features', 'Inspiration'],
@@ -1068,8 +1068,8 @@ Im S&I. Admin-Dashboard könnt ihr das Gästebuch mit einem Klick aktivieren. Es
   },
   {
     slug: 'hochzeitswebsite-geschenke-wunschliste',
-    title: 'Geschenke und Wunschliste auf der Hochzeitswebsite: So bekommt ihr, was euch wirklich glücklich macht',
-    description: 'Eine digitale Wunschliste auf eurer Hochzeitswebsite ist der elegante Weg, eure Geschenkwünsche zu teilen – ohne peinliches Nachfragen und mit Herz.',
+    title: 'Geschenkeliste & Wunschliste auf der Hochzeitswebsite',
+    description: 'Hochzeitsgeschenke koordinieren leicht gemacht: Wunschliste auf der Hochzeitswebsite einbinden und Doppelgeschenke vermeiden.',
     date: '2025-01-06',
     category: 'Planung',
     tags: ['Features', 'Planung'],
@@ -1141,8 +1141,8 @@ Eine Wunschliste auf der Hochzeitswebsite ist kein notwendiges Übel, sondern ei
   },
   {
     slug: 'hochzeitswebsite-location-anfahrt-karte',
-    title: 'Location und Anfahrt auf der Hochzeitswebsite: Damit sich niemand verfährt (und alle pünktlich weinen)',
-    description: 'Mit einer interaktiven Karte, Anfahrtsbeschreibung und Parktipps auf eurer Hochzeitswebsite sorgt ihr dafür, dass jeder Gast entspannt und pünktlich ankommt.',
+    title: 'Location & Anfahrt auf der Hochzeitswebsite einbinden',
+    description: 'Anfahrt, Karte und Parktipps auf eurer Hochzeitswebsite: So finden alle Gäste problemlos zur Location – ohne Rückfragen.',
     date: '2025-01-13',
     category: 'Features',
     tags: ['Planung', 'Ratgeber'],
@@ -1212,8 +1212,8 @@ Organisiert ihr einen Shuttle zwischen Hotel und Location? Zwischen Kirche und F
   },
   {
     slug: 'hochzeitswebsite-hotels-uebernachtung',
-    title: 'Hotels und Übernachtung: So fühlen sich eure Gäste von Anfang bis Ende willkommen',
-    description: 'Hotelempfehlungen auf eurer Hochzeitswebsite sind mehr als ein Service – sie zeigen euren Gästen: Wir haben an euch gedacht. Tipps für die perfekte Hotel-Seite.',
+    title: 'Hotels & Übernachtung für Hochzeitsgäste einbinden',
+    description: 'Übernachtungsempfehlungen für Gäste direkt auf der Hochzeitswebsite – so müsst ihr nicht jedem einzeln Hotels raussuchen.',
     date: '2025-01-20',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
@@ -1285,8 +1285,8 @@ Erwähnt das auf eurer Website, wenn ihr so etwas plant. Es ist ein wunderschön
   },
   {
     slug: 'hochzeitswebsite-hochzeits-abc',
-    title: 'Das Hochzeits-ABC: Die kreativste Art, euren Gästen alles Wichtige zu verraten',
-    description: 'Von A wie Anfahrt bis Z wie Zeitplan: Das Hochzeits-ABC auf eurer Website informiert eure Gäste mit Charme und Humor – und beantwortet jede Frage, bevor sie gestellt wird.',
+    title: 'Das Hochzeits-ABC für eure Hochzeitswebsite',
+    description: 'Das Hochzeits-ABC erklärt alle wichtigen Begriffe rund um Hochzeitswebsites – von RSVP bis Passwortschutz, kompakt erklärt.',
     date: '2025-01-27',
     category: 'Inhalte',
     tags: ['Ratgeber', 'Planung'],
@@ -1362,8 +1362,8 @@ Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäs
   },
   {
     slug: 'hochzeitswebsite-faq-haeufige-fragen',
-    title: 'FAQ auf der Hochzeitswebsite: 15 Fragen, die eure Gäste garantiert haben (und wie ihr sie elegant beantwortet)',
-    description: 'Eine FAQ-Seite auf eurer Hochzeitswebsite spart euch hunderte Nachrichten und gibt euren Gästen Sicherheit. Die 15 häufigsten Fragen und die besten Antworten.',
+    title: 'FAQ: Häufige Fragen zur Hochzeitswebsite',
+    description: 'Die häufigsten Fragen zur Hochzeitswebsite beantwortet: Kosten, Funktionen, Passwortschutz, RSVP und mehr – jetzt im Überblick.',
     date: '2025-02-03',
     category: 'Inhalte',
     tags: ['Ratgeber', 'Features'],
@@ -1477,8 +1477,8 @@ Die Darstellung passt sich automatisch eurem Theme an. Und das Beste: Ihr könnt
   },
   {
     slug: 'hochzeitswebsite-foto-upload-gaeste',
-    title: 'Foto-Upload für Hochzeitsgäste: Alle Perspektiven eures schönsten Tages an einem Ort',
-    description: 'Mit dem Foto-Upload auf eurer Hochzeitswebsite sammelt ihr die Bilder aller Gäste an einem Ort – in voller Qualität, ohne Ablaufdatum und mit ganz viel Liebe.',
+    title: 'Foto-Upload für Gäste auf der Hochzeitswebsite',
+    description: 'Gäste-Fotos direkt auf der Hochzeitswebsite sammeln: So funktioniert der Foto-Upload – die beste Alternative zu WhatsApp.',
     date: '2025-02-10',
     category: 'Features',
     tags: ['Features', 'Inspiration'],
@@ -1556,8 +1556,8 @@ In zehn Jahren werdet ihr nicht an die Deko denken. Nicht an das Menü. Nicht an
   },
   {
     slug: 'hochzeitswebsite-premium-funktionen',
-    title: 'Das kann sonst keiner: Die Premium-Funktionen von S&I. im Detail',
-    description: 'Foto-Upload, RSVP mit Erinnerungsmails, Gästebuch, Musikwünsche, Geschenkeliste und mehr – entdeckt die Premium-Features, die eure Hochzeitswebsite von allen anderen abheben.',
+    title: 'Premium-Funktionen für eure Hochzeitswebsite',
+    description: 'Welche Premium-Funktionen lohnen sich für eure Hochzeitswebsite? RSVP, Foto-Upload, eigene Domain und mehr im Features-Überblick.',
     date: '2025-02-17',
     category: 'Features',
     tags: ['Features', 'Vergleich'],
@@ -1669,8 +1669,8 @@ Einzelne Features findet man bei vielen Anbietern. Foto-Upload hier, RSVP dort, 
   },
   {
     slug: 'hochzeitswebsite-admin-dashboard',
-    title: 'Euer Hochzeits-Cockpit: So funktioniert das S&I. Admin Dashboard',
-    description: 'Gästeliste, RSVP-Statistiken, Foto-Moderation und Content-Editor – das S&I. Admin Dashboard gibt euch die volle Kontrolle über eure Hochzeitswebsite.',
+    title: 'Das Admin-Dashboard eurer Hochzeitswebsite',
+    description: 'Admin-Dashboard für die Hochzeitswebsite: Gäste, RSVP, Fotos und Inhalte verwalten – alles an einem Ort, einfach und übersichtlich.',
     date: '2025-02-24',
     category: 'Features',
     tags: ['Features', 'Ratgeber'],
@@ -1914,8 +1914,8 @@ Von der Verlobung bis zum Danke. Von der ersten Idee bis zur letzten Erinnerung.
 
   {
     slug: 'hochzeitsfotos-teilen-fotoupload-archiv',
-    title: 'Hochzeitsfotos teilen: Vom Gäste-Upload bis zur Archivseite – so verpasst ihr kein einziges Bild',
-    description: 'Vor der Hochzeit laden Gäste Fotos direkt auf eure Website hoch. Nach der Feier teilt ihr die schönsten Erinnerungen auf eurer Archivseite. So funktioniert das Foto-Erlebnis bei S&I.',
+    title: 'Hochzeitsfotos teilen: Foto-Upload & digitales Archiv',
+    description: 'Hochzeitsfotos aller Gäste an einem Ort sammeln: Mit dem Foto-Upload auf eurer Hochzeitswebsite kein WhatsApp-Chaos und kein Qualitätsverlust.',
     date: '2025-03-10',
     category: 'Features',
     tags: ['Features', 'Ratgeber'],
@@ -2021,8 +2021,8 @@ Neben den Fotos gibt es noch eine weitere wunderschöne Erinnerung: das [digital
   },
   {
     slug: 'gaesteliste-rsvp-erinnerungsmail-export',
-    title: 'Gästeliste, Erinnerungsmails & Export: So behaltet ihr den Überblick über jede einzelne Zusage',
-    description: 'Gästeliste hochladen, automatisch mit Zusagen abgleichen, Erinnerungsmails versenden und am Ende alles für Caterer und Planer exportieren – so wird Gästemanagement stressfrei.',
+    title: 'Gästeliste, RSVP & Erinnerungsmail verwalten's',
+    description: 'Gästeliste verwalten, RSVP einsammeln und automatische Erinnerungsmails versenden – alles bequem über eure Hochzeitswebsite.',
     date: '2025-03-17',
     category: 'Features',
     tags: ['Features', 'Planung'],
@@ -2166,8 +2166,8 @@ Mehr zum Thema RSVP findet ihr in unserem ausführlichen Artikel über [digitale
 
   {
     slug: 'hochzeitswebsite-erstellen-lassen',
-    title: 'Hochzeitswebsite erstellen lassen: Warum Profis das besser können als jeder Baukasten',
-    description: 'Hochzeitswebsite selber machen oder erstellen lassen? Wir vergleichen Baukasten, WordPress und professionellen Service – mit echten Preisen, Zeitaufwand und dem entscheidenden Unterschied.',
+    title: 'Hochzeitswebsite erstellen lassen – Kosten & Ablauf's',
+    description: 'Hochzeitswebsite erstellen lassen statt selbst bauen: Kosten, Ablauf und wann sich ein professioneller Anbieter wirklich lohnt.',
     date: '2025-02-20',
     category: 'Ratgeber',
     tags: ['Ratgeber', 'Vergleich'],
@@ -2284,8 +2284,8 @@ Für Paare, die Wert auf Design, Funktionalität und persönlichen Service legen
 
   {
     slug: 'digitale-hochzeitseinladung',
-    title: 'Digitale Hochzeitseinladung: Warum die schönste Einladung kein Papier braucht',
-    description: 'Digitale Hochzeitseinladung statt Papier? Alles über digitale Einladungskarten, Online-Einladungen zur Hochzeit und wie ihr Print und Digital perfekt kombiniert.',
+    title: 'Digitale Hochzeitseinladung: Modern & nachhaltig',
+    description: 'Digitale Hochzeitseinladung statt Papier: Gäste per Link oder QR-Code einladen – nachhaltig, modern und absolut stressfrei.',
     date: '2025-02-22',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
@@ -2374,8 +2374,8 @@ Ob als alleinige Einladung oder in Kombination mit einer schönen Karte plus QR-
 
   {
     slug: 'hochzeitswebsite-save-the-date-bis-danksagung',
-    title: 'Von Save the Date bis Danksagung: Wie eure Hochzeitswebsite euch ein Leben lang begleitet',
-    description: 'Eine Hochzeitswebsite ist mehr als eine Einladung – sie begleitet euch von der Save-the-Date-Ankündigung über die Live-Hochzeit bis zur Fotogalerie, Danksagung und dem digitalen Archiv eurer schönsten Erinnerungen.',
+    title: 'Von Save the Date bis Danksagung: Hochzeitswebsite',
+    description: 'Von Save the Date bis zur Danksagung: Wie eure Hochzeitswebsite euch durch alle wichtigen Phasen der Hochzeitsplanung begleitet.',
     date: '2025-02-24',
     category: 'Features',
     tags: ['Features', 'Ratgeber'],
