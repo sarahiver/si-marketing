@@ -99,7 +99,7 @@ Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten 
   },
   {
     slug: 'digitales-rsvp-hochzeit',
-    title: 'Digitales RSVP für eure Hochzeit – so geht's',
+    title: 'Digitales RSVP für eure Hochzeit – so geht\'s',
     description: 'Digitales RSVP statt Rückumschlägen: So sammelt ihr Zusagen, Menüwünsche und Allergien automatisch – ohne Excel und ohne Nachfragen.',
     date: '2024-10-21',
     category: 'Features',
@@ -547,7 +547,7 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
   },
   {
     slug: 'hochzeitswebsite-qr-code-einladung',
-    title: 'QR-Code auf der Hochzeitseinladung – so geht's',
+    title: 'QR-Code auf der Hochzeitseinladung – so geht\'s',
     description: 'QR-Code auf der Einladung: Wie ihr Gäste direkt auf eure Hochzeitswebsite leitet und warum das die moderne Alternative ist.',
     date: '2024-11-18',
     category: 'Tipps',
@@ -2021,7 +2021,7 @@ Neben den Fotos gibt es noch eine weitere wunderschöne Erinnerung: das [digital
   },
   {
     slug: 'gaesteliste-rsvp-erinnerungsmail-export',
-    title: 'Gästeliste, RSVP & Erinnerungsmail verwalten's',
+    title: 'Gästeliste, RSVP & Erinnerungsmail verwalten',
     description: 'Gästeliste verwalten, RSVP einsammeln und automatische Erinnerungsmails versenden – alles bequem über eure Hochzeitswebsite.',
     date: '2025-03-17',
     category: 'Features',
@@ -2166,7 +2166,7 @@ Mehr zum Thema RSVP findet ihr in unserem ausführlichen Artikel über [digitale
 
   {
     slug: 'hochzeitswebsite-erstellen-lassen',
-    title: 'Hochzeitswebsite erstellen lassen – Kosten & Ablauf's',
+    title: 'Hochzeitswebsite erstellen lassen – Kosten & Ablauf',
     description: 'Hochzeitswebsite erstellen lassen statt selbst bauen: Kosten, Ablauf und wann sich ein professioneller Anbieter wirklich lohnt.',
     date: '2025-02-20',
     category: 'Ratgeber',
