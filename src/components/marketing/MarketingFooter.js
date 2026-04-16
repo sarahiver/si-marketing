@@ -728,7 +728,7 @@ const MarketingFooter = () => {
       <ClassicFooter>
         <ClassicInner>
           <ClassicBrand>
-            <UnifiedLogo href="#">S&I.</UnifiedLogo>
+            <UnifiedLogo href="/">S&I.</UnifiedLogo>
             <ClassicTagline>Premium Hochzeitswebsites für unvergessliche Momente.</ClassicTagline>
           </ClassicBrand>
           <ClassicColumn>
@@ -742,7 +742,7 @@ const MarketingFooter = () => {
           <ClassicColumn>
             <ClassicColumnTitle>Kontakt</ClassicColumnTitle>
             <ClassicLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</ClassicLink>
-            <ClassicLink href="#">Hamburg, Deutschland</ClassicLink>
+            <ClassicLink as="span">Hamburg, Deutschland</ClassicLink>
           </ClassicColumn>
         </ClassicInner>
         <ClassicBottom>
@@ -762,7 +762,7 @@ const MarketingFooter = () => {
       <EditorialFooter>
         <EditorialInner>
           <EditorialBrand>
-            <UnifiedLogo href="#">S&I.</UnifiedLogo>
+            <UnifiedLogo href="/">S&I.</UnifiedLogo>
             <EditorialTagline>Premium Hochzeitswebsites für unvergessliche Momente.</EditorialTagline>
           </EditorialBrand>
           <EditorialColumn>
@@ -776,7 +776,7 @@ const MarketingFooter = () => {
           <EditorialColumn>
             <EditorialColumnTitle>Kontakt</EditorialColumnTitle>
             <EditorialLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</EditorialLink>
-            <EditorialLink href="#">Hamburg, Deutschland</EditorialLink>
+            <EditorialLink as="span">Hamburg, Deutschland</EditorialLink>
           </EditorialColumn>
         </EditorialInner>
         <EditorialBottom>
@@ -795,7 +795,7 @@ const MarketingFooter = () => {
     return (
       <BotanicalFooter>
         <BotanicalInner>
-          <UnifiedLogo href="#">S&I.</UnifiedLogo>
+          <UnifiedLogo href="/">S&I.</UnifiedLogo>
           <BotanicalTagline>Premium Hochzeitswebsites</BotanicalTagline>
           <BotanicalLinks>
             {navItems.map(item => (
@@ -822,7 +822,7 @@ const MarketingFooter = () => {
         <ContemporaryInner>
           <ContemporaryTop>
             <ContemporaryBrand>
-              <UnifiedLogo href="#">S&I.</UnifiedLogo>
+              <UnifiedLogo href="/">S&I.</UnifiedLogo>
               <ContemporaryTagline>Hochzeitswebsites die rocken! 🎉</ContemporaryTagline>
             </ContemporaryBrand>
             <ContemporaryLinks>
@@ -853,7 +853,7 @@ const MarketingFooter = () => {
     return (
       <LuxeFooter>
         <LuxeInner>
-          <UnifiedLogo href="#">S&I.</UnifiedLogo>
+          <UnifiedLogo href="/">S&I.</UnifiedLogo>
           <LuxeTagline>Zeitlose Eleganz für Ihren besonderen Tag</LuxeTagline>
           <LuxeDivider />
           <LuxeLinks>
@@ -879,7 +879,7 @@ const MarketingFooter = () => {
       <NeonFooter>
         <NeonInner>
           <NeonBrand>
-            <UnifiedLogo href="#">S&I.</UnifiedLogo>
+            <UnifiedLogo href="/">S&I.</UnifiedLogo>
             <NeonTagline>Next-Level Wedding Websites</NeonTagline>
           </NeonBrand>
           <NeonColumn>
@@ -910,7 +910,7 @@ const MarketingFooter = () => {
   return (
     <VideoFooter>
       <VideoInner>
-        <UnifiedLogo href="#">S&I.</UnifiedLogo>
+        <UnifiedLogo href="/">S&I.</UnifiedLogo>
         <VideoTagline>Eure Geschichte, cinematisch erzählt</VideoTagline>
         <VideoLinks>
           {navItems.map(item => (

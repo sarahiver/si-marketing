@@ -1026,7 +1026,7 @@ const HowItWorksSection = () => {
               return (
                 <ClassicStep key={i} $reverse={layout.reverse} $shiftX={layout.shiftX}>
                   <ClassicStepImage $aspect={layout.imgAspect}>
-                    <img src={CLASSIC_STEP_IMAGES[i]} alt="" loading="lazy" />
+                    <img src={CLASSIC_STEP_IMAGES[i]} alt={STEPS[i].title} loading="lazy" />
                   </ClassicStepImage>
                   <ClassicStepContent $pt={layout.textPt}>
                     <ClassicStepNum>{step.num}</ClassicStepNum>

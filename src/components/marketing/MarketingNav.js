@@ -632,7 +632,7 @@ const MarketingNav = () => {
 
   const renderNavContent = () => (
     <>
-      <Logo href="#" onClick={(e) => { e.preventDefault(); if (location.pathname !== '/') { navigate('/'); } else { handleLinkClick(e, 'hero'); } }} $theme={currentTheme}>
+      <Logo href="/" onClick={(e) => { e.preventDefault(); if (location.pathname !== '/') { navigate('/'); } else { handleLinkClick(e, 'hero'); } }} $theme={currentTheme}>
         S&I.
       </Logo>
       

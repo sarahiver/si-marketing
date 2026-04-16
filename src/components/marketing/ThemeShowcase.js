@@ -1959,11 +1959,11 @@ const ThemeShowcase = () => {
             <ModernShowMockup>
               <ModernMockupImg1
                 src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg"
-                alt=""
+                alt="Botanical Theme – Hochzeitswebsite Demo Vorschau"
               />
               <ModernMockupImg2
                 src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_400/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg"
-                alt=""
+                alt="Luxe Theme – Hochzeitswebsite Demo Vorschau"
               />
               <ModernMockupNames>L &amp; J</ModernMockupNames>
             </ModernShowMockup>
@@ -1996,7 +1996,7 @@ const ThemeShowcase = () => {
       <ClassicSection id="themes">
         <ClassicHeroImage
           src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/ThemeShowCase_ewc7q8.jpg"
-          alt=""
+          alt="S&I. Wedding Themes – Hochzeitswebsite Designs im Überblick"
           loading="lazy"
         />
         <ClassicContainer>

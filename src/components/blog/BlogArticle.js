@@ -131,6 +131,7 @@ const renderMarkdown = (content, theme) => {
         return (
           <ArticleTableWrapper key={idx}>
             <ArticleTable $theme={theme}>
+              <caption style={{ display: 'none' }}>{el.rows[0]?.join(' – ')}</caption>
               <thead>
                 <tr>{el.rows[0]?.map((cell, j) => <ArticleTh key={j} $theme={theme}>{cell}</ArticleTh>)}</tr>
               </thead>

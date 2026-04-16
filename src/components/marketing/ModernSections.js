@@ -977,7 +977,7 @@ export function ModernFooter() {
     <FooterWrapper>
       <FooterGrid>
         <div>
-          <FooterLogo href="#">S&I.</FooterLogo>
+          <FooterLogo href="/">S&I.</FooterLogo>
           <FooterTagline>Premium Hochzeitswebsites für unvergessliche Momente.</FooterTagline>
         </div>
         <div>
@@ -990,7 +990,7 @@ export function ModernFooter() {
         <div>
           <FooterColTitle>Kontakt</FooterColTitle>
           <FooterLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</FooterLink>
-          <FooterLink href="#">Hamburg, Deutschland</FooterLink>
+          <FooterLink as="span">Hamburg, Deutschland</FooterLink>
         </div>
       </FooterGrid>
       <FooterBottom>

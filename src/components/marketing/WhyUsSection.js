@@ -1370,7 +1370,7 @@ const WhyUsSection = () => {
           </ClassicHeader>
           <ClassicPanorama
             src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/WhyUS_azpejd.jpg"
-            alt=""
+            alt="Elegante Hochzeitswebsite von S&I. – Warum uns Brautpaare vertrauen"
             loading="lazy"
           />
         </ClassicContainer>

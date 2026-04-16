@@ -1076,7 +1076,7 @@ const ContactSection = () => {
       <ClassicSection id="contact" ref={sectionRef}>
         <ClassicGrid>
           <ClassicImageCol>
-            <ClassicImage src={CLASSIC_CONTACT_IMAGE} alt="" loading="lazy" />
+            <ClassicImage src={CLASSIC_CONTACT_IMAGE} alt="Brautpaar – Kontakt aufnehmen für eure Hochzeitswebsite" loading="lazy" />
           </ClassicImageCol>
           <ClassicFormCol>
             <ClassicHeader>
