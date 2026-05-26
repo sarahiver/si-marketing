@@ -4,7 +4,7 @@ import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 
 // Cloudinary About Image - für alle Themes
-const ABOUT_IMAGE_URL = 'https://res.cloudinary.com/si-weddings/image/upload/v1769078167/si_comming_soon_about_pbqwny.jpg';
+const ABOUT_IMAGE_URL = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1769078167/si_comming_soon_about_pbqwny.jpg';
 
 const fadeInUp = keyframes`
   from { opacity: 0; transform: translateY(30px); }

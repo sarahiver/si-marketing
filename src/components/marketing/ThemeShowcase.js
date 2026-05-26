@@ -88,13 +88,13 @@ const MobileFallback = styled.div`
 // Naming: {theme}_demoShowcase_{cloudinarySlug}.jpg
 // Add URLs here as screenshots are created
 const THEME_SCREENSHOTS = {
-  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770290063/editorial_demoShowcase_gmxabx.jpg',
-  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
-  contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
-  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
-  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
-  video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1770727740/video_demoShowcase_optimized_jrlsoh.jpg',
-  classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto/v1771224839/Bildschirmfoto_16-2-2026_75342_www.siwedding.de_gbf6ps.jpg',
+  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770290063/editorial_demoShowcase_gmxabx.jpg',
+  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
+  contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
+  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
+  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
+  video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/video_demoShowcase_optimized_jrlsoh.jpg',
+  classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1771224839/Bildschirmfoto_16-2-2026_75342_www.siwedding.de_gbf6ps.jpg',
 };
 
 const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color, horizontal }) => {

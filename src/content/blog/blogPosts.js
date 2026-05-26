@@ -211,7 +211,7 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
     tags: ['Vergleich', 'Ratgeber'],
     readTime: '14 min',
     keywords: ['hochzeitswebsite vergleich', 'hochzeitshomepage vergleich', 'beste hochzeitswebsite', 'zankyou alternative', 'hochzeitswebsite anbieter deutschland', 'weddyplace erfahrungen', 'hochzeitsseite erstellen vergleich', 'joy hochzeit alternative'],
-    image: 'https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410204/editorial-demo_uzzasb.png',
     imageAlt: 'Editorial Theme Hochzeitswebsite von S&I.',
     schema: {
       "@type": "Article",
@@ -230,7 +230,7 @@ Aber welcher Anbieter ist der richtige? Das Angebot ist groß, die Marketing-Ver
 
 **Dieser Vergleich ist ehrlich. Auch gegenüber uns selbst.** Wir zeigen euch, wer was kann, was es wirklich kostet und für wen welcher Anbieter tatsächlich Sinn ergibt. Am Ende werden wir nicht verschweigen, warum wir glauben dass S&I. für die meisten Paare die beste Wahl ist – aber wir werden es euch zeigen, nicht einfach behaupten.
 
-![Editorial Theme – eine der sechs Hochzeitswebsite-Designs von S&I.](https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png)
+![Editorial Theme – eine der sechs Hochzeitswebsite-Designs von S&I.](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410204/editorial-demo_uzzasb.png)
 
 ---
 
@@ -294,7 +294,7 @@ Wir sind befangen. Das ist klar. Aber wir können euch zeigen was andere nicht k
 
 S&I. ist kein Baukasten. Kein Portal. Kein Template-System wo ihr selbst herumbastelt bis es irgendwie aussieht. **S&I. ist ein persönlicher Service:** Ihr wählt euer Wunsch-Theme, wir richten eure Hochzeitswebsite ein – professionell, durchdacht, fertig. Ihr verwaltet danach Inhalte, Gäste und RSVP über euer eigenes Dashboard.
 
-![Luxe Theme – für Paare die Eleganz und Raffinesse lieben](https://res.cloudinary.com/si-weddings/image/upload/v1771410207/luxe-demo_ztbbeh.png)
+![Luxe Theme – für Paare die Eleganz und Raffinesse lieben](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410207/luxe-demo_ztbbeh.png)
 
 **Was S&I. von allen anderen unterscheidet:**
 
@@ -320,7 +320,7 @@ S&I. ist kein Baukasten. Kein Portal. Kein Template-System wo ihr selbst herumba
 
 **Persönlicher Support auf Deutsch** – von einem echten Team aus Hamburg das selbst geheiratet hat und weiß was Paare in dieser Phase brauchen.
 
-![Botanical Theme – für romantische Garten- und Naturhochzeiten](https://res.cloudinary.com/si-weddings/image/upload/v1771410205/botanical-demo_gzsgef.png)
+![Botanical Theme – für romantische Garten- und Naturhochzeiten](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410205/botanical-demo_gzsgef.png)
 
 ---
 
@@ -740,7 +740,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
     tags: ['Inspiration', 'Features'],
     readTime: '12 min',
     keywords: ['hochzeitshomepage beispiele', 'hochzeitswebsite beispiele', 'hochzeitshomepage', 'hochzeitswebsite design', 'hochzeitshomepage inspiration', 'hochzeitswebsite themes', 'hochzeitshomepage gestalten ideen', 'moderne hochzeitswebsite beispiele', 'hochzeitswebsite vorlage', 'hochzeitsseite gestalten beispiele'],
-    image: 'https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410204/editorial-demo_uzzasb.png',
     imageAlt: 'Editorial Theme Hochzeitswebsite – ein Beispiel von S&I.',
     schema: {
       "@type": "Article",
@@ -763,7 +763,7 @@ Wir zeigen euch sieben echte Beispiele für Hochzeitshomepages – alle live, al
 
 ## Beispiel 1: Editorial – Für Paare mit Sinn für klares Design
 
-![Editorial Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png)
+![Editorial Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410204/editorial-demo_uzzasb.png)
 
 Das Editorial-Theme ist inspiriert von hochwertigen Magazinen. Klare Typografie, viel Weißraum, ein kraftvoller roter Akzent auf tiefem Schwarz. Nichts Überflüssiges. Alles Absicht.
 
@@ -779,7 +779,7 @@ Wenn eure Tischdekoration aus drei sorgfältig platzierten weißen Rosen besteht
 
 ## Beispiel 2: Botanical – Für Naturliebhaber und Romantiker
 
-![Botanical Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410205/botanical-demo_gzsgef.png)
+![Botanical Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410205/botanical-demo_gzsgef.png)
 
 Tiefe Grüntöne, organische Formen, florale Elemente – das Botanical-Theme holt die Natur auf eure Hochzeitswebsite. Die Typografie ist elegant und leicht geschwungen, die Atmosphäre warm und einladend.
 
@@ -795,7 +795,7 @@ Wenn euer Brautstrauß aus Pfingstrosen besteht und eure Location von Efeu umran
 
 ## Beispiel 3: Contemporary – Für Paare die auffallen wollen
 
-![Contemporary Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410203/cont-demo_gpvcbz.png)
+![Contemporary Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410203/cont-demo_gpvcbz.png)
 
 Kräftige Farben, spielerische Typografie, grafische Energie – das Contemporary-Theme ist für Paare die keine Lust auf das haben was "man so macht". Dieses Design fällt sofort auf, macht Lust auf die Feier und hat echten Charakter.
 
@@ -811,7 +811,7 @@ Wenn euer DJ-Set um Mitternacht startet und eure Hochzeitstorte aus Donuts beste
 
 ## Beispiel 4: Luxe – Für elegante Feiern mit Glamour-Faktor
 
-![Luxe Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410207/luxe-demo_ztbbeh.png)
+![Luxe Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410207/luxe-demo_ztbbeh.png)
 
 Dunkler Hintergrund, goldene Akzente, opulente Serifenschriften in Kursiv – das Luxe-Theme flüstert Exklusivität. Jedes Detail vermittelt: Dies ist eine besondere Feier. Eine die man nicht vergisst.
 
@@ -827,7 +827,7 @@ Wenn eure Hochzeitslocation ein Schloss ist und die Einladungskarten auf Bütten
 
 ## Beispiel 5: Neon – Für Paare die das Außergewöhnliche lieben
 
-![Neon Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410203/neon-demo_eza4jx.png)
+![Neon Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410203/neon-demo_eza4jx.png)
 
 Leuchtende Cyan-Akzente auf tiefem Schwarz, Glow-Effekte, futuristische Typografie – das Neon-Theme ist nichts für jeden. Und das ist der Punkt. Diese Hochzeitswebsite sieht aus wie die Zukunft sich anfühlt.
 
@@ -843,7 +843,7 @@ Wenn eure Gäste um 3 Uhr morgens noch tanzen und das Venue wie ein Club aussieh
 
 ## Beispiel 6: Classic – Für Paare die Zeitlosigkeit über Trends stellen
 
-![Classic Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410205/classic-demo_w3oj6o.png)
+![Classic Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410205/classic-demo_w3oj6o.png)
 
 Warme Cremetöne, edle Serifenschriften, ein Design das in zehn Jahren noch genauso schön aussieht wie heute. Das Classic-Theme ist Hochzeitswebsite in ihrer reinsten Form – ohne Trends, ohne Spielereien, nur pure zeitlose Eleganz.
 
@@ -859,7 +859,7 @@ Wenn euer Lieblingsfilm "Pride & Prejudice" ist und ihr beim Betreten der Kirche
 
 ## Beispiel 7: Video – Für Paare die ihre Geschichte in Bildern erzählen
 
-![Video Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/v1771410203/video-demo_bny15e.png)
+![Video Theme Hochzeitswebsite](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410203/video-demo_bny15e.png)
 
 Ein cinematischer Look, zurückhaltende Farben, filmische Typografie – das Video-Theme stellt bewegte Bilder in den Mittelpunkt. Es schafft eine emotionale Atmosphäre die sofort berührt.
 
