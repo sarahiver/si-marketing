@@ -31,8 +31,6 @@ import ModernOverride from './components/marketing/ModernOverride';
 // ============================================
 // SHARED / STANDALONE PAGES
 // ============================================
-import ImpressumPage from './components/shared/ImpressumPage';
-import DatenschutzPage from './components/shared/DatenschutzPage';
 import CookieConsent from './components/shared/CookieConsent';
 import { ABTestProvider } from './context/ABTestContext';
 import ThemeOnboardingModal from './components/marketing/ThemeOnboardingModal';
@@ -40,20 +38,24 @@ import useScrollDepth from './hooks/useScrollDepth';
 import SEOHead from './components/shared/SEOHead';
 
 // ============================================
-// BLOG PAGES
-// ============================================
-import BlogPage from './components/blog/BlogPage';
-import BlogArticle from './components/blog/BlogArticle';
-
-// ============================================
 // LAZY IMPORTS (must come after all regular imports)
+// Blog & Legal Pages werden nur auf eigenen Routes gebraucht
+// → Code-Splitting reduziert das Initial-Bundle der Homepage
 // ============================================
 const ModernParallaxPage = React.lazy(() => import('./components/marketing/ModernParallaxPage'));
+const BlogPage = React.lazy(() => import('./components/blog/BlogPage'));
+const BlogArticle = React.lazy(() => import('./components/blog/BlogArticle'));
+const ImpressumPage = React.lazy(() => import('./components/shared/ImpressumPage'));
+const DatenschutzPage = React.lazy(() => import('./components/shared/DatenschutzPage'));
 
 // ============================================
 // GOOGLE FONTS - Alle Fonts für alle Themes (werden in Theme-Previews gebraucht)
 // ============================================
-const GOOGLE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500&family=Manrope:wght@300;400;500;600;700;800&family=Josefin+Sans:wght@300;400;600&family=Mrs+Saint+Delafield&family=DM+Sans:wght@400;500;700;800&display=swap';
+// GOOGLE FONTS
+// Fonts werden jetzt via public/index.html geladen
+// (Critical Fonts blockierend, Theme-Fonts async)
+// → siehe index.html für Details
+// ============================================
 
 // ============================================
 // GLOBAL STYLES
@@ -286,13 +288,29 @@ function App() {
               {/* Main Marketing Page */}
               <Route path="/" element={<MainApp />} />
 
-              {/* Blog Pages */}
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogArticle />} />
+              {/* Lazy-loaded Routes (Code-Splitting für besseren Initial-Bundle) */}
+              <Route path="/blog" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <BlogPage />
+                </Suspense>
+              } />
+              <Route path="/blog/:slug" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <BlogArticle />
+                </Suspense>
+              } />
 
               {/* Legal Pages */}
-              <Route path="/impressum" element={<ImpressumPage />} />
-              <Route path="/datenschutz" element={<DatenschutzPage />} />
+              <Route path="/impressum" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <ImpressumPage />
+                </Suspense>
+              } />
+              <Route path="/datenschutz" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <DatenschutzPage />
+                </Suspense>
+              } />
 
               {/* Fallback - redirect to home */}
               <Route path="*" element={<Navigate to="/" replace />} />
