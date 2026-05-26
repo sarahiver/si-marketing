@@ -204,8 +204,8 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
   },
   {
     slug: 'hochzeitswebsite-vergleich-2026',
-    title: 'Hochzeitswebsite-Anbieter im Vergleich 2026',
-    description: 'Welcher Hochzeitswebsite-Anbieter passt zu euch? Wir vergleichen die besten Tools nach Design, Funktionen und Preis-Leistung.',
+    title: 'Hochzeitswebsite Vergleich 2027: 8 Anbieter im ehrlichen Test',
+    description: 'Welche Hochzeitswebsite lohnt sich 2027? Wir vergleichen 8 Anbieter nach Design, Funktionen & Preis – inkl. Empfehlung und ehrlicher Bewertung.',
     date: '2024-10-28',
     category: 'Vergleich',
     tags: ['Vergleich', 'Ratgeber'],
@@ -359,8 +359,8 @@ Noch nicht sicher welches Design zu euch passt? Lest unseren Artikel über [Hoch
   },
   {
     slug: 'hochzeitswebsite-inhalt-checkliste',
-    title: 'Hochzeitswebsite Inhalt: Die ultimative Checkliste',
-    description: 'Was gehört auf eine Hochzeitswebsite? Unsere Checkliste zeigt alle wichtigen Inhalte – von Location bis Dresscode und RSVP.',
+    title: 'Hochzeitswebsite Inhalt: Die Checkliste mit 12 Must-haves',
+    description: 'Was gehört wirklich auf eure Hochzeitswebsite? Die komplette Checkliste mit 12 Must-haves – von Tagesablauf bis Dresscode, RSVP und Anfahrt.',
     date: '2024-11-04',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
@@ -456,8 +456,8 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
   },
   {
     slug: 'hochzeitswebsite-kosten-was-kostet',
-    title: 'Was kostet eine Hochzeitswebsite? Kosten im Überblick',
-    description: 'Hochzeitswebsite kostenlos oder professionell? Alle Kostenmodelle erklärt – von Baukästen bis zur maßgeschneiderten Premium-Website.',
+    title: 'Hochzeitswebsite Kosten 2027: Was zahlt ihr wirklich?',
+    description: 'Kostenlos, 50€ oder 1.500€? Alle Preismodelle für Hochzeitswebsites im Überblick – mit ehrlicher Empfehlung, was sich für euer Budget lohnt.',
     date: '2024-11-11',
     category: 'Ratgeber',
     tags: ['Ratgeber', 'Vergleich'],
@@ -662,8 +662,8 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
   },
   {
     slug: 'hochzeitswebsite-eigene-domain-passwortschutz',
-    title: 'Eigene Domain & Passwortschutz für Hochzeitswebsites',
-    description: 'Eigene Domain statt generischer URL: So schützt ihr eure Hochzeitswebsite mit Passwort und sichert euch eure Wunschdomain.',
+    title: 'Eigene Domain & Passwortschutz: So bleibt eure Hochzeit privat',
+    description: 'Eure Wunschdomain statt generischer URL – und nur eure Gäste haben Zugriff. So sichert ihr eure Hochzeitswebsite in 3 Schritten.',
     date: '2024-11-25',
     category: 'Features',
     tags: ['Planung', 'Features'],
@@ -733,31 +733,31 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
   },
   {
     slug: 'hochzeitswebsite-design-beispiele-inspiration',
-    title: 'Hochzeitswebsite Beispiele 2026: 7 echte Designs',
-    description: 'Entdeckt 7 echte Hochzeitswebsite-Beispiele von S&I. – von minimalistisch bis glamourös. Mit direkten Links zu unseren Demo-Seiten. Findet euren Stil.',
+    title: 'Hochzeitshomepage Beispiele 2027: 7 echte Designs zum Verlieben',
+    description: 'Editorial, Botanical, Luxe & mehr: Entdeckt 7 echte Beispiele für Hochzeitshomepages mit Live-Demos. Findet euren Stil – moderne Designs ab 1.290€.',
     date: '2024-12-02',
     category: 'Design',
     tags: ['Inspiration', 'Features'],
     readTime: '12 min',
-    keywords: ['hochzeitswebsite beispiele', 'hochzeitshomepage beispiele', 'hochzeitswebsite design', 'hochzeitshomepage inspiration', 'hochzeitswebsite themes', 'hochzeitswebsite gestalten ideen', 'moderne hochzeitswebsite beispiele', 'hochzeitswebsite vorlage'],
+    keywords: ['hochzeitshomepage beispiele', 'hochzeitswebsite beispiele', 'hochzeitshomepage', 'hochzeitswebsite design', 'hochzeitshomepage inspiration', 'hochzeitswebsite themes', 'hochzeitshomepage gestalten ideen', 'moderne hochzeitswebsite beispiele', 'hochzeitswebsite vorlage', 'hochzeitsseite gestalten beispiele'],
     image: 'https://res.cloudinary.com/si-weddings/image/upload/v1771410204/editorial-demo_uzzasb.png',
     imageAlt: 'Editorial Theme Hochzeitswebsite – ein Beispiel von S&I.',
     schema: {
       "@type": "Article",
-      "headline": "Hochzeitswebsite Beispiele 2026: 7 echte Designs zum Anklicken",
-      "description": "7 echte Hochzeitswebsite-Beispiele mit Links zu Demo-Seiten.",
+      "headline": "Hochzeitshomepage Beispiele 2027: 7 echte Designs zum Anklicken",
+      "description": "7 echte Hochzeitshomepage-Beispiele mit Links zu Demo-Seiten. Hochzeitswebsite, Hochzeitshomepage, Hochzeitsseite – findet euren Stil.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
       "datePublished": "2024-12-02",
     },
     content: `
-## Hochzeitswebsite Beispiele: So könnte eure aussehen
+## Hochzeitshomepage Beispiele: So könnte eure aussehen
 
-Der Moment in dem ihr den Link zu eurer Hochzeitswebsite zum ersten Mal verschickt – an eure Eltern, besten Freunde, Trauzeugen – ist besonders. Sie öffnen den Link und sehen zum ersten Mal wie eure Hochzeit aussehen wird. Noch bevor die Location dekoriert ist. Noch bevor die Blumen bestellt sind.
+Der Moment in dem ihr den Link zu eurer Hochzeitshomepage zum ersten Mal verschickt – an eure Eltern, besten Freunde, Trauzeugen – ist besonders. Sie öffnen den Link und sehen zum ersten Mal wie eure Hochzeit aussehen wird. Noch bevor die Location dekoriert ist. Noch bevor die Blumen bestellt sind.
 
-**Eure Hochzeitswebsite ist das erste visuelle Statement eurer Hochzeit.**
+**Eure Hochzeitswebsite ist das erste visuelle Statement eurer Hochzeit.** Egal ob ihr sie Hochzeitshomepage, Hochzeitsseite oder Wedding Website nennt – der erste Eindruck zählt.
 
-Wir zeigen euch sieben echte Beispiele – alle live, alle anklickbar, alle von S&I. Schaut sie euch in Ruhe an. Zeigt sie eurer Partnerin, eurem Partner, eurer besten Freundin. Der richtige Stil ist der bei dem ihr sagt: Das sind wir.
+Wir zeigen euch sieben echte Beispiele für Hochzeitshomepages – alle live, alle anklickbar, alle von S&I. Schaut sie euch in Ruhe an. Zeigt sie eurer Partnerin, eurem Partner, eurer besten Freundin. Der richtige Stil ist der bei dem ihr sagt: Das sind wir.
 
 ---
 
@@ -902,6 +902,17 @@ Egal welches Design ihr wählt:
 **Einmalige Zahlung** – kein Abo, keine monatlichen Kosten.
 
 **Persönlicher Support** – auf Deutsch, aus Hamburg.
+
+## Häufige Fragen zu Hochzeitshomepage-Beispielen
+
+**Was ist der Unterschied zwischen Hochzeitswebsite, Hochzeitshomepage und Hochzeitsseite?**
+Keiner. Die Begriffe meinen dasselbe – eine eigene Website für eure Hochzeit mit RSVP, Infos und Foto-Upload. Manche Paare suchen nach „Hochzeitshomepage Beispiele", andere nach „Hochzeitswebsite Inspiration" oder „Hochzeitsseite gestalten" – ihr seid hier richtig.
+
+**Welches Hochzeitshomepage-Beispiel passt zu uns?**
+Das hängt von eurem Hochzeitsstil ab. Klassische Stadthochzeit? Editorial oder Luxe. Hochzeit im Grünen? Botanical. Kreative Loft-Hochzeit? Contemporary oder Neon. Schaut euch die Demo-Seiten oben an – das richtige Design erkennt ihr sofort.
+
+**Kann ich eine Hochzeitshomepage selbst erstellen oder lasse ich sie machen?**
+Beides geht. Baukästen wie Wix funktionieren, kosten aber Zeit und das Ergebnis sieht selten so professionell aus wie diese Beispiele. Mehr dazu in unserem [Hochzeitswebsite-Vergleich](/blog/hochzeitswebsite-vergleich-2026) und im Artikel [Hochzeitswebsite erstellen lassen](/blog/hochzeitswebsite-erstellen-lassen).
 
 ## Bereit?
 
@@ -1477,8 +1488,8 @@ Die Darstellung passt sich automatisch eurem Theme an. Und das Beste: Ihr könnt
   },
   {
     slug: 'hochzeitswebsite-foto-upload-gaeste',
-    title: 'Foto-Upload für Gäste auf der Hochzeitswebsite',
-    description: 'Gäste-Fotos direkt auf der Hochzeitswebsite sammeln: So funktioniert der Foto-Upload – die beste Alternative zu WhatsApp.',
+    title: 'Gästefotos sammeln: Foto-Upload statt WhatsApp-Chaos',
+    description: 'Alle Gästefotos an einem Ort – in voller Qualität, ohne Cloud-Chaos. So funktioniert der Foto-Upload auf der Hochzeitswebsite (besser als WhatsApp).',
     date: '2025-02-10',
     category: 'Features',
     tags: ['Features', 'Inspiration'],
