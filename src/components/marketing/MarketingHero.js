@@ -8,7 +8,10 @@ import { useTheme } from '../../context/ThemeContext';
 // CLOUDINARY URLS
 // ============================================
 const VIDEO_URL = 'https://res.cloudinary.com/si-weddings/video/upload/v1769070616/si_comming_soon_video_hero_xga2ia.mp4';
-const HERO_BG = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
+// Responsive Hero-Bilder: Mobile bekommt 800px, Tablet 1200px, Desktop 1600px
+const HERO_BG_MOBILE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
+const HERO_BG_TABLET = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
+const HERO_BG = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1600/v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg';
 const FOREST_BG = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1769793086/forest-6761846_1920_dumcnj.jpg';
 
 // Botanical Leaves - nur 3 große Blätter
@@ -93,8 +96,15 @@ const EditorialSection = styled.section`
 const EditorialBg = styled.div`
   position: absolute;
   inset: 0;
-  background: url(${HERO_BG}) center/cover no-repeat;
+  background: url(${HERO_BG_MOBILE}) center/cover no-repeat;
   filter: grayscale(100%) brightness(0.7);
+
+  @media (min-width: 768px) {
+    background-image: url(${HERO_BG_TABLET});
+  }
+  @media (min-width: 1280px) {
+    background-image: url(${HERO_BG});
+  }
   
   &::after {
     content: '';
@@ -564,8 +574,15 @@ const LuxeSection = styled.section`
 const LuxeBg = styled.div`
   position: absolute;
   inset: 0;
-  background: url(${HERO_BG}) center/cover no-repeat;
+  background: url(${HERO_BG_MOBILE}) center/cover no-repeat;
   filter: brightness(0.4) saturate(0.8);
+
+  @media (min-width: 768px) {
+    background-image: url(${HERO_BG_TABLET});
+  }
+  @media (min-width: 1280px) {
+    background-image: url(${HERO_BG});
+  }
   
   &::after {
     content: '';
