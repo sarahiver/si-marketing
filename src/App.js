@@ -49,6 +49,7 @@ const ImpressumPage = React.lazy(() => import('./components/shared/ImpressumPage
 const DatenschutzPage = React.lazy(() => import('./components/shared/DatenschutzPage'));
 const HochzeitsdatumFinder = React.lazy(() => import('./components/tools/HochzeitsdatumFinder'));
 const BudgetRechner = React.lazy(() => import('./components/tools/BudgetRechner'));
+const QuizGenerator = React.lazy(() => import('./components/tools/QuizGenerator'));
 
 // ============================================
 // GOOGLE FONTS - Alle Fonts für alle Themes (werden in Theme-Previews gebraucht)
@@ -311,6 +312,11 @@ function App() {
               <Route path="/hochzeitsbudget-rechner" element={
                 <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
                   <BudgetRechner />
+                </Suspense>
+              } />
+              <Route path="/brautpaar-quiz" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
+                  <QuizGenerator />
                 </Suspense>
               } />
 

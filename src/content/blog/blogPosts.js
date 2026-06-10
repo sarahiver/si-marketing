@@ -3027,6 +3027,8 @@ Oder lest weiter: [Hochzeitswebsite Vergleich 2027](/blog/hochzeitswebsite-vergl
       "datePublished": "2026-05-23",
     },
     content: `
+**💡 Direkt loslegen:** Im kostenlosen [Brautpaar-Quiz-Generator](/brautpaar-quiz) stellt ihr euer Quiz aus 50 Fragen zusammen – mit eigenen Fragen, Druckansicht und Präsentationsmodus für den Beamer.
+
 ## Brautpaar-Quiz: Das Spiel, das jeden Polterabend rettet
 
 Es gibt diesen Moment auf jedem Polterabend, jedem JGA und jeder Hochzeitsfeier: **Die Stimmung ist nett, aber es fehlt der Kick.** Die Trauzeugen haben sich vorgenommen, das Brautpaar zu unterhalten – aber niemand weiß genau wie.
