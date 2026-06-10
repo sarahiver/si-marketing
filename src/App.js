@@ -47,6 +47,8 @@ const BlogPage = React.lazy(() => import('./components/blog/BlogPage'));
 const BlogArticle = React.lazy(() => import('./components/blog/BlogArticle'));
 const ImpressumPage = React.lazy(() => import('./components/shared/ImpressumPage'));
 const DatenschutzPage = React.lazy(() => import('./components/shared/DatenschutzPage'));
+const HochzeitsdatumFinder = React.lazy(() => import('./components/tools/HochzeitsdatumFinder'));
+const BudgetRechner = React.lazy(() => import('./components/tools/BudgetRechner'));
 
 // ============================================
 // GOOGLE FONTS - Alle Fonts für alle Themes (werden in Theme-Previews gebraucht)
@@ -297,6 +299,18 @@ function App() {
               <Route path="/blog/:slug" element={
                 <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
                   <BlogArticle />
+                </Suspense>
+              } />
+
+              {/* Kostenlose Tools (Linkable Assets) */}
+              <Route path="/hochzeitsdatum-finder" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
+                  <HochzeitsdatumFinder />
+                </Suspense>
+              } />
+              <Route path="/hochzeitsbudget-rechner" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
+                  <BudgetRechner />
                 </Suspense>
               } />
 
