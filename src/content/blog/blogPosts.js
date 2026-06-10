@@ -95,6 +95,9 @@ Eine eigene Hochzeitswebsite ist mehr als nur eine digitale Visitenkarte für eu
 Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten und Zusagen, schützt eure Privatsphäre, schont die Umwelt und gibt euren Gästen alles, was sie brauchen – elegant, modern und auf jedem Gerät perfekt.
 
 **Bereit für eure eigene Hochzeitshomepage?** Bei S&I. bekommt ihr eine Premium-Hochzeitswebsite mit eigener Domain, RSVP-System, Foto-Upload, Gästebuch und individuellem Design – alles aus einer Hand, ab 1.290€.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -200,6 +203,11 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
 **Für euch als Brautpaar:** Im Admin-Dashboard seht ihr alle Antworten in Echtzeit. Ihr könnt nach Status filtern (zugesagt, abgesagt, offen), die Gästeliste hochladen und automatische Erinnerungen an säumige Gäste versenden – im Design eurer Hochzeitswebsite.
 
 **Kein Extra-Tool, kein Extra-Login, kein Excel-Chaos.** Alles an einem Ort, alles im Griff. Noch mehr dazu, wie das Zusammenspiel von [Gästeliste, Erinnerungsmails und Export](/blog/gaesteliste-rsvp-erinnerungsmail-export) funktioniert, lest ihr in unserem ausführlichen Guide.
+
+**Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit vollständigem RSVP-System, Menüwahl, Allergie-Abfrage und automatischen Erinnerungsmails. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -240,7 +248,7 @@ Bevor wir die Anbieter vorstellen: Das sind die Punkte die den Unterschied mache
 
 **Design-Qualität:** Sieht die Seite wirklich gut aus? Oder wie ein Template das tausend andere Paare vor euch schon genutzt haben? Euer Hochzeitswebsite-Design ist das Erste was eure Gäste sehen – oft noch bevor sie die Einladungskarte in den Händen halten.
 
-**Eigene Domain:** Läuft eure Seite unter anna-und-max.de – oder unter anna-und-max.zankyou.com? Letzteres sieht unprofessionell aus, ist schwerer zu merken und gehört am Ende nicht wirklich euch.
+**Eigene Domain:** Läuft eure Seite unter anna-und-max.de – oder unter anna-und-max.hochzeitsportal-xyz.de? Letzteres sieht unprofessionell aus, ist schwerer zu merken und gehört am Ende nicht wirklich euch.
 
 **RSVP und Gästemanagement:** Gibt es ein echtes digitales RSVP-System mit Menüwahl, Begleitpersonen, Allergien und automatischen Erinnerungen? Oder nur ein einfaches Formular das ihr manuell auswerten müsst?
 
@@ -333,8 +341,8 @@ S&I. ist kein Baukasten. Kein Portal. Kein Template-System wo ihr selbst herumba
 | RSVP-System | Basis | Basis | Sehr gut | **Vollständig** |
 | Foto-Upload Gäste | Nein | Nein | Ja | **Ja** |
 | Passwortschutz | Nein | Teilweise | Ja | **Ja** |
-| Deutschsprachig | Ja | Ja | Nein | **Ja** |
-| DSGVO-konform | Teilweise | Ja | Nein | **Ja** |
+| Deutschsprachig | Ja | Ja | Selten | **Ja** |
+| DSGVO-konform | Teilweise | Ja | Oft nicht (US-Server) | **Ja** |
 | Preismodell | Abo | Einmalig | Abo | **Einmalig** |
 | Persönlicher Service | Nein | Nein | Nein | **Ja** |
 
@@ -359,8 +367,8 @@ Noch nicht sicher welches Design zu euch passt? Lest unseren Artikel über [Hoch
   },
   {
     slug: 'hochzeitswebsite-inhalt-checkliste',
-    title: 'Hochzeitswebsite Inhalt: Die Checkliste mit 12 Must-haves',
-    description: 'Was gehört wirklich auf eure Hochzeitswebsite? Die komplette Checkliste mit 12 Must-haves – von Tagesablauf bis Dresscode, RSVP und Anfahrt.',
+    title: 'Hochzeitswebsite Inhalte: Checkliste mit 12 Must-haves zum Abhaken',
+    description: 'Diese 12 Inhalte gehören auf eure Hochzeitswebsite – von RSVP bis Dresscode. Die komplette Checkliste zum Abhaken, damit eure Gäste nie wieder nachfragen.',
     date: '2024-11-04',
     category: 'Planung',
     tags: ['Planung', 'Ratgeber'],
@@ -452,12 +460,17 @@ Nicht alles gehört auf eine Hochzeitswebsite. Vermeidet zu viele persönliche D
 Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit dieser Checkliste habt ihr alles im Blick, was auf eure Hochzeitshomepage gehört. Strukturiert die Inhalte klar, nutzt ein ansprechendes Design und denkt daran: Eure Gäste werden diese Seite mehrfach besuchen – vom ersten Blick auf die Einladung bis zum Tag nach der Hochzeit.
 
 **Bei S&I. bekommt ihr eine Hochzeitswebsite mit allen Inhalten, die eure Gäste brauchen – professionell gestaltet, intuitiv bedienbar und mit eigenem Admin-Dashboard zum einfachen Pflegen eurer Texte und Infos.**
+
+**Alle 12 Inhalte – fertig für euch eingerichtet?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit allen Inhalten aus dieser Checkliste, professionell gestaltet und kinderleicht selbst zu pflegen. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
     slug: 'hochzeitswebsite-kosten-was-kostet',
-    title: 'Hochzeitswebsite Kosten 2027: Was zahlt ihr wirklich?',
-    description: 'Kostenlos, 50€ oder 1.500€? Alle Preismodelle für Hochzeitswebsites im Überblick – mit ehrlicher Empfehlung, was sich für euer Budget lohnt.',
+    title: 'Hochzeitswebsite Kosten 2027: 0 € bis 1.500 € im Vergleich',
+    description: 'Was kostet eine Hochzeitswebsite wirklich? Alle Preismodelle in einer Tabelle – inkl. der versteckten Abo-Kosten, die auf den ersten Blick keiner sieht.',
     date: '2024-11-11',
     category: 'Ratgeber',
     tags: ['Ratgeber', 'Vergleich'],
@@ -543,6 +556,11 @@ Einen vollständigen [Vergleich aller Anbieter in Deutschland 2026](/blog/hochze
 Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite braucht und kein Wert auf eigenes Design legt. Ein Baukasten-Abo lohnt sich für technikaffine Paare mit Zeit und Geduld. Und eine Premium-Lösung wie S&I. ist die richtige Wahl, wenn eure Hochzeitswebsite genauso besonders sein soll wie eure Feier – professionell gestaltet, funktional durchdacht und ohne monatliche Kosten.
 
 **Eure Hochzeit ist einmalig. Eure Website sollte es auch sein.**
+
+**Lieber einmal richtig statt monatlich zahlen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit individuellem Design, eigener Domain, RSVP und Foto-Upload – zum einmaligen Festpreis ohne Abo. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -658,12 +676,17 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
 **Bei S&I. ist der QR-Code kein Extra, das ihr euch selbst zusammenbasteln müsst. Er wird automatisch generiert und steht euch sofort nach Vertragsabschluss als druckfertiger Download zur Verfügung.** Zusammen mit eurer eigenen Domain habt ihr vom ersten Tag an alles, was ihr für eure Hochzeitseinladungen braucht – ohne Stress, ohne Zusatztools, ohne Wartezeit.
 
 **Eure Hochzeitseinladung verdient mehr als nur Papier. Und euer QR-Code ist bei S&I. bereits fertig, wenn ihr ihn braucht.**
+
+**Bereit für die Website hinter eurem QR-Code?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eigener Domain, die auf jeder Einladung gut aussieht – QR-Code für eure Papeterie inklusive. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
     slug: 'hochzeitswebsite-eigene-domain-passwortschutz',
-    title: 'Eigene Domain & Passwortschutz: So bleibt eure Hochzeit privat',
-    description: 'Eure Wunschdomain statt generischer URL – und nur eure Gäste haben Zugriff. So sichert ihr eure Hochzeitswebsite in 3 Schritten.',
+    title: 'Hochzeitswebsite mit eigener Domain & Passwortschutz: So geht\'s',
+    description: 'eurenamen.de statt langer Anbieter-URL – und nur eingeladene Gäste kommen rein. In 3 Schritten zur privaten Hochzeitswebsite mit Wunschdomain und Passwort.',
     date: '2024-11-25',
     category: 'Features',
     tags: ['Planung', 'Features'],
@@ -682,7 +705,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
     content: `
 ## EureNamen.de statt name.anbieter.de: Warum eure Domain zählt
 
-Stellt euch zwei Szenarien vor: Auf eurer Hochzeitseinladung steht entweder die Webadresse **eurenamen.de** – oder **sarah-max.zankyou.com/wedding-2026**. Welche URL ist leichter zu merken? Welche würdet ihr euren Gästen auf einer schönen Einladungskarte drucken?
+Stellt euch zwei Szenarien vor: Auf eurer Hochzeitseinladung steht entweder die Webadresse **eurenamen.de** – oder **sarah-max.hochzeitsportal-xyz.de/wedding-2026**. Welche URL ist leichter zu merken? Welche würdet ihr euren Gästen auf einer schönen Einladungskarte drucken?
 
 Eine eigene Domain für eure Hochzeitswebsite ist mehr als ein technisches Detail. Sie ist der erste Eindruck, den eure Gäste von eurer digitalen Hochzeitswelt bekommen – persönlich, elegant und einprägsam.
 
@@ -729,12 +752,17 @@ Bei S&I. ist der Passwortschutz in allen Paketen inklusive. Eure Hochzeitswebsit
 Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind die Grundlage einer durchdachten Hochzeitswebsite. Die Domain macht eure Hochzeitshomepage einprägsam und persönlich, der Passwortschutz schützt eure Privatsphäre und die Daten eurer Gäste.
 
 **Bei S&I. ist beides immer inklusive – weil wir finden, dass Persönlichkeit und Privatsphäre keine Aufpreise verdienen.**
+
+**Bereit für eure private Hochzeitswebsite?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eurer Wunschdomain, Passwortschutz und voller Kontrolle über eure Privatsphäre. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
     slug: 'hochzeitswebsite-design-beispiele-inspiration',
-    title: 'Hochzeitshomepage Beispiele 2027: 7 echte Designs zum Verlieben',
-    description: 'Editorial, Botanical, Luxe & mehr: Entdeckt 7 echte Beispiele für Hochzeitshomepages mit Live-Demos. Findet euren Stil – moderne Designs ab 1.290€.',
+    title: 'Hochzeitshomepage Beispiele: 7 echte Designs zum Durchklicken',
+    description: '7 echte Hochzeitshomepage-Beispiele als Live-Demo zum Durchklicken: Editorial, Botanical, Luxe & mehr. Seht vorab, wie eure eigene Website aussehen kann.',
     date: '2024-12-02',
     category: 'Design',
     tags: ['Inspiration', 'Features'],
@@ -998,6 +1026,11 @@ Für eure Gäste ist die Musikwunschliste mehr als ein praktisches Tool – **es
 Und wenn dann um Mitternacht genau der Song läuft, den die beste Freundin sich gewünscht hat, und alle zusammen losschreien – dann wisst ihr, dass sich die Musikwunschliste gelohnt hat.
 
 **Bei S&I. ist das Musikwünsche-Feature als Komponente in allen Themes verfügbar – perfekt ins jeweilige Design integriert. Einfach im Admin-Dashboard aktivieren, und eure Gäste können ab sofort ihre Songs beitragen.**
+
+**Bereit für eine volle Tanzfläche?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit integriertem Musikwunsch-Feature, RSVP-System und allem, was eure Gäste brauchen. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -1075,6 +1108,11 @@ Wer nicht auf das klassische Gästebuch verzichten möchte, kann beides verbinde
 Im S&I. Admin-Dashboard könnt ihr das Gästebuch mit einem Klick aktivieren. Es fügt sich nahtlos in euer Theme ein – egal ob Editorial, Botanical, Contemporary, Luxe, Neon oder Video. Die Einträge könnt ihr moderieren, falls ihr möchtet, oder direkt live schalten lassen.
 
 **Bei S&I. ist das Gästebuch in allen Themes verfügbar. Eure Gäste brauchen keinen Account, keine App, kein Login – nur eure Website-URL und etwas, das sie euch sagen wollen.**
+
+**Bereit für Erinnerungen, die bleiben?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit digitalem Gästebuch, Foto-Upload und einem Design, das zu eurer Feier passt. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -1148,6 +1186,11 @@ Noch unsicher, wie ihr das Thema Geschenke kommuniziert? In unserem Artikel übe
 Eine Wunschliste auf der Hochzeitswebsite ist kein notwendiges Übel, sondern eine Chance. **Die Chance, eure Gäste zu entlasten, Missverständnisse zu vermeiden und Geschenke zu bekommen, die wirklich Bedeutung haben.** Ob materiell oder immateriell, teuer oder symbolisch – was zählt, ist die Geste dahinter.
 
 **Bei S&I. integriert sich die Wunschliste nahtlos in eure Hochzeitswebsite. Schön gestaltet, einfach zu pflegen und für eure Gäste eine echte Erleichterung.**
+
+**Bereit für entspanntes Schenken?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eleganter Wunschliste, RSVP-System und allen Infos für eure Gäste an einem Ort. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -1219,6 +1262,11 @@ Organisiert ihr einen Shuttle zwischen Hotel und Location? Zwischen Kirche und F
 **Eure Gäste werden es euch danken.** Nichts ist schlimmer, als um 23 Uhr festzustellen, dass man auf dem Land sitzt und kein Taxi kommt.
 
 **Das Location-Feature bei S&I. ist in allen Themes verfügbar und unterstützt beliebig viele Orte – mit interaktiver Karte, Google-Maps-Link und individuellen Beschreibungstexten. So findet garantiert jeder den Weg zu euch.**
+
+**Bereit für eine Website, die jede Gäste-Frage beantwortet?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit interaktiver Karte, Anfahrts-Infos und allem, was eure Gäste wissen müssen. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -1292,6 +1340,11 @@ Ein oft vergessener Aspekt: **Was passiert am Morgen nach der Hochzeit?** Wenn v
 Erwähnt das auf eurer Website, wenn ihr so etwas plant. Es ist ein wunderschöner Abschluss und ein weiterer Grund, warum die Hotel-Seite auf eurer Hochzeitswebsite mehr ist als nur ein praktischer Service.
 
 **Bei S&I. ist die Hotel-Komponente in allen Themes verfügbar – mit individuellen Karten, Entfernungsangaben und Direktlinks. Damit sich eure Gäste nicht nur auf eure Hochzeit freuen, sondern auf das ganze Wochenende.**
+
+**Bereit für entspannte Gäste-Logistik?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Hotel-Empfehlungen, Anfahrt und RSVP – alles auf einer eleganten Website. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -1369,6 +1422,11 @@ Bei S&I. lässt sich das [Hochzeits-ABC](/blog/hochzeitswebsite-hochzeits-abc) w
 Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäste gezielt die Buchstaben öffnen können, die sie interessieren. Das Ganze sieht je nach Theme unterschiedlich aus: Elegant aufklappende Karten im Editorial-Theme, blumenverzierte Akkordeons im Botanical-Theme, knallige Drop-Downs im Contemporary-Theme.
 
 **Ihr bestimmt die Inhalte, wir sorgen dafür, dass es fantastisch aussieht. Und das Schönste: Ihr könnt jederzeit neue Buchstaben hinzufügen oder bestehende aktualisieren – in eurem Admin-Dashboard, ohne eine Zeile Code.**
+
+**Vom Hochzeits-Wissen zur eigenen Website?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit individuellem Design, eigener Domain und allen Funktionen für eure Planung. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -1484,12 +1542,17 @@ Im Admin-Dashboard könnt ihr beliebig viele Fragen anlegen, die Reihenfolge per
 Die Darstellung passt sich automatisch eurem Theme an. Und das Beste: Ihr könnt die FAQ-Seite auch als Hochzeits-ABC nutzen – einfach die Buchstaben als Fragen eintragen und eure Texte als Antworten.
 
 **Bei S&I. ist die FAQ-Komponente in allen Themes verfügbar. Sie ist einer der meistgenutzten Bausteine – weil sie einfach funktioniert und euch den Rücken freihält.**
+
+**Alle Fragen geklärt – bereit für den nächsten Schritt?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit FAQ-Komponente, RSVP, Foto-Upload und persönlichem Support aus Hamburg. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
     slug: 'hochzeitswebsite-foto-upload-gaeste',
-    title: 'Gästefotos sammeln: Foto-Upload statt WhatsApp-Chaos',
-    description: 'Alle Gästefotos an einem Ort – in voller Qualität, ohne Cloud-Chaos. So funktioniert der Foto-Upload auf der Hochzeitswebsite (besser als WhatsApp).',
+    title: 'Hochzeitsfotos von Gästen sammeln: Upload statt WhatsApp-Chaos',
+    description: 'Alle Gästefotos automatisch an einem Ort – volle Auflösung, passwortgeschützt, keine ablaufenden Links. So funktioniert der Foto-Upload auf eurer Website.',
     date: '2025-02-10',
     category: 'Features',
     tags: ['Features', 'Inspiration'],
@@ -1563,11 +1626,16 @@ Die Galerie passt sich natürlich eurem Theme an. Im Editorial-Theme als clean G
 In zehn Jahren werdet ihr nicht an die Deko denken. Nicht an das Menü. Nicht an die Blumenarrangements. **Ihr werdet euch an die Gesichter erinnern. An die Momente. An die Geschichten hinter den Bildern.** Und je mehr Perspektiven ihr habt, desto vollständiger wird die Erinnerung.
 
 **Bei S&I. ist der Foto-Upload als Gäste-Fotos-Komponente in allen Themes verfügbar – mit Fortschrittsanzeige, voller Bildqualität und einer wunderschönen Galerie. Eure Gäste laden hoch, ihr genießt die Erinnerungen. So einfach ist das.**
+
+**Bereit für alle Hochzeitsfotos an einem Ort?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Foto-Upload in voller Auflösung, Passwortschutz und eigener Domain. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
     slug: 'hochzeitswebsite-premium-funktionen',
-    title: 'Premium vs. kostenlos: Welche Features lohnen sich wirklich?',
+    title: 'Hochzeitswebsite Premium-Funktionen: Was sich wirklich lohnt',
     description: 'Eigene Domain, Passwortschutz, Foto-Upload: Welche Premium-Funktionen wirklich den Unterschied machen – und worauf ihr getrost verzichten könnt.',
     date: '2025-02-17',
     category: 'Features',
@@ -1676,6 +1744,11 @@ Wie das alles zusammenspielt, zeigen wir euch im Detail in unserem Guide zum [Ad
 Einzelne Features findet man bei vielen Anbietern. Foto-Upload hier, RSVP dort, Gästebuch woanders. Aber bei S&I. ist alles **aus einem Guss**: ein Design, ein Dashboard, ein Login. Keine fünf verschiedenen Tools, keine Kompatibilitätsprobleme, keine unterschiedlichen Logins.
 
 **Das ist der Unterschied zwischen einer Hochzeitswebsite und einem Premium-Erlebnis.** Und genau das verdient eure Hochzeit.
+
+**Bereit für das Komplettpaket?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit allen Premium-Funktionen aus diesem Artikel – aus einem Guss, ohne Abo. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -1793,6 +1866,11 @@ Der Wechsel zwischen den Modi ist ein einziger Klick – kein Umbauen, kein Neuk
 Bei vielen Hochzeitswebsite-Anbietern ist das Backend ein Nachgedanke – ein simples Formular, das gerade so funktioniert. Bei S&I. ist das Dashboard **das Herzstück eurer Hochzeitsplanung.** Es wurde nicht als Verwaltungstool gebaut, sondern als Erlebnis.
 
 Jede Funktion ist durchdacht, jeder Klick ist intuitiv, jede Information ist dort, wo ihr sie erwartet. **Weil die Wochen vor der Hochzeit stressig genug sind – euer Dashboard sollte es nicht sein.**
+
+**Bereit für euer Hochzeits-Cockpit?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Admin-Dashboard, RSVP-Verwaltung und allem, was die Planung leichter macht. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
   {
@@ -1920,6 +1998,11 @@ Ihr seid verlobt. Die Vorfreude ist riesig. Die To-do-Liste wächst. Aber mit S&
 **Startet eure Reise.** Wählt euer Theme. Füllt eure Website mit eurer Geschichte. Und freut euch auf den schönsten Tag eures Lebens – mit der Gewissheit, dass eure Hochzeitswebsite alles im Griff hat.
 
 Von der Verlobung bis zum Danke. Von der ersten Idee bis zur letzten Erinnerung. **Das ist S&I.**
+
+**Bereit für eure eigene Hochzeits-Reise?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit einer Website, die euch von Save-the-Date bis Danksagung begleitet. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
     `,
   },
 
@@ -2776,7 +2859,7 @@ Und der schönste Moment kommt am Ende: Wenn der Countdown auf "0" springt – u
   {
     slug: 'hochzeits-app-vs-hochzeitswebsite',
     title: 'Hochzeits-App oder Hochzeitswebsite? Der ehrliche Vergleich 2027',
-    description: 'Hochzeits-Apps wie Bridebook & WeddyPlace vs. eigene Hochzeitswebsite: Was funktioniert besser für eure Gäste? Der ehrliche Vergleich mit klarer Empfehlung.',
+    description: 'Hochzeits-App oder eigene Hochzeitswebsite: Was funktioniert besser für eure Gäste? Der ehrliche Vergleich mit klarer Empfehlung für beide Einsatzzwecke.',
     date: '2026-05-24',
     category: 'Vergleich',
     tags: ['Vergleich', 'Ratgeber'],
@@ -2844,7 +2927,7 @@ Hochzeits-Apps haben Template-Designs. Eure Hochzeit sieht aus wie tausend ander
 **Hochzeitswebsite:** Komplett individuell – euer Theme, eure Farben, eure Schrift, eure Story.
 
 ### Problem 4: Keine eigene Domain
-Eine App-URL sieht aus wie "app.weddyplace.com/your-wedding-2027". Eine eigene Domain wie "julia-und-tom.de" ist **persönlich, kurz, einprägsam** – und auf der Papier-Einladung viel schöner.
+Eine App-URL sieht aus wie "app.hochzeitsapp-xyz.de/eure-hochzeit-2027". Eine eigene Domain wie "julia-und-tom.de" ist **persönlich, kurz, einprägsam** – und auf der Papier-Einladung viel schöner.
 
 ### Problem 5: SEO und Sichtbarkeit nach der Hochzeit
 Eine App-basierte Hochzeitsseite ist meistens hinter Login geschützt und nicht crawlbar. Nach der Hochzeit verschwindet sie oft komplett.
