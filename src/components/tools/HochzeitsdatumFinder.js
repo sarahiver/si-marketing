@@ -361,6 +361,51 @@ const Related = styled.nav`
   a { color: ${accent}; }
 `;
 
+const CheckSection = styled.section`
+  margin-top: 72px; background: ${cardBg}; border: 1px solid ${line}; padding: 28px;
+`;
+
+const CheckControls = styled.div`
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;
+`;
+
+const CheckInput = styled.input`
+  font-family: 'Inter', sans-serif; font-size: 14.5px; padding: 12px 16px;
+  border: 1px solid ${ink}; background: ${paper}; color: ${ink}; min-width: 200px;
+  &:focus-visible { outline: 2px solid ${accent}; outline-offset: 2px; }
+`;
+
+const CheckBtn = styled.button`
+  font-family: 'Space Grotesk', monospace; font-size: 13px; letter-spacing: 0.05em;
+  padding: 12px 22px; background: ${ink}; color: ${paper}; border: 1px solid ${ink}; cursor: pointer;
+  &:hover:not(:disabled) { background: ${accent}; border-color: ${accent}; }
+  &:disabled { opacity: 0.55; cursor: wait; }
+  &:focus-visible { outline: 2px solid ${accent}; outline-offset: 2px; }
+`;
+
+const CheckBtnGhost = styled(CheckBtn)`
+  background: transparent; color: ${ink};
+  &:hover:not(:disabled) { background: transparent; color: ${accent}; }
+`;
+
+const CheckPending = styled.p`font-size: 14px; color: ${muted}; margin: 18px 0 0;`;
+
+const CheckErrorMsg = styled.p`font-size: 14px; color: ${accent}; margin: 18px 0 0;`;
+
+const riskColor = (r) => (r === 'hoch' ? accent : r === 'mittel' ? '#A8761F' : '#4F6B4A');
+
+const ResultRow = styled(LWRow)`
+  border-left: 3px solid ${(p) => riskColor(p.$risk)};
+  span { color: ${(p) => riskColor(p.$risk)}; }
+`;
+
+const Empfehlung = styled.p`
+  margin: 18px 0 0; padding: 16px 18px; background: ${paper}; border: 1px solid ${line};
+  font-size: 14.5px; line-height: 1.6;
+`;
+
+const CheckDisclaimer = styled.p`font-size: 12px; color: ${muted}; margin: 14px 0 0; line-height: 1.6;`;
+
 /* ============================================================
    KOMPONENTE
    ============================================================ */
@@ -393,6 +438,42 @@ const HochzeitsdatumFinder = () => {
       });
     }
   }, []);
+
+  // --- Termin-Check (Claude + Web-Suche, serverseitig via /api/event-check) ---
+  const iso = (date) => date.toISOString().slice(0, 10);
+  const [city, setCity] = useState('');
+  const [checkDate, setCheckDate] = useState('');
+  const [checking, setChecking] = useState(false);
+  const [checkResult, setCheckResult] = useState(null);
+  const [checkError, setCheckError] = useState(null);
+
+  const runCheck = useCallback(async (dates) => {
+    if (city.trim().length < 2) { setCheckError('Bitte zuerst eure Stadt eingeben.'); return; }
+    setChecking(true); setCheckError(null); setCheckResult(null);
+    try {
+      const res = await fetch('/api/event-check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ city: city.trim(), dates }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Check fehlgeschlagen.');
+      setCheckResult(data);
+    } catch (e) {
+      setCheckError(e.message);
+    } finally {
+      setChecking(false);
+    }
+  }, [city]);
+
+  const checkSingle = () => runCheck([checkDate || iso(topPick.date)]);
+  const checkTop = () => {
+    const candidates = specials
+      .filter((s) => s.top || s.date.getUTCDay() === 6)
+      .slice(0, 4)
+      .map((s) => iso(s.date));
+    runCheck(candidates.length ? candidates : specials.slice(0, 3).map((s) => iso(s.date)));
+  };
 
   const schema = {
     '@type': 'WebApplication',
@@ -507,6 +588,60 @@ const HochzeitsdatumFinder = () => {
             </Grid>
           </>
         )}
+
+        <CheckSection aria-labelledby="check-title">
+          <SectionTitle id="check-title" style={{ marginTop: 0 }}>Der Termin-Check für eure Stadt</SectionTitle>
+          <SectionNote>
+            Großkonzert, Marathon, Messe oder Fußball-Turnier am Wunschtermin? Das treibt Hotelpreise
+            und blockiert Locations. Wir prüfen es live für euch – Stadt eingeben, Termin wählen, fertig.
+          </SectionNote>
+          <CheckControls>
+            <CheckInput
+              type="text" placeholder="Eure Stadt (z. B. Hamburg)" value={city} maxLength={40}
+              onChange={(e) => setCity(e.target.value)} aria-label="Stadt für den Termin-Check"
+            />
+            <CheckInput
+              as="input" type="date" value={checkDate || iso(topPick.date)}
+              min={`${year}-01-01`} max={`${year + 1}-12-31`}
+              onChange={(e) => setCheckDate(e.target.value)} aria-label="Wunschdatum für den Termin-Check"
+            />
+            <CheckBtn onClick={checkSingle} disabled={checking}>
+              {checking ? 'Prüfe …' : 'Dieses Datum prüfen'}
+            </CheckBtn>
+            <CheckBtnGhost onClick={checkTop} disabled={checking}>
+              Top-Termine {year} vergleichen
+            </CheckBtnGhost>
+          </CheckControls>
+
+          {checkError && <CheckErrorMsg role="alert">{checkError}</CheckErrorMsg>}
+          {checking && <CheckPending>Wir durchsuchen Veranstaltungskalender für {city.trim()} – das dauert einen Moment …</CheckPending>}
+
+          {checkResult && (
+            <div aria-live="polite">
+              {checkResult.results.map((r) => (
+                <ResultRow key={r.date} $risk={r.risk}>
+                  <LWDate>
+                    {r.date.split('-').reverse().join('.')}
+                    <span>Risiko: {r.risk}</span>
+                  </LWDate>
+                  <LWBody>
+                    {r.events.length > 0 ? (
+                      r.events.map((e, i) => <p key={i}><em>{e.name}</em>{e.note ? ` – ${e.note}` : ''}</p>)
+                    ) : (
+                      <p>Keine relevanten Großereignisse gefunden.</p>
+                    )}
+                    {r.hinweis && <p>{r.hinweis}</p>}
+                  </LWBody>
+                </ResultRow>
+              ))}
+              {checkResult.empfehlung && <Empfehlung><strong>Unsere Einschätzung:</strong> {checkResult.empfehlung}</Empfehlung>}
+              <CheckDisclaimer>
+                Live-Recherche per KI (Stand: {checkResult.stand}). Ergebnisse sind Hinweise, keine Garantie –
+                prüft große Termine zusätzlich beim Veranstaltungskalender eurer Stadt.
+              </CheckDisclaimer>
+            </div>
+          )}
+        </CheckSection>
 
         <ShareBox>
           <p>
