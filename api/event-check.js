@@ -112,14 +112,25 @@ Event in der Nähe des Termins oder Ferienbeginn, "niedrig" = nichts Relevantes 
 
   const user = `Stadt: ${city}\nZu prüfende Hochzeitstermine: ${dates.join(", ")}\n\nPrüfe jeden Termin (inkl. des umliegenden Wochenendes) und gib das JSON zurück.`
 
+  const tools = [{ type: "web_search_20250305", name: "web_search", max_uses: 3 }]
+  const models = [
+    process.env.ANTHROPIC_MODEL_EVENTCHECK || "claude-haiku-4-5-20251001",
+    "claude-sonnet-4-20250514", // Fallback: läuft nachweislich (Content Studio)
+  ]
+
   try {
-    const text = await callClaude({
-      system,
-      user,
-      maxTokens: 1500,
-      model: process.env.ANTHROPIC_MODEL_EVENTCHECK || "claude-haiku-4-5",
-      tools: [{ type: "web_search_20250305", name: "web_search", max_uses: 4 }],
-    })
+    let text = null
+    let lastErr = null
+    for (const model of models) {
+      try {
+        text = await callClaude({ system, user, maxTokens: 2000, model, tools })
+        break
+      } catch (e) {
+        lastErr = e
+        console.error(`event-check: Modell ${model} fehlgeschlagen:`, e.message)
+      }
+    }
+    if (text === null) throw lastErr
 
     const data = extractJson(text)
     if (!data || !Array.isArray(data.results)) {
@@ -149,3 +160,6 @@ Event in der Nähe des Termins oder Ferienbeginn, "niedrig" = nichts Relevantes 
     return res.status(502).json({ error: "Termin-Check derzeit nicht verfügbar. Bitte später erneut versuchen." })
   }
 }
+
+// Web-Suche braucht Zeit – Vercel-Default (~10s) reicht nicht
+module.exports.config = { maxDuration: 60 }
