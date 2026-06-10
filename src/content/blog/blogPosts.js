@@ -3277,6 +3277,436 @@ Oder lest weiter: [Hochzeitshomepage Beispiele 2027](/blog/hochzeitswebsite-desi
     `,
   },
 
+  {
+    slug: 'hochzeitsfarben-2027',
+    title: 'Hochzeitsfarben 2027: Die 6 Farbpaletten, die wirklich tragen',
+    description: 'Welche Hochzeitsfarben sind 2027 angesagt? 6 komplette Farbpaletten mit Kombinationen für Deko, Blumen & Papeterie – plus die Farben, die ihr besser meidet.',
+    date: '2026-06-08',
+    category: 'Inspiration',
+    tags: ['Inspiration', 'Trends'],
+    readTime: '10 min',
+    keywords: ['hochzeitsfarben 2027', 'hochzeit farben 2027', 'farbkonzept hochzeit 2027', 'hochzeitsfarben trends', 'hochzeitsdeko farben 2027', 'farbpalette hochzeit', 'trendfarben hochzeit 2027', 'hochzeitsfarben kombinieren', 'brautjungfern kleider farben 2027'],
+    image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80',
+    imageAlt: 'Hochzeitstafel mit warmen Erdtönen und Trockenblumen',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeitsfarben 2027: Die 6 Farbpaletten, die wirklich tragen",
+      "description": "Die 6 Hochzeitsfarben-Paletten für 2027 mit konkreten Kombinationen für Deko, Floristik, Papeterie und Hochzeitswebsite.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-06-08",
+    },
+    content: `
+## Hochzeitsfarben 2027: Warum eure Farbwahl wichtiger ist als jedes Deko-Detail
+
+Eure Hochzeitsfarben sind die unsichtbare Klammer um euren gesamten Tag. Sie entscheiden, wie eure Papeterie wirkt, welche Blumen euer Florist bindet, was eure Trauzeuginnen tragen – und ob eure Hochzeitsfotos in zehn Jahren noch zeitlos aussehen oder nach "typisch 2027" schreien.
+
+Genau deshalb lohnt es sich, die **Hochzeitsfarben 2027** nicht einfach von einem Pinterest-Board abzuschreiben, sondern zu verstehen, *warum* sich die Farbwelt gerade verschiebt – und welche Palette wirklich zu euch passt.
+
+Wir haben die großen Farb-Reports, die Wünsche unserer Brautpaare und die Rückmeldungen von Floristen und Locations im DACH-Raum zusammengetragen. Das Ergebnis: **6 komplette Farbpaletten für 2027** – jeweils mit konkreten Kombinationen für Deko, Blumen, Papeterie und eure [Hochzeitswebsite](/blog/warum-hochzeitswebsite).
+
+![Hochzeitstafel mit warmen Erdtönen, Kerzen und Trockenblumen](https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80)
+
+## Die große Verschiebung: Von Pastell zu warmen, erdigen Tönen
+
+Drei Jahre lang dominierten zarte Pastelltöne und kühles Rosé die Hochzeitswelt. 2027 dreht sich das Bild: **Die Farbwelt wird wärmer, erdiger und natürlicher.** Töne, die nach Spätsommerabend, Naturmaterialien und Sonnenuntergang aussehen, lösen das klassische Pastell-Schema ab.
+
+Die Trendforscher von WGSN und Coloro – die Institutionen hinter den großen Farbprognosen – sehen für 2027 eine Palette zwischen warmen Rost- und Brauntönen, beruhigenden Grüntönen und einzelnen kräftigen Akzentfarben. Übersetzt auf Hochzeiten heißt das: weniger Zuckerwatte, mehr Substanz.
+
+**Drei Gründe für den Shift:**
+
+1. **Outdoor- und Natur-Locations boomen.** Scheune, Weingut, Garten – warme Erdtöne harmonieren mit diesen Settings, kühles Eisblau nicht.
+2. **Nachhaltigkeit prägt die Ästhetik.** Trockenblumen, Leinen, Keramik und Holz bringen ihre eigene Farbwelt mit – und die ist nun mal erdig.
+3. **Paare wollen zeitlose Fotos.** Gedeckte Naturtöne altern auf Bildern deutlich besser als knallige Trendfarben.
+
+Mehr zum großen Bild lest ihr in unserem Überblick zu den [Hochzeitstrends 2027](/blog/hochzeitstrends-2027).
+
+## Palette 1: Terracotta & Sage – die Leitfarben 2027
+
+Wenn es **die** Farbkombination 2027 gibt, dann diese: **Terracotta (warmes Rost-Orange) mit Sage Green (gedämpftes Salbeigrün).**
+
+**So setzt ihr die Palette zusammen:**
+- **Hauptfarbe:** Terracotta / Rost
+- **Begleitfarbe:** Sage Green
+- **Basis:** Cremeweiß und warmes Beige
+- **Akzent:** Caramel oder gebranntes Ocker
+
+**Wofür sie perfekt ist:** Spätsommer- und Herbsthochzeiten, Scheunen, Weingüter, Gartenfeste. Die Palette funktioniert bei Sonne genauso wie bei Kerzenlicht am Abend.
+
+**Konkret umgesetzt:** Tischläufer aus Leinen in Naturweiß, Servietten in Terracotta, Eukalyptus und Trockengräser in der Floristik, Kerzen in Caramel-Tönen. Auf der Papeterie und eurer Hochzeitswebsite wirkt Terracotta als Akzentfarbe auf cremefarbenem Grund hochwertig statt verspielt.
+
+**Ein Hinweis aus der Praxis:** Terracotta ist 2027 *die* gefragte Farbe – wenn eure Trauzeuginnen Kleider in diesem Ton suchen, früh bestellen. Beliebte Modelle sind in der Hochsaison schnell vergriffen.
+
+## Palette 2: Champagne & Cremeweiß – das neue Weiß
+
+Reines, kühles Weiß tritt 2027 in den Hintergrund. Stattdessen: **Champagne, Elfenbein und warmes Cremeweiß** – Ton in Ton geschichtet.
+
+**So setzt ihr die Palette zusammen:**
+- **Hauptfarbe:** Champagne
+- **Begleitfarben:** Elfenbein, Cremeweiß, helles Taupe
+- **Akzent:** Gold (dezent!) oder ein Hauch Cinnamon
+
+**Wofür sie perfekt ist:** Elegante Stadthochzeiten, Restaurants, klassische Säle – und für alle Paare, die "zeitlos" über "trendig" stellen. Diese Palette wird auf euren Fotos auch 2047 noch edel aussehen.
+
+**Konkret umgesetzt:** Verschiedene Weißtöne bewusst mischen (das wirkt teurer als ein einziges Weiß), Texturen statt Farben sprechen lassen – Seide, Leinen, Keramik, matte Kerzen. Weiße Blüten mit viel Grün, kein buntes Beiwerk.
+
+![Elegante cremefarbene Hochzeitsdekoration mit Kerzen](https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=900&q=80)
+
+## Palette 3: Dusty Blue & Taupe – für Paare, denen Erdtöne zu warm sind
+
+Nicht jedes Paar will Rost und Caramel. Die kühle Alternative 2027: **Dusty Blue (staubiges Graublau) mit Taupe und Cremeweiß.**
+
+**So setzt ihr die Palette zusammen:**
+- **Hauptfarbe:** Dusty Blue
+- **Begleitfarben:** Taupe, Greige, Cremeweiß
+- **Akzent:** Silbergraues Eukalyptus-Grün
+
+**Wofür sie perfekt ist:** Hochzeiten am Wasser, Frühlings- und Frühsommertermine, skandinavisch-minimalistische Konzepte. Dusty Blue ist die einzige kühle Farbe, die 2027 wirklich trägt – weil sie gedeckt genug ist, um mit Naturmaterialien zu harmonieren.
+
+**Konkret umgesetzt:** Brautjungfern in Dusty Blue (steht fast jedem Hautton), Papeterie in Graublau auf Naturpapier, Hortensien und Disteln in der Floristik.
+
+## Palette 4: Burgunder & Beere – der kraftvolle Herbst-Klassiker kehrt zurück
+
+Totgesagt und wieder da: **Burgunder feiert 2027 ein Comeback** – allerdings nicht als Vollflächen-Farbe wie 2018, sondern als kräftiger Akzent in einer sonst ruhigen Palette.
+
+**So setzt ihr die Palette zusammen:**
+- **Hauptfarbe:** Cremeweiß / Champagne (ja, die Basis bleibt hell!)
+- **Akzentfarbe:** Burgunder oder tiefe Beere
+- **Begleitfarben:** Mauve, helles Taupe
+
+**Wofür sie perfekt ist:** Herbst- und Winterhochzeiten, dunkle Locations mit Kerzenlicht, Paare, die Dramatik mögen, ohne dass es schwer wirkt.
+
+**Der Unterschied zu früher:** 2018 war alles Burgunder – Kleider, Blumen, Deko, Papeterie. 2027 gilt: **maximal 20 % Burgunder, 80 % helle Basis.** So bekommt die Farbe Kraft, ohne zu erdrücken.
+
+## Palette 5: Meadow Green & Buttergelb – die frische Frühlingsoption
+
+Für Frühlings- und Frühsommerhochzeiten 2027 sehen wir eine Palette stark kommen: **Wiesengrün mit zartem Buttergelb.**
+
+**So setzt ihr die Palette zusammen:**
+- **Hauptfarbe:** Cremeweiß
+- **Begleitfarben:** Wiesengrün, frisches Blattgrün
+- **Akzent:** Buttergelb (zart, kein Knallgelb!)
+
+**Wofür sie perfekt ist:** Gartenhochzeiten, Mai- und Juni-Termine, Paare, die es leicht und unbeschwert mögen. Die Palette passt zur natürlich-wilden Floristik, die 2027 stark im Kommen ist: Sträuße, die aussehen wie frisch von der Wiese gepflückt, asymmetrisch und luftig statt streng gebunden.
+
+**Konkret umgesetzt:** Wildblumen-Sträuße mit Margeriten und Gräsern, gelbe Akzente nur in kleinen Dosen (Servietten-Band, Menükarten-Detail, einzelne Blüten).
+
+## Palette 6: Monochrom Schwarz-Weiß – das Editorial-Statement
+
+Am anderen Ende des Spektrums wächst eine kleine, aber stilsichere Gruppe: Paare, die 2027 komplett auf Farbe verzichten. **Schwarz, Weiß, viel Typografie, klare Linien** – Hochzeit als Editorial-Shooting.
+
+**Wofür sie perfekt ist:** Urbane Locations, Lofts, Galerien, moderne Standesamt-Hochzeiten. Und für Paare, deren persönlicher Stil schon immer monochrom war.
+
+**Konkret umgesetzt:** Schwarze Kerzenständer auf weißem Leinen, Papeterie mit großzügiger Serifen-Typografie, Anzüge statt bunter Krawatten, weiße Blumen mit dunklem Laub. Passend dazu wirkt ein minimalistisches Editorial-Design auf der [Hochzeitswebsite](/blog/hochzeitswebsite-design-beispiele-inspiration) wie aus einem Guss.
+
+## Welche Farben 2027 rausfallen
+
+Damit ihr nicht in veraltete Pinterest-Boards investiert – diese Farbwelten haben ihren Höhepunkt hinter sich:
+
+- **Knalliges Pink / Magenta:** Der "Barbiecore"-Moment ist vorbei.
+- **Roségold-Metallic:** Seit Jahren übersättigt, wirkt 2027 datiert.
+- **Kühles Eisblau & Silber:** Zu kalt für die warme Natur-Ästhetik 2027.
+- **Lavendel-Pastell flächendeckend:** Als kleiner Akzent okay, als Konzeptfarbe vorbei.
+
+## So findet ihr *eure* Hochzeitsfarben: 4 Regeln
+
+**1. Maximal 3–4 Farben.** Eine Hauptfarbe, ein bis zwei Begleitfarben, ein Akzent. Mehr wird unruhig – auf der Tafel genauso wie auf den Fotos.
+
+**2. Location zuerst, Farben danach.** Ein dunkler Gewölbekeller verlangt andere Töne als ein lichtdurchfluteter Wintergarten. Schaut euch eure Location bei der Tageszeit eurer Feier an, bevor ihr euch festlegt.
+
+**3. Trend ist nicht Pflicht.** Wenn euch Terracotta nicht berührt, lasst es. Ihr schaut diese Fotos euer Leben lang an – das schlagkräftigste Argument gegen jede Trendfarbe, die euch nicht entspricht.
+
+**4. Zieht die Farben konsequent durch.** Die Magie entsteht, wenn Save-the-Date, Einladung, Hochzeitswebsite, Tischdeko und Danksagung dieselbe Farbwelt sprechen. Gerade die [digitale Einladung](/blog/digitale-hochzeitseinladung) und eure Website sind dabei die ersten Berührungspunkte eurer Gäste mit eurem Farbkonzept – lange vor dem eigentlichen Tag.
+
+![Brautpaar bei der Auswahl von Farbmustern und Papeterie](https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=900&q=80)
+
+## Hochzeitsfarben digital: Eure Website in eurer Farbwelt
+
+Ein Detail, das viele Paare übersehen: **Eure Hochzeitswebsite ist das erste, was eure Gäste von eurem Farbkonzept sehen.** Wer die Save-the-Date im Terracotta-Look verschickt und dann auf eine Website in Standard-Blau verlinkt, verschenkt den ersten Eindruck.
+
+Bei S&I. stimmen wir das Design eurer Website auf euer Farbkonzept ab – von der Typografie über die Akzentfarben bis zu den Foto-Layouts. So erleben eure Gäste eure Hochzeitsfarben vom ersten Klick bis zum [letzten Foto-Upload](/blog/hochzeitswebsite-foto-upload-gaeste) als durchgängige Welt.
+
+## Fazit: 2027 wird warm, erdig und bewusst
+
+Die Hochzeitsfarben 2027 auf einen Satz gebracht: **Warme Erdtöne dominieren, helle Basen bleiben, kräftige Farben kommen nur noch als bewusste Akzente.** Terracotta & Sage ist die Leitkombination, Champagne-Töne sind das neue Weiß, und Burgunder kehrt dosiert zurück.
+
+Wichtiger als jeder Trend: Wählt Farben, die zu eurer Location, eurer Jahreszeit und vor allem **zu euch als Paar** passen.
+
+**Plant ihr eure Hochzeit 2027?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die euer Farbkonzept perfekt aufnimmt – mit individuellem Design, eigener Domain und allen Funktionen von RSVP bis Foto-Galerie. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
+Oder lest weiter: [Hochzeitstrends 2027](/blog/hochzeitstrends-2027) und [Hochzeitsdatum 2027: Die besten Termine](/blog/hochzeitsdatum-2027).
+    `,
+  },
+  {
+    slug: 'hochzeitsdatum-2027',
+    title: 'Hochzeitsdatum 2027: Die besten Termine, Schnapszahlen & Feiertage',
+    description: 'Wann 2027 heiraten? Alle besonderen Hochzeitstermine im Überblick: 07.07.2027, Feiertags-Wochenenden, Brückentage – plus die Termine, die ihr meiden solltet.',
+    date: '2026-06-09',
+    category: 'Planung',
+    tags: ['Planung', 'Ratgeber'],
+    readTime: '9 min',
+    keywords: ['hochzeitsdatum 2027', 'hochzeit 2027', 'wann heiraten 2027', 'schnapszahl hochzeit 2027', 'beste hochzeitstermine 2027', 'heiraten 2027 datum', '07.07.2027 heiraten', 'hochzeitstermine 2027', 'feiertage 2027 hochzeit', 'standesamt termin 2027'],
+    image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1200&q=80',
+    imageAlt: 'Kalender mit markiertem Hochzeitsdatum und Eheringen',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeitsdatum 2027: Die besten Termine, Schnapszahlen & Feiertage",
+      "description": "Die besten Hochzeitstermine 2027 im Überblick: Schnapszahlen, Feiertags-Wochenenden und Brückentage – plus Termine, die ihr besser meidet.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-06-09",
+    },
+    content: `
+## Wann heiratet ihr 2027? Warum das Datum mehr ist als ein Kalendereintrag
+
+Die Verlobung ist gefeiert, die erste Euphorie sitzt – und dann kommt sie, die erste große Planungsentscheidung: **das Hochzeitsdatum.** Es bestimmt eure Location-Auswahl, die Verfügbarkeit eurer Wunsch-Dienstleister, das Budget und nicht zuletzt, wie viele eurer Gäste tatsächlich kommen können.
+
+Und es begleitet euch ein Leben lang: Jeder Hochzeitstag, jede Gravur im Ring, jede Jubiläumsfeier trägt dieses Datum.
+
+Wir zeigen euch die **besten Hochzeitstermine 2027** – von magischen Schnapszahlen über clevere Feiertags-Wochenenden bis zu den Terminen, die ihr besser meidet. Plus: warum ihr nach der Datumswahl sofort den nächsten Schritt gehen solltet.
+
+![Kalender mit markiertem Datum und Eheringen](https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=900&q=80)
+
+## Die Schnapszahl-Termine 2027: Daten mit Symbolkraft
+
+Einprägsame Zahlenkombinationen sind die Klassiker unter den Hochzeitsdaten – sie sehen auf der Einladung gut aus, und kein Partner vergisst je den Hochzeitstag. Das sind die begehrtesten Kandidaten 2027:
+
+**⭐ 07.07.2027 (Mittwoch) – das Top-Datum des Jahres.** Die doppelte Glückszahl Sieben, dazu die 27 im Jahr – symbolischer wird es nicht. Einziger Haken: ein Mittwoch. Aber genau das passt zum Trend: [Wochentags-Hochzeiten boomen 2027](/blog/hochzeitstrends-2027), Locations geben mittwochs oft 20–40 % Rabatt.
+
+**⭐ 27.07.2027 (Dienstag) – die perfekte Spiegelung.** 27.07.27 liest sich fast wie ein Palindrom und ist DER Geheimtipp für alle, denen der 07.07. zu voll ist.
+
+**⭐ 27.02.2027 (Samstag)** und **27.03.2027 (Samstag)** – die seltene Kombination: Schnapszahl-Charakter UND Samstag. Für Paare, die eine Winter- bzw. Frühlingshochzeit planen, sind das die begehrtesten Standesamt-Termine des Jahres.
+
+**⭐ 27.11.2027 (Samstag)** – die elegante Winter-Option mit Kerzenlicht-Garantie.
+
+**⭐ 17.07.2027 (Samstag)** – Sommer-Samstag mit Glückszahl 7.
+
+**⭐ 09.09.2027 (Donnerstag)** – die doppelte Neun, traditionell Symbol für Beständigkeit.
+
+**Wichtig zu wissen:** Schnapszahl-Termine sind bei Standesämtern teils **über ein Jahr im Voraus** ausgebucht. Wenn ihr den 07.07.2027 wollt, solltet ihr jetzt handeln – viele Standesämter öffnen die Terminvergabe 12 Monate vorher, manche früher.
+
+## Feiertage & Brückentage 2027: Maximale Gäste-Freundlichkeit
+
+Wer möchte, dass auch die Gäste aus 400 km Entfernung entspannt anreisen und mitfeiern können, plant um die Feiertage herum. Die besten Optionen 2027:
+
+**🗓️ 01.05.2027 (Samstag, Tag der Arbeit)** – der Jackpot: Der Feiertag fällt auf einen Samstag. Heißt: Niemand muss Urlaub nehmen, und der Sonntag bleibt zum Ausschlafen. Entsprechend früh sind diese Termine vergriffen.
+
+**🗓️ 06.05.2027 (Donnerstag, Christi Himmelfahrt)** – der Klassiker fürs lange Hochzeitswochenende: Donnerstag Feiertag, Freitag Brückentag, Feier von Donnerstag bis Sonntag. Perfekt für Mehrtages-Konzepte mit Welcome-Dinner und Day-After-Brunch.
+
+**🗓️ Pfingsten, 15.–17.05.2027 (Sa–Mo)** – drei freie Tage am Stück. Ideal, wenn viele Gäste von weiter weg anreisen oder ihr eine entspannte Sonntags-Trauung mit freiem Montag wollt.
+
+**🗓️ Fronleichnam, 27.05.2027 (Donnerstag)** – in katholischen Bundesländern und Österreich ein Feiertag, der mit Brückentag-Freitag ein langes Wochenende ergibt. Bonus: Es ist gleichzeitig ein 27er-Datum.
+
+**🗓️ 03.10.2027 (Sonntag, Tag der Deutschen Einheit)** – fällt zwar auf einen Sonntag, aber für eine Samstags-Hochzeit am 02.10. heißt das: Alle Gäste haben am Tag danach frei.
+
+**Die Kehrseite von Feiertags-Terminen:** Locations und Dienstleister verlangen an langen Wochenenden teils Aufschläge, Hotels sind teurer, und manche Gäste haben an Pfingsten bereits Urlaubspläne. Prüft das gegen euer Budget – einen ehrlichen Überblick über alle Kostenfaktoren gibt unser Artikel zu den [Hochzeitswebsite- und Planungskosten](/blog/hochzeitswebsite-kosten-was-kostet).
+
+![Hochzeitsgesellschaft feiert im Sommer im Freien](https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=900&q=80)
+
+## Die besten "normalen" Samstage 2027
+
+Kein Schnapszahl-Fan, kein Feiertags-Jongleur? Dann zählt vor allem: **Saison, Wetter-Wahrscheinlichkeit und Verfügbarkeit.** Die DACH-Hochzeitssaison läuft von Mai bis Oktober, mit der Spitze im Juni und September.
+
+- **Mai-Samstage (08., 22., 29.05.)** – Frühsommer-Licht, Pfingst-Wochenende meiden, wenn ihr Aufschläge umgehen wollt.
+- **Juni-Samstage (12., 19., 26.06.)** – die klassische Traumhochzeits-Zeit. Längste Tage des Jahres, goldenes Abendlicht bis 22 Uhr. Entsprechend früh buchen.
+- **September-Samstage (04., 11., 18., 25.09.)** – der heimliche Favorit vieler Profis: stabileres Wetter als im Juli, weiches Licht, und die [warmen Erdtöne der Hochzeitsfarben 2027](/blog/hochzeitsfarben-2027) passen zu keiner Jahreszeit besser.
+- **Oktober-Samstage (02., 09.10.)** – goldener Herbst, günstigere Locations, Kerzenlicht-Stimmung.
+
+## Diese Termine 2027 besser meiden (oder bewusst wählen)
+
+**❌ Freitag, 13.08.2027 und Freitag, 13.** generell – für abergläubische Gäste (und Großmütter) ein Reizthema. Wer den Termin liebt: Macht ein Augenzwinkern draus und thematisiert es auf der Einladung.
+
+**❌ Schulferien-Kernzeiten (Juli/August)** – in den Sommerferien sind viele Familien verreist. Wenn eure Gästeliste viele Eltern enthält, prüft die Ferientermine eurer wichtigsten Bundesländer, bevor ihr euch festlegt.
+
+**❌ Große Sport-Events** – ein WM- oder EM-Finale am Hochzeitsabend bedeutet: Die halbe Männerrunde verschwindet zum Public Viewing. Termin-Check lohnt sich.
+
+**❌ Weihnachten & Silvester** – romantisch gedacht, logistisch hart: Gäste haben Familienverpflichtungen, Locations Sonderpreise. Ausnahme: die bewusste Silvester-Hochzeit am 31.12.2027 (Freitag!) als Konzept – dann aber mit klarer Ansage und frühem Save-the-Date.
+
+## Nach der Datumswahl: Die ersten 3 Schritte
+
+Steht euer Datum, beginnt das eigentliche Spiel. Diese drei Schritte sollten **innerhalb von vier Wochen** folgen:
+
+**1. Standesamt & Location anfragen – parallel.** Die Traum-Location nützt nichts, wenn das Standesamt am Wunschtag voll ist (und umgekehrt). Beliebte 2027er-Termine werden jetzt, Mitte 2026, bereits vergeben.
+
+**2. Save-the-Date verschicken.** Je besonderer euer Termin (Wochentag! Feiertags-Wochenende!), desto früher müssen eure Gäste Bescheid wissen, damit sie Urlaub einreichen können. Wie ihr das elegant digital löst, zeigt unser Guide zum [digitalen Save-the-Date 2027](/blog/save-the-date-digital-2027).
+
+**3. Hochzeitswebsite aufsetzen.** Sobald das Datum steht, haben eure Gäste Fragen: Wo? Wann genau? Hotel? Eine [Hochzeitswebsite mit allen Infos](/blog/hochzeitswebsite-inhalt-checkliste) beantwortet alles zentral – und der [Hochzeits-Countdown](/blog/hochzeits-countdown-2027) läuft ab Tag eins mit.
+
+## Fazit: Das beste Hochzeitsdatum 2027 ist das, das zu euch passt
+
+Der 07.07.2027 ist magisch, der 01.05.2027 maximal gästefreundlich, und ein September-Samstag ist die sichere Bank. Aber die ehrlichste Antwort lautet: **Das perfekte Datum ist das, an dem eure Lieblingsmenschen Zeit haben und das sich für euch richtig anfühlt.**
+
+Was alle guten Termine gemeinsam haben: Sie sind früh weg. Also – entscheidet euch, sichert Standesamt und Location, und gebt euren Gästen so schnell wie möglich Bescheid.
+
+**Datum steht?** Dann ist jetzt der perfekte Moment für eure eigene Hochzeitswebsite. Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Website mit Countdown, RSVP-System, eigener Domain und individuellem Design – damit eure Gäste vom ersten Tag an alle Infos haben. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
+Oder lest weiter: [Hochzeit 2027 planen: Die komplette Checkliste](/blog/hochzeit-2027-planen-checkliste) und [Hochzeitstrends 2027](/blog/hochzeitstrends-2027).
+    `,
+  },
+  {
+    slug: 'hochzeit-2027-planen-checkliste',
+    title: 'Hochzeit 2027 planen: Die komplette Checkliste Monat für Monat',
+    description: 'Ihr heiratet 2027? Die komplette Planungs-Checkliste von 18 Monaten vorher bis zum großen Tag – mit Timeline, Budget-Eckwerten und den Fehlern, die Zeit kosten.',
+    date: '2026-06-10',
+    category: 'Planung',
+    tags: ['Planung', 'Ratgeber'],
+    readTime: '11 min',
+    keywords: ['hochzeit 2027 planen', 'hochzeitsplanung 2027', 'hochzeit planen checkliste', 'hochzeitsplanung checkliste', 'hochzeit 2027', 'hochzeitsplanung timeline', 'wann hochzeit planen anfangen', 'hochzeitscheckliste 12 monate', 'hochzeitsplanung ablauf', 'heiraten 2027'],
+    image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1200&q=80',
+    imageAlt: 'Brautpaar plant die Hochzeit mit Checkliste und Kalender',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeit 2027 planen: Die komplette Checkliste Monat für Monat",
+      "description": "Die komplette Hochzeitsplanungs-Checkliste für 2027: Timeline von 18 Monaten vorher bis zum großen Tag, mit Budget-Eckwerten und typischen Fehlern.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-06-10",
+    },
+    content: `
+## Hochzeit 2027 planen: Warum jetzt der perfekte Zeitpunkt ist
+
+Ihr habt euch verlobt und wollt 2027 heiraten? Dann kommt hier die gute Nachricht: **Ihr seid genau richtig dran.** Mitte 2026 ist der ideale Startpunkt für eine 2027er-Hochzeit – früh genug für die Wunsch-Location, entspannt genug, um die Verlobungszeit zu genießen.
+
+Die weniger gute Nachricht: Die begehrtesten Termine und Locations für 2027 werden **jetzt** vergeben. Wer bis Anfang 2027 wartet, plant mit dem, was übrig bleibt.
+
+Damit ihr nichts dem Zufall überlasst, kommt hier die **komplette Planungs-Checkliste für eure Hochzeit 2027** – Monat für Monat, von der ersten Budget-Frage bis zum Sektglas am großen Tag. Realistisch, ohne Panik-Mache, und mit den Erfahrungswerten aus hunderten Brautpaar-Gesprächen.
+
+![Brautpaar plant die Hochzeit mit Laptop und Notizen](https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80)
+
+## Phase 1: Das Fundament (18–12 Monate vorher / Sommer–Winter 2026)
+
+Diese Phase entscheidet über alles Weitere. Drei große Entscheidungen, eine Reihenfolge:
+
+### ✅ Budget festlegen – ehrlich und zuerst
+
+Bevor ihr eine einzige Location anschaut: **Klärt, was eure Hochzeit kosten darf.** Die unbequeme, aber wichtigste Frage der gesamten Planung. Zur Orientierung: Eine Hochzeit mit 60–80 Gästen kostet im DACH-Raum typischerweise **35.000–60.000 €**, kleinere Feiern mit 40 Gästen sind ab etwa 15.000–25.000 € machbar.
+
+Die Faustformel für die Verteilung: rund 50 % für Location & Catering, 10–12 % für Foto/Video, 8–10 % für Musik, der Rest für Outfits, Blumen, Papeterie, Ringe und Puffer. **Plant 10 % Reserve ein** – sie wird gebraucht, versprochen.
+
+### ✅ Gästeliste grob aufstellen
+
+Die Gästezahl bestimmt Location-Größe und Budget – deshalb kommt sie vor der Location-Suche. Erstellt drei Kreise: "Muss dabei sein", "Gerne dabei", "Nice to have". Der Trend geht klar zur [Mid-Size-Hochzeit mit 40–80 Gästen](/blog/hochzeitstrends-2027): persönlich genug für echte Gespräche, groß genug für eine volle Tanzfläche.
+
+### ✅ Datum wählen & Location sichern
+
+Jetzt die Kernentscheidung: **Wann?** Ob magische Schnapszahl (07.07.2027!), Feiertags-Wochenende oder klassischer September-Samstag – alle Optionen mit Vor- und Nachteilen findet ihr in unserem Guide zum [Hochzeitsdatum 2027](/blog/hochzeitsdatum-2027).
+
+Dann parallel: Standesamt anfragen UND Location besichtigen. Die Top-Locations für Juni und September 2027 sind teilweise schon vergeben – je früher ihr unterschreibt, desto größer die Auswahl.
+
+### ✅ Die Schlüssel-Dienstleister buchen
+
+Fotograf:in, DJ/Band und freie:r Redner:in sind die Dienstleister mit dem vollsten Kalender. Gute Hochzeitsfotografen sind für die Hauptsaison 2027 bereits jetzt in der Anfrage-Flut. Reihenfolge: erst Location fix, dann sofort diese drei.
+
+## Phase 2: Die Struktur (12–9 Monate vorher / Winter 2026–Frühjahr 2027)
+
+### ✅ Save-the-Date verschicken
+
+Sobald Datum und Location stehen, gehören eure Gäste informiert – besonders bei Feiertags-Terminen oder Wochentags-Hochzeiten, wo Urlaub eingereicht werden muss. Am elegantesten: ein [digitales Save-the-Date](/blog/save-the-date-digital-2027) mit Link zu eurer Hochzeitswebsite.
+
+### ✅ Hochzeitswebsite aufsetzen
+
+Jetzt zahlt sich der zentrale Infopunkt aus: Eine [Hochzeitswebsite](/blog/warum-hochzeitswebsite) bündelt Datum, Location, Anfahrt, [Hotel-Empfehlungen](/blog/hochzeitswebsite-hotels-uebernachtung), Dresscode und später das RSVP an einem Ort. Ergebnis: Eure Gäste finden alles selbst, und ihr beantwortet nicht dreißigmal dieselbe WhatsApp-Frage.
+
+**Praxis-Tipp:** Setzt die Website VOR den Einladungen auf. Dann kommt der QR-Code zur Website direkt auf die Einladung, und das RSVP läuft vom ersten Tag an digital.
+
+### ✅ Farbkonzept & Stil festlegen
+
+Bevor ihr Deko, Blumen oder Papeterie bestellt, braucht ihr eure Farbwelt. Die [Hochzeitsfarben 2027](/blog/hochzeitsfarben-2027) gehen klar Richtung warme Erdtöne – Terracotta & Sage führen das Feld an. Wählt maximal 3–4 Farben und zieht sie konsequent durch alle Touchpoints.
+
+### ✅ Brautkleid & Anzug: Die Suche beginnt
+
+Brautkleider haben **4–6 Monate Lieferzeit plus Änderungsschneiderei.** Für eine Sommer-2027-Hochzeit heißt das: Anproben ab Herbst 2026, Bestellung bis Jahresende. Der Anzug ist flexibler, aber Maßanfertigungen brauchen ebenfalls 3–4 Monate Vorlauf.
+
+![Brautkleid-Anprobe im Atelier](https://images.unsplash.com/photo-1594552072238-b8a33785b261?w=900&q=80)
+
+### ✅ Caterer, Florist & Konditorei anfragen
+
+Falls nicht in der Location inklusive: Jetzt Probe-Essen vereinbaren und Angebote vergleichen. Floristen brauchen euer Farbkonzept – ein Grund mehr, es vorher festzuzurren.
+
+## Phase 3: Die Details (9–4 Monate vorher / Frühjahr–Sommer 2027)
+
+### ✅ Einladungen verschicken (spätestens 6 Monate vorher)
+
+Mit QR-Code zur Website und klarer RSVP-Deadline (empfohlen: 8–10 Wochen vor der Hochzeit). Ob klassisch auf Papier mit digitalem RSVP dahinter oder komplett [digital](/blog/digitale-hochzeitseinladung) – Hauptsache, die Antworten landen strukturiert bei euch und nicht in fünf verschiedenen WhatsApp-Chats.
+
+### ✅ RSVP-Eingang managen
+
+Das [digitale RSVP-System](/blog/digitales-rsvp-hochzeit) sammelt Zusagen, Menüwahl, Allergien und Begleitpersonen automatisch. Wer nicht antwortet, bekommt eine [automatische Erinnerungsmail](/blog/gaesteliste-rsvp-erinnerungsmail-export) – ohne dass ihr persönlich nachhaken müsst. Allein dieser Punkt spart euch erfahrungsgemäß 10–15 Stunden Organisationsarbeit.
+
+### ✅ Trauung gestalten
+
+Ablauf mit Redner:in oder Pfarrer:in besprechen, Eheversprechen schreiben (fangt früh an – es dauert länger, als ihr denkt), Musik auswählen. Der Trend 2027: 30–45 Minuten persönliche Zeremonie statt Schema F.
+
+### ✅ Ringe bestellen
+
+Mit Gravur und Anpassung: 8–12 Wochen Vorlauf. Das Hochzeitsdatum als Gravur ist der Klassiker – noch ein Grund, warum sich ein [schönes Datum](/blog/hochzeitsdatum-2027) lohnt.
+
+### ✅ Musikwünsche der Gäste einsammeln
+
+Geheimtipp für eine volle Tanzfläche: Lasst eure Gäste vorab [Musikwünsche über die Hochzeitswebsite](/blog/hochzeitswebsite-musikwuensche-playlist) einreichen. Der DJ bekommt die Liste, und jeder Gast hört "seinen" Song.
+
+## Phase 4: Der Feinschliff (4 Monate bis 1 Woche vorher)
+
+### ✅ 4–3 Monate vorher
+- Probetermine: Frisur & Make-up
+- Ablaufplan des Tages erstellen (mit Puffern! Alles dauert 20 % länger)
+- Hochzeitstorte final bestellen
+- JGA-Termine mit Trauzeugen klären (bzw. delegieren – das ist deren Job)
+
+### ✅ 8–6 Wochen vorher
+- RSVP-Deadline durchsetzen: Nachzügler aktiv erinnern
+- Sitzplan erstellen (erst jetzt – vorher ändert er sich dreimal)
+- Finale Zahlen an Caterer und Location melden
+- Dienstleister-Briefing: Wer macht was, wann, wo? Ein Dokument, alle Kontakte
+
+### ✅ Die letzte Woche
+- Zahlungen vorbereiten (viele Dienstleister wollen bar oder vorab)
+- Notfall-Kit packen: Pflaster, Nähzeug, Deo, Snacks, Ladekabel
+- Ringe, Dokumente, Eheversprechen an EINE verantwortliche Person übergeben
+- Und das Wichtigste: **einen Abend bewusst NICHT über die Hochzeit reden.**
+
+## Die 5 häufigsten Planungsfehler bei 2027er-Hochzeiten
+
+**1. Zu spät mit Location & Standesamt starten.** Der mit Abstand teuerste Fehler – nicht in Geld, sondern in Kompromissen.
+
+**2. Einladungen ohne zentrale Info-Stelle verschicken.** Ergebnis: Dutzende Einzelfragen per WhatsApp. Die Website-zuerst-Reihenfolge löst das.
+
+**3. Budget ohne Puffer planen.** 10 % Reserve, sonst wird der letzte Monat ungemütlich.
+
+**4. Alles selbst machen wollen.** Delegiert an Trauzeugen, bucht Profis für die kritischen Gewerke, und automatisiert die Verwaltungsarbeit (RSVP, Erinnerungen, Gästeliste) digital.
+
+**5. Den Tag durchtakten wie ein Projekt.** Plant bewusst Leerlauf ein – die schönsten Momente eurer Hochzeit stehen in keinem Ablaufplan.
+
+![Glückliches Brautpaar beim Sektempfang](https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80)
+
+## Eure 2027-Planung auf einen Blick
+
+| Zeitpunkt | Meilenstein |
+|---|---|
+| Sommer–Herbst 2026 | Budget, Gästeliste, Datum, Location, Top-Dienstleister |
+| Herbst–Winter 2026 | Save-the-Date, Hochzeitswebsite, Farbkonzept, Brautkleid |
+| Frühjahr 2027 | Einladungen, RSVP, Trauung, Ringe |
+| 2 Monate vorher | Sitzplan, finale Zahlen, Briefings |
+| Juli–Oktober 2027 | Heiraten. Feiern. Genießen. |
+
+## Fazit: Früh strukturieren, entspannt heiraten
+
+Eine Hochzeit 2027 zu planen ist kein Hexenwerk – wenn ihr die Reihenfolge einhaltet: **Budget → Gästeliste → Datum & Location → Schlüssel-Dienstleister → alles andere.** Die ersten vier Entscheidungen in den nächsten Wochen zu treffen, macht die restlichen 14 Monate zur Vorfreude statt zum Stress.
+
+Und für alles Organisatorische danach gilt: Je mehr automatisch läuft – RSVP, Erinnerungen, Gäste-Infos, Foto-Sammlung – desto mehr Kopf habt ihr frei für das, worum es eigentlich geht.
+
+**Bereit für den nächsten Schritt?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit RSVP-System, automatischen Erinnerungen, Countdown und individuellem Design – euer Planungs-Hub von der Verlobung bis zur Danksagung. Ab 1.290 €.
+
+👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
+
+Oder lest weiter: [Hochzeitsdatum 2027: Die besten Termine](/blog/hochzeitsdatum-2027) und [Hochzeitsfarben 2027](/blog/hochzeitsfarben-2027).
+    `,
+  },
+
 ];
 
 export default blogPosts;
