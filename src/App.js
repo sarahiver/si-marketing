@@ -100,6 +100,40 @@ const GlobalStyles = createGlobalStyle`
       padding-bottom: clamp(2.5rem, 6vh, 4rem) !important;
     }
   }
+
+  /* iOS-Zoom verhindern: Felder < 16px lassen Safari beim Fokus reinzoomen.
+     Betrifft v.a. die Tool-Seiten (Quiz, Datum-Finder) mit 14–15px Inputs.
+     !important schlägt die element-spezifischen styled-components-Klassen. */
+  @media (max-width: 768px) {
+    input:not([type='checkbox']):not([type='radio']):not([type='range']),
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+
+  /* Backstop gegen horizontales Auslaufen (zusätzlich zu body overflow-x) */
+  html {
+    overflow-x: hidden;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  svg {
+    max-width: 100%;
+  }
+
+  /* Nutzer mit "Bewegung reduzieren" (OS-Einstellung): Animationen entschärfen.
+     Ändert NICHT das Standardverhalten – nur für Leute, die es aktiv wünschen. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 `;
 
 // ============================================
