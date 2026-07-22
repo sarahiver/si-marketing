@@ -6,7 +6,7 @@
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { ALL_DEMOS, THEME_SCREENSHOTS, HORIZONTAL_THEMES, mobileCardUrl, trackDemoClick } from './demoData';
+import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, mobileCardUrl, trackDemoClick } from './demoData';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
@@ -126,6 +126,14 @@ const FrameScreen = styled.div`
   font-style: italic;
   font-size: 1.4rem;
   color: rgba(26, 26, 26, 0.3);
+`;
+
+const PreviewVideo = styled.video`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Track = styled.div`
@@ -256,11 +264,21 @@ const DemoFilmstrip = () => {
                 <FrameUrl>siwedding.de/{demo.id}</FrameUrl>
               </FrameBar>
               <FrameScreen
-                $src={isMobile ? mobileCardUrl(demo.id) : THEME_SCREENSHOTS[demo.id]}
+                $src={isMobile ? mobileCardUrl(demo.id) : (THEME_VIDEO_PREVIEWS[demo.id] ? undefined : THEME_SCREENSHOTS[demo.id])}
                 $static={isMobile}
                 $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
               >
-                {!(isMobile ? mobileCardUrl(demo.id) : THEME_SCREENSHOTS[demo.id]) && demo.name}
+                {!isMobile && THEME_VIDEO_PREVIEWS[demo.id] && (
+                  <PreviewVideo
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    src={THEME_VIDEO_PREVIEWS[demo.id]}
+                  />
+                )}
+                {!(isMobile ? mobileCardUrl(demo.id) : (THEME_VIDEO_PREVIEWS[demo.id] || THEME_SCREENSHOTS[demo.id])) && demo.name}
               </FrameScreen>
             </Frame>
             <CardMeta>

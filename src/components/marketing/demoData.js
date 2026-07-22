@@ -51,6 +51,14 @@ export const THEME_HEROES = {
   // classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/vXXXX/classic_hero.jpg',
 };
 
+// Video-Previews für Themes, die sich nicht als Full-Page-Screenshot erfassen
+// lassen (z.B. Modern/Parallax). Desktop zeigt dann eine loopende
+// Bildschirmaufnahme statt des Scroll-Effekts. MP4 von Cloudinary,
+// URL-Muster: .../video/upload/q_auto/vXXXX/datei.mp4
+export const THEME_VIDEO_PREVIEWS = {
+  // modern: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/vXXXX/modern_preview.mp4',
+};
+
 // Themes, deren Demo horizontal scrollt — die Desktop-Preview scrollt dann
 // von links nach rechts statt von oben nach unten. Der Full-Page-Screenshot
 // muss dafür QUER sein (ein hoher, breiter Streifen der ganzen Seite).
