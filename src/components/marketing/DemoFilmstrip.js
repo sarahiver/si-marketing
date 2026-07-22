@@ -4,7 +4,7 @@
 //   Streifen und scrollt die Demo-Seite im Frame durch.
 // Mobile: natives Scroll-Snap-Carousel (kein Auto-Movement), Karten zeigen
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, mobileCardUrl, trackDemoClick } from './demoData';
 
@@ -227,6 +227,67 @@ const Footer = styled.div`
   color: #999;
 `;
 
+// Einzelkarte — hält den Video-Ref, damit die Preview erst bei Hover abspielt
+const DemoCard = ({ demo, isMobile, CardComp }) => {
+  const videoRef = useRef(null);
+  const videoSrc = !isMobile && THEME_VIDEO_PREVIEWS[demo.id];
+
+  const handleEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+  const handleLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
+  const src = isMobile ? mobileCardUrl(demo.id) : (videoSrc ? undefined : THEME_SCREENSHOTS[demo.id]);
+
+  return (
+    <CardComp
+      href={demo.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      $static={isMobile}
+      $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
+      onMouseEnter={videoSrc ? handleEnter : undefined}
+      onMouseLeave={videoSrc ? handleLeave : undefined}
+      onClick={() => trackDemoClick(demo.id, demo.url, isMobile ? 'filmstrip_mobile' : 'filmstrip')}
+      aria-label={`${demo.name} Live-Demo ansehen`}
+    >
+      <Frame>
+        <FrameBar>
+          <span /><span /><span />
+          <FrameUrl>siwedding.de/{demo.id}</FrameUrl>
+        </FrameBar>
+        <FrameScreen
+          $src={src}
+          $static={isMobile}
+          $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
+        >
+          {videoSrc && (
+            <PreviewVideo
+              ref={videoRef}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              src={videoSrc}
+            />
+          )}
+          {!(isMobile ? mobileCardUrl(demo.id) : (videoSrc || THEME_SCREENSHOTS[demo.id])) && demo.name}
+        </FrameScreen>
+      </Frame>
+      <CardMeta>
+        <CardName>{demo.name}</CardName>
+        <CardTag>Demo →</CardTag>
+      </CardMeta>
+    </CardComp>
+  );
+};
+
 const DemoFilmstrip = () => {
   const isMobile = useIsMobile();
   const demos = isMobile ? ALL_DEMOS : [...ALL_DEMOS, ...ALL_DEMOS];
@@ -248,44 +309,12 @@ const DemoFilmstrip = () => {
       </Header>
       <TrackComp>
         {demos.map((demo, i) => (
-          <CardComp
+          <DemoCard
             key={`${demo.id}-${i}`}
-            href={demo.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            $static={isMobile}
-            $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
-            onClick={() => trackDemoClick(demo.id, demo.url, isMobile ? 'filmstrip_mobile' : 'filmstrip')}
-            aria-label={`${demo.name} Live-Demo ansehen`}
-          >
-            <Frame>
-              <FrameBar>
-                <span /><span /><span />
-                <FrameUrl>siwedding.de/{demo.id}</FrameUrl>
-              </FrameBar>
-              <FrameScreen
-                $src={isMobile ? mobileCardUrl(demo.id) : (THEME_VIDEO_PREVIEWS[demo.id] ? undefined : THEME_SCREENSHOTS[demo.id])}
-                $static={isMobile}
-                $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
-              >
-                {!isMobile && THEME_VIDEO_PREVIEWS[demo.id] && (
-                  <PreviewVideo
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    src={THEME_VIDEO_PREVIEWS[demo.id]}
-                  />
-                )}
-                {!(isMobile ? mobileCardUrl(demo.id) : (THEME_VIDEO_PREVIEWS[demo.id] || THEME_SCREENSHOTS[demo.id])) && demo.name}
-              </FrameScreen>
-            </Frame>
-            <CardMeta>
-              <CardName>{demo.name}</CardName>
-              <CardTag>Demo →</CardTag>
-            </CardMeta>
-          </CardComp>
+            demo={demo}
+            isMobile={isMobile}
+            CardComp={CardComp}
+          />
         ))}
       </TrackComp>
       <Footer>
