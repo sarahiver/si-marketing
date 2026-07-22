@@ -51,17 +51,23 @@ export const THEME_HEROES = {
   // classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/vXXXX/classic_hero.jpg',
 };
 
+// Themes, deren Demo horizontal scrollt — die Desktop-Preview scrollt dann
+// von links nach rechts statt von oben nach unten. Der Full-Page-Screenshot
+// muss dafür QUER sein (ein hoher, breiter Streifen der ganzen Seite).
+export const HORIZONTAL_THEMES = ['video'];
+
 // Thumbnail-Crop vom oberen Seitenbereich (für Grids/Karten)
 export const thumbUrl = (url) =>
   url ? url.replace('/upload/q_auto,f_auto,w_1200/', '/upload/q_auto,f_auto,c_fill,g_north,w_600,h_450/') : undefined;
 
-// 4:3-Hero-Fallback aus dem Full-Page-Screenshot, solange kein echtes Hero-Bild existiert
-export const heroFallbackUrl = (url) =>
-  url ? url.replace('/upload/q_auto,f_auto,w_1200/', '/upload/q_auto,f_auto,c_fill,g_north,w_800,h_600/') : undefined;
+// 4:3-Hero-Fallback aus dem Full-Page-Screenshot, solange kein echtes Hero-Bild existiert.
+// Vertikale Seiten: Crop von oben (g_north); horizontale Seiten: Crop von links (g_west).
+export const heroFallbackUrl = (url, horizontal = false) =>
+  url ? url.replace('/upload/q_auto,f_auto,w_1200/', `/upload/q_auto,f_auto,c_fill,${horizontal ? 'g_west' : 'g_north'},w_800,h_600/`) : undefined;
 
 // Bestes verfügbares Mobile-Bild für eine Demo
 export const mobileCardUrl = (id) =>
-  THEME_HEROES[id] || heroFallbackUrl(THEME_SCREENSHOTS[id]);
+  THEME_HEROES[id] || heroFallbackUrl(THEME_SCREENSHOTS[id], HORIZONTAL_THEMES.includes(id));
 
 export const trackDemoClick = (label, url, source) => {
   if (typeof window !== 'undefined' && window.gtag) {

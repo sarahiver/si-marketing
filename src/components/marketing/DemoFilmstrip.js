@@ -6,7 +6,7 @@
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { ALL_DEMOS, THEME_SCREENSHOTS, mobileCardUrl, trackDemoClick } from './demoData';
+import { ALL_DEMOS, THEME_SCREENSHOTS, HORIZONTAL_THEMES, mobileCardUrl, trackDemoClick } from './demoData';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
@@ -114,8 +114,8 @@ const FrameScreen = styled.div`
   position: relative;
   aspect-ratio: 4/3;
   background-image: url(${p => p.$src});
-  background-size: ${p => (p.$static ? 'cover' : '100% auto')};
-  background-position: ${p => (p.$static ? 'center' : 'top center')};
+  background-size: ${p => (p.$static ? 'cover' : p.$horizontal ? 'auto 100%' : '100% auto')};
+  background-position: ${p => (p.$static ? 'center' : p.$horizontal ? 'left center' : 'top center')};
   background-repeat: no-repeat;
   background-color: #F5F2EE;
   transition: background-position 16s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -174,7 +174,7 @@ const Card = styled.a`
   }
 
   &:hover ${FrameScreen} {
-    background-position: ${p => (p.$static ? 'center' : 'bottom center')};
+    background-position: ${p => (p.$static ? 'center' : p.$horizontal ? 'right center' : 'bottom center')};
   }
 `;
 
@@ -246,6 +246,7 @@ const DemoFilmstrip = () => {
             target="_blank"
             rel="noopener noreferrer"
             $static={isMobile}
+            $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
             onClick={() => trackDemoClick(demo.id, demo.url, isMobile ? 'filmstrip_mobile' : 'filmstrip')}
             aria-label={`${demo.name} Live-Demo ansehen`}
           >
@@ -257,6 +258,7 @@ const DemoFilmstrip = () => {
               <FrameScreen
                 $src={isMobile ? mobileCardUrl(demo.id) : THEME_SCREENSHOTS[demo.id]}
                 $static={isMobile}
+                $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
               >
                 {!(isMobile ? mobileCardUrl(demo.id) : THEME_SCREENSHOTS[demo.id]) && demo.name}
               </FrameScreen>
