@@ -26,10 +26,6 @@ const PreviewWrapper = styled.div`
   ${p => p.$boxShadow ? `box-shadow: ${p.$boxShadow};` : ''}
   ${p => p.$margin ? `margin: ${p.$margin};` : ''}
   cursor: pointer;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const PreviewImage = styled.div`

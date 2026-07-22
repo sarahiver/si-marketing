@@ -1001,6 +1001,60 @@ const ClassicDateLine = styled.p`
   animation: ${fadeInUp} 0.8s ease 1s both;
 `;
 
+const ClassicCTAs = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 2rem;
+  animation: ${fadeInUp} 0.8s ease 0.7s both;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
+const ClassicPrimaryCTA = styled.a`
+  display: inline-block;
+  background: #FDFCFA;
+  color: #1A1A1A;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 2.2rem;
+  border: 1px solid #FDFCFA;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: transparent;
+    color: #FDFCFA;
+  }
+`;
+
+const ClassicSecondaryCTA = styled.button`
+  display: inline-block;
+  background: transparent;
+  color: #FDFCFA;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  border: 1px solid rgba(253,252,250,0.5);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #FDFCFA;
+  }
+`;
+
 const ClassicScroll = styled.div`
   position: absolute;
   bottom: 3rem;
@@ -1066,6 +1120,19 @@ const MarketingHero = () => {
           </ClassicTitle>
           <ClassicScript>handgemacht mit Liebe</ClassicScript>
           <ClassicDateLine>Individuell · Hochwertig · In 7 Tagen live</ClassicDateLine>
+          <ClassicCTAs>
+            <ClassicPrimaryCTA
+              href="https://siwedding.de/demo-classic"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => window.gtag && window.gtag('event', 'demo_click', { event_category: 'engagement', event_label: 'classic', demo_url: 'https://siwedding.de/demo-classic', source: 'hero' })}
+            >
+              Live-Demo ansehen
+            </ClassicPrimaryCTA>
+            <ClassicSecondaryCTA onClick={() => scrollToSection('contact')}>
+              Unverbindlich anfragen
+            </ClassicSecondaryCTA>
+          </ClassicCTAs>
         </ClassicContent>
         <ClassicScroll><span>Scroll</span></ClassicScroll>
       </ClassicSection>
