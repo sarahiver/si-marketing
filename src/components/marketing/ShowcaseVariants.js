@@ -20,6 +20,22 @@ const TAGLINES = {
   video: 'Cinematisch mit Bewegtbild',
 };
 
+// Mobile-Detection: auf Touch/Schmal wird der Marquee zum Scroll-Snap-Carousel
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const onChange = (e) => setIsMobile(e.matches);
+    mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
+    return () => {
+      mq.removeEventListener ? mq.removeEventListener('change', onChange) : mq.removeListener(onChange);
+    };
+  }, []);
+  return isMobile;
+};
+
 const track = (label, url, source) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'demo_click', {
@@ -175,6 +191,25 @@ const BTrack = styled.div`
   }
 `;
 
+// Mobile: natives Swipe-Carousel mit Scroll-Snap statt Auto-Animation.
+// Die naechste Karte lugt am Rand hervor — das ist die Swipe-Affordance.
+const BSwipeTrack = styled.div`
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  padding: 1.5rem clamp(1.5rem, 6vw, 2.5rem) 2rem;
+  scroll-padding-left: clamp(1.5rem, 6vw, 2.5rem);
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+
 const BCard = styled.a`
   display: block;
   text-decoration: none;
@@ -190,6 +225,16 @@ const BCard = styled.a`
     background-position: bottom center;
   }
 `;
+const BSwipeCard = styled(BCard)`
+  width: 78vw;
+  max-width: 340px;
+  scroll-snap-align: start;
+
+  &:hover {
+    transform: none;
+  }
+`;
+
 
 const BCardMeta = styled.div`
   display: flex;
@@ -223,7 +268,10 @@ const BFooter = styled.div`
 `;
 
 export const ShowcaseVariantMarquee = () => {
-  const doubled = [...ALL_DEMOS, ...ALL_DEMOS];
+  const isMobile = useIsMobile();
+  const doubled = isMobile ? ALL_DEMOS : [...ALL_DEMOS, ...ALL_DEMOS];
+  const Track = isMobile ? BSwipeTrack : BTrack;
+  const Card = isMobile ? BSwipeCard : BCard;
   return (
     <>
       <VariantBadge>Variante B — Filmstreifen</VariantBadge>
@@ -237,9 +285,9 @@ export const ShowcaseVariantMarquee = () => {
             Jede Karte ist eine vollständige Demo mit RSVP, Gästebereich und Foto-Upload. Anhalten mit dem Mauszeiger, klicken zum Erkunden.
           </BSub>
         </BHeader>
-        <BTrack>
+        <Track>
           {doubled.map((demo, i) => (
-            <BCard
+            <Card
               key={`${demo.id}-${i}`}
               href={demo.url}
               target="_blank"
@@ -260,10 +308,10 @@ export const ShowcaseVariantMarquee = () => {
                 <BCardName>{demo.name}</BCardName>
                 <BCardTag>Demo →</BCardTag>
               </BCardMeta>
-            </BCard>
+            </Card>
           ))}
-        </BTrack>
-        <BFooter>Hover = Seite scrollt durch · Klick = Live-Demo</BFooter>
+        </Track>
+        <BFooter>{isMobile ? 'Wischen zum Entdecken · Tippen = Live-Demo' : 'Hover = Seite scrollt durch · Klick = Live-Demo'}</BFooter>
       </BSection>
     </>
   );
