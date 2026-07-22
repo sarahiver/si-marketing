@@ -14,7 +14,7 @@ import { useTheme } from '../../context/ThemeContext';
 // CLOUDINARY IMAGE - Sarah & Iver
 // ============================================
 const SARAH_IVER_IMAGE = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1769863906/iverlasting/demo/hero/v8il9fyd1u6dhj6se3tz.jpg';
-const SARAH_IVER_CLASSIC = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1771225849/foto3_fn6ovc.jpg';
+const SARAH_IVER_CLASSIC = 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1000/v1784625220/S_I_29_ns6jvg.jpg';
 
 // ============================================
 // CONTENT DATA
