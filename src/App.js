@@ -25,8 +25,6 @@ import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
 import StickyDemoBar from './components/marketing/StickyDemoBar';
-// BRANCH-VERGLEICH: Showcase-Varianten B + C — vor Production Gewinner wählen und Rest entfernen
-import { ShowcaseVariantMarquee, ShowcaseVariantScrollStory, VariantBadge } from './components/marketing/ShowcaseVariants';
 
 // Modern Theme
 import ModernOverride from './components/marketing/ModernOverride';
@@ -266,15 +264,8 @@ function MarketingPage() {
       ) : (
         <>
           <MarketingHero />
-          <VariantBadge style={{ paddingTop: '3rem' }}>Variante A — Rotator + Grid (aktuell, gefixt)</VariantBadge>
           <AnimatedSection>
             <ThemeShowcase />
-          </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <ShowcaseVariantMarquee />
-          </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <ShowcaseVariantScrollStory />
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <USPSection />

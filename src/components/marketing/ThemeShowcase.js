@@ -1,8 +1,10 @@
 // src/components/marketing/ThemeShowcase.js
 // Jedes Theme wird einzigartig präsentiert
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import DemoFilmstrip from './DemoFilmstrip';
+import { ALL_DEMOS, THEME_SCREENSHOTS } from './demoData';
 
 // ============================================
 // SHARED
@@ -79,19 +81,6 @@ const MobileFallback = styled.div`
     display: flex;
   }
 `;
-
-// Full-page screenshots hosted on Cloudinary
-// Naming: {theme}_demoShowcase_{cloudinarySlug}.jpg
-// Add URLs here as screenshots are created
-export const THEME_SCREENSHOTS = {
-  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770290063/editorial_demoShowcase_gmxabx.jpg',
-  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
-  contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
-  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
-  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
-  video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/video_demoShowcase_optimized_jrlsoh.jpg',
-  classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1771224839/Bildschirmfoto_16-2-2026_75342_www.siwedding.de_gbf6ps.jpg',
-};
 
 const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color, horizontal }) => {
   const fallbackProps = { $fontFamily: fontFamily, $fontSize: fontSize, $fontWeight: fontWeight, $fontStyle: fontStyle, $textStroke: textStroke, $color: color };
@@ -907,17 +896,6 @@ const ArrowIcon = () => (
 // ============================================
 // ALL DEMOS DATA
 // ============================================
-export const ALL_DEMOS = [
-  { id: 'classic', name: 'Classic', url: 'https://siwedding.de/demo-classic' },
-  { id: 'botanical', name: 'Botanical', url: 'https://siwedding.de/demo-botanical' },
-  { id: 'contemporary', name: 'Contemporary', url: 'https://siwedding.de/demo-contemporary' },
-  { id: 'editorial', name: 'Editorial', url: 'https://siwedding.de/demo-editorial' },
-  { id: 'luxe', name: 'Luxe', url: 'https://siwedding.de/demo-luxe' },
-  { id: 'modern', name: 'Modern', url: 'https://siwedding.de/demo-parallax' },
-  { id: 'neon', name: 'Neon', url: 'https://siwedding.de/demo-neon' },
-  { id: 'video', name: 'Video', url: 'https://siwedding.de/demo-video' },
-];
-
 // ============================================
 // ALL DEMOS SECTION - EDITORIAL STYLE
 // ============================================
@@ -1244,109 +1222,6 @@ const VideoDemoLink = styled.a`
 `;
 
 // ============================================
-// CLASSIC STYLED COMPONENTS
-// ============================================
-const ClassicSection = styled(Section)`
-  background: #FFFFFF;
-  padding-top: clamp(4rem, 10vh, 7rem);
-  overflow: visible;
-`;
-
-const ClassicContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: clamp(280px, 28vw, 400px) 1fr;
-  gap: clamp(2.5rem, 4vw, 4rem);
-  align-items: start;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-  position: relative;
-  z-index: 2;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    margin-top: 0;
-    padding-top: 2.5rem;
-    background: #FFFFFF;
-  }
-`;
-
-const ClassicPreviewCard = styled.div`
-  width: 100%;
-  border: 8px solid #FFFFFF;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-  border-radius: 4px;
-  overflow: hidden;
-
-  @media (max-width: 900px) {
-    max-width: 280px;
-  }
-`;
-
-const ClassicTextContent = styled.div`
-  padding-top: 0;
-
-  @media (max-width: 900px) {
-    text-align: center;
-    padding-top: 0;
-  }
-`;
-
-const ClassicLabel = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #999999;
-  margin-bottom: 1rem;
-`;
-
-const ClassicTitle = styled.h2`
-  font-family: 'Mrs Saint Delafield', cursive;
-  font-size: clamp(3.2rem, 6vw, 5rem);
-  font-weight: 400;
-  color: #1A1A1A;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-`;
-
-const ClassicScript = styled.p`
-  font-family: 'Mrs Saint Delafield', cursive;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  color: #999999;
-  margin-bottom: 2rem;
-`;
-
-const ClassicDesc = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 300;
-  line-height: 1.8;
-  color: #555555;
-  margin-bottom: 2rem;
-`;
-
-const ClassicCTA = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: white;
-  background: #1A1A1A;
-  padding: 1rem 2.5rem;
-  text-decoration: none;
-  transition: opacity 0.3s;
-  svg { width: 16px; height: 16px; }
-  &:hover { opacity: 0.8; }
-`;
-
-// ============================================
 // MODERN SHOWCASE STYLES
 // ============================================
 const modernShowFloat1 = keyframes`
@@ -1555,232 +1430,10 @@ const ModernDemoLink = styled.a`
 `;
 
 // ============================================
-// CLASSIC — ROTIERENDE THEME-VORSCHAU + THEME-GRID
-// ============================================
-const fadeSwap = keyframes`from { opacity: 0; } to { opacity: 1; }`;
-
-const RotatorFrame = styled.div`
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3/4;
-  background: #F5F2EE;
-  overflow: hidden;
-  cursor: pointer;
-`;
-
-const RotatorImage = styled.div`
-  position: absolute;
-  inset: 0;
-  background-image: url(${p => p.$src});
-  background-size: 100% auto;
-  background-position: top center;
-  background-repeat: no-repeat;
-  opacity: ${p => (p.$active ? 1 : 0)};
-  transition: opacity 0.6s ease, background-position 18s cubic-bezier(0.25, 0.1, 0.25, 1);
-
-  ${RotatorFrame}:hover & {
-    background-position: bottom center;
-  }
-`;
-
-const RotatorFallback = styled.div`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: rgba(26,26,26,0.2);
-  opacity: ${p => (p.$active ? 1 : 0)};
-  transition: opacity 0.6s ease;
-`;
-
-const RotatorCaption = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0.8rem 0.5rem 0.3rem;
-  background: #FFFFFF;
-`;
-
-const RotatorName = styled.span`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  color: #1A1A1A;
-  animation: ${fadeSwap} 0.5s ease;
-`;
-
-const RotatorHint = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #999;
-`;
-
-const RotatorDots = styled.div`
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-  padding: 0.5rem 0 0.7rem;
-  background: #FFFFFF;
-`;
-
-const RotatorDot = styled.button`
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  background: ${p => (p.$active ? '#1A1A1A' : 'rgba(0,0,0,0.15)')};
-  transition: background 0.3s ease;
-`;
-
-const ThemeGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.9rem;
-  margin-top: 1rem;
-
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-`;
-
-const ThemeCard = styled.a`
-  display: block;
-  text-decoration: none;
-  border: 1px solid ${p => (p.$active ? '#1A1A1A' : 'rgba(0,0,0,0.1)')};
-  border-radius: 4px;
-  overflow: hidden;
-  background: #FFFFFF;
-  transition: all 0.25s ease;
-
-  &:hover {
-    border-color: #1A1A1A;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-  }
-`;
-
-const ThemeCardThumb = styled.div`
-  aspect-ratio: 4/3;
-  background: ${p => (p.$src ? `url(${p.$src})` : '#F5F2EE')};
-  background-size: 100% auto;
-  background-position: top center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1.1rem;
-  color: rgba(26,26,26,0.3);
-`;
-
-const ThemeCardFooter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.55rem 0.7rem;
-  border-top: 1px solid rgba(0,0,0,0.06);
-`;
-
-const ThemeCardName = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-`;
-
-const ThemeCardArrow = styled.span`
-  font-size: 0.85rem;
-  color: #999;
-
-  ${ThemeCard}:hover & {
-    color: #1A1A1A;
-  }
-`;
-
-const trackDemo = (label, url, source) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'demo_click', {
-      event_category: 'engagement',
-      event_label: label,
-      demo_url: url,
-      source,
-    });
-  }
-};
-
-// Full-Page-Screenshots sind oben oft weiß (helle Heros) — für Thumbnails
-// deshalb ein echter Cloudinary-Crop vom oberen Seitenbereich:
-export const thumbUrl = (url) =>
-  url ? url.replace('/upload/q_auto,f_auto,w_1200/', '/upload/q_auto,f_auto,c_fill,g_north,w_600,h_450/') : undefined;
-
-const ROTATION_MS = 3500;
-
-const ClassicThemeRotator = ({ activeIdx, setActiveIdx, paused, setPaused }) => {
-  const active = ALL_DEMOS[activeIdx];
-
-  useEffect(() => {
-    if (paused) return;
-    const t = setInterval(() => {
-      setActiveIdx(i => (i + 1) % ALL_DEMOS.length);
-    }, ROTATION_MS);
-    return () => clearInterval(t);
-  }, [paused, setActiveIdx]);
-
-  const openActive = () => {
-    trackDemo(active.id, active.url, 'rotator');
-    window.open(active.url, '_blank');
-  };
-
-  return (
-    <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <RotatorFrame onClick={openActive} title={`${active.name} Demo ansehen`}>
-        {ALL_DEMOS.map((demo, i) => (
-          THEME_SCREENSHOTS[demo.id]
-            ? <RotatorImage key={demo.id} $src={THEME_SCREENSHOTS[demo.id]} $active={i === activeIdx} />
-            : <RotatorFallback key={demo.id} $active={i === activeIdx}>{demo.name}</RotatorFallback>
-        ))}
-      </RotatorFrame>
-      <RotatorCaption>
-        <RotatorName key={active.id}>{active.name}</RotatorName>
-        <RotatorHint>Klick = Live-Demo</RotatorHint>
-      </RotatorCaption>
-      <RotatorDots>
-        {ALL_DEMOS.map((demo, i) => (
-          <RotatorDot
-            key={demo.id}
-            $active={i === activeIdx}
-            onClick={() => { setActiveIdx(i); setPaused(true); }}
-            aria-label={`${demo.name} anzeigen`}
-          />
-        ))}
-      </RotatorDots>
-    </div>
-  );
-};
-
-// ============================================
 // MAIN COMPONENT
 // ============================================
 const ThemeShowcase = () => {
   const { currentTheme } = useTheme();
-
-  // State für die Classic-Theme-Rotation (Hooks müssen vor jedem Branch stehen)
-  const [rotatorIdx, setRotatorIdx] = useState(0);
-  const [rotatorPaused, setRotatorPaused] = useState(false);
-  const rotatorActive = useMemo(() => ALL_DEMOS[rotatorIdx], [rotatorIdx]);
 
   // EDITORIAL
   if (currentTheme === 'editorial') {
@@ -2134,61 +1787,9 @@ const ThemeShowcase = () => {
     );
   }
 
-  // CLASSIC
+  // CLASSIC — produktive Sektion: Filmstrip (Gewinner-Variante B, Jul 2026)
   if (currentTheme === 'classic') {
-    return (
-      <ClassicSection id="themes">
-        <ClassicContainer>
-          <ClassicPreviewCard>
-            <ClassicThemeRotator
-              activeIdx={rotatorIdx}
-              setActiveIdx={setRotatorIdx}
-              paused={rotatorPaused}
-              setPaused={setRotatorPaused}
-            />
-          </ClassicPreviewCard>
-          <ClassicTextContent>
-            <ClassicLabel>8 Designs zur Auswahl</ClassicLabel>
-            <ClassicTitle>Findet euren Stil</ClassicTitle>
-            <ClassicScript>jede Demo ist eine echte Hochzeitswebsite</ClassicScript>
-            <ClassicDesc>
-              Vom zeitlosen Schwarz-Weiß bis zum mutigen Magazin-Look: Jedes Theme ist eine vollständige, live klickbare Hochzeitswebsite — mit RSVP, Gästebereich und Foto-Upload. Klickt euch durch und findet das Design, das sich nach euch anfühlt.
-            </ClassicDesc>
-            <ClassicCTA
-              href={rotatorActive.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => window.gtag && window.gtag('event', 'demo_click', { event_category: 'engagement', event_label: rotatorActive.id, demo_url: rotatorActive.url, source: 'showcase_cta' })}
-            >
-              {rotatorActive.name}-Demo ansehen <ArrowIcon />
-            </ClassicCTA>
-
-            <ThemeGrid>
-              {ALL_DEMOS.map((demo, i) => (
-                <ThemeCard
-                  key={demo.id}
-                  href={demo.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  $active={i === rotatorIdx}
-                  onMouseEnter={() => { setRotatorIdx(i); setRotatorPaused(true); }}
-                  onMouseLeave={() => setRotatorPaused(false)}
-                  onClick={() => window.gtag && window.gtag('event', 'demo_click', { event_category: 'engagement', event_label: demo.id, demo_url: demo.url, source: 'theme_grid' })}
-                >
-                  <ThemeCardThumb $src={thumbUrl(THEME_SCREENSHOTS[demo.id])}>
-                    {!THEME_SCREENSHOTS[demo.id] && demo.name}
-                  </ThemeCardThumb>
-                  <ThemeCardFooter>
-                    <ThemeCardName>{demo.name}</ThemeCardName>
-                    <ThemeCardArrow>→</ThemeCardArrow>
-                  </ThemeCardFooter>
-                </ThemeCard>
-              ))}
-            </ThemeGrid>
-          </ClassicTextContent>
-        </ClassicContainer>
-      </ClassicSection>
-    );
+    return <DemoFilmstrip />;
   }
 
   // VIDEO (default)
