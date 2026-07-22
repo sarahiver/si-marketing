@@ -83,7 +83,7 @@ const MobileFallback = styled.div`
 // Full-page screenshots hosted on Cloudinary
 // Naming: {theme}_demoShowcase_{cloudinarySlug}.jpg
 // Add URLs here as screenshots are created
-const THEME_SCREENSHOTS = {
+export const THEME_SCREENSHOTS = {
   editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770290063/editorial_demoShowcase_gmxabx.jpg',
   botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
   contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
@@ -907,7 +907,7 @@ const ArrowIcon = () => (
 // ============================================
 // ALL DEMOS DATA
 // ============================================
-const ALL_DEMOS = [
+export const ALL_DEMOS = [
   { id: 'classic', name: 'Classic', url: 'https://siwedding.de/demo-classic' },
   { id: 'botanical', name: 'Botanical', url: 'https://siwedding.de/demo-botanical' },
   { id: 'contemporary', name: 'Contemporary', url: 'https://siwedding.de/demo-contemporary' },
@@ -1576,7 +1576,11 @@ const RotatorImage = styled.div`
   background-position: top center;
   background-repeat: no-repeat;
   opacity: ${p => (p.$active ? 1 : 0)};
-  transition: opacity 0.6s ease;
+  transition: opacity 0.6s ease, background-position 18s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  ${RotatorFrame}:hover & {
+    background-position: bottom center;
+  }
 `;
 
 const RotatorFallback = styled.div`
@@ -1713,6 +1717,11 @@ const trackDemo = (label, url, source) => {
     });
   }
 };
+
+// Full-Page-Screenshots sind oben oft weiß (helle Heros) — für Thumbnails
+// deshalb ein echter Cloudinary-Crop vom oberen Seitenbereich:
+export const thumbUrl = (url) =>
+  url ? url.replace('/upload/q_auto,f_auto,w_1200/', '/upload/q_auto,f_auto,c_fill,g_north,w_600,h_450/') : undefined;
 
 const ROTATION_MS = 3500;
 
@@ -2166,7 +2175,7 @@ const ThemeShowcase = () => {
                   onMouseLeave={() => setRotatorPaused(false)}
                   onClick={() => window.gtag && window.gtag('event', 'demo_click', { event_category: 'engagement', event_label: demo.id, demo_url: demo.url, source: 'theme_grid' })}
                 >
-                  <ThemeCardThumb $src={THEME_SCREENSHOTS[demo.id]}>
+                  <ThemeCardThumb $src={thumbUrl(THEME_SCREENSHOTS[demo.id])}>
                     {!THEME_SCREENSHOTS[demo.id] && demo.name}
                   </ThemeCardThumb>
                   <ThemeCardFooter>
