@@ -42,11 +42,17 @@ export const THEME_SCREENSHOTS = {
   classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1771224839/Bildschirmfoto_16-2-2026_75342_www.siwedding.de_gbf6ps.jpg',
 };
 
-// 4:3-Hero-Bilder für Mobile — HIER die neuen Cloudinary-URLs eintragen.
-// Empfehlung: 1600×1200 Screenshot des jeweiligen Demo-Heros (ohne Browser-Chrome),
-// Upload nach Cloudinary, dann q_auto,f_auto,w_800 in die URL.
+// 4:3-Hero-Bilder für Mobile (vollständig seit Jul 2026).
+// Format: Screenshot des jeweiligen Demo-Heros, ausgeliefert mit q_auto,f_auto,w_800.
 export const THEME_HEROES = {
-  // classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/vXXXX/classic_hero.jpg',
+  classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713089/classic_mobile_jq0bhr.png',
+  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713088/botanical_mobile_tyjoee.png',
+  contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713088/contemporary_mobile_fnaa4n.png',
+  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713088/editorial_mobile_m78tat.png',
+  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713088/luxe_mobile_a5ltpq.png',
+  modern: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713087/modern_mobile_bfzthy.png',
+  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713087/neon_mobile_aylnsv.png',
+  video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713087/video_mobile_tpvlju.png',
 };
 
 // Video-Previews für Themes, die sich nicht als Full-Page-Screenshot erfassen
