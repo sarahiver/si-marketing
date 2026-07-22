@@ -32,14 +32,12 @@ export const TAGLINES = {
 
 // Full-page screenshots hosted on Cloudinary
 // Naming: {theme}_demoShowcase_{cloudinarySlug}.jpg
-// HINWEIS (Jul 2026): editorial + neon liefern aktuell 400 von Cloudinary
-// (Assets fehlen/gelöscht) — neu hochladen und URLs hier aktualisieren.
 export const THEME_SCREENSHOTS = {
-  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770290063/editorial_demoShowcase_gmxabx.jpg',
+  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1784712397/Editorial_full_rs21tn.jpg',
   botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
   contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
-  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
-  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
+  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1784712397/Luxe_full_saacqv.jpg',
+  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1784712397/Neon_full_uwsn2f.jpg',
   video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/video_demoShowcase_optimized_jrlsoh.jpg',
   classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1771224839/Bildschirmfoto_16-2-2026_75342_www.siwedding.de_gbf6ps.jpg',
 };
@@ -56,7 +54,8 @@ export const THEME_HEROES = {
 // Bildschirmaufnahme statt des Scroll-Effekts. MP4 von Cloudinary,
 // URL-Muster: .../video/upload/q_auto/vXXXX/datei.mp4
 export const THEME_VIDEO_PREVIEWS = {
-  // modern: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/vXXXX/modern_preview.mp4',
+  modern: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1784712419/Modern_full_mdxizl.mp4',
+  video: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1784712439/Video_full_ns28th.mp4',
 };
 
 // Themes, deren Demo horizontal scrollt — die Desktop-Preview scrollt dann
