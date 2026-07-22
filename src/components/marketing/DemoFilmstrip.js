@@ -6,7 +6,7 @@
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, mobileCardUrl, trackDemoClick } from './demoData';
+import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, phoneCardUrl, trackDemoClick } from './demoData';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
@@ -136,6 +136,44 @@ const PreviewVideo = styled.video`
   object-fit: cover;
 `;
 
+// ── Mobile: Handy-Frame statt Browser-Fenster ──
+const Phone = styled.div`
+  background: #1a1a1a;
+  border-radius: 34px;
+  padding: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+`;
+
+const PhoneScreen = styled.div`
+  position: relative;
+  aspect-ratio: 9 / 19;
+  border-radius: 26px;
+  overflow: hidden;
+  background-image: url(${p => p.$src});
+  background-size: cover;
+  background-position: top center;
+  background-color: #F5F2EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: rgba(26, 26, 26, 0.3);
+`;
+
+const PhoneNotch = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34%;
+  height: 14px;
+  background: #1a1a1a;
+  border-radius: 99px;
+  z-index: 2;
+`;
+
 const Track = styled.div`
   display: flex;
   gap: clamp(1.2rem, 2.5vw, 2rem);
@@ -187,8 +225,8 @@ const Card = styled.a`
 `;
 
 const SwipeCard = styled(Card)`
-  width: 78vw;
-  max-width: 340px;
+  width: 62vw;
+  max-width: 260px;
   scroll-snap-align: start;
 
   &:hover {
@@ -243,8 +281,6 @@ const DemoCard = ({ demo, isMobile, CardComp }) => {
     }
   };
 
-  const src = isMobile ? mobileCardUrl(demo.id) : (videoSrc ? undefined : THEME_SCREENSHOTS[demo.id]);
-
   return (
     <CardComp
       href={demo.url}
@@ -257,29 +293,37 @@ const DemoCard = ({ demo, isMobile, CardComp }) => {
       onClick={() => trackDemoClick(demo.id, demo.url, isMobile ? 'filmstrip_mobile' : 'filmstrip')}
       aria-label={`${demo.name} Live-Demo ansehen`}
     >
-      <Frame>
-        <FrameBar>
-          <span /><span /><span />
-          <FrameUrl>siwedding.de/{demo.id}</FrameUrl>
-        </FrameBar>
-        <FrameScreen
-          $src={src}
-          $static={isMobile}
-          $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
-        >
-          {videoSrc && (
-            <PreviewVideo
-              ref={videoRef}
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              src={videoSrc}
-            />
-          )}
-          {!(isMobile ? mobileCardUrl(demo.id) : (videoSrc || THEME_SCREENSHOTS[demo.id])) && demo.name}
-        </FrameScreen>
-      </Frame>
+      {isMobile ? (
+        <Phone>
+          <PhoneNotch />
+          <PhoneScreen $src={phoneCardUrl(demo.id)}>
+            {!phoneCardUrl(demo.id) && demo.name}
+          </PhoneScreen>
+        </Phone>
+      ) : (
+        <Frame>
+          <FrameBar>
+            <span /><span /><span />
+            <FrameUrl>siwedding.de/{demo.id}</FrameUrl>
+          </FrameBar>
+          <FrameScreen
+            $src={videoSrc ? undefined : THEME_SCREENSHOTS[demo.id]}
+            $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
+          >
+            {videoSrc && (
+              <PreviewVideo
+                ref={videoRef}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                src={videoSrc}
+              />
+            )}
+            {!(videoSrc || THEME_SCREENSHOTS[demo.id]) && demo.name}
+          </FrameScreen>
+        </Frame>
+      )}
       <CardMeta>
         <CardName>{demo.name}</CardName>
         <CardTag>Demo →</CardTag>

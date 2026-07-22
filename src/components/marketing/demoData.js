@@ -55,6 +55,22 @@ export const THEME_HEROES = {
   video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_800/v1784713087/video_mobile_tpvlju.png',
 };
 
+// Mobile-Screenshots (Hochkant, ~9:19) für die Handy-Frames im mobilen
+// Filmstrip. Aufnahme: DevTools Device-Toolbar (iPhone-Viewport 390px),
+// dann Screenshot. HIER URLs eintragen; Fallback ist ein Hochkant-Crop
+// aus dem Full-Page-Screenshot (zeigt dann allerdings das Desktop-Layout).
+export const THEME_MOBILE_SCREENS = {
+  // classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/vXXXX/classic_phone.png',
+};
+
+// Hochkant-Fallback aus dem Full-Page-Screenshot für den Handy-Frame
+export const phoneFallbackUrl = (url, horizontal = false) =>
+  url ? url.replace('/upload/q_auto,f_auto,w_1200/', `/upload/q_auto,f_auto,c_fill,${horizontal ? 'g_west' : 'g_north'},w_450,h_950/`) : undefined;
+
+// Bestes verfügbares Bild für den mobilen Handy-Frame
+export const phoneCardUrl = (id) =>
+  THEME_MOBILE_SCREENS[id] || phoneFallbackUrl(THEME_SCREENSHOTS[id], HORIZONTAL_THEMES.includes(id));
+
 // Video-Previews für Themes, die sich nicht als Full-Page-Screenshot erfassen
 // lassen (z.B. Modern/Parallax). Desktop zeigt dann eine loopende
 // Bildschirmaufnahme statt des Scroll-Effekts. MP4 von Cloudinary,
