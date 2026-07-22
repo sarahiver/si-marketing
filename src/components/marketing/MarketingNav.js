@@ -1,24 +1,10 @@
 // src/components/marketing/MarketingNav.js
-// Theme Switcher + Mobile Burger Menu
-import React, { useState, useEffect, useRef } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+// Navigation + Mobile Burger Menu (Theme-Switcher entfernt Jul 2026 — Marketing fix im Classic Theme)
+import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
-import { useABTest } from '../../context/ABTestContext';
 
-const THEMES = [
-  { id: 'editorial', name: 'Editorial' },
-  { id: 'botanical', name: 'Botanical' },
-  { id: 'contemporary', name: 'Contemporary' },
-  { id: 'luxe', name: 'Luxe' },
-  { id: 'modern', name: 'Modern' },
-  { id: 'neon', name: 'Neon' },
-  { id: 'video', name: 'Video' },
-  { id: 'classic', name: 'Classic' },
-];
-
-const fadeIn = keyframes`from { opacity: 0; } to { opacity: 1; }`;
-const slideIn = keyframes`from { transform: translateX(100%); } to { transform: translateX(0); }`;
 
 // ============================================
 // NAV STYLES
@@ -167,124 +153,6 @@ const RightSection = styled.div`
 // THEME SWITCHER
 // ============================================
 
-const bounceX = keyframes`
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(6px); }
-`;
-
-const hintFadeOut = keyframes`
-  to { opacity: 0; visibility: hidden; }
-`;
-
-const ThemeHint = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: ${p => {
-    switch (p.$theme) {
-      case 'editorial': return '#C41E3A';
-      case 'botanical': return 'rgba(255,255,255,0.5)';
-      case 'contemporary': return '#FF6B6B';
-      case 'luxe': return '#C9A962';
-      case 'neon': return '#00ffff';
-      case 'video': return '#6B8CAE';
-      case 'classic': return '#999999';
-      default: return '#C9A962';
-    }
-  }};
-  white-space: nowrap;
-  animation: ${p => p.$dismissed ? css`${hintFadeOut} 0.4s ease forwards` : 'none'};
-
-  @media (max-width: 768px) { display: none; }
-
-  span {
-    display: inline-block;
-    animation: ${bounceX} 1.5s ease-in-out infinite;
-  }
-`;
-
-const ThemeSwitcherWrapper = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 1rem;
-  border-left: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)'};
-  
-  @media (max-width: 768px) { display: none; }
-`;
-
-const CurrentThemeBtn = styled.button`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#1A1A1A' : '#fff'};
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0;
-  
-  &::after {
-    content: '▼';
-    font-size: 0.5rem;
-    transition: transform 0.2s ease;
-    ${p => p.$open && css`transform: rotate(180deg);`}
-  }
-  
-  &:hover { opacity: 0.8; }
-`;
-
-const ThemeDropdown = styled.div`
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 140px;
-  background: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#FFFFFF' : 'rgba(10, 10, 10, 0.95)'};
-  border: ${p => p.$theme === 'contemporary' ? '2px solid #0D0D0D' : p.$theme === 'classic' ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.15)'};
-  ${p => p.$theme === 'contemporary' && css`box-shadow: 4px 4px 0 #0D0D0D;`}
-  ${p => p.$theme === 'classic' && css`box-shadow: 0 10px 30px rgba(0,0,0,0.08);`}
-  padding: 0.5rem 0;
-  opacity: ${p => p.$open ? 1 : 0};
-  visibility: ${p => p.$open ? 'visible' : 'hidden'};
-  transform: ${p => p.$open ? 'translateY(0)' : 'translateY(-10px)'};
-  transition: all 0.2s ease;
-  z-index: 100;
-`;
-
-const ThemeOption = styled.button`
-  display: block;
-  width: 100%;
-  padding: 0.6rem 1rem;
-  text-align: left;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#1A1A1A' : 'rgba(255,255,255,0.7)'};
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: ${p => p.$theme === 'classic' || p.$theme === 'modern' ? 'rgba(0,0,0,0.04)' : p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(255,255,255,0.1)'};
-    color: ${p => p.$theme === 'classic' || p.$theme === 'modern' ? '#000' : p.$theme === 'contemporary' ? '#0D0D0D' : '#fff'};
-  }
-`;
-
-// ============================================
-// BURGER BUTTON + MOBILE MENU
-// ============================================
 const BurgerBtn = styled.button`
   background: transparent;
   border: none;
@@ -464,87 +332,16 @@ const MobileNavLink = styled.a`
   }
 `;
 
-const MobileThemeSection = styled.div`
-  margin-top: auto;
-  padding-top: 2rem;
-  border-top: 1px solid ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#E5E5E5' : 'rgba(255,255,255,0.1)'};
-`;
-
-const MobileThemeTitle = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: ${p => p.$theme === 'contemporary' || p.$theme === 'classic' || p.$theme === 'modern' ? '#999' : 'rgba(255,255,255,0.4)'};
-  margin-bottom: 1rem;
-`;
-
-const MobileThemeGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-`;
-
-const LIGHT_THEME = (t) => t === 'contemporary' || t === 'classic' || t === 'modern';
-
-const MobileThemeBtn = styled.button`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 0.75rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  
-  background: ${p => p.$active 
-    ? (LIGHT_THEME(p.$theme) ? (p.$theme === 'contemporary' ? '#FFE66D' : '#000') : 'rgba(255,255,255,0.15)') 
-    : (LIGHT_THEME(p.$theme) ? '#F5F5F5' : 'rgba(255,255,255,0.05)')
-  };
-  
-  color: ${p => p.$active
-    ? (LIGHT_THEME(p.$theme) ? (p.$theme === 'contemporary' ? '#0D0D0D' : '#fff') : 'rgba(255,255,255,0.95)')
-    : (LIGHT_THEME(p.$theme) ? '#1A1A1A' : 'rgba(255,255,255,0.8)')
-  };
-  
-  border: ${p => p.$active 
-    ? (LIGHT_THEME(p.$theme) ? (p.$theme === 'contemporary' ? '2px solid #0D0D0D' : '2px solid #000') : '1px solid rgba(255,255,255,0.3)') 
-    : (LIGHT_THEME(p.$theme) ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.1)')
-  };
-  
-  &:hover {
-    background: ${p => LIGHT_THEME(p.$theme) ? (p.$theme === 'contemporary' ? '#FFE66D' : 'rgba(0,0,0,0.08)') : 'rgba(255,255,255,0.1)'};
-  }
-`;
-
-// ============================================
-// MAIN COMPONENT
 // ============================================
 const MarketingNav = () => {
-  const { currentTheme, setCurrentTheme } = useTheme();
-  const { isVariantB } = useABTest();
+  const { currentTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [hintDismissed, setHintDismissed] = useState(false);
-  const [hintGone, setHintGone] = useState(false);
-  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Prevent body scroll when menu open
@@ -563,7 +360,6 @@ const MarketingNav = () => {
   const handleLinkClick = (e, targetId, isRoute) => {
     e.preventDefault();
     setMenuOpen(false);
-    setDropdownOpen(false);
     
     // Modern theme: open modals instead of scrolling
     if (currentTheme === 'modern' && !isRoute) {
@@ -628,7 +424,6 @@ const MarketingNav = () => {
     { id: 'contact', label: 'Kontakt' },
   ];
 
-  const currentThemeData = THEMES.find(t => t.id === currentTheme);
 
   const renderNavContent = () => (
     <>
@@ -650,33 +445,7 @@ const MarketingNav = () => {
       </NavLinks>
       
       <RightSection>
-        {/* Variante B: Hint permanent sichtbar; Variante A: einmalig dann weg */}
-        {(isVariantB || !hintGone) && (
-          <ThemeHint $theme={currentTheme} $dismissed={!isVariantB && hintDismissed}>
-            Design wechseln <span>→</span>
-          </ThemeHint>
-        )}
-        <ThemeSwitcherWrapper $theme={currentTheme} ref={dropdownRef}>
-          <CurrentThemeBtn 
-            $theme={currentTheme} 
-            $open={dropdownOpen}
-            onClick={() => { setDropdownOpen(!dropdownOpen); if (!hintDismissed) { setHintDismissed(true); setTimeout(() => setHintGone(true), 500); } }}
-          >
-            {currentThemeData?.name || 'Theme'}
-          </CurrentThemeBtn>
-          <ThemeDropdown $theme={currentTheme} $open={dropdownOpen}>
-            {THEMES.filter(t => t.id !== currentTheme).map(t => (
-              <ThemeOption 
-                key={t.id}
-                $theme={currentTheme}
-                onClick={() => { setCurrentTheme(t.id); setDropdownOpen(false); }}
-              >
-                {t.name}
-              </ThemeOption>
-            ))}
-          </ThemeDropdown>
-        </ThemeSwitcherWrapper>
-        
+        {/* Theme-Switcher entfernt (Jul 2026) — Marketing fix im Classic Theme */}
         <BurgerBtn $theme={currentTheme} onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'} aria-expanded={menuOpen}>
           <BurgerLine $theme={currentTheme} $open={menuOpen} />
         </BurgerBtn>
@@ -700,21 +469,6 @@ const MarketingNav = () => {
           </MobileNavLink>
         ))}
         
-        <MobileThemeSection $theme={currentTheme}>
-          <MobileThemeTitle $theme={currentTheme}>Theme wählen</MobileThemeTitle>
-          <MobileThemeGrid>
-            {THEMES.map(t => (
-              <MobileThemeBtn 
-                key={t.id}
-                $theme={currentTheme}
-                $active={t.id === currentTheme}
-                onClick={() => { setCurrentTheme(t.id); setMenuOpen(false); }}
-              >
-                {t.name}
-              </MobileThemeBtn>
-            ))}
-          </MobileThemeGrid>
-        </MobileThemeSection>
       </MobileMenu>
     </>
   );

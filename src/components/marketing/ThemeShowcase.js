@@ -3,6 +3,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import DemoFilmstrip from './DemoFilmstrip';
+import { ALL_DEMOS, THEME_SCREENSHOTS } from './demoData';
 
 // ============================================
 // SHARED
@@ -26,10 +28,6 @@ const PreviewWrapper = styled.div`
   ${p => p.$boxShadow ? `box-shadow: ${p.$boxShadow};` : ''}
   ${p => p.$margin ? `margin: ${p.$margin};` : ''}
   cursor: pointer;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const PreviewImage = styled.div`
@@ -83,19 +81,6 @@ const MobileFallback = styled.div`
     display: flex;
   }
 `;
-
-// Full-page screenshots hosted on Cloudinary
-// Naming: {theme}_demoShowcase_{cloudinarySlug}.jpg
-// Add URLs here as screenshots are created
-const THEME_SCREENSHOTS = {
-  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770290063/editorial_demoShowcase_gmxabx.jpg',
-  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/botanical_demoShowcase_optimized_cd6i9j.jpg',
-  contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770297629/coontemporary_demoShowcase_wiicti.jpg',
-  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/luxe_demoShowcase_optimized_u31jnq.jpg',
-  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727741/neon_demoShowcase_optimized_ppdbp4.jpg',
-  video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1770727740/video_demoShowcase_optimized_jrlsoh.jpg',
-  classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1771224839/Bildschirmfoto_16-2-2026_75342_www.siwedding.de_gbf6ps.jpg',
-};
 
 const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, border, boxShadow, margin, fontFamily, fontSize, fontWeight, fontStyle, textStroke, color, horizontal }) => {
   const fallbackProps = { $fontFamily: fontFamily, $fontSize: fontSize, $fontWeight: fontWeight, $fontStyle: fontStyle, $textStroke: textStroke, $color: color };
@@ -911,17 +896,6 @@ const ArrowIcon = () => (
 // ============================================
 // ALL DEMOS DATA
 // ============================================
-const ALL_DEMOS = [
-  { id: 'classic', name: 'Classic', url: 'https://siwedding.de/demo-classic' },
-  { id: 'botanical', name: 'Botanical', url: 'https://siwedding.de/demo-botanical' },
-  { id: 'contemporary', name: 'Contemporary', url: 'https://siwedding.de/demo-contemporary' },
-  { id: 'editorial', name: 'Editorial', url: 'https://siwedding.de/demo-editorial' },
-  { id: 'luxe', name: 'Luxe', url: 'https://siwedding.de/demo-luxe' },
-  { id: 'modern', name: 'Modern', url: 'https://siwedding.de/demo-parallax' },
-  { id: 'neon', name: 'Neon', url: 'https://siwedding.de/demo-neon' },
-  { id: 'video', name: 'Video', url: 'https://siwedding.de/demo-video' },
-];
-
 // ============================================
 // ALL DEMOS SECTION - EDITORIAL STYLE
 // ============================================
@@ -1248,183 +1222,6 @@ const VideoDemoLink = styled.a`
 `;
 
 // ============================================
-// CLASSIC STYLED COMPONENTS
-// ============================================
-const ClassicSection = styled(Section)`
-  background: #FFFFFF;
-  padding-top: 0;
-  overflow: visible;
-`;
-
-const ClassicHeroImage = styled.img`
-  width: 100%;
-  height: clamp(300px, 45vh, 500px);
-  object-fit: cover;
-  display: block;
-
-  @media (max-width: 900px) {
-    height: 260px;
-  }
-`;
-
-const ClassicContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: clamp(280px, 28vw, 400px) 1fr;
-  gap: clamp(2.5rem, 4vw, 4rem);
-  align-items: start;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-  margin-top: clamp(-200px, -15vh, -140px);
-  position: relative;
-  z-index: 2;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    margin-top: 0;
-    padding-top: 2.5rem;
-    background: #FFFFFF;
-  }
-`;
-
-const ClassicPreviewCard = styled.div`
-  width: 100%;
-  border: 8px solid #FFFFFF;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-  border-radius: 4px;
-  overflow: hidden;
-
-  @media (max-width: 900px) {
-    max-width: 280px;
-  }
-`;
-
-const ClassicTextContent = styled.div`
-  padding-top: clamp(10rem, 15vh, 14rem);
-
-  @media (max-width: 900px) {
-    text-align: center;
-    padding-top: 0;
-  }
-`;
-
-const ClassicLabel = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #999999;
-  margin-bottom: 1rem;
-`;
-
-const ClassicTitle = styled.h2`
-  font-family: 'Mrs Saint Delafield', cursive;
-  font-size: clamp(3.2rem, 6vw, 5rem);
-  font-weight: 400;
-  color: #1A1A1A;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-`;
-
-const ClassicScript = styled.p`
-  font-family: 'Mrs Saint Delafield', cursive;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  color: #999999;
-  margin-bottom: 2rem;
-`;
-
-const ClassicDesc = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 300;
-  line-height: 1.8;
-  color: #555555;
-  margin-bottom: 2rem;
-`;
-
-const ClassicFeatures = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 2.5rem;
-
-  @media (max-width: 900px) {
-    justify-content: center;
-  }
-`;
-
-const ClassicFeature = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-  padding: 0.5rem 1.2rem;
-  border: 1px solid rgba(0,0,0,0.08);
-  background: rgba(0,0,0,0.02);
-`;
-
-const ClassicCTA = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: white;
-  background: #1A1A1A;
-  padding: 1rem 2.5rem;
-  text-decoration: none;
-  transition: opacity 0.3s;
-  svg { width: 16px; height: 16px; }
-  &:hover { opacity: 0.8; }
-`;
-
-const ClassicAllDemos = styled.div`
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(0,0,0,0.06);
-`;
-
-const ClassicAllDemosTitle = styled.h3`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #999;
-  margin-bottom: 1rem;
-`;
-
-const ClassicDemoGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-
-  @media (max-width: 900px) {
-    justify-content: center;
-  }
-`;
-
-const ClassicDemoLink = styled.a`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.75rem;
-  font-weight: ${p => p.$active ? '500' : '300'};
-  letter-spacing: 0.05em;
-  color: ${p => p.$active ? '#1A1A1A' : '#999'};
-  border-bottom: 1px solid ${p => p.$active ? '#999' : 'transparent'};
-  padding: 0.3rem 0.5rem;
-  text-decoration: none;
-  transition: all 0.3s;
-  &:hover { color: #1A1A1A; border-color: #999; }
-`;
-
-// ============================================
 // MODERN SHOWCASE STYLES
 // ============================================
 const modernShowFloat1 = keyframes`
@@ -1636,7 +1433,7 @@ const ModernDemoLink = styled.a`
 // MAIN COMPONENT
 // ============================================
 const ThemeShowcase = () => {
-  const { currentTheme, setCurrentTheme } = useTheme();
+  const { currentTheme } = useTheme();
 
   // EDITORIAL
   if (currentTheme === 'editorial') {
@@ -1990,65 +1787,9 @@ const ThemeShowcase = () => {
     );
   }
 
-  // CLASSIC
+  // CLASSIC — produktive Sektion: Filmstrip (Gewinner-Variante B, Jul 2026)
   if (currentTheme === 'classic') {
-    return (
-      <ClassicSection id="themes">
-        <ClassicHeroImage
-          src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1920/v1771173517/ThemeShowCase_ewc7q8.jpg"
-          alt="S&I. Wedding Themes – Hochzeitswebsite Designs im Überblick"
-          loading="lazy"
-        />
-        <ClassicContainer>
-          <ClassicPreviewCard>
-            <ThemePreview
-              theme="classic"
-              demoUrl="https://siwedding.de/demo-classic"
-              fallbackText="A & M"
-              aspect="3/4"
-              bg="#FFFFFF"
-              fontFamily="'Cormorant Garamond', serif"
-              fontSize="3rem"
-              fontWeight="300"
-              color="rgba(26,26,26,0.15)"
-            />
-          </ClassicPreviewCard>
-          <ClassicTextContent>
-            <ClassicLabel>Theme Vorschau</ClassicLabel>
-            <ClassicTitle>Classic</ClassicTitle>
-            <ClassicScript>zeitlos &amp; elegant</ClassicScript>
-            <ClassicDesc>
-              Klares Schwarz-Weiß, elegante Serifen und feine Schreibschrift-Akzente. Ein zeitloses Design für Paare, die Stil und Klarheit einer verspielten Ästhetik vorziehen.
-            </ClassicDesc>
-            <ClassicFeatures>
-              <ClassicFeature>Schwarz &amp; Weiß</ClassicFeature>
-              <ClassicFeature>Cormorant Garamond</ClassicFeature>
-              <ClassicFeature>Schreibschrift-Akzente</ClassicFeature>
-            </ClassicFeatures>
-            <ClassicCTA href="https://siwedding.de/demo-classic" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", event_label: "classic" })}>
-              Demo ansehen <ArrowIcon />
-            </ClassicCTA>
-
-            <ClassicAllDemos>
-              <ClassicAllDemosTitle>Alle Themes ansehen</ClassicAllDemosTitle>
-              <ClassicDemoGrid>
-                {ALL_DEMOS.map(demo => (
-                  <ClassicDemoLink
-                    key={demo.id}
-                    href={demo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    $active={demo.id === 'classic'}
-                  >
-                    {demo.name}
-                  </ClassicDemoLink>
-                ))}
-              </ClassicDemoGrid>
-            </ClassicAllDemos>
-          </ClassicTextContent>
-        </ClassicContainer>
-      </ClassicSection>
-    );
+    return <DemoFilmstrip />;
   }
 
   // VIDEO (default)

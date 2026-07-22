@@ -24,6 +24,7 @@ import CooperationSection from './components/marketing/CooperationSection';
 import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
+import StickyDemoBar from './components/marketing/StickyDemoBar';
 
 // Modern Theme
 import ModernOverride from './components/marketing/ModernOverride';
@@ -33,7 +34,6 @@ import ModernOverride from './components/marketing/ModernOverride';
 // ============================================
 import CookieConsent from './components/shared/CookieConsent';
 import { ABTestProvider } from './context/ABTestContext';
-import ThemeOnboardingModal from './components/marketing/ThemeOnboardingModal';
 import useScrollDepth from './hooks/useScrollDepth';
 import SEOHead from './components/shared/SEOHead';
 
@@ -265,10 +265,10 @@ function MarketingPage() {
         <>
           <MarketingHero />
           <AnimatedSection>
-            <USPSection />
+            <ThemeShowcase />
           </AnimatedSection>
           <AnimatedSection delay={100}>
-            <ThemeShowcase />
+            <USPSection />
           </AnimatedSection>
           {/* ExamplesShowcase - wird später mit echten Kunden-URLs eingebunden */}
           <AnimatedSection delay={100}>
@@ -294,6 +294,7 @@ function MarketingPage() {
             <CooperationSection />
           </AnimatedSection>
           <MarketingFooter />
+          <StickyDemoBar />
         </>
       )}
     </AppWrapper>
@@ -320,7 +321,6 @@ function App() {
         <ABTestProvider>
           <Router>
             <GlobalStyles />
-            <ThemeOnboardingModal />
             <Routes>
               {/* Main Marketing Page */}
               <Route path="/" element={<MainApp />} />

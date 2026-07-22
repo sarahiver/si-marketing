@@ -617,6 +617,52 @@ const HCAPTCHA_SITE_KEY = process.env.REACT_APP_HCAPTCHA_SITE_KEY || '10000000-f
 // ============================================
 // hCaptcha STYLED
 // ============================================
+const OptionalToggle = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0.25rem 0 0.5rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: ${p => p.$config?.textMuted || '#999'};
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  align-self: flex-start;
+
+  &:hover {
+    color: ${p => p.$config?.accent || '#1A1A1A'};
+  }
+`;
+
+const OptionalFields = styled.div`
+  display: ${p => p.$open ? 'block' : 'none'};
+`;
+
+const ChipRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0.25rem;
+`;
+
+const Chip = styled.button`
+  background: none;
+  border: 1px solid ${p => p.$config?.inputBorder || 'rgba(0,0,0,0.2)'};
+  border-radius: 99px;
+  padding: 0.4rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  color: ${p => p.$config?.textMuted || '#777'};
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: ${p => p.$config?.accent || '#1A1A1A'};
+    color: ${p => p.$config?.accent || '#1A1A1A'};
+  }
+`;
+
 const CaptchaWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -662,6 +708,17 @@ const ContactSection = () => {
     honeypot: '', // Spam trap
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Optionale Felder (Telefon, Datum, Theme, Paket, Gutschein) sind eingeklappt,
+  // um die sichtbare Formular-Hürde zu senken. State + Submit-Payload unverändert.
+  const [showOptional, setShowOptional] = useState(false);
+
+  // Quick-Select gegen die Schreibblockade: füllt die Pflicht-Nachricht mit einem Startsatz
+  const applyMessageChip = (text) => {
+    setFormData(prev => ({
+      ...prev,
+      message: prev.message ? prev.message : text,
+    }));
+  };
   const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
   const [errorMessage, setErrorMessage] = useState('');
   
@@ -681,6 +738,7 @@ const ContactSection = () => {
       const pkgId = e.detail;
       if (pkgId && PACKAGES.find(p => p.id === pkgId)) {
         setFormData(prev => ({ ...prev, interestedPackage: pkgId }));
+        setShowOptional(true); // Vorauswahl für den Nutzer sichtbar machen
       }
     };
     window.addEventListener('selectPackage', handleSelectPackage);
@@ -708,6 +766,7 @@ const ContactSection = () => {
   useEffect(() => {
     if (partnerCoupon) {
       setFormData(prev => prev.couponCode ? prev : { ...prev, couponCode: partnerCoupon });
+      setShowOptional(true); // Gutschein sichtbar machen
     }
   }, [partnerCoupon]);
 
@@ -884,8 +943,8 @@ const ContactSection = () => {
         return {
           eyebrow: 'Der erste Schritt',
           title: 'Erzählt uns von euch',
-          subtitle: 'Kein Verkaufsgespräch. Nur ein ehrliches Kennenlernen. Ihr schreibt direkt an Sarah & Iver.',
-          button: 'Nachricht schreiben',
+          subtitle: 'Kein Verkaufsgespräch. Nur ein ehrliches Kennenlernen. Ihr schreibt direkt an Sarah & Iver. Antwort innerhalb von 24 Stunden.',
+          button: 'Unverbindlich anfragen',
         };
     }
   };
@@ -954,6 +1013,16 @@ const ContactSection = () => {
         </FormGroup>
       </FormRow>
 
+      <OptionalToggle
+        type="button"
+        $config={config}
+        onClick={() => setShowOptional(v => !v)}
+        aria-expanded={showOptional}
+      >
+        {showOptional ? '− Weniger Angaben' : '+ Mehr Angaben (Telefon, Datum, Theme, Paket) — optional'}
+      </OptionalToggle>
+
+      <OptionalFields $open={showOptional}>
       <FormRow>
         <FormGroup>
           <Label htmlFor="contact-phone" $theme={currentTheme} $config={config}>Telefon</Label>
@@ -1030,9 +1099,15 @@ const ContactSection = () => {
           style={partnerCoupon && formData.couponCode === partnerCoupon ? { opacity: 0.8 } : {}}
         />
       </FormGroup>
+      </OptionalFields>
 
       <FormGroup>
         <Label htmlFor="contact-message" $theme={currentTheme} $config={config}>Nachricht *</Label>
+        <ChipRow>
+          <Chip type="button" $config={config} onClick={() => applyMessageChip('Wir heiraten und suchen eine Hochzeitswebsite. Erzählt uns mehr!')}>Wir heiraten bald</Chip>
+          <Chip type="button" $config={config} onClick={() => applyMessageChip('Wir schauen uns gerade um und hätten gern mehr Infos zu euren Paketen.')}>Erstmal nur schauen</Chip>
+          <Chip type="button" $config={config} onClick={() => applyMessageChip('Uns gefällt eine eurer Demos — wie läuft der Ablauf ab?')}>Demo gefällt uns</Chip>
+        </ChipRow>
         <Textarea
           id="contact-message"
           name="message"

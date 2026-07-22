@@ -10,13 +10,11 @@ const ThemeContext = createContext();
 const STORAGE_KEY = 'si-wedding-theme';
 
 // Gespeichertes Theme aus localStorage laden (mit Fallback)
-const getSavedTheme = () => {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && marketingThemes[saved]) return saved;
-  } catch (e) { /* localStorage nicht verfügbar */ }
-  return 'classic';
-};
+// FROZEN (Jul 2026): Marketing-Seite läuft fix im Classic Theme.
+// Theme-Exploration passiert über die Live-Demos auf siwedding.de.
+// Die gesamte Theme-Infrastruktur bleibt intakt — zum Reaktivieren
+// hier wieder aus localStorage lesen (siehe Git-History).
+const getSavedTheme = () => 'classic';
 
 // ============================================
 // THEME PROVIDER
