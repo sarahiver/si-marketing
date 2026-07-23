@@ -66,6 +66,14 @@ const RSVP_FEATURE = {
   image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_3e7500cb-db46-4166-8f90-0d5ad7e18c3f_twzsjs.jpg',
 };
 
+const PHOTO_FEATURE = {
+  icon: '📸',
+  title: 'Alle Gäste-Fotos an einem Ort — statt in fünf Chatgruppen',
+  desc: 'Eure Gäste laden ihre Handyfotos direkt über die Website hoch. Kein Hinterherlaufen, keine verlorenen Bilder — nach der Feier liegt alles gesammelt in eurem Archiv. Passwortgeschützt, nur für euch und eure Gäste.',
+  short: 'Foto-Upload, Archiv, Passwortschutz',
+  image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177759/_3e7500cb-db46-4166-8f90-0d5ad7e18c3f_twzsjs.jpg',
+};
+
 const CTA_TEXT = {
   headline: 'Bereit für eine Hochzeitswebsite, die eure Gäste begeistert?',
   button: 'Erzählt uns eure Geschichte',
@@ -1277,7 +1285,7 @@ const USPSection = () => {
   const wheelLock = useRef(false);
   const touchStartX = useRef(null);
 
-  const CLASSIC_ALL_CARDS = [...USPS, RSVP_FEATURE];
+  const CLASSIC_ALL_CARDS = [...USPS, RSVP_FEATURE, PHOTO_FEATURE];
   const cardCount = CLASSIC_ALL_CARDS.length;
 
   const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };

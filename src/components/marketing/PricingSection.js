@@ -383,6 +383,42 @@ const EditorialCTA = styled.button`
 // ============================================
 const ClassicSection = styled(Section)`background: #FFFFFF;`;
 
+// Wert-Aufbau VOR dem Preis: Service-Beweis + Anker (Conversion-Review Jul 2026)
+const ClassicValueBar = styled.div`
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  text-align: center;
+`;
+
+const ClassicValueItems = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 2.5rem;
+  margin-bottom: 1.25rem;
+`;
+
+const ClassicValueItem = styled.span`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #1A1A1A;
+
+  &::before {
+    content: '✓';
+    margin-right: 0.5rem;
+    color: #999;
+  }
+`;
+
+const ClassicValueAnchor = styled.p`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #999;
+`;
+
 const ClassicEyebrow = styled.p`
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.65rem;
@@ -1596,6 +1632,16 @@ const PricingSection = () => {
             <ClassicEyebrow>Preise</ClassicEyebrow>
             <ClassicTitle>Findet euer Paket</ClassicTitle>
           </Header>
+          <ClassicValueBar>
+            <ClassicValueItems>
+              <ClassicValueItem>Persönlicher Ansprechpartner: Sarah &amp; Iver</ClassicValueItem>
+              <ClassicValueItem>Ihr liefert nur Texte &amp; Fotos — wir bauen alles</ClassicValueItem>
+              <ClassicValueItem>100% individuell eingerichtet, kein Baukasten</ClassicValueItem>
+            </ClassicValueItems>
+            <ClassicValueAnchor>
+              Zum Vergleich: Agenturen starten bei ~3.000 € — Baukästen kosten euch die Abende vor der Hochzeit.
+            </ClassicValueAnchor>
+          </ClassicValueBar>
           <Grid>
             {PACKAGES.map(pkg => (
               <ClassicCard key={pkg.id} $pop={pkg.popular}>

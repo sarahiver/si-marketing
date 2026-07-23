@@ -25,6 +25,7 @@ import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
 import StickyDemoBar from './components/marketing/StickyDemoBar';
+import FoundersIntro from './components/marketing/FoundersIntro';
 
 // Modern Theme
 import ModernOverride from './components/marketing/ModernOverride';
@@ -266,6 +267,9 @@ function MarketingPage() {
           <MarketingHero />
           <AnimatedSection>
             <ThemeShowcase />
+          </AnimatedSection>
+          <AnimatedSection delay={50}>
+            <FoundersIntro />
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <USPSection />

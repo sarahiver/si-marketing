@@ -341,7 +341,7 @@ const DemoFilmstrip = () => {
   return (
     <Section id="themes" aria-label="Theme-Demos">
       <Header>
-        <Eyebrow>8 Designs · Live klickbar</Eyebrow>
+        <Eyebrow>8 Designs · Echte Beispiele, live klickbar</Eyebrow>
         <Title>
           Echte Hochzeitswebsites.<br /><em>Keine Mockups.</em>
         </Title>
