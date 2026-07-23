@@ -657,7 +657,7 @@ const HochzeitsdatumFinder = () => {
             Sobald euer Termin steht, haben eure Gäste Fragen. Eine Premium-Hochzeitswebsite von S&amp;I.
             beantwortet alle auf einmal – mit Countdown, RSVP, eigener Domain und einem Design, das zu euch passt.
           </p>
-          <a href="https://www.sarahiver.com">Hochzeitswebsites entdecken</a>
+          <a href="/#contact">Unverbindlich anfragen</a>
         </CTA>
 
         <Related>

@@ -1,7 +1,7 @@
 // src/App.js
 // S&I Wedding Marketing - Hauptseite für siwedding.de
 import React, { useEffect, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import ErrorBoundary from './components/shared/ErrorBoundary';
@@ -312,6 +312,36 @@ function MainApp() {
 }
 
 // ============================================
+// HASH-SCROLL-HANDLER
+// Scrollt zuverlässig zu #hash-Zielen — auch wenn die Sektion erst nach dem
+// React-Render existiert (SPA-Problem: der Browser-Anchor-Jump kommt zu früh).
+// Deckt ab: Blog-CTAs (/#contact), Tool-CTAs, Demo-Overlay
+// (siwedding.de → sarahiver.com/#contact) und externe Deep-Links.
+// ============================================
+function ScrollToHashHandler() {
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace('#', '');
+    let attempts = 0;
+    let cancelled = false;
+    const tryScroll = () => {
+      if (cancelled) return;
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else if (attempts < 50) { // bis ~5s warten (lazy Sections)
+        attempts += 1;
+        setTimeout(tryScroll, 100);
+      }
+    };
+    setTimeout(tryScroll, 150); // React Zeit zum Rendern geben
+    return () => { cancelled = true; };
+  }, [location.pathname, location.hash]);
+  return null;
+}
+
+// ============================================
 // APP WITH ROUTER
 // ============================================
 function App() {
@@ -321,6 +351,7 @@ function App() {
         <ABTestProvider>
           <Router>
             <GlobalStyles />
+            <ScrollToHashHandler />
             <Routes>
               {/* Main Marketing Page */}
               <Route path="/" element={<MainApp />} />

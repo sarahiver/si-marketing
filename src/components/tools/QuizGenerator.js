@@ -448,7 +448,7 @@ const QuizGenerator = () => {
             Bei S&amp;I. gibt es das Brautpaar-Quiz auch als interaktive Komponente direkt auf eurer
             Hochzeitswebsite – neben RSVP, Foto-Upload, Musikwünschen und allem, was eure Gäste lieben.
           </p>
-          <a href="https://www.sarahiver.com">Hochzeitswebsites entdecken</a>
+          <a href="/#contact">Unverbindlich anfragen</a>
         </CTA>
 
         <Related>

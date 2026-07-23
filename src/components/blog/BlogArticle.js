@@ -581,6 +581,11 @@ const BlogArticle = () => {
               setTimeout(() => {
                 window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: 'contact' } }));
               }, 400);
+            } else {
+              // SPA-Navigation statt Full-Reload — ScrollToHashHandler (App.js)
+              // übernimmt das Scrollen zum Formular, sobald es gerendert ist
+              e.preventDefault();
+              navigate('/#contact');
             }
           }}
         >

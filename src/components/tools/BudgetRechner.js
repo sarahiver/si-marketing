@@ -436,7 +436,7 @@ const BudgetRechner = () => {
             Papeterie &amp; Website machen kaum 2 % eures Budgets aus – nehmen euch aber RSVP,
             Erinnerungen, Gäste-Fragen und Foto-Sammlung komplett ab. Egal ob Schloss oder Gartenparty.
           </p>
-          <a href="https://www.sarahiver.com">Hochzeitswebsites entdecken</a>
+          <a href="/#contact">Unverbindlich anfragen</a>
         </CTA>
 
         <Related>
