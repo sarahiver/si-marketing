@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import { ALL_DEMOS, THEME_HEROES, trackDemoClick } from './demoData';
 
 // ============================================
 // CLOUDINARY URLS
@@ -1001,6 +1002,112 @@ const ClassicDateLine = styled.p`
   animation: ${fadeInUp} 0.8s ease 1s both;
 `;
 
+// Produkt-Mockup im Hero: rotiert durch alle 8 Designs — zeigt sofort,
+// DASS es um eine Website geht und dass es AUSWAHL gibt.
+// Position ist an eine 1400px-Layoutspalte verankert (statt an den
+// Viewport-Rand), damit es auch auf breiten Screens neben dem Text sitzt.
+const ClassicHeroPhone = styled.a`
+  display: none;
+
+  @media (min-width: 1100px) {
+    display: block;
+    position: absolute;
+    right: max(3rem, calc((100vw - 1400px) / 2 + 3rem));
+    top: 50%;
+    transform: translateY(-50%) rotate(3deg);
+    /* wächst mit dem Screen: 230px ab 1100px, bis 330px auf großen Monitoren */
+    width: clamp(230px, 18vw, 330px);
+    background: #0d0d0d;
+    border-radius: 32px;
+    padding: 9px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    z-index: 3;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-52%) rotate(1.5deg) scale(1.02);
+    }
+  }
+`;
+
+const ClassicHeroPhoneScreen = styled.div`
+  position: relative;
+  aspect-ratio: 9 / 19;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #f5f2ee;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34%;
+    height: 12px;
+    background: #0d0d0d;
+    border-radius: 99px;
+    z-index: 2;
+  }
+`;
+
+const ClassicHeroPhoneImg = styled.div`
+  position: absolute;
+  inset: 0;
+  background: url(${p => p.$src}) top center / cover no-repeat;
+  opacity: ${p => (p.$active ? 1 : 0)};
+  transition: opacity 0.7s ease;
+`;
+
+const ClassicHeroPhoneLabel = styled.span`
+  position: absolute;
+  bottom: -2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(253, 252, 250, 0.75);
+`;
+
+// Rotiert alle 3,5s durch die Designs; Hover pausiert, Klick öffnet die aktive Demo
+const HeroPhoneRotator = () => {
+  const [idx, setIdx] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setIdx(i => (i + 1) % ALL_DEMOS.length), 3500);
+    return () => clearInterval(t);
+  }, [paused]);
+
+  const active = ALL_DEMOS[idx];
+
+  return (
+    <ClassicHeroPhone
+      href={active.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${active.name} Live-Demo ansehen`}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onClick={() => trackDemoClick(active.id, active.url, 'hero_phone')}
+    >
+      <ClassicHeroPhoneScreen>
+        {ALL_DEMOS.map((demo, i) => (
+          THEME_HEROES[demo.id]
+            ? <ClassicHeroPhoneImg key={demo.id} $src={THEME_HEROES[demo.id]} $active={i === idx} />
+            : null
+        ))}
+      </ClassicHeroPhoneScreen>
+      <ClassicHeroPhoneLabel>{active.name} — live ansehen</ClassicHeroPhoneLabel>
+    </ClassicHeroPhone>
+  );
+};
+
 const ClassicCTAs = styled.div`
   display: flex;
   flex-direction: column;
@@ -1114,12 +1221,12 @@ const MarketingHero = () => {
         </ClassicVideoBg>
         <ClassicOverlay />
         <ClassicContent>
-          <ClassicEyebrow>Eure Hochzeitswebsite</ClassicEyebrow>
+          <ClassicEyebrow>Premium Hochzeitswebsites</ClassicEyebrow>
           <ClassicTitle>
-            Zeitlos schön.<br/>Persönlich erzählt.
+            Eure Hochzeitswebsite.<br/>Persönlich für euch gebaut.
           </ClassicTitle>
-          <ClassicScript>handgemacht mit Liebe</ClassicScript>
-          <ClassicDateLine>Individuell · Hochwertig · In 7 Tagen live</ClassicDateLine>
+          <ClassicScript>von Menschen, nicht vom Baukasten</ClassicScript>
+          <ClassicDateLine>RSVP · Gästemanagement · Foto-Upload · In 7 Tagen live</ClassicDateLine>
           <ClassicCTAs>
             <ClassicPrimaryCTA
               href="https://siwedding.de/demo-classic"
@@ -1134,6 +1241,7 @@ const MarketingHero = () => {
             </ClassicSecondaryCTA>
           </ClassicCTAs>
         </ClassicContent>
+        <HeroPhoneRotator />
         <ClassicScroll><span>Scroll</span></ClassicScroll>
       </ClassicSection>
     );

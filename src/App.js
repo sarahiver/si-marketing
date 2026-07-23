@@ -25,6 +25,9 @@ import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
 import StickyDemoBar from './components/marketing/StickyDemoBar';
+import FoundersIntro from './components/marketing/FoundersIntro';
+import CTABand from './components/marketing/CTABand';
+import FAQSection from './components/marketing/FAQSection';
 
 // Modern Theme
 import ModernOverride from './components/marketing/ModernOverride';
@@ -267,9 +270,13 @@ function MarketingPage() {
           <AnimatedSection>
             <ThemeShowcase />
           </AnimatedSection>
+          <AnimatedSection delay={50}>
+            <FoundersIntro />
+          </AnimatedSection>
           <AnimatedSection delay={100}>
             <USPSection />
           </AnimatedSection>
+          <CTABand />
           {/* ExamplesShowcase - wird später mit echten Kunden-URLs eingebunden */}
           <AnimatedSection delay={100}>
             <HowItWorksSection />
@@ -286,6 +293,9 @@ function MarketingPage() {
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <WhyUsSection />
+          </AnimatedSection>
+          <AnimatedSection delay={50}>
+            <FAQSection />
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <ContactSection />

@@ -94,7 +94,7 @@ const ADDONS = [
 // BASE STYLES
 // ============================================
 const Section = styled.section`
-  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
 `;
 
 const Container = styled.div`

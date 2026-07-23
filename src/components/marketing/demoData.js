@@ -67,9 +67,13 @@ export const THEME_MOBILE_SCREENS = {
 export const phoneFallbackUrl = (url, horizontal = false) =>
   url ? url.replace('/upload/q_auto,f_auto,w_1200/', `/upload/q_auto,f_auto,c_fill,${horizontal ? 'g_west' : 'g_north'},w_450,h_950/`) : undefined;
 
-// Bestes verfügbares Bild für den mobilen Handy-Frame
+// Bestes verfügbares Bild für den mobilen Handy-Frame:
+// 1. dedizierter Phone-Screenshot, 2. Mobile-Hero (die gelieferten *_mobile-Bilder
+// sind Hochkant-Screenshots und füllen die 9:19-Frames sauber), 3. Crop-Fallback
 export const phoneCardUrl = (id) =>
-  THEME_MOBILE_SCREENS[id] || phoneFallbackUrl(THEME_SCREENSHOTS[id], HORIZONTAL_THEMES.includes(id));
+  THEME_MOBILE_SCREENS[id]
+  || THEME_HEROES[id]
+  || phoneFallbackUrl(THEME_SCREENSHOTS[id], HORIZONTAL_THEMES.includes(id));
 
 // Video-Previews für Themes, die sich nicht als Full-Page-Screenshot erfassen
 // lassen (z.B. Modern/Parallax). Desktop zeigt dann eine loopende
