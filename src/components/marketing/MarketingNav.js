@@ -149,6 +149,32 @@ const RightSection = styled.div`
   gap: 1rem;
 `;
 
+// Dauerhaft sichtbarer Anfrage-CTA (Desktop) — Mobile hat die Sticky-Bar
+const NavCTA = styled.a`
+  display: none;
+
+  @media (min-width: 900px) {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #1A1A1A;
+    color: #FDFCFA;
+    padding: 0.65rem 1.3rem;
+    border: 1px solid #1A1A1A;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background: transparent;
+      color: #1A1A1A;
+    }
+  }
+`;
+
 // ============================================
 // THEME SWITCHER
 // ============================================
@@ -445,7 +471,9 @@ const MarketingNav = () => {
       </NavLinks>
       
       <RightSection>
-        {/* Theme-Switcher entfernt (Jul 2026) — Marketing fix im Classic Theme */}
+        <NavCTA href="#contact" onClick={(e) => handleLinkClick(e, 'contact')}>
+          Unverbindlich anfragen
+        </NavCTA>
         <BurgerBtn $theme={currentTheme} onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'} aria-expanded={menuOpen}>
           <BurgerLine $theme={currentTheme} $open={menuOpen} />
         </BurgerBtn>

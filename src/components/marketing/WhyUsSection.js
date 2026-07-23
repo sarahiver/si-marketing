@@ -66,7 +66,7 @@ const glitch = keyframes`
 // EDITORIAL THEME — Magazine/Minimalist
 // ============================================
 const EditorialSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 6rem);
   background: #0A0A0A;
   color: #FAFAFA;
   position: relative;
@@ -220,7 +220,7 @@ const EditorialCTA = styled.button`
 // BOTANICAL THEME — Organic/Glass
 // ============================================
 const BotanicalSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: transparent;
   position: relative;
 `;
@@ -385,7 +385,7 @@ const BotanicalCTA = styled.button`
 // CONTEMPORARY THEME — Bold/Geometric
 // ============================================
 const ContemporarySection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #FAFAFA;
   position: relative;
 `;
@@ -548,7 +548,7 @@ const ContemporaryCTA = styled.button`
 // LUXE THEME — Elegant/Dark/Gold
 // ============================================
 const LuxeSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 6rem);
   background: #0A0A0A;
   position: relative;
   overflow: hidden;
@@ -727,7 +727,7 @@ const LuxeCTA = styled.button`
 // NEON THEME — Cyber/Terminal
 // ============================================
 const NeonSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0a0a0f;
   position: relative;
   overflow: hidden;
@@ -917,7 +917,7 @@ const NeonCTA = styled.button`
 // VIDEO THEME — Cinematic/Dark Minimal
 // ============================================
 const VideoSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
 `;
 
@@ -1075,7 +1075,7 @@ const VideoCTA = styled.button`
 // CLASSIC THEME — Timeless/Warm/Elegant
 // ============================================
 const ClassicSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 6rem);
   background: #FFFFFF;
   position: relative;
 `;

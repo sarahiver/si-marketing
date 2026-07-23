@@ -103,7 +103,7 @@ const pulse = keyframes`
 // EDITORIAL - Horizontale Timeline
 // ============================================
 const EditorialSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
   overflow: hidden;
 `;
@@ -267,7 +267,7 @@ const SwipeHint = styled.div`
 // BOTANICAL - Akkordeon/FAQ Style
 // ============================================
 const BotanicalSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: transparent;
   position: relative;
   z-index: 10;
@@ -377,7 +377,7 @@ const BotanicalHighlight = styled.p`
 // CONTEMPORARY - Karten-Grid mit Hover
 // ============================================
 const ContemporarySection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #FFE66D;
 `;
 
@@ -502,7 +502,7 @@ const LuxeSection = styled.section`
 
 const LuxeHeader = styled.div`
   text-align: center;
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem) 4rem;
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem) 4rem;
 `;
 
 const LuxeEyebrow = styled.p`
@@ -625,7 +625,7 @@ const LuxeStepHighlight = styled.p`
 // NEON - Terminal/CLI Style
 // ============================================
 const NeonSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0a0a0f;
   position: relative;
   
@@ -721,7 +721,7 @@ const NeonComment = styled.span`
 // VIDEO - Vertikale Stepper-Timeline
 // ============================================
 const VideoSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
 `;
 
@@ -853,7 +853,7 @@ const CLASSIC_STEP_LAYOUT = [
 ];
 
 const ClassicSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #FFFFFF;
 `;
 

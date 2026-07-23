@@ -115,7 +115,7 @@ const scanline = keyframes`
 // EDITORIAL - Magazin-Style mit großen Nummern
 // ============================================
 const EditorialSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #FAFAFA;
 `;
 
@@ -255,7 +255,7 @@ const EditorialRSVPDesc = styled.p`
 // CLASSIC - Elegante Magazin-Ästhetik mit warmem Gold
 // ============================================
 const ClassicSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #FFFFFF;
 `;
 
@@ -490,7 +490,7 @@ const ClassicDot = styled.button`
 // BOTANICAL - Schwebende Glassmorphism-Karten
 // ============================================
 const BotanicalSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: transparent;
   position: relative;
   z-index: 10;
@@ -604,7 +604,7 @@ const BotanicalRSVP = styled.div`
 // CONTEMPORARY - Bento/Masonry Grid
 // ============================================
 const ContemporarySection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #FAFAFA;
 `;
 
@@ -761,7 +761,7 @@ const ContemporaryRSVPDesc = styled.p`
 // LUXE - Elegantes 2-Spalten Layout mit großen Nummern
 // ============================================
 const LuxeSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
 `;
 
@@ -932,7 +932,7 @@ const LuxeRSVPDesc = styled.p`
 // NEON - Cyber Dashboard
 // ============================================
 const NeonSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0a0a0f;
   position: relative;
   
@@ -1133,7 +1133,7 @@ const NeonRSVPDesc = styled.p`
 // VIDEO - Icon-Liste mit Hover-Reveal
 // ============================================
 const VideoSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
 `;
 

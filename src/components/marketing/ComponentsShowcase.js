@@ -63,7 +63,7 @@ const float = keyframes`
 // EDITORIAL - Magazin Grid Layout
 // ============================================
 const EditorialSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #FAFAFA;
 `;
 
@@ -345,7 +345,7 @@ const ClassicItemDesc = styled.p`
 // BOTANICAL - Organisches Grid mit Hover
 // ============================================
 const BotanicalSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: transparent;
   position: relative;
   z-index: 10;
@@ -458,7 +458,7 @@ const BotanicalIncluded = styled.span`
 // CONTEMPORARY - Filter Tabs + Chips
 // ============================================
 const ContemporarySection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #FAFAFA;
 `;
 
@@ -594,7 +594,7 @@ const ContemporaryIncluded = styled.span`
 // LUXE - 2-Spalten mit Nummern
 // ============================================
 const LuxeSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
 `;
 
@@ -716,7 +716,7 @@ const LuxeIncluded = styled.span`
 // NEON - Matrix Grid
 // ============================================
 const NeonSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0a0a0f;
   position: relative;
   
@@ -844,7 +844,7 @@ const NeonCellName = styled.span`
 // VIDEO - Karussell
 // ============================================
 const VideoSection = styled.section`
-  padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.5rem, 5vw, 4rem);
   background: #0A0A0A;
 `;
 

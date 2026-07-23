@@ -29,7 +29,7 @@ const marquee = keyframes`
 `;
 
 const Section = styled.section`
-  padding: clamp(5rem, 12vh, 8rem) 0;
+  padding: clamp(3.5rem, 8vh, 6rem) 0;
   background: #FDFCFA;
   overflow: hidden;
 `;
