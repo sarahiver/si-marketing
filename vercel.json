@@ -123,14 +123,14 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "si-marketing.vercel.app"
         }
       ],
-      "destination": "https://www.sarahiver.com/:path*",
+      "destination": "https://www.sarahiver.com/$1",
       "permanent": true
     }
   ]
