@@ -77,6 +77,22 @@ const Promise = styled.p`
   color: #1a1a1a;
 `;
 
+const MoreLink = styled.a`
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #999;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  &:hover {
+    color: #1a1a1a;
+  }
+`;
+
 const FoundersIntro = () => {
   const { currentTheme } = useTheme();
   if (currentTheme !== 'classic') return null;
@@ -96,6 +112,15 @@ const FoundersIntro = () => {
             gestalten, einrichten und bis zur Hochzeit begleiten.
           </Text>
           <Promise>Ihr schreibt direkt mit uns — Antwort innerhalb von 24 Stunden.</Promise>
+          <MoreLink
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Unsere ganze Geschichte ↓
+          </MoreLink>
         </div>
       </Inner>
     </Section>

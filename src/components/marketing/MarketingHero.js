@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import { ALL_DEMOS, THEME_HEROES, trackDemoClick } from './demoData';
 
 // ============================================
 // CLOUDINARY URLS
@@ -1001,15 +1002,17 @@ const ClassicDateLine = styled.p`
   animation: ${fadeInUp} 0.8s ease 1s both;
 `;
 
-// Produkt-Mockup im Hero: zeigt sofort, DASS es um eine Website geht
-// (Nutzer-Feedback: Seite wurde ohne Produkt-Visual für ein Fotostudio gehalten)
+// Produkt-Mockup im Hero: rotiert durch alle 8 Designs — zeigt sofort,
+// DASS es um eine Website geht und dass es AUSWAHL gibt.
+// Position ist an eine 1400px-Layoutspalte verankert (statt an den
+// Viewport-Rand), damit es auch auf breiten Screens neben dem Text sitzt.
 const ClassicHeroPhone = styled.a`
   display: none;
 
   @media (min-width: 1100px) {
     display: block;
     position: absolute;
-    right: clamp(3rem, 8vw, 9rem);
+    right: max(3rem, calc((100vw - 1400px) / 2 + 3rem));
     top: 50%;
     transform: translateY(-50%) rotate(3deg);
     width: 230px;
@@ -1032,7 +1035,7 @@ const ClassicHeroPhoneScreen = styled.div`
   aspect-ratio: 9 / 19;
   border-radius: 24px;
   overflow: hidden;
-  background: url(${p => p.$src}) top center / cover no-repeat #f5f2ee;
+  background: #f5f2ee;
 
   &::after {
     content: '';
@@ -1044,7 +1047,16 @@ const ClassicHeroPhoneScreen = styled.div`
     height: 12px;
     background: #0d0d0d;
     border-radius: 99px;
+    z-index: 2;
   }
+`;
+
+const ClassicHeroPhoneImg = styled.div`
+  position: absolute;
+  inset: 0;
+  background: url(${p => p.$src}) top center / cover no-repeat;
+  opacity: ${p => (p.$active ? 1 : 0)};
+  transition: opacity 0.7s ease;
 `;
 
 const ClassicHeroPhoneLabel = styled.span`
@@ -1059,6 +1071,41 @@ const ClassicHeroPhoneLabel = styled.span`
   text-transform: uppercase;
   color: rgba(253, 252, 250, 0.75);
 `;
+
+// Rotiert alle 3,5s durch die Designs; Hover pausiert, Klick öffnet die aktive Demo
+const HeroPhoneRotator = () => {
+  const [idx, setIdx] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setIdx(i => (i + 1) % ALL_DEMOS.length), 3500);
+    return () => clearInterval(t);
+  }, [paused]);
+
+  const active = ALL_DEMOS[idx];
+
+  return (
+    <ClassicHeroPhone
+      href={active.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${active.name} Live-Demo ansehen`}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onClick={() => trackDemoClick(active.id, active.url, 'hero_phone')}
+    >
+      <ClassicHeroPhoneScreen>
+        {ALL_DEMOS.map((demo, i) => (
+          THEME_HEROES[demo.id]
+            ? <ClassicHeroPhoneImg key={demo.id} $src={THEME_HEROES[demo.id]} $active={i === idx} />
+            : null
+        ))}
+      </ClassicHeroPhoneScreen>
+      <ClassicHeroPhoneLabel>{active.name} — live ansehen</ClassicHeroPhoneLabel>
+    </ClassicHeroPhone>
+  );
+};
 
 const ClassicCTAs = styled.div`
   display: flex;
@@ -1193,16 +1240,7 @@ const MarketingHero = () => {
             </ClassicSecondaryCTA>
           </ClassicCTAs>
         </ClassicContent>
-        <ClassicHeroPhone
-          href="https://siwedding.de/demo-classic"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Classic Live-Demo ansehen"
-          onClick={() => window.gtag && window.gtag('event', 'demo_click', { event_category: 'engagement', event_label: 'classic', demo_url: 'https://siwedding.de/demo-classic', source: 'hero_phone' })}
-        >
-          <ClassicHeroPhoneScreen $src="https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_500/v1784713089/classic_mobile_jq0bhr.png" />
-          <ClassicHeroPhoneLabel>So sieht's live aus — antippen</ClassicHeroPhoneLabel>
-        </ClassicHeroPhone>
+        <HeroPhoneRotator />
         <ClassicScroll><span>Scroll</span></ClassicScroll>
       </ClassicSection>
     );
