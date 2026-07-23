@@ -1015,7 +1015,8 @@ const ClassicHeroPhone = styled.a`
     right: max(3rem, calc((100vw - 1400px) / 2 + 3rem));
     top: 50%;
     transform: translateY(-50%) rotate(3deg);
-    width: 230px;
+    /* wächst mit dem Screen: 230px ab 1100px, bis 330px auf großen Monitoren */
+    width: clamp(230px, 18vw, 330px);
     background: #0d0d0d;
     border-radius: 32px;
     padding: 9px;
