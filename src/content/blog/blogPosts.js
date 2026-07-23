@@ -763,8 +763,8 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
   },
   {
     slug: 'hochzeitswebsite-design-beispiele-inspiration',
-    title: 'Hochzeitshomepage Beispiele: 7 echte Designs zum Durchklicken',
-    description: '7 echte Hochzeitshomepage-Beispiele als Live-Demo zum Durchklicken: Editorial, Botanical, Luxe & mehr. Seht vorab, wie eure eigene Website aussehen kann.',
+    title: 'Hochzeitshomepage Beispiele: 8 echte Designs zum Durchklicken',
+    description: '8 echte Hochzeitshomepage-Beispiele als Live-Demo zum Durchklicken: Editorial, Botanical, Luxe & mehr. Seht vorab, wie eure eigene Website aussehen kann.',
     date: '2024-12-02',
     category: 'Design',
     tags: ['Inspiration', 'Features'],
