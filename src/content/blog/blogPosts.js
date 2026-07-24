@@ -3794,6 +3794,265 @@ Oder lest weiter: [Hochzeitsdatum 2027: Die besten Termine](/blog/hochzeitsdatum
     `,
   },
 
+  {
+    slug: 'kostenlose-hochzeitswebsite-haken',
+    title: 'Kostenlose Hochzeitswebsite: Wo ist der Haken? Der ehrliche Check',
+    description: 'Kostenlose Hochzeitswebsites klingen verlockend. Wir zeigen ehrlich, was ihr wirklich bekommt, wo die versteckten Kosten lauern – und wann sich gratis lohnt.',
+    date: '2026-07-24',
+    category: 'Ratgeber',
+    tags: ['Ratgeber', 'Vergleich'],
+    readTime: '7 min',
+    keywords: ['kostenlose hochzeitswebsite', 'hochzeitshomepage kostenlos', 'hochzeitswebsite gratis', 'hochzeitshomepage kostenlos vergleich', 'hochzeitswebsite kostenlos oder bezahlen'],
+    image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80',
+    imageAlt: 'Brautpaar plant Hochzeit am Laptop',
+    schema: {
+      "@type": "Article",
+      "headline": "Kostenlose Hochzeitswebsite: Wo ist der Haken?",
+      "description": "Der ehrliche Check: Was kostenlose Hochzeitswebsites wirklich können und wo ihre Grenzen liegen.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-07-24",
+    },
+    content: `
+## Kostenlos klingt perfekt – aber ist es das auch?
+
+Ihr plant eure Hochzeit, das Budget ist durchgerechnet, und irgendwo zwischen Location und Blumen taucht die Frage auf: **Brauchen wir eine Hochzeitswebsite – und muss die etwas kosten?** Eine kurze Suche zeigt: Es gibt etliche kostenlose Angebote. Warum also überhaupt Geld ausgeben?
+
+Die ehrliche Antwort vorweg: **Für manche Paare ist eine kostenlose Hochzeitswebsite völlig ausreichend.** Für andere wird sie zur Enttäuschung, die mitten in der Planungsphase Zeit und Nerven kostet. In diesem Artikel zeigen wir euch ohne Verkaufsgetöse, wo die Unterschiede wirklich liegen – damit ihr vorher wisst, worauf ihr euch einlasst.
+
+## Wie "kostenlos" bei Hochzeitswebsites funktioniert
+
+Kein Anbieter betreibt Server, Design und Support aus reiner Nächstenliebe. Kostenlose Hochzeitswebsites sind fast immer eines von drei Modellen:
+
+**1. Die Einstiegsversion:** Die Gratis-Variante ist bewusst begrenzt – wer Passwortschutz, mehr Fotos oder ein schöneres Design will, landet im kostenpflichtigen Paket. Das ist legitim, aber rechnet damit, dass die wichtigsten Funktionen genau hinter dieser Grenze liegen.
+
+**2. Die Werbefläche:** Eure Hochzeitswebsite trägt Logo und Werbung des Anbieters – manchmal dezent, manchmal prominent. Eure Gäste sehen auf eurer persönlichen Seite Banner für fremde Produkte.
+
+**3. Das Datenmodell:** Ihr und eure Gäste hinterlasst Daten – E-Mail-Adressen, Hochzeitsdatum, Interessen. Diese Daten sind im Hochzeitsmarkt wertvoll. Ein Blick in die Datenschutzerklärung lohnt sich, bevor eure Gäste dort ihre Adressen eintragen.
+
+![Hochzeitsplanung mit Laptop und Notizen](https://images.unsplash.com/photo-1455587734955-081b22074882?w=900&q=80)
+
+## Die sechs typischen Haken im Detail
+
+### 1. Die Subdomain
+
+Statt **eurer-name.de** heißt eure Seite meist **euer-name.anbieter-xyz.de**. Das klingt nach Detail, macht aber einen Unterschied: auf der Einladung, beim Diktieren am Telefon mit Oma, und beim Gefühl, ob das *eure* Seite ist oder die des Anbieters.
+
+### 2. Der Template-Effekt
+
+Kostenlose Angebote setzen auf wenige Standardvorlagen, die tausende Paare gleichzeitig nutzen. Wenn eure Gäste in dieser Saison auf mehreren Hochzeiten eingeladen sind, sehen sie unter Umständen dreimal dasselbe Design – nur mit anderen Namen.
+
+### 3. Der Passwortschutz
+
+Ausgerechnet die Funktion, die eure privaten Fotos, den Ablauf und die Gästeliste schützt, ist häufig den Bezahlversionen vorbehalten. Eine öffentlich auffindbare Hochzeitswebsite mit Location, Datum und Zeitplan ist aber genau das, was ihr eigentlich nicht wollt.
+
+### 4. Das RSVP-Limit
+
+Digitale Rückmeldungen sind der größte Alltagsnutzen einer Hochzeitswebsite. In Gratis-Versionen sind sie oft begrenzt: keine Menüabfrage, keine Nachverfolgung, keine Erinnerungen, kein Export für Location und Caterer. Das Ergebnis: Ihr pflegt doch wieder eine Excel-Liste nebenher.
+
+### 5. Der Support
+
+Wenn zwei Wochen vor der Hochzeit das Formular streikt oder Fotos nicht laden, seid ihr bei kostenlosen Angeboten in der Warteschlange – wenn es überhaupt Support gibt. Es ist niemand persönlich für euch verantwortlich.
+
+### 6. Die versteckte Rechnung: eure Zeit
+
+Der größte Kostenfaktor steht auf keiner Preisliste. Einrichten, Texte formatieren, Fotos zuschneiden, Formulare testen – je nach Anspruch stecken da schnell 15 bis 30 Stunden Abende drin. Mitten in der intensivsten Planungsphase eures Lebens.
+
+## Wann eine kostenlose Hochzeitswebsite trotzdem die richtige Wahl ist
+
+Ehrlichkeit in beide Richtungen: **Gratis ist gut genug, wenn...**
+
+- ihr eine kleine Hochzeit mit überschaubarem Gästekreis feiert
+- ihr nur die Basisinfos (Datum, Ort, Anfahrt) teilen wollt
+- Design und Individualität für euch keine große Rolle spielen
+- jemand in eurem Umfeld Spaß und Zeit hat, sich um die Technik zu kümmern
+
+Wenn ihr euch hier wiederfindet: Nehmt ein kostenloses Angebot und investiert das gesparte Geld in etwas, das euch wichtiger ist. Ernsthaft.
+
+## Wann sich eine bezahlte Lösung lohnt
+
+Anders sieht es aus, wenn eure Hochzeitswebsite mehr sein soll als ein digitaler Infozettel:
+
+- **Ihr wollt, dass die Seite zu eurer Hochzeit passt** – Farben, Stil, Papeterie, alles aus einem Guss
+- **Ihr wollt die Orga wirklich auslagern**: RSVP mit Menüwahl, automatische Erinnerungen, Gästeliste zum Export – statt WhatsApp-Chaos in drei Gruppen
+- **Ihr wollt eure Fotos und Daten geschützt** hinter einem Passwort, ohne fremde Werbung auf eurer Seite
+- **Ihr wollt einen Ansprechpartner**, der sich kümmert, wenn etwas klemmt – und zwar bevor die Einladungen rausgehen
+
+Was das kosten darf, haben wir im großen [Kosten-Vergleich für Hochzeitswebsites](https://www.sarahiver.com/blog/hochzeitswebsite-kosten-was-kostet) aufgeschlüsselt – von 0 € bis zur Agentur.
+
+## Unser Modell – transparent gemacht
+
+Weil dieser Artikel ehrlich sein soll, legen wir auch unsere Karten auf den Tisch: Bei [S&I.](https://www.sarahiver.com) bauen wir Hochzeitswebsites **persönlich für euch** – kein Baukasten, keine Gratis-Version, einmaliger Preis statt Abo. Ihr liefert Texte und Fotos, wir übernehmen Design, Einrichtung, Technik und Betreuung, eure Seite läuft unter eurer eigenen Domain und ist in etwa 7 Tagen live.
+
+Das ist bewusst nicht der günstigste Weg zu einer Hochzeitswebsite – es ist der Weg für Paare, die eine besondere Seite wollen, ohne selbst zu basteln. Ob euch das gefällt, seht ihr am besten selbst: **Alle unsere Designs gibt es als [echte Live-Demos zum Durchklicken](https://www.sarahiver.com/#themes)** – keine Screenshots, sondern vollständige Hochzeitswebsites, wie eure Gäste sie erleben würden.
+
+## Fazit: Rechnet ehrlich – in Geld UND Zeit
+
+Die Frage ist nicht "kostenlos oder teuer?", sondern: **Was soll eure Hochzeitswebsite leisten – und wer soll die Arbeit machen?** Für den digitalen Infozettel reicht gratis. Für eine persönliche Seite, die Orga abnimmt und zu eurer Hochzeit gehört wie die Einladungen, lohnt sich die Investition – in welcher Preisklasse auch immer.
+
+Wenn ihr wissen wollt, wie eure eigene Seite aussehen könnte: Schaut euch die [Beispiele an](https://www.sarahiver.com/#themes) oder schreibt uns unverbindlich – wir antworten persönlich, innerhalb von 24 Stunden.
+
+**[Unverbindlich anfragen](https://www.sarahiver.com/#contact)**
+
+    `,
+  },
+  {
+    slug: 'hochzeitswebsite-ki-baukasten-oder-persoenlich',
+    title: 'Hochzeitswebsite mit KI erstellen? Was Baukästen können – und was nicht',
+    description: 'KI-Baukästen erstellen Websites in Minuten. Reicht das für eure Hochzeit? Der ehrliche Vergleich: KI-Tool vs. persönlich gebaute Hochzeitswebsite.',
+    date: '2026-07-24',
+    category: 'Ratgeber',
+    tags: ['Ratgeber', 'Vergleich'],
+    readTime: '6 min',
+    keywords: ['hochzeitswebsite ki', 'hochzeitswebsite ki erstellen', 'ki website baukasten hochzeit', 'hochzeitswebsite erstellen lassen oder selbst', 'hochzeitshomepage baukasten'],
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
+    imageAlt: 'Laptop mit Website-Editor auf einem Schreibtisch',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeitswebsite mit KI erstellen? Was Baukästen können – und was nicht",
+      "description": "KI-Baukasten oder persönlich gebaute Hochzeitswebsite? Der ehrliche Vergleich.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-07-24",
+    },
+    content: `
+## "Erstelle mir eine Hochzeitswebsite" – reicht ein Satz?
+
+KI-Baukästen sind beeindruckend: Ihr beschreibt in einem Satz, was ihr wollt, und Sekunden später steht eine Website. Texte, Bilder, Farbschema – alles generiert. Da liegt die Frage nahe: **Warum sollte man für eine Hochzeitswebsite noch Menschen bezahlen?**
+
+Als jemand, der Hochzeitswebsites baut, könnten wir jetzt reflexhaft abwinken. Machen wir nicht. Stattdessen schauen wir ehrlich hin: was KI-Tools wirklich gut können, wo sie an Grenzen stoßen – und für wen welcher Weg der richtige ist.
+
+## Was KI-Baukästen wirklich gut können
+
+Fair ist fair – moderne KI-Website-Tools haben echte Stärken:
+
+**Geschwindigkeit.** Ein Grundgerüst in Minuten statt Tagen. Für eine schnelle Infoseite unschlagbar.
+
+**Niedrige Einstiegshürde.** Kein Technikwissen nötig, keine Design-Vorkenntnisse. Die KI trifft Gestaltungsentscheidungen für euch.
+
+**Preis.** Meist im Abo zwischen 10 und 30 € pro Monat – über eine typische Nutzungsdauer von 12 bis 18 Monaten also etwa 120 bis 540 €.
+
+Wenn eure Anforderung lautet "eine Seite mit Datum, Ort und Anfahrt, schnell und günstig" – dann ist ein KI-Baukasten eine völlig legitime Wahl.
+
+![Brautpaar schaut gemeinsam auf ein Smartphone](https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=900&q=80)
+
+## Wo es hakt: Die fünf Grenzen der KI-Baukästen
+
+### 1. Generisch by Design
+
+KI-Tools erzeugen, was statistisch "nach Hochzeit aussieht": Eukalyptus, Serifenschrift, Pastellrosa. Das Ergebnis ist selten hässlich – aber es ist beliebig. Eure Hochzeit hat eine Geschichte, einen Ort, einen Stil, vielleicht einen Insider-Witz, der alles zusammenhält. Eine KI kennt davon nichts, und man sieht es.
+
+### 2. Die Hochzeits-Funktionen fehlen
+
+Eine Hochzeitswebsite ist mehr als Seiten mit Text. Der eigentliche Nutzen steckt in den Werkzeugen: **RSVP mit Menüabfrage und Erinnerungen, Gästeverwaltung mit Export, geschützter Foto-Upload für alle Gäste, Passwortschutz.** Allgemeine KI-Baukästen können Formulare – aber keine Hochzeitslogistik. Genau die Funktionen, die euch echte Arbeit abnehmen, müsst ihr mühsam nachbauen oder verzichtet darauf.
+
+### 3. Die letzten 20 % kosten die meiste Zeit
+
+Der KI-Erstentwurf steht in Minuten – aber dann beginnt die eigentliche Arbeit: Texte anpassen, Fotos tauschen, Abstände richten, Mobilansicht prüfen, Formulare testen. Aus "Website in 5 Minuten" werden erfahrungsgemäß viele Abende. Und anders als bei einem Dienstleister gibt es niemanden, dem ihr sagen könnt: "Mach du das bitte."
+
+### 4. Niemand ist verantwortlich
+
+Zwei Wochen vor der Hochzeit lädt die Galerie nicht, das RSVP-Formular verschluckt Antworten, die Seite ist down. Bei einem KI-Baukasten seid ihr Techniker, Designer und Support in Personalunion – an dem Punkt eurer Planung, an dem ihr am wenigsten Zeit dafür habt.
+
+### 5. Das Abo läuft weiter
+
+KI-Baukästen sind Abo-Modelle. Die Seite lebt, solange ihr zahlt – und mit ihr eure Fotos, euer Gästebuch, eure Erinnerungen. Nach der Hochzeit steht ihr vor der Wahl: weiterzahlen oder alles verlieren.
+
+## Der ehrliche Vergleich
+
+| | KI-Baukasten | Persönlich gebaut |
+|---|---|---|
+| **Startzeit** | Minuten | ca. 7 Tage |
+| **Euer Zeitaufwand** | viele Abende Feinschliff | Texte & Fotos liefern – fertig |
+| **Design** | generisch-hübsch | individuell auf euch angepasst |
+| **RSVP & Gästemanagement** | einfache Formulare | vollständige Hochzeitslogistik |
+| **Verantwortung** | ihr selbst | euer Ansprechpartner |
+| **Kostenmodell** | Abo (läuft weiter) | einmalig |
+
+## Für wen ist was?
+
+**Nehmt einen KI-Baukasten, wenn** ihr technikaffin seid, Spaß am Selbermachen habt, nur eine einfache Infoseite braucht – und die Abende dafür gern investiert.
+
+**Lasst persönlich bauen, wenn** die Website Teil eurer Hochzeit sein soll wie Papeterie und Blumen, wenn RSVP und Gästemanagement wirklich Arbeit abnehmen sollen, und wenn ihr in der Planungsphase lieber Menüs verkostet als Zeilenabstände justiert.
+
+Bei [S&I.](https://www.sarahiver.com) machen wir das zweite: Menschen bauen eure Website – individuell, mit allen Hochzeitsfunktionen, zum einmaligen Preis, in etwa 7 Tagen. Übrigens nutzen auch wir moderne Technik im Hintergrund – aber die Entscheidungen über euer Design treffen keine Statistik-Modelle, sondern zwei Menschen, die eure Geschichte kennen.
+
+Wie sich das vom Baukasten-Look unterscheidet, seht ihr am besten live: **[8 echte Hochzeitswebsite-Designs zum Durchklicken](https://www.sarahiver.com/#themes)** – jede Demo eine vollständige Website, wie eure Gäste sie erleben würden.
+
+**[Unverbindlich anfragen](https://www.sarahiver.com/#contact)** – ihr schreibt direkt mit uns, Antwort innerhalb von 24 Stunden.
+
+    `,
+  },
+  {
+    slug: 'wann-hochzeitswebsite-erstellen-zeitpunkt',
+    title: 'Wann solltet ihr eure Hochzeitswebsite erstellen? Der perfekte Zeitpunkt',
+    description: 'Zu früh gibt es nichts zu zeigen, zu spät fehlt der Nutzen: Wann der ideale Zeitpunkt für eure Hochzeitswebsite ist – mit Timeline von Verlobung bis Hochzeit.',
+    date: '2026-07-24',
+    category: 'Planung',
+    tags: ['Planung', 'Ratgeber'],
+    readTime: '6 min',
+    keywords: ['wann hochzeitswebsite erstellen', 'hochzeitswebsite zeitpunkt', 'hochzeitswebsite wann online', 'hochzeitsplanung timeline website', 'save the date hochzeitswebsite'],
+    image: 'https://images.unsplash.com/photo-1478146059778-26028b07395a?w=1200&q=80',
+    imageAlt: 'Kalender und Ringe bei der Hochzeitsplanung',
+    schema: {
+      "@type": "Article",
+      "headline": "Wann solltet ihr eure Hochzeitswebsite erstellen?",
+      "description": "Der ideale Zeitpunkt für die Hochzeitswebsite – mit Timeline von der Verlobung bis zur Hochzeit.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-07-24",
+    },
+    content: `
+## Die kurze Antwort: früher, als die meisten denken
+
+Die meisten Paare erstellen ihre Hochzeitswebsite zu spät – nämlich dann, wenn die Einladungen schon fast gedruckt sind. Dabei entfaltet die Website ihren größten Nutzen **vor** diesem Moment: als Ziel für eure Save-the-Dates, als Antwort auf die hundert Fragen, die ab der Verlobung einprasseln, und als RSVP-Zentrale, die von Tag eins mitsammelt.
+
+Die Faustregel: **Eure Hochzeitswebsite sollte online sein, sobald die Save-the-Dates verschickt werden – also etwa 9 bis 12 Monate vor der Hochzeit.**
+
+## Die Timeline: Was wann passiert
+
+### 12+ Monate vorher: Verlobung & Grundsatzentscheidungen
+
+Direkt nach der Verlobung braucht ihr noch keine Website – aber es lohnt sich, sie **mitzudenken**: Wenn ihr wisst, dass ihr eine wollt, könnt ihr Design und Anbieter in Ruhe auswählen, statt später unter Zeitdruck. Ein Nebeneffekt aus Erfahrung: Ein gemeinsames Design für Website und Papeterie wirkt deutlich stimmiger, wenn beides zusammen geplant wird.
+
+### 9–12 Monate vorher: Save-the-Date + Website = das perfekte Paar
+
+Das ist der ideale Launch-Zeitpunkt. Eure Save-the-Dates – ob [klassisch per Post oder digital](https://www.sarahiver.com/blog/save-the-date-digital-2027) – brauchen ein Ziel: eine Adresse oder einen QR-Code, hinter dem eure Gäste alles Weitere finden. Ab jetzt arbeitet die Website für euch:
+
+- **Gäste speichern den Termin** und finden erste Infos (Ort, grober Rahmen, Dresscode-Tendenz)
+- **Anreise-Fragen beantworten sich selbst**: Hotels, Anfahrt, Parken – einmal geschrieben statt zwanzigmal getippt
+- **Das RSVP kann früh öffnen** – gerade bei Hochzeiten mit Anreise wollen viele Gäste früh planen
+
+### 6–9 Monate vorher: Die Website wächst mit
+
+Jetzt füllt sich, was bei der Save-the-Date noch offen war: der Tagesablauf, das Menü mit Abfrage der Essenswünsche, die Geschenkeliste, eure Geschichte. Der Vorteil einer Website gegenüber gedruckten Karten: **Sie ist nie veraltet.** Ändert sich die Uhrzeit der Trauung, ändert ihr eine Zeile – statt 80 Karten neu zu drucken.
+
+### 3–6 Monate vorher: Einladungen & RSVP-Endspurt
+
+Die offiziellen Einladungen verweisen auf die Website (QR-Code!), das RSVP läuft auf Hochtouren. Wer eine Lösung mit [automatischen Erinnerungen](https://www.sarahiver.com/blog/gaesteliste-rsvp-erinnerungsmail-export) nutzt, spart sich jetzt das unangenehmste Ritual der Hochzeitsplanung: den Nachzügler-Anrufmarathon.
+
+### Nach der Hochzeit: Der zweite Frühling
+
+Unterschätzt und wunderbar: Nach der Feier wird die Website zum **Foto-Sammelpunkt**. Alle Handyfotos eurer Gäste landen an einem Ort statt in fünf Chatgruppen – und die Danksagung findet dort ihr Zuhause.
+
+![Hochzeitseinladungen mit Kalender](https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80)
+
+## "Und wenn wir spät dran sind?"
+
+Kein Drama. Auch 3 Monate vor der Hochzeit lohnt sich eine Website noch – der RSVP-Nutzen und die Anreise-Infos greifen sofort. Wichtig ist dann nur die **Umsetzungsgeschwindigkeit**: Für wochenlanges Selberbasteln fehlt jetzt die Zeit. Zur Einordnung: Bei uns ist eine vollständige Website etwa **7 Tage nach euren Inhalten live** – spät dran heißt also nicht zu spät.
+
+## Der eine Fehler, den ihr vermeiden solltet
+
+Der häufigste Zeitpunkt-Fehler ist nicht "zu spät" – es ist **"halb fertig online"**. Eine Website, auf der bei jedem zweiten Menüpunkt "Coming soon" steht, frustriert Gäste und erzeugt Rückfragen statt sie zu beantworten. Besser: mit einem kleinen, vollständigen Kern starten (Datum, Ort, Anreise, RSVP) und Abschnitte erst freischalten, wenn sie stehen. Was inhaltlich in welcher Phase auf die Seite gehört, steht in unserer [Inhalts-Checkliste](https://www.sarahiver.com/blog/hochzeitswebsite-inhalt-checkliste).
+
+## Fazit: Der beste Zeitpunkt ist vor den Save-the-Dates
+
+Eure Hochzeitswebsite ist kein Deko-Element für die letzten Wochen – sie ist das Orga-Zentrum für die gesamte Planungszeit. Je früher sie steht, desto mehr Arbeit nimmt sie euch ab. Und wenn der Kalender bereits drängt: Der zweitbeste Zeitpunkt ist jetzt.
+
+Wie eure Seite aussehen könnte, seht ihr in unseren **[8 Live-Demos zum Durchklicken](https://www.sarahiver.com/#themes)** – und wenn es zeitlich sportlich wird, sagt es uns einfach im Formular: **[Unverbindlich anfragen](https://www.sarahiver.com/#contact)**, Antwort innerhalb von 24 Stunden.
+
+    `,
+  },
 ];
 
 export default blogPosts;
