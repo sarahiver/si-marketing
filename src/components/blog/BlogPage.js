@@ -478,8 +478,8 @@ const BlogPage = () => {
   return (
     <PageWrapper $theme={currentTheme}>
       <SEOHead
-        title="Ratgeber | S&I. — Tipps rund um eure Hochzeitswebsite"
-        description="Tipps, Vergleiche und Inspiration rund um Hochzeitswebsites, digitale Hochzeitsplanung und alles, was eure Feier unvergesslich macht."
+        title="Hochzeits-Ratgeber: Website, Planung & Trends 2027 | S&I."
+        description="Über 30 Guides für eure Hochzeitsplanung: Hochzeitswebsite erstellen, RSVP organisieren, Trends & Farben 2027, Kosten im Vergleich – mit Checklisten."
         path="/blog"
         keywords={['hochzeitswebsite ratgeber', 'hochzeitsplanung tipps', 'hochzeitswebsite erstellen', 'digitale hochzeit']}
       />

@@ -26,7 +26,7 @@ const getBodyFont = (t) => ({ editorial: "'Inter', sans-serif", botanical: "'Mon
 // ============================================
 // SIMPLE MARKDOWN RENDERER
 // ============================================
-const renderMarkdown = (content, theme) => {
+const renderMarkdown = (content, theme, slug) => {
   if (!content) return null;
   
   const lines = content.trim().split('\n');
@@ -109,8 +109,21 @@ const renderMarkdown = (content, theme) => {
     elements.push({ type: 'table', rows: tableRows });
   }
 
+  // Demo-CTA konsistent in jeden Artikel einsetzen:
+  // vor dem ersten H2 ab ~35% des Artikels, sonst ans Ende.
+  const ctaTarget = elements.findIndex(
+    (el, i) => el.type === 'h2' && i >= Math.floor(elements.length * 0.35)
+  );
+  if (ctaTarget > 0) {
+    elements.splice(ctaTarget, 0, { type: 'democta' });
+  } else {
+    elements.push({ type: 'democta' });
+  }
+
   return elements.map((el, idx) => {
     switch (el.type) {
+      case 'democta':
+        return <DemoCTAInline key={idx} theme={theme} slug={slug} />;
       case 'h2':
         return <ArticleH2 key={idx} $theme={theme}>{el.text}</ArticleH2>;
       case 'h3':
@@ -334,6 +347,103 @@ const ArticleTd = styled.td`
   color: ${p => getSecondaryText(p.$theme)};
   border-bottom: 1px solid ${p => getCardBorder(p.$theme)};
 `;
+
+// Demo CTA (mid-article, konsistent in allen Artikeln)
+const DemoBox = styled.div`
+  margin: 3rem 0;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  background: ${p => getCardBg(p.$theme)};
+  border: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : `1px solid ${getCardBorder(p.$theme)}`};
+  border-left: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : `4px solid ${getAccent(p.$theme)}`};
+  border-radius: ${p => p.$theme === 'botanical' ? '16px' : '0'};
+
+  ${p => p.$theme === 'contemporary' && css` box-shadow: 6px 6px 0 #0D0D0D; `}
+  ${p => p.$theme === 'botanical' && css` backdrop-filter: blur(40px); `}
+`;
+
+const DemoBoxEyebrow = styled.p`
+  font-family: ${p => getBodyFont(p.$theme)};
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: ${p => getAccent(p.$theme)};
+  margin-bottom: 0.75rem;
+`;
+
+const DemoBoxTitle = styled.h3`
+  font-family: ${p => getHeadlineFont(p.$theme)};
+  font-size: 1.35rem;
+  font-weight: ${p => ['botanical', 'luxe'].includes(p.$theme) ? '400' : '700'};
+  color: ${p => getTextColor(p.$theme)};
+  margin-bottom: 0.75rem;
+  ${p => p.$theme === 'luxe' && css` font-style: italic; `}
+`;
+
+const DemoBoxText = styled.p`
+  font-family: ${p => getBodyFont(p.$theme)};
+  font-size: 0.95rem;
+  color: ${p => getSecondaryText(p.$theme)};
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+`;
+
+const DemoBoxButton = styled.a`
+  display: inline-block;
+  padding: 0.8rem 2.25rem;
+  font-family: ${p => getBodyFont(p.$theme)};
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: ${p => getTextColor(p.$theme)};
+  background: transparent;
+  border: 2px solid ${p => getAccent(p.$theme)};
+  border-radius: ${p => p.$theme === 'botanical' ? '99px' : '0'};
+
+  &:hover {
+    background: ${p => getAccent(p.$theme)};
+    color: ${p => ['botanical', 'luxe', 'neon', 'video'].includes(p.$theme) ? '#0A0A0A' : '#FFFFFF'};
+  }
+`;
+
+// Wird vom Markdown-Renderer als Block "democta" in jeden Artikel eingesetzt
+// (vor dem ersten H2 ab ~35% des Artikels, sonst am Ende).
+const DemoCTAInline = ({ theme, slug }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    trackBlogCTAClick(slug, 'demo_cta');
+    if (theme === 'modern') {
+      // Modern öffnet die Design-Sektion als Modal (gleiches Muster wie MarketingNav)
+      navigate('/');
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: 'designs' } }));
+      }, 400);
+    } else {
+      // SPA-Navigation — ScrollToHashHandler (App.js) scrollt zur Theme-Sektion
+      navigate('/#themes');
+    }
+  };
+
+  return (
+    <DemoBox $theme={theme}>
+      <DemoBoxEyebrow $theme={theme}>Live-Demos</DemoBoxEyebrow>
+      <DemoBoxTitle $theme={theme}>Lieber klicken statt lesen?</DemoBoxTitle>
+      <DemoBoxText $theme={theme}>
+        Acht echte Hochzeitswebsites zum Durchklicken — mit RSVP, Galerie, Musikwünschen
+        und allem, worum es hier im Artikel geht.
+      </DemoBoxText>
+      <DemoBoxButton href="/#themes" $theme={theme} onClick={handleClick}>
+        Demos live ansehen →
+      </DemoBoxButton>
+    </DemoBox>
+  );
+};
 
 // CTA Section
 const CTASection = styled.div`
@@ -562,7 +672,7 @@ const BlogArticle = () => {
       </ArticleHero>
 
       <ArticleContent>
-        {renderMarkdown(post.content, currentTheme)}
+        {renderMarkdown(post.content, currentTheme, post.slug)}
       </ArticleContent>
 
       <CTASection $theme={currentTheme}>

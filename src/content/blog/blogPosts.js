@@ -763,8 +763,8 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
   },
   {
     slug: 'hochzeitswebsite-design-beispiele-inspiration',
-    title: 'Hochzeitshomepage Beispiele: 8 echte Designs zum Durchklicken',
-    description: '8 echte Hochzeitshomepage-Beispiele als Live-Demo zum Durchklicken: Editorial, Botanical, Luxe & mehr. Seht vorab, wie eure eigene Website aussehen kann.',
+    title: 'Hochzeitshomepage Beispiele: Die 8 schönsten Designs 2027',
+    description: 'Nicht nur Screenshots: 8 echte Hochzeitshomepages als Live-Demo zum Durchklicken – von Editorial bis Botanical. So findet ihr das Design, das zu euch passt.',
     date: '2024-12-02',
     category: 'Design',
     tags: ['Inspiration', 'Features'],
@@ -774,7 +774,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
     imageAlt: 'Editorial Theme Hochzeitswebsite – ein Beispiel von S&I.',
     schema: {
       "@type": "Article",
-      "headline": "Hochzeitshomepage Beispiele 2027: 7 echte Designs zum Anklicken",
+      "headline": "Hochzeitshomepage Beispiele: Die 8 schönsten Designs 2027",
       "description": "7 echte Hochzeitshomepage-Beispiele mit Links zu Demo-Seiten. Hochzeitswebsite, Hochzeitshomepage, Hochzeitsseite – findet euren Stil.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
@@ -3177,8 +3177,8 @@ Ein gutes Brautpaar-Quiz ist eines der zuverlässigsten Stimmungs-Highlights fü
 
   {
     slug: 'hochzeitstrends-2027',
-    title: 'Hochzeitstrends 2027: Die 9 Trends, die wirklich relevant werden',
-    description: 'Welche Hochzeitstrends sind 2027 wirklich relevant? Wir zeigen die 9 Trends, die ihr ernst nehmen solltet – von Farben über Locations bis zu digitalen Tools.',
+    title: 'Hochzeitstrends 2027: Diese 9 Trends zählen wirklich',
+    description: 'Von neuen Farbwelten bis digitaler Planung: die 9 Hochzeitstrends 2027 – mit konkreten Tipps zur Umsetzung und dem, was ihr euch getrost sparen könnt.',
     date: '2026-05-22',
     category: 'Inspiration',
     tags: ['Inspiration', 'Trends'],
@@ -3188,7 +3188,7 @@ Ein gutes Brautpaar-Quiz ist eines der zuverlässigsten Stimmungs-Highlights fü
     imageAlt: 'Moderne Hochzeitsinspiration mit eleganter Tischdekoration',
     schema: {
       "@type": "Article",
-      "headline": "Hochzeitstrends 2027: Die 9 Trends, die wirklich relevant werden",
+      "headline": "Hochzeitstrends 2027: Diese 9 Trends zählen wirklich",
       "description": "Die 9 Hochzeitstrends 2027, die ihr ernst nehmen solltet – von Farben und Locations bis zu digitalen Hochzeitstools und Nachhaltigkeit.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
@@ -3366,8 +3366,8 @@ Oder lest weiter: [Hochzeitshomepage Beispiele 2027](/blog/hochzeitswebsite-desi
 
   {
     slug: 'hochzeitsfarben-2027',
-    title: 'Hochzeitsfarben 2027: Die 6 Farbpaletten, die wirklich tragen',
-    description: 'Welche Hochzeitsfarben sind 2027 angesagt? 6 komplette Farbpaletten mit Kombinationen für Deko, Blumen & Papeterie – plus die Farben, die ihr besser meidet.',
+    title: 'Hochzeitsfarben 2027: 6 Paletten für Deko, Blumen & Papeterie',
+    description: 'Die 6 Hochzeitsfarben-Paletten für 2027 – fertig kombiniert für Deko, Blumen und Papeterie. Plus: die 3 Farb-Fehler, die ihr 2027 besser vermeidet.',
     date: '2026-06-08',
     category: 'Inspiration',
     tags: ['Inspiration', 'Trends'],
@@ -3377,7 +3377,7 @@ Oder lest weiter: [Hochzeitshomepage Beispiele 2027](/blog/hochzeitswebsite-desi
     imageAlt: 'Hochzeitstafel mit warmen Erdtönen und Trockenblumen',
     schema: {
       "@type": "Article",
-      "headline": "Hochzeitsfarben 2027: Die 6 Farbpaletten, die wirklich tragen",
+      "headline": "Hochzeitsfarben 2027: 6 Paletten für Deko, Blumen & Papeterie",
       "description": "Die 6 Hochzeitsfarben-Paletten für 2027 mit konkreten Kombinationen für Deko, Floristik, Papeterie und Hochzeitswebsite.",
       "author": { "@type": "Organization", "name": "S&I. Wedding" },
       "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
