@@ -36,6 +36,12 @@ const initNotrack = () => {
 
 export const isNotrack = initNotrack();
 
+// Consent Mode sofort initialisieren (cookielose Pings ab dem ersten Pageview)
+if (typeof window !== 'undefined') {
+  // nach der Modul-Auswertung, damit initConsentMode definiert ist
+  setTimeout(() => { try { initConsentMode(); } catch { /* noop */ } }, 0);
+}
+
 // Vercel Analytics blockieren wenn notrack aktiv
 if (isNotrack && typeof window !== 'undefined') {
   window.va = function() {}; // Stub Vercel Analytics
@@ -61,13 +67,17 @@ export const trackEvent = (eventName, params = {}) => {
 };
 
 // ============================================
-// LOAD / REMOVE GA
+// LOAD / REMOVE GA — Consent Mode v2
 // ============================================
-export const loadGoogleAnalytics = () => {
-  if (typeof window === 'undefined') return;
-  if (isNotrack) return; // Dev-Modus: nichts laden
-  if (window.gtag) return; // Already loaded
+// GA lädt für ALLE Besucher sofort, aber mit analytics_storage: 'denied'
+// als Default (Consent Mode v2). Ohne Einwilligung sendet GA nur cookielose,
+// anonyme Pings — DSGVO-konform, aber zählbar (GA modelliert die Lücken).
+// url_passthrough hält zusätzlich den Cross-Domain-Linker (_gl) am Leben,
+// damit der Funnel sarahiver.com → siwedding.de auch ohne Cookies verknüpft.
+// Nach "Akzeptieren" wird per Consent-Update auf volles Tracking hochgestuft.
 
+const injectGtag = () => {
+  if (window.gtag) return;
   const script = document.createElement('script');
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
   script.async = true;
@@ -77,6 +87,45 @@ export const loadGoogleAnalytics = () => {
   window.gtag = function () {
     window.dataLayer.push(arguments);
   };
+};
+
+export const initConsentMode = () => {
+  if (typeof window === 'undefined') return;
+  if (isNotrack) return; // Dev-Modus: nichts laden
+  if (window.gtag) return; // bereits initialisiert
+
+  injectGtag();
+
+  // MUSS vor js/config stehen: Default = alles verweigert
+  window.gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  });
+  window.gtag('set', 'url_passthrough', true);
+  window.gtag('set', 'ads_data_redaction', true);
+
+  configGA();
+
+  // Bestehende Einwilligung aus früherem Besuch direkt anwenden
+  try {
+    if (localStorage.getItem('cookie_consent') === 'accepted') {
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+  } catch { /* localStorage nicht verfügbar */ }
+};
+
+// Wird von CookieConsent bei "Akzeptieren" aufgerufen:
+// stellt sicher, dass GA läuft, und stuft auf volles Tracking hoch.
+export const loadGoogleAnalytics = () => {
+  if (typeof window === 'undefined') return;
+  if (isNotrack) return;
+  if (!window.gtag) initConsentMode();
+  window.gtag('consent', 'update', { analytics_storage: 'granted' });
+};
+
+const configGA = () => {
   window.gtag('js', new Date());
   // A/B-Test Variante als Custom Dimension setzen
   // Diese muss in GA4 unter Admin > Custom Definitions angelegt werden:
@@ -94,9 +143,14 @@ export const loadGoogleAnalytics = () => {
   });
 };
 
+// Bei "Ablehnen": Consent-Update auf denied (cookielose Pings laufen weiter —
+// genau das erlaubt Consent Mode v2), vorhandene GA-Cookies aufräumen.
+// Kein ga-disable mehr: das würde auch die erlaubten anonymen Pings stoppen.
 export const removeGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
-  window[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+  if (window.gtag) {
+    window.gtag('consent', 'update', { analytics_storage: 'denied' });
+  }
 
   document.cookie.split(';').forEach((cookie) => {
     const name = cookie.split('=')[0].trim();
