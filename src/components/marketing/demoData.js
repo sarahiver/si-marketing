@@ -57,10 +57,17 @@ export const THEME_HEROES = {
 
 // Mobile-Screenshots (Hochkant, ~9:19) für die Handy-Frames im mobilen
 // Filmstrip. Aufnahme: DevTools Device-Toolbar (iPhone-Viewport 390px),
-// dann Screenshot. HIER URLs eintragen; Fallback ist ein Hochkant-Crop
-// aus dem Full-Page-Screenshot (zeigt dann allerdings das Desktop-Layout).
+// dann Screenshot. Ausgeliefert mit q_auto,f_auto,w_450.
+// Vollständig seit Jul 2026 (Lea-&-Ben-Demos).
 export const THEME_MOBILE_SCREENS = {
-  // classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/vXXXX/classic_phone.png',
+  classic: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/v1785491709/Mobile_Classic_jesu3r.png',
+  botanical: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/v1785491712/Mobile_Botanical_jhoqzg.png',
+  contemporary: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/v1785491711/Mobile_Contemporary_jkhnyk.png',
+  editorial: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/v1785491712/Mobile_Editorial_spraky.png',
+  luxe: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/v1785491713/Mobile_Luxe_j1xido.png',
+  modern: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/v1785491711/Mobile_Parallax_ncz0f5.png',
+  neon: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/v1785491713/Mobile_Neon_smqqdn.png',
+  video: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_450/v1785491712/Mobile_Video_nyofhe.png',
 };
 
 // Hochkant-Fallback aus dem Full-Page-Screenshot für den Handy-Frame
@@ -75,13 +82,19 @@ export const phoneCardUrl = (id) =>
   || THEME_HEROES[id]
   || phoneFallbackUrl(THEME_SCREENSHOTS[id], HORIZONTAL_THEMES.includes(id));
 
-// Video-Previews für Themes, die sich nicht als Full-Page-Screenshot erfassen
-// lassen (z.B. Modern/Parallax). Desktop zeigt dann eine loopende
-// Bildschirmaufnahme statt des Scroll-Effekts. MP4 von Cloudinary,
+// Loopende Bildschirmaufnahmen der Demos für die Desktop-Previews.
+// Seit Jul 2026 für alle Themes vorhanden (Lea-&-Ben-Demos) — Desktop zeigt
+// das Video statt des Screenshot-Scroll-Effekts. MP4 von Cloudinary,
 // URL-Muster: .../video/upload/q_auto/vXXXX/datei.mp4
 export const THEME_VIDEO_PREVIEWS = {
-  modern: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1784712419/Modern_full_mdxizl.mp4',
-  video: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1784712439/Video_full_ns28th.mp4',
+  classic: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1785491747/Demo_Classic_yacvxb.mp4',
+  botanical: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1785491730/Demo_Botanical_gnot6c.mp4',
+  contemporary: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1785491741/Demo_Contemporary_wezjqs.mp4',
+  editorial: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1785491767/Demo_Editorial_dwuuxe.mp4',
+  luxe: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1785491741/Demo_Luxe_agamqa.mp4',
+  modern: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1785491728/Demo_Parallax_e9cn0y.mp4',
+  neon: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1785491749/Demo_Neon_r2khn8.mp4',
+  video: 'https://res.cloudinary.com/si-weddings/video/upload/q_auto/v1785491733/Demo_Video_fongni.mp4',
 };
 
 // Themes, deren Demo horizontal scrollt — die Desktop-Preview scrollt dann
