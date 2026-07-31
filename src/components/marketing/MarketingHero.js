@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
-import { ALL_DEMOS, THEME_HEROES, trackDemoClick } from './demoData';
+import { ALL_DEMOS, phoneCardUrl, trackDemoClick } from './demoData';
 
 // ============================================
 // CLOUDINARY URLS
@@ -1098,8 +1098,8 @@ const HeroPhoneRotator = () => {
     >
       <ClassicHeroPhoneScreen>
         {ALL_DEMOS.map((demo, i) => (
-          THEME_HEROES[demo.id]
-            ? <ClassicHeroPhoneImg key={demo.id} $src={THEME_HEROES[demo.id]} $active={i === idx} />
+          phoneCardUrl(demo.id)
+            ? <ClassicHeroPhoneImg key={demo.id} $src={phoneCardUrl(demo.id)} $active={i === idx} />
             : null
         ))}
       </ClassicHeroPhoneScreen>
