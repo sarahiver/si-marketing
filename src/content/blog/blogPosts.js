@@ -4053,6 +4053,183 @@ Wie eure Seite aussehen könnte, seht ihr in unseren **[8 Live-Demos zum Durchkl
 
     `,
   },
+  {
+    slug: 'kleine-hochzeit-2027-micro-wedding',
+    title: 'Kleine Hochzeit 2027: Micro Wedding mit 30–50 Gästen planen',
+    description: 'Weniger Gäste, mehr Nähe: Warum die kleine Hochzeit DER Trend 2027 ist – mit Planungsleitfaden, Budget-Effekt und den 5 Dingen, die im kleinen Kreis wichtiger werden.',
+    date: '2026-07-31',
+    category: 'Planung',
+    tags: ['Planung', 'Inspiration'],
+    readTime: '8 min',
+    keywords: ['kleine hochzeit', 'micro wedding', 'hochzeit im kleinen kreis', 'kleine hochzeit ideen', 'hochzeit 30 gäste', 'hochzeit 50 gäste', 'intime hochzeit', 'kleine hochzeit planen', 'micro wedding deutschland'],
+    image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80',
+    imageAlt: 'Intime Hochzeitstafel im kleinen Kreis mit Kerzen und natürlicher Dekoration',
+    schema: {
+      "@type": "Article",
+      "headline": "Kleine Hochzeit 2027: Micro Wedding mit 30–50 Gästen planen",
+      "description": "Warum die kleine Hochzeit der Trend 2027 ist – mit Planungsleitfaden, Budget-Effekt und allem, was im kleinen Kreis wichtiger wird.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-07-31",
+    },
+    content: `
+Der auffälligste Hochzeitstrend für 2027 ist keiner, den man an der Deko erkennt: Immer mehr Paare laden schlicht weniger Menschen ein. Statt 120 Gästen stehen 30 bis 50 Namen auf der Liste – und zwar die richtigen. Was nach Verzicht klingt, ist in Wahrheit ein Upgrade: mehr Zeit pro Gast, mehr Budget pro Kopf, mehr Momente, die wirklich euch gehören.
+
+## Warum 2027 das Jahr der kleinen Hochzeit wird
+
+Der Wunsch dahinter zieht sich durch alle aktuellen Trend-Analysen: Paare wollen ihren Tag **erleben statt abarbeiten**. Eine Feier mit 40 Gästen bedeutet, dass ihr mit jedem einzelnen gesprochen habt, bevor der erste Tanz beginnt. Es bedeutet eine Location, die sonst zu klein wäre – das Weingut, das Bootshaus, das Lieblingsrestaurant. Und es bedeutet, dass aus dem Fünfgänge-Menü für 120 ein außergewöhnliches Dinner für 40 werden kann, ohne dass das Budget explodiert.
+
+### Der Budget-Effekt: gleiche Summe, doppeltes Erlebnis
+
+Rechnet einmal nach: Bei einem Budget von 15.000 € und 120 Gästen bleiben pro Person etwa 125 €. Bei 40 Gästen sind es 375 € – dreimal so viel Spielraum für Essen, Musik, Fotografie und all die kleinen Erlebnisse, die 2027 große Shows ersetzen. Genau deshalb wirken Micro Weddings oft hochwertiger als doppelt so teure Großhochzeiten.
+
+## Die 5 Dinge, die im kleinen Kreis wichtiger werden
+
+**1. Die Gästeliste wird zur schwersten Entscheidung.** Bei 40 Plätzen gibt es keine Pflicht-Einladungen. Unser Tipp: Schreibt zuerst unabhängig voneinander eure Listen und vergleicht dann. Wer auf beiden steht, ist gesetzt.
+
+**2. Kommunikation wird persönlicher – und muss trotzdem organisiert sein.** Gerade weil jeder Gast zählt, erwarten alle rechtzeitig Infos: Wo? Wann? Dresscode? Übernachtung? Eine [Hochzeitswebsite mit allen Inhalten](/blog/hochzeitswebsite-inhalt-checkliste) beantwortet das zentral – und wirkt im kleinen Kreis nicht weniger, sondern **mehr** wie eine persönliche Geste, weil ihr sie mit eurer Geschichte, euren Fotos und eurem Ablauf füllt.
+
+**3. Jede Absage wiegt schwerer.** Bei 40 Eingeladenen verändern fünf Absagen die Feier spürbar. [Digitales RSVP](/blog/digitales-rsvp-hochzeit) mit automatischer Erinnerung sorgt dafür, dass ihr früh Klarheit habt – inklusive Menüwahl und Allergien, ohne einem einzigen Gast hinterhertelefonieren zu müssen.
+
+**4. Die Gäste werden Teil des Tages.** Kleine Runden leben von Beteiligung: ein [Brautpaar-Quiz](/brautpaar-quiz) nach dem Dinner, Musikwünsche, die vorher digital gesammelt werden, ein Gästebuch, in dem wirklich jeder schreibt. Bei 40 Menschen ist eine 80-prozentige Beteiligung realistisch – bei 120 nicht.
+
+**5. Erinnerungen entstehen dichter.** Weniger Gäste heißt: Der Fotograf kennt nach einer Stunde alle Gesichter, und die [Foto-Uploads eurer Gäste](/blog/hochzeitswebsite-foto-upload-gaeste) ergeben ein vollständiges Bild des Tages statt zufälliger Schnipsel.
+
+## So plant ihr eure kleine Hochzeit – der Fahrplan
+
+- **12 Monate vorher:** Gästeliste final, Location sichern (kleine Locations sind rar und früh weg!), [Datum wählen](/blog/hochzeitsdatum-2027)
+- **9 Monate vorher:** Save the Dates verschicken – digital geht das [in einer Stunde](/blog/save-the-date-digital-2027)
+- **6 Monate vorher:** Hochzeitswebsite mit RSVP live schalten, Dienstleister buchen
+- **3 Monate vorher:** Menü final, Ablauf planen – mit viel Luft für ungeplante Momente
+- **4 Wochen vorher:** RSVP-Erinnerung an die letzten Unentschlossenen, Sitzordnung (die bei 5 Tischen fast Spaß macht)
+
+## Häufige Sorge: „Wirkt das nicht lieblos gegenüber den Nicht-Eingeladenen?"
+
+Die ehrliche Antwort: Ein klares Konzept nimmt fast jedem die Kränkung. Kommuniziert offen, dass ihr im engsten Kreis feiert – viele Paare laden zur standesamtlichen Trauung oder zu einem lockeren Sommerfest im Nachgang breiter ein. Und mit einem [Online-Fotoarchiv nach der Hochzeit](/blog/hochzeitsfotos-teilen-fotoupload-archiv) lasst ihr alle am Tag teilhaben, die nicht dabei sein konnten.
+
+## Fazit: Klein ist nicht weniger – klein ist konzentriert
+
+Eine Micro Wedding ist keine Sparversion, sondern die verdichtete Form von allem, worum es bei einer Hochzeit geht: die richtigen Menschen, echte Gespräche, ein Tag ohne Fließband-Gefühl. Die Organisation wird dabei nicht kleiner, nur persönlicher – und genau dafür lohnt sich ein digitales Zuhause für eure Feier, das eure Geschichte erzählt und die Logistik nebenbei erledigt.
+    `,
+  },
+  {
+    slug: 'hochzeit-gaeste-einbinden-ideen',
+    title: 'Gäste einbinden: 9 Ideen, die eure Hochzeit unvergesslich machen',
+    description: 'Der Trend 2027 heißt Beteiligung statt Berieselung: 9 erprobte Ideen, wie ihr eure Gäste aktiv einbindet – vom Musikwunsch bis zum Quiz, digital vorbereitet in Minuten.',
+    date: '2026-07-31',
+    category: 'Inspiration',
+    tags: ['Inspiration', 'Features'],
+    readTime: '7 min',
+    keywords: ['gäste einbinden hochzeit', 'hochzeit gäste einbeziehen', 'hochzeitsspiele gäste', 'interaktive hochzeit', 'hochzeit ideen für gäste', 'gäste beteiligen hochzeit', 'hochzeit mitmachaktionen'],
+    image: 'https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=1200&q=80',
+    imageAlt: 'Hochzeitsgäste feiern gemeinsam und lachen beim Fest',
+    schema: {
+      "@type": "Article",
+      "headline": "Gäste einbinden: 9 Ideen, die eure Hochzeit unvergesslich machen",
+      "description": "Beteiligung statt Berieselung: 9 erprobte Ideen, wie ihr eure Hochzeitsgäste aktiv einbindet – von Musikwünschen bis zum Brautpaar-Quiz.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-07-31",
+    },
+    content: `
+Fragt Gäste nach der schönsten Hochzeit, auf der sie je waren – ihr werdet selten hören: „Die Deko war toll." Ihr hört Geschichten. Vom Quiz, bei dem die Schwiegermutter alles wusste. Vom Song, den der DJ „zufällig" spielte, weil ihn drei Freundinnen gewünscht hatten. Die Hochzeitstrends 2027 zeigen klar in diese Richtung: weg von der perfekten Show, hin zu gemeinsamen Momenten. Hier sind 9 Ideen, die genau das schaffen – die meisten kosten nichts außer ein bisschen Vorbereitung.
+
+## Vor der Hochzeit: Vorfreude ist Beteiligung
+
+**1. Musikwünsche sammeln – vorher, nicht auf Zetteln.** Die Tanzfläche füllt sich am schnellsten, wenn Gäste ihre Songs hören. Sammelt Wünsche [vorab digital über eure Website](/blog/hochzeitswebsite-musikwuensche-playlist) und gebt sie dem DJ als Liste – so entsteht eine Playlist, die allen gehört. Bonus: Ihr wisst schon Wochen vorher, dass Onkel Peter dreimal „Atemlos" eingetragen hat, und könnt Gegenmaßnahmen einleiten.
+
+**2. Die RSVP-Zusatzfrage.** Ein einziges Extra-Feld im [digitalen RSVP](/blog/digitales-rsvp-hochzeit) macht aus einer Formalie ein Ritual: „Welchen Ehe-Rat gebt ihr uns mit?" oder „Was verbindet euch mit uns?" Die Antworten sind Gold – für Reden, fürs Gästebuch, für euch.
+
+**3. Das Hochzeits-ABC als Insider-Sammlung.** Ein [ABC auf eurer Website](/blog/hochzeitswebsite-hochzeits-abc) beantwortet nicht nur Fragen (A wie Anfahrt), sondern transportiert euren Humor (T wie Tomaten – fragt den Bräutigam). Gäste, die schmunzelnd ankommen, feiern anders.
+
+## Am Hochzeitstag: Momente statt Programmpunkte
+
+**4. Das Brautpaar-Quiz.** Der Klassiker, der nie enttäuscht – wenn die Fragen gut sind. Mit unserem kostenlosen [Brautpaar-Quiz-Generator](/brautpaar-quiz) stellt ihr in zehn Minuten ein Quiz aus 50 Fragen zusammen, mit Druckansicht und Beamer-Modus. Funktioniert beim Polterabend genauso wie zwischen Hauptgang und Dessert.
+
+**5. Foto-Auftrag statt Fotobox-Stau.** Gebt Tischen kleine Missionen: „Fangt den besten Lacher ein", „Ein Foto mit jemandem, den ihr heute kennengelernt habt". Die Ergebnisse landen per [Gäste-Upload direkt auf eurer Website](/blog/hochzeitswebsite-foto-upload-gaeste) – moderiert, gesammelt, für immer.
+
+**6. Das lebendige Gästebuch.** Legt das Gästebuch nicht nur aus – kündigt es an. Ein Satz vom Trauzeugen („Wir wollen von jedem Tisch einen Eintrag!") verdreifacht die Beteiligung. Digital geht es auch nach Mitternacht noch vom Hotelzimmer aus.
+
+**7. Reden mit Regie.** Offene Bühnen werden lang. Besser: Wer etwas sagen möchte, meldet sich vorher bei den Trauzeugen – so kommt jeder dran, der wirklich will, und der Abend behält Rhythmus.
+
+## Nach der Hochzeit: Der Tag gehört allen
+
+**8. Das gemeinsame Fotoarchiv.** Nach der Feier werden [alle Bilder an einem Ort gesammelt](/blog/hochzeitsfotos-teilen-fotoupload-archiv) – eure Profi-Fotos plus die 300 Handy-Perspektiven eurer Gäste. Der Moment, in dem die Seite von der Einladung zum Erinnerungsalbum wird.
+
+**9. Die Danke-Seite.** Statt 40 einzelner WhatsApp-Nachrichten: eine persönliche Dankesbotschaft mit den schönsten Bildern, dort, wo eure Gäste das ganze Jahr über alles gefunden haben.
+
+## Der rote Faden: ein Ort für alles
+
+Fällt euch auf, was die wirkungsvollsten Ideen gemeinsam haben? Sie brauchen einen zentralen Ort, an dem Wünsche, Fotos, Einträge und Antworten zusammenlaufen. Genau dafür ist eine Hochzeitswebsite gebaut: Musikwünsche, Gästebuch, Foto-Upload und RSVP mit euren Fragen sind bei uns [in jedem Design enthalten](/blog/hochzeitswebsite-design-beispiele-inspiration) – ihr entscheidet nur, welche Bausteine ihr aktiviert.
+
+## Fazit: Gastgeber sein heißt loslassen
+
+Die schönsten Hochzeiten 2027 werden die sein, bei denen das Brautpaar nicht alles kontrolliert, sondern Räume öffnet. Jede der neun Ideen gibt euren Gästen ein Stück Bühne – und euch am Ende mehr zurück, als jede noch so perfekte Planung könnte.
+    `,
+  },
+  {
+    slug: 'hochzeit-unter-der-woche',
+    title: 'Hochzeit unter der Woche: Warum 2027 der Mittwoch boomt',
+    description: 'Bis zu 40% günstigere Locations, freie Traumtermine wie der 07.07.2027 und entspanntere Dienstleister: Wann sich eine Werktags-Hochzeit lohnt – und wie die Gäste-Logistik gelingt.',
+    date: '2026-07-31',
+    category: 'Planung',
+    tags: ['Planung', 'Ratgeber'],
+    readTime: '7 min',
+    keywords: ['hochzeit unter der woche', 'hochzeit wochentag', 'hochzeit mittwoch', 'hochzeit donnerstag', 'hochzeit freitag', 'werktags heiraten', 'hochzeit unter der woche gäste', 'hochzeitstermin 2027'],
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
+    imageAlt: 'Brautpaar bei entspannter Hochzeitsfeier im Sonnenlicht',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeit unter der Woche: Warum 2027 der Mittwoch boomt",
+      "description": "Günstigere Locations, freie Traumtermine wie der 07.07.2027, entspanntere Dienstleister: Wann sich eine Werktags-Hochzeit lohnt und wie die Gäste-Logistik gelingt.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-07-31",
+    },
+    content: `
+Der begehrteste Hochzeitstermin 2027 ist ein Mittwoch: der 07.07.2027. Dreimal die Glückszahl Sieben – und plötzlich diskutieren Paare ernsthaft, was vor ein paar Jahren undenkbar schien: unter der Woche zu heiraten. Zeit für eine ehrliche Rechnung, für wen sich das lohnt und wie ihr die eine echte Hürde – die Gäste-Logistik – elegant löst.
+
+## Was für den Werktag spricht
+
+**Der Preis.** Viele Locations kalkulieren Samstage als Premium-Termine. Dienstag bis Donnerstag sind je nach Region und Location 20–40 % günstiger – bei identischer Leistung. Bei einer 8.000-€-Location sind das schnell 2.000–3.000 € Unterschied, die in Fotografie oder Flitterwochen deutlich mehr Freude machen.
+
+**Die Verfügbarkeit.** Traumlocation, Lieblings-Fotografin, die eine Band: An Samstagen im Juli/September 2027 heißt es oft „ausgebucht seit 18 Monaten". Unter der Woche bekommt ihr erste Wahl – auch bei [besonderen Daten](/blog/hochzeitsdatum-2027) wie dem 07.07. oder dem 27.07.2027 (Dienstag, Schnapszahl).
+
+**Die Ruhe.** Dienstleister, die nicht von der dritten Hochzeit der Woche kommen. Ein Standesamt ohne 30-Minuten-Taktung. Eine Stadt, die euch gehört, weil alle anderen arbeiten. Werktags-Hochzeiten haben ein Tempo, das zum Trend „genießen statt durchhetzen" perfekt passt.
+
+**Der Brückentag-Trick.** Die eleganteste Variante 2027: Donnerstag, 6. Mai (Christi Himmelfahrt) oder Fronleichnam-Freitag – Feiertagsstimmung, aber ohne Samstags-Aufpreis, und die Gäste brauchen maximal einen Urlaubstag.
+
+## Die ehrliche Gegenrechnung
+
+| Punkt | Samstag | Werktag |
+| --- | --- | --- |
+| Location-Kosten | Premium | oft 20–40 % günstiger |
+| Wunsch-Dienstleister | früh ausgebucht | meist verfügbar |
+| Gäste-Anreise | unkompliziert | braucht Vorlauf & Urlaub |
+| Feier-Ende | offen | Rücksicht auf den nächsten Tag |
+| Absagequote | niedrig | etwas höher, v. a. bei weiter Anreise |
+
+Kurz: Ihr tauscht Geld und Verfügbarkeit gegen Organisationsaufwand bei den Gästen. Genau dieser Aufwand lässt sich aber fast vollständig digitalisieren.
+
+## So gelingt die Gäste-Logistik am Werktag
+
+**1. Früh ankündigen – deutlich früher als üblich.** Bei einer Werktags-Hochzeit ist das Save the Date keine Formalie, sondern die wichtigste Karte im Spiel: Je eher eure Gäste den Urlaubstag eintragen, desto niedriger die Absagequote. [Digital verschickt](/blog/save-the-date-digital-2027) seid ihr in einer Stunde bei allen – idealerweise 10–12 Monate vorher.
+
+**2. Alle Anreise-Fragen vorab beantworten.** „Wann muss ich los? Wo schlafe ich? Lohnt sich ein Hotel?" – bei Werktags-Hochzeiten entscheiden diese Fragen über Zu- oder Absage. Eine Hochzeitswebsite mit [Anfahrt, Karte und Hotel-Empfehlungen samt Abrufkontingent](/blog/hochzeitswebsite-hotels-uebernachtung) nimmt jedem Gast die Rechercheangst – und euch 40 identische WhatsApp-Fragen ab.
+
+**3. RSVP mit langem Vorlauf und automatischer Erinnerung.** Setzt die Rückmeldefrist großzügig und lasst [die Erinnerung automatisch verschicken](/blog/digitales-rsvp-hochzeit) – wer den Urlaubstag noch nicht beantragt hat, bekommt so den sanften Stups.
+
+**4. Den Ablauf ans Werktags-Tempo anpassen.** Bewährt: später Start (15 statt 12 Uhr), dafür ein kompakterer Abend. Kommuniziert den Zeitplan transparent auf der Website – Gäste, die wissen, dass um 23 Uhr der Höhepunkt kommt, planen ihren Donnerstag anders.
+
+## Für wen der Werktag nichts ist
+
+Ehrlichkeit gehört dazu: Wenn eure Gästeliste zur Hälfte aus Anreisenden mit 400+ Kilometern besteht, aus Schichtarbeitern oder Selbstständigen in der Hochsaison, wird der Werktag zur Zumutung. Dann lieber ein [neutraler Samstag ohne Schnapszahl](/blog/hochzeitsdatum-2027) – der ist oft günstiger als die begehrten Zahlen-Termine und für alle entspannt.
+
+## Fazit: Der Mittwoch ist kein Kompromiss – wenn die Kommunikation stimmt
+
+Eine Werktags-Hochzeit 2027 bedeutet: mehr Budget, freie Traumtermine, entspannte Dienstleister. Der Preis dafür ist Kommunikationsarbeit – und die ist mit Save the Date, RSVP-Erinnerung und einer Website, die jede Anreise-Frage beantwortet, ein gelöstes Problem. Der 07.07.2027 ist übrigens, Stand heute, vielerorts noch zu haben. Der 17.07. (Samstag) nicht mehr lange.
+    `,
+  },
 ];
 
 export default blogPosts;
