@@ -609,7 +609,7 @@ const BlogArticle = () => {
     return (
       <PageWrapper $theme={currentTheme}>
         <SEOHead
-          title="Artikel nicht gefunden | S&I. Ratgeber"
+          title="Artikel nicht gefunden | S&I."
           description="Der gesuchte Artikel wurde nicht gefunden."
           path={`/blog/${slug}`}
           noIndex={true}
@@ -645,7 +645,7 @@ const BlogArticle = () => {
   return (
     <PageWrapper $theme={currentTheme}>
       <SEOHead
-        title={`${post.title} | S&I. Ratgeber`}
+        title={`${post.seoTitle || post.title} | S&I.`}
         description={post.description}
         path={`/blog/${post.slug}`}
         image={post.image}
