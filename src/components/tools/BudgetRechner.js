@@ -65,7 +65,7 @@ const QUESTIONS = [
       { id: 'fotovideo', label: 'Profi: Foto + Video', fix: 4200, perGuest: 0, hint: 'Ganztags, zwei Gewerke' },
       { id: 'foto', label: 'Profi: Foto ganztags', fix: 2600, perGuest: 0, hint: 'Getting Ready bis Party' },
       { id: 'halbtags', label: 'Profi: Foto halbtags', fix: 1400, perGuest: 0, hint: 'Trauung + Empfang' },
-      { id: 'fotobox', label: 'Fotobox + Gäste-Upload', fix: 380, perGuest: 0, hint: 'Box-Miete; Gästefotos digital sammeln' },
+      { id: 'gaeste', label: 'Gäste + Smartphones', fix: 0, perGuest: 0, hint: 'Fotos digital von allen Gästen sammeln' },
     ],
   },
   {
@@ -97,6 +97,14 @@ const QUESTIONS = [
       { id: 'wochenende', label: 'Ganzes Wochenende', fix: 0, perGuest: 35, hint: 'Welcome-Abend + Day-After-Brunch' },
     ],
   },
+];
+
+// Extras (Mehrfachauswahl — additiv)
+const EXTRAS = [
+  { id: 'fotobox', label: 'Fotobox', fix: 380, hint: 'Miete inkl. Requisiten' },
+  { id: 'kinder', label: 'Kinderbetreuung', fix: 350, hint: 'Profi-Betreuung für den Abend' },
+  { id: 'shuttle', label: 'Gäste-Shuttle', fix: 450, hint: 'Bus zwischen Location & Hotels' },
+  { id: 'auto', label: 'Brautauto / Oldtimer', fix: 350, hint: 'Miete inkl. Schmuck' },
 ];
 
 // Feste Posten (immer dabei)
@@ -254,6 +262,39 @@ const CopyBtn = styled.button`
   &:focus-visible { outline: 2px solid ${accent}; outline-offset: 2px; }
 `;
 
+const Disclaimer = styled.p`
+  text-align: center; font-size: 12.5px; line-height: 1.6; color: ${muted};
+  max-width: 58ch; margin: 0 auto 28px;
+`;
+
+const CompactGrid = styled.div`
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; margin-bottom: 14px;
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+`;
+
+const CompactField = styled.div`
+  label { display: block; font-family: 'Space Grotesk', monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: ${muted}; margin-bottom: 6px; }
+  select { width: 100%; padding: 10px 12px; font-family: 'Inter', sans-serif; font-size: 14px;
+    color: ${ink}; background: ${cardBg}; border: 1px solid ${line}; border-radius: 0; }
+  select:focus-visible { outline: 2px solid ${accent}; outline-offset: 1px; }
+`;
+
+const ExtraChecks = styled.div`
+  display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 4px 0 18px;
+  label { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: ${ink}; cursor: pointer; }
+  input { accent-color: ${accent}; width: 15px; height: 15px; }
+`;
+
+const BreakdownDetails = styled.details`
+  margin: 0 0 8px;
+  summary { cursor: pointer; font-family: 'Space Grotesk', monospace; font-size: 13px;
+    color: ${accent}; padding: 8px 0; list-style: none; text-align: center; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: ' ▾'; }
+  &[open] summary::after { content: ' ▴'; }
+`;
+
 const EmbedCode = styled.textarea`
   width: 100%; margin-top: 16px; padding: 14px; font-family: 'Space Grotesk', monospace;
   font-size: 12px; line-height: 1.6; color: ${ink}; background: ${paper};
@@ -294,7 +335,7 @@ const DEFAULTS = {
   photo: 'foto', music: 'dj', outfit: 'klassisch', days: 'eintag',
 };
 
-const EMBED_SNIPPET = `<iframe src="https://www.sarahiver.com/embed/hochzeitsbudget-rechner" width="100%" height="1400" style="border:0;max-width:960px;" title="Hochzeitsbudget-Rechner" loading="lazy"></iframe>
+const EMBED_SNIPPET = `<iframe src="https://www.sarahiver.com/embed/hochzeitsbudget-rechner" width="100%" height="820" style="border:0;max-width:960px;" title="Hochzeitsbudget-Rechner" loading="lazy"></iframe>
 <p style="font-size:14px;">Rechner: <a href="https://www.sarahiver.com/hochzeitsbudget-rechner">Hochzeitsbudget-Rechner</a> von <a href="https://www.sarahiver.com/">S&I. – Premium Hochzeitswebsites</a></p>`;
 
 const BudgetRechner = ({ embed = false }) => {
@@ -304,6 +345,10 @@ const BudgetRechner = ({ embed = false }) => {
   const [copied, setCopied] = useState(false);
   const [embedCopied, setEmbedCopied] = useState(false);
   const [showEmbed, setShowEmbed] = useState(false);
+  const [extras, setExtras] = useState([]);
+
+  const toggleExtra = (id) =>
+    setExtras((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
 
   const setAnswer = (qid, oid) => setAnswers((a) => ({ ...a, [qid]: oid }));
 
@@ -318,13 +363,23 @@ const BudgetRechner = ({ embed = false }) => {
       rows.push({ category: f.category, choice: null, amount: f.calc(guests, answers), tip: f.tip });
     });
 
+    if (extras.length) {
+      const chosen = EXTRAS.filter((e) => extras.includes(e.id));
+      rows.push({
+        category: 'Extras',
+        choice: chosen.map((e) => e.label).join(', '),
+        amount: chosen.reduce((sum, e) => sum + e.fix, 0),
+        tip: 'Fotobox und Gäste-Foto-Upload ergänzen sich: Die Box liefert Stimmung, der Upload sammelt alles zentral auf eurer Hochzeitswebsite.',
+      });
+    }
+
     const subtotal = rows.reduce((s, r) => s + r.amount, 0);
     const puffer = Math.round((subtotal * 0.08) / 50) * 50;
     rows.push({ category: 'Puffer (8 %)', choice: null, amount: puffer, tip: 'Die wichtigste Zeile: Ohne Reserve wird der letzte Monat teuer und ungemütlich.' });
 
     const total = Math.round((subtotal + puffer) / 100) * 100;
     return { rows: rows.map((r) => ({ ...r, amount: Math.round(r.amount / 50) * 50 })), total };
-  }, [guests, answers]);
+  }, [guests, answers, extras]);
 
   const copyLink = useCallback(() => {
     const url = 'https://www.sarahiver.com/hochzeitsbudget-rechner';
@@ -394,38 +449,89 @@ const BudgetRechner = ({ embed = false }) => {
           </GuestRow>
         </Panel>
 
-        {QUESTIONS.map((q) => (
-          <Panel key={q.id}>
-            <Label>{q.label}</Label>
-            <Chips role="group" aria-label={q.label}>
-              {q.options.map((o) => (
-                <Chip key={o.id} $active={answers[q.id] === o.id} aria-pressed={answers[q.id] === o.id} onClick={() => setAnswer(q.id, o.id)}>
-                  {o.label}
-                  <span>{o.hint}</span>
+        {embed ? (
+          <CompactGrid>
+            {QUESTIONS.map((q) => (
+              <CompactField key={q.id}>
+                <label htmlFor={`bf-${q.id}`}>{q.label}</label>
+                <select id={`bf-${q.id}`} value={answers[q.id]} onChange={(e) => setAnswer(q.id, e.target.value)}>
+                  {q.options.map((o) => (
+                    <option key={o.id} value={o.id}>{o.label}</option>
+                  ))}
+                </select>
+              </CompactField>
+            ))}
+          </CompactGrid>
+        ) : (
+          QUESTIONS.map((q) => (
+            <Panel key={q.id}>
+              <Label>{q.label}</Label>
+              <Chips role="group" aria-label={q.label}>
+                {q.options.map((o) => (
+                  <Chip key={o.id} $active={answers[q.id] === o.id} aria-pressed={answers[q.id] === o.id} onClick={() => setAnswer(q.id, o.id)}>
+                    {o.label}
+                    <span>{o.hint}</span>
+                  </Chip>
+                ))}
+              </Chips>
+            </Panel>
+          ))
+        )}
+
+        {embed ? (
+          <ExtraChecks aria-label="Extras (Mehrfachauswahl)">
+            {EXTRAS.map((e) => (
+              <label key={e.id}>
+                <input type="checkbox" checked={extras.includes(e.id)} onChange={() => toggleExtra(e.id)} />
+                {e.label}
+              </label>
+            ))}
+          </ExtraChecks>
+        ) : (
+          <Panel>
+            <Label>Noch Extras dabei? (Mehrfachauswahl möglich)</Label>
+            <Chips role="group" aria-label="Extras (Mehrfachauswahl)">
+              {EXTRAS.map((e) => (
+                <Chip key={e.id} $active={extras.includes(e.id)} aria-pressed={extras.includes(e.id)} onClick={() => toggleExtra(e.id)}>
+                  {e.label}
+                  <span>{e.hint}</span>
                 </Chip>
               ))}
             </Chips>
           </Panel>
-        ))}
+        )}
 
         <Result aria-live="polite">
           <TotalKicker>Euer Richtwert</TotalKicker>
           <Total>{euro(breakdown.total)}</Total>
           <PerGuest>≈ {euro(breakdown.total / guests)} pro Gast · {guests} Gäste</PerGuest>
+          <Disclaimer>
+            Alle Beträge sind Richtwerte auf Basis von DACH-Erfahrungswerten (Stand 2026).
+            Reale Preise weichen je nach Region, Saison und Anbieter ab – nutzt das Ergebnis
+            als Startpunkt für eure Planung, nicht als Festpreis.
+          </Disclaimer>
 
-          {breakdown.rows.map((r) => {
-            const open = openTip === r.category;
-            return (
-              <Row key={r.category}>
-                <RowName onClick={() => setOpenTip(open ? null : r.category)} aria-expanded={open}>
-                  {r.category} {open ? '▴' : '▾'}
-                  {r.choice && <span>{r.choice}</span>}
-                </RowName>
-                <RowAmount>{euro(r.amount)}</RowAmount>
-                {open && <Tip>{r.tip}</Tip>}
-              </Row>
-            );
-          })}
+          {(() => {
+            const rowList = breakdown.rows.map((r) => {
+              const open = openTip === r.category;
+              return (
+                <Row key={r.category}>
+                  <RowName onClick={() => setOpenTip(open ? null : r.category)} aria-expanded={open}>
+                    {r.category} {open ? '▴' : '▾'}
+                    {r.choice && <span>{r.choice}</span>}
+                  </RowName>
+                  <RowAmount>{euro(r.amount)}</RowAmount>
+                  {open && <Tip>{r.tip}</Tip>}
+                </Row>
+              );
+            });
+            return embed ? (
+              <BreakdownDetails>
+                <summary>Aufschlüsselung anzeigen</summary>
+                {rowList}
+              </BreakdownDetails>
+            ) : rowList;
+          })()}
         </Result>
 
         {!embed && (<>
