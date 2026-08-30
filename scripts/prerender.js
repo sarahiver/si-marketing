@@ -196,6 +196,18 @@ function homeBodyHtml(allPosts) {
     </div>`;
 }
 
+function toolBodyHtml({ h1, text, links }) {
+  return `
+    <div style="${ROOT_STYLE}">
+      <nav aria-label="Breadcrumb"><a href="/">S&amp;I. — Premium Hochzeitswebsites</a></nav>
+      <h1>${escapeHtml(h1)}</h1>
+      <p>${escapeHtml(text)}</p>
+      <ul>
+        ${links.map(([href, label]) => `<li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`).join('\n        ')}
+      </ul>
+    </div>`;
+}
+
 // ============================================
 // HTML GENERATION (head + body)
 // ============================================
@@ -270,6 +282,56 @@ async function main() {
       title: 'Hochzeitswebsite Ratgeber & Tipps | S&I. Blog',
       description: 'Alles rund um Hochzeitswebsites: Tipps, Trends, Checklisten und Inspiration. Der S&I. Ratgeber hilft euch bei der Planung eures großen Tages.',
       bodyHtml: blogIndexBodyHtml(allPosts),
+    },
+    // Kostenlose Tools (Linkable Assets) — mit statischem Inhalt fürs Crawling
+    {
+      path: '/hochzeitsbudget-rechner',
+      title: 'Hochzeitsbudget-Rechner: Was kostet eure Hochzeit wirklich?',
+      description: 'Gästezahl wählen, 8 kurze Fragen beantworten – realistische Kostenschätzung erhalten. Vom DIY-Gartenfest bis zur Premium-Hochzeit. Kostenlos, ohne Anmeldung.',
+      bodyHtml: toolBodyHtml({
+        h1: 'Der Hochzeitsbudget-Rechner',
+        text: 'Beantwortet 8 kurze Fragen zu eurer Feier und erhaltet einen realistischen Kosten-Richtwert – vom selbst organisierten Gartenfest bis zur Premium-Hochzeit. Basierend auf DACH-Erfahrungswerten, Stand 2026. Kostenlos und ohne Anmeldung.',
+        links: [
+          ['/blog/hochzeit-2027-planen-checkliste', 'Hochzeit 2027 planen: Die komplette Checkliste'],
+          ['/blog/hochzeitswebsite-kosten-was-kostet', 'Hochzeitswebsite Kosten: Alle Preismodelle'],
+          ['/hochzeitsdatum-finder', 'Zum Hochzeitsdatum-Finder'],
+        ],
+      }),
+    },
+    {
+      path: '/hochzeitsdatum-finder',
+      title: 'Hochzeitsdatum-Finder 2027 & 2028: Schnapszahlen, Feiertage & Brückentage',
+      description: 'Findet euer perfektes Hochzeitsdatum: Alle Schnapszahl-Termine, langen Wochenenden und Brückentage 2027 & 2028 – kostenlos, für jedes Bundesland, Österreich und die Schweiz.',
+      bodyHtml: toolBodyHtml({
+        h1: 'Der Hochzeitsdatum-Finder',
+        text: 'Alle Schnapszahl-Termine, langen Wochenenden und Brückentage für 2027 und 2028 – für jedes Bundesland, Österreich und die Schweiz. Kostenlos und ohne Anmeldung.',
+        links: [
+          ['/blog/hochzeitsdatum-2027', 'Hochzeitsdatum 2027: Die besten Termine'],
+          ['/blog/hochzeit-unter-der-woche', 'Hochzeit unter der Woche: Warum der Mittwoch boomt'],
+          ['/hochzeitsbudget-rechner', 'Zum Hochzeitsbudget-Rechner'],
+        ],
+      }),
+    },
+    {
+      path: '/brautpaar-quiz',
+      title: 'Brautpaar-Quiz-Generator: Fragen für Polterabend, JGA & Hochzeit',
+      description: 'Erstellt euer persönliches Brautpaar-Quiz in 2 Minuten: 50 Fragen nach Kategorien, eigene Fragen ergänzen, drucken oder im Präsentationsmodus an die Wand werfen. Kostenlos.',
+      bodyHtml: toolBodyHtml({
+        h1: 'Der Brautpaar-Quiz-Generator',
+        text: 'Stellt euer persönliches Brautpaar-Quiz in 2 Minuten zusammen: 50 Fragen nach Kategorien, eigene Fragen ergänzen, drucken oder im Präsentationsmodus zeigen. Kostenlos und ohne Anmeldung.',
+        links: [
+          ['/blog/hochzeitsquiz-fragen-vorlage', 'Hochzeitsquiz: Die 40 besten Fragen für eure Gäste'],
+          ['/blog/uebereinstimmungsspiel-hochzeit-fragen', 'Übereinstimmungsspiel: 35 Fragen & Anleitung'],
+          ['/blog/brautpaar-quiz-polterabend', 'Brautpaar-Quiz: 30 Fragen für den Polterabend'],
+        ],
+      }),
+    },
+    // Embed-Varianten: noindex (laufen nur im iframe auf fremden Seiten)
+    {
+      path: '/embed/hochzeitsbudget-rechner',
+      title: 'Hochzeitsbudget-Rechner (Embed)',
+      description: 'Einbettbare Version des Hochzeitsbudget-Rechners von S&I.',
+      noIndex: true,
     },
     {
       path: '/impressum',

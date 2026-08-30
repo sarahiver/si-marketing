@@ -136,7 +136,7 @@ const muted = '#6F655A';
 
 const Page = styled.main`
   min-height: 100vh; background: ${paper}; color: ${ink};
-  font-family: 'Inter', sans-serif; padding: 0 24px 96px;
+  font-family: 'Inter', sans-serif; padding: ${(p) => (p.$embed ? '20px 16px 16px' : '0 24px 96px')};
 `;
 const Shell = styled.div`max-width: 960px; margin: 0 auto;`;
 const TopBar = styled.div`
@@ -152,7 +152,8 @@ const Kicker = styled.p`
 `;
 const H1 = styled.h1`
   font-family: 'Instrument Serif', Georgia, serif; font-weight: 400;
-  font-size: clamp(40px, 6vw, 68px); line-height: 1.02; margin: 0 0 20px;
+  font-size: ${(p) => (p.$embed ? 'clamp(26px, 5vw, 34px)' : 'clamp(40px, 6vw, 68px)')};
+  line-height: 1.02; margin: ${(p) => (p.$embed ? '4px 0 18px' : '0 0 20px')};
 `;
 const Sub = styled.p`font-size: 17px; line-height: 1.65; color: ${muted}; max-width: 62ch; margin: 0 0 48px;`;
 
@@ -253,6 +254,19 @@ const CopyBtn = styled.button`
   &:focus-visible { outline: 2px solid ${accent}; outline-offset: 2px; }
 `;
 
+const EmbedCode = styled.textarea`
+  width: 100%; margin-top: 16px; padding: 14px; font-family: 'Space Grotesk', monospace;
+  font-size: 12px; line-height: 1.6; color: ${ink}; background: ${paper};
+  border: 1px solid ${line}; resize: vertical; min-height: 96px;
+`;
+
+const EmbedFooter = styled.p`
+  margin: 20px 0 0; padding-top: 14px; border-top: 1px solid ${line};
+  font-size: 12.5px; color: ${muted}; text-align: center;
+  a { color: ${accent}; text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; }
+`;
+
 const CTA = styled.section`
   margin-top: 28px; padding: 40px 28px; background: ${ink}; color: ${paper}; text-align: center;
   h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(26px, 4vw, 34px); margin: 0 0 12px; }
@@ -280,11 +294,16 @@ const DEFAULTS = {
   photo: 'foto', music: 'dj', outfit: 'klassisch', days: 'eintag',
 };
 
-const BudgetRechner = () => {
+const EMBED_SNIPPET = `<iframe src="https://www.sarahiver.com/embed/hochzeitsbudget-rechner" width="100%" height="1400" style="border:0;max-width:960px;" title="Hochzeitsbudget-Rechner" loading="lazy"></iframe>
+<p style="font-size:14px;">Rechner: <a href="https://www.sarahiver.com/hochzeitsbudget-rechner">Hochzeitsbudget-Rechner</a> von <a href="https://www.sarahiver.com/">S&I. – Premium Hochzeitswebsites</a></p>`;
+
+const BudgetRechner = ({ embed = false }) => {
   const [guests, setGuests] = useState(70);
   const [answers, setAnswers] = useState(DEFAULTS);
   const [openTip, setOpenTip] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [embedCopied, setEmbedCopied] = useState(false);
+  const [showEmbed, setShowEmbed] = useState(false);
 
   const setAnswer = (qid, oid) => setAnswers((a) => ({ ...a, [qid]: oid }));
 
@@ -317,6 +336,16 @@ const BudgetRechner = () => {
     }
   }, []);
 
+  const copyEmbed = useCallback(() => {
+    setShowEmbed(true);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(EMBED_SNIPPET).then(() => {
+        setEmbedCopied(true);
+        setTimeout(() => setEmbedCopied(false), 2200);
+      });
+    }
+  }, []);
+
   const schema = {
     '@type': 'WebApplication',
     name: 'Hochzeitsbudget-Rechner',
@@ -327,29 +356,31 @@ const BudgetRechner = () => {
   };
 
   return (
-    <Page>
+    <Page $embed={embed}>
       <ToolFonts />
-      <SEOHead
+      {!embed && <SEOHead
         title="Hochzeitsbudget-Rechner: Was kostet eure Hochzeit wirklich?"
         description="Gästezahl wählen, 8 kurze Fragen beantworten – realistische Kostenschätzung erhalten. Vom DIY-Gartenfest bis zur Premium-Hochzeit. Kostenlos, ohne Anmeldung."
         path="/hochzeitsbudget-rechner"
         type="website"
         schema={schema}
         keywords={['hochzeitsbudget rechner', 'was kostet eine hochzeit', 'hochzeit kosten rechner', 'hochzeitskosten pro gast', 'hochzeit günstig feiern', 'hochzeitsbudget planen']}
-      />
+      />}
       <Shell>
+        {!embed && (
         <TopBar>
           <Brand to="/">S&amp;I.</Brand>
           <Link to="/hochzeitsdatum-finder">Zum Hochzeitsdatum-Finder →</Link>
         </TopBar>
+        )}
 
-        <Kicker>Kostenloses Tool von S&amp;I.</Kicker>
-        <H1>Der Hochzeitsbudget-Rechner</H1>
-        <Sub>
+        {!embed && <Kicker>Kostenloses Tool von S&amp;I.</Kicker>}
+        <H1 $embed={embed}>Der Hochzeitsbudget-Rechner</H1>
+        {!embed && <Sub>
           Keine Hochzeit ist wie die andere – euer Budget auch nicht. Beantwortet 8 kurze Fragen
           zu eurer Feier, und wir rechnen euch einen realistischen Richtwert aus: vom selbst
           organisierten Gartenfest bis zur Premium-Hochzeit im Schloss.
-        </Sub>
+        </Sub>}
 
         <Panel>
           <Label as="label" htmlFor="guests">Wie viele Gäste feiern mit?</Label>
@@ -397,6 +428,7 @@ const BudgetRechner = () => {
           })}
         </Result>
 
+        {!embed && (<>
         <Explain>
           <summary>Woher kommen diese Zahlen?</summary>
           <div>
@@ -424,10 +456,21 @@ const BudgetRechner = () => {
 
         <ShareBox>
           <p>
-            <strong>Ihr schreibt über Hochzeitsplanung?</strong> Dieser Rechner darf gerne verlinkt
-            oder Paaren empfohlen werden – dauerhaft kostenlos, ohne Anmeldung.
+            <strong>Ihr schreibt über Hochzeitsplanung?</strong> Dieser Rechner darf gerne verlinkt,
+            empfohlen – oder direkt auf eurer Seite eingebettet werden. Dauerhaft kostenlos, ohne Anmeldung.
           </p>
-          <CopyBtn onClick={copyLink}>{copied ? '✓ Link kopiert' : 'Link zum Tool kopieren'}</CopyBtn>
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <CopyBtn onClick={copyLink}>{copied ? '✓ Link kopiert' : 'Link zum Tool kopieren'}</CopyBtn>
+            <CopyBtn onClick={copyEmbed}>{embedCopied ? '✓ Code kopiert' : 'Auf eurer Seite einbinden'}</CopyBtn>
+          </div>
+          {showEmbed && (
+            <EmbedCode
+              readOnly
+              value={EMBED_SNIPPET}
+              aria-label="HTML-Code zum Einbetten des Rechners"
+              onFocus={(e) => e.target.select()}
+            />
+          )}
         </ShareBox>
 
         <CTA>
@@ -445,6 +488,17 @@ const BudgetRechner = () => {
           <Link to="/blog/hochzeitswebsite-kosten-was-kostet">Hochzeitswebsite Kosten: Alle Preismodelle im Vergleich</Link><br />
           <Link to="/blog/hochzeitsdatum-2027">Hochzeitsdatum 2027: Die besten Termine</Link>
         </Related>
+        </>)}
+
+        {embed && (
+          <EmbedFooter>
+            Rechner von{' '}
+            <a href="https://www.sarahiver.com/hochzeitsbudget-rechner" target="_blank" rel="noopener noreferrer">
+              S&amp;I. – Premium Hochzeitswebsites
+            </a>{' '}
+            · Erfahrungswerte DACH, Stand 2026
+          </EmbedFooter>
+        )}
       </Shell>
     </Page>
   );

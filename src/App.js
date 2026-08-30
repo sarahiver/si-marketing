@@ -389,6 +389,11 @@ function App() {
                   <BudgetRechner />
                 </Suspense>
               } />
+              <Route path="/embed/hochzeitsbudget-rechner" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
+                  <BudgetRechner embed />
+                </Suspense>
+              } />
               <Route path="/brautpaar-quiz" element={
                 <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
                   <QuizGenerator />
