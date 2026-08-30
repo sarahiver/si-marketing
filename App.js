@@ -1,373 +1,486 @@
-// src/components/marketing/DemoFilmstrip.js
-// PRODUKTIVE Theme-Sektion (#themes) — Gewinner des Varianten-Vergleichs (Jul 2026).
-// Desktop: endlos laufender Filmstreifen mit Browser-Frames; Hover stoppt den
-//   Streifen und scrollt die Demo-Seite im Frame durch.
-// Mobile: natives Scroll-Snap-Carousel (kein Auto-Movement), Karten zeigen
-//   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
-import React, { useState, useEffect, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, phoneCardUrl, trackDemoClick } from './demoData';
+// src/App.js
+// S&I Wedding Marketing - Hauptseite für siwedding.de
+import React, { useEffect, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
+import ErrorBoundary from './components/shared/ErrorBoundary';
 
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
-  );
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const onChange = (e) => setIsMobile(e.matches);
-    mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
-    return () => {
-      mq.removeEventListener ? mq.removeEventListener('change', onChange) : mq.removeListener(onChange);
-    };
-  }, []);
-  return isMobile;
-};
+// ============================================
+// MARKETING COMPONENTS
+// ============================================
+import MarketingNav from './components/marketing/MarketingNav';
+import MarketingHero from './components/marketing/MarketingHero';
+import MarketingFooter from './components/marketing/MarketingFooter';
+import PricingSection from './components/marketing/PricingSection';
+import ThemeShowcase from './components/marketing/ThemeShowcase';
+import ComponentsShowcase from './components/marketing/ComponentsShowcase';
+import ContactSection from './components/marketing/ContactSection';
+import HowItWorksSection from './components/marketing/HowItWorksSection';
+import AboutSection from './components/marketing/AboutSection';
+import WhyUsSection from './components/marketing/WhyUsSection';
+import USPSection from './components/marketing/USPSection';
+import CooperationSection from './components/marketing/CooperationSection';
+import PromoBanner from './components/marketing/PromoBanner';
+import BotanicalLeaves from './components/marketing/BotanicalLeaves';
+import AnimatedSection from './components/marketing/AnimatedSection';
+import StickyDemoBar from './components/marketing/StickyDemoBar';
+import FoundersIntro from './components/marketing/FoundersIntro';
+import CTABand from './components/marketing/CTABand';
+import FAQSection from './components/marketing/FAQSection';
 
-const marquee = keyframes`
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-`;
+// Modern Theme
+import ModernOverride from './components/marketing/ModernOverride';
 
-const Section = styled.section`
-  padding: clamp(5rem, 12vh, 8rem) 0;
-  background: #FDFCFA;
-  overflow: hidden;
-`;
+// ============================================
+// SHARED / STANDALONE PAGES
+// ============================================
+import CookieConsent from './components/shared/CookieConsent';
+import { ABTestProvider } from './context/ABTestContext';
+import useScrollDepth from './hooks/useScrollDepth';
+import SEOHead from './components/shared/SEOHead';
 
-const Header = styled.div`
-  max-width: 1200px;
-  margin: 0 auto 3rem;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-  text-align: center;
-`;
+// ============================================
+// LAZY IMPORTS (must come after all regular imports)
+// Blog & Legal Pages werden nur auf eigenen Routes gebraucht
+// → Code-Splitting reduziert das Initial-Bundle der Homepage
+// ============================================
+const ModernParallaxPage = React.lazy(() => import('./components/marketing/ModernParallaxPage'));
+const BlogPage = React.lazy(() => import('./components/blog/BlogPage'));
+const BlogArticle = React.lazy(() => import('./components/blog/BlogArticle'));
+const ImpressumPage = React.lazy(() => import('./components/shared/ImpressumPage'));
+const DatenschutzPage = React.lazy(() => import('./components/shared/DatenschutzPage'));
+const HochzeitsdatumFinder = React.lazy(() => import('./components/tools/HochzeitsdatumFinder'));
+const BudgetRechner = React.lazy(() => import('./components/tools/BudgetRechner'));
+const QuizGenerator = React.lazy(() => import('./components/tools/QuizGenerator'));
 
-const Eyebrow = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #999;
-  margin-bottom: 1rem;
-`;
+// ============================================
+// GOOGLE FONTS - Alle Fonts für alle Themes (werden in Theme-Previews gebraucht)
+// ============================================
+// GOOGLE FONTS
+// Fonts werden jetzt via public/index.html geladen
+// (Critical Fonts blockierend, Theme-Fonts async)
+// → siehe index.html für Details
+// ============================================
 
-const Title = styled.h2`
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  color: #1A1A1A;
-  line-height: 1.15;
-
-  em {
-    font-style: italic;
+// ============================================
+// GLOBAL STYLES
+// ============================================
+const GlobalStyles = createGlobalStyle`
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
-`;
-
-const Sub = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 300;
-  color: #555;
-  margin-top: 1rem;
-`;
-
-const Frame = styled.div`
-  background: #FFFFFF;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-`;
-
-const FrameBar = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 9px 12px;
-  background: #F5F2EE;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-
-  span {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.12);
+  
+  html {
+    scroll-behavior: smooth;
   }
-`;
-
-const FrameUrl = styled.div`
-  flex: 1;
-  margin-left: 8px;
-  background: #FFFFFF;
-  border-radius: 5px;
-  padding: 3px 10px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.05em;
-  color: #999;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const FrameScreen = styled.div`
-  position: relative;
-  aspect-ratio: 4/3;
-  background-image: url(${p => p.$src});
-  background-size: ${p => (p.$static ? 'cover' : p.$horizontal ? 'auto 100%' : '100% auto')};
-  background-position: ${p => (p.$static ? 'center' : p.$horizontal ? 'left center' : 'top center')};
-  background-repeat: no-repeat;
-  background-color: #F5F2EE;
-  transition: background-position 16s cubic-bezier(0.25, 0.1, 0.25, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1.4rem;
-  color: rgba(26, 26, 26, 0.3);
-`;
-
-const PreviewVideo = styled.video`
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-// ── Mobile: Handy-Frame statt Browser-Fenster ──
-const Phone = styled.div`
-  background: #1a1a1a;
-  border-radius: 34px;
-  padding: 10px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
-`;
-
-const PhoneScreen = styled.div`
-  position: relative;
-  aspect-ratio: 9 / 19;
-  border-radius: 26px;
-  overflow: hidden;
-  background-image: url(${p => p.$src});
-  background-size: cover;
-  background-position: top center;
-  background-color: #F5F2EE;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1.2rem;
-  color: rgba(26, 26, 26, 0.3);
-`;
-
-const PhoneNotch = styled.div`
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 34%;
-  height: 14px;
-  background: #1a1a1a;
-  border-radius: 99px;
-  z-index: 2;
-`;
-
-const Track = styled.div`
-  display: flex;
-  gap: clamp(1.2rem, 2.5vw, 2rem);
-  width: max-content;
-  animation: ${marquee} 55s linear infinite;
-  padding: 1.5rem 0 2.5rem;
-
-  &:hover {
-    animation-play-state: paused;
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    background: #FFFFFF;
+  }
+  
+  ::selection {
+    background: #C41E3A;
+    color: #FFFFFF;
+  }
+  
+  /* Scroll margin for anchor links */
+  [id] {
+    scroll-margin-top: 100px;
   }
 
+  /* Mobile: Reduce section padding to minimize scrolling */
+  @media (max-width: 768px) {
+    section {
+      padding-top: clamp(2.5rem, 6vh, 4rem) !important;
+      padding-bottom: clamp(2.5rem, 6vh, 4rem) !important;
+    }
+  }
+
+  /* iOS-Zoom verhindern: Felder < 16px lassen Safari beim Fokus reinzoomen.
+     Betrifft v.a. die Tool-Seiten (Quiz, Datum-Finder) mit 14–15px Inputs.
+     !important schlägt die element-spezifischen styled-components-Klassen. */
+  @media (max-width: 768px) {
+    input:not([type='checkbox']):not([type='radio']):not([type='range']),
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+
+  /* Backstop gegen horizontales Auslaufen (zusätzlich zu body overflow-x) */
+  html {
+    overflow-x: hidden;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  svg {
+    max-width: 100%;
+  }
+
+  /* Nutzer mit "Bewegung reduzieren" (OS-Einstellung): Animationen entschärfen.
+     Ändert NICHT das Standardverhalten – nur für Leute, die es aktiv wünschen. */
   @media (prefers-reduced-motion: reduce) {
-    animation: none;
-    overflow-x: auto;
-    max-width: 100vw;
-  }
-`;
-
-const SwipeTrack = styled.div`
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  padding: 1.5rem clamp(1.5rem, 6vw, 2.5rem) 2rem;
-  scroll-padding-left: clamp(1.5rem, 6vw, 2.5rem);
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const Card = styled.a`
-  display: block;
-  text-decoration: none;
-  width: clamp(240px, 26vw, 340px);
-  flex-shrink: 0;
-  transition: transform 0.35s ease;
-
-  &:hover {
-    transform: translateY(-8px) scale(1.02);
-  }
-
-  &:hover ${FrameScreen} {
-    background-position: ${p => (p.$static ? 'center' : p.$horizontal ? 'right center' : 'bottom center')};
-  }
-`;
-
-const SwipeCard = styled(Card)`
-  width: 62vw;
-  max-width: 260px;
-  scroll-snap-align: start;
-
-  &:hover {
-    transform: none;
-  }
-`;
-
-const CardMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0.7rem 0.2rem 0;
-`;
-
-const CardName = styled.span`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
-  color: #1A1A1A;
-`;
-
-const CardTag = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #999;
-`;
-
-const Footer = styled.div`
-  text-align: center;
-  margin-top: 1.5rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #999;
-`;
-
-// Einzelkarte — hält den Video-Ref, damit die Preview erst bei Hover abspielt
-const DemoCard = ({ demo, isMobile, CardComp }) => {
-  const videoRef = useRef(null);
-  const videoSrc = !isMobile && THEME_VIDEO_PREVIEWS[demo.id];
-
-  const handleEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
-  };
-  const handleLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
+  }
+`;
+
+// ============================================
+// MARKETING PAGE
+// ============================================
+function MarketingPage() {
+  const { currentTheme, isLoading } = useTheme();
+  
+  // Scroll-Tiefe für A/B-Test tracken
+  useScrollDepth();
+  
+  useEffect(() => {
+    document.title = 'S&I. wedding — Premium Hochzeitswebsites';
+  }, []);
+
+  const isModern = currentTheme === 'modern';
+
+  const productSchema = {
+    '@type': 'Product',
+    name: 'Premium Hochzeitswebsite von S&I.',
+    description: 'Individuelle Hochzeitswebsite mit eigenem Design, eigener Domain, digitalem RSVP, Foto-Upload und Gästeverwaltung. Einzigartige Themes.',
+    brand: { '@type': 'Brand', name: 'S&I.' },
+    url: 'https://www.sarahiver.com',
+    image: 'https://res.cloudinary.com/si-weddings/image/upload/v1770798416/si_og_image_nx5blq.png',
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'Starter Paket',
+        price: '1290',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        availability: 'https://schema.org/InStock',
+        url: 'https://www.sarahiver.com/#preise',
+        seller: { '@type': 'Organization', name: 'S&I.' },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'DE',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          merchantReturnDays: 0,
+        },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+          },
+        },
+      },
+      {
+        '@type': 'Offer',
+        name: 'Standard Paket',
+        price: '1590',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        availability: 'https://schema.org/InStock',
+        url: 'https://www.sarahiver.com/#preise',
+        seller: { '@type': 'Organization', name: 'S&I.' },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'DE',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          merchantReturnDays: 0,
+        },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+          },
+        },
+      },
+      {
+        '@type': 'Offer',
+        name: 'Premium Paket',
+        price: '1990',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        availability: 'https://schema.org/InStock',
+        url: 'https://www.sarahiver.com/#preise',
+        seller: { '@type': 'Organization', name: 'S&I.' },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'DE',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          merchantReturnDays: 0,
+        },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+          },
+        },
+      },
+    ],
   };
 
   return (
-    <CardComp
-      href={demo.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      $static={isMobile}
-      $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
-      onMouseEnter={videoSrc ? handleEnter : undefined}
-      onMouseLeave={videoSrc ? handleLeave : undefined}
-      onClick={() => trackDemoClick(demo.id, demo.url, isMobile ? 'filmstrip_mobile' : 'filmstrip')}
-      aria-label={`${demo.name} Live-Demo ansehen`}
-    >
-      {isMobile ? (
-        <Phone>
-          <PhoneNotch />
-          <PhoneScreen $src={phoneCardUrl(demo.id)}>
-            {!phoneCardUrl(demo.id) && demo.name}
-          </PhoneScreen>
-        </Phone>
+    <AppWrapper>
+      <SEOHead
+        title="S&I. — Premium Hochzeitswebsites ab 1.290 €"
+        description="Individuelle Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 1.290 €. Aus Hamburg."
+        path="/"
+        schema={productSchema}
+        keywords={['Hochzeitswebsite', 'Hochzeitswebsite erstellen', 'Wedding Website', 'digitale Hochzeitseinladung', 'RSVP Hochzeit', 'Premium Hochzeitswebsite', 'Hochzeitswebsite Hamburg']}
+      />
+      <LoadingOverlay $show={isLoading} $theme={currentTheme}>
+        <LoadingLogo>S&I.</LoadingLogo>
+        <LoadingText>Laden...</LoadingText>
+      </LoadingOverlay>
+      
+      <BotanicalLeaves />
+      <MarketingNav />
+
+      {isModern ? (
+        <Suspense fallback={<div style={{ height: '100vh', background: '#fff' }} />}>
+          <ModernParallaxPage />
+        </Suspense>
       ) : (
-        <Frame>
-          <FrameBar>
-            <span /><span /><span />
-            <FrameUrl>siwedding.de/{demo.id}</FrameUrl>
-          </FrameBar>
-          <FrameScreen
-            $src={videoSrc ? undefined : THEME_SCREENSHOTS[demo.id]}
-            $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
-          >
-            {videoSrc && (
-              <PreviewVideo
-                ref={videoRef}
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                src={videoSrc}
-              />
-            )}
-            {!(videoSrc || THEME_SCREENSHOTS[demo.id]) && demo.name}
-          </FrameScreen>
-        </Frame>
+        <>
+          <MarketingHero />
+          <AnimatedSection>
+            <ThemeShowcase />
+          </AnimatedSection>
+          <AnimatedSection delay={50}>
+            <FoundersIntro />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <USPSection />
+          </AnimatedSection>
+          <CTABand />
+          {/* ExamplesShowcase - wird später mit echten Kunden-URLs eingebunden */}
+          <AnimatedSection delay={100}>
+            <HowItWorksSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <ComponentsShowcase />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <PromoBanner />
+            <PricingSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <AboutSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <WhyUsSection />
+          </AnimatedSection>
+          <AnimatedSection delay={50}>
+            <FAQSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <ContactSection />
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <CooperationSection />
+          </AnimatedSection>
+          <MarketingFooter />
+          <StickyDemoBar />
+        </>
       )}
-      <CardMeta>
-        <CardName>{demo.name}</CardName>
-        <CardTag>Demo →</CardTag>
-      </CardMeta>
-    </CardComp>
+    </AppWrapper>
   );
-};
+}
 
-const DemoFilmstrip = () => {
-  const isMobile = useIsMobile();
-  const demos = isMobile ? ALL_DEMOS : [...ALL_DEMOS, ...ALL_DEMOS];
-  const TrackComp = isMobile ? SwipeTrack : Track;
-  const CardComp = isMobile ? SwipeCard : Card;
-
+// ============================================
+// MAIN APP WITH THEME PROVIDER
+// ============================================
+function MainApp() {
+  // Fonts werden statisch in index.html geladen (kein JS-Overhead)
   return (
-    <Section id="themes" aria-label="Theme-Demos">
-      <Header>
-        <Eyebrow>8 Designs · Echte Beispiele, live klickbar</Eyebrow>
-        <Title>
-          Echte Hochzeitswebsites.<br /><em>Keine Mockups.</em>
-        </Title>
-        <Sub>
-          {isMobile
-            ? 'Jede Karte ist eine vollständige Demo mit RSVP, Gästebereich und Foto-Upload. Wischt euch durch und tippt euch rein.'
-            : 'Jede Karte ist eine vollständige Demo mit RSVP, Gästebereich und Foto-Upload. Anhalten mit dem Mauszeiger, klicken zum Erkunden.'}
-        </Sub>
-      </Header>
-      <TrackComp>
-        {demos.map((demo, i) => (
-          <DemoCard
-            key={`${demo.id}-${i}`}
-            demo={demo}
-            isMobile={isMobile}
-            CardComp={CardComp}
-          />
-        ))}
-      </TrackComp>
-      <Footer>
-        {isMobile
-          ? 'Wischen zum Entdecken · Tippen = Live-Demo'
-          : 'Hover = Seite scrollt durch · Klick = Live-Demo'}
-      </Footer>
-    </Section>
+    <MarketingPage />
   );
-};
+}
 
-export default DemoFilmstrip;
+// ============================================
+// HASH-SCROLL-HANDLER
+// Scrollt zuverlässig zu #hash-Zielen — auch wenn die Sektion erst nach dem
+// React-Render existiert (SPA-Problem: der Browser-Anchor-Jump kommt zu früh).
+// Deckt ab: Blog-CTAs (/#contact), Tool-CTAs, Demo-Overlay
+// (siwedding.de → sarahiver.com/#contact) und externe Deep-Links.
+// ============================================
+function ScrollToHashHandler() {
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace('#', '');
+    let attempts = 0;
+    let cancelled = false;
+    const tryScroll = () => {
+      if (cancelled) return;
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else if (attempts < 50) { // bis ~5s warten (lazy Sections)
+        attempts += 1;
+        setTimeout(tryScroll, 100);
+      }
+    };
+    setTimeout(tryScroll, 150); // React Zeit zum Rendern geben
+    return () => { cancelled = true; };
+  }, [location.pathname, location.hash]);
+  return null;
+}
+
+// ============================================
+// APP WITH ROUTER
+// ============================================
+function App() {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider>
+        <ABTestProvider>
+          <Router>
+            <GlobalStyles />
+            <ScrollToHashHandler />
+            <Routes>
+              {/* Main Marketing Page */}
+              <Route path="/" element={<MainApp />} />
+
+              {/* Lazy-loaded Routes (Code-Splitting für besseren Initial-Bundle) */}
+              <Route path="/blog" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <BlogPage />
+                </Suspense>
+              } />
+              <Route path="/blog/:slug" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <BlogArticle />
+                </Suspense>
+              } />
+
+              {/* Kostenlose Tools (Linkable Assets) */}
+              <Route path="/hochzeitsdatum-finder" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FFFFFF' }} />}>
+                  <HochzeitsdatumFinder />
+                </Suspense>
+              } />
+              <Route path="/hochzeitsbudget-rechner" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FFFFFF' }} />}>
+                  <BudgetRechner />
+                </Suspense>
+              } />
+              <Route path="/embed/hochzeitsbudget-rechner" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FFFFFF' }} />}>
+                  <BudgetRechner embed />
+                </Suspense>
+              } />
+              <Route path="/embed/hochzeitsdatum-finder" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FFFFFF' }} />}>
+                  <HochzeitsdatumFinder embed />
+                </Suspense>
+              } />
+              <Route path="/embed/brautpaar-quiz" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FFFFFF' }} />}>
+                  <QuizGenerator embed />
+                </Suspense>
+              } />
+              <Route path="/brautpaar-quiz" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FFFFFF' }} />}>
+                  <QuizGenerator />
+                </Suspense>
+              } />
+
+              {/* Legal Pages */}
+              <Route path="/impressum" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <ImpressumPage />
+                </Suspense>
+              } />
+              <Route path="/datenschutz" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <DatenschutzPage />
+                </Suspense>
+              } />
+
+              {/* Fallback - redirect to home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+              {/* DSGVO Cookie Banner */}
+              <CookieConsent />
+            </Router>
+          </ABTestProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
+  );
+}
+
+export default App;
+
+// ============================================
+// STYLED COMPONENTS
+// ============================================
+const AppWrapper = styled.div`
+  min-height: 100vh;
+`;
+
+const pulse = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+`;
+
+const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: ${p => p.$show ? 1 : 0};
+  visibility: ${p => p.$show ? 'visible' : 'hidden'};
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  background: ${p => p.$theme === 'neon' ? '#0a0a0f' : '#FFFFFF'};
+`;
+
+const LoadingLogo = styled.div`
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  background: #000000;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  margin-bottom: 30px;
+  animation: ${pulse} 1.5s ease-in-out infinite;
+`;
+
+const LoadingText = styled.p`
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: rgba(0,0,0,0.5);
+  font-family: 'Inter', sans-serif;
+  animation: ${pulse} 1.5s ease-in-out infinite;
+`;
