@@ -3205,7 +3205,7 @@ Ein gutes Brautpaar-Quiz ist eines der zuverlässigsten Stimmungs-Highlights fü
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
-**Weiterlesen:** Noch mehr Spielideen: [9 Ideen, wie ihr eure Gäste in die Hochzeit einbindet](/blog/hochzeit-gaeste-einbinden-ideen).
+**Weiterlesen:** Noch mehr Spielideen: das [Hochzeitsquiz mit 40 Fragen für eure Gäste](/blog/hochzeitsquiz-fragen-vorlage), das [Übereinstimmungsspiel mit 35 Fragen](/blog/uebereinstimmungsspiel-hochzeit-fragen) und [9 Ideen, wie ihr eure Gäste in die Hochzeit einbindet](/blog/hochzeit-gaeste-einbinden-ideen).
 `,
   },
 
@@ -4273,6 +4273,287 @@ Ehrlichkeit gehört dazu: Wenn eure Gästeliste zur Hälfte aus Anreisenden mit 
 Eine Werktags-Hochzeit 2027 bedeutet: mehr Budget, freie Traumtermine, entspannte Dienstleister. Der Preis dafür ist Kommunikationsarbeit – und die ist mit Save the Date, RSVP-Erinnerung und einer Website, die jede Anreise-Frage beantwortet, ein gelöstes Problem. Der 07.07.2027 ist übrigens, Stand heute, vielerorts noch zu haben. Der 17.07. (Samstag) nicht mehr lange.
     `,
   },
+  {
+    slug: 'hochzeitsquiz-fragen-vorlage',
+    title: 'Hochzeitsquiz: Die 40 besten Fragen für eure Gäste (+ Vorlage)',
+    seoTitle: 'Hochzeitsquiz: 40 Fragen für eure Gäste',
+    description: 'Das perfekte Hochzeitsquiz: 40 fertige Fragen über das Brautpaar, Tipps für den Ablauf und eine kostenlose Vorlage. So wird euer Quiz zum Highlight der Feier.',
+    date: '2026-08-29',
+    category: 'Inspiration',
+    tags: ['Inspiration', 'Ratgeber'],
+    readTime: '8 min',
+    keywords: ['hochzeitsquiz', 'hochzeitsquiz fragen', 'hochzeitsquiz vorlage', 'hochzeitsquiz für gäste', 'quiz hochzeit', 'hochzeitsquiz vorlage kostenlos', 'fragen über das brautpaar'],
+    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80',
+    imageAlt: 'Hochzeitsgäste lachen gemeinsam beim Hochzeitsquiz an festlich gedeckten Tischen',
+    schema: {
+      "@type": "Article",
+      "headline": "Hochzeitsquiz: Die 40 besten Fragen für eure Gäste (+ Vorlage)",
+      "description": "40 fertige Fragen für das Hochzeitsquiz, Tipps für den Ablauf und eine kostenlose Vorlage.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-08-29",
+    },
+    content: `
+## Warum ein Hochzeitsquiz auf keiner Feier fehlen sollte
+
+Zwischen Dinner und Tanzfläche gibt es diesen einen Moment, in dem die Stimmung kippen kann – in gähnende Leere oder in den besten Teil des Abends. Ein gut gemachtes Hochzeitsquiz sorgt zuverlässig für Letzteres: Es bringt Tischnachbarn ins Gespräch, die sich vorher nicht kannten, produziert Lacher auf Kosten des Brautpaars (die liebevolle Sorte) und liefert Geschichten, über die noch beim Frühstück am nächsten Morgen geredet wird.
+
+Das Beste: Ein Hochzeitsquiz kostet fast nichts, braucht wenig Vorbereitung – und mit den 40 fertigen Fragen aus diesem Artikel steht euer Quiz in einer halben Stunde.
+
+## Für wen ist welches Quiz-Format?
+
+**Das klassische Gäste-Quiz:** Die Gäste beantworten Fragen über das Brautpaar – wer die meisten richtig hat, gewinnt. Funktioniert ab 20 Gästen, auf Papier, per Moderationskarte oder digital.
+
+**Das Brautpaar-Quiz (Schätzspiel):** Braut und Bräutigam beantworten getrennt Fragen über sich – die Gäste schätzen, wie die Antworten ausfallen. Mehr dazu in unserem [Brautpaar-Quiz für den Polterabend](/blog/brautpaar-quiz-polterabend).
+
+**Das Tisch-Quiz:** Jeder Tisch löst gemeinsam einen Fragebogen. Ideal als Eisbrecher während des Dinners, weil es die Tische als Teams zusammenschweißt.
+
+![Gäste stoßen bei einer Hochzeitsfeier an einer langen Tafel an](https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80)
+
+## Die 40 besten Hochzeitsquiz-Fragen
+
+### Kennenlernen & Anfänge (10 Fragen)
+
+- Wo haben sich die beiden zum ersten Mal gesehen?
+- Wer hat den ersten Schritt gemacht?
+- Wie lange dauerte es vom ersten Date bis zur offiziellen Beziehung?
+- Was war das erste gemeinsame Essen?
+- Wer hat zuerst \\"Ich liebe dich\\" gesagt?
+- Wie hat der Antrag stattgefunden – und wer wusste vorher davon?
+- Was war das erste gemeinsame Urlaubsziel?
+- Welchen ersten Eindruck hatte die Braut vom Bräutigam – und umgekehrt?
+- Wer hat wen den Eltern zuerst vorgestellt?
+- Was war das erste gemeinsame Möbelstück?
+
+### Alltag & Gewohnheiten (10 Fragen)
+
+- Wer steht morgens zuerst auf?
+- Wer kocht besser – und wer kocht öfter?
+- Wer gibt mehr Geld für Unsinn aus?
+- Wer hat die Fernbedienung fest im Griff?
+- Wer braucht länger im Bad?
+- Wer vergisst ständig, wo die Schlüssel liegen?
+- Wer gewinnt beim Diskutieren – und wer gibt schneller nach?
+- Wer ist der bessere Beifahrer?
+- Wer räumt die Spülmaschine \\"richtig\\" ein?
+- Wer schnarcht (und streitet es ab)?
+
+### Lustige Entscheidungsfragen (10 Fragen)
+
+- Wer von beiden würde eher bei einer Quizshow mitmachen?
+- Wer würde im Zombie-Film zuerst erwischt werden?
+- Wer verläuft sich eher – trotz Navi?
+- Wer weint eher bei Filmen?
+- Wer würde eher spontan auswandern?
+- Wer tanzt zuerst auf dem Tisch?
+- Wer kann besser mit Geld umgehen?
+- Wer ist schuld, wenn beide zu spät kommen?
+- Wer googelt die eigenen Symptome häufiger?
+- Wer würde eher ein Haustier ohne Absprache anschaffen?
+
+### Für die, die das Paar wirklich kennen (10 Fragen)
+
+- Wie heißt das Lieblingslied der beiden – das \\"unser Lied\\"?
+- Welches Gericht gab es beim ersten selbstgekochten Dinner?
+- Was ist der Spitzname, den nur die beiden benutzen?
+- Welche Serie haben die beiden komplett zusammen durchgeschaut?
+- Wo fand der erste Kuss statt?
+- Was sammelt einer von beiden (und der andere versteht es nicht)?
+- Welches Land steht ganz oben auf der gemeinsamen Reiseliste?
+- Was war das größte gemeinsame Missgeschick?
+- Worüber können beide ohne Ende lachen?
+- Was schätzen die beiden am meisten aneinander?
+
+## So läuft euer Hochzeitsquiz reibungslos ab
+
+**Timing:** Der beste Moment ist nach dem Hauptgang, wenn alle satt und entspannt sind – aber bevor die Tanzfläche öffnet. Plant 20 bis 30 Minuten ein; länger sollte kein Quiz dauern.
+
+**Moderation:** Gebt das Quiz an Trauzeugen oder einen extrovertierten Freund ab. Das Brautpaar sollte mitspielen (oder geschätzt werden), nicht moderieren.
+
+**Preise:** Kleine, humorvolle Preise funktionieren besser als teure – eine Flasche Sekt, ein \\"Experten-Diplom\\", das letzte Stück Hochzeitstorte.
+
+**Antworten einsammeln:** Klassisch auf Papier – oder digital über eure Hochzeitswebsite. Bei S&I. könnt ihr das Quiz direkt auf eurer Website einbinden: Gäste antworten am Handy, die Auswertung läuft automatisch, und ihr seht die Ergebnisse live. Kein Zettelchaos, keine Auszählpause.
+
+## Hochzeitsquiz-Vorlage: In 3 Schritten fertig
+
+- **Schritt 1:** Wählt 15 bis 20 Fragen aus den Listen oben – mischt Kategorien, damit für jeden Gast etwas dabei ist.
+- **Schritt 2:** Passt 3 bis 5 Fragen persönlich an: Insider, gemeinsame Erlebnisse, kleine Anekdoten. Das sind die Fragen, über die am meisten gelacht wird.
+- **Schritt 3:** Entscheidet euch für ein Format (Papier, Moderation oder digital) und legt fest, wer moderiert.
+
+Ein Tipp aus Erfahrung: Weniger ist mehr. 15 gute Fragen schlagen 40 mittelmäßige – die restlichen hebt ihr euch für den [Polterabend](/blog/brautpaar-quiz-polterabend) auf.
+
+**Weiterlesen:** Noch mehr Ideen, um eure Feier interaktiv zu machen: [9 Wege, eure Gäste aktiv einzubinden](/blog/hochzeit-gaeste-einbinden-ideen), [Musikwünsche über eure Website sammeln](/blog/hochzeitswebsite-musikwuensche-playlist) und das [digitale Gästebuch](/blog/hochzeitswebsite-gaestebuch-digital).
+`,
+  },
+  {
+    slug: 'uebereinstimmungsspiel-hochzeit-fragen',
+    title: 'Übereinstimmungsspiel zur Hochzeit: 35 Fragen & Anleitung (PDF)',
+    seoTitle: 'Übereinstimmungsspiel Hochzeit: 35 Fragen',
+    description: 'Das Übereinstimmungsspiel ist der Hochzeits-Klassiker: Braut und Bräutigam antworten mit Schildern, die Gäste raten mit. 35 fertige Fragen plus Ablauf-Anleitung.',
+    date: '2026-08-30',
+    category: 'Inspiration',
+    tags: ['Inspiration', 'Ratgeber'],
+    readTime: '7 min',
+    keywords: ['übereinstimmungsspiel hochzeit', 'übereinstimmungsspiel hochzeit fragen pdf', 'gäste gemeinsamkeiten spiel fragen', 'schuhspiel hochzeit', 'er sie spiel hochzeit fragen', 'hochzeitsspiel fragen'],
+    image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80',
+    imageAlt: 'Brautpaar sitzt Rücken an Rücken beim Übereinstimmungsspiel auf der Hochzeitsfeier',
+    schema: {
+      "@type": "Article",
+      "headline": "Übereinstimmungsspiel zur Hochzeit: 35 Fragen & Anleitung (PDF)",
+      "description": "35 fertige Fragen für das Übereinstimmungsspiel (Schuhspiel) zur Hochzeit plus Anleitung für den Ablauf.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-08-30",
+    },
+    content: `
+## Das Spiel, das auf fast jeder Hochzeit funktioniert
+
+Braut und Bräutigam sitzen Rücken an Rücken, jeder hält zwei Schilder – eines mit dem eigenen Namen, eines mit dem des Partners. Der Moderator stellt Fragen wie \\"Wer hat den ersten Schritt gemacht?\\", und beide heben gleichzeitig das Schild mit ihrer Antwort. Stimmen die Antworten überein, jubelt der Saal. Widersprechen sie sich, jubelt der Saal noch lauter.
+
+Das Übereinstimmungsspiel – auch als Schuhspiel bekannt, wenn statt Schildern die eigenen Schuhe und die des Partners hochgehalten werden – ist so beliebt, weil es keinerlei Vorbereitung vom Brautpaar verlangt, in 15 Minuten durch ist und garantiert Lacher produziert. Alles steht und fällt aber mit den Fragen.
+
+## So funktioniert das Übereinstimmungsspiel
+
+- **Aufbau:** Zwei Stühle Rücken an Rücken in der Mitte des Raums, gut sichtbar für alle Gäste.
+- **Requisiten:** Pro Person zwei Schilder (\\"Ich\\" / \\"Partner\\") – oder die Schuh-Variante: je ein eigener Schuh und einer des Partners.
+- **Moderation:** Trauzeugin oder Trauzeuge stellt die Fragen, langsam und mit Pausen für die Reaktionen.
+- **Dauer:** 15 bis 25 Fragen, maximal 20 Minuten. Aufhören, solange es am lustigsten ist.
+- **Extra:** Die Gäste raten vor jeder Frage mit – wer am Ende die meisten Übereinstimmungen richtig vorhergesagt hat, gewinnt einen kleinen Preis.
+
+![Hochzeitsgesellschaft applaudiert dem Brautpaar bei einem Hochzeitsspiel](https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=80)
+
+## 35 Fragen für das Übereinstimmungsspiel
+
+### Zum Warmwerden (10 Fragen)
+
+- Wer ist morgens besser gelaunt?
+- Wer braucht länger im Bad?
+- Wer kocht besser?
+- Wer ist ordentlicher?
+- Wer ist der bessere Autofahrer?
+- Wer lacht über die eigenen Witze am meisten?
+- Wer ist pünktlicher?
+- Wer telefoniert länger mit den Eltern?
+- Wer isst mehr Süßigkeiten?
+- Wer entscheidet, was im Fernsehen läuft?
+
+### Über die Beziehung (10 Fragen)
+
+- Wer hat den ersten Schritt gemacht?
+- Wer hat zuerst an Heiraten gedacht?
+- Wer sagt öfter \\"Ich liebe dich\\"?
+- Wer entschuldigt sich nach einem Streit zuerst?
+- Wer plant die Urlaube?
+- Wer hat das erste Geschenk gemacht?
+- Wer war beim ersten Date nervöser?
+- Wer hat die Beziehung zuerst offiziell gemacht?
+- Wer ist der romantischere Part?
+- Wer hat beim Antrag geweint?
+
+### Die Lacher-Garantie (10 Fragen)
+
+- Wer gibt heimlich mehr Geld aus?
+- Wer schnarcht lauter?
+- Wer ist schuld, wenn ihr zu spät kommt?
+- Wer checkt öfter das Handy?
+- Wer kann schlechter verlieren?
+- Wer findet sich selbst lustiger?
+- Wer hat den besseren Musikgeschmack (laut eigener Aussage)?
+- Wer würde beim Camping zuerst aufgeben?
+- Wer redet mehr – auch wenn niemand zuhört?
+- Wer hat heute Morgen länger für die Frisur gebraucht?
+
+### Zum Abschluss – die Herz-Fragen (5 Fragen)
+
+- Wer hat sich zuerst verliebt?
+- Wer ist der größere Familienmensch?
+- Wer glaubt fester an die gemeinsame Zukunft? (Trick-Frage: Hier gewinnen beide.)
+- Wer freut sich mehr auf die Hochzeitsreise?
+- Wer ist heute der glücklichste Mensch im Raum?
+
+## Als PDF für die Trauzeugen
+
+Druckt die Fragen als Moderationskarten aus oder schickt sie den Trauzeugen vorab – am einfachsten gesammelt mit allen anderen Infos zur Feier auf eurer Hochzeitswebsite. Bei S&I. haben eure Trauzeugen und Gäste alle Details an einem Ort: Ablauf, [Anfahrt](/blog/hochzeitswebsite-location-anfahrt-karte), Dresscode – und nach der Feier laden alle ihre [Fotos direkt auf eurer Website hoch](/blog/hochzeitswebsite-foto-upload-gaeste).
+
+**Ein Tipp zur Auswahl:** Nehmt maximal zwei bis drei Fragen, die leicht pikant sind, und lasst alles weg, was wirklich unangenehm werden könnte (Ex-Partner, Geld, Schwiegereltern-Konflikte). Das Spiel soll das Paar feiern, nicht bloßstellen.
+
+**Weiterlesen:** Ihr sucht mehr Programm für eure Feier? Das [Hochzeitsquiz mit 40 Fragen für eure Gäste](/blog/hochzeitsquiz-fragen-vorlage) und [9 Ideen, wie ihr Gäste aktiv einbindet](/blog/hochzeit-gaeste-einbinden-ideen).
+`,
+  },
+  {
+    slug: 'qr-code-hochzeitsfotos-hochladen',
+    title: 'QR-Code für Hochzeitsfotos: Gäste laden Bilder kostenlos hoch',
+    seoTitle: 'QR-Code für Hochzeitsfotos: Bilder hochladen',
+    description: 'Ein QR-Code auf den Tischen, und eure Gäste laden alle Hochzeitsfotos direkt hoch – ohne App, ohne Anmeldung. So richtet ihr den Foto-Upload per QR-Code ein.',
+    date: '2026-08-30',
+    category: 'Features',
+    tags: ['Features', 'Ratgeber'],
+    readTime: '7 min',
+    keywords: ['qr-code bilder hochladen hochzeit kostenlos', 'qr-code für fotos hochzeit kostenlos', 'qr code hochzeitsfotos', 'foto-app hochzeit kostenlos', 'fotos hochzeit hochladen für gäste', 'online fotogalerie hochzeit'],
+    image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&q=80',
+    imageAlt: 'Gast fotografiert das Brautpaar mit dem Smartphone auf der Hochzeitsfeier',
+    schema: {
+      "@type": "Article",
+      "headline": "QR-Code für Hochzeitsfotos: Gäste laden Bilder kostenlos hoch",
+      "description": "So richtet ihr einen QR-Code ein, über den Hochzeitsgäste ihre Fotos ohne App direkt hochladen.",
+      "author": { "@type": "Organization", "name": "S&I. Wedding" },
+      "publisher": { "@type": "Organization", "name": "S&I. Wedding", "url": "https://www.sarahiver.com" },
+      "datePublished": "2026-08-30",
+    },
+    content: `
+## Die schönsten Fotos eurer Hochzeit machen eure Gäste
+
+Euer Fotograf liefert die perfekt komponierten Bilder – aber die Momente dazwischen fangen eure Gäste ein: die Oma beim Anstoßen, die spontane Polonaise, das Blumenmädchen, das auf der Tanzfläche eingeschlafen ist. Das Problem: Diese Fotos landen auf 80 verschiedenen Handys und ihr bekommt sie nie zu sehen.
+
+Die Lösung ist verblüffend einfach: **ein QR-Code auf jedem Tisch.** Gäste scannen ihn mit der Handykamera, landen direkt auf eurer Foto-Upload-Seite und laden ihre Bilder in Sekunden hoch. Ohne App-Download, ohne Registrierung, ohne technisches Vorwissen – das schafft auch der Großonkel.
+
+## So funktioniert der Foto-Upload per QR-Code
+
+- **Schritt 1:** Ihr richtet eine Upload-Seite ein – bei S&I. ist sie fester Bestandteil eurer Hochzeitswebsite, inklusive fertigem QR-Code zum Download.
+- **Schritt 2:** Ihr druckt den QR-Code auf Tischkarten, kleine Aufsteller oder direkt ins Programmheft. Ein Satz dazu genügt: \\"Teilt eure Fotos mit uns!\\"
+- **Schritt 3:** Gäste scannen, wählen Fotos aus, tippen auf Hochladen – fertig. Die Bilder landen gesammelt in eurer privaten Galerie.
+- **Schritt 4:** Nach der Feier habt ihr alle Gästefotos an einem Ort, könnt sie sortieren, herunterladen und die schönsten mit allen teilen.
+
+![Tischkarte mit QR-Code auf einer festlich gedeckten Hochzeitstafel](https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=900&q=80)
+
+## Warum QR-Code statt WhatsApp-Gruppe oder Foto-App?
+
+**WhatsApp komprimiert eure Fotos** auf einen Bruchteil der Originalqualität – fürs Anschauen am Handy okay, für ein Fotobuch unbrauchbar. Außerdem versinken die Bilder im Gruppenchat zwischen 300 Nachrichten.
+
+**Foto-Apps müssen installiert werden.** Jede Hürde kostet euch Fotos: Wer erst eine App laden, ein Konto anlegen und eine Einladung annehmen muss, lädt am Ende nichts hoch. Mehr zu den Unterschieden der Sammel-Methoden findet ihr in unserem [großen Vergleich: Hochzeitsfotos teilen](/blog/hochzeitsfotos-teilen-fotoupload-archiv).
+
+**Der QR-Code auf eurer eigenen Hochzeitswebsite** kombiniert das Beste: volle Bildqualität, keine App, und die Fotos gehören euch – nicht einer Plattform. Mit [Passwortschutz](/blog/hochzeitswebsite-eigene-domain-passwortschutz) bleiben sie komplett privat.
+
+## Die 5 wichtigsten Tipps aus der Praxis
+
+### 1. Platziert den QR-Code dort, wo Gäste sitzen und warten
+
+Tische, Bar, Fotobox, sogar die Toilettentür – überall dort, wo Gäste einen Moment Zeit haben, wird gescannt. Nur auf der Einladung reicht nicht: Am Tag der Feier hat die niemand dabei. Wie ihr QR-Codes schon auf der [Einladung elegant einsetzt](/blog/hochzeitswebsite-qr-code-einladung), haben wir separat beschrieben.
+
+### 2. Erinnert während der Feier daran
+
+Lasst den DJ oder die Trauzeugen ein-, zweimal ansagen: \\"Ladet eure Fotos über den QR-Code auf den Tischen hoch!\\" Der Effekt ist messbar – die meisten Uploads passieren direkt nach solchen Ansagen und am Tag danach.
+
+### 3. Startet den Upload schon vor der Feier
+
+Getting-Ready, Standesamt, Junggesellenabschied: Wenn eure Upload-Seite früh online ist, sammelt ihr die komplette Vorgeschichte eurer Hochzeit ein. Der [richtige Zeitpunkt für eure Hochzeitswebsite](/blog/wann-hochzeitswebsite-erstellen-zeitpunkt) liegt ohnehin Monate vor dem großen Tag.
+
+### 4. Sammelt auch nach der Feier weiter
+
+Die besten Fotos trudeln oft Tage später ein. Lasst den Upload mindestens vier Wochen offen und erinnert in eurer Danksagung noch einmal an den Link.
+
+### 5. Plant die Qualität von Anfang an ein
+
+Wenn ihr ein Fotobuch plant, sagt es den Gästen: \\"Ladet gern in Originalqualität hoch!\\" Eine gute Upload-Seite nimmt große Dateien problemlos an – bei S&I. laden Gäste Fotos und sogar kurze Videos in voller Auflösung hoch.
+
+## Was kostet der Foto-Upload per QR-Code?
+
+Es gibt kostenlose Einzel-Tools mit Limits bei Fotoanzahl, Speicherdauer oder Qualität – für kleine Feiern durchaus ausreichend. Wo bei Gratis-Angeboten generell die Haken liegen, zeigt unser Artikel zur [kostenlosen Hochzeitswebsite](/blog/kostenlose-hochzeitswebsite-haken). Bei S&I. ist der QR-Code-Foto-Upload keine Extra-Buchung, sondern in jeder Website enthalten: unbegrenzte Uploads, volle Qualität, eure eigene Galerie mit Passwortschutz – und alles im gleichen Design wie der Rest eurer Website.
+
+**Weiterlesen:** Alles rund ums Fotos sammeln: [Hochzeitsfotos von Gästen sammeln – der komplette Guide](/blog/hochzeitswebsite-foto-upload-gaeste) und [4 Wege, Hochzeitsfotos zu teilen, im Vergleich](/blog/hochzeitsfotos-teilen-fotoupload-archiv).
+`,
+  },
+
 ];
 
 export default blogPosts;
