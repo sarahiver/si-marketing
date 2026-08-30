@@ -196,7 +196,7 @@ const Page = styled.main`
   background: ${paper};
   color: ${ink};
   font-family: 'Inter', sans-serif;
-  padding: 0 24px 96px;
+  padding: ${(p) => (p.$embed ? '20px 16px 16px' : '0 24px 96px')};
 `;
 
 const Shell = styled.div`max-width: 1040px; margin: 0 auto;`;
@@ -217,7 +217,8 @@ const Kicker = styled.p`
 
 const H1 = styled.h1`
   font-family: 'Instrument Serif', Georgia, serif; font-weight: 400;
-  font-size: clamp(40px, 6vw, 72px); line-height: 1.02; margin: 0 0 20px; max-width: 17ch;
+  font-size: ${(p) => (p.$embed ? 'clamp(26px, 5vw, 34px)' : 'clamp(40px, 6vw, 72px)')};
+  line-height: 1.02; margin: ${(p) => (p.$embed ? '4px 0 18px' : '0 0 20px')}; max-width: 17ch;
 `;
 
 const Sub = styled.p`font-size: 17px; line-height: 1.65; color: ${muted}; max-width: 62ch; margin: 0 0 48px;`;
@@ -343,6 +344,19 @@ const CopyBtn = styled.button`
   &:focus-visible { outline: 2px solid ${accent}; outline-offset: 2px; }
 `;
 
+const EmbedCode = styled.textarea`
+  width: 100%; margin-top: 16px; padding: 14px; font-family: 'Space Grotesk', monospace;
+  font-size: 12px; line-height: 1.6; color: ${ink}; background: ${paper};
+  border: 1px solid ${line}; resize: vertical; min-height: 96px;
+`;
+
+const EmbedFooter = styled.p`
+  margin: 20px 0 0; padding-top: 14px; border-top: 1px solid ${line};
+  font-size: 12.5px; color: ${muted}; text-align: center;
+  a { color: ${accent}; text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; }
+`;
+
 const CTA = styled.section`
   margin-top: 28px; padding: 40px 28px; background: ${ink}; color: ${paper}; text-align: center;
   h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(26px, 4vw, 36px); margin: 0 0 12px; }
@@ -416,7 +430,10 @@ const MODES = [
   { id: 'saturday', label: 'Alle Samstage (Mai–Okt)' },
 ];
 
-const HochzeitsdatumFinder = () => {
+const EMBED_SNIPPET = `<iframe src="https://www.sarahiver.com/embed/hochzeitsdatum-finder" width="100%" height="900" style="border:0;max-width:1040px;" title="Hochzeitsdatum-Finder" loading="lazy"></iframe>
+<p style="font-size:14px;">Tool: <a href="https://www.sarahiver.com/hochzeitsdatum-finder">Hochzeitsdatum-Finder</a> von <a href="https://www.sarahiver.com/">S&I. – Premium Hochzeitswebsites</a></p>`;
+
+const HochzeitsdatumFinder = ({ embed = false }) => {
   const [year, setYear] = useState(2027);
   const [region, setRegion] = useState('DE-HH');
   const [mode, setMode] = useState('special');
@@ -428,6 +445,19 @@ const HochzeitsdatumFinder = () => {
 
   const [selected, setSelected] = useState(null);
   const topPick = selected || specials.find((s) => s.top) || specials[0];
+
+  const [embedCopied, setEmbedCopied] = useState(false);
+  const [showEmbed, setShowEmbed] = useState(false);
+
+  const copyEmbed = useCallback(() => {
+    setShowEmbed(true);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(EMBED_SNIPPET).then(() => {
+        setEmbedCopied(true);
+        setTimeout(() => setEmbedCopied(false), 2200);
+      });
+    }
+  }, []);
 
   const copyLink = useCallback(() => {
     const url = 'https://www.sarahiver.com/hochzeitsdatum-finder';
@@ -485,29 +515,31 @@ const HochzeitsdatumFinder = () => {
   };
 
   return (
-    <Page>
+    <Page $embed={embed}>
       <ToolFonts />
-      <SEOHead
+      {!embed && <SEOHead
         title="Hochzeitsdatum-Finder 2027 & 2028: Schnapszahlen, Feiertage & Brückentage"
         description="Findet euer perfektes Hochzeitsdatum: Alle Schnapszahl-Termine, langen Wochenenden und Brückentage 2027 & 2028 – kostenlos, für jedes Bundesland, Österreich und die Schweiz."
         path="/hochzeitsdatum-finder"
         type="website"
         schema={schema}
         keywords={['hochzeitsdatum 2027', 'hochzeitsdatum 2028', 'hochzeitsdatum finder', 'schnapszahl hochzeit', 'beste hochzeitstermine', 'brückentage heiraten']}
-      />
+      />}
       <Shell>
+        {!embed && (
         <TopBar>
           <Brand to="/">S&amp;I.</Brand>
           <Link to="/blog">Zum Hochzeits-Blog →</Link>
         </TopBar>
+        )}
 
-        <Kicker>Kostenloses Tool von S&amp;I.</Kicker>
-        <H1>Der Hochzeitsdatum-Finder</H1>
-        <Sub>
+        {!embed && <Kicker>Kostenloses Tool von S&amp;I.</Kicker>}
+        <H1 $embed={embed}>Der Hochzeitsdatum-Finder</H1>
+        {!embed && <Sub>
           Schnapszahlen, lange Wochenenden, Brückentage: Findet in einer Minute die besten
           Hochzeitstermine {year} – berechnet für euer Bundesland, Österreich oder die Schweiz.
           Kostenlos, ohne Anmeldung.
-        </Sub>
+        </Sub>}
 
         <Controls>
           <Seg role="group" aria-label="Jahr wählen">
@@ -643,12 +675,25 @@ const HochzeitsdatumFinder = () => {
           )}
         </CheckSection>
 
+        {!embed && (<>
         <ShareBox>
           <p>
-            <strong>Ihr schreibt über Hochzeitsplanung?</strong> Dieses Tool darf gerne verlinkt
-            oder Paaren empfohlen werden – es bleibt dauerhaft kostenlos und wird jährlich aktualisiert.
+            <strong>Ihr schreibt über Hochzeitsplanung?</strong> Dieses Tool darf gerne verlinkt,
+            empfohlen – oder direkt auf eurer Seite eingebettet werden. Es bleibt dauerhaft kostenlos
+            und wird jährlich aktualisiert.
           </p>
-          <CopyBtn onClick={copyLink}>{copied ? '✓ Link kopiert' : 'Link zum Tool kopieren'}</CopyBtn>
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <CopyBtn onClick={copyLink}>{copied ? '✓ Link kopiert' : 'Link zum Tool kopieren'}</CopyBtn>
+            <CopyBtn onClick={copyEmbed}>{embedCopied ? '✓ Code kopiert' : 'Auf eurer Seite einbinden'}</CopyBtn>
+          </div>
+          {showEmbed && (
+            <EmbedCode
+              readOnly
+              value={EMBED_SNIPPET}
+              aria-label="HTML-Code zum Einbetten des Tools"
+              onFocus={(e) => e.target.select()}
+            />
+          )}
         </ShareBox>
 
         <CTA>
@@ -666,6 +711,17 @@ const HochzeitsdatumFinder = () => {
           <Link to="/blog/hochzeit-2027-planen-checkliste">Hochzeit 2027 planen: Die komplette Checkliste</Link><br />
           <Link to="/blog/hochzeitstrends-2027">Hochzeitstrends 2027</Link>
         </Related>
+        </>)}
+
+        {embed && (
+          <EmbedFooter>
+            Tool von{' '}
+            <a href="https://www.sarahiver.com/hochzeitsdatum-finder" target="_blank" rel="noopener noreferrer">
+              S&amp;I. – Premium Hochzeitswebsites
+            </a>{' '}
+            · jährlich aktualisiert
+          </EmbedFooter>
+        )}
       </Shell>
     </Page>
   );

@@ -334,6 +334,18 @@ async function main() {
       noIndex: true,
     },
     {
+      path: '/embed/hochzeitsdatum-finder',
+      title: 'Hochzeitsdatum-Finder (Embed)',
+      description: 'Einbettbare Version des Hochzeitsdatum-Finders von S&I.',
+      noIndex: true,
+    },
+    {
+      path: '/embed/brautpaar-quiz',
+      title: 'Brautpaar-Quiz-Generator (Embed)',
+      description: 'Einbettbare Version des Brautpaar-Quiz-Generators von S&I.',
+      noIndex: true,
+    },
+    {
       path: '/impressum',
       title: 'Impressum | S&I.',
       description: 'Impressum von S&I. — Premium Hochzeitswebsites aus Hamburg.',

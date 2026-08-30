@@ -394,6 +394,16 @@ function App() {
                   <BudgetRechner embed />
                 </Suspense>
               } />
+              <Route path="/embed/hochzeitsdatum-finder" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
+                  <HochzeitsdatumFinder embed />
+                </Suspense>
+              } />
+              <Route path="/embed/brautpaar-quiz" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
+                  <QuizGenerator embed />
+                </Suspense>
+              } />
               <Route path="/brautpaar-quiz" element={
                 <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
                   <QuizGenerator />

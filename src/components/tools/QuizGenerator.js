@@ -119,7 +119,7 @@ const muted = '#6F655A';
 
 const Page = styled.main`
   min-height: 100vh; background: ${paper}; color: ${ink};
-  font-family: 'Inter', sans-serif; padding: 0 24px 96px;
+  font-family: 'Inter', sans-serif; padding: ${(p) => (p.$embed ? '20px 16px 16px' : '0 24px 96px')};
 `;
 const Shell = styled.div`max-width: 960px; margin: 0 auto;`;
 const TopBar = styled.div`
@@ -136,7 +136,8 @@ const Kicker = styled.p`
 `;
 const H1 = styled.h1`
   font-family: 'Instrument Serif', Georgia, serif; font-weight: 400;
-  font-size: clamp(40px, 6vw, 68px); line-height: 1.02; margin: 0 0 20px;
+  font-size: ${(p) => (p.$embed ? 'clamp(26px, 5vw, 34px)' : 'clamp(40px, 6vw, 68px)')};
+  line-height: 1.02; margin: ${(p) => (p.$embed ? '4px 0 18px' : '0 0 20px')};
 `;
 const Sub = styled.p`font-size: 17px; line-height: 1.65; color: ${muted}; max-width: 62ch; margin: 0 0 48px;`;
 
@@ -227,6 +228,20 @@ const ShareBox = styled.aside`
   @media print { display: none; }
 `;
 
+const EmbedCode = styled.textarea`
+  width: 100%; margin-top: 16px; padding: 14px; font-family: 'Space Grotesk', monospace;
+  font-size: 12px; line-height: 1.6; color: ${ink}; background: ${paper};
+  border: 1px solid ${line}; resize: vertical; min-height: 96px;
+`;
+
+const EmbedFooter = styled.p`
+  margin: 20px 0 0; padding-top: 14px; border-top: 1px solid ${line};
+  font-size: 12.5px; color: ${muted}; text-align: center;
+  @media print { display: none; }
+  a { color: ${accent}; text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; }
+`;
+
 const CTA = styled.section`
   margin-top: 28px; padding: 40px 28px; background: ${ink}; color: ${paper}; text-align: center;
   h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(26px, 4vw, 34px); margin: 0 0 12px; }
@@ -291,7 +306,10 @@ const PresentClose = styled.button`
    KOMPONENTE
    ============================================================ */
 
-const QuizGenerator = () => {
+const EMBED_SNIPPET = `<iframe src="https://www.sarahiver.com/embed/brautpaar-quiz" width="100%" height="980" style="border:0;max-width:960px;" title="Brautpaar-Quiz-Generator" loading="lazy"></iframe>
+<p style="font-size:14px;">Tool: <a href="https://www.sarahiver.com/brautpaar-quiz">Brautpaar-Quiz-Generator</a> von <a href="https://www.sarahiver.com/">S&I. – Premium Hochzeitswebsites</a></p>`;
+
+const QuizGenerator = ({ embed = false }) => {
   const [nameA, setNameA] = useState('');
   const [nameB, setNameB] = useState('');
   const [activeCats, setActiveCats] = useState(['kennenlernen', 'alltag', 'liebe', 'party']);
@@ -299,6 +317,18 @@ const QuizGenerator = () => {
   const [customRaw, setCustomRaw] = useState('');
   const [seed, setSeed] = useState(7);
   const [copied, setCopied] = useState(false);
+  const [embedCopied, setEmbedCopied] = useState(false);
+  const [showEmbed, setShowEmbed] = useState(false);
+
+  const copyEmbed = useCallback(() => {
+    setShowEmbed(true);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(EMBED_SNIPPET).then(() => {
+        setEmbedCopied(true);
+        setTimeout(() => setEmbedCopied(false), 2200);
+      });
+    }
+  }, []);
   const [presentIdx, setPresentIdx] = useState(null);
 
   const toggleCat = (id) => setActiveCats((c) => (c.includes(id) ? (c.length > 1 ? c.filter((x) => x !== id) : c) : [...c, id]));
@@ -347,29 +377,31 @@ const QuizGenerator = () => {
   };
 
   return (
-    <Page>
+    <Page $embed={embed}>
       <ToolFonts />
-      <SEOHead
+      {!embed && <SEOHead
         title="Brautpaar-Quiz-Generator: Fragen für Polterabend, JGA & Hochzeit"
         description="Erstellt euer persönliches Brautpaar-Quiz in 2 Minuten: 50 Fragen nach Kategorien, eigene Fragen ergänzen, drucken oder im Präsentationsmodus an die Wand werfen. Kostenlos."
         path="/brautpaar-quiz"
         type="website"
         schema={schema}
         keywords={['brautpaar quiz', 'brautpaar quiz fragen', 'hochzeitsquiz', 'polterabend spiele', 'jga quiz', 'mr und mrs fragen deutsch', 'hochzeitsspiele quiz']}
-      />
+      />}
       <Shell>
+        {!embed && (
         <TopBar>
           <Brand to="/">S&amp;I.</Brand>
           <Link to="/hochzeitsdatum-finder">Zum Hochzeitsdatum-Finder →</Link>
         </TopBar>
+        )}
 
-        <Kicker>Kostenloses Tool von S&amp;I.</Kicker>
-        <H1>Der Brautpaar-Quiz-Generator</H1>
-        <Sub>
+        {!embed && <Kicker>Kostenloses Tool von S&amp;I.</Kicker>}
+        <H1 $embed={embed}>Der Brautpaar-Quiz-Generator</H1>
+        {!embed && <Sub>
           Das Lieblingsspiel jeder Hochzeitsfeier, fertig in 2 Minuten: Namen eingeben, Kategorien
           wählen, eigene Fragen ergänzen – und dann drucken, kopieren oder direkt im
           Präsentationsmodus an die Wand werfen. Für Polterabend, JGA und den großen Tag.
-        </Sub>
+        </Sub>}
 
         <Panel>
           <Label>Wie heißt ihr beiden?</Label>
@@ -432,14 +464,26 @@ const QuizGenerator = () => {
           </QGrid>
         </QuizSheet>
 
+        {!embed && (<>
         <ShareBox>
           <p>
             <strong>Ihr plant Polterabend oder JGA für Freunde?</strong> Dieses Tool darf gerne
-            geteilt oder verlinkt werden – dauerhaft kostenlos, ohne Anmeldung.
+            geteilt, verlinkt – oder direkt auf eurer Seite eingebettet werden. Dauerhaft kostenlos, ohne Anmeldung.
           </p>
-          <BtnGhost as="button" onClick={() => {
-            if (navigator.clipboard) navigator.clipboard.writeText('https://www.sarahiver.com/brautpaar-quiz');
-          }}>Link zum Tool kopieren</BtnGhost>
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <BtnGhost as="button" onClick={() => {
+              if (navigator.clipboard) navigator.clipboard.writeText('https://www.sarahiver.com/brautpaar-quiz');
+            }}>Link zum Tool kopieren</BtnGhost>
+            <BtnGhost as="button" onClick={copyEmbed}>{embedCopied ? '✓ Code kopiert' : 'Auf eurer Seite einbinden'}</BtnGhost>
+          </div>
+          {showEmbed && (
+            <EmbedCode
+              readOnly
+              value={EMBED_SNIPPET}
+              aria-label="HTML-Code zum Einbetten des Tools"
+              onFocus={(e) => e.target.select()}
+            />
+          )}
         </ShareBox>
 
         <CTA>
@@ -457,6 +501,16 @@ const QuizGenerator = () => {
           <Link to="/blog/hochzeit-2027-planen-checkliste">Hochzeit 2027 planen: Die komplette Checkliste</Link><br />
           <Link to="/blog/hochzeitswebsite-musikwuensche-playlist">Musikwünsche: So wird eure Playlist zum Hit</Link>
         </Related>
+        </>)}
+
+        {embed && (
+          <EmbedFooter>
+            Tool von{' '}
+            <a href="https://www.sarahiver.com/brautpaar-quiz" target="_blank" rel="noopener noreferrer">
+              S&amp;I. – Premium Hochzeitswebsites
+            </a>
+          </EmbedFooter>
+        )}
       </Shell>
 
       {presentIdx !== null && questions[presentIdx] && (
