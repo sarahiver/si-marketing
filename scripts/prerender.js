@@ -159,6 +159,7 @@ function articleBodyHtml(post, allPosts) {
       </article>
       <p><a href="/#themes">Unsere Hochzeitswebsite-Themes ansehen</a> · <a href="/blog">Alle Ratgeber-Artikel</a></p>
       ${relatedHtml}
+      ${LEGAL_FOOTER}
     </div>`;
 }
 
@@ -175,6 +176,7 @@ function blogIndexBodyHtml(allPosts) {
         <p>${escapeHtml(p.description)}</p>
       </article>`).join('\n')}
       <p><a href="/#themes">Unsere Hochzeitswebsite-Themes ansehen</a></p>
+      ${LEGAL_FOOTER}
     </div>`;
 }
 
@@ -189,22 +191,48 @@ function homeBodyHtml(allPosts) {
           <li><a href="/blog">Hochzeitswebsite Ratgeber</a></li>
         </ul>
       </nav>
+      <h2>Kostenlose Hochzeits-Tools</h2>
+      <ul>
+        <li><a href="/hochzeitsbudget-rechner">Hochzeitsbudget-Rechner</a></li>
+        <li><a href="/hochzeitsdatum-finder">Hochzeitsdatum-Finder 2027 &amp; 2028</a></li>
+        <li><a href="/brautpaar-quiz">Brautpaar-Quiz-Generator</a></li>
+      </ul>
       <h2>Neueste Ratgeber-Artikel</h2>
       <ul>
         ${latest.map(p => `<li><a href="/blog/${escapeHtml(p.slug)}">${escapeHtml(p.title)}</a></li>`).join('\n        ')}
       </ul>
+      <h2>Über S&amp;I.</h2>
+      <p>Hinter S&amp;I. stehen Sarah und Iver aus Hamburg. Die Idee entstand bei der Planung der eigenen Hochzeit: Statt Baukasten-Vorlagen gestaltet S&amp;I. individuelle Premium-Hochzeitswebsites — mit digitalem RSVP, Gästemanagement, Foto-Upload und persönlicher Betreuung von der Einrichtung bis zum großen Tag, für Paare in Deutschland, Österreich und der Schweiz.</p>
+      ${LEGAL_FOOTER}
     </div>`;
 }
 
-function toolBodyHtml({ h1, text, links }) {
+// Statischer Footer mit Links auf Impressum/Datenschutz — behebt Orphan Pages:
+// die beiden Seiten waren nur im React-Footer verlinkt, den Crawler ohne JS nicht sehen.
+const LEGAL_FOOTER = '<p><a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a></p>';
+
+function toolBodyHtml({ h1, paragraphs, sections, links }) {
   return `
     <div style="${ROOT_STYLE}">
       <nav aria-label="Breadcrumb"><a href="/">S&amp;I. — Premium Hochzeitswebsites</a></nav>
       <h1>${escapeHtml(h1)}</h1>
-      <p>${escapeHtml(text)}</p>
+      ${paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join('\n      ')}
+      ${(sections || []).map(s => `<h2>${escapeHtml(s.h2)}</h2>\n      <p>${escapeHtml(s.p)}</p>`).join('\n      ')}
+      <h2>Passende Ratgeber &amp; Tools</h2>
       <ul>
         ${links.map(([href, label]) => `<li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`).join('\n        ')}
       </ul>
+      ${LEGAL_FOOTER}
+    </div>`;
+}
+
+function legalBodyHtml({ h1, paragraphs }) {
+  return `
+    <div style="${ROOT_STYLE}">
+      <nav aria-label="Breadcrumb"><a href="/">S&amp;I. — Premium Hochzeitswebsites</a></nav>
+      <h1>${escapeHtml(h1)}</h1>
+      ${paragraphs.map(p => `<p>${p}</p>`).join('\n      ')}
+      ${LEGAL_FOOTER}
     </div>`;
 }
 
@@ -274,7 +302,48 @@ async function main() {
     {
       path: '/',
       title: 'S&I. — Premium Hochzeitswebsites',
-      description: 'S&I. — Premium Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. 6 einzigartige Themes. Ab 1.290€. Aus Hamburg.',
+      description: 'S&I. — Premium Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. 8 einzigartige Themes. Ab 1.290€. Aus Hamburg.',
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': `${BASE_URL}/#organization`,
+            name: 'S&I.',
+            alternateName: ['sarahiver', 'Sarah & Iver', 'S&I. Premium Hochzeitswebsites'],
+            url: `${BASE_URL}/`,
+            logo: `${BASE_URL}/logo512.png`,
+            description: 'S&I. erstellt Premium-Hochzeitswebsites mit individuellem Design, eigener Domain, digitalem RSVP, Gästemanagement und Foto-Upload. Aus Hamburg, für Paare im gesamten DACH-Raum.',
+            email: 'wedding@sarahiver.de',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Große Freiheit 82',
+              postalCode: '22767',
+              addressLocality: 'Hamburg',
+              addressCountry: 'DE',
+            },
+            founder: [
+              { '@type': 'Person', name: 'Sarah' },
+              { '@type': 'Person', name: 'Iver' },
+            ],
+            areaServed: ['DE', 'AT', 'CH'],
+            knowsLanguage: 'de',
+            sameAs: [
+              'https://www.instagram.com/sarah.iver.wedding/',
+              'https://www.pinterest.com/sarahiverwedding/',
+              'https://www.sarahiver.de/',
+            ],
+          },
+          {
+            '@type': 'WebSite',
+            '@id': `${BASE_URL}/#website`,
+            url: `${BASE_URL}/`,
+            name: 'S&I. — Premium Hochzeitswebsites',
+            inLanguage: 'de',
+            publisher: { '@id': `${BASE_URL}/#organization` },
+          },
+        ],
+      },
       bodyHtml: homeBodyHtml(allPosts),
     },
     {
@@ -287,10 +356,26 @@ async function main() {
     {
       path: '/hochzeitsbudget-rechner',
       title: 'Hochzeitsbudget-Rechner: Was kostet eure Hochzeit wirklich?',
-      description: 'Gästezahl wählen, 8 kurze Fragen beantworten – realistische Kostenschätzung erhalten. Vom DIY-Gartenfest bis zur Premium-Hochzeit. Kostenlos, ohne Anmeldung.',
+      description: 'Gästezahl wählen, 8 kurze Fragen beantworten – realistische Kostenschätzung erhalten. Vom Gartenfest bis zur Premium-Hochzeit. Kostenlos, ohne Anmeldung.',
       bodyHtml: toolBodyHtml({
         h1: 'Der Hochzeitsbudget-Rechner',
-        text: 'Beantwortet 8 kurze Fragen zu eurer Feier und erhaltet einen realistischen Kosten-Richtwert – vom selbst organisierten Gartenfest bis zur Premium-Hochzeit. Basierend auf DACH-Erfahrungswerten, Stand 2026. Kostenlos und ohne Anmeldung.',
+        paragraphs: [
+          'Beantwortet 8 kurze Fragen zu eurer Feier und erhaltet einen realistischen Kosten-Richtwert – vom selbst organisierten Gartenfest bis zur Premium-Hochzeit. Basierend auf DACH-Erfahrungswerten, Stand 2026. Kostenlos und ohne Anmeldung.',
+        ],
+        sections: [
+          {
+            h2: 'Was der Rechner berücksichtigt',
+            p: 'Der Rechner deckt die großen Kostenblöcke einer Hochzeit ab: Location und Catering, Fotografie und Video, Musik, Blumen und Dekoration, Outfits sowie Papeterie und Extras. Ihr wählt Gästezahl, Anspruch und Rahmen eurer Feier – und seht sofort, wie sich jede Entscheidung auf das Gesamtbudget auswirkt.',
+          },
+          {
+            h2: 'Richtwert statt Angebot',
+            p: 'Das Ergebnis ist eine Orientierung, kein Kostenvoranschlag: Reale Preise schwanken je nach Region, Saison und Wochentag deutlich. Als Faustregel gilt: Location und Catering machen meist 40 bis 50 Prozent des Gesamtbudgets aus – wer hier spart, etwa mit einem Termin unter der Woche, spart am meisten.',
+          },
+          {
+            h2: 'Budget im Blick behalten',
+            p: 'Der Richtwert ist der Startpunkt eurer Planung: Legt danach fest, welche Posten euch wichtig sind und wo ihr flexibel seid. Plant außerdem einen Puffer von etwa 10 Prozent für Unvorhergesehenes ein – von der zweiten Anprobe bis zum spontanen Mitternachtssnack.',
+          },
+        ],
         links: [
           ['/blog/hochzeit-2027-planen-checkliste', 'Hochzeit 2027 planen: Die komplette Checkliste'],
           ['/blog/hochzeitswebsite-kosten-was-kostet', 'Hochzeitswebsite Kosten: Alle Preismodelle'],
@@ -300,11 +385,27 @@ async function main() {
     },
     {
       path: '/hochzeitsdatum-finder',
-      title: 'Hochzeitsdatum-Finder 2027 & 2028: Schnapszahlen, Feiertage & Brückentage',
-      description: 'Findet euer perfektes Hochzeitsdatum: Alle Schnapszahl-Termine, langen Wochenenden und Brückentage 2027 & 2028 – kostenlos, für jedes Bundesland, Österreich und die Schweiz.',
+      title: 'Hochzeitsdatum-Finder 2027 & 2028: Die besten Termine',
+      description: 'Findet euer Hochzeitsdatum: Schnapszahl-Termine, lange Wochenenden und Brückentage 2027 & 2028 – für jedes Bundesland, Österreich und die Schweiz.',
       bodyHtml: toolBodyHtml({
         h1: 'Der Hochzeitsdatum-Finder',
-        text: 'Alle Schnapszahl-Termine, langen Wochenenden und Brückentage für 2027 und 2028 – für jedes Bundesland, Österreich und die Schweiz. Kostenlos und ohne Anmeldung.',
+        paragraphs: [
+          'Alle Schnapszahl-Termine, langen Wochenenden und Brückentage für 2027 und 2028 – für jedes Bundesland, Österreich und die Schweiz. Kostenlos und ohne Anmeldung.',
+        ],
+        sections: [
+          {
+            h2: 'Beliebte Termine früh sichern',
+            p: 'Der Finder zeigt auf einen Blick, welche Termine besonders gefragt sind: Schnapszahlen wie der 07.07.2027, Samstage an Feiertags-Wochenenden und Brückentage, die aus eurer Hochzeit ein langes Wochenende machen. Beliebte Termine sind bei Locations und Standesämtern früh vergeben – plant dafür 12 bis 18 Monate Vorlauf ein.',
+          },
+          {
+            h2: 'Feiertage nach Bundesland',
+            p: 'Feiertage unterscheiden sich regional: Was in Bayern ein Brückentag ist, ist in Hamburg ein normaler Arbeitstag. Deshalb filtert der Finder nach Bundesland und zeigt zusätzlich die Termine für Österreich und die Schweiz – so plant ihr auch mit Gästen aus dem ganzen DACH-Raum.',
+          },
+          {
+            h2: 'Datum gefunden – und dann?',
+            p: 'Steht das Datum, folgen die ersten großen Entscheidungen: Standesamt oder freie Trauung, Location anfragen, Save-the-Date verschicken. Mit dem Budget-Rechner bekommt ihr direkt im Anschluss ein Gefühl dafür, was eure Wunschfeier kosten wird.',
+          },
+        ],
         links: [
           ['/blog/hochzeitsdatum-2027', 'Hochzeitsdatum 2027: Die besten Termine'],
           ['/blog/hochzeit-unter-der-woche', 'Hochzeit unter der Woche: Warum der Mittwoch boomt'],
@@ -314,11 +415,27 @@ async function main() {
     },
     {
       path: '/brautpaar-quiz',
-      title: 'Brautpaar-Quiz-Generator: Fragen für Polterabend, JGA & Hochzeit',
-      description: 'Erstellt euer persönliches Brautpaar-Quiz in 2 Minuten: 50 Fragen nach Kategorien, eigene Fragen ergänzen, drucken oder im Präsentationsmodus an die Wand werfen. Kostenlos.',
+      title: 'Brautpaar-Quiz-Generator für Polterabend, JGA & Hochzeit',
+      description: 'Erstellt euer Brautpaar-Quiz in 2 Minuten: 50 Fragen nach Kategorien, eigene Fragen ergänzen, drucken oder im Präsentationsmodus zeigen. Kostenlos.',
       bodyHtml: toolBodyHtml({
         h1: 'Der Brautpaar-Quiz-Generator',
-        text: 'Stellt euer persönliches Brautpaar-Quiz in 2 Minuten zusammen: 50 Fragen nach Kategorien, eigene Fragen ergänzen, drucken oder im Präsentationsmodus zeigen. Kostenlos und ohne Anmeldung.',
+        paragraphs: [
+          'Stellt euer persönliches Brautpaar-Quiz in 2 Minuten zusammen: 50 Fragen nach Kategorien, eigene Fragen ergänzen, drucken oder im Präsentationsmodus zeigen. Kostenlos und ohne Anmeldung.',
+        ],
+        sections: [
+          {
+            h2: 'So funktioniert der Generator',
+            p: 'Wählt aus 50 vorbereiteten Fragen in Kategorien wie Kennenlernen, Alltag, Zukunft und Peinliches – oder ergänzt eigene Fragen über das Brautpaar. Das fertige Quiz könnt ihr als Druckversion mitnehmen oder direkt im Präsentationsmodus auf Beamer oder Fernseher zeigen.',
+          },
+          {
+            h2: 'Für Polterabend, JGA und Hochzeitsfeier',
+            p: 'Das Brautpaar-Quiz funktioniert überall: als Programmpunkt auf dem Polterabend, als Spiel beim Junggesellenabschied oder als Unterhaltung zwischen Dinner und Party auf der Hochzeit selbst. Tipp: 15 bis 20 Fragen reichen für eine gute halbe Stunde Unterhaltung.',
+          },
+          {
+            h2: 'So bleibt das Quiz unterhaltsam',
+            p: 'Mischt leichte und schwere Fragen, damit alle Gäste mitraten können – von der Trauzeugin bis zum Großonkel. Persönliche Fragen aus eurer Kennenlerngeschichte kommen am besten an. Und: Ein kleiner Preis für die Gewinner macht aus dem Quiz einen echten Wettbewerb.',
+          },
+        ],
         links: [
           ['/blog/hochzeitsquiz-fragen-vorlage', 'Hochzeitsquiz: Die 40 besten Fragen für eure Gäste'],
           ['/blog/uebereinstimmungsspiel-hochzeit-fragen', 'Übereinstimmungsspiel: 35 Fragen & Anleitung'],
@@ -348,14 +465,31 @@ async function main() {
     {
       path: '/impressum',
       title: 'Impressum | S&I.',
-      description: 'Impressum von S&I. — Premium Hochzeitswebsites aus Hamburg.',
+      description: 'Impressum von S&I. — Premium Hochzeitswebsites aus Hamburg: Anbieterkennzeichnung, Kontakt und rechtliche Hinweise gemäß § 5 TMG.',
       noIndex: true,
+      bodyHtml: legalBodyHtml({
+        h1: 'Impressum',
+        paragraphs: [
+          '<strong>Angaben gemäß § 5 TMG</strong><br />S&amp;I.<br />Iver Gentz<br />Große Freiheit 82<br />22767 Hamburg',
+          '<strong>Kontakt</strong><br />E-Mail: wedding@sarahiver.de',
+          '<strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</strong><br />Iver Gentz, Große Freiheit 82, 22767 Hamburg',
+          'Vollständige Angaben zu Streitschlichtung, Haftung für Inhalte und Links sowie Urheberrecht findet ihr auf dieser Seite.',
+        ],
+      }),
     },
     {
       path: '/datenschutz',
       title: 'Datenschutzerklärung | S&I.',
-      description: 'Datenschutzerklärung von S&I. — Informationen zum Umgang mit Ihren Daten.',
+      description: 'Datenschutzerklärung von S&I. — wie wir personenbezogene Daten erheben, verwenden und schützen: Hosting, Cookies, Analyse und eure Rechte.',
       noIndex: true,
+      bodyHtml: legalBodyHtml({
+        h1: 'Datenschutzerklärung',
+        paragraphs: [
+          'Diese Datenschutzerklärung informiert darüber, was mit personenbezogenen Daten passiert, wenn ihr diese Website besucht: welche Daten erhoben werden, wie wir sie nutzen und welche Rechte ihr habt.',
+          'Themen auf dieser Seite: Datenschutz auf einen Blick, Hosting, allgemeine Hinweise und Pflichtinformationen, Datenerfassung auf dieser Website (Cookies, Kontaktanfragen), Analyse-Tools sowie eure Rechte auf Auskunft, Berichtigung und Löschung.',
+          '<strong>Verantwortlicher</strong><br />Iver Gentz, Große Freiheit 82, 22767 Hamburg<br />E-Mail: wedding@sarahiver.de',
+        ],
+      }),
     },
   ];
 
@@ -411,6 +545,34 @@ async function main() {
     }
     created++;
   });
+
+  // llms.txt — Markdown-Überblick für AI-Crawler (GPTBot, ClaudeBot, PerplexityBot)
+  const llmsTxt = `# S&I. — Premium Hochzeitswebsites
+
+> S&I. erstellt Premium-Hochzeitswebsites mit individuellem Design, eigener Domain, digitalem RSVP, Gästemanagement und Foto-Upload. Gegründet von Sarah und Iver in Hamburg, für Paare in Deutschland, Österreich und der Schweiz. Persönlich gestaltet statt Baukasten-Vorlage.
+
+## Angebot
+
+- [Startseite mit Themes und Preisen](${BASE_URL}/): Premium-Hochzeitswebsites ab 1.290 €, komplett eingerichtet und in wenigen Tagen live
+
+## Kostenlose Hochzeits-Tools
+
+- [Hochzeitsbudget-Rechner](${BASE_URL}/hochzeitsbudget-rechner): Realistische Kostenschätzung in 8 Fragen
+- [Hochzeitsdatum-Finder 2027 & 2028](${BASE_URL}/hochzeitsdatum-finder): Schnapszahlen, Feiertage und Brückentage für DE, AT und CH
+- [Brautpaar-Quiz-Generator](${BASE_URL}/brautpaar-quiz): 50 Fragen für Polterabend, JGA und Hochzeitsfeier
+
+## Ratgeber
+
+${[...allPosts].sort((a, b) => new Date(b.date) - new Date(a.date)).map(p => `- [${p.title}](${BASE_URL}/blog/${p.slug}): ${p.description}`).join('\n')}
+
+## Kontakt & Profile
+
+- E-Mail: wedding@sarahiver.de
+- Instagram: https://www.instagram.com/sarah.iver.wedding/
+- Pinterest: https://www.pinterest.com/sarahiverwedding/
+`;
+  fs.writeFileSync(path.join(BUILD_DIR, 'llms.txt'), llmsTxt, 'utf-8');
+  console.log('  ✅ /llms.txt');
 
   console.log(`\n🎉 Prerendered ${created} routes (Head-Metas + statischer Inhalt).`);
   console.log('   Crawler sehen jetzt H1, Artikeltext und interne Links ohne JavaScript.\n');
