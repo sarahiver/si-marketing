@@ -154,6 +154,36 @@ const Answer = styled.div`
   }
 `;
 
+const MicroRow = styled.div`
+  max-width: ${layout.maxWidth};
+  margin: clamp(2.5rem, 5vh, 4rem) auto 0;
+  padding: 2rem ${layout.gutter} 0;
+  border-top: 1px solid ${brand.line};
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1.5rem;
+
+  span {
+    font-family: ${font.sans};
+    font-size: 0.95rem;
+    color: ${brand.inkMuted};
+  }
+
+  a {
+    font-family: ${font.sans};
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: ${brand.charcoal};
+    text-decoration: none;
+    border-bottom: 1px solid ${brand.taupe};
+    padding-bottom: 2px;
+    transition: color ${motion.hover} ${motion.ease};
+
+    &:hover { color: ${brand.olive}; }
+  }
+`;
+
 const FAQSection = () => {
   const { currentTheme } = useTheme();
   const [openIdx, setOpenIdx] = useState(0);
@@ -163,6 +193,11 @@ const FAQSection = () => {
   const toContact = (e) => {
     e.preventDefault();
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const toThemes = (e) => {
+    e.preventDefault();
+    document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -199,6 +234,13 @@ const FAQSection = () => {
           ))}
         </List>
       </Inner>
+
+      {/* Micro-Conversion: wer bis hierher liest, braucht einen nächsten Schritt */}
+      <MicroRow>
+        <span>Noch nicht sicher?</span>
+        <a href="#themes" onClick={toThemes}>Designs ansehen →</a>
+        <a href="#contact" onClick={toContact}>Anfrage starten →</a>
+      </MicroRow>
     </Section>
   );
 };

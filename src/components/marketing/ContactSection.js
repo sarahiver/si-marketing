@@ -1225,6 +1225,10 @@ const ContactSection = () => {
         <div ref={captchaRef}></div>
       </CaptchaWrapper>
 
+      {/* Hürde senken: sagt vor dem Klick, was danach passiert (§27) */}
+      <PrivacyNote $config={config} style={{ marginBottom: '0.9rem', textAlign: 'center' }}>
+        Eure Anfrage ist unverbindlich. Wir melden uns persönlich bei euch.
+      </PrivacyNote>
       <Button
         type="submit"
         disabled={isSubmitting}
