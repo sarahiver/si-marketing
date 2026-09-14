@@ -6,7 +6,7 @@
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, phoneCardUrl, trackDemoClick } from './demoData';
+import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, phoneCardUrl, demoUrl, trackDemoClick } from './demoData';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
@@ -283,7 +283,7 @@ const DemoCard = ({ demo, isMobile, CardComp }) => {
 
   return (
     <CardComp
-      href={demo.url}
+      href={demoUrl(demo.id, { placement: isMobile ? 'filmstrip_mobile' : 'filmstrip' })}
       target="_blank"
       rel="noopener noreferrer"
       $static={isMobile}

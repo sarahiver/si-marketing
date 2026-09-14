@@ -1232,7 +1232,7 @@ const MarketingHero = () => {
               href="https://siwedding.de/demo-classic"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => window.gtag && window.gtag('event', 'demo_click', { event_category: 'engagement', event_label: 'classic', demo_url: 'https://siwedding.de/demo-classic', source: 'hero' })}
+              onClick={() => trackDemoClick('classic', 'https://siwedding.de/demo-classic', 'hero_button')}
             >
               Live-Demo ansehen
             </ClassicPrimaryCTA>

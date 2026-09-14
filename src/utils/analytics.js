@@ -173,12 +173,100 @@ export const trackPageView = (path, title) => {
 };
 
 // ============================================
+// BLOG-HERKUNFT (Funnel-Attribution)
+// ============================================
+// Merkt sich in der Session, über welchen Artikel/CTA der Besucher in den
+// Produkt-Funnel eingestiegen ist. Wird beim Anfrage-Start und beim Absenden
+// als Event-Parameter mitgeschickt — dadurch ist sichtbar:
+// „Dieser Lead kam vom Artikel Brautpaar-Quiz."
+//
+// WICHTIG: bewusst KEINE utm_*-Parameter für den Sprung nach siwedding.de.
+// Die beiden Domains sind in GA4 als Cross-Domain verknüpft; ein utm_source
+// würde dort eine NEUE Session/Attribution starten und den Funnel zerreißen.
+// Stattdessen: lesbare ?src/&article-Parameter (landen in page_location)
+// plus Event-Parameter auf dieser Seite.
+const ORIGIN_KEY = 'si_blog_origin';
+
+export const setFunnelOrigin = (origin = {}) => {
+  if (typeof window === 'undefined') return;
+  try {
+    sessionStorage.setItem(ORIGIN_KEY, JSON.stringify({ ...origin, ts: Date.now() }));
+  } catch { /* sessionStorage nicht verfügbar */ }
+};
+
+export const getFunnelOrigin = () => {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = sessionStorage.getItem(ORIGIN_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+};
+
+// Flache Parameter für GA4 (keine verschachtelten Objekte erlaubt)
+const originParams = () => {
+  const o = getFunnelOrigin();
+  if (!o) return { source_article: 'none' };
+  return {
+    source_article: o.article || 'none',
+    cta_variant: o.variant || 'none',
+    cta_placement: o.placement || 'none',
+  };
+};
+
+// ============================================
+// WEDDING-WEBSITE-CTA EVENTS (SEO → Demo → Anfrage)
+// ============================================
+export const trackWeddingCTAView = ({ article, variant, placement }) => {
+  trackEvent('wedding_cta_view', {
+    event_category: 'conversion',
+    event_label: `${variant}_${placement}`,
+    article: article || 'unknown',
+    cta_variant: variant || 'unknown',
+    cta_placement: placement || 'unknown',
+  });
+};
+
+export const trackWeddingCTAClick = ({ article, variant, placement, target }) => {
+  trackEvent('wedding_cta_click', {
+    event_category: 'conversion',
+    event_label: `${variant}_${placement}`,
+    source_page: typeof window !== 'undefined' ? window.location.pathname : '',
+    article: article || 'unknown',
+    cta_variant: variant || 'unknown',
+    cta_placement: placement || 'unknown',
+    target: target || 'unknown',
+  });
+};
+
+export const trackInquiryClick = ({ article, variant, placement } = {}) => {
+  trackEvent('inquiry_click', {
+    event_category: 'conversion',
+    event_label: article || 'site',
+    source_page: typeof window !== 'undefined' ? window.location.pathname : '',
+    article: article || 'none',
+    cta_variant: variant || 'none',
+    cta_placement: placement || 'none',
+  });
+};
+
+export const trackInquirySubmit = (theme, selectedPackage) => {
+  trackEvent('inquiry_submit', {
+    event_category: 'conversion',
+    event_label: 'contact_form_submit',
+    theme: theme || 'unknown',
+    package: selectedPackage || 'unknown',
+    ...originParams(),
+  });
+};
+
+// ============================================
 // CONTACT FORM EVENTS
 // ============================================
 export const trackFormStart = () => {
   trackEvent('form_start', {
     event_category: 'contact',
     event_label: 'contact_form_interaction',
+    ...originParams(),
   });
 };
 
@@ -190,6 +278,7 @@ export const trackFormSubmit = (theme, selectedPackage) => {
     package: selectedPackage || 'unknown',
     currency: 'EUR',
     value: selectedPackage === 'Premium' ? 2490 : selectedPackage === 'Standard' ? 1790 : 1290,
+    ...originParams(),
   });
 };
 
@@ -226,11 +315,19 @@ export const trackThemeSwitch = (fromTheme, toTheme) => {
 // ============================================
 // DEMO / OUTBOUND LINK EVENTS
 // ============================================
-export const trackDemoClick = (themeName, demoUrl) => {
+// ACHTUNG: Der Parameter darf NICHT 'source' heißen — GA4 interpretiert
+// 'source'/'medium'/'campaign' auf JEDEM Event als manuelle Sitzungsquelle.
+// Genau dadurch tauchten im Report Quellen wie "filmstrip / (not set)" auf
+// und haben Sitzungen von google/organic abgezogen.
+export const trackDemoClick = (themeName, demoUrl, placement, article) => {
   trackEvent('demo_click', {
     event_category: 'engagement',
     event_label: themeName,
     demo_url: demoUrl,
+    demo: themeName,
+    cta_placement: placement || 'unknown',
+    source_page: typeof window !== 'undefined' ? window.location.pathname : '',
+    article: article || 'none',
   });
 };
 
@@ -330,6 +427,12 @@ export default {
   trackBlogArticleView,
   trackBlogScrollDepth,
   trackBlogCTAClick,
+  trackWeddingCTAView,
+  trackWeddingCTAClick,
+  trackInquiryClick,
+  trackInquirySubmit,
+  setFunnelOrigin,
+  getFunnelOrigin,
   trackCookieConsent,
   trackSectionView,
   loadGoogleAnalytics,

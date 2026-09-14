@@ -7,7 +7,7 @@ import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import usePartnerRef from '../../hooks/usePartnerRef';
 import { useABTest } from '../../context/ABTestContext';
-import { trackFormSubmit } from '../../utils/analytics';
+import { trackFormSubmit, trackFormStart, trackInquirySubmit } from '../../utils/analytics';
 
 // ============================================
 // THEME CONFIGURATIONS
@@ -799,8 +799,16 @@ const ContactSection = () => {
   }, [currentTheme]);
 
   // Trigger hCaptcha load on first form interaction (focus, click, touch)
+  // Erste Interaktion mit dem Formular = Anfrage gestartet.
+  // form_start war bisher zwar definiert, wurde aber nirgends gefeuert —
+  // deshalb stand im Report dauerhaft "Formular gestartet: 0".
+  const formStarted = useRef(false);
   const handleFormInteraction = useCallback(() => {
     loadCaptchaScript();
+    if (!formStarted.current) {
+      formStarted.current = true;
+      trackFormStart();
+    }
   }, [loadCaptchaScript]);
 
   // Also render captcha if script was already loaded (e.g. navigated back)
@@ -899,6 +907,8 @@ const ContactSection = () => {
       // A/B Test Conversion tracken
       trackConversion(currentTheme, formData.interestedPackage);
       trackFormSubmit(currentTheme, formData.interestedPackage);
+      // Funnel-Abschluss inkl. Herkunftsartikel (si_blog_origin aus der Session)
+      trackInquirySubmit(currentTheme, formData.interestedPackage);
       
       // Reset captcha
       if (window.hcaptcha && captchaWidgetId.current !== null) {

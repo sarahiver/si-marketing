@@ -1,7 +1,7 @@
 // src/components/blog/BlogArticle.js
 // Einzelner Blog-Artikel mit Theme-Support + einfacher Markdown-Rendering
 import React, { useEffect, useRef, useCallback } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { getPostBySlug, getAllPosts } from '../../content/blog/blogPosts';
@@ -9,19 +9,15 @@ import MarketingNav from '../marketing/MarketingNav';
 import MarketingFooter from '../marketing/MarketingFooter';
 import BotanicalLeaves from '../marketing/BotanicalLeaves';
 import SEOHead from '../shared/SEOHead';
-import { trackBlogArticleView, trackBlogScrollDepth, trackBlogCTAClick } from '../../utils/analytics';
+import WeddingWebsiteCTA from './WeddingWebsiteCTA';
+import {
+  getBackground, getTextColor, getSecondaryText, getAccent,
+  getCardBg, getCardBorder, getHeadlineFont, getBodyFont,
+} from './blogTheme';
+import { trackBlogArticleView, trackBlogScrollDepth } from '../../utils/analytics';
 
-// ============================================
-// THEME HELPERS (same as BlogPage)
-// ============================================
-const getBackground = (t) => ({ editorial: '#FAFAFA', botanical: '#040604', contemporary: '#FAFAFA', luxe: '#0A0A0A', neon: '#0a0a0f', video: '#0A0A0A', classic: '#FDFCFA', modern: '#FAFAFA' }[t] || '#FAFAFA');
-const getTextColor = (t) => ['botanical', 'luxe', 'neon', 'video'].includes(t) ? '#FFFFFF' : '#0A0A0A';
-const getSecondaryText = (t) => ({ editorial: '#666666', botanical: 'rgba(255,255,255,0.55)', contemporary: '#737373', luxe: 'rgba(248,246,243,0.5)', neon: 'rgba(255,255,255,0.6)', video: '#B0B0B0', classic: '#555555', modern: 'rgba(0,0,0,0.45)' }[t] || '#666666');
-const getAccent = (t) => ({ editorial: '#C41E3A', botanical: 'rgba(45,90,60,0.8)', contemporary: '#FF6B6B', luxe: '#C9A962', neon: '#00ffff', video: '#6B8CAE', classic: '#999999', modern: '#000000' }[t] || '#C41E3A');
-const getCardBg = (t) => ({ editorial: '#FFFFFF', botanical: 'rgba(255,255,255,0.08)', contemporary: '#FFFFFF', luxe: '#1A1A1D', neon: 'rgba(255,255,255,0.05)', video: '#252525', classic: '#FFFFFF', modern: '#FFFFFF' }[t] || '#FFFFFF');
-const getCardBorder = (t) => ({ editorial: '#E5E5E5', botanical: 'rgba(255,255,255,0.15)', contemporary: '#0D0D0D', luxe: 'rgba(201,169,98,0.25)', neon: 'rgba(0,255,255,0.3)', video: 'rgba(107,140,174,0.3)', classic: 'rgba(0,0,0,0.06)', modern: 'rgba(0,0,0,0.1)' }[t] || '#E5E5E5');
-const getHeadlineFont = (t) => ({ editorial: "'Oswald', sans-serif", botanical: "'Cormorant Garamond', serif", contemporary: "'Space Grotesk', sans-serif", luxe: "'Cormorant', serif", neon: "'Space Grotesk', sans-serif", video: "'Manrope', sans-serif", classic: "'Cormorant Garamond', serif", modern: "'DM Sans', sans-serif" }[t] || "'Oswald', sans-serif");
-const getBodyFont = (t) => ({ editorial: "'Inter', sans-serif", botanical: "'Montserrat', sans-serif", contemporary: "'Space Grotesk', sans-serif", luxe: "'Outfit', sans-serif", neon: "'Space Grotesk', sans-serif", video: "'Inter', sans-serif", classic: "'Josefin Sans', sans-serif", modern: "'DM Sans', sans-serif" }[t] || "'Inter', sans-serif");
+// THEME HELPERS liegen jetzt zentral in blogTheme.js (siehe Import oben),
+// damit Artikel und WeddingWebsiteCTA garantiert dasselbe Design benutzen.
 
 // ============================================
 // SIMPLE MARKDOWN RENDERER
@@ -109,21 +105,40 @@ const renderMarkdown = (content, theme, slug) => {
     elements.push({ type: 'table', rows: tableRows });
   }
 
-  // Demo-CTA konsistent in jeden Artikel einsetzen:
-  // vor dem ersten H2 ab ~35% des Artikels, sonst ans Ende.
-  const ctaTarget = elements.findIndex(
-    (el, i) => el.type === 'h2' && i >= Math.floor(elements.length * 0.35)
+  // ============================================
+  // CONVERSION-PUNKTE IM ARTIKEL
+  // ============================================
+  // 2 Einschübe, beide vor einem H2 (also nie mitten im Gedankengang):
+  //   1. 'ctahint' – kurzer Satz nach dem ersten sinnvollen Content-Block
+  //      (ab ~15% des Artikels). Rendert nur, wenn die Variante einen
+  //      Hint definiert hat (z.B. nicht bei Quiz-Artikeln).
+  //   2. 'democta' – die Box ab ~45% des Artikels.
+  // Rückwärts einfügen, damit die Indizes stabil bleiben.
+  const findH2From = (ratio) => elements.findIndex(
+    (el, i) => el.type === 'h2' && i >= Math.floor(elements.length * ratio)
   );
-  if (ctaTarget > 0) {
-    elements.splice(ctaTarget, 0, { type: 'democta' });
+
+  const midTarget = findH2From(0.45);
+  if (midTarget > 0) {
+    elements.splice(midTarget, 0, { type: 'democta' });
   } else {
     elements.push({ type: 'democta' });
+  }
+
+  // Nur bei längeren Artikeln (mind. 12 Blöcke) und mit genug Abstand zur Box
+  if (elements.length >= 12) {
+    const hintTarget = findH2From(0.15);
+    if (hintTarget > 2 && hintTarget < (midTarget > 0 ? midTarget - 2 : elements.length)) {
+      elements.splice(hintTarget, 0, { type: 'ctahint' });
+    }
   }
 
   return elements.map((el, idx) => {
     switch (el.type) {
       case 'democta':
-        return <DemoCTAInline key={idx} theme={theme} slug={slug} />;
+        return <WeddingWebsiteCTA key={idx} slug={slug} theme={theme} placement="mid" />;
+      case 'ctahint':
+        return <WeddingWebsiteCTA key={idx} slug={slug} theme={theme} placement="hint" />;
       case 'h2':
         return <ArticleH2 key={idx} $theme={theme}>{el.text}</ArticleH2>;
       case 'h3':
@@ -348,178 +363,6 @@ const ArticleTd = styled.td`
   border-bottom: 1px solid ${p => getCardBorder(p.$theme)};
 `;
 
-// Demo CTA (mid-article, konsistent in allen Artikeln)
-const DemoBox = styled.div`
-  margin: 3rem 0;
-  padding: 2rem 2.5rem;
-  text-align: center;
-  background: ${p => getCardBg(p.$theme)};
-  border: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : `1px solid ${getCardBorder(p.$theme)}`};
-  border-left: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : `4px solid ${getAccent(p.$theme)}`};
-  border-radius: ${p => p.$theme === 'botanical' ? '16px' : '0'};
-
-  ${p => p.$theme === 'contemporary' && css` box-shadow: 6px 6px 0 #0D0D0D; `}
-  ${p => p.$theme === 'botanical' && css` backdrop-filter: blur(40px); `}
-`;
-
-const DemoBoxEyebrow = styled.p`
-  font-family: ${p => getBodyFont(p.$theme)};
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: ${p => getAccent(p.$theme)};
-  margin-bottom: 0.75rem;
-`;
-
-const DemoBoxTitle = styled.h3`
-  font-family: ${p => getHeadlineFont(p.$theme)};
-  font-size: 1.35rem;
-  font-weight: ${p => ['botanical', 'luxe'].includes(p.$theme) ? '400' : '700'};
-  color: ${p => getTextColor(p.$theme)};
-  margin-bottom: 0.75rem;
-  ${p => p.$theme === 'luxe' && css` font-style: italic; `}
-`;
-
-const DemoBoxText = styled.p`
-  font-family: ${p => getBodyFont(p.$theme)};
-  font-size: 0.95rem;
-  color: ${p => getSecondaryText(p.$theme)};
-  margin-bottom: 1.25rem;
-  line-height: 1.6;
-`;
-
-const DemoBoxButton = styled.a`
-  display: inline-block;
-  padding: 0.8rem 2.25rem;
-  font-family: ${p => getBodyFont(p.$theme)};
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: ${p => getTextColor(p.$theme)};
-  background: transparent;
-  border: 2px solid ${p => getAccent(p.$theme)};
-  border-radius: ${p => p.$theme === 'botanical' ? '99px' : '0'};
-
-  &:hover {
-    background: ${p => getAccent(p.$theme)};
-    color: ${p => ['botanical', 'luxe', 'neon', 'video'].includes(p.$theme) ? '#0A0A0A' : '#FFFFFF'};
-  }
-`;
-
-// Wird vom Markdown-Renderer als Block "democta" in jeden Artikel eingesetzt
-// (vor dem ersten H2 ab ~35% des Artikels, sonst am Ende).
-const DemoCTAInline = ({ theme, slug }) => {
-  const navigate = useNavigate();
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    trackBlogCTAClick(slug, 'demo_cta');
-    if (theme === 'modern') {
-      // Modern öffnet die Design-Sektion als Modal (gleiches Muster wie MarketingNav)
-      navigate('/');
-      setTimeout(() => {
-        window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: 'designs' } }));
-      }, 400);
-    } else {
-      // SPA-Navigation — ScrollToHashHandler (App.js) scrollt zur Theme-Sektion
-      navigate('/#themes');
-    }
-  };
-
-  return (
-    <DemoBox $theme={theme}>
-      <DemoBoxEyebrow $theme={theme}>Live-Demos</DemoBoxEyebrow>
-      <DemoBoxTitle $theme={theme}>Lieber klicken statt lesen?</DemoBoxTitle>
-      <DemoBoxText $theme={theme}>
-        Acht echte Hochzeitswebsites zum Durchklicken — mit RSVP, Galerie, Musikwünschen
-        und allem, worum es hier im Artikel geht.
-      </DemoBoxText>
-      <DemoBoxButton href="/#themes" $theme={theme} onClick={handleClick}>
-        Demos live ansehen →
-      </DemoBoxButton>
-    </DemoBox>
-  );
-};
-
-// CTA Section
-const CTASection = styled.div`
-  max-width: 700px;
-  margin: 0 auto 4rem;
-  padding: 2.5rem;
-  text-align: center;
-  background: ${p => getCardBg(p.$theme)};
-  border: ${p => p.$theme === 'contemporary' ? '3px solid #0D0D0D' : `1px solid ${getCardBorder(p.$theme)}`};
-  border-radius: ${p => p.$theme === 'botanical' ? '16px' : '0'};
-
-  ${p => p.$theme === 'contemporary' && css` box-shadow: 6px 6px 0 #0D0D0D; `}
-  ${p => p.$theme === 'botanical' && css` backdrop-filter: blur(40px); `}
-  ${p => p.$theme === 'modern' && css` border: 1px solid rgba(0,0,0,0.1); `}
-`;
-
-const CTATitle = styled.h3`
-  font-family: ${p => getHeadlineFont(p.$theme)};
-  font-size: 1.5rem;
-  font-weight: ${p => ['botanical', 'luxe'].includes(p.$theme) ? '400' : '700'};
-  color: ${p => getTextColor(p.$theme)};
-  margin-bottom: 1rem;
-
-  ${p => p.$theme === 'luxe' && css` font-style: italic; `}
-`;
-
-const CTAText = styled.p`
-  font-family: ${p => getBodyFont(p.$theme)};
-  font-size: 0.95rem;
-  color: ${p => getSecondaryText(p.$theme)};
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-`;
-
-const CTAButton = styled.a`
-  display: inline-block;
-  padding: 0.85rem 2.5rem;
-  font-family: ${p => getBodyFont(p.$theme)};
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  ${p => p.$theme === 'editorial' && css`
-    background: #C41E3A; color: #fff; border: none;
-    &:hover { background: #A01830; }
-  `}
-  ${p => p.$theme === 'botanical' && css`
-    background: rgba(45,90,60,0.8); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 28px; backdrop-filter: blur(10px);
-    &:hover { background: rgba(45,90,60,1); }
-  `}
-  ${p => p.$theme === 'contemporary' && css`
-    background: #FF6B6B; color: #0D0D0D; border: 3px solid #0D0D0D; box-shadow: 4px 4px 0 #0D0D0D;
-    &:hover { box-shadow: 6px 6px 0 #0D0D0D; transform: translate(-2px, -2px); }
-  `}
-  ${p => p.$theme === 'luxe' && css`
-    background: transparent; color: #C9A962; border: 1px solid #C9A962;
-    &:hover { background: #C9A962; color: #0A0A0A; }
-  `}
-  ${p => p.$theme === 'neon' && css`
-    background: transparent; color: #00ffff; border: 1px solid #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.3);
-    &:hover { background: rgba(0,255,255,0.1); box-shadow: 0 0 20px rgba(0,255,255,0.5); }
-  `}
-  ${p => p.$theme === 'video' && css`
-    background: transparent; color: #6B8CAE; border: 1px solid #6B8CAE;
-    &:hover { background: #6B8CAE; color: #0A0A0A; }
-  `}
-  ${p => p.$theme === 'modern' && css`
-    background: #000; color: #fff; border: none; font-weight: 800;
-    letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.8rem;
-    &:hover { background: #333; }
-  `}
-`;
-
 // Related posts
 const RelatedSection = styled.div`
   max-width: 700px;
@@ -567,7 +410,6 @@ const RelatedLinkTitle = styled.span`
 // ============================================
 const BlogArticle = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const { currentTheme } = useTheme();
   const post = getPostBySlug(slug);
   const allPosts = getAllPosts();
@@ -675,33 +517,8 @@ const BlogArticle = () => {
         {renderMarkdown(post.content, currentTheme, post.slug)}
       </ArticleContent>
 
-      <CTASection $theme={currentTheme}>
-        <CTATitle $theme={currentTheme}>Bereit für eure Hochzeitswebsite?</CTATitle>
-        <CTAText $theme={currentTheme}>
-          Premium-Design, eigene Domain, RSVP und Foto-Upload – alles inklusive ab 1.290€.
-        </CTAText>
-        <CTAButton
-          href="/#contact"
-          $theme={currentTheme}
-          onClick={(e) => {
-            trackBlogCTAClick(post.slug, 'contact_cta');
-            if (currentTheme === 'modern') {
-              e.preventDefault();
-              navigate('/');
-              setTimeout(() => {
-                window.dispatchEvent(new CustomEvent('modernOpenModal', { detail: { id: 'contact' } }));
-              }, 400);
-            } else {
-              // SPA-Navigation statt Full-Reload — ScrollToHashHandler (App.js)
-              // übernimmt das Scrollen zum Formular, sobald es gerendert ist
-              e.preventDefault();
-              navigate('/#contact');
-            }
-          }}
-        >
-          Jetzt anfragen
-        </CTAButton>
-      </CTASection>
+      {/* Conversion-Block am Artikelende — Variante passend zum Artikel */}
+      <WeddingWebsiteCTA slug={post.slug} theme={currentTheme} placement="end" />
 
       {relatedPosts.length > 0 && (
         <RelatedSection>

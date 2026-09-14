@@ -115,13 +115,36 @@ export const heroFallbackUrl = (url, horizontal = false) =>
 export const mobileCardUrl = (id) =>
   THEME_HEROES[id] || heroFallbackUrl(THEME_SCREENSHOTS[id], HORIZONTAL_THEMES.includes(id));
 
-export const trackDemoClick = (label, url, source) => {
+// Demo-URL inklusive Herkunft.
+// Bewusst KEINE utm_*-Parameter: sarahiver.com und siwedding.de sind in GA4
+// als Cross-Domain verknüpft — ein utm_source auf dem Zielaufruf würde dort
+// eine neue Sitzung/Attribution erzwingen und den Funnel zerschneiden.
+// ?src / ?article sind neutral, landen aber in page_location und sind damit
+// in GA4 (Landingpage) und in Server-Logs auswertbar.
+export const demoUrl = (id, { placement, article } = {}) => {
+  const base = ALL_DEMOS.find(d => d.id === id)?.url || ALL_DEMOS[0].url;
+  const params = new URLSearchParams();
+  if (placement) params.set('src', placement);
+  if (article) params.set('article', article);
+  const qs = params.toString();
+  return qs ? `${base}?${qs}` : base;
+};
+
+// ACHTUNG: Parameter NICHT 'source' nennen — GA4 liest 'source'/'medium'/
+// 'campaign' auf jedem Event als manuelle Sitzungsquelle. Das war die Ursache
+// für die Quellen "filmstrip / (not set)" und "filmstrip_mobile / (not set)"
+// im Report; diese Sitzungen fehlten entsprechend bei google/organic.
+export const trackDemoClick = (label, url, placement, article) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'demo_click', {
       event_category: 'engagement',
       event_label: label,
       demo_url: url,
-      source,
+      demo: label,
+      cta_placement: placement,
+      source_page: typeof window !== 'undefined' ? window.location.pathname : '',
+      article: article || 'none',
+      engagement_time_msec: 100,
     });
   }
 };

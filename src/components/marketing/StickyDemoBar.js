@@ -5,7 +5,7 @@
 // Kontakt-Sektion sichtbar ist. Nur auf Mobile (<768px) sichtbar.
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { ALL_DEMOS, TAGLINES, trackDemoClick } from './demoData';
+import { ALL_DEMOS, TAGLINES, demoUrl, trackDemoClick } from './demoData';
 
 const SHOW_AFTER_PX = 600;
 
@@ -156,7 +156,7 @@ const StickyDemoBar = () => {
   }, [visible]);
 
   const handleSelect = (demo) => {
-    trackDemoClick(demo.id, demo.url, 'sticky_bar');
+    trackDemoClick(demo.id, demoUrl(demo.id, { placement: 'sticky_bar' }), 'sticky_bar');
     setOpen(false);
   };
 
@@ -172,7 +172,7 @@ const StickyDemoBar = () => {
           {ALL_DEMOS.map(demo => (
             <ThemeRow
               key={demo.id}
-              href={demo.url}
+              href={demoUrl(demo.id, { placement: 'sticky_bar' })}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => handleSelect(demo)}
