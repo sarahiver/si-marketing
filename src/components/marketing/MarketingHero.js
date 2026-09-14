@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
-import { ALL_DEMOS, phoneCardUrl, trackDemoClick } from './demoData';
+import { ALL_DEMOS, phoneCardUrl, demoUrl, setStyleChoice, trackDemoClick } from './demoData';
 
 // ============================================
 // CLOUDINARY URLS
@@ -1088,13 +1088,18 @@ const HeroPhoneRotator = () => {
 
   return (
     <ClassicHeroPhone
-      href={active.url}
+      href={demoUrl(active.id, { placement: 'hero_phone' })}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${active.name} Live-Demo ansehen`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      onClick={() => trackDemoClick(active.id, active.url, 'hero_phone')}
+      onClick={() => {
+        // Stil merken: wer aus dem Hero in eine Demo springt, soll ihn
+        // bei der Rückkehr im Formular vorausgewählt finden
+        setStyleChoice(active.id, 'hero_phone');
+        trackDemoClick(active.id, demoUrl(active.id, { placement: 'hero_phone' }), 'hero_phone');
+      }}
     >
       <ClassicHeroPhoneScreen>
         {ALL_DEMOS.map((demo, i) => (
@@ -1223,21 +1228,44 @@ const MarketingHero = () => {
         <ClassicContent>
           <ClassicEyebrow>Premium Hochzeitswebsites</ClassicEyebrow>
           <ClassicTitle>
-            Eure Hochzeitswebsite.<br/>Persönlich für euch gebaut.
+            Mehr als eine Website.<br/>Eure Geschichte.
           </ClassicTitle>
-          <ClassicScript>von Menschen, nicht vom Baukasten</ClassicScript>
-          <ClassicDateLine>RSVP · Gästemanagement · Foto-Upload · In 7 Tagen live</ClassicDateLine>
+          <ClassicScript>handgemacht in Hamburg, nicht aus dem Baukasten</ClassicScript>
+          {/* Bewusst keine Funktionsliste mehr: erst Emotion, dann Produkt.
+              RSVP, Foto-Upload & Co. erklärt die Seite weiter unten. */}
+          <ClassicDateLine>Acht Stilwelten · Individuell gestaltet · In 7 Tagen live</ClassicDateLine>
           <ClassicCTAs>
+            {/* Primär führt in die Stil-Galerie direkt darunter, nicht in
+                eine einzelne Demo: das Paar soll erst wählen, dann klicken.
+                Der Direktweg in eine Demo bleibt über das Phone-Mockup. */}
             <ClassicPrimaryCTA
-              href="https://siwedding.de/demo-classic"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackDemoClick('classic', 'https://siwedding.de/demo-classic', 'hero_button')}
+              as="a"
+              href="#themes"
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.gtag) {
+                  window.gtag('event', 'hero_cta_click', {
+                    event_category: 'conversion',
+                    event_label: 'themes',
+                    cta_placement: 'hero_primary',
+                  });
+                }
+                scrollToSection('themes');
+              }}
             >
-              Live-Demo ansehen
+              Designs ansehen
             </ClassicPrimaryCTA>
-            <ClassicSecondaryCTA onClick={() => scrollToSection('contact')}>
-              Unverbindlich anfragen
+            <ClassicSecondaryCTA onClick={() => {
+              if (window.gtag) {
+                window.gtag('event', 'hero_cta_click', {
+                  event_category: 'conversion',
+                  event_label: 'contact',
+                  cta_placement: 'hero_secondary',
+                });
+              }
+              scrollToSection('contact');
+            }}>
+              Anfrage starten
             </ClassicSecondaryCTA>
           </ClassicCTAs>
         </ClassicContent>

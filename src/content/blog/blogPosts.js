@@ -214,14 +214,14 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
   },
   {
     slug: 'hochzeitswebsite-vergleich-2026',
-    title: 'Hochzeitswebsite Vergleich 2027: 8 Anbieter im ehrlichen Test',
-    seoTitle: 'Hochzeitswebsite Vergleich 2027: 8 Anbieter',
-    description: 'Welche Hochzeitswebsite lohnt sich 2027? Wir vergleichen 8 Anbieter nach Design, Funktionen & Preis – inkl. Empfehlung und ehrlicher Bewertung.',
+    title: 'Hochzeitswebsite Vergleich 2027: Welche Lösung passt zu euch?',
+    seoTitle: 'Hochzeitswebsite Vergleich 2027 | S&I.',
+    description: 'Welche Hochzeitswebsite lohnt sich 2027? DIY, Baukasten oder individuell – Kosten, Funktionen und Aufwand im Vergleich. Mit Entscheidungshilfe.',
     date: '2024-10-28',
     category: 'Vergleich',
     tags: ['Vergleich', 'Ratgeber'],
     readTime: '14 min',
-    keywords: ['hochzeitswebsite vergleich', 'hochzeitshomepage vergleich', 'beste hochzeitswebsite', 'zankyou alternative', 'hochzeitswebsite anbieter deutschland', 'weddyplace erfahrungen', 'hochzeitsseite erstellen vergleich', 'joy hochzeit alternative'],
+    keywords: ['hochzeitswebsite vergleich', 'hochzeitshomepage vergleich', 'beste hochzeitswebsite', 'hochzeitswebsite anbieter', 'hochzeitsseite erstellen vergleich', 'hochzeitswebsite kosten vergleich', 'hochzeitswebsite baukasten', 'welche hochzeitswebsite'],
     image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410204/editorial-demo_uzzasb.png',
     imageAlt: 'Editorial Theme Hochzeitswebsite von S&I.',
     schema: {
@@ -363,9 +363,78 @@ Bei S&I. zahlt ihr einmal. Ihr bekommt ein Design das wirklich zu eurer Hochzeit
 
 **Der Unterschied ist nicht der Preis. Der Unterschied ist was ihr dafür bekommt.**
 
-Bereit für eure eigene Hochzeitswebsite? [Alle Pakete und Preise ansehen →](https://www.sarahiver.com/#preise)
+---
 
-Noch nicht sicher welches Design zu euch passt? Lest unseren Artikel über [Hochzeitswebsite Designs und Beispiele](/blog/hochzeitswebsite-design-beispiele-inspiration) – mit direkten Links zu allen Demo-Seiten.
+## Unsere zwei Modelle – der Unterschied ist die Arbeit, nicht der Funktionsumfang
+
+Die häufigste Frage, die uns Paare stellen, ist nicht „Welche Funktionen bekommen wir?". Beide Modelle enthalten alles. Die eigentliche Frage lautet:
+
+**Wie viel möchtet ihr selbst übernehmen?**
+
+### Website – 990 €
+
+Wir besprechen gemeinsam Design, Theme, Farben und Aufbau. Ihr bekommt euren Dashboard-Zugang und pflegt Texte und Fotos selbst ein – in eurem Tempo, wann immer ihr Lust habt. Wir prüfen anschließend Design, Darstellung und mobile Ansicht und machen den Feinschliff. Ihr schaut drüber und gebt frei.
+
+Passend für euch, wenn ihr Freude daran habt, eure Inhalte selbst zusammenzustellen.
+
+### All In – 1.490 €
+
+Wir besprechen dasselbe gemeinsam. Danach bekommt ihr eine strukturierte Vorlage, tragt eure Inhalte einmal ein und schickt uns eure Bilder. Den Rest machen wir: Struktur, Design, Bildplatzierung, Feinschliff, mobile Optimierung. Ihr prüft nur die fertige Website und gebt frei.
+
+Passend für euch, wenn ihr in der Hochzeitsplanung ohnehin schon genug zu tun habt.
+
+Bei beiden Modellen sind alle Website-Komponenten enthalten – es gibt keine Begrenzung und keine Extra-Komponenten gegen Aufpreis. Der QR-Code für eure Papeterie ist immer dabei.
+
+Save the Date und Wedding Archive kosten bei Website jeweils 150 € extra und sind bei All In bereits enthalten. Ein passendes Einladungsdesign gibt es für beide Modelle für 400 €.
+
+---
+
+## Für wen eignet sich was?
+
+**Nehmt eine kostenlose Lösung**, wenn ihr eine kleine Feier plant, unter 30 Gäste einladet und eine Seite braucht, die vor allem Termin und Ort nennt. Dafür müsst ihr kein Geld ausgeben.
+
+**Nehmt einen Baukasten**, wenn ihr technisch versiert seid, gerne selbst gestaltet und eine Woche Zeit habt, euch einzuarbeiten. Das Ergebnis wird solide.
+
+**Nehmt eine individuell gestaltete Website**, wenn euer Design zu eurer Hochzeit passen soll, ihr zwischen 50 und 200 Gäste koordiniert und keine Lust habt, euch nebenbei in ein neues Tool einzuarbeiten.
+
+Ehrlich gesagt: Wenn euch das Design eurer Hochzeitswebsite egal ist, seid ihr bei uns falsch. Genau dafür gibt es uns.
+
+---
+
+## Häufige Fragen
+
+**Wie lange dauert es, bis die Website live ist?**
+In der Regel sieben Tage, nachdem wir eure Texte und Bilder haben – inklusive einer Korrekturschleife.
+
+**Wie lange bleibt die Website online?**
+Bis drei Monate nach eurer Hochzeit. Das deckt die gesamte Planungsphase ab und gibt euren Gästen danach noch Zeit, Fotos hochzuladen.
+
+**Können wir später noch etwas ändern?**
+Ja. Beim Website-Modell jederzeit selbst über euer Dashboard, beim All-In-Modell sagt ihr uns Bescheid.
+
+**Was passiert mit unseren Daten?**
+Server in Deutschland, DSGVO-konform, kein Weiterverkauf. Nach Ablauf werden alle Daten gelöscht – auf Wunsch bekommt ihr vorher einen Export.
+
+**Was, wenn uns keines der Designs zusagt?**
+Dann passen wir eines an. Farben, Schriften und Aufbau sind ohnehin Teil der gemeinsamen Abstimmung.
+
+---
+
+## Der nächste Schritt
+
+**Ihr wollt sehen, wie eure Hochzeitswebsite aussehen könnte?**
+
+Alle acht Designs sind vollständige Live-Demos – mit RSVP, Gästebereich und Foto-Upload. Klickt euch durch und schaut, welcher Stil sich nach eurer Hochzeit anfühlt.
+
+👉 **[Alle acht Designs live ansehen →](https://www.sarahiver.com/#themes)**
+
+**Ihr habt schon eine Vorstellung?**
+
+Dann erzählt uns kurz von eurer Hochzeit. Wir melden uns persönlich und besprechen, was zu euch passt – unverbindlich.
+
+👉 **[Anfrage starten →](https://www.sarahiver.com/#contact)**
+
+Noch unsicher beim Design? Unser Artikel über [Hochzeitswebsite Designs und Beispiele](/blog/hochzeitswebsite-design-beispiele-inspiration) zeigt jeden Stil im Detail. Und falls ihr euch fragt, wann der richtige Zeitpunkt ist: [Wann ihr eure Hochzeitswebsite erstellen solltet](/blog/wann-hochzeitswebsite-erstellen-zeitpunkt).
     `,
   },
   {
