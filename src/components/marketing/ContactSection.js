@@ -4,6 +4,7 @@
 // KEIN Double Opt-In nötig (Kontaktanfrage ≠ Newsletter)
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
+import { PUBLIC_PACKAGES, getPackage } from '../../lib/pricing';
 import { useTheme } from '../../context/ThemeContext';
 import usePartnerRef from '../../hooks/usePartnerRef';
 import { useABTest } from '../../context/ABTestContext';
@@ -673,11 +674,13 @@ const CaptchaWrapper = styled.div`
 // ============================================
 // COMPONENT
 // ============================================
+// Paketauswahl zentral aus lib/pricing.js
 const PACKAGES = [
   { id: '', label: 'Bitte wählen...' },
-  { id: 'starter', label: 'Starter (€1.290)' },
-  { id: 'standard', label: 'Standard (€1.490)' },
-  { id: 'premium', label: 'Premium (€1.990)' },
+  ...PUBLIC_PACKAGES.map(pkg => ({
+    id: pkg.id,
+    label: `${pkg.name} (€${new Intl.NumberFormat('de-DE').format(pkg.price)})`,
+  })),
 ];
 
 const THEME_OPTIONS = [

@@ -9,6 +9,7 @@ import React, { Suspense, useRef, useEffect, useState, useCallback, Component } 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Image } from '@react-three/drei';
 import styled from 'styled-components';
+import { PUBLIC_PACKAGES } from '../../lib/pricing';
 
 // ============================================
 // ERROR BOUNDARY
@@ -374,11 +375,7 @@ function ModalContent({ id, onClose, onOpenContact }) {
               <ScalingTitle scrollTop={scrollTop}>Preise</ScalingTitle>
             </ModalHeader>
           </Stagger>
-          {[
-            { name: 'Starter', price: '1.290', duration: '6 Monate', features: ['Eigene Domain', '4 Basis-Komponenten', '6 Monate Hosting', '1 Revision'] },
-            { name: 'Standard', price: '1.490', duration: '8 Monate', popular: true, features: ['Eigene Domain', '4 Basis + 3 Extra', '8 Monate Hosting', '2 Revisionen'] },
-            { name: 'Premium', price: '1.990', duration: '12 Monate', features: ['Eigene Domain', '4 Basis + 6 Extra', 'Save the Date + Archiv', 'Unbegrenzte Revisionen'] },
-          ].map((pkg, i) => (
+          {PARALLAX_PACKAGES.map((pkg, i) => (
             <Stagger key={i} delay={0.2 + i * 0.12} scrollTop={scrollTop} speed={0.25 + i * 0.08} driftX={0}>
               <ExpandDivider scrollTop={scrollTop} delay={0.2 + i * 0.12} />
               <div style={{ padding: '2rem 0' }}>
@@ -553,13 +550,21 @@ function ModalContent({ id, onClose, onOpenContact }) {
 
 const HCAPTCHA_SITE_KEY = process.env.REACT_APP_HCAPTCHA_SITE_KEY || '10000000-ffff-ffff-ffff-000000000001';
 
-const PACKAGES = [
-  { id: '', label: 'Bitte wählen...' },
-  { id: 'starter', label: 'Starter (€1.290)' },
-  { id: 'standard', label: 'Standard (€1.490)' },
-  { id: 'premium', label: 'Premium (€1.990)' },
-];
+// Kompakte Preisdarstellung für das Parallax-Modal — Daten zentral
+const PARALLAX_PACKAGES = PUBLIC_PACKAGES.map(pkg => ({
+  name: pkg.name,
+  price: new Intl.NumberFormat('de-DE').format(pkg.price),
+  duration: pkg.hosting,
+  popular: pkg.id === 'all_in',
+  // nur die vier aussagekräftigsten Punkte im Modal
+  features: pkg.deliverables.slice(0, 4),
+}));
 
+const PACKAGES = PUBLIC_PACKAGES.map(pkg => ({
+  id: pkg.id,
+  label: `${pkg.name} (€${new Intl.NumberFormat('de-DE').format(pkg.price)})`,
+}));
+const PACKAGE_OPTIONS = [{ id: '', label: 'Bitte wählen...' }, ...PACKAGES];
 const THEME_OPTIONS = [
   { id: '', label: 'Bitte wählen...' },
   { id: 'classic', label: 'Classic' },
@@ -751,7 +756,7 @@ function ContactModalForm({ onClose }) {
           <p style={labelStyle}>Paket</p>
           <select style={selectStyle} value={form.interestedPackage}
             onChange={e => setForm(s => ({ ...s, interestedPackage: e.target.value }))}>
-            {PACKAGES.map(p => <option key={p.id} value={p.id} style={{ background: '#1a1a1a' }}>{p.label}</option>)}
+            {PACKAGE_OPTIONS.map(p => <option key={p.id} value={p.id} style={{ background: '#1a1a1a' }}>{p.label}</option>)}
           </select>
         </div>
       </div>
@@ -1046,7 +1051,7 @@ export default function ModernParallaxPage() {
           fontFamily: "'DM Sans', sans-serif", fontSize: '0.75rem', fontWeight: 700,
           letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.25)',
           marginTop: '2rem', background: '#fff', padding: '0.3em 0.6em',
-        }}>AB 1.290 € · IN 7 TAGEN LIVE</p>
+        }}>AB 990 € · IN 7 TAGEN LIVE</p>
       </div>
 
       {/* ── SCATTERED TITLES ── */}

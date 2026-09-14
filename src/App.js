@@ -1,6 +1,7 @@
 // src/App.js
 // S&I Wedding Marketing - Hauptseite für siwedding.de
 import React, { useEffect, Suspense } from 'react';
+import { PUBLIC_PACKAGES } from './lib/pricing';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -161,93 +162,39 @@ function MarketingPage() {
     brand: { '@type': 'Brand', name: 'S&I.' },
     url: 'https://www.sarahiver.com',
     image: 'https://res.cloudinary.com/si-weddings/image/upload/v1770798416/si_og_image_nx5blq.png',
-    offers: [
-      {
-        '@type': 'Offer',
-        name: 'Starter Paket',
-        price: '1290',
-        priceCurrency: 'EUR',
-        priceValidUntil: '2026-12-31',
-        availability: 'https://schema.org/InStock',
-        url: 'https://www.sarahiver.com/#preise',
-        seller: { '@type': 'Organization', name: 'S&I.' },
-        hasMerchantReturnPolicy: {
-          '@type': 'MerchantReturnPolicy',
-          applicableCountry: 'DE',
-          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
-          merchantReturnDays: 0,
-        },
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
-          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
-          },
+    offers: PUBLIC_PACKAGES.map(pkg => ({
+      '@type': 'Offer',
+      name: `${pkg.name} Paket`,
+      price: String(pkg.price),
+      priceCurrency: 'EUR',
+      priceValidUntil: '2027-12-31',
+      availability: 'https://schema.org/InStock',
+      url: 'https://www.sarahiver.com/#preise',
+      seller: { '@type': 'Organization', name: 'S&I.' },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'DE',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+        merchantReturnDays: 0,
+      },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+          transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
         },
       },
-      {
-        '@type': 'Offer',
-        name: 'Standard Paket',
-        price: '1590',
-        priceCurrency: 'EUR',
-        priceValidUntil: '2026-12-31',
-        availability: 'https://schema.org/InStock',
-        url: 'https://www.sarahiver.com/#preise',
-        seller: { '@type': 'Organization', name: 'S&I.' },
-        hasMerchantReturnPolicy: {
-          '@type': 'MerchantReturnPolicy',
-          applicableCountry: 'DE',
-          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
-          merchantReturnDays: 0,
-        },
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
-          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
-          },
-        },
-      },
-      {
-        '@type': 'Offer',
-        name: 'Premium Paket',
-        price: '1990',
-        priceCurrency: 'EUR',
-        priceValidUntil: '2026-12-31',
-        availability: 'https://schema.org/InStock',
-        url: 'https://www.sarahiver.com/#preise',
-        seller: { '@type': 'Organization', name: 'S&I.' },
-        hasMerchantReturnPolicy: {
-          '@type': 'MerchantReturnPolicy',
-          applicableCountry: 'DE',
-          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
-          merchantReturnDays: 0,
-        },
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
-          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
-            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
-          },
-        },
-      },
-    ],
+    })),
   };
 
   return (
     <AppWrapper>
       <SEOHead
-        title="S&I. — Premium Hochzeitswebsites ab 1.290 €"
-        description="Individuelle Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 1.290 €. Aus Hamburg."
+        title="S&I. — Premium Hochzeitswebsites ab 990 €"
+        description="Individuelle Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 990 €. Aus Hamburg."
         path="/"
         schema={productSchema}
         keywords={['Hochzeitswebsite', 'Hochzeitswebsite erstellen', 'Wedding Website', 'digitale Hochzeitseinladung', 'RSVP Hochzeit', 'Premium Hochzeitswebsite', 'Hochzeitswebsite Hamburg']}

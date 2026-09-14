@@ -95,7 +95,7 @@ Eine eigene Hochzeitswebsite ist mehr als nur eine digitale Visitenkarte für eu
 
 Sie spart euch Zeit bei der Organisation, reduziert den Stress mit Gästelisten und Zusagen, schützt eure Privatsphäre, schont die Umwelt und gibt euren Gästen alles, was sie brauchen – elegant, modern und auf jedem Gerät perfekt.
 
-**Bereit für eure eigene Hochzeitshomepage?** Bei S&I. bekommt ihr eine Premium-Hochzeitswebsite mit eigener Domain, RSVP-System, Foto-Upload, Gästebuch und individuellem Design – alles aus einer Hand, ab 1.290€.
+**Bereit für eure eigene Hochzeitshomepage?** Bei S&I. bekommt ihr eine Premium-Hochzeitswebsite mit eigener Domain, RSVP-System, Foto-Upload, Gästebuch und individuellem Design – alles aus einer Hand, ab 990€.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -206,7 +206,7 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
 
 **Kein Extra-Tool, kein Extra-Login, kein Excel-Chaos.** Alles an einem Ort, alles im Griff. Noch mehr dazu, wie das Zusammenspiel von [Gästeliste, Erinnerungsmails und Export](/blog/gaesteliste-rsvp-erinnerungsmail-export) funktioniert, lest ihr in unserem ausführlichen Guide.
 
-**Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit vollständigem RSVP-System, Menüwahl, Allergie-Abfrage und automatischen Erinnerungsmails. Ab 1.290 €.
+**Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit vollständigem RSVP-System, Menüwahl, Allergie-Abfrage und automatischen Erinnerungsmails. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -465,7 +465,7 @@ Die beste Hochzeitswebsite ist übersichtlich, informativ und persönlich. Mit d
 
 **Bei S&I. bekommt ihr eine Hochzeitswebsite mit allen Inhalten, die eure Gäste brauchen – professionell gestaltet, intuitiv bedienbar und mit eigenem Admin-Dashboard zum einfachen Pflegen eurer Texte und Infos.**
 
-**Alle 12 Inhalte – fertig für euch eingerichtet?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit allen Inhalten aus dieser Checkliste, professionell gestaltet und kinderleicht selbst zu pflegen. Ab 1.290 €.
+**Alle 12 Inhalte – fertig für euch eingerichtet?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit allen Inhalten aus dieser Checkliste, professionell gestaltet und kinderleicht selbst zu pflegen. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -536,7 +536,7 @@ Spezialisierte Hochzeitswebsite-Portale bieten kostenpflichtige Pakete mit mehr 
 
 Hier gibt es zwei Varianten: Zum einen Agenturen und Freelancer, die eine komplett individuelle Hochzeitswebsite programmieren (ab ca. 2.000–5.000 €). Zum anderen spezialisierte Premium-Anbieter wie S&I., die professionell gestaltete Themes mit umfassenden Funktionen als Paket anbieten.
 
-**Was ihr bekommt:** Bei S&I. zum Beispiel: sechs handgefertigte Hochzeitsthemes, eigene Domain inklusive, vollwertiges RSVP-System mit Gästemanagement, Foto-Upload, Gästebuch, Passwortschutz und persönlichen Support aus Hamburg – alles zu einem Einmalpreis ab 1.290 €.
+**Was ihr bekommt:** Bei S&I. zum Beispiel: sechs handgefertigte Hochzeitsthemes, eigene Domain inklusive, vollwertiges RSVP-System mit Gästemanagement, Foto-Upload, Gästebuch, Passwortschutz und persönlichen Support aus Hamburg – alles zu einem Einmalpreis ab 990 €.
 
 **Der entscheidende Unterschied:** Eine Einmalzahlung statt monatlicher Kosten. Kein Ablaufdatum, kein Abo, keine versteckten Gebühren. Eure Hochzeitswebsite bleibt online, so lange ihr wollt.
 
@@ -564,7 +564,7 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
 
 **Eure Hochzeit ist einmalig. Eure Website sollte es auch sein.**
 
-**Lieber einmal richtig statt monatlich zahlen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit individuellem Design, eigener Domain, [RSVP](/blog/digitales-rsvp-hochzeit) und Foto-Upload – zum einmaligen Festpreis ohne Abo. Ab 1.290 €.
+**Lieber einmal richtig statt monatlich zahlen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit individuellem Design, eigener Domain, [RSVP](/blog/digitales-rsvp-hochzeit) und Foto-Upload – zum einmaligen Festpreis ohne Abo. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -685,7 +685,7 @@ Ein QR-Code auf eurer Hochzeitseinladung ist die eleganteste Verbindung zwischen
 
 **Eure Hochzeitseinladung verdient mehr als nur Papier. Und euer QR-Code ist bei S&I. bereits fertig, wenn ihr ihn braucht.**
 
-**Bereit für die Website hinter eurem QR-Code?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eigener Domain, die auf jeder Einladung gut aussieht – QR-Code für eure Papeterie inklusive. Ab 1.290 €.
+**Bereit für die Website hinter eurem QR-Code?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eigener Domain, die auf jeder Einladung gut aussieht – QR-Code für eure Papeterie inklusive. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -762,7 +762,7 @@ Eine eigene Domain und ein Passwortschutz sind keine Luxus-Features – sie sind
 
 **Bei S&I. ist beides immer inklusive – weil wir finden, dass Persönlichkeit und Privatsphäre keine Aufpreise verdienen.**
 
-**Bereit für eure private Hochzeitswebsite?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eurer Wunschdomain, Passwortschutz und voller Kontrolle über eure Privatsphäre. Ab 1.290 €.
+**Bereit für eure private Hochzeitswebsite?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eurer Wunschdomain, Passwortschutz und voller Kontrolle über eure Privatsphäre. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1038,7 +1038,7 @@ Und wenn dann um Mitternacht genau der Song läuft, den die beste Freundin sich 
 
 **Bei S&I. ist das Musikwünsche-Feature als Komponente in allen Themes verfügbar – perfekt ins jeweilige Design integriert. Einfach im Admin-Dashboard aktivieren, und eure Gäste können ab sofort ihre Songs beitragen.**
 
-**Bereit für eine volle Tanzfläche?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit integriertem Musikwunsch-Feature, RSVP-System und allem, was eure Gäste brauchen. Ab 1.290 €.
+**Bereit für eine volle Tanzfläche?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit integriertem Musikwunsch-Feature, RSVP-System und allem, was eure Gäste brauchen. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1122,7 +1122,7 @@ Im S&I. [Admin-Dashboard](/blog/hochzeitswebsite-admin-dashboard) könnt ihr das
 
 **Bei S&I. ist das Gästebuch in allen Themes verfügbar. Eure Gäste brauchen keinen Account, keine App, kein Login – nur eure Website-URL und etwas, das sie euch sagen wollen.**
 
-**Bereit für Erinnerungen, die bleiben?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit digitalem Gästebuch, [Foto-Upload](/blog/hochzeitswebsite-foto-upload-gaeste) und einem Design, das zu eurer Feier passt. Ab 1.290 €.
+**Bereit für Erinnerungen, die bleiben?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit digitalem Gästebuch, [Foto-Upload](/blog/hochzeitswebsite-foto-upload-gaeste) und einem Design, das zu eurer Feier passt. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1202,7 +1202,7 @@ Eine Wunschliste auf der Hochzeitswebsite ist kein notwendiges Übel, sondern ei
 
 **Bei S&I. integriert sich die Wunschliste nahtlos in eure Hochzeitswebsite. Schön gestaltet, einfach zu pflegen und für eure Gäste eine echte Erleichterung.**
 
-**Bereit für entspanntes Schenken?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eleganter Wunschliste, RSVP-System und allen Infos für eure Gäste an einem Ort. Ab 1.290 €.
+**Bereit für entspanntes Schenken?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit eleganter Wunschliste, RSVP-System und allen Infos für eure Gäste an einem Ort. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1280,7 +1280,7 @@ Organisiert ihr einen Shuttle zwischen Hotel und Location? Zwischen Kirche und F
 
 **Das Location-Feature bei S&I. ist in allen Themes verfügbar und unterstützt beliebig viele Orte – mit interaktiver Karte, Google-Maps-Link und individuellen Beschreibungstexten. So findet garantiert jeder den Weg zu euch.**
 
-**Bereit für eine Website, die jede Gäste-Frage beantwortet?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit interaktiver Karte, Anfahrts-Infos und allem, was eure Gäste wissen müssen. Ab 1.290 €.
+**Bereit für eine Website, die jede Gäste-Frage beantwortet?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit interaktiver Karte, Anfahrts-Infos und allem, was eure Gäste wissen müssen. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1360,7 +1360,7 @@ Erwähnt das auf eurer Website, wenn ihr so etwas plant. Es ist ein wunderschön
 
 **Bei S&I. ist die Hotel-Komponente in allen Themes verfügbar – mit individuellen Karten, Entfernungsangaben und Direktlinks. Damit sich eure Gäste nicht nur auf eure Hochzeit freuen, sondern auf das ganze Wochenende.**
 
-**Bereit für entspannte Gäste-Logistik?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Hotel-Empfehlungen, Anfahrt und [RSVP](/blog/digitales-rsvp-hochzeit) – alles auf einer eleganten Website. Ab 1.290 €.
+**Bereit für entspannte Gäste-Logistik?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Hotel-Empfehlungen, Anfahrt und [RSVP](/blog/digitales-rsvp-hochzeit) – alles auf einer eleganten Website. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1444,7 +1444,7 @@ Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäs
 
 **Ihr bestimmt die Inhalte, wir sorgen dafür, dass es fantastisch aussieht. Und das Schönste: Ihr könnt jederzeit neue Buchstaben hinzufügen oder bestehende aktualisieren – in eurem Admin-Dashboard, ohne eine Zeile Code.**
 
-**Vom Hochzeits-Wissen zur eigenen Website?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit individuellem Design, eigener Domain und allen Funktionen für eure Planung. Ab 1.290 €.
+**Vom Hochzeits-Wissen zur eigenen Website?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit individuellem Design, eigener Domain und allen Funktionen für eure Planung. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1565,7 +1565,7 @@ Die Darstellung passt sich automatisch eurem Theme an. Und das Beste: Ihr könnt
 
 **Bei S&I. ist die FAQ-Komponente in allen Themes verfügbar. Sie ist einer der meistgenutzten Bausteine – weil sie einfach funktioniert und euch den Rücken freihält.**
 
-**Alle Fragen geklärt – bereit für den nächsten Schritt?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit FAQ-Komponente, RSVP, Foto-Upload und persönlichem Support aus Hamburg. Ab 1.290 €.
+**Alle Fragen geklärt – bereit für den nächsten Schritt?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit FAQ-Komponente, RSVP, Foto-Upload und persönlichem Support aus Hamburg. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1650,7 +1650,7 @@ In zehn Jahren werdet ihr nicht an die Deko denken. Nicht an das Menü. Nicht an
 
 **Bei S&I. ist der Foto-Upload als Gäste-Fotos-Komponente in allen Themes verfügbar – mit Fortschrittsanzeige, voller Bildqualität und einer wunderschönen Galerie. Eure Gäste laden hoch, ihr genießt die Erinnerungen. So einfach ist das.**
 
-**Bereit für alle Hochzeitsfotos an einem Ort?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Foto-Upload in voller Auflösung, [Passwortschutz](/blog/hochzeitswebsite-eigene-domain-passwortschutz) und eigener Domain. Ab 1.290 €.
+**Bereit für alle Hochzeitsfotos an einem Ort?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Foto-Upload in voller Auflösung, [Passwortschutz](/blog/hochzeitswebsite-eigene-domain-passwortschutz) und eigener Domain. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1769,7 +1769,7 @@ Einzelne Features findet man bei vielen Anbietern. [Foto-Upload](/blog/hochzeits
 
 **Das ist der Unterschied zwischen einer Hochzeitswebsite und einem Premium-Erlebnis.** Und genau das verdient eure Hochzeit.
 
-**Bereit für das Komplettpaket?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit allen Premium-Funktionen aus diesem Artikel – aus einem Guss, ohne Abo. Ab 1.290 €.
+**Bereit für das Komplettpaket?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit allen Premium-Funktionen aus diesem Artikel – aus einem Guss, ohne Abo. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -1892,7 +1892,7 @@ Bei vielen Hochzeitswebsite-Anbietern ist das Backend ein Nachgedanke – ein si
 
 Jede Funktion ist durchdacht, jeder Klick ist intuitiv, jede Information ist dort, wo ihr sie erwartet. **Weil die Wochen vor der Hochzeit stressig genug sind – euer Dashboard sollte es nicht sein.**
 
-**Bereit für euer Hochzeits-Cockpit?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Admin-Dashboard, RSVP-Verwaltung und allem, was die Planung leichter macht. Ab 1.290 €.
+**Bereit für euer Hochzeits-Cockpit?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit Admin-Dashboard, RSVP-Verwaltung und allem, was die Planung leichter macht. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -2025,7 +2025,7 @@ Ihr seid verlobt. Die Vorfreude ist riesig. Die To-do-Liste wächst. Aber mit S&
 
 Von der Verlobung bis zum Danke. Von der ersten Idee bis zur letzten Erinnerung. **Das ist S&I.**
 
-**Bereit für eure eigene Hochzeits-Reise?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit einer Website, die euch von Save-the-Date bis Danksagung begleitet. Ab 1.290 €.
+**Bereit für eure eigene Hochzeits-Reise?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit einer Website, die euch von Save-the-Date bis Danksagung begleitet. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -2349,7 +2349,7 @@ Wir machen den ehrlichen Vergleich – mit echten Preisen, echtem Zeitaufwand un
 
 **Was ihr bekommt:** Eine individuelle, maßgeschneiderte Hochzeitswebsite, die genau so aussieht und funktioniert, wie ihr es euch vorstellt. Kein Template-Einerlei, keine technischen Baustellen, keine eigene Wartung.
 
-**Kosten:** Bei Agenturen 2.000–10.000 €. Bei spezialisierten Hochzeitswebsite-Services wie S&I. ab 1.290 €.
+**Kosten:** Bei Agenturen 2.000–10.000 €. Bei spezialisierten Hochzeitswebsite-Services wie S&I. ab 990 €.
 
 **Zeitaufwand für euch:** 1–2 Stunden. Ihr füllt einen kurzen Fragebogen aus, schickt eure Fotos und Texte – und bekommt eine fertige, professionelle Hochzeitswebsite mit allem, was dazugehört.
 
@@ -2375,7 +2375,7 @@ Wir machen den ehrlichen Vergleich – mit echten Preisen, echtem Zeitaufwand un
 
 Ihr wenig Zeit habt, weil beide berufstätig seid und die Hochzeitsplanung neben dem Alltag läuft. Ihr Wert auf ein individuelles, hochwertiges Design legt, das perfekt zu eurem Hochzeitskonzept passt. Ihr keine Lust auf Technik habt und euch auf die schönen Seiten der Hochzeitsplanung konzentrieren wollt. Ihr viele Gäste einladet (50+) und ein zuverlässiges RSVP-System mit automatischen Erinnerungen braucht. Ihr die Hochzeitswebsite auch nach der Hochzeit als Erinnerung behalten möchtet – mit Fotogalerie, Gästebuch und Danksagung.
 
-**Und die Rechnung geht auf:** Vergleicht mal realistisch: Ein Baukasten-Premium-Tarif kostet 20–40 €/Monat über 12 Monate = 240–480 €. Plus eure Arbeitszeit von 15+ Stunden. Wenn ihr eurer Freizeit auch nur 20 €/Stunde Wert zuschreibt, seid ihr bei 540–780 € – für ein Standard-Template. Die Differenz zu einer professionellen Lösung ab 1.290 € ist plötzlich gar nicht mehr so groß, oder?
+**Und die Rechnung geht auf:** Vergleicht mal realistisch: Ein Baukasten-Premium-Tarif kostet 20–40 €/Monat über 12 Monate = 240–480 €. Plus eure Arbeitszeit von 15+ Stunden. Wenn ihr eurer Freizeit auch nur 20 €/Stunde Wert zuschreibt, seid ihr bei 540–780 € – für ein Standard-Template. Die Differenz zu einer professionellen Lösung ab 990 € ist plötzlich gar nicht mehr so groß, oder?
 
 ![Brautpaar schaut sich gemeinsam die Hochzeitswebsite an](https://images.unsplash.com/photo-1525258946800-98cbbe049ecd?w=900&q=80)
 
@@ -2399,7 +2399,7 @@ Eine Hochzeitswebsite erstellen zu lassen ist keine Luxus-Entscheidung – es is
 
 Für Paare, die Wert auf Design, Funktionalität und persönlichen Service legen, ist eine professionelle Hochzeitswebsite die klügste Entscheidung der gesamten Hochzeitsplanung. Und mit S&I. bekommt ihr genau das – zu einem fairen Preis, mit persönlichem Service und einem Ergebnis, das eure Gäste garantiert beeindruckt.
 
-**Bereit, eure Hochzeitswebsite erstellen zu lassen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite mit eigener Domain, RSVP-System, Foto-Upload, Gästebuch und individuellem Design – alles aus einer Hand, ab 1.290 €.
+**Bereit, eure Hochzeitswebsite erstellen zu lassen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite mit eigener Domain, RSVP-System, Foto-Upload, Gästebuch und individuellem Design – alles aus einer Hand, ab 990 €.
 
 **[Jetzt unverbindlich anfragen](https://www.sarahiver.com)** – und die Hochzeitsplanung genießen statt stundenlang an Templates zu schrauben.
     `,
@@ -2490,7 +2490,7 @@ Eine digitale Hochzeitseinladung ist nicht der Ersatz für eine persönliche Ein
 
 Ob als alleinige Einladung oder in Kombination mit einer schönen Karte plus QR-Code: Die digitale Hochzeitseinladung über eure eigene Hochzeitswebsite ist 2026 der Standard für moderne Brautpaare.
 
-**Bereit für eure digitale Hochzeitseinladung?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die gleichzeitig eure schönste Einladung ist – mit individuellem Design, RSVP-System, QR-Code und eigener Domain. Ab 1.290 €.
+**Bereit für eure digitale Hochzeitseinladung?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die gleichzeitig eure schönste Einladung ist – mit individuellem Design, RSVP-System, QR-Code und eigener Domain. Ab 990 €.
 
 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)** – und eure Gäste mit der schönsten Einladung überraschen, die sie je bekommen haben.
     `,
@@ -2756,7 +2756,7 @@ Eine reine Papier-Save-the-Date ist 2027 nicht "falsch" – aber sie ist auch ni
 
 Unser Tipp: Investiert in eine **konsistente digitale Hochzeits-Story** statt in 5 verschiedene Save-the-Date-Versuche. Eure Hochzeitswebsite ist der zentrale Anker – Save the Date, Einladung, RSVP, Fotos, Danksagung – alles aus einer Hand.
 
-**Bereit für eure Save the Date über die eigene Hochzeitswebsite?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die euch von der Save-the-Date-Ankündigung bis zur digitalen Danksagung begleitet. Ab 1.290 €.
+**Bereit für eure Save the Date über die eigene Hochzeitswebsite?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die euch von der Save-the-Date-Ankündigung bis zur digitalen Danksagung begleitet. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -2883,7 +2883,7 @@ Ein Hochzeits-Countdown ist mehr als ein nettes Feature – er ist der **emotion
 
 Und der schönste Moment kommt am Ende: Wenn der Countdown auf "0" springt – und ihr genau wisst, dass heute der Tag ist, auf den ihr Monate hingearbeitet habt.
 
-**Bereit für euren Hochzeits-Countdown?** Bei [S&I.](https://www.sarahiver.com) ist der Countdown automatisch Teil eurer Hochzeitswebsite – in eurem gewählten Design, ohne technisches Setup. Ab 1.290 €.
+**Bereit für euren Hochzeits-Countdown?** Bei [S&I.](https://www.sarahiver.com) ist der Countdown automatisch Teil eurer Hochzeitswebsite – in eurem gewählten Design, ohne technisches Setup. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite mit Countdown entdecken](https://www.sarahiver.com)**
     `,
@@ -3019,7 +3019,7 @@ Nein. Eine moderne Hochzeitswebsite mit [integriertem Foto-Upload](/blog/hochzei
 Für die reine Planung (To-Dos, Budget) sind Bridebook und Hitched solide. WeddyPlace ist eher eine Anbieter-Plattform. Für die Gäste-Kommunikation empfehlen wir keine App, sondern eine eigene Hochzeitswebsite.
 
 **Sind Hochzeits-Apps kostenlos?**
-Die Basis-Funktionen sind meist kostenlos, monetarisiert wird über Anbieter-Provisionen und Premium-Features. Eine Hochzeitswebsite ist eine **einmalige Investition** (bei S&I. ab 1.290 €) – ohne versteckte Kosten oder Provisionen.
+Die Basis-Funktionen sind meist kostenlos, monetarisiert wird über Anbieter-Provisionen und Premium-Features. Eine Hochzeitswebsite ist eine **einmalige Investition** (bei S&I. ab 990 €) – ohne versteckte Kosten oder Provisionen.
 
 **Was, wenn meine Gäste keine Hochzeitswebsite öffnen wollen?**
 Das ist deutlich seltener als bei Apps. Eine Website öffnet sich mit einem Klick im Browser – wer einen Link öffnen kann, kann eure Website nutzen. Apps erfordern Account, Download und Login – das ist die echte Hürde.
@@ -3031,7 +3031,7 @@ Klar. Viele Brautpaare nutzen eine App (z.B. Bridebook) für die interne Planung
 
 Hochzeits-Apps sind als **Planungs-Tools für das Brautpaar** durchaus sinnvoll. Aber wenn es um die **Kommunikation mit Gästen** geht – Einladung, RSVP, Tagesablauf, Anfahrt, Fotos – ist eine eigene Hochzeitswebsite 2027 die deutlich bessere Wahl. Niedrigere Hürde, persönlicher, individueller, persistent.
 
-**Bereit für eure Hochzeitswebsite statt App?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite mit allen Funktionen einer Hochzeits-App – aber ohne App-Download. Ab 1.290 €.
+**Bereit für eure Hochzeitswebsite statt App?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite mit allen Funktionen einer Hochzeits-App – aber ohne App-Download. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -3201,7 +3201,7 @@ Ein gutes Brautpaar-Quiz ist eines der zuverlässigsten Stimmungs-Highlights fü
 
 **Bonus-Tipp für Trauzeugen:** Wenn ihr das Quiz für eure Brautpaare organisiert, fragt vorher, ob sie eine [Hochzeitswebsite](https://www.sarahiver.com) haben. Wenn ja: Das Quiz lässt sich oft direkt darüber spielen – ohne extra Tools.
 
-**Bereit für eure Hochzeitswebsite mit Quiz-Funktion?** Bei [S&I.](https://www.sarahiver.com) ist die Quiz-Funktion in den Premium-Paketen enthalten. Ab 1.290 €.
+**Bereit für eure Hochzeitswebsite mit Quiz-Funktion?** Bei [S&I.](https://www.sarahiver.com) ist die Quiz-Funktion in den Premium-Paketen enthalten. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -3390,7 +3390,7 @@ Mid-Size statt Mega-Event. Persönliche Zeremonie statt Schema F. Nachhaltigkeit
 
 Wenn ihr 2027 heiratet, könnt ihr euch entspannt zurücklehnen: Die Trends sind **erwachsen geworden**.
 
-**Bereit für eure Hochzeit 2027?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die zu eurem persönlichen Stil 2027 passt – mit individuellem Design, eigener Domain und allen modernen Funktionen. Ab 1.290 €.
+**Bereit für eure Hochzeit 2027?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die zu eurem persönlichen Stil 2027 passt – mit individuellem Design, eigener Domain und allen modernen Funktionen. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -3554,7 +3554,7 @@ Die Hochzeitsfarben 2027 auf einen Satz gebracht: **Warme Erdtöne dominieren, h
 
 Wichtiger als jeder Trend: Wählt Farben, die zu eurer Location, eurer Jahreszeit und vor allem **zu euch als Paar** passen.
 
-**Plant ihr eure Hochzeit 2027?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die euer Farbkonzept perfekt aufnimmt – mit individuellem Design, eigener Domain und allen Funktionen von RSVP bis Foto-Galerie. Ab 1.290 €.
+**Plant ihr eure Hochzeit 2027?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite, die euer Farbkonzept perfekt aufnimmt – mit individuellem Design, eigener Domain und allen Funktionen von RSVP bis Foto-Galerie. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -3663,7 +3663,7 @@ Der 07.07.2027 ist magisch, der 01.05.2027 maximal gästefreundlich, und ein Sep
 
 Was alle guten Termine gemeinsam haben: Sie sind früh weg. Also – entscheidet euch, sichert Standesamt und Location, und gebt euren Gästen so schnell wie möglich Bescheid.
 
-**Datum steht?** Dann ist jetzt der perfekte Moment für eure eigene Hochzeitswebsite. Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Website mit Countdown, RSVP-System, eigener Domain und individuellem Design – damit eure Gäste vom ersten Tag an alle Infos haben. Ab 1.290 €.
+**Datum steht?** Dann ist jetzt der perfekte Moment für eure eigene Hochzeitswebsite. Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Website mit Countdown, RSVP-System, eigener Domain und individuellem Design – damit eure Gäste vom ersten Tag an alle Infos haben. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -3823,7 +3823,7 @@ Eine Hochzeit 2027 zu planen ist kein Hexenwerk – wenn ihr die Reihenfolge ein
 
 Und für alles Organisatorische danach gilt: Je mehr automatisch läuft – RSVP, Erinnerungen, Gäste-Infos, Foto-Sammlung – desto mehr Kopf habt ihr frei für das, worum es eigentlich geht.
 
-**Bereit für den nächsten Schritt?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit RSVP-System, automatischen Erinnerungen, Countdown und individuellem Design – euer Planungs-Hub von der Verlobung bis zur Danksagung. Ab 1.290 €.
+**Bereit für den nächsten Schritt?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit RSVP-System, automatischen Erinnerungen, Countdown und individuellem Design – euer Planungs-Hub von der Verlobung bis zur Danksagung. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 

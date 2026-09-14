@@ -1,4 +1,5 @@
 // src/utils/analytics.js
+import { getPackage } from '../lib/pricing';
 // Zentrales Analytics-Modul für S&I Marketing
 // Alle Event-Tracking-Funktionen an einem Ort
 //
@@ -270,6 +271,13 @@ export const trackFormStart = () => {
   });
 };
 
+// GA4-Conversion-Wert: Paketpreis ohne Add-ons, 0 bei unbekannter Auswahl
+const leadValue = (selectedPackage) => {
+  if (!selectedPackage) return 0;
+  const pkg = getPackage(String(selectedPackage).toLowerCase());
+  return pkg?.price || 0;
+};
+
 export const trackFormSubmit = (theme, selectedPackage) => {
   trackEvent('generate_lead', {
     event_category: 'contact',
@@ -277,7 +285,8 @@ export const trackFormSubmit = (theme, selectedPackage) => {
     theme: theme || 'unknown',
     package: selectedPackage || 'unknown',
     currency: 'EUR',
-    value: selectedPackage === 'Premium' ? 2490 : selectedPackage === 'Standard' ? 1790 : 1290,
+    // Wert aus der zentralen Preisliste statt einer vierten Hardcode-Liste
+    value: leadValue(selectedPackage),
     ...originParams(),
   });
 };

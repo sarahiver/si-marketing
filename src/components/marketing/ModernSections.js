@@ -3,6 +3,7 @@
 // DM Sans, schwarz/weiß, bold, minimalistisch
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { PUBLIC_PACKAGES } from '../../lib/pricing';
 
 // ============================================
 // SHARED STYLES
@@ -347,23 +348,15 @@ export function ModernPromoBanner() {
 // ============================================
 // PRICING
 // ============================================
-const PACKAGES = [
-  {
-    name: 'Starter', price: '1.290', duration: '6 Monate',
-    tagline: 'Alles für den Start',
-    features: ['Eigene Domain', 'RSVP mit Download', '6 Monate Hosting', '4 Basis-Komponenten', 'Dateneingabe durch Kunde', '1 Revision vorher / 1 nachher'],
-  },
-  {
-    name: 'Standard', price: '1.490', duration: '8 Monate', popular: true,
-    tagline: 'Für Paare, die es richtig machen wollen',
-    features: ['Eigene Domain', 'RSVP mit Download', '8 Monate Hosting', '4 Basis + 3 Extra-Komponenten', 'Dateneingabe durch Kunde', '2 Revisionen vorher / 2 nachher'],
-  },
-  {
-    name: 'Premium', price: '1.990', duration: '12 Monate',
-    tagline: 'Rundum-Sorglos. Lehnt euch zurück.',
-    features: ['Eigene Domain', 'RSVP mit Download', '12 Monate Hosting', '4 Basis + 6 Extra-Komponenten', 'Save the Date + Archiv-Seite', 'Dateneingabe durch S&I.', 'QR-Code Erstellung', 'Unbegrenzte Revisionen'],
-  },
-];
+// Preise zentral aus lib/pricing.js — keine eigene Kopie mehr
+const PACKAGES = PUBLIC_PACKAGES.map(pkg => ({
+  name: pkg.name,
+  price: new Intl.NumberFormat('de-DE').format(pkg.price),
+  duration: pkg.hosting,
+  popular: pkg.id === 'all_in',
+  tagline: pkg.tagline,
+  features: pkg.deliverables,
+}));
 
 const PricingGrid = styled.div`
   display: grid;

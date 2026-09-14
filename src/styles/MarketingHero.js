@@ -1214,7 +1214,7 @@ const MarketingHero = () => {
               <span>✨</span> Einzigartige Designs
             </ContemporaryBadge>
             <ContemporaryBadge $visible={visible} $delay="0.5s" $color="#4ECDC4">
-              <span>🚀</span> ab 1.290€
+              <span>🚀</span> ab 990€
             </ContemporaryBadge>
           </div>
           
@@ -1330,7 +1330,7 @@ const MarketingHero = () => {
         <VideoNames $visible={visible} $delay="0.9s">Hochzeitswebsites</VideoNames>
         <VideoDivider $visible={visible} />
         <VideoDateText $visible={visible}>Eure Geschichte, cinematisch erzählt</VideoDateText>
-        <VideoLocationText $visible={visible}>Einzigartige Designs · ab 1.290€</VideoLocationText>
+        <VideoLocationText $visible={visible}>Einzigartige Designs · ab 990€</VideoLocationText>
         <VideoCTA $visible={visible}>
           <VideoButton $primary onClick={scrollToContact}>Jetzt anfragen</VideoButton>
           <VideoButton onClick={scrollToDesigns}>Designs entdecken</VideoButton>

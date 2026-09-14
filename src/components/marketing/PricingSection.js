@@ -4,91 +4,42 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import { PUBLIC_PACKAGES, ADDON_LIST, isFeatureIncluded } from '../../lib/pricing';
 
 // ============================================
 // PRICING DATA
 // ============================================
-const PACKAGES = [
-  { 
-    id: 'starter', 
-    name: 'Starter', 
-    tagline: 'Alles, was ihr für den Start braucht',
-    price: '1.290', 
-    duration: '6 Monate',
-    features: [
-      'Eigene Domain (euer-name.de)',
-      'RSVP mit Download',
-      '6 Monate Hosting',
-      '4 Basis-Komponenten (Hero, Countdown, Love Story, RSVP)',
-      'Dateneingabe durch Kunde',
-      '1 Revision vorher / 1 nachher'
-    ],
-    addons: {
-      saveTheDate: { price: 150, included: false },
-      archiv: { price: 150, included: false },
-      qrCode: { price: 35, included: false },
-      einladung: { price: 400, included: false },
-    },
-    cta: 'Starter wählen'
-  },
-  { 
-    id: 'standard', 
-    name: 'Standard', 
-    tagline: 'Für Paare, die es richtig machen wollen',
-    price: '1.490', 
-    duration: '8 Monate',
-    popular: true,
-    features: [
-      'Eigene Domain (euer-name.de)',
-      'RSVP mit Download',
-      '8 Monate Hosting',
-      '4 Basis-Komponenten (Hero, Countdown, Love Story, RSVP)',
-      '3 zusätzliche Komponenten',
-      'Dateneingabe durch Kunde',
-      '2 Revisionen vorher / 2 nachher'
-    ],
-    addons: {
-      saveTheDate: { price: 75, included: false },
-      archiv: { price: 75, included: false },
-      qrCode: { price: 35, included: false },
-      einladung: { price: 300, included: false },
-    },
-    cta: 'Beliebteste Wahl'
-  },
-  { 
-    id: 'premium', 
-    name: 'Premium', 
-    tagline: 'Das Rundum-Sorglos-Paket. Lehnt euch zurück.',
-    price: '1.990', 
-    duration: '12 Monate',
-    features: [
-      'Eigene Domain (euer-name.de)',
-      'RSVP mit Download',
-      '12 Monate Hosting',
-      '4 Basis-Komponenten (Hero, Countdown, Love Story, RSVP)',
-      '6 zusätzliche Komponenten',
-      'Save the Date Seite (bis 2 Monate)',
-      'Archiv-Seite (3 Monate)',
-      'Dateneingabe durch S&I.',
-      'QR-Code Erstellung',
-      'Unbegrenzte Revisionen'
-    ],
-    addons: {
-      saveTheDate: { price: 0, included: true },
-      archiv: { price: 0, included: true },
-      qrCode: { price: 0, included: true },
-      einladung: { price: 200, included: false },
-    },
-    cta: 'Premium wählen'
-  },
-];
+// Preise, Pakete und Add-ons kommen aus lib/pricing.js (Spiegel der
+// zentralen Definition in si-superadmin). Hier wird nur noch in die
+// Darstellungsform der bestehenden Theme-Layouts übersetzt — keine
+// zweite Preisquelle mehr.
+//
+// Der Unterschied zwischen den Paketen ist der Betreuungsgrad,
+// nicht die Anzahl der Funktionen.
 
-const ADDONS = [
-  { id: 'saveTheDate', name: 'Save the Date Seite', desc: 'Bis 2 Monate vor der Hochzeit' },
-  { id: 'archiv', name: 'Archiv-Seite', desc: '3 Monate (Hero, Danke, Galerie, Bilder-Upload)' },
-  { id: 'qrCode', name: 'QR-Code Erstellung', desc: 'Für Einladungen' },
-  { id: 'einladung', name: 'Einladungs-Design', desc: 'Passend zum Website-Theme' },
-];
+const de = (n) => new Intl.NumberFormat('de-DE').format(n);
+
+const PACKAGES = PUBLIC_PACKAGES.map(pkg => ({
+  id: pkg.id,
+  name: pkg.name,
+  tagline: pkg.tagline,
+  price: de(pkg.price),
+  duration: pkg.hosting,
+  popular: pkg.id === 'all_in',
+  features: pkg.deliverables,
+  addons: ADDON_LIST.reduce((acc, addon) => {
+    const included = isFeatureIncluded(pkg.id, addon.id);
+    acc[addon.id] = { price: addon.price, included };
+    return acc;
+  }, {}),
+  cta: pkg.id === 'all_in' ? 'All In anfragen' : 'Website anfragen',
+}));
+
+const ADDONS = ADDON_LIST.map(a => ({
+  id: a.id,
+  name: a.name,
+  desc: a.description,
+}));
 
 // ============================================
 // BASE STYLES

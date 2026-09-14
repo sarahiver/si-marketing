@@ -9,7 +9,7 @@ import { useTheme } from '../../context/ThemeContext';
 const FAQS = [
   {
     q: 'Was kostet eine Hochzeitswebsite bei euch?',
-    a: 'Unsere Pakete starten bei 1.290 € — einmalig, kein Abo. Domain, individuelle Einrichtung, RSVP, Gästemanagement und Hosting für eure gesamte Planungszeit sind inklusive. Alle Details findet ihr oben in der Preisübersicht.',
+    a: 'Unsere Pakete starten bei 990 € — einmalig, kein Abo. Domain, individuelle Einrichtung, RSVP, Gästemanagement und Hosting für eure gesamte Planungszeit sind inklusive. Alle Details findet ihr oben in der Preisübersicht.',
   },
   {
     q: 'Wie lange dauert es, bis unsere Website live ist?',
