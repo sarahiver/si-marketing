@@ -4,6 +4,10 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { ALL_DEMOS, phoneCardUrl, demoUrl, setStyleChoice, trackDemoClick } from './demoData';
+import {
+  brand, font, type, leading, layout, motion, images,
+  eyebrowStyle, buttonPrimary, buttonSecondary, scriptNote,
+} from '../../styles/brand';
 
 // ============================================
 // CLOUDINARY URLS
@@ -931,76 +935,13 @@ const VideoNavItem = styled.span`
 // ============================================
 // CLASSIC HERO - Cinematic Fullscreen (wie Wedding Theme)
 // ============================================
-const ClassicSection = styled.section`
-  position: relative;
-  height: 100vh;
-  min-height: 650px;
-  background: #111;
-  overflow: hidden;
-`;
 
-const ClassicVideoBg = styled.video`
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(40%) brightness(0.42);
-`;
 
-const ClassicOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,0,0,0.35) 100%);
-`;
 
-const ClassicContent = styled.div`
-  position: absolute;
-  bottom: clamp(3rem, 8vh, 6rem);
-  left: clamp(2rem, 5vw, 5rem);
-  z-index: 10;
-  max-width: 600px;
-`;
 
-const ClassicEyebrow = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.5rem;
-  font-weight: 300;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 1.2rem;
-  animation: ${fadeInUp} 0.8s ease 0.3s both;
-`;
 
-const ClassicTitle = styled.h1`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1;
-  color: white;
-  animation: ${fadeInUp} 0.8s ease 0.5s both;
-`;
 
-const ClassicScript = styled.span`
-  display: block;
-  font-family: 'Mrs Saint Delafield', cursive;
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  color: rgba(255,255,255,0.6);
-  margin-top: 0.5rem;
-  animation: ${fadeInUp} 0.8s ease 0.7s both;
-`;
 
-const ClassicDateLine = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.5rem;
-  font-weight: 300;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-top: 1.5rem;
-  animation: ${fadeInUp} 0.8s ease 1s both;
-`;
 
 // Produkt-Mockup im Hero: rotiert durch alle 8 Designs — zeigt sofort,
 // DASS es um eine Website geht und dass es AUSWAHL gibt.
@@ -1113,86 +1054,164 @@ const HeroPhoneRotator = () => {
   );
 };
 
-const ClassicCTAs = styled.div`
+
+
+
+
+// ════════════════════════════════════════════════════════════════════════
+// BRAND HERO (Classic-Basis) — visuelles Redesign Sep 2026
+// Full-bleed Motiv, große Serif-Headline, Device-Mockup, handschriftliche
+// Notiz. Tokens aus styles/brand.js — Farben/Größen hier nie hardcoden.
+// ════════════════════════════════════════════════════════════════════════
+const heroFade = keyframes`
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+`;
+
+const BrandHero = styled.section`
+  position: relative;
+  min-height: clamp(660px, 94vh, 940px);
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
   align-items: center;
-  margin-top: 2rem;
-  animation: ${fadeInUp} 0.8s ease 0.7s both;
-
-  @media (min-width: 600px) {
-    flex-direction: row;
-    justify-content: center;
-  }
+  background: ${brand.ivory};
+  overflow: hidden;
 `;
 
-const ClassicPrimaryCTA = styled.a`
-  display: inline-block;
-  background: #FDFCFA;
-  color: #1A1A1A;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1rem 2.2rem;
-  border: 1px solid #FDFCFA;
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    background: transparent;
-    color: #FDFCFA;
-  }
-`;
-
-const ClassicSecondaryCTA = styled.button`
-  display: inline-block;
-  background: transparent;
-  color: #FDFCFA;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 1rem 2.2rem;
-  border: 1px solid rgba(253,252,250,0.5);
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    border-color: #FDFCFA;
-  }
-`;
-
-const ClassicScroll = styled.div`
+// Motiv liegt rechts und läuft nach links weich ins Ivory aus — dadurch
+// bleibt die Headline lesbar, ohne dunkles Overlay über das ganze Bild.
+const BrandHeroMedia = styled.div`
   position: absolute;
-  bottom: 3rem;
-  right: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  z-index: 20;
-  animation: ${fadeIn} 1s ease 1.2s both;
-
-  span {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 0.5rem;
-    font-weight: 300;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-  }
+  inset: 0 0 0 38%;
+  background-image: url(${images.heroDesktop});
+  background-size: cover;
+  background-position: center 30%;
 
   &::after {
     content: '';
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-    animation: ${scrollBounce} 2s ease infinite;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      ${brand.ivory} 0%,
+      rgba(250, 249, 246, 0.82) 22%,
+      rgba(250, 249, 246, 0) 62%
+    );
+  }
+
+  @media (max-width: 900px) {
+    inset: 0;
+    background-image: url(${images.heroMobile});
+
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(250, 249, 246, 0.94) 0%,
+        rgba(250, 249, 246, 0.86) 42%,
+        rgba(250, 249, 246, 0.55) 100%
+      );
+    }
+  }
+`;
+
+const BrandHeroInner = styled.div`
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: ${layout.maxWidth};
+  margin: 0 auto;
+  padding: clamp(6rem, 14vh, 9rem) ${layout.gutter} clamp(3rem, 8vh, 5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const BrandHeroCopy = styled.div`
+  max-width: 850px;
+  animation: ${heroFade} ${motion.reveal} ${motion.ease} both;
+`;
+
+const BrandEyebrow = styled.p`
+  ${eyebrowStyle}
+  color: ${brand.olive};
+  margin-bottom: 1.5rem;
+`;
+
+const BrandH1 = styled.h1`
+  font-family: ${font.serif};
+  font-weight: 400;
+  font-size: ${type.h1};
+  line-height: ${leading.h1};
+  letter-spacing: -0.015em;
+  color: ${brand.charcoal};
+  margin: 0 0 1.5rem;
+
+  em {
+    font-style: italic;
+    display: block;
+  }
+`;
+
+const BrandLead = styled.p`
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  max-width: 46ch;
+  margin: 0 0 2.5rem;
+  animation: ${heroFade} ${motion.reveal} ${motion.ease} 120ms both;
+`;
+
+const BrandCTAs = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  animation: ${heroFade} ${motion.reveal} ${motion.ease} 220ms both;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    a, button { width: 100%; justify-content: center; }
+  }
+`;
+
+const BrandPrimary = styled.a`${buttonPrimary}`;
+const BrandSecondary = styled.button`${buttonSecondary}`;
+
+const BrandTrust = styled.p`
+  margin-top: 2rem;
+  font-family: ${font.sans};
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: ${brand.inkMuted};
+  animation: ${heroFade} ${motion.reveal} ${motion.ease} 320ms both;
+`;
+
+const BrandNote = styled.span`
+  ${scriptNote}
+  position: absolute;
+  top: clamp(5.5rem, 13vh, 8rem);
+  right: clamp(2rem, 8vw, 7rem);
+  z-index: 3;
+  color: ${brand.charcoal};
+  opacity: 0.55;
+
+  @media (max-width: 900px) { display: none; }
+`;
+
+// Device-Mockup rechts: nutzt den bestehenden Rotator-Screen
+const BrandDevice = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  animation: ${heroFade} ${motion.reveal} ${motion.ease} 400ms both;
+
+  @media (max-width: 900px) {
+    margin-top: 2.5rem;
   }
 `;
 
@@ -1217,61 +1236,69 @@ const MarketingHero = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // CLASSIC - Cinematic Fullscreen wie Wedding Theme
+  // CLASSIC — Brand-Hero (visuelles Redesign Sep 2026).
+  // Ersetzt den Fullscreen-Video-Hero: großes Motiv rechts, Headline links,
+  // Device-Mockup als Produktbeweis. Tracking unverändert.
   if (currentTheme === 'classic') {
     return (
-      <ClassicSection id="hero">
-        <ClassicVideoBg autoPlay muted loop playsInline>
-          <source src={VIDEO_URL} type="video/mp4" />
-        </ClassicVideoBg>
-        <ClassicOverlay />
-        <ClassicContent>
-          <ClassicEyebrow>Premium Hochzeitswebsites</ClassicEyebrow>
-          <ClassicTitle>
-            Mehr als eine Website.<br/>Eure Geschichte.
-          </ClassicTitle>
-          <ClassicScript>handgemacht in Hamburg, nicht aus dem Baukasten</ClassicScript>
-          {/* Bewusst keine Funktionsliste mehr: erst Emotion, dann Produkt.
-              RSVP, Foto-Upload & Co. erklärt die Seite weiter unten. */}
-          <ClassicDateLine>Acht Stilwelten · Individuell gestaltet · In 7 Tagen live</ClassicDateLine>
-          <ClassicCTAs>
-            {/* Primär führt in die Stil-Galerie direkt darunter, nicht in
-                eine einzelne Demo: das Paar soll erst wählen, dann klicken.
-                Der Direktweg in eine Demo bleibt über das Phone-Mockup. */}
-            <ClassicPrimaryCTA
-              as="a"
-              href="#themes"
-              onClick={(e) => {
-                e.preventDefault();
-                if (window.gtag) {
-                  window.gtag('event', 'hero_cta_click', {
-                    event_category: 'conversion',
-                    event_label: 'themes',
-                    cta_placement: 'hero_primary',
-                  });
-                }
-                scrollToSection('themes');
-              }}
-            >
-              Designs ansehen
-            </ClassicPrimaryCTA>
-            <ClassicSecondaryCTA onClick={() => {
-              if (window.gtag) {
-                window.gtag('event', 'hero_cta_click', {
-                  event_category: 'conversion',
-                  event_label: 'contact',
-                  cta_placement: 'hero_secondary',
-                });
-              }
-              scrollToSection('contact');
-            }}>
-              Anfrage starten
-            </ClassicSecondaryCTA>
-          </ClassicCTAs>
-        </ClassicContent>
-        <HeroPhoneRotator />
-        <ClassicScroll><span>Scroll</span></ClassicScroll>
-      </ClassicSection>
+      <BrandHero id="hero">
+        <BrandHeroMedia />
+        <BrandNote>Mehr als<br />eine Website</BrandNote>
+        <BrandHeroInner>
+          <BrandHeroCopy>
+            <BrandEyebrow>Premium Hochzeitswebsites</BrandEyebrow>
+            <BrandH1>
+              Mehr als eine Website.
+              <em>Eure Geschichte.</em>
+            </BrandH1>
+            <BrandLead>
+              Eure Hochzeitswebsite wird individuell gestaltet — passend zu euch,
+              eurer Hochzeit und eurem Stil. Von uns begleitet, von der ersten
+              Idee bis zum letzten Foto danach.
+            </BrandLead>
+            <BrandCTAs>
+              <BrandPrimary
+                href="#themes"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.gtag) {
+                    window.gtag('event', 'hero_cta_click', {
+                      event_category: 'conversion',
+                      event_label: 'themes',
+                      cta_placement: 'hero_primary',
+                    });
+                  }
+                  scrollToSection('themes');
+                }}
+              >
+                Designs ansehen →
+              </BrandPrimary>
+              <BrandSecondary
+                type="button"
+                onClick={() => {
+                  if (window.gtag) {
+                    window.gtag('event', 'hero_cta_click', {
+                      event_category: 'conversion',
+                      event_label: 'contact',
+                      cta_placement: 'hero_secondary',
+                    });
+                  }
+                  scrollToSection('contact');
+                }}
+              >
+                Anfrage starten
+              </BrandSecondary>
+            </BrandCTAs>
+            <BrandTrust>
+              8 Designwelten · Individuell gestaltet · Persönlich begleitet
+            </BrandTrust>
+          </BrandHeroCopy>
+
+          <BrandDevice>
+            <HeroPhoneRotator />
+          </BrandDevice>
+        </BrandHeroInner>
+      </BrandHero>
     );
   }
 

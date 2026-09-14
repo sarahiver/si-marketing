@@ -5,8 +5,12 @@
 // Mobile: natives Scroll-Snap-Carousel (kein Auto-Movement), Karten zeigen
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
 import React, { useState, useEffect, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import {
+  brand, font, type, leading, layout, motion,
+  eyebrowStyle, buttonPrimary, scriptNote,
+} from '../../styles/brand';
 import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl, trackDemoClick, trackStyleInquiry } from './demoData';
 
 const useIsMobile = () => {
@@ -24,53 +28,80 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-const marquee = keyframes`
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-`;
 
 const Section = styled.section`
-  padding: clamp(3.5rem, 8vh, 6rem) 0;
-  background: #FDFCFA;
+  position: relative;
+  padding: ${layout.sectionY} 0;
+  background: ${brand.ivory};
   overflow: hidden;
 `;
 
 const Header = styled.div`
-  max-width: 1200px;
-  margin: 0 auto 3rem;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  max-width: ${layout.maxWidth};
+  margin: 0 auto clamp(3rem, 6vh, 4.5rem);
+  padding: 0 ${layout.gutter};
   text-align: center;
 `;
 
+// Handschriftliche Notiz rechts neben der Überschrift — wie im Mockup
+const HeaderNote = styled.span`
+  ${scriptNote}
+  position: absolute;
+  right: clamp(1rem, 6vw, 5rem);
+  top: 2.5rem;
+  color: ${brand.olive};
+
+  @media (max-width: 1100px) { display: none; }
+`;
+
 const Eyebrow = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #999;
-  margin-bottom: 1rem;
+  ${eyebrowStyle}
+  color: ${brand.olive};
+  margin-bottom: 1.25rem;
 `;
 
 const Title = styled.h2`
-  font-family: 'Cormorant Garamond', serif;
+  font-family: ${font.serif};
   font-weight: 400;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  color: #1A1A1A;
-  line-height: 1.15;
+  font-size: ${type.h2};
+  line-height: ${leading.h2};
+  letter-spacing: -0.01em;
+  color: ${brand.charcoal};
 
-  em {
-    font-style: italic;
-  }
+  em { font-style: italic; }
 `;
 
 const Sub = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 300;
-  color: #555;
-  margin-top: 1rem;
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  max-width: 52ch;
+  margin: 1.25rem auto 0;
 `;
+
+// Desktop: Kollektions-Grid (4 × 2) statt Endlosstreifen — die acht Designs
+// sollen als Sammlung lesbar sein, nicht als vorbeiziehendes Band.
+// Mobile: der bestehende Swipe-Track bleibt, weil er dort besser funktioniert.
+const Grid = styled.div`
+  max-width: ${layout.maxWidth};
+  margin: 0 auto;
+  padding: 0 ${layout.gutter};
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+
+  @media (max-width: 1100px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+`;
+
+const AllDemosRow = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.5rem, 5vh, 4rem);
+`;
+
+const AllDemosLink = styled.a`${buttonPrimary}`;
 
 const Frame = styled.div`
   background: #FFFFFF;
@@ -175,23 +206,6 @@ const PhoneNotch = styled.div`
   z-index: 2;
 `;
 
-const Track = styled.div`
-  display: flex;
-  gap: clamp(1.2rem, 2.5vw, 2rem);
-  width: max-content;
-  animation: ${marquee} 55s linear infinite;
-  padding: 1.5rem 0 2.5rem;
-
-  &:hover {
-    animation-play-state: paused;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-    overflow-x: auto;
-    max-width: 100vw;
-  }
-`;
 
 const SwipeTrack = styled.div`
   display: flex;
@@ -233,14 +247,27 @@ const SwipeCard = styled(Card)`
 // Gruppe = Karte + Anfrage-CTA. Breite und Scroll-Snap liegen jetzt hier,
 // damit der CTA dieselbe Spaltenbreite hat wie die Karte.
 const CardGroup = styled.div`
-  width: clamp(240px, 26vw, 340px);
-  flex-shrink: 0;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid ${brand.lineSoft};
+  border-radius: 3px;
+  padding: 0.75rem 0.75rem 0.5rem;
+  transition: box-shadow ${motion.hover} ${motion.ease},
+              transform ${motion.hover} ${motion.ease};
+
+  &:hover {
+    box-shadow: 0 18px 48px rgba(34, 34, 34, 0.10);
+    transform: translateY(-4px);
+  }
 `;
 
 const SwipeCardGroup = styled(CardGroup)`
-  width: 62vw;
-  max-width: 260px;
+  width: 68vw;
+  max-width: 280px;
+  flex-shrink: 0;
   scroll-snap-align: start;
+
+  &:hover { transform: none; box-shadow: none; }
 `;
 
 const CardMeta = styled.div`
@@ -251,27 +278,26 @@ const CardMeta = styled.div`
 `;
 
 const CardName = styled.span`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
-  color: #1A1A1A;
+  font-family: ${font.serif};
+  font-size: 1.3rem;
+  color: ${brand.charcoal};
 `;
 
 const CardTag = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #999;
+  ${eyebrowStyle}
+  color: ${brand.taupe};
+  transition: color ${motion.hover} ${motion.ease};
+
+  ${CardGroup}:hover & { color: ${brand.olive}; }
 `;
 
 const StyleWords = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #B0A89F;
   display: block;
-  margin-top: 0.15rem;
+  margin-top: 0.25rem;
+  font-family: ${font.sans};
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: ${brand.inkMuted};
 `;
 
 // Zweiter, leiserer CTA unter jeder Karte: der Weg von "gefällt mir"
@@ -279,30 +305,29 @@ const StyleWords = styled.span`
 const StyleInquiry = styled.button`
   display: block;
   width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.5rem 0;
+  margin-top: 0.65rem;
+  padding: 0.65rem 0;
   background: none;
   border: none;
-  border-top: 1px solid rgba(0,0,0,0.08);
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
+  border-top: 1px solid ${brand.line};
+  font-family: ${font.sans};
+  font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #1A1A1A;
+  color: ${brand.inkMuted};
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color ${motion.hover} ${motion.ease};
 
-  &:hover { color: #C41E3A; }
+  &:hover { color: ${brand.olive}; }
+  ${CardGroup}:hover & { color: ${brand.charcoal}; }
 `;
 
 const Footer = styled.div`
   text-align: center;
   margin-top: 1.5rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #999;
+  ${eyebrowStyle}
+  color: ${brand.inkMuted};
 `;
 
 // Einzelkarte — hält den Video-Ref, damit die Preview erst bei Hover abspielt
@@ -399,21 +424,23 @@ const DemoFilmstrip = () => {
     navigate(`/#contact?theme=${themeId}`);
   };
 
-  const demos = isMobile ? ALL_DEMOS : [...ALL_DEMOS, ...ALL_DEMOS];
-  const TrackComp = isMobile ? SwipeTrack : Track;
+  // Desktop zeigt die Kollektion einmal im Grid, mobil bleibt der Swipe-Track
+  const demos = ALL_DEMOS;
+  const TrackComp = isMobile ? SwipeTrack : Grid;
   const CardComp = isMobile ? SwipeCard : Card;
 
   return (
     <Section id="themes" aria-label="Theme-Demos">
       <Header>
-        <Eyebrow>Acht Stilwelten · Echte Beispiele, live klickbar</Eyebrow>
+        <HeaderNote>Acht Stile.<br />Unzählige<br />Möglichkeiten.</HeaderNote>
+        <Eyebrow>Findet euren Stil</Eyebrow>
         <Title>
-          Findet euren Stil.<br /><em>Nicht euer Template.</em>
+          Nicht einfach eine Vorlage.<br /><em>Sondern euer Stil.</em>
         </Title>
         <Sub>
-          {isMobile
-            ? 'Jede Karte ist eine vollständige Demo mit RSVP, Gästebereich und Foto-Upload. Wischt euch durch und tippt euch rein.'
-            : 'Jede Karte ist eine vollständige Demo mit RSVP, Gästebereich und Foto-Upload. Anhalten mit dem Mauszeiger, klicken zum Erkunden.'}
+          Acht Designwelten. Von romantisch bis modern — jede davon eine
+          vollständige Live-Demo mit RSVP, Gästebereich und Foto-Upload.
+          Und jede individuell auf eure Hochzeit abgestimmt.
         </Sub>
       </Header>
       <TrackComp>
@@ -428,10 +455,18 @@ const DemoFilmstrip = () => {
           />
         ))}
       </TrackComp>
+      <AllDemosRow>
+        <AllDemosLink
+          href={demoUrl('classic', { placement: 'themes_all' })}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackDemoClick('classic', demoUrl('classic', { placement: 'themes_all' }), 'themes_all')}
+        >
+          Alle Designs entdecken →
+        </AllDemosLink>
+      </AllDemosRow>
       <Footer>
-        {isMobile
-          ? 'Wischen zum Entdecken · Tippen öffnet die Live-Demo'
-          : 'Mauszeiger hält den Streifen an · Klick öffnet die Live-Demo'}
+        {isMobile ? 'Wischen zum Entdecken' : 'Klick öffnet die Live-Demo'}
       </Footer>
     </Section>
   );
