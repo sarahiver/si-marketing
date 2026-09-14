@@ -947,28 +947,27 @@ const VideoNavItem = styled.span`
 // DASS es um eine Website geht und dass es AUSWAHL gibt.
 // Position ist an eine 1400px-Layoutspalte verankert (statt an den
 // Viewport-Rand), damit es auch auf breiten Screens neben dem Text sitzt.
+// Liegt jetzt IM Grid statt absolut am Viewportrand — vorher war die rechte
+// Hero-Spalte faktisch leer, das Mockup schwebte daneben und wirkte klein.
 const ClassicHeroPhone = styled.a`
-  display: none;
+  display: block;
+  position: relative;
+  width: clamp(260px, 30vw, 400px);
+  background: #0d0d0d;
+  border-radius: 38px;
+  padding: 10px;
+  box-shadow: 0 40px 90px rgba(34, 34, 34, 0.32);
+  transform: rotate(2.5deg);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  z-index: 3;
 
-  @media (min-width: 1100px) {
-    display: block;
-    position: absolute;
-    right: max(3rem, calc((100vw - 1400px) / 2 + 3rem));
-    top: 50%;
-    transform: translateY(-50%) rotate(3deg);
-    /* wächst mit dem Screen: 230px ab 1100px, bis 330px auf großen Monitoren */
-    width: clamp(230px, 18vw, 330px);
-    background: #0d0d0d;
-    border-radius: 32px;
-    padding: 9px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-    z-index: 3;
-    transition: transform 0.4s ease;
-    cursor: pointer;
+  &:hover { transform: rotate(0.5deg) scale(1.025); }
 
-    &:hover {
-      transform: translateY(-52%) rotate(1.5deg) scale(1.02);
-    }
+  @media (max-width: 900px) {
+    width: min(72vw, 300px);
+    margin: 0 auto;
+    transform: none;
   }
 `;
 
@@ -1070,7 +1069,7 @@ const heroFade = keyframes`
 
 const BrandHero = styled.section`
   position: relative;
-  min-height: clamp(660px, 94vh, 940px);
+  min-height: clamp(720px, 100vh, 1080px);
   display: flex;
   align-items: center;
   background: ${brand.ivory};
@@ -1081,7 +1080,7 @@ const BrandHero = styled.section`
 // bleibt die Headline lesbar, ohne dunkles Overlay über das ganze Bild.
 const BrandHeroMedia = styled.div`
   position: absolute;
-  inset: 0 0 0 38%;
+  inset: 0 0 0 30%;
   background-image: url(${images.heroDesktop});
   background-size: cover;
   background-position: center 30%;
@@ -1093,8 +1092,9 @@ const BrandHeroMedia = styled.div`
     background: linear-gradient(
       to right,
       ${brand.ivory} 0%,
-      rgba(250, 249, 246, 0.82) 22%,
-      rgba(250, 249, 246, 0) 62%
+      rgba(250, 249, 246, 0.90) 18%,
+      rgba(250, 249, 246, 0.35) 46%,
+      rgba(250, 249, 246, 0) 70%
     );
   }
 
@@ -1121,8 +1121,8 @@ const BrandHeroInner = styled.div`
   margin: 0 auto;
   padding: clamp(6rem, 14vh, 9rem) ${layout.gutter} clamp(3rem, 8vh, 5rem);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
   align-items: center;
 
   @media (max-width: 900px) {
@@ -1131,7 +1131,7 @@ const BrandHeroInner = styled.div`
 `;
 
 const BrandHeroCopy = styled.div`
-  max-width: 850px;
+  max-width: 900px;
   animation: ${heroFade} ${motion.reveal} ${motion.ease} both;
 `;
 
@@ -1193,6 +1193,7 @@ const BrandTrust = styled.p`
 
 const BrandNote = styled.span`
   ${scriptNote}
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
   position: absolute;
   top: clamp(5.5rem, 13vh, 8rem);
   right: clamp(2rem, 8vw, 7rem);
@@ -1208,6 +1209,11 @@ const BrandDevice = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  transform: scale(1.35);
+  transform-origin: center;
+
+  @media (max-width: 1200px) { transform: scale(1.15); }
+  @media (max-width: 900px)  { transform: scale(1); }
   animation: ${heroFade} ${motion.reveal} ${motion.ease} 400ms both;
 
   @media (max-width: 900px) {

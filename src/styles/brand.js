@@ -41,14 +41,18 @@ export const font = {
 
 // ── TYPO-SKALA ──────────────────────────────────────────────────────────
 // clamp(mobil, fluid, desktop) — ein Wert pro Ebene, nie pro Sektion neu.
+// Nach dem Fullpage-Review hochskaliert: im Seitenkontext wirkte die vorige
+// Skala zu klein. H1 und H2 dürfen dominant sein — die Seite soll editorial
+// wirken, nicht wie Dokumentation.
 export const type = {
-  h1: 'clamp(2.65rem, 5.6vw, 4.75rem)',   // 42 → 76px
-  h2: 'clamp(2.25rem, 4vw, 3.5rem)',      // 36 → 56px
-  h3: 'clamp(1.4rem, 2vw, 2rem)',         // 22 → 32px
-  body: 'clamp(1rem, 1.1vw, 1.125rem)',   // 16 → 18px
-  small: '0.875rem',
-  eyebrow: '0.7rem',
-  button: '0.875rem',
+  h1: 'clamp(3.1rem, 7vw, 6rem)',         // 50 → 96px
+  h2: 'clamp(2.6rem, 5vw, 4.5rem)',       // 42 → 72px
+  h3: 'clamp(1.6rem, 2.4vw, 2.4rem)',     // 26 → 38px
+  display: 'clamp(3.5rem, 9vw, 8rem)',    // Preiszahlen, Prozessnummern
+  body: 'clamp(1.05rem, 1.2vw, 1.25rem)', // 17 → 20px
+  small: '0.9rem',
+  eyebrow: '0.72rem',
+  button: '0.9rem',
 };
 
 export const leading = {
@@ -60,10 +64,13 @@ export const leading = {
 
 // ── LAYOUT ──────────────────────────────────────────────────────────────
 export const layout = {
-  maxWidth: '1340px',
+  maxWidth: '1440px',
+  wide: '1680px',     // für Bild-/Produktkompositionen, die atmen sollen
   narrow: '780px',
-  gutter: 'clamp(1.5rem, 5vw, 4.5rem)',
-  sectionY: 'clamp(4.5rem, 11vh, 9rem)',
+  gutter: 'clamp(1.5rem, 4vw, 4rem)',
+  // Höhe entsteht durch Inhalt, nicht durch Padding: bewusst moderater,
+  // damit keine hohen Sections mit kleinem Inhalt in der Mitte entstehen.
+  sectionY: 'clamp(4rem, 9vh, 7.5rem)',
 };
 
 // ── BEWEGUNG ────────────────────────────────────────────────────────────

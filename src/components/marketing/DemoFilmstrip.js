@@ -84,15 +84,24 @@ const Sub = styled.p`
 // Desktop: Kollektions-Grid (4 × 2) statt Endlosstreifen — die acht Designs
 // sollen als Sammlung lesbar sein, nicht als vorbeiziehendes Band.
 // Mobile: der bestehende Swipe-Track bleibt, weil er dort besser funktioniert.
+// Kollektions-Raster über 6 Spalten: die ersten beiden Designs bekommen
+// halbe Breite (großes Preview), die übrigen sechs je ein Drittel.
+// Alle acht bleiben sichtbar — sie müssen nur nicht gleich viel Gewicht haben.
 const Grid = styled.div`
-  max-width: ${layout.maxWidth};
+  max-width: ${layout.wide};
   margin: 0 auto;
   padding: 0 ${layout.gutter};
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(1.5rem, 2.4vw, 2.5rem);
 
-  @media (max-width: 1100px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  > *:nth-child(-n + 2) { grid-column: span 3; }
+  > *:nth-child(n + 3)  { grid-column: span 2; }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    > *:nth-child(-n + 2), > *:nth-child(n + 3) { grid-column: span 1; }
+  }
 `;
 
 const AllDemosRow = styled.div`
@@ -105,10 +114,13 @@ const AllDemosLink = styled.a`${buttonPrimary}`;
 
 const Frame = styled.div`
   background: #FFFFFF;
-  border-radius: 10px;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 20px 60px rgba(34, 34, 34, 0.14);
+  border: 1px solid ${brand.lineSoft};
+  transition: box-shadow ${motion.hover} ${motion.ease};
+
+  ${'' /* Hover verstärkt die Tiefe, nicht die Skalierung */}
 `;
 
 const FrameBar = styled.div`
@@ -143,8 +155,9 @@ const FrameUrl = styled.div`
 `;
 
 const FrameScreen = styled.div`
+  /* 3:2 statt 4:3 — mehr Bildfläche je Karte */
   position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
   background-image: url(${p => p.$src});
   background-size: ${p => (p.$static ? 'cover' : p.$horizontal ? 'auto 100%' : '100% auto')};
   background-position: ${p => (p.$static ? 'center' : p.$horizontal ? 'left center' : 'top center')};
@@ -248,22 +261,19 @@ const SwipeCard = styled(Card)`
 // damit der CTA dieselbe Spaltenbreite hat wie die Karte.
 const CardGroup = styled.div`
   width: 100%;
-  background: #FFFFFF;
-  border: 1px solid ${brand.lineSoft};
-  border-radius: 3px;
-  padding: 0.75rem 0.75rem 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   transition: box-shadow ${motion.hover} ${motion.ease},
               transform ${motion.hover} ${motion.ease};
 
-  &:hover {
-    box-shadow: 0 18px 48px rgba(34, 34, 34, 0.10);
-    transform: translateY(-4px);
-  }
+  &:hover { transform: translateY(-6px); }
 `;
 
 const SwipeCardGroup = styled(CardGroup)`
-  width: 68vw;
-  max-width: 280px;
+  width: 78vw;
+  max-width: 340px;
   flex-shrink: 0;
   scroll-snap-align: start;
 
@@ -274,7 +284,7 @@ const CardMeta = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 0.7rem 0.2rem 0;
+  padding: 1.1rem 0.1rem 0;
 `;
 
 const CardName = styled.span`
