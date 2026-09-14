@@ -8,6 +8,10 @@
 // Video: Minimalistische Icon-Liste mit Hover-Reveal
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
+import {
+  brand, font, type, leading, layout, motion,
+  eyebrowStyle, buttonSecondary,
+} from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
 
 // ============================================
@@ -17,7 +21,7 @@ const USPS = [
   {
     icon: '✨',
     title: 'Kein Paar ist wie das andere',
-    desc: 'Deshalb ist keine Website wie die andere. Jede Hochzeit, die wir umsetzen, ist ein Unikat. Bereits Dutzende Paare haben ihre Liebesgeschichte mit uns digital verewigt — handgemacht, nicht von der Stange.',
+    desc: 'Deshalb ist keine Website wie die andere. Jede Hochzeit, die wir umsetzen, ist ein Unikat. Handgemacht, nicht von der Stange.',
     short: 'Jede Website ein Unikat',
     image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177763/_4b4bda8b-648e-46e7-8fba-a71164e792c3_xpup8j.jpg',
   },
@@ -1277,6 +1281,108 @@ const CTASubline = styled.p`
 // ============================================
 // MAIN COMPONENT
 // ============================================
+// ════════════════════════════════════════════════════════════════════════
+// BRAND USP — vier Aussagen statt Feature-Karussell
+// Die Karussell-Variante bleibt für die übrigen Themes erhalten.
+// ════════════════════════════════════════════════════════════════════════
+const UspSection = styled.section`
+  padding: ${layout.sectionY} 0;
+  background: #FFFFFF;
+`;
+
+const UspInner = styled.div`
+  max-width: ${layout.maxWidth};
+  margin: 0 auto;
+  padding: 0 ${layout.gutter};
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+
+  @media (max-width: 980px) { grid-template-columns: 1fr; }
+`;
+
+// Großes Produktvisual links — der Beweis, nicht die Dekoration
+const UspVisual = styled.div`
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: url(${p => p.$src}) center / cover no-repeat ${brand.sand};
+  border-radius: 3px;
+  box-shadow: 0 30px 80px rgba(34, 34, 34, 0.16);
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 900ms ${motion.ease};
+  }
+
+  &:hover img { transform: scale(1.03); }
+`;
+
+const UspEyebrow = styled.p`
+  ${eyebrowStyle}
+  color: ${brand.olive};
+  margin-bottom: 1.25rem;
+`;
+
+const UspTitle = styled.h2`
+  font-family: ${font.serif};
+  font-weight: 400;
+  font-size: ${type.h2};
+  line-height: ${leading.h2};
+  letter-spacing: -0.01em;
+  color: ${brand.charcoal};
+  margin: 0 0 1.5rem;
+
+  em { font-style: italic; }
+`;
+
+const UspLead = styled.p`
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  margin: 0 0 2.5rem;
+  max-width: 46ch;
+`;
+
+const UspList = styled.div`
+  display: grid;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+`;
+
+const UspItem = styled.div`
+  padding-left: 1.5rem;
+  border-left: 2px solid ${brand.taupe};
+
+  h3 {
+    font-family: ${font.serif};
+    font-weight: 400;
+    font-size: 1.35rem;
+    color: ${brand.charcoal};
+    margin: 0 0 0.35rem;
+  }
+  p {
+    font-family: ${font.sans};
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: ${brand.inkSoft};
+    margin: 0;
+  }
+`;
+
+const UspCTA = styled.button`${buttonSecondary} border-color: ${brand.charcoal};`;
+
+const BRAND_USPS = [
+  { title: 'Individuell', desc: 'Euer Stil, eure Farben, eure Geschichte — kein Template von der Stange.' },
+  { title: 'Persönlich', desc: 'Ihr sprecht mit Sarah und Iver, nicht mit einem Support-Ticket.' },
+  { title: 'Durchdacht', desc: 'Wir prüfen Design, Inhalte und Darstellung auf allen Geräten, bevor eure Seite live geht.' },
+  { title: 'Unkompliziert', desc: 'Um Technik, Hosting und Einrichtung müsst ihr euch nicht kümmern.' },
+];
+
 const USPSection = () => {
   const { currentTheme } = useTheme();
   const [openItem, setOpenItem] = useState(0);
@@ -1332,94 +1438,42 @@ const USPSection = () => {
   // ==========================================
   // CLASSIC - Elegante Magazin-Ästhetik
   // ==========================================
+  // CLASSIC — vier Aussagen + ein großes Produktvisual.
+  // Das Tiefenkarussell mit sechs Karten wirkte als Feature-Liste; die
+  // Karussell-Variante bleibt für die übrigen Themes unverändert erhalten.
   if (currentTheme === 'classic' || currentTheme === 'modern') {
     return (
-      <ClassicSection id="features">
-        <ClassicContainer>
-          <ClassicHeader>
-            <ClassicEyebrow>Warum S&I.</ClassicEyebrow>
-            <ClassicTitle>Was uns besonders macht</ClassicTitle>
-          </ClassicHeader>
-
-          <ClassicCarouselRow>
-            <ClassicCarousel ref={carouselRef}>
-              {CLASSIC_ALL_CARDS.map((item, i) => {
-                const offset = i - activeCard;
-                const reverse = i % 2 === 1;
-                return (
-                  <ClassicCard key={i} $offset={offset} $reverse={reverse} data-active={offset === 0}>
-                    <ClassicCardImage>
-                      <img src={item.image} alt={item.title} loading="lazy" />
-                    </ClassicCardImage>
-                    <ClassicCardBody>
-                      <ClassicCardNum>0{i + 1}</ClassicCardNum>
-                      <ClassicCardTitle>{item.title}</ClassicCardTitle>
-                      <ClassicCardDesc>{item.desc}</ClassicCardDesc>
-                    </ClassicCardBody>
-                  </ClassicCard>
-                );
-              })}
-            </ClassicCarousel>
-
-            <ClassicDots>
-              {CLASSIC_ALL_CARDS.map((_, i) => (
-                <ClassicDot key={i} $active={i === activeCard} onClick={() => setActiveCard(i)} />
+      <UspSection id="features">
+        <UspInner>
+          <UspVisual $src={USPS[0].image} aria-hidden="true" />
+          <div>
+            <UspEyebrow>Alles an einem Ort</UspEyebrow>
+            <UspTitle>
+              Eine Website, die mehr kann<br /><em>als nur informieren.</em>
+            </UspTitle>
+            <UspLead>
+              Von der Einladung bis zum Hochzeitswochenende: Eure Gäste finden alle
+              wichtigen Informationen, sagen zu oder ab, entdecken Hotels und
+              Geschenkwünsche — und erleben eure Geschichte in einem Design, das
+              zu euch passt.
+            </UspLead>
+            <UspList>
+              {BRAND_USPS.map(item => (
+                <UspItem key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </UspItem>
               ))}
-            </ClassicDots>
-          </ClassicCarouselRow>
-
-          {/* Mobile: Touch-Karussell (einfach, fullwidth, vertikal) */}
-          <ClassicMobileCarousel>
-            <ClassicMobileSlide
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              <ClassicMobileImage>
-                <img src={CLASSIC_ALL_CARDS[activeCard].image} alt={CLASSIC_ALL_CARDS[activeCard].title} loading="lazy" />
-              </ClassicMobileImage>
-              <ClassicMobileBody>
-                <ClassicCardNum>0{activeCard + 1}</ClassicCardNum>
-                <ClassicCardTitle>{CLASSIC_ALL_CARDS[activeCard].title}</ClassicCardTitle>
-                <ClassicCardDesc>{CLASSIC_ALL_CARDS[activeCard].desc}</ClassicCardDesc>
-              </ClassicMobileBody>
-            </ClassicMobileSlide>
-            <ClassicMobileNav>
-              <ClassicMobileBtn
-                onClick={() => setActiveCard(prev => Math.max(prev - 1, 0))}
-                disabled={activeCard === 0}
-                aria-label="Vorherige"
-              >←</ClassicMobileBtn>
-              <ClassicMobileCounter>{activeCard + 1} / {cardCount}</ClassicMobileCounter>
-              <ClassicMobileBtn
-                onClick={() => setActiveCard(prev => Math.min(prev + 1, cardCount - 1))}
-                disabled={activeCard === cardCount - 1}
-                aria-label="Nächste"
-              >→</ClassicMobileBtn>
-            </ClassicMobileNav>
-          </ClassicMobileCarousel>
-
-          <CTABox>
-            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, color: '#555' }}>
-              {CTA_TEXT.headline}
-            </CTAHeadline>
-            <CTAButton
-              onClick={scrollToThemes}
-              style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, letterSpacing: '0.2em', color: '#FFFFFF', background: '#1A1A1A', border: 'none' }}
-            >
-              {CTA_TEXT.button}
-            </CTAButton>
-            <CTASubline style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#999' }}>
-              {CTA_TEXT.subline}
-            </CTASubline>
-          </CTABox>
-        </ClassicContainer>
-      </ClassicSection>
+            </UspList>
+            <UspCTA type="button" onClick={scrollToThemes}>
+              Designs entdecken →
+            </UspCTA>
+          </div>
+        </UspInner>
+      </UspSection>
     );
   }
 
-  // ==========================================
-  // EDITORIAL - Magazin-Style
-  // ==========================================
   if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="features">

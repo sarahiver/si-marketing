@@ -22,6 +22,7 @@ import AboutSection from './components/marketing/AboutSection';
 import WhyUsSection from './components/marketing/WhyUsSection';
 import USPSection from './components/marketing/USPSection';
 import CooperationSection from './components/marketing/CooperationSection';
+import FinalCTA from './components/marketing/FinalCTA';
 import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
@@ -278,6 +279,9 @@ function MarketingPage() {
           <AnimatedSection delay={100}>
             <CooperationSection />
           </AnimatedSection>
+
+          {/* 10 ABSCHLUSS — emotionaler Conversion-Moment vor dem Footer */}
+          <FinalCTA />
           <MarketingFooter />
           <StickyDemoBar />
         </>

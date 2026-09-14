@@ -1009,7 +1009,7 @@ const ContactSection = () => {
           eyebrow: 'Der erste Schritt',
           title: 'Erzählt uns von euch',
           subtitle: 'Kein Verkaufsgespräch. Nur ein ehrliches Kennenlernen. Ihr schreibt direkt an Sarah & Iver. Antwort innerhalb von 24 Stunden.',
-          button: 'Unverbindlich anfragen',
+          button: 'Anfrage senden →',
         };
     }
   };
@@ -1026,6 +1026,22 @@ const ContactSection = () => {
       </p>
       <p>
         Wir freuen uns auf das Gespräch!
+      </p>
+      {/* Wartezeit sinnvoll nutzen: zurück in die Designwelten */}
+      <p style={{ marginTop: '1.25rem' }}>
+        Ihr könnt euch inzwischen schon einmal durch unsere Designwelten klicken.
+      </p>
+      <p style={{ marginTop: '0.75rem' }}>
+        <a
+          href="#themes"
+          style={{ color: config.accent, fontWeight: 600 }}
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          Designs ansehen →
+        </a>
       </p>
       <p style={{ marginTop: '1.5rem', fontSize: '0.85rem' }}>
         Fragen? Schreibt uns direkt an{' '}
