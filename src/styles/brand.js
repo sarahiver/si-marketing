@@ -44,10 +44,12 @@ export const font = {
 // Nach dem Fullpage-Review hochskaliert: im Seitenkontext wirkte die vorige
 // Skala zu klein. H1 und H2 dürfen dominant sein — die Seite soll editorial
 // wirken, nicht wie Dokumentation.
+// Zielbereich laut Vorgabe: H1 64–76px, H2 48–56px auf Desktop.
+// Der vorige Pass lag mit 96/72px darüber.
 export const type = {
-  h1: 'clamp(3.1rem, 7vw, 6rem)',         // 50 → 96px
-  h2: 'clamp(2.6rem, 5vw, 4.5rem)',       // 42 → 72px
-  h3: 'clamp(1.6rem, 2.4vw, 2.4rem)',     // 26 → 38px
+  h1: 'clamp(2.9rem, 5.4vw, 4.75rem)',    // 46 → 76px
+  h2: 'clamp(2.25rem, 3.8vw, 3.5rem)',    // 36 → 56px
+  h3: 'clamp(1.5rem, 2.2vw, 2rem)',       // 24 → 32px
   display: 'clamp(3.5rem, 9vw, 8rem)',    // Preiszahlen, Prozessnummern
   body: 'clamp(1.05rem, 1.2vw, 1.25rem)', // 17 → 20px
   small: '0.9rem',
