@@ -93,13 +93,18 @@ const Grid = styled.div`
   padding: 0 ${layout.gutter};
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(1.5rem, 2.4vw, 2.5rem);
+  gap: clamp(2rem, 3vw, 3.5rem);
 
+  /* Zwei Designs halbbreit, sechs zu je einem Drittel — deutlich größere
+     Previews als im 4er-Raster, damit die Websites beurteilbar sind. */
   > *:nth-child(-n + 2) { grid-column: span 3; }
   > *:nth-child(n + 3)  { grid-column: span 2; }
 
-  @media (max-width: 1100px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (max-width: 1280px) {
+    > *:nth-child(n + 3) { grid-column: span 3; }
+  }
+  @media (max-width: 780px) {
+    grid-template-columns: 1fr;
     > *:nth-child(-n + 2), > *:nth-child(n + 3) { grid-column: span 1; }
   }
 `;
@@ -289,13 +294,14 @@ const CardMeta = styled.div`
 
 const CardName = styled.span`
   font-family: ${font.serif};
-  font-size: 1.3rem;
+  font-size: clamp(1.5rem, 1.8vw, 1.9rem);
   color: ${brand.charcoal};
 `;
 
 const CardTag = styled.span`
   ${eyebrowStyle}
-  color: ${brand.taupe};
+  font-size: 0.78rem;
+  color: ${brand.charcoal};
   transition: color ${motion.hover} ${motion.ease};
 
   ${CardGroup}:hover & { color: ${brand.olive}; }
@@ -321,8 +327,8 @@ const StyleInquiry = styled.button`
   border: none;
   border-top: 1px solid ${brand.line};
   font-family: ${font.sans};
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-size: 0.7rem;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: ${brand.inkMuted};
@@ -448,9 +454,8 @@ const DemoFilmstrip = () => {
           Nicht einfach eine Vorlage.<br /><em>Sondern euer Stil.</em>
         </Title>
         <Sub>
-          Acht Designwelten. Von romantisch bis modern — jede davon eine
-          vollständige Live-Demo mit RSVP, Gästebereich und Foto-Upload.
-          Und jede individuell auf eure Hochzeit abgestimmt.
+          Acht Designwelten. Findet den Stil, der zu euch und eurer Hochzeit
+          passt — jede davon eine vollständige Live-Demo.
         </Sub>
       </Header>
       <TrackComp>

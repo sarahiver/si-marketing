@@ -1291,12 +1291,12 @@ const UspSection = styled.section`
 `;
 
 const UspInner = styled.div`
-  max-width: ${layout.maxWidth};
+  max-width: ${layout.wide};
   margin: 0 auto;
   padding: 0 ${layout.gutter};
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem, 6vw, 6rem);
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 
   @media (max-width: 980px) { grid-template-columns: 1fr; }
@@ -1305,7 +1305,7 @@ const UspInner = styled.div`
 // Großes Produktvisual links — der Beweis, nicht die Dekoration
 const UspVisual = styled.div`
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 11;
   background: url(${p => p.$src}) center / cover no-repeat ${brand.sand};
   border-radius: 3px;
   box-shadow: 0 30px 80px rgba(34, 34, 34, 0.16);
@@ -1377,10 +1377,9 @@ const UspItem = styled.div`
 const UspCTA = styled.button`${buttonSecondary} border-color: ${brand.charcoal};`;
 
 const BRAND_USPS = [
-  { title: 'Individuell', desc: 'Euer Stil, eure Farben, eure Geschichte — kein Template von der Stange.' },
-  { title: 'Persönlich', desc: 'Ihr sprecht mit Sarah und Iver, nicht mit einem Support-Ticket.' },
-  { title: 'Durchdacht', desc: 'Wir prüfen Design, Inhalte und Darstellung auf allen Geräten, bevor eure Seite live geht.' },
-  { title: 'Unkompliziert', desc: 'Um Technik, Hosting und Einrichtung müsst ihr euch nicht kümmern.' },
+  { title: 'Euer Stil', desc: 'Wir besprechen gemeinsam Design, Farben und Aufbau.' },
+  { title: 'Eure Inhalte', desc: 'Ihr entscheidet, was eure Gäste sehen und erfahren.' },
+  { title: 'Eure Gäste', desc: 'Alle wichtigen Informationen an einem Ort.' },
 ];
 
 const USPSection = () => {
@@ -1447,15 +1446,13 @@ const USPSection = () => {
         <UspInner>
           <UspVisual $src={USPS[0].image} aria-hidden="true" />
           <div>
-            <UspEyebrow>Alles an einem Ort</UspEyebrow>
+            <UspEyebrow>Individuell gestaltet</UspEyebrow>
             <UspTitle>
-              Eine Website, die mehr kann<br /><em>als nur informieren.</em>
+              Eine Website,<br /><em>die nach euch aussieht.</em>
             </UspTitle>
             <UspLead>
-              Von der Einladung bis zum Hochzeitswochenende: Eure Gäste finden alle
-              wichtigen Informationen, sagen zu oder ab, entdecken Hotels und
-              Geschenkwünsche — und erleben eure Geschichte in einem Design, das
-              zu euch passt.
+              Euer Stil, eure Farben, eure Geschichte — gemeinsam entwickeln wir
+              eine Website, die zu eurer Hochzeit passt.
             </UspLead>
             <UspList>
               {BRAND_USPS.map(item => (

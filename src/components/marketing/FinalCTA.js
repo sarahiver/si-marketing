@@ -13,7 +13,7 @@ import {
 
 const Section = styled.section`
   position: relative;
-  min-height: clamp(460px, 62vh, 720px);
+  min-height: clamp(520px, 72vh, 820px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,9 +38,9 @@ const Media = styled.div`
     /* Dunkler zur Mitte hin — die Headline braucht Kontrast, das Motiv Luft */
     background: radial-gradient(
       ellipse at center,
-      rgba(34, 34, 34, 0.62) 0%,
-      rgba(34, 34, 34, 0.42) 55%,
-      rgba(34, 34, 34, 0.55) 100%
+      rgba(34, 34, 34, 0.48) 0%,
+      rgba(34, 34, 34, 0.26) 55%,
+      rgba(34, 34, 34, 0.40) 100%
     );
   }
 `;

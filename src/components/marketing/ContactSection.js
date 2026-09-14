@@ -1007,8 +1007,8 @@ const ContactSection = () => {
       default:
         return {
           eyebrow: 'Der erste Schritt',
-          title: 'Erzählt uns von euch',
-          subtitle: 'Kein Verkaufsgespräch. Nur ein ehrliches Kennenlernen. Ihr schreibt direkt an Sarah & Iver. Antwort innerhalb von 24 Stunden.',
+          title: 'Erzählt uns von eurer Hochzeit',
+          subtitle: 'Erzählt uns kurz, was ihr plant. Wir melden uns persönlich bei euch und besprechen gemeinsam, was zu euch passt.',
           button: 'Anfrage senden →',
         };
     }

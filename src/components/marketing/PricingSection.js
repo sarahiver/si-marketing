@@ -1245,7 +1245,7 @@ const BrandPricingSection = styled.section`
 
 const BrandContainer = styled.div`
   position: relative;
-  max-width: ${layout.maxWidth};
+  max-width: ${layout.wide};
   margin: 0 auto;
   padding: 0 ${layout.gutter};
 `;
@@ -1296,8 +1296,8 @@ const BrandCard = styled.div`
   background: ${p => (p.$pop ? '#FFFFFF' : 'rgba(255,255,255,0.62)')};
   border: 1px solid ${p => (p.$pop ? brand.olive : brand.line)};
   border-radius: 3px;
-  padding: clamp(2rem, 3vw, 2.75rem) clamp(1.5rem, 2.5vw, 2.25rem)
-           clamp(2rem, 3vw, 2.5rem);
+  padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.75rem, 3vw, 3rem)
+           clamp(2.5rem, 4vw, 3.25rem);
   ${p => p.$pop && `box-shadow: 0 24px 60px rgba(34,34,34,0.10);`}
 `;
 
@@ -1324,7 +1324,7 @@ const BrandPkgName = styled.h3`
 const BrandPrice = styled.div`
   font-family: ${font.serif};
   font-weight: 400;
-  font-size: clamp(2.75rem, 4.5vw, 4rem);
+  font-size: clamp(3rem, 5.5vw, 5rem);
   line-height: 1;
   color: ${brand.charcoal};
   margin-bottom: 1.1rem;
@@ -1332,8 +1332,8 @@ const BrandPrice = styled.div`
 
 const BrandPitch = styled.p`
   font-family: ${font.sans};
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.55;
   color: ${brand.inkSoft};
   margin: 0 0 1.75rem;
   padding-bottom: 1.75rem;
@@ -1587,8 +1587,8 @@ const PricingSection = () => {
   // ihr selbst". Deshalb zwei Wege statt Feature-Matrix, Add-ons daneben.
   if (currentTheme === 'classic') {
     const pitches = {
-      website: 'Gemeinsam gestaltet. Von euch gepflegt.\nVon uns perfektioniert.',
-      all_in: 'Ihr liefert eure Inhalte.\nWir bauen eure komplette Website.',
+      website: 'Ihr macht den Inhalt.\nWir machen den Feinschliff.',
+      all_in: 'Ihr liefert Material.\nWir machen den Rest.',
     };
     const highlights = {
       website: [
