@@ -19,6 +19,20 @@ export const ALL_DEMOS = [
   { id: 'video', name: 'Video', url: 'https://siwedding.de/demo-video' },
 ];
 
+// Stil-Beschreibungen für die Theme-Auswahl auf der Homepage.
+// Bewusst als Hochzeitsstil formuliert, nicht als Theme-Feature:
+// "Welcher Stil passt zu eurer Hochzeit?" statt "Welches Template?"
+export const STYLE_WORDS = {
+  classic: ['Zeitlos', 'Elegant', 'Klassisch'],
+  botanical: ['Natürlich', 'Romantisch', 'Organisch'],
+  contemporary: ['Modern', 'Kreativ', 'Urban'],
+  editorial: ['Fashion', 'Minimal', 'Redaktionell'],
+  luxe: ['Luxuriös', 'Ruhig', 'Golden'],
+  modern: ['Reduziert', 'Klar', 'Bewegt'],
+  neon: ['Mutig', 'Digital', 'Laut'],
+  video: ['Cinematisch', 'Filmisch', 'Atmosphärisch'],
+};
+
 export const TAGLINES = {
   classic: 'Zeitlos in Schwarz-Weiß',
   botanical: 'Grün, organisch, glasklar',
@@ -128,6 +142,49 @@ export const demoUrl = (id, { placement, article } = {}) => {
   if (article) params.set('article', article);
   const qs = params.toString();
   return qs ? `${base}?${qs}` : base;
+};
+
+// Link von einer Demo/Theme-Karte zum Anfrageformular, inklusive Stil.
+// Der Stil landet als Hash-Parameter in der URL (teilbar, im Verlauf sichtbar)
+// UND über setStyleChoice in der Session — so überlebt er auch den Umweg
+// über die Demo auf siwedding.de.
+export const inquiryUrl = (themeId) =>
+  themeId ? `/#contact?theme=${encodeURIComponent(themeId)}` : '/#contact';
+
+const STYLE_KEY = 'si_style_choice';
+
+export const setStyleChoice = (themeId, placement) => {
+  if (typeof window === 'undefined' || !themeId) return;
+  try {
+    sessionStorage.setItem(STYLE_KEY, JSON.stringify({
+      theme: themeId, placement: placement || 'unknown', ts: Date.now(),
+    }));
+  } catch { /* sessionStorage nicht verfügbar */ }
+};
+
+export const getStyleChoice = () => {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = sessionStorage.getItem(STYLE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+};
+
+// "Diesen Stil anfragen" — ein Aufruf für Tracking, Session und Navigation
+export const trackStyleInquiry = (themeId, placement) => {
+  setStyleChoice(themeId, placement);
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'inquiry_click', {
+      event_category: 'conversion',
+      event_label: themeId,
+      theme: themeId,
+      cta_placement: placement || 'unknown',
+      source_page: window.location.pathname,
+    });
+  }
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('selectTheme', { detail: themeId }));
+  }
 };
 
 // ACHTUNG: Parameter NICHT 'source' nennen — GA4 liest 'source'/'medium'/

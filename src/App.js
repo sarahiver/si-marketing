@@ -213,27 +213,41 @@ function MarketingPage() {
         </Suspense>
       ) : (
         <>
+          {/* ═══════════════════════════════════════════════════════════
+              HOMEPAGE-DRAMATURGIE (Sep 2026)
+              01 Emotion → 02 Stil → 03 Individualität → 04 Service
+              → 05 Vertrauen → 06 Prozess → 07 Funktionen → 08 FAQ → 09 Anfrage
+
+              Vorher stand ComponentsShowcase mitten im Funnel und Pricing
+              hinter drei Erklärsektionen. Die Seite verkaufte damit
+              Funktionen, bevor sie das Ergebnis gezeigt hatte.
+              ═══════════════════════════════════════════════════════════ */}
+
+          {/* 01 EMOTION */}
           <MarketingHero />
+
+          {/* 02 STIL — der Filmstrip mit allen acht Demos, direkt nach dem
+              Hero: das Produkt zeigen, bevor irgendetwas erklärt wird */}
           <AnimatedSection>
             <ThemeShowcase />
           </AnimatedSection>
-          <AnimatedSection delay={50}>
-            <FoundersIntro />
-          </AnimatedSection>
+
+          {/* 03 INDIVIDUALITÄT */}
           <AnimatedSection delay={100}>
             <USPSection />
           </AnimatedSection>
           <CTABand />
-          {/* ExamplesShowcase - wird später mit echten Kunden-URLs eingebunden */}
-          <AnimatedSection delay={100}>
-            <HowItWorksSection />
-          </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <ComponentsShowcase />
-          </AnimatedSection>
+
+          {/* 04 SERVICE — "Wie viel möchtet ihr selbst übernehmen?"
+              Pricing jetzt weit vorn, weil es die zentrale Frage beantwortet */}
           <AnimatedSection delay={100}>
             <PromoBanner />
             <PricingSection />
+          </AnimatedSection>
+
+          {/* 05 VERTRAUEN */}
+          <AnimatedSection delay={50}>
+            <FoundersIntro />
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <AboutSection />
@@ -241,9 +255,23 @@ function MarketingPage() {
           <AnimatedSection delay={100}>
             <WhyUsSection />
           </AnimatedSection>
+
+          {/* 06 PROZESS */}
+          <AnimatedSection delay={100}>
+            <HowItWorksSection />
+          </AnimatedSection>
+
+          {/* 07 FUNKTIONEN — bewusst nachgelagert: sekundär, nicht führend */}
+          <AnimatedSection delay={100}>
+            <ComponentsShowcase />
+          </AnimatedSection>
+
+          {/* 08 FAQ */}
           <AnimatedSection delay={50}>
             <FAQSection />
           </AnimatedSection>
+
+          {/* 09 ANFRAGE */}
           <AnimatedSection delay={100}>
             <ContactSection />
           </AnimatedSection>

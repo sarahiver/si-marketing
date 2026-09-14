@@ -4,7 +4,8 @@
 // KEIN Double Opt-In nötig (Kontaktanfrage ≠ Newsletter)
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
-import { PUBLIC_PACKAGES, getPackage } from '../../lib/pricing';
+import { PUBLIC_PACKAGES } from '../../lib/pricing';
+import { getStyleChoice } from './demoData';
 import { useTheme } from '../../context/ThemeContext';
 import usePartnerRef from '../../hooks/usePartnerRef';
 import { useABTest } from '../../context/ABTestContext';
@@ -683,6 +684,32 @@ const PACKAGES = [
   })),
 ];
 
+const StyleBadge = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  padding: 0.7rem 1rem;
+  border-left: 3px solid #C41E3A;
+  background: rgba(196, 30, 58, 0.04);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #1A1A1A;
+
+  strong { font-weight: 600; }
+
+  button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    color: #999;
+    cursor: pointer;
+    text-decoration: underline;
+    &:hover { color: #1A1A1A; }
+  }
+`;
+
 const THEME_OPTIONS = [
   { id: '', label: 'Bitte wählen...' },
   { id: 'editorial', label: 'Editorial' },
@@ -714,6 +741,8 @@ const ContactSection = () => {
   // Optionale Felder (Telefon, Datum, Theme, Paket, Gutschein) sind eingeklappt,
   // um die sichtbare Formular-Hürde zu senken. State + Submit-Payload unverändert.
   const [showOptional, setShowOptional] = useState(false);
+  // Sichtbare Bestätigung: "Ausgewählter Stil: Editorial"
+  const [selectedStyle, setSelectedStyle] = useState(null);
 
   // Quick-Select gegen die Schreibblockade: füllt die Pflicht-Nachricht mit einem Startsatz
   const applyMessageChip = (text) => {
@@ -758,12 +787,35 @@ const ContactSection = () => {
     return () => window.removeEventListener('selectPackage', handleSelectPackage);
   }, []);
 
-  // Pre-fill current theme when user scrolls to contact
+  // Stil-Vorauswahl: "Diesen Stil anfragen" aus Filmstrip, Demo-Rückkehr
+  // (/#contact?theme=editorial) oder Session (Umweg über siwedding.de).
+  //
+  // WICHTIG: Früher wurde hier currentTheme vorbelegt. Seit die Marketing-
+  // Seite fest im Classic-Theme läuft, stand in JEDER Anfrage "Classic" —
+  // unabhängig davon, welche Demo das Paar angesehen hatte.
+  const applyTheme = useCallback((themeId) => {
+    if (!themeId || !THEME_OPTIONS.find(t => t.id === themeId)) return;
+    setFormData(prev => ({ ...prev, interestedTheme: themeId }));
+    setSelectedStyle(themeId);
+    setShowOptional(true); // Vorauswahl sichtbar machen
+  }, []);
+
   useEffect(() => {
-    if (currentTheme && THEME_OPTIONS.find(t => t.id === currentTheme)) {
-      setFormData(prev => prev.interestedTheme ? prev : { ...prev, interestedTheme: currentTheme });
+    const handleSelectTheme = (e) => applyTheme(e.detail);
+    window.addEventListener('selectTheme', handleSelectTheme);
+
+    // 1. Hash-Parameter (teilbarer Link, auch als Rückweg von der Demo)
+    const match = window.location.hash.match(/theme=([a-z]+)/);
+    if (match) {
+      applyTheme(match[1]);
+    } else {
+      // 2. Session — überlebt den Umweg über siwedding.de
+      const stored = getStyleChoice();
+      if (stored?.theme) applyTheme(stored.theme);
     }
-  }, [currentTheme]);
+
+    return () => window.removeEventListener('selectTheme', handleSelectTheme);
+  }, [applyTheme]);
 
   // Pre-fill coupon code from partner referral
   useEffect(() => {
@@ -984,6 +1036,22 @@ const ContactSection = () => {
     </SuccessMessage>
   ) : (
     <Form onSubmit={handleSubmit} onFocus={handleFormInteraction} onClick={handleFormInteraction} onTouchStart={handleFormInteraction}>
+      {/* Kommt das Paar aus einer Demo, ist der Stil schon gesetzt —
+          sichtbar bestätigen statt still im eingeklappten Feld verstecken. */}
+      {selectedStyle && (
+        <StyleBadge>
+          <span>Ausgewählter Stil: <strong>{THEME_OPTIONS.find(t => t.id === selectedStyle)?.label || selectedStyle}</strong></span>
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedStyle(null);
+              setFormData(prev => ({ ...prev, interestedTheme: '' }));
+            }}
+          >
+            ändern
+          </button>
+        </StyleBadge>
+      )}
       <Honeypot
         type="text"
         name="honeypot"
@@ -1066,7 +1134,7 @@ const ContactSection = () => {
 
       <FormRow>
         <FormGroup>
-          <Label htmlFor="contact-theme" $theme={currentTheme} $config={config}>Interesse an Theme</Label>
+          <Label htmlFor="contact-theme" $theme={currentTheme} $config={config}>Euer Stil</Label>
           <Select
             id="contact-theme"
             name="interestedTheme"

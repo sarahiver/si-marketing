@@ -6,7 +6,8 @@
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, phoneCardUrl, demoUrl, trackDemoClick } from './demoData';
+import { useNavigate } from 'react-router-dom';
+import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl, trackDemoClick, trackStyleInquiry } from './demoData';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
@@ -211,8 +212,7 @@ const SwipeTrack = styled.div`
 const Card = styled.a`
   display: block;
   text-decoration: none;
-  width: clamp(240px, 26vw, 340px);
-  flex-shrink: 0;
+  width: 100%;
   transition: transform 0.35s ease;
 
   &:hover {
@@ -225,13 +225,22 @@ const Card = styled.a`
 `;
 
 const SwipeCard = styled(Card)`
-  width: 62vw;
-  max-width: 260px;
-  scroll-snap-align: start;
-
   &:hover {
     transform: none;
   }
+`;
+
+// Gruppe = Karte + Anfrage-CTA. Breite und Scroll-Snap liegen jetzt hier,
+// damit der CTA dieselbe Spaltenbreite hat wie die Karte.
+const CardGroup = styled.div`
+  width: clamp(240px, 26vw, 340px);
+  flex-shrink: 0;
+`;
+
+const SwipeCardGroup = styled(CardGroup)`
+  width: 62vw;
+  max-width: 260px;
+  scroll-snap-align: start;
 `;
 
 const CardMeta = styled.div`
@@ -255,6 +264,37 @@ const CardTag = styled.span`
   color: #999;
 `;
 
+const StyleWords = styled.span`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #B0A89F;
+  display: block;
+  margin-top: 0.15rem;
+`;
+
+// Zweiter, leiserer CTA unter jeder Karte: der Weg von "gefällt mir"
+// zur Anfrage, ohne dass die Demo selbst verlassen werden muss.
+const StyleInquiry = styled.button`
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0;
+  background: none;
+  border: none;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover { color: #C41E3A; }
+`;
+
 const Footer = styled.div`
   text-align: center;
   margin-top: 1.5rem;
@@ -266,7 +306,7 @@ const Footer = styled.div`
 `;
 
 // Einzelkarte — hält den Video-Ref, damit die Preview erst bei Hover abspielt
-const DemoCard = ({ demo, isMobile, CardComp }) => {
+const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
   const videoRef = useRef(null);
   const videoSrc = !isMobile && THEME_VIDEO_PREVIEWS[demo.id];
 
@@ -325,15 +365,40 @@ const DemoCard = ({ demo, isMobile, CardComp }) => {
         </Frame>
       )}
       <CardMeta>
-        <CardName>{demo.name}</CardName>
+        <div>
+          <CardName>{demo.name}</CardName>
+          <StyleWords>{(STYLE_WORDS[demo.id] || []).join(' · ')}</StyleWords>
+        </div>
         <CardTag>Demo →</CardTag>
       </CardMeta>
     </CardComp>
   );
 };
 
+// Karte + Anfrage-CTA als Einheit
+const DemoCardGroup = ({ demo, isMobile, CardComp, Wrapper, onInquire }) => (
+  <Wrapper>
+    <DemoCard demo={demo} isMobile={isMobile} CardComp={CardComp} />
+    <StyleInquiry
+      type="button"
+      onClick={() => onInquire(demo.id)}
+      aria-label={`Stil ${demo.name} anfragen`}
+    >
+      Diesen Stil anfragen
+    </StyleInquiry>
+  </Wrapper>
+);
+
 const DemoFilmstrip = () => {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
+
+  // Theme entdecken → Demo ansehen → Stil gefällt → diesen Stil anfragen
+  const handleInquire = (themeId) => {
+    trackStyleInquiry(themeId, isMobile ? 'filmstrip_mobile' : 'filmstrip');
+    navigate(`/#contact?theme=${themeId}`);
+  };
+
   const demos = isMobile ? ALL_DEMOS : [...ALL_DEMOS, ...ALL_DEMOS];
   const TrackComp = isMobile ? SwipeTrack : Track;
   const CardComp = isMobile ? SwipeCard : Card;
@@ -341,9 +406,9 @@ const DemoFilmstrip = () => {
   return (
     <Section id="themes" aria-label="Theme-Demos">
       <Header>
-        <Eyebrow>8 Designs · Echte Beispiele, live klickbar</Eyebrow>
+        <Eyebrow>Acht Stilwelten · Echte Beispiele, live klickbar</Eyebrow>
         <Title>
-          Echte Hochzeitswebsites.<br /><em>Keine Mockups.</em>
+          Findet euren Stil.<br /><em>Nicht euer Template.</em>
         </Title>
         <Sub>
           {isMobile
@@ -353,18 +418,20 @@ const DemoFilmstrip = () => {
       </Header>
       <TrackComp>
         {demos.map((demo, i) => (
-          <DemoCard
+          <DemoCardGroup
             key={`${demo.id}-${i}`}
             demo={demo}
             isMobile={isMobile}
             CardComp={CardComp}
+            Wrapper={isMobile ? SwipeCardGroup : CardGroup}
+            onInquire={handleInquire}
           />
         ))}
       </TrackComp>
       <Footer>
         {isMobile
-          ? 'Wischen zum Entdecken · Tippen = Live-Demo'
-          : 'Hover = Seite scrollt durch · Klick = Live-Demo'}
+          ? 'Wischen zum Entdecken · Tippen öffnet die Live-Demo'
+          : 'Mauszeiger hält den Streifen an · Klick öffnet die Live-Demo'}
       </Footer>
     </Section>
   );
