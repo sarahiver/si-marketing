@@ -10,7 +10,15 @@ import {
   brand, font, type, leading, layout, motion,
   eyebrowStyle, scriptNote,
 } from '../../styles/brand';
-import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl, setStyleChoice, trackDemoClick } from './demoData';
+import {
+  ALL_DEMOS, THEME_SCREENSHOTS, THEME_HEROES, THEME_VIDEO_PREVIEWS,
+  HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl,
+  setStyleChoice, trackDemoClick,
+} from './demoData';
+
+// Für 'modern' existiert kein Desktop-Screenshot — ohne Fallback bliebe die
+// Karte statisch leer, seit das Video erst bei Hover einblendet.
+const posterFor = (id) => THEME_SCREENSHOTS[id] || THEME_HEROES[id];
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
@@ -30,7 +38,9 @@ const useIsMobile = () => {
 
 const Section = styled.section`
   position: relative;
-  padding: ${layout.sectionY} 0;
+  /* bewusst kompakter als der Standard-Sectionabstand: die Collection soll
+     direkt nach dem Hero greifen, nicht durch Leerraum getrennt sein */
+  padding: clamp(3rem, 7vh, 5.5rem) 0 clamp(3.5rem, 8vh, 6rem);
   background: ${brand.ivory};
   overflow: hidden;
 `;
@@ -38,7 +48,7 @@ const Section = styled.section`
 const Header = styled.div`
   position: relative;
   max-width: ${layout.maxWidth};
-  margin: 0 auto clamp(3rem, 6vh, 4.5rem);
+  margin: 0 auto clamp(2.25rem, 4.5vh, 3.25rem);
   padding: 0 ${layout.gutter};
   text-align: center;
 `;
@@ -102,13 +112,17 @@ const Grid = styled.div`
 
 
 
+// Leichtes Card-UI: dezenter Rand, kleine Rundung, sehr weicher Schatten.
+// Die Website-Preview ist der Star, nicht der Rahmen.
 const Frame = styled.div`
   background: #FFFFFF;
-  border-radius: 4px;
+  border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 14px 40px rgba(34, 34, 34, 0.12);
+  box-shadow: 0 6px 20px rgba(34, 34, 34, 0.07);
   border: 1px solid ${brand.lineSoft};
-  transition: box-shadow ${motion.hover} ${motion.ease};
+  transition: box-shadow 260ms ${motion.ease};
+
+  ${'' /* Hover-Schatten wird unten über CardGroup gesetzt */}
 `;
 
 const FrameBar = styled.div`
@@ -144,6 +158,7 @@ const FrameUrl = styled.div`
 
 const FrameScreen = styled.div`
   /* 3:2 statt 4:3 — mehr Bildfläche je Karte */
+  transition: transform 300ms ${p => p.theme?.ease || 'cubic-bezier(0.22, 1, 0.36, 1)'};
   position: relative;
   aspect-ratio: 3/2;
   background-image: url(${p => p.$src});
@@ -161,12 +176,18 @@ const FrameScreen = styled.div`
   color: rgba(26, 26, 26, 0.3);
 `;
 
+// Blendet über dem Screenshot auf — dadurch ist die Karte auch ohne
+// geladenes Video vollständig, und es lädt erst bei Hover (preload="none").
 const PreviewVideo = styled.video`
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: ${p => (p.$visible ? 1 : 0)};
+  transition: opacity 320ms ease;
+
+  @media (prefers-reduced-motion: reduce) { display: none; }
 `;
 
 // ── Mobile: Handy-Frame statt Browser-Fenster ──
@@ -253,12 +274,20 @@ const CardGroup = styled.div`
   border: none;
   border-radius: 0;
   padding: 0;
-  transition: box-shadow ${motion.hover} ${motion.ease},
-              transform ${motion.hover} ${motion.ease};
+  transition: transform 260ms ${motion.ease};
 
   &:hover {
     transform: translateY(-4px);
-    ${Frame} { box-shadow: 0 22px 56px rgba(34, 34, 34, 0.18); }
+    ${Frame} { box-shadow: 0 16px 40px rgba(34, 34, 34, 0.13); }
+    ${FrameScreen} { transform: scale(1.015); }
+  }
+
+  /* Fokus sichtbar halten — die Karte ist ein Link */
+  &:focus-within { transform: translateY(-4px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:hover, &:focus-within { transform: none; }
   }
 `;
 
@@ -286,8 +315,11 @@ const CardName = styled.span`
 
 const CardTag = styled.span`
   ${eyebrowStyle}
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: ${brand.charcoal};
+  transition: color 260ms ease;
+
+  ${CardGroup}:hover &, ${CardGroup}:focus-within & { color: ${brand.olive}; }
   transition: color ${motion.hover} ${motion.ease};
 
   ${CardGroup}:hover & { color: ${brand.olive}; }
@@ -313,19 +345,19 @@ const Footer = styled.div`
 `;
 
 // Einzelkarte — hält den Video-Ref, damit die Preview erst bei Hover abspielt
-const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
+const DemoCard = ({ demo, isMobile, CardComp }) => {
   const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  // Mobile lädt bewusst kein Video: acht gleichzeitig wären reine Datenlast.
   const videoSrc = !isMobile && THEME_VIDEO_PREVIEWS[demo.id];
 
   const handleEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
+    setPlaying(true);
+    videoRef.current?.play().catch(() => {});
   };
   const handleLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
+    setPlaying(false);
+    videoRef.current?.pause();
   };
 
   return (
@@ -360,7 +392,7 @@ const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
             <FrameUrl>siwedding.de/{demo.id}</FrameUrl>
           </FrameBar>
           <FrameScreen
-            $src={videoSrc ? undefined : THEME_SCREENSHOTS[demo.id]}
+            $src={posterFor(demo.id)}
             $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
           >
             {videoSrc && (
@@ -369,11 +401,14 @@ const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
+                poster={posterFor(demo.id)}
                 src={videoSrc}
+                $visible={playing}
+                aria-hidden="true"
               />
             )}
-            {!(videoSrc || THEME_SCREENSHOTS[demo.id]) && demo.name}
+            {!posterFor(demo.id) && !videoSrc && demo.name}
           </FrameScreen>
         </Frame>
       )}
@@ -426,9 +461,7 @@ const DemoFilmstrip = () => {
           />
         ))}
       </TrackComp>
-      <Footer>
-        {isMobile ? 'Wischen zum Entdecken' : 'Klick öffnet die Live-Demo'}
-      </Footer>
+      <Footer>Alle Designs sind live erlebbar</Footer>
     </Section>
   );
 };
