@@ -1167,8 +1167,13 @@ const Devices = styled.div`
   bottom: 0;
   width: min(48%, 680px);
   z-index: 4;
+  /* Rechnung: bottom:0 setzt die UNTERKANTE DES BILDES auf die Sektionskante.
+     Die Laptop-Unterkante liegt aber bei 90,43 % der Bildhöhe, also 9,57 %
+     darüber. Genau um diesen Rest wird nach unten geschoben — dann steht der
+     Laptop auf der Kante und das Phone ragt um seine 2,83 % darunter heraus.
+     (Vorher stand hier fälschlich die Differenz beider Kanten: 2,83 %.) */
   transform: translateY(${(
-    images.productMockupScreens.phoneBottom - images.productMockupScreens.laptopBottom
+    100 - images.productMockupScreens.laptopBottom
   ).toFixed(2)}%);
   /* Der Rahmen enthält unterhalb der Laptop-Kante nur noch das überstehende
      Phone. Genau um diesen Anteil wird nach unten geschoben, damit der
