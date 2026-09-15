@@ -33,7 +33,7 @@ const DEMO_WEDDING = {
   photoSecond: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1789471181/lea-ben-berge_cnionc.jpg',
   photoSecondAlt: 'Lea und Ben in den Bergen',
   // Theme, dessen Demo der CTA öffnet und dessen Vorschau rechts erscheint
-  theme: 'editorial',
+  theme: 'botanical',
   note: 'Lea & Ben sind unser Demo-Paar — ihre Hochzeit steht noch bevor.',
   cta: 'Website ansehen',
 };
