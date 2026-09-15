@@ -1156,6 +1156,13 @@ const HeroNote = styled.span`
 // ── PRODUKT: Geräterahmen mit transparenten Displays ────────────────────
 // Gleiches System wie in der Produkt-Section: Inhalte liegen hinter dem
 // Rahmen und scheinen durch die Aussparungen.
+// ── HIER NACHJUSTIEREN ──────────────────────────────────────────────────
+// Feinkorrektur in % der Rahmenhöhe. Größer = Geräte weiter nach unten,
+// negativ = weiter nach oben. Der Grundwert (100 − laptopBottom = 9,57 %)
+// setzt die Laptop-Unterkante rechnerisch auf die Sektionskante; der
+// Gehäusefuß im Bild wirkt optisch aber etwas höher.
+const HERO_DEVICE_DROP = 2.5;
+
 // Absolut am unteren Rand des Hero verankert statt über Grid-Ausrichtung.
 // Grund: align-self/align-items hingen von Zeilenhöhe, Flex-Ausrichtung und
 // Padding ab — drei Stellschrauben, die sich gegenseitig ausgehebelt haben.
@@ -1173,7 +1180,7 @@ const Devices = styled.div`
      Laptop auf der Kante und das Phone ragt um seine 2,83 % darunter heraus.
      (Vorher stand hier fälschlich die Differenz beider Kanten: 2,83 %.) */
   transform: translateY(${(
-    100 - images.productMockupScreens.laptopBottom
+    100 - images.productMockupScreens.laptopBottom + HERO_DEVICE_DROP
   ).toFixed(2)}%);
   /* Der Rahmen enthält unterhalb der Laptop-Kante nur noch das überstehende
      Phone. Genau um diesen Anteil wird nach unten geschoben, damit der
