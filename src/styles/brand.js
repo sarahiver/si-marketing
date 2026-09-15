@@ -110,9 +110,9 @@ export const images = {
   // Displays und transparentem Hintergrund. Die Inhalte liegen DAHINTER und
   // scheinen durch die Aussparungen — dadurch lassen sich die echten Demos
   // zeigen, ohne etwas zuzuschneiden.
-  // Nach dem Upload zu Cloudinary hier die URL eintragen (PNG, nicht JPG —
-  // sonst geht die Transparenz verloren).
-  productMockup: 'REPLACE_ME_CLOUDINARY_URL.png',
+  // Bewusst ohne f_auto: Cloudinary würde je nach Browser konvertieren, und
+  // die Transparenz ist hier tragend.
+  productMockup: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,w_1800/v1789465404/device-frame_nxaalw.png',
 
   // Displaykoordinaten, ausgemessen aus dem Mockup (1536 × 1024).
   // Bei einem anderen Rahmenbild müssen diese Werte neu bestimmt werden.

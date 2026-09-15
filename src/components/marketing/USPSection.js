@@ -13,7 +13,7 @@ import {
   eyebrowStyle,
 } from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
-import { THEME_SCREENSHOTS, THEME_HEROES, THEME_MOBILE_SCREENS } from './demoData';
+import { THEME_SCREENSHOTS, THEME_HEROES, THEME_MOBILE_SCREENS, videoPosterUrl } from './demoData';
 
 // ============================================
 // CONTENT DATA
@@ -1625,8 +1625,11 @@ const USPSection = () => {
           <Stage $visible={visible}>
             <Mockup>
               <ScreenSlot $rect={images.productMockupScreens.laptop}>
+                {/* Video-Standbild statt THEME_SCREENSHOTS: nur so zeigen
+                    Laptop und Phone dieselbe Demo — die alten Desktop-
+                    Screenshots stammen aus anderen Aufnahmen. */}
                 <img
-                  src={THEME_SCREENSHOTS[PRODUCT_THEME] || THEME_HEROES[PRODUCT_THEME]}
+                  src={videoPosterUrl(PRODUCT_THEME) || THEME_SCREENSHOTS[PRODUCT_THEME] || THEME_HEROES[PRODUCT_THEME]}
                   alt={`S&I. Hochzeitswebsite im Design ${PRODUCT_THEME}`}
                   loading="lazy"
                 />
