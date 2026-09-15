@@ -2204,7 +2204,7 @@ Stellt euch vor: Es ist ein ganz normaler Dienstagabend, ein Jahr nach eurer Hoc
 
 Neben den Fotos gibt es noch eine weitere wunderschöne Erinnerung: das [digitale Gästebuch](/blog/hochzeitswebsite-gaestebuch-digital), in dem eure Gäste ihre persönlichsten Worte hinterlassen können.
 
-**Bereit, eure Hochzeitserinnerungen für immer festzuhalten?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Hochzeitswebsite, die vor, während und nach eurer Hochzeit für euch arbeitet – mit Foto-Upload, Archivseite, Gästebuch und einem Design, das eure Geschichte erzählt. Ab 1.290 Euro, alles inklusive.
+**Bereit, eure Hochzeitserinnerungen für immer festzuhalten?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Hochzeitswebsite, die vor, während und nach eurer Hochzeit für euch arbeitet – mit Foto-Upload, Archivseite, Gästebuch und einem Design, das eure Geschichte erzählt. Ab 990 Euro, alles inklusive.
 
 **[Jetzt eure Hochzeitswebsite erstellen](https://www.sarahiver.com)** und keinen einzigen Moment verpassen.
     `,
@@ -2349,7 +2349,7 @@ Das ist keine Ausnahme. **Das ist der Normalfall bei S&I.**
 
 Mehr zum Thema RSVP findet ihr in unserem ausführlichen Artikel über [digitales RSVP für Hochzeiten](/blog/digitales-rsvp-hochzeit). Und wie das alles im [Admin Dashboard](/blog/hochzeitswebsite-admin-dashboard) zusammenläuft, zeigen wir euch ebenfalls.
 
-**Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Hochzeitswebsite mit intelligenter Gästeliste, automatischem RSVP-Abgleich, Erinnerungsmails und One-Click-Export – alles in eurem Design, alles aus einer Hand. Ab 1.290 Euro.
+**Bereit für stressfreies Gästemanagement?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Hochzeitswebsite mit intelligenter Gästeliste, automatischem RSVP-Abgleich, Erinnerungsmails und One-Click-Export – alles in eurem Design, alles aus einer Hand. Ab 990 Euro.
 
 **[Jetzt eure Hochzeitswebsite erstellen](https://www.sarahiver.com)** – und nie wieder jemandem hinterhertelefonieren.
     `,

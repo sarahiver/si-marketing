@@ -1,10 +1,14 @@
 // src/components/marketing/PricingSection.js
 // Erweiterte Pricing Section mit Addons/Zusatzoptionen
 // Theme-spezifische Layouts
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { PUBLIC_PACKAGES, ADDON_LIST, isFeatureIncluded } from '../../lib/pricing';
+import {
+  brand, font, type, leading, layout, motion,
+  eyebrowStyle, buttonPrimary, buttonSecondary, scriptNote,
+} from '../../styles/brand';
 
 // ============================================
 // PRICING DATA
@@ -332,215 +336,24 @@ const EditorialCTA = styled.button`
 // ============================================
 // CLASSIC THEME
 // ============================================
-const ClassicSection = styled(Section)`background: #FFFFFF;`;
 
-// Wert-Aufbau VOR dem Preis: Service-Beweis + Anker (Conversion-Review Jul 2026)
-const ClassicValueBar = styled.div`
-  max-width: 900px;
-  margin: 0 auto 3rem;
-  text-align: center;
-`;
 
-const ClassicValueItems = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem 2.5rem;
-  margin-bottom: 1.25rem;
-`;
 
-const ClassicValueItem = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 300;
-  color: #1A1A1A;
 
-  &::before {
-    content: '✓';
-    margin-right: 0.5rem;
-    color: #999;
-  }
-`;
 
-const ClassicValueAnchor = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 300;
-  font-style: italic;
-  color: #999;
-`;
 
-const ClassicEyebrow = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #999999;
-  margin-bottom: 1rem;
-`;
 
-const ClassicTitle = styled.h2`
-  font-family: 'Mrs Saint Delafield', cursive;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 400;
-  color: #1A1A1A;
-`;
 
-const ClassicCard = styled.div`
-  background: #fff;
-  border: ${p => p.$pop ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(0,0,0,0.06)'};
-  padding: 2.5rem;
-  position: relative;
-  transition: all 0.4s ease;
-  display: flex;
-  flex-direction: column;
 
-  ${p => p.$pop && css`
-    &::before {
-      content: 'Empfohlen';
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #1A1A1A;
-      color: #fff;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.4rem 1.2rem;
-    }
-  `}
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  }
-`;
 
-const ClassicCardName = styled.h3`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: #1A1A1A;
-  margin-bottom: 0.5rem;
-`;
 
-const ClassicCardPrice = styled.div`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: ${p => p.$pop ? '#999999' : '#1A1A1A'};
-  margin-bottom: 0.25rem;
-  span { font-size: 1.2rem; }
-`;
 
-const ClassicCardDuration = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 300;
-  color: #999;
-  margin-bottom: 1.5rem;
-`;
 
-const ClassicFeatureList = styled.ul`
-  margin-bottom: 1.5rem;
-  flex: 1;
-`;
 
-const ClassicFeature = styled.li`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 300;
-  color: #555;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
 
-  &::before {
-    content: '\u2014';
-    color: #999999;
-    flex-shrink: 0;
-  }
-`;
 
-const ClassicAddonsTitle = styled(AddonsTitle)`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: #1A1A1A;
-  margin-top: auto;
-  padding-top: 1.5rem;
-`;
 
-const ClassicAddon = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-`;
-
-const ClassicAddonInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-`;
-
-const ClassicAddonCheck = styled.div`
-  width: 16px;
-  height: 16px;
-  border: 1px solid ${p => p.$included ? '#999999' : '#CCC'};
-  background: ${p => p.$included ? '#1A1A1A' : 'transparent'};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-  color: #fff;
-`;
-
-const ClassicAddonName = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 300;
-  color: #555;
-`;
-
-const ClassicAddonPrice = styled.span`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 0.9rem;
-  color: ${p => p.$included ? '#999999' : '#666'};
-`;
-
-const ClassicCTA = styled.button`
-  display: block;
-  width: 100%;
-  padding: 1rem;
-  margin-top: 1.5rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  border: none;
-
-  ${p => p.$pop ? css`
-    background: #1A1A1A;
-    color: #fff;
-    &:hover { background: #333333; }
-  ` : css`
-    background: transparent;
-    color: #1A1A1A;
-    border: 1px solid #1A1A1A;
-    &:hover { background: #1A1A1A; color: #FFFFFF; }
-  `}
-`;
 
 // ============================================
 // BOTANICAL THEME
@@ -1420,7 +1233,287 @@ const VideoCTA = styled.button`
 // ============================================
 // MAIN COMPONENT
 // ============================================
+// ════════════════════════════════════════════════════════════════════════
+// BRAND PRICING (Classic-Basis) — Editorial Pricing Sheet, kein SaaS-Grid
+// Warme Sandfläche, große Zahlen, zwei Wege statt Feature-Matrix.
+// ════════════════════════════════════════════════════════════════════════
+
+
+// Warme Sandfläche über die volle Breite, keine Container-Karte, kein Foto.
+// Premium entsteht hier durch Ruhe, nicht durch Fläche.
+const BrandPricingSection = styled.section`
+  position: relative;
+  padding: clamp(4rem, 9vh, 7rem) 0 clamp(3.5rem, 7vh, 5rem);
+  background: ${brand.sand};
+`;
+
+const BrandContainer = styled.div`
+  position: relative;
+  max-width: ${layout.wide};
+  margin: 0 auto;
+  padding: 0 ${layout.gutter};
+`;
+
+const BrandHeader = styled.div`
+  text-align: center;
+  margin-bottom: clamp(3rem, 5vh, 4.25rem);
+
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 600ms ${motion.ease}, transform 600ms ${motion.ease};
+  ${p => p.$visible && 'opacity: 1; transform: translateY(0);'}
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1; transform: none; transition: none;
+  }
+`;
+
+const BrandEyebrow = styled.p`
+  ${eyebrowStyle}
+  color: ${brand.olive};
+  margin-bottom: 1.1rem;
+`;
+
+const BrandH2 = styled.h2`
+  font-family: ${font.serif};
+  font-weight: 400;
+  font-size: ${type.h2};
+  line-height: ${leading.h2};
+  letter-spacing: -0.01em;
+  color: ${brand.charcoal};
+  margin: 0;
+`;
+
+const BrandSub = styled.p`
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  max-width: 48ch;
+  margin: 1.25rem auto 0;
+`;
+
+// Zwei Pakete + schmale Add-on-Spalte — bewusst ungleich gewichtet
+const BrandGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.66fr;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
+  align-items: stretch;
+
+  @media (max-width: 1100px) { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 760px)  { grid-template-columns: 1fr; }
+`;
+
+const BrandCard = styled.div`
+  position: relative;
+  overflow: hidden;
+  background: ${p => (p.$pop ? '#FFFFFF' : '#FDFCFA')};
+  border: 1px solid ${p => (p.$pop ? 'rgba(104,111,92,0.35)' : brand.line)};
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 260ms ${motion.ease}, box-shadow 260ms ${motion.ease};
+
+  opacity: 0;
+  ${p => p.$visible && 'opacity: 1;'}
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px rgba(34, 34, 34, 0.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transition: none;
+    &:hover { transform: none; }
+  }
+  padding: clamp(2.25rem, 3.2vw, 3rem) clamp(1.75rem, 2.6vw, 2.5rem)
+           clamp(2.25rem, 3.2vw, 2.75rem);
+  ${p => p.$pop && 'padding-top: clamp(3rem, 4.2vw, 3.75rem);'}
+  ${p => p.$pop && `box-shadow: 0 24px 60px rgba(34,34,34,0.10);`}
+`;
+
+// Schmale Leiste am oberen Kartenrand statt großer Badge-Box
+const PopBadge = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.4rem 0;
+  text-align: center;
+  background: ${brand.olive};
+  color: ${brand.ivory};
+  ${eyebrowStyle}
+  font-size: 0.6rem;
+`;
+
+const BrandPkgName = styled.h3`
+  ${eyebrowStyle}
+  font-size: 0.75rem;
+  color: ${brand.inkMuted};
+  margin: 0 0 1rem;
+`;
+
+const BrandPrice = styled.div`
+  font-family: ${font.serif};
+  font-weight: 400;
+  font-size: clamp(2.6rem, 4.2vw, 3.9rem);
+  line-height: 1;
+  color: ${brand.charcoal};
+  margin-bottom: 1.1rem;
+`;
+
+const BrandPitch = styled.p`
+  font-family: ${font.sans};
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: ${brand.inkSoft};
+  margin: 0 0 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid ${brand.line};
+`;
+
+const BrandList = styled.ul`
+  list-style: none;
+  /* auto schiebt den CTA an den unteren Kartenrand — dadurch stehen beide
+     Buttons trotz unterschiedlich langer Listen auf einer Linie */
+  margin: 0 0 auto;
+  padding: 0 0 2rem;
+`;
+
+const BrandListItem = styled.li`
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.7rem;
+  font-family: ${font.sans};
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: ${brand.ink};
+
+  &::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: ${brand.olive};
+    font-size: 0.85rem;
+  }
+`;
+
+const BrandCardCTA = styled.button`
+  ${p => (p.$pop ? buttonPrimary : buttonSecondary)}
+  width: 100%;
+  justify-content: center;
+  border-radius: 999px;
+  ${p => (p.$pop
+    ? `background: ${brand.olive}; border-color: ${brand.olive};
+       &:hover { background: ${brand.charcoal}; border-color: ${brand.charcoal}; }`
+    : `border-color: ${brand.charcoal};`)}
+`;
+
+// Add-ons: dritte, ruhigere Spalte — nie die Hauptaufmerksamkeit
+const AddonPanel = styled.aside`
+  align-self: start;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid ${brand.lineSoft};
+  border-radius: 12px;
+  padding: clamp(1.5rem, 2.2vw, 2rem);
+
+  @media (max-width: 1100px) { grid-column: 1 / -1; }
+`;
+
+const AddonPanelTitle = styled.p`
+  ${eyebrowStyle}
+  font-size: 0.68rem;
+  color: ${brand.inkMuted};
+  margin-bottom: 1.5rem;
+`;
+
+const AddonRowItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid ${brand.lineSoft};
+
+  &:last-child { border-bottom: none; }
+
+  .name {
+    font-family: ${font.sans};
+    font-size: 0.9rem;
+    color: ${brand.ink};
+  }
+  .desc {
+    display: block;
+    font-size: 0.75rem;
+    color: ${brand.inkMuted};
+    margin-top: 0.15rem;
+  }
+  .price {
+    font-family: ${font.serif};
+    font-size: 1.15rem;
+    color: ${brand.charcoal};
+    white-space: nowrap;
+  }
+`;
+
+// Liegt jetzt auf dem Foto statt auf der Sandfläche — helle Schrift mit
+// weichem Schatten, sonst verschwindet sie im dunklen Bildbereich.
+const VoucherLine = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: clamp(1.25rem, 2.5vh, 1.75rem) auto 0;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid ${brand.line};
+  border-radius: 10px;
+
+  span { font-size: 1.1rem; flex-shrink: 0; }
+
+  p {
+    margin: 0;
+    font-family: ${font.sans};
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: ${brand.inkMuted};
+
+    strong {
+      display: block;
+      font-weight: 600;
+      color: ${brand.ink};
+      margin-bottom: 0.15rem;
+    }
+  }
+
+  a { color: ${brand.olive}; text-decoration: underline; }
+`;
+
+const PricingNote = styled.span`
+  ${scriptNote}
+  position: absolute;
+  left: clamp(1rem, 4vw, 3rem);
+  top: -1.5rem;
+  color: rgba(250, 249, 246, 0.92);
+  text-shadow: 0 2px 18px rgba(34, 34, 34, 0.45);
+
+  @media (max-width: 1200px) { display: none; }
+`;
+
 const PricingSection = () => {
+  // Sanftes Erscheinen beim Scrollen — nur opacity und translateY.
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { setVisible(true); return undefined; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) { setVisible(true); io.disconnect(); }
+    }, { threshold: 0.2 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const { currentTheme } = useTheme();
   
   const scrollToContact = (packageId) => {
@@ -1574,53 +1667,111 @@ const PricingSection = () => {
     );
   };
 
-  // CLASSIC
+  // Zurückgenommene Variante des Gutschein-Hinweises: gleiche Information,
+  // aber ohne orange Fläche, die mit dem All-In-CTA konkurriert.
+  const renderBrandVoucher = () => (
+    <VoucherLine>
+      <span aria-hidden="true">🎁</span>
+      <p>
+        <strong>15 € Gutschein auf Karten</strong>
+        Exklusiv für S&I.-Paare · ohne Mindestbestellwert · einlösbar bei{' '}
+        <a href="https://www.hochzeitsplaza.de" target="_blank" rel="noopener noreferrer">
+          hochzeitsplaza.de
+        </a>
+      </p>
+    </VoucherLine>
+  );
+
+  // CLASSIC — Brand Pricing Sheet (visuelles Redesign Sep 2026).
+  // Die Frage lautet nicht "welche Funktionen", sondern "wie viel übernehmt
+  // ihr selbst". Deshalb zwei Wege statt Feature-Matrix, Add-ons daneben.
   if (currentTheme === 'classic') {
+    const pitches = {
+      website: 'Ihr macht den Inhalt.\nWir machen den Feinschliff.',
+      all_in: 'Ihr liefert Material.\nWir machen den Rest.',
+    };
+    const highlights = {
+      website: [
+        'Alle Komponenten inklusive',
+        'Gemeinsame Design-Abstimmung',
+        'Ihr pflegt eure Inhalte ein',
+        'Wir prüfen & verfeinern',
+        'QR-Code inklusive',
+      ],
+      all_in: [
+        'Alle Komponenten inklusive',
+        'Wir übernehmen den kompletten Aufbau',
+        'Save the Date inklusive',
+        'Wedding Archive inklusive',
+        'QR-Code inklusive',
+      ],
+    };
+
     return (
-      <ClassicSection id="pricing">
-        <Container>
-          <Header>
-            <ClassicEyebrow>Preise</ClassicEyebrow>
-            <ClassicTitle>Findet euer Paket</ClassicTitle>
-          </Header>
-          <ClassicValueBar>
-            <ClassicValueItems>
-              <ClassicValueItem>Persönlicher Ansprechpartner: Sarah &amp; Iver</ClassicValueItem>
-              <ClassicValueItem>Ihr liefert nur Texte &amp; Fotos — wir bauen alles</ClassicValueItem>
-              <ClassicValueItem>100% individuell eingerichtet, kein Baukasten</ClassicValueItem>
-            </ClassicValueItems>
-            <ClassicValueAnchor>
-              Zum Vergleich: Agenturen starten bei ~3.000 € — Baukästen kosten euch die Abende vor der Hochzeit.
-            </ClassicValueAnchor>
-          </ClassicValueBar>
-          <Grid>
+      <BrandPricingSection id="pricing" ref={sectionRef}>
+        <BrandContainer>
+          <PricingNote>Zwei Wege.<br />Ein Ergebnis.</PricingNote>
+          <BrandHeader $visible={visible}>
+            <BrandEyebrow>Zwei Wege zu eurer Hochzeitswebsite</BrandEyebrow>
+            <BrandH2>Wie viel möchtet ihr selbst übernehmen?</BrandH2>
+            <BrandSub>
+              Zwei Wege. Das gleiche Ziel: eine Hochzeitswebsite, die wirklich
+              zu euch passt. Der Unterschied ist die Arbeit, nicht der
+              Funktionsumfang.
+            </BrandSub>
+          </BrandHeader>
+
+          <BrandGrid>
             {PACKAGES.map(pkg => (
-              <ClassicCard key={pkg.id} $pop={pkg.popular}>
-                <ClassicCardName>{pkg.name}</ClassicCardName>
-                {pkg.tagline && <PkgTagline style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300 }}>{pkg.tagline}</PkgTagline>}
-                <ClassicCardPrice $pop={pkg.popular}>
-                  <span>€</span>{pkg.price}
-                </ClassicCardPrice>
-                <ClassicCardDuration>{pkg.duration}</ClassicCardDuration>
-                <ClassicFeatureList>
-                  {pkg.features.map((f, i) => <ClassicFeature key={i}>{f}</ClassicFeature>)}
-                </ClassicFeatureList>
-                <ClassicAddonsTitle>Zusatzoptionen</ClassicAddonsTitle>
-                <AddonsList>
-                  {ADDONS.map(addon => renderAddon(addon, pkg.addons, ClassicAddon, ClassicAddonInfo, ClassicAddonCheck, ClassicAddonName, ClassicAddonPrice))}
-                </AddonsList>
-                <ClassicCTA $pop={pkg.popular} onClick={() => scrollToContact(pkg.id)}>{pkg.cta}</ClassicCTA>
-              </ClassicCard>
+              <BrandCard key={pkg.id} $pop={pkg.popular} $visible={visible}>
+                {pkg.popular && <PopBadge>Beliebteste Wahl</PopBadge>}
+                <BrandPkgName>{pkg.name}</BrandPkgName>
+                <BrandPrice>{pkg.price} €</BrandPrice>
+                <BrandPitch>
+                  {(pitches[pkg.id] || pkg.tagline || '').split('\n').map((line, i) => (
+                    <React.Fragment key={i}>{line}<br /></React.Fragment>
+                  ))}
+                </BrandPitch>
+                <BrandList>
+                  {(highlights[pkg.id] || pkg.features.slice(0, 5)).map((f, i) => (
+                    <BrandListItem key={i}>{f}</BrandListItem>
+                  ))}
+                </BrandList>
+                <BrandCardCTA
+                  type="button"
+                  $pop={pkg.popular}
+                  onClick={() => scrollToContact(pkg.id)}
+                >
+                  {pkg.cta} →
+                </BrandCardCTA>
+              </BrandCard>
             ))}
-          </Grid>
-          {renderOnRequest()}
-          {renderVoucher()}
-        </Container>
-      </ClassicSection>
+
+            <AddonPanel>
+              <AddonPanelTitle>Optional zubuchbar</AddonPanelTitle>
+              {ADDONS.map(addon => {
+                // Preis aus der zentralen Preislogik, nicht doppelt gepflegt
+                const priced = PACKAGES.find(p => p.addons[addon.id] && !p.addons[addon.id].included);
+                const price = priced ? priced.addons[addon.id].price : null;
+                return (
+                  <AddonRowItem key={addon.id}>
+                    <span className="name">
+                      {addon.name}
+                      <span className="desc">{addon.desc}</span>
+                    </span>
+                    {price !== null && <span className="price">{price} €</span>}
+                  </AddonRowItem>
+                );
+              })}
+            </AddonPanel>
+          </BrandGrid>
+
+          {renderBrandVoucher()}
+        </BrandContainer>
+      </BrandPricingSection>
     );
   }
 
-  // EDITORIAL
   if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="pricing">

@@ -1008,8 +1008,8 @@ const ContactSection = () => {
         return {
           eyebrow: 'Der erste Schritt',
           title: 'Erzählt uns von euch',
-          subtitle: 'Kein Verkaufsgespräch. Nur ein ehrliches Kennenlernen. Ihr schreibt direkt an Sarah & Iver. Antwort innerhalb von 24 Stunden.',
-          button: 'Unverbindlich anfragen',
+          subtitle: 'Ihr plant eure Hochzeit und möchtet eine Website, die wirklich zu euch passt? Erzählt uns kurz von euch — wir melden uns persönlich.',
+          button: 'Anfrage senden →',
         };
     }
   };
@@ -1026,6 +1026,22 @@ const ContactSection = () => {
       </p>
       <p>
         Wir freuen uns auf das Gespräch!
+      </p>
+      {/* Wartezeit sinnvoll nutzen: zurück in die Designwelten */}
+      <p style={{ marginTop: '1.25rem' }}>
+        Ihr könnt euch inzwischen schon einmal durch unsere Designwelten klicken.
+      </p>
+      <p style={{ marginTop: '0.75rem' }}>
+        <a
+          href="#themes"
+          style={{ color: config.accent, fontWeight: 600 }}
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          Designs ansehen →
+        </a>
       </p>
       <p style={{ marginTop: '1.5rem', fontSize: '0.85rem' }}>
         Fragen? Schreibt uns direkt an{' '}
@@ -1209,6 +1225,10 @@ const ContactSection = () => {
         <div ref={captchaRef}></div>
       </CaptchaWrapper>
 
+      {/* Hürde senken: sagt vor dem Klick, was danach passiert (§27) */}
+      <PrivacyNote $config={config} style={{ marginBottom: '0.9rem', textAlign: 'center' }}>
+        Eure Anfrage ist unverbindlich. Wir melden uns persönlich bei euch.
+      </PrivacyNote>
       <Button
         type="submit"
         disabled={isSubmitting}

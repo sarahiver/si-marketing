@@ -3,7 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
-import { ALL_DEMOS, phoneCardUrl, demoUrl, setStyleChoice, trackDemoClick } from './demoData';
+import {
+  ALL_DEMOS, THEME_SCREENSHOTS, THEME_MOBILE_SCREENS, THEME_VIDEO_PREVIEWS,
+  phoneCardUrl, demoUrl, videoPosterUrl, setStyleChoice, trackDemoClick,
+} from './demoData';
+import {
+  brand, font, type, leading, layout, motion, images,
+  eyebrowStyle, buttonPrimary, buttonSecondary, scriptNote,
+} from '../../styles/brand';
 
 // ============================================
 // CLOUDINARY URLS
@@ -931,275 +938,339 @@ const VideoNavItem = styled.span`
 // ============================================
 // CLASSIC HERO - Cinematic Fullscreen (wie Wedding Theme)
 // ============================================
-const ClassicSection = styled.section`
-  position: relative;
-  height: 100vh;
-  min-height: 650px;
-  background: #111;
-  overflow: hidden;
-`;
 
-const ClassicVideoBg = styled.video`
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(40%) brightness(0.42);
-`;
 
-const ClassicOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,0,0,0.35) 100%);
-`;
 
-const ClassicContent = styled.div`
-  position: absolute;
-  bottom: clamp(3rem, 8vh, 6rem);
-  left: clamp(2rem, 5vw, 5rem);
-  z-index: 10;
-  max-width: 600px;
-`;
 
-const ClassicEyebrow = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.5rem;
-  font-weight: 300;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 1.2rem;
-  animation: ${fadeInUp} 0.8s ease 0.3s both;
-`;
 
-const ClassicTitle = styled.h1`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1;
-  color: white;
-  animation: ${fadeInUp} 0.8s ease 0.5s both;
-`;
 
-const ClassicScript = styled.span`
-  display: block;
-  font-family: 'Mrs Saint Delafield', cursive;
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  color: rgba(255,255,255,0.6);
-  margin-top: 0.5rem;
-  animation: ${fadeInUp} 0.8s ease 0.7s both;
-`;
 
-const ClassicDateLine = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.5rem;
-  font-weight: 300;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-top: 1.5rem;
-  animation: ${fadeInUp} 0.8s ease 1s both;
-`;
 
 // Produkt-Mockup im Hero: rotiert durch alle 8 Designs — zeigt sofort,
 // DASS es um eine Website geht und dass es AUSWAHL gibt.
 // Position ist an eine 1400px-Layoutspalte verankert (statt an den
 // Viewport-Rand), damit es auch auf breiten Screens neben dem Text sitzt.
-const ClassicHeroPhone = styled.a`
-  display: none;
+// Liegt jetzt IM Grid statt absolut am Viewportrand — vorher war die rechte
+// Hero-Spalte faktisch leer, das Mockup schwebte daneben und wirkte klein.
 
-  @media (min-width: 1100px) {
-    display: block;
+
+
+
+// Rotiert alle 3,5s durch die Designs; Hover pausiert, Klick öffnet die aktive Demo
+
+
+
+
+
+// ════════════════════════════════════════════════════════════════════════
+// BRAND HERO (Classic-Basis) — visuelles Redesign Sep 2026
+// Full-bleed Motiv, große Serif-Headline, Device-Mockup, handschriftliche
+// Notiz. Tokens aus styles/brand.js — Farben/Größen hier nie hardcoden.
+// ════════════════════════════════════════════════════════════════════════
+
+
+// Motiv liegt rechts und läuft nach links weich ins Ivory aus — dadurch
+// bleibt die Headline lesbar, ohne dunkles Overlay über das ganze Bild.
+
+
+
+
+
+
+
+
+
+// Device-Mockup rechts: nutzt den bestehenden Rotator-Screen
+
+// ════════════════════════════════════════════════════════════════════════
+// BRAND HERO — Editorial Cover: Foto rechts, Laptop als Hauptprodukt,
+// Phone als kleinere Ergänzung. Assets sind echte Demo-Screenshots.
+// ════════════════════════════════════════════════════════════════════════
+const heroIn = keyframes`
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+`;
+
+// Gestaffelter Einstieg; bei prefers-reduced-motion sofort sichtbar.
+const stagger = (delay) => css`
+  animation: ${heroIn} 620ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+`;
+
+const BrandHero = styled.section`
+  position: relative;
+  z-index: 2; /* das überstehende Phone liegt über der nächsten Section */
+  min-height: clamp(640px, 82vh, 820px);
+  display: flex;
+  /* stretch statt center: sonst zentriert der Flex-Container den Inhalt und
+     unter dem Laptop bleibt Leerraum bis zur Sektionskante. */
+  align-items: stretch;
+  background: ${brand.ivory};
+  /* bewusst kein overflow: hidden — sonst würde das Phone abgeschnitten */
+`;
+
+// Foto läuft von rechts ein und verliert sich weich im Ivory — keine harte
+// Bildkante, kein dunkles Overlay über dem Text.
+const HeroPhoto = styled.div`
+  position: absolute;
+  inset: 0 0 0 34%;
+  background-image: url(${images.heroDesktop});
+  background-size: cover;
+  background-position: center 28%;
+
+  &::after {
+    content: '';
     position: absolute;
-    right: max(3rem, calc((100vw - 1400px) / 2 + 3rem));
-    top: 50%;
-    transform: translateY(-50%) rotate(3deg);
-    /* wächst mit dem Screen: 230px ab 1100px, bis 330px auf großen Monitoren */
-    width: clamp(230px, 18vw, 330px);
-    background: #0d0d0d;
-    border-radius: 32px;
-    padding: 9px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-    z-index: 3;
-    transition: transform 0.4s ease;
-    cursor: pointer;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      ${brand.ivory} 0%,
+      rgba(250, 249, 246, 0.94) 16%,
+      rgba(250, 249, 246, 0.55) 40%,
+      rgba(250, 249, 246, 0.08) 72%,
+      rgba(250, 249, 246, 0) 100%
+    );
+  }
 
-    &:hover {
-      transform: translateY(-52%) rotate(1.5deg) scale(1.02);
+  @media (max-width: 900px) {
+    inset: auto 0 0 0;
+    height: 46%;
+    background-image: url(${images.heroMobile});
+
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        ${brand.ivory} 0%,
+        rgba(250, 249, 246, 0.45) 45%,
+        rgba(250, 249, 246, 0) 100%
+      );
     }
   }
 `;
 
-const ClassicHeroPhoneScreen = styled.div`
+const HeroInner = styled.div`
   position: relative;
-  aspect-ratio: 9 / 19;
-  border-radius: 24px;
-  overflow: hidden;
-  background: #f5f2ee;
+  z-index: 2;
+  width: 100%;
+  max-width: ${layout.maxWidth};
+  margin: 0 auto;
+  padding: clamp(5.5rem, 12vh, 8rem) ${layout.gutter} 0;
+  display: grid;
+  /* nur noch eine Spalte: das Produktvisual liegt absolut darüber */
+  grid-template-columns: minmax(0, 0.92fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+  padding-bottom: clamp(3rem, 8vh, 6rem);
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 7px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 34%;
-    height: 12px;
-    background: #0d0d0d;
-    border-radius: 99px;
-    z-index: 2;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: clamp(2rem, 5vh, 3.5rem);
   }
 `;
 
-const ClassicHeroPhoneImg = styled.div`
+const HeroCopy = styled.div`
+  max-width: 34rem;
+  ${stagger(0)}
+`;
+
+const HeroEyebrow = styled.p`
+  ${eyebrowStyle}
+  color: ${brand.olive};
+  margin-bottom: 1.5rem;
+`;
+
+const HeroH1 = styled.h1`
+  font-family: ${font.serif};
+  font-weight: 400;
+  font-size: ${type.h1};
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: ${brand.charcoal};
+  margin: 0 0 1.5rem;
+
+  em {
+    display: block;
+    font-style: italic;
+  }
+`;
+
+const HeroLead = styled.p`
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  max-width: 40ch;
+  margin: 0 0 2.25rem;
+  ${stagger(110)}
+
+  strong {
+    display: block;
+    color: ${brand.charcoal};
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+`;
+
+const BrandCTAs = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  ${stagger(210)}
+
+  @media (max-width: 440px) {
+    flex-direction: column;
+    a, button { width: 100%; justify-content: center; }
+  }
+`;
+
+const BrandPrimary = styled.a`${buttonPrimary}`;
+const BrandSecondary = styled.button`${buttonSecondary}`;
+
+const HeroTrust = styled.p`
+  margin-top: 2rem;
+  font-family: ${font.sans};
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: ${brand.inkMuted};
+  ${stagger(300)}
+`;
+
+const HeroNote = styled.span`
+  ${scriptNote}
+  position: absolute;
+  top: clamp(6rem, 14vh, 9rem);
+  right: clamp(2rem, 7vw, 6rem);
+  z-index: 3;
+  font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+  color: ${brand.charcoal};
+  opacity: 0.5;
+
+  @media (max-width: 1100px) { display: none; }
+`;
+
+// ── PRODUKT: Geräterahmen mit transparenten Displays ────────────────────
+// Gleiches System wie in der Produkt-Section: Inhalte liegen hinter dem
+// Rahmen und scheinen durch die Aussparungen.
+// ── HIER NACHJUSTIEREN ──────────────────────────────────────────────────
+// Feinkorrektur in % der Rahmenhöhe. Größer = Geräte weiter nach unten,
+// negativ = weiter nach oben. Der Grundwert (100 − laptopBottom = 9,57 %)
+// setzt die Laptop-Unterkante rechnerisch auf die Sektionskante; der
+// Gehäusefuß im Bild wirkt optisch aber etwas höher.
+const HERO_DEVICE_DROP = 2.5;
+
+// Absolut am unteren Rand des Hero verankert statt über Grid-Ausrichtung.
+// Grund: align-self/align-items hingen von Zeilenhöhe, Flex-Ausrichtung und
+// Padding ab — drei Stellschrauben, die sich gegenseitig ausgehebelt haben.
+// bottom: 0 ist eindeutig, translateY rechnet gegen die EIGENE Höhe und
+// trifft damit den Überstand exakt.
+const Devices = styled.div`
+  position: absolute;
+  right: ${layout.gutter};
+  bottom: 0;
+  width: min(48%, 680px);
+  z-index: 4;
+  /* Rechnung: bottom:0 setzt die UNTERKANTE DES BILDES auf die Sektionskante.
+     Die Laptop-Unterkante liegt aber bei 90,43 % der Bildhöhe, also 9,57 %
+     darüber. Genau um diesen Rest wird nach unten geschoben — dann steht der
+     Laptop auf der Kante und das Phone ragt um seine 2,83 % darunter heraus.
+     (Vorher stand hier fälschlich die Differenz beider Kanten: 2,83 %.) */
+  transform: translateY(${(
+    100 - images.productMockupScreens.laptopBottom + HERO_DEVICE_DROP
+  ).toFixed(2)}%);
+  /* Der Rahmen enthält unterhalb der Laptop-Kante nur noch das überstehende
+     Phone. Genau um diesen Anteil wird nach unten geschoben, damit der
+     Laptop bündig auf der Fotokante steht und nur das Phone übersteht. */
+  /* ACHTUNG: margin-Prozente beziehen sich auf die BREITE des Elternelements,
+     nicht auf die Höhe. Der Überstand ist aber in % der Bildhöhe gemessen —
+     also durch das Seitenverhältnis teilen, sonst fällt der Versatz zu klein
+     aus und der Laptop schwebt über der Kante. */
+
+  @media (max-width: 900px) {
+    position: static;
+    width: 100%;
+    transform: none;
+    margin-top: 1rem;
+  }
+`;
+
+const DeviceStage = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: ${images.productMockupScreens.aspect};
+  animation: deviceIn 700ms ${motion.ease} 380ms both;
+
+  @keyframes deviceIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+`;
+
+const DeviceFrame = styled.img`
   position: absolute;
   inset: 0;
-  background: url(${p => p.$src}) top center / cover no-repeat;
-  opacity: ${p => (p.$active ? 1 : 0)};
-  transition: opacity 0.7s ease;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
 `;
 
-const ClassicHeroPhoneLabel = styled.span`
+const DeviceSlot = styled.a`
   position: absolute;
-  bottom: -2.2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(253, 252, 250, 0.75);
-`;
-
-// Rotiert alle 3,5s durch die Designs; Hover pausiert, Klick öffnet die aktive Demo
-const HeroPhoneRotator = () => {
-  const [idx, setIdx] = React.useState(0);
-  const [paused, setPaused] = React.useState(false);
-
-  React.useEffect(() => {
-    if (paused) return;
-    const t = setInterval(() => setIdx(i => (i + 1) % ALL_DEMOS.length), 3500);
-    return () => clearInterval(t);
-  }, [paused]);
-
-  const active = ALL_DEMOS[idx];
-
-  return (
-    <ClassicHeroPhone
-      href={demoUrl(active.id, { placement: 'hero_phone' })}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${active.name} Live-Demo ansehen`}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onClick={() => {
-        // Stil merken: wer aus dem Hero in eine Demo springt, soll ihn
-        // bei der Rückkehr im Formular vorausgewählt finden
-        setStyleChoice(active.id, 'hero_phone');
-        trackDemoClick(active.id, demoUrl(active.id, { placement: 'hero_phone' }), 'hero_phone');
-      }}
-    >
-      <ClassicHeroPhoneScreen>
-        {ALL_DEMOS.map((demo, i) => (
-          phoneCardUrl(demo.id)
-            ? <ClassicHeroPhoneImg key={demo.id} $src={phoneCardUrl(demo.id)} $active={i === idx} />
-            : null
-        ))}
-      </ClassicHeroPhoneScreen>
-      <ClassicHeroPhoneLabel>{active.name} — live ansehen</ClassicHeroPhoneLabel>
-    </ClassicHeroPhone>
-  );
-};
-
-const ClassicCTAs = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
-  margin-top: 2rem;
-  animation: ${fadeInUp} 0.8s ease 0.7s both;
-
-  @media (min-width: 600px) {
-    flex-direction: row;
-    justify-content: center;
-  }
-`;
-
-const ClassicPrimaryCTA = styled.a`
-  display: inline-block;
-  background: #FDFCFA;
-  color: #1A1A1A;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1rem 2.2rem;
-  border: 1px solid #FDFCFA;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  display: block;
+  background: ${brand.sand};
+  z-index: 1;
   cursor: pointer;
 
-  &:hover {
-    background: transparent;
-    color: #FDFCFA;
+  left: ${p => p.$rect.left};
+  top: ${p => p.$rect.top};
+  width: ${p => p.$rect.width};
+  height: ${p => p.$rect.height};
+
+  img, video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
 `;
 
-const ClassicSecondaryCTA = styled.button`
-  display: inline-block;
-  background: transparent;
-  color: #FDFCFA;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 1rem 2.2rem;
-  border: 1px solid rgba(253,252,250,0.5);
-  transition: all 0.3s ease;
-  cursor: pointer;
+// Laptop: Deckel mit Screenshot, darunter eine angedeutete Basis.
 
-  &:hover {
-    border-color: #FDFCFA;
-  }
-`;
 
-const ClassicScroll = styled.div`
-  position: absolute;
-  bottom: 3rem;
-  right: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  z-index: 20;
-  animation: ${fadeIn} 1s ease 1.2s both;
 
-  span {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 0.5rem;
-    font-weight: 300;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-  }
+// Gleiche Logik wie in den Theme-Karten: loopende Bildschirmaufnahme der
+// echten Demo, Screenshot nur als Fallback. Im Hero läuft das Video von
+// selbst (kein Hover nötig), weil es das zentrale Produktvisual ist.
 
-  &::after {
-    content: '';
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-    animation: ${scrollBounce} 2s ease infinite;
-  }
-`;
+// Gehäusefuß: schmaler Streifen, dezent statt 3D-Rendering
+
+// Phone: klein, überlappt die linke untere Laptopkante, verdeckt den
+// Bildschirm aber nicht.
+
 
 // ============================================
 // MAIN COMPONENT
 // ============================================
 const MarketingHero = () => {
+  // Rotiert Laptop- und Phone-Inhalt gemeinsam durch die acht Designwelten.
+  // Ruhig getaktet (6s) und ohne Layoutverschiebung — der Rahmen bleibt,
+  // nur das Bild darin wechselt.
+  const [heroIndex, setHeroIndex] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const t = setInterval(() => setHeroIndex(i => (i + 1) % ALL_DEMOS.length), 9000);
+    return () => clearInterval(t);
+  }, []);
+
   const { currentTheme } = useTheme();
   const [scrollY, setScrollY] = useState(0);
 
@@ -1217,61 +1288,132 @@ const MarketingHero = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // CLASSIC - Cinematic Fullscreen wie Wedding Theme
+  // CLASSIC — Editorial-Hero mit echtem Produktvisual.
+  // Laptop zeigt den Full-Page-Screenshot der Demo, das Phone den passenden
+  // Mobile-Screenshot desselben Themes; beide rotieren gemeinsam durch die
+  // acht Designwelten. Tracking und Stil-Attribution unverändert.
   if (currentTheme === 'classic') {
+    const active = ALL_DEMOS[heroIndex % ALL_DEMOS.length];
+    const activeUrl = demoUrl(active.id, { placement: 'hero_device' });
+
+    const openDemo = (placement) => {
+      setStyleChoice(active.id, placement);
+      trackDemoClick(active.id, demoUrl(active.id, { placement }), placement);
+    };
+
     return (
-      <ClassicSection id="hero">
-        <ClassicVideoBg autoPlay muted loop playsInline>
-          <source src={VIDEO_URL} type="video/mp4" />
-        </ClassicVideoBg>
-        <ClassicOverlay />
-        <ClassicContent>
-          <ClassicEyebrow>Premium Hochzeitswebsites</ClassicEyebrow>
-          <ClassicTitle>
-            Mehr als eine Website.<br/>Eure Geschichte.
-          </ClassicTitle>
-          <ClassicScript>handgemacht in Hamburg, nicht aus dem Baukasten</ClassicScript>
-          {/* Bewusst keine Funktionsliste mehr: erst Emotion, dann Produkt.
-              RSVP, Foto-Upload & Co. erklärt die Seite weiter unten. */}
-          <ClassicDateLine>Acht Stilwelten · Individuell gestaltet · In 7 Tagen live</ClassicDateLine>
-          <ClassicCTAs>
-            {/* Primär führt in die Stil-Galerie direkt darunter, nicht in
-                eine einzelne Demo: das Paar soll erst wählen, dann klicken.
-                Der Direktweg in eine Demo bleibt über das Phone-Mockup. */}
-            <ClassicPrimaryCTA
-              as="a"
-              href="#themes"
-              onClick={(e) => {
-                e.preventDefault();
-                if (window.gtag) {
-                  window.gtag('event', 'hero_cta_click', {
-                    event_category: 'conversion',
-                    event_label: 'themes',
-                    cta_placement: 'hero_primary',
-                  });
-                }
-                scrollToSection('themes');
-              }}
-            >
-              Designs ansehen
-            </ClassicPrimaryCTA>
-            <ClassicSecondaryCTA onClick={() => {
-              if (window.gtag) {
-                window.gtag('event', 'hero_cta_click', {
-                  event_category: 'conversion',
-                  event_label: 'contact',
-                  cta_placement: 'hero_secondary',
-                });
-              }
-              scrollToSection('contact');
-            }}>
-              Anfrage starten
-            </ClassicSecondaryCTA>
-          </ClassicCTAs>
-        </ClassicContent>
-        <HeroPhoneRotator />
-        <ClassicScroll><span>Scroll</span></ClassicScroll>
-      </ClassicSection>
+      <BrandHero id="hero">
+        <HeroPhoto aria-hidden="true" />
+        <HeroNote>Mehr als<br />eine Website ♡</HeroNote>
+
+        <HeroInner>
+          <HeroCopy>
+            <HeroEyebrow>Premium Hochzeitswebsites</HeroEyebrow>
+            {/* "Für immer online" bewusst entfernt: Das Hosting endet drei
+                Monate nach der Hochzeit, der Claim wäre ein falsches
+                Versprechen. */}
+            <HeroH1>
+              Eure Geschichte.
+              <em>Für eure Hochzeit online.</em>
+            </HeroH1>
+            <HeroLead>
+              <strong>Stilvoll. Persönlich. Unverwechselbar.</strong>
+              Wir gestalten individuelle Hochzeitswebsites für Paare, die ihre
+              Geschichte, alle wichtigen Informationen und ihre Gäste an einem
+              stilvollen Ort zusammenbringen möchten.
+            </HeroLead>
+            <BrandCTAs>
+              <BrandPrimary
+                href="#themes"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.gtag) {
+                    window.gtag('event', 'hero_cta_click', {
+                      event_category: 'conversion',
+                      event_label: 'themes',
+                      cta_placement: 'hero_primary',
+                    });
+                  }
+                  scrollToSection('themes');
+                }}
+              >
+                Designs ansehen →
+              </BrandPrimary>
+              <BrandSecondary
+                type="button"
+                onClick={() => {
+                  if (window.gtag) {
+                    window.gtag('event', 'hero_cta_click', {
+                      event_category: 'conversion',
+                      event_label: 'contact',
+                      cta_placement: 'hero_secondary',
+                    });
+                  }
+                  scrollToSection('contact');
+                }}
+              >
+                Anfrage starten
+              </BrandSecondary>
+            </BrandCTAs>
+            <HeroTrust>
+              8 Designwelten · Individuell gestaltet · Persönlich begleitet
+            </HeroTrust>
+          </HeroCopy>
+
+          <Devices>
+            <DeviceStage>
+              {/* Laptop: loopendes Demo-Video, Poster = erster Frame */}
+              <DeviceSlot
+                $rect={images.productMockupScreens.laptop}
+                href={activeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Live-Demo ${active.name} öffnen`}
+                onClick={() => openDemo('hero_laptop')}
+              >
+                {THEME_VIDEO_PREVIEWS[active.id] ? (
+                  <video
+                    key={active.id}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster={videoPosterUrl(active.id) || THEME_SCREENSHOTS[active.id]}
+                    src={THEME_VIDEO_PREVIEWS[active.id]}
+                    aria-label={`Vorschau der Hochzeitswebsite ${active.name}`}
+                  />
+                ) : (
+                  <img
+                    src={videoPosterUrl(active.id) || THEME_SCREENSHOTS[active.id]}
+                    alt={`Individuelle Hochzeitswebsite im Design ${active.name} auf dem Laptop`}
+                  />
+                )}
+              </DeviceSlot>
+
+              <DeviceSlot
+                $rect={images.productMockupScreens.phone}
+                href={activeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Mobile-Ansicht ${active.name} öffnen`}
+                onClick={() => openDemo('hero_phone')}
+              >
+                <img
+                  src={THEME_MOBILE_SCREENS[active.id] || phoneCardUrl(active.id)}
+                  alt={`Dieselbe Hochzeitswebsite im Design ${active.name} auf dem Smartphone`}
+                />
+              </DeviceSlot>
+
+              <DeviceFrame
+                src={images.productMockup}
+                alt=""
+                aria-hidden="true"
+              />
+            </DeviceStage>
+          </Devices>
+        </HeroInner>
+      </BrandHero>
     );
   }
 
@@ -1286,10 +1428,10 @@ const MarketingHero = () => {
             Die Hochzeits-<br/>website, bei der<br/>eure Gäste „WOW“ sagen.
           </EditorialTitle>
           <EditorialDate>Handgemacht. Persönlich. In 7 Tagen live.</EditorialDate>
-          <HeroCTAs>
+          <BrandCTAs>
             <EditorialCTA onClick={() => scrollToSection('themes')}>Beispiel-Hochzeit ansehen</EditorialCTA>
             <EditorialCTA onClick={() => scrollToSection('contact')} className="primary">Erzählt uns eure Geschichte</EditorialCTA>
-          </HeroCTAs>
+          </BrandCTAs>
           <TrustLine $light>Bereits von modernen Paaren in ganz Deutschland genutzt — individuell, hochwertig, stressfrei.</TrustLine>
         </EditorialContent>
         <EditorialScrollHint>Scroll</EditorialScrollHint>

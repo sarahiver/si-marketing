@@ -5,9 +5,22 @@
 // Mobile: natives Scroll-Snap-Carousel (kein Auto-Movement), Karten zeigen
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
 import React, { useState, useEffect, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl, trackDemoClick, trackStyleInquiry } from './demoData';
+import styled from 'styled-components';
+import {
+  brand, font, type, leading, layout, motion,
+  eyebrowStyle, scriptNote,
+} from '../../styles/brand';
+import {
+  ALL_DEMOS, THEME_SCREENSHOTS, THEME_HEROES, THEME_VIDEO_PREVIEWS,
+  HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl, videoPosterUrl,
+  setStyleChoice, trackDemoClick,
+} from './demoData';
+
+// Poster = Standbild aus demselben Video. So zeigen Ruhezustand und Hover
+// dieselbe Demo; die älteren THEME_SCREENSHOTS dienen nur noch als Fallback
+// (und THEME_HEROES für 'modern', wo kein Desktop-Screenshot existiert).
+const posterFor = (id) =>
+  videoPosterUrl(id) || THEME_SCREENSHOTS[id] || THEME_HEROES[id];
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
@@ -24,60 +37,94 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-const marquee = keyframes`
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-`;
 
 const Section = styled.section`
-  padding: clamp(3.5rem, 8vh, 6rem) 0;
-  background: #FDFCFA;
+  position: relative;
+  /* bewusst kompakter als der Standard-Sectionabstand: die Collection soll
+     direkt nach dem Hero greifen, nicht durch Leerraum getrennt sein */
+  padding: clamp(3rem, 7vh, 5.5rem) 0 clamp(3.5rem, 8vh, 6rem);
+  background: ${brand.ivory};
   overflow: hidden;
 `;
 
 const Header = styled.div`
-  max-width: 1200px;
-  margin: 0 auto 3rem;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  max-width: ${layout.maxWidth};
+  margin: 0 auto clamp(2.25rem, 4.5vh, 3.25rem);
+  padding: 0 ${layout.gutter};
   text-align: center;
 `;
 
+// Handschriftliche Notiz rechts neben der Überschrift — wie im Mockup
+const HeaderNote = styled.span`
+  ${scriptNote}
+  position: absolute;
+  right: clamp(1rem, 6vw, 5rem);
+  top: 2.5rem;
+  color: ${brand.olive};
+
+  @media (max-width: 1100px) { display: none; }
+`;
+
 const Eyebrow = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #999;
-  margin-bottom: 1rem;
+  ${eyebrowStyle}
+  color: ${brand.olive};
+  margin-bottom: 1.25rem;
 `;
 
 const Title = styled.h2`
-  font-family: 'Cormorant Garamond', serif;
+  font-family: ${font.serif};
   font-weight: 400;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  color: #1A1A1A;
-  line-height: 1.15;
+  font-size: ${type.h2};
+  line-height: ${leading.h2};
+  letter-spacing: -0.01em;
+  color: ${brand.charcoal};
 
-  em {
-    font-style: italic;
-  }
+  em { font-style: italic; }
 `;
 
 const Sub = styled.p`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 300;
-  color: #555;
-  margin-top: 1rem;
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  max-width: 52ch;
+  margin: 1.25rem auto 0;
 `;
 
+// Desktop: Kollektions-Grid (4 × 2) statt Endlosstreifen — die acht Designs
+// sollen als Sammlung lesbar sein, nicht als vorbeiziehendes Band.
+// Mobile: der bestehende Swipe-Track bleibt, weil er dort besser funktioniert.
+// Kollektions-Raster über 6 Spalten: die ersten beiden Designs bekommen
+// halbe Breite (großes Preview), die übrigen sechs je ein Drittel.
+// Alle acht bleiben sichtbar — sie müssen nur nicht gleich viel Gewicht haben.
+const Grid = styled.div`
+  max-width: ${layout.maxWidth};
+  margin: 0 auto;
+  padding: 0 ${layout.gutter};
+  display: grid;
+  /* Kompakte Kollektion: acht gleichwertige Karten in 4 × 2.
+     Bewusst kleiner als im vorigen Stand — die Collection soll als Ganzes
+     lesbar sein, der WOW-Moment passiert in der Demo, nicht in der Kachel. */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2rem);
+
+  @media (max-width: 1000px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+`;
+
+
+
+// Leichtes Card-UI: dezenter Rand, kleine Rundung, sehr weicher Schatten.
+// Die Website-Preview ist der Star, nicht der Rahmen.
 const Frame = styled.div`
   background: #FFFFFF;
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 20px rgba(34, 34, 34, 0.07);
+  border: 1px solid ${brand.lineSoft};
+  transition: box-shadow 260ms ${motion.ease};
+
+  ${'' /* Hover-Schatten wird unten über CardGroup gesetzt */}
 `;
 
 const FrameBar = styled.div`
@@ -112,8 +159,10 @@ const FrameUrl = styled.div`
 `;
 
 const FrameScreen = styled.div`
+  /* 3:2 statt 4:3 — mehr Bildfläche je Karte */
+  transition: transform 300ms ${p => p.theme?.ease || 'cubic-bezier(0.22, 1, 0.36, 1)'};
   position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
   background-image: url(${p => p.$src});
   background-size: ${p => (p.$static ? 'cover' : p.$horizontal ? 'auto 100%' : '100% auto')};
   background-position: ${p => (p.$static ? 'center' : p.$horizontal ? 'left center' : 'top center')};
@@ -129,12 +178,18 @@ const FrameScreen = styled.div`
   color: rgba(26, 26, 26, 0.3);
 `;
 
+// Blendet über dem Screenshot auf — dadurch ist die Karte auch ohne
+// geladenes Video vollständig, und es lädt erst bei Hover (preload="none").
 const PreviewVideo = styled.video`
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: ${p => (p.$visible ? 1 : 0)};
+  transition: opacity 320ms ease;
+
+  @media (prefers-reduced-motion: reduce) { display: none; }
 `;
 
 // ── Mobile: Handy-Frame statt Browser-Fenster ──
@@ -175,23 +230,6 @@ const PhoneNotch = styled.div`
   z-index: 2;
 `;
 
-const Track = styled.div`
-  display: flex;
-  gap: clamp(1.2rem, 2.5vw, 2rem);
-  width: max-content;
-  animation: ${marquee} 55s linear infinite;
-  padding: 1.5rem 0 2.5rem;
-
-  &:hover {
-    animation-play-state: paused;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-    overflow-x: auto;
-    max-width: 100vw;
-  }
-`;
 
 const SwipeTrack = styled.div`
   display: flex;
@@ -233,91 +271,96 @@ const SwipeCard = styled(Card)`
 // Gruppe = Karte + Anfrage-CTA. Breite und Scroll-Snap liegen jetzt hier,
 // damit der CTA dieselbe Spaltenbreite hat wie die Karte.
 const CardGroup = styled.div`
-  width: clamp(240px, 26vw, 340px);
-  flex-shrink: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  transition: transform 260ms ${motion.ease};
+
+  &:hover {
+    transform: translateY(-4px);
+    ${Frame} { box-shadow: 0 16px 40px rgba(34, 34, 34, 0.13); }
+    ${FrameScreen} { transform: scale(1.015); }
+  }
+
+  /* Fokus sichtbar halten — die Karte ist ein Link */
+  &:focus-within { transform: translateY(-4px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:hover, &:focus-within { transform: none; }
+  }
 `;
 
 const SwipeCardGroup = styled(CardGroup)`
-  width: 62vw;
-  max-width: 260px;
+  width: 78vw;
+  max-width: 340px;
+  flex-shrink: 0;
   scroll-snap-align: start;
+
+  &:hover { transform: none; box-shadow: none; }
 `;
 
 const CardMeta = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 0.7rem 0.2rem 0;
+  padding: 1.1rem 0.1rem 0;
 `;
 
 const CardName = styled.span`
-  font-family: 'Cormorant Garamond', serif;
+  font-family: ${font.serif};
   font-size: 1.25rem;
-  color: #1A1A1A;
+  color: ${brand.charcoal};
 `;
 
 const CardTag = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #999;
+  ${eyebrowStyle}
+  font-size: 0.75rem;
+  color: ${brand.charcoal};
+  transition: color 260ms ease;
+
+  ${CardGroup}:hover &, ${CardGroup}:focus-within & { color: ${brand.olive}; }
+  transition: color ${motion.hover} ${motion.ease};
+
+  ${CardGroup}:hover & { color: ${brand.olive}; }
 `;
 
 const StyleWords = styled.span`
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #B0A89F;
   display: block;
-  margin-top: 0.15rem;
+  margin-top: 0.25rem;
+  font-family: ${font.sans};
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: ${brand.inkMuted};
 `;
 
 // Zweiter, leiserer CTA unter jeder Karte: der Weg von "gefällt mir"
 // zur Anfrage, ohne dass die Demo selbst verlassen werden muss.
-const StyleInquiry = styled.button`
-  display: block;
-  width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.5rem 0;
-  background: none;
-  border: none;
-  border-top: 1px solid rgba(0,0,0,0.08);
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-  cursor: pointer;
-  transition: color 0.2s ease;
 
-  &:hover { color: #C41E3A; }
-`;
-
-const Footer = styled.div`
-  text-align: center;
-  margin-top: 1.5rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #999;
-`;
 
 // Einzelkarte — hält den Video-Ref, damit die Preview erst bei Hover abspielt
-const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
+const DemoCard = ({ demo, isMobile, CardComp }) => {
   const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  // Mobile lädt bewusst kein Video: acht gleichzeitig wären reine Datenlast.
   const videoSrc = !isMobile && THEME_VIDEO_PREVIEWS[demo.id];
 
   const handleEnter = () => {
+    setPlaying(true);
     if (videoRef.current) {
+      // immer von vorn: sonst läuft das Video dort weiter, wo es beim
+      // letzten Hover stehengeblieben ist, und der Hero fehlt
+      videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {});
     }
   };
   const handleLeave = () => {
+    setPlaying(false);
     if (videoRef.current) {
       videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
   };
 
@@ -330,7 +373,13 @@ const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
       $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
       onMouseEnter={videoSrc ? handleEnter : undefined}
       onMouseLeave={videoSrc ? handleLeave : undefined}
-      onClick={() => trackDemoClick(demo.id, demo.url, isMobile ? 'filmstrip_mobile' : 'filmstrip')}
+      onClick={() => {
+        const placement = isMobile ? 'filmstrip_mobile' : 'filmstrip';
+        // merkt den Stil in der Session: kommt das Paar aus der Demo zurück,
+        // ist er im Anfrageformular vorausgewählt
+        setStyleChoice(demo.id, placement);
+        trackDemoClick(demo.id, demoUrl(demo.id, { placement }), placement);
+      }}
       aria-label={`${demo.name} Live-Demo ansehen`}
     >
       {isMobile ? (
@@ -347,7 +396,7 @@ const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
             <FrameUrl>siwedding.de/{demo.id}</FrameUrl>
           </FrameBar>
           <FrameScreen
-            $src={videoSrc ? undefined : THEME_SCREENSHOTS[demo.id]}
+            $src={posterFor(demo.id)}
             $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
           >
             {videoSrc && (
@@ -356,11 +405,14 @@ const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
+                poster={posterFor(demo.id)}
                 src={videoSrc}
+                $visible={playing}
+                aria-hidden="true"
               />
             )}
-            {!(videoSrc || THEME_SCREENSHOTS[demo.id]) && demo.name}
+            {!posterFor(demo.id) && !videoSrc && demo.name}
           </FrameScreen>
         </Frame>
       )}
@@ -375,45 +427,32 @@ const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
   );
 };
 
-// Karte + Anfrage-CTA als Einheit
-const DemoCardGroup = ({ demo, isMobile, CardComp, Wrapper, onInquire }) => (
+const DemoCardGroup = ({ demo, isMobile, CardComp, Wrapper }) => (
   <Wrapper>
     <DemoCard demo={demo} isMobile={isMobile} CardComp={CardComp} />
-    <StyleInquiry
-      type="button"
-      onClick={() => onInquire(demo.id)}
-      aria-label={`Stil ${demo.name} anfragen`}
-    >
-      Diesen Stil anfragen
-    </StyleInquiry>
   </Wrapper>
 );
 
 const DemoFilmstrip = () => {
   const isMobile = useIsMobile();
-  const navigate = useNavigate();
 
-  // Theme entdecken → Demo ansehen → Stil gefällt → diesen Stil anfragen
-  const handleInquire = (themeId) => {
-    trackStyleInquiry(themeId, isMobile ? 'filmstrip_mobile' : 'filmstrip');
-    navigate(`/#contact?theme=${themeId}`);
-  };
 
-  const demos = isMobile ? ALL_DEMOS : [...ALL_DEMOS, ...ALL_DEMOS];
-  const TrackComp = isMobile ? SwipeTrack : Track;
+  // Desktop zeigt die Kollektion einmal im Grid, mobil bleibt der Swipe-Track
+  const demos = ALL_DEMOS;
+  const TrackComp = isMobile ? SwipeTrack : Grid;
   const CardComp = isMobile ? SwipeCard : Card;
 
   return (
     <Section id="themes" aria-label="Theme-Demos">
       <Header>
-        <Eyebrow>Acht Stilwelten · Echte Beispiele, live klickbar</Eyebrow>
+        <HeaderNote>Acht Stile.<br />Unzählige<br />Möglichkeiten.</HeaderNote>
+        <Eyebrow>Findet euren Stil</Eyebrow>
         <Title>
-          Findet euren Stil.<br /><em>Nicht euer Template.</em>
+          Nicht einfach eine Vorlage.<br /><em>Sondern euer Stil.</em>
         </Title>
         <Sub>
-          {isMobile
-            ? 'Jede Karte ist eine vollständige Demo mit RSVP, Gästebereich und Foto-Upload. Wischt euch durch und tippt euch rein.'
-            : 'Jede Karte ist eine vollständige Demo mit RSVP, Gästebereich und Foto-Upload. Anhalten mit dem Mauszeiger, klicken zum Erkunden.'}
+          Acht Designwelten für eure individuelle Hochzeitswebsite — von
+          klassisch und elegant bis modern und außergewöhnlich.
         </Sub>
       </Header>
       <TrackComp>
@@ -424,15 +463,9 @@ const DemoFilmstrip = () => {
             isMobile={isMobile}
             CardComp={CardComp}
             Wrapper={isMobile ? SwipeCardGroup : CardGroup}
-            onInquire={handleInquire}
           />
         ))}
       </TrackComp>
-      <Footer>
-        {isMobile
-          ? 'Wischen zum Entdecken · Tippen öffnet die Live-Demo'
-          : 'Mauszeiger hält den Streifen an · Klick öffnet die Live-Demo'}
-      </Footer>
     </Section>
   );
 };

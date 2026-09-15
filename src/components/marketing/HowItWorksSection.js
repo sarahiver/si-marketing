@@ -8,6 +8,10 @@
 // Video: Vertikale Stepper-Timeline links
 import React, { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
+import {
+  brand, font, type, leading, layout as brandLayout,
+  eyebrowStyle, buttonPrimary, buttonSecondary,
+} from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
 
 // ============================================
@@ -1001,6 +1005,177 @@ const CTASubline = styled.p`
 // ============================================
 // MAIN COMPONENT
 // ============================================
+// ════════════════════════════════════════════════════════════════════════
+// BRAND PROZESS — reduziert, große Nummern, keine Kartenwand
+// Hier ist Weißraum ausdrücklich richtig: der Ablauf soll leicht wirken.
+// ════════════════════════════════════════════════════════════════════════
+const ProcessSection = styled.section`
+  background: ${brand.ivory};
+  padding: ${brandLayout.sectionY} 0;
+`;
+
+const ProcessInner = styled.div`
+  max-width: ${brandLayout.maxWidth};
+  margin: 0 auto;
+  padding: 0 ${brandLayout.gutter};
+`;
+
+const ProcessHeader = styled.div`
+  text-align: center;
+  margin-bottom: clamp(3.5rem, 8vh, 6rem);
+`;
+
+const ProcessEyebrow = styled.p`
+  ${eyebrowStyle}
+  color: ${brand.olive};
+  margin-bottom: 1.25rem;
+`;
+
+const ProcessTitle = styled.h2`
+  font-family: ${font.serif};
+  font-weight: 400;
+  font-size: ${type.h2};
+  line-height: ${leading.h2};
+  letter-spacing: -0.01em;
+  color: ${brand.charcoal};
+  margin: 0;
+`;
+
+// Vier Spalten mit durchlaufender Linie — 01 ── 02 ── 03 ── 04
+const ProcessSub = styled.p`
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  margin: 1.1rem auto 0;
+  max-width: 44ch;
+`;
+
+const Steps = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 1.9rem;
+    left: 6%;
+    right: 6%;
+    height: 1px;
+    background: ${brand.taupe};
+    opacity: 0.5;
+  }
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    &::before { display: none; }
+  }
+`;
+
+const Step = styled.div`
+  position: relative;
+  text-align: center;
+
+  @media (max-width: 860px) {
+    text-align: left;
+    padding-left: 4.5rem;
+  }
+`;
+
+const StepNum = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 50%;
+  background: ${brand.ivory};
+  border: 1px solid ${brand.taupe};
+  font-family: ${font.serif};
+  font-size: 1.5rem;
+  color: ${brand.charcoal};
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 860px) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-bottom: 0;
+  }
+`;
+
+const StepTitle = styled.h3`
+  font-family: ${font.serif};
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: ${brand.charcoal};
+  margin: 0 0 0.6rem;
+`;
+
+const StepDesc = styled.p`
+  font-family: ${font.sans};
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: ${brand.inkSoft};
+  margin: 0;
+  max-width: 30ch;
+
+  @media (min-width: 861px) { margin: 0 auto; }
+`;
+
+const StepSplit = styled.p`
+  margin: 0.75rem 0 0;
+  font-family: ${font.sans};
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: ${brand.inkMuted};
+  max-width: 30ch;
+
+  strong { color: ${brand.olive}; font-weight: 600; }
+
+  @media (min-width: 861px) { margin: 0.75rem auto 0; }
+`;
+
+const ProcessActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: clamp(3rem, 7vh, 5rem);
+`;
+
+const ProcessPrimary = styled.button`${buttonPrimary}`;
+const ProcessSecondary = styled.button`${buttonSecondary} border-color: ${brand.charcoal};`;
+
+// Texte an der tatsächlichen Produktlogik ausgerichtet: Schritt 02
+// unterscheidet sich je nach Paket, alles andere ist identisch.
+const BRAND_STEPS = [
+  {
+    num: '01',
+    title: 'Gemeinsam besprechen',
+    desc: 'Wir lernen euch kennen und finden heraus, welcher Stil zu euch und eurer Hochzeit passt.',
+  },
+  {
+    num: '02',
+    title: 'Gestalten & umsetzen',
+    desc: 'Wir setzen euer Design und eure Inhalte in eine persönliche Website um.',
+    split: true,
+  },
+  {
+    num: '03',
+    title: 'Prüfen & verfeinern',
+    desc: 'Wir prüfen Inhalte, Darstellung und die Ansicht auf dem Handy und geben den letzten Feinschliff.',
+  },
+  {
+    num: '04',
+    title: 'Go Live',
+    desc: 'Ihr gebt frei — wir bringen eure Hochzeitswebsite online.',
+  },
+];
+
 const HowItWorksSection = () => {
   const { currentTheme } = useTheme();
   const [openAccordion, setOpenAccordion] = useState(0);
@@ -1012,48 +1187,54 @@ const HowItWorksSection = () => {
   // ==========================================
   // CLASSIC - Vertikale Timeline (elegant)
   // ==========================================
+  // CLASSIC — reduzierter Vier-Schritte-Ablauf.
+  // Vorher: vier große Bild-Text-Blöcke mit versetzten Layouts. Der Ablauf
+  // ist nicht das Verkaufsargument, sondern die Beruhigung davor.
   if (currentTheme === 'classic') {
     return (
-      <ClassicSection id="howitworks">
-        <ClassicContainer>
-          <ClassicHeader>
-            <ClassicEyebrow>Euer Weg zur Website</ClassicEyebrow>
-            <ClassicTitle>In 4 einfachen Schritten</ClassicTitle>
-          </ClassicHeader>
-          <ClassicSteps>
-            {STEPS.map((step, i) => {
-              const layout = CLASSIC_STEP_LAYOUT[i];
-              return (
-                <ClassicStep key={i} $reverse={layout.reverse} $shiftX={layout.shiftX}>
-                  <ClassicStepImage $aspect={layout.imgAspect}>
-                    <img src={CLASSIC_STEP_IMAGES[i]} alt={STEPS[i].title} loading="lazy" />
-                  </ClassicStepImage>
-                  <ClassicStepContent $pt={layout.textPt}>
-                    <ClassicStepNum>{step.num}</ClassicStepNum>
-                    <ClassicStepTitle>{step.title}</ClassicStepTitle>
-                    <ClassicStepDesc>{step.desc}</ClassicStepDesc>
-                    <ClassicStepHighlight>{step.highlight}</ClassicStepHighlight>
-                  </ClassicStepContent>
-                </ClassicStep>
-              );
-            })}
-          </ClassicSteps>
-          <CTABox>
-            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', color: '#1A1A1A' }}>
-              {CTA_TEXT.headline}
-            </CTAHeadline>
-            <CTAButton
-              onClick={scrollToContact}
-              style={{ fontFamily: "'Josefin Sans', sans-serif", color: '#FFFFFF', background: '#1A1A1A', border: 'none' }}
+      <ProcessSection id="howitworks">
+        <ProcessInner>
+          <ProcessHeader>
+            <ProcessEyebrow>So einfach geht's</ProcessEyebrow>
+            <ProcessTitle>Von der ersten Idee bis zu eurer fertigen Hochzeitswebsite.</ProcessTitle>
+            <ProcessSub>Einfach, persönlich und ohne Technikstress.</ProcessSub>
+          </ProcessHeader>
+
+          <Steps>
+            {BRAND_STEPS.map(step => (
+              <Step key={step.num}>
+                <StepNum>{step.num}</StepNum>
+                <StepTitle>{step.title}</StepTitle>
+                <StepDesc>{step.desc}</StepDesc>
+                {step.split && (
+                  <>
+                    <StepSplit>
+                      <strong>Website:</strong> Ihr pflegt eure Inhalte ein, wir
+                      prüfen und geben den letzten Feinschliff.
+                    </StepSplit>
+                    <StepSplit>
+                      <strong>All In:</strong> Ihr liefert Inhalte und Bilder,
+                      wir bauen eure komplette Website.
+                    </StepSplit>
+                  </>
+                )}
+              </Step>
+            ))}
+          </Steps>
+
+          <ProcessActions>
+            <ProcessPrimary type="button" onClick={scrollToContact}>
+              Anfrage starten →
+            </ProcessPrimary>
+            <ProcessSecondary
+              type="button"
+              onClick={() => document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              {CTA_TEXT.button}
-            </CTAButton>
-            <CTASubline style={{ fontFamily: "'Josefin Sans', sans-serif", color: '#999' }}>
-              {CTA_TEXT.subline}
-            </CTASubline>
-          </CTABox>
-        </ClassicContainer>
-      </ClassicSection>
+              Designs ansehen
+            </ProcessSecondary>
+          </ProcessActions>
+        </ProcessInner>
+      </ProcessSection>
     );
   }
 

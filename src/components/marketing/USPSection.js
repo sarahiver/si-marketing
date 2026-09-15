@@ -8,7 +8,12 @@
 // Video: Minimalistische Icon-Liste mit Hover-Reveal
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
+import {
+  brand, font, type, leading, layout, motion, images,
+  eyebrowStyle,
+} from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
+import { THEME_MOBILE_SCREENS } from './demoData';
 
 // ============================================
 // CONTENT DATA
@@ -17,7 +22,7 @@ const USPS = [
   {
     icon: '✨',
     title: 'Kein Paar ist wie das andere',
-    desc: 'Deshalb ist keine Website wie die andere. Jede Hochzeit, die wir umsetzen, ist ein Unikat. Bereits Dutzende Paare haben ihre Liebesgeschichte mit uns digital verewigt — handgemacht, nicht von der Stange.',
+    desc: 'Deshalb ist keine Website wie die andere. Jede Hochzeit, die wir umsetzen, ist ein Unikat. Handgemacht, nicht von der Stange.',
     short: 'Jede Website ein Unikat',
     image: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1771177763/_4b4bda8b-648e-46e7-8fba-a71164e792c3_xpup8j.jpg',
   },
@@ -1277,7 +1282,325 @@ const CTASubline = styled.p`
 // ============================================
 // MAIN COMPONENT
 // ============================================
+// ════════════════════════════════════════════════════════════════════════
+// BRAND USP — vier Aussagen statt Feature-Karussell
+// Die Karussell-Variante bleibt für die übrigen Themes erhalten.
+// ════════════════════════════════════════════════════════════════════════
+
+
+// Großes Produktvisual links — der Beweis, nicht die Dekoration
+
+
+
+
+
+
+
+// ════════════════════════════════════════════════════════════════════════
+// PRODUKT-SECTION „Alles an einem Ort"
+// Laptop als zentrales Produktvisual, Phone als Beleg für Mobile.
+// Beide zeigen eine echte Demo aus demoData — keine Fake-UI.
+// ════════════════════════════════════════════════════════════════════════
+
+// Design, das in beiden Displays gezeigt wird. Editorial passt zum
+// Mockup-Rahmen; Theme wechseln = nur diese Zeile.
+const PRODUCT_THEME = 'editorial';
+
+const UspSection = styled.section`
+  position: relative;
+  /* kein overflow: hidden — das Phone ragt unten aus der Bildfläche heraus */
+  background: ${brand.ivory};
+  padding: clamp(3.5rem, 8vh, 6.5rem) 0;
+`;
+
+const UspInner = styled.div`
+  max-width: ${layout.wide};
+  margin: 0 auto;
+  padding: 0 ${layout.gutter};
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  align-items: center;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+`;
+
+// ── Produktvisual ───────────────────────────────────────────────────────
+const Stage = styled.div`
+  position: relative;
+  /* unten kein Padding: der Laptop soll bündig auf der Bildkante stehen */
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(1rem, 2.5vw, 2.5rem) 0;
+
+  /* Warme Bildfläche hinter Laptop UND Phone. Sie ist am rechten Rand des
+     Visuals verankert und 100vw breit — damit läuft sie in jedem Viewport
+     bis an die linke Kante, ohne feste Pixelwerte.
+     Die Section hat overflow: hidden, sonst entstünde seitliches Scrollen. */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    /* endet an der Laptop-Unterkante: alles darunter im Rahmenbild ist
+       ausschließlich das überstehende Phone */
+    bottom: ${100 - images.productMockupScreens.laptopBottom}%;
+    right: -10%;
+    left: auto;
+    width: 100vw;
+  }
+
+  &::before {
+    background: url(${images.productBackdrop}) right center / cover no-repeat;
+  }
+
+  /* Fade nach rechts: das Bild löst sich zum Text hin in Ivory auf */
+  &::after {
+    background: linear-gradient(
+      to right,
+      rgba(250, 249, 246, 0) 55%,
+      rgba(250, 249, 246, 0.65) 82%,
+      ${brand.ivory} 100%
+    );
+  }
+
+  > * { position: relative; z-index: 2; }
+
+  @media (max-width: 1000px) {
+    &::before, &::after { right: -4%; }
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(250, 249, 246, 0) 60%,
+        ${brand.ivory} 100%
+      );
+    }
+  }
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 700ms ${motion.ease}, transform 700ms ${motion.ease};
+
+  ${p => p.$visible && `opacity: 1; transform: translateY(0);`}
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  @media (max-width: 1000px) { order: 2; }
+`;
+
+
+
+
+
+
+
+// ── Text ────────────────────────────────────────────────────────────────
+// Geräterahmen mit transparenten Displays. Die Screenshots liegen darunter
+// und scheinen durch die Aussparungen — kein Zuschnitt, kein Blend-Mode,
+// und der florale Hintergrund bleibt rundherum sichtbar.
+const Mockup = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: ${images.productMockupScreens.aspect};
+  transition: transform 500ms ${motion.ease};
+
+  &:hover { transform: scale(1.012); }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:hover { transform: none; }
+  }
+`;
+
+// liegt ÜBER den Screens und stanzt sie optisch aus
+const MockupFrame = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+`;
+
+const ScreenSlot = styled.div`
+  position: absolute;
+  overflow: hidden;
+  background: ${brand.sand};
+  z-index: 1;
+
+  left: ${p => p.$rect.left};
+  top: ${p => p.$rect.top};
+  width: ${p => p.$rect.width};
+  height: ${p => p.$rect.height};
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+`;
+
+const UspCopy = styled.div`
+  @media (max-width: 1000px) { order: 1; }
+`;
+
+const UspEyebrow = styled.p`
+  ${eyebrowStyle}
+  color: ${brand.olive};
+  margin-bottom: 1.25rem;
+`;
+
+const UspTitle = styled.h2`
+  font-family: ${font.serif};
+  font-weight: 400;
+  font-size: ${type.h2};
+  line-height: ${leading.h2};
+  letter-spacing: -0.01em;
+  color: ${brand.charcoal};
+  margin: 0 0 1.5rem;
+
+  em { font-style: italic; }
+`;
+
+const UspLead = styled.p`
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  max-width: 44ch;
+  margin: 0 0 2.5rem;
+`;
+
+// Kompakte Liste statt Feature-Kacheln
+const UspList = styled.div`
+  display: grid;
+  gap: 1.4rem;
+  margin-bottom: 2.5rem;
+`;
+
+const Num = styled.span`
+  font-family: ${font.serif};
+  font-size: 1.05rem;
+  color: ${brand.olive};
+  line-height: 1.4;
+`;
+
+// Kompakte Funktionsliste — ersetzt die frühere Components-Section
+const FunctionBlock = styled.div`
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid ${brand.line};
+
+  p {
+    ${eyebrowStyle}
+    color: ${brand.inkMuted};
+    margin-bottom: 0.9rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+  }
+
+  li {
+    position: relative;
+    padding-left: 0.85rem;
+    font-family: ${font.sans};
+    font-size: 0.85rem;
+    color: ${brand.inkSoft};
+
+    &::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: ${brand.taupe};
+    }
+  }
+`;
+
+const UspItem = styled.div`
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.9rem;
+  align-items: start;
+
+  h3 {
+    font-family: ${font.sans};
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: ${brand.charcoal};
+    margin: 0 0 0.2rem;
+  }
+
+  p {
+    font-family: ${font.sans};
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: ${brand.inkSoft};
+    margin: 0;
+  }
+`;
+
+
+// Vier Kernfunktionen. Icons als schlichte Inline-SVGs — keine neue Library.
+// Die drei Argumente beantworten: Warum S&I. statt Baukasten?
+// Bewusst keine Funktionen — die stehen kompakt in FUNCTION_LIST darunter.
+const CORE_FEATURES = [
+  {
+    num: '01',
+    title: 'Individuell gestaltet',
+    desc: 'Euer Design entsteht gemeinsam mit euch — mit den Farben, Bildern und Details, die zu eurer Hochzeit passen.',
+  },
+  {
+    num: '02',
+    title: 'Persönlich begleitet',
+    desc: 'Ihr habt nicht einfach ein Tool vor euch. Wir schauen mit drauf, geben Empfehlungen und verfeinern eure Website, bis sie sich richtig anfühlt.',
+  },
+  {
+    num: '03',
+    title: 'Hochwertig umgesetzt',
+    desc: 'Typografie, Bildsprache, Abstände und die Ansicht auf dem Handy werden aufeinander abgestimmt — damit eure Website nicht nach Baukasten aussieht.',
+  },
+];
+
+// Kompakte Übersicht statt eigener Komponenten-Section
+const FUNCTION_LIST = [
+  'RSVP & Zu-/Absagen',
+  'Tagesablauf & Countdown',
+  'Location & Anfahrt',
+  'Unterkünfte & Empfehlungen',
+  'Galerie & Foto-Upload',
+  'Gästebuch & Wunschliste',
+  'Wichtige Kontakte',
+  'weitere Bereiche für eure Hochzeit',
+];
+
+
 const USPSection = () => {
+  // Produktvisual erscheint beim Scrollen: opacity + translateY, Phone leicht
+  // verzögert. Kein Parallax, keine Rotation.
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { setVisible(true); return undefined; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) { setVisible(true); io.disconnect(); }
+    }, { threshold: 0.25 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const { currentTheme } = useTheme();
   const [openItem, setOpenItem] = useState(0);
   const [activeCard, setActiveCard] = useState(0);
@@ -1332,94 +1655,80 @@ const USPSection = () => {
   // ==========================================
   // CLASSIC - Elegante Magazin-Ästhetik
   // ==========================================
+  // CLASSIC — vier Aussagen + ein großes Produktvisual.
+  // Das Tiefenkarussell mit sechs Karten wirkte als Feature-Liste; die
+  // Karussell-Variante bleibt für die übrigen Themes unverändert erhalten.
+  // CLASSIC — Produkt-Section „Alles an einem Ort".
+  // Laptop + Phone zeigen eine echte Demo; die vier Kernfunktionen stehen
+  // kompakt daneben, statt als Feature-Kacheln. Ein CTA: die Live-Demo.
   if (currentTheme === 'classic' || currentTheme === 'modern') {
+    // Bewusst kein Demo-Link in dieser Section: er würde alle Besucher in ein
+    // einziges Theme schicken. Die Auswahl passiert in der Theme Collection.
+
     return (
-      <ClassicSection id="features">
-        <ClassicContainer>
-          <ClassicHeader>
-            <ClassicEyebrow>Warum S&I.</ClassicEyebrow>
-            <ClassicTitle>Was uns besonders macht</ClassicTitle>
-          </ClassicHeader>
+      <UspSection id="features" ref={sectionRef}>
+        <UspInner>
+          <Stage $visible={visible}>
+            <Mockup>
+              <ScreenSlot $rect={images.productMockupScreens.laptop}>
+                <img
+                  src={images.productScreen}
+                  alt="Individuelle Hochzeitswebsite von S&I. auf Laptop und Smartphone"
+                  loading="lazy"
+                />
+              </ScreenSlot>
+              <ScreenSlot $rect={images.productMockupScreens.phone}>
+                <img
+                  src={THEME_MOBILE_SCREENS[PRODUCT_THEME]}
+                  alt="Hochzeitswebsite in der mobilen Ansicht"
+                  loading="lazy"
+                />
+              </ScreenSlot>
+              <MockupFrame
+                src={images.productMockup}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+            </Mockup>
+          </Stage>
 
-          <ClassicCarouselRow>
-            <ClassicCarousel ref={carouselRef}>
-              {CLASSIC_ALL_CARDS.map((item, i) => {
-                const offset = i - activeCard;
-                const reverse = i % 2 === 1;
-                return (
-                  <ClassicCard key={i} $offset={offset} $reverse={reverse} data-active={offset === 0}>
-                    <ClassicCardImage>
-                      <img src={item.image} alt={item.title} loading="lazy" />
-                    </ClassicCardImage>
-                    <ClassicCardBody>
-                      <ClassicCardNum>0{i + 1}</ClassicCardNum>
-                      <ClassicCardTitle>{item.title}</ClassicCardTitle>
-                      <ClassicCardDesc>{item.desc}</ClassicCardDesc>
-                    </ClassicCardBody>
-                  </ClassicCard>
-                );
-              })}
-            </ClassicCarousel>
+          <UspCopy>
+            <UspEyebrow>Alles an einem Ort</UspEyebrow>
+            <UspTitle>
+              Eine Hochzeitswebsite,<br /><em>die mehr kann als nur informieren.</em>
+            </UspTitle>
+            <UspLead>
+              Von der Einladung bis zum großen Tag finden eure Gäste alles
+              Wichtige an einem Ort — und eure Geschichte bekommt einen Platz,
+              der genauso persönlich ist wie eure Hochzeit.
+            </UspLead>
 
-            <ClassicDots>
-              {CLASSIC_ALL_CARDS.map((_, i) => (
-                <ClassicDot key={i} $active={i === activeCard} onClick={() => setActiveCard(i)} />
+            <UspList>
+              {CORE_FEATURES.map(f => (
+                <UspItem key={f.title}>
+                  <Num>{f.num}</Num>
+                  <div>
+                    <h3>{f.title}</h3>
+                    <p>{f.desc}</p>
+                  </div>
+                </UspItem>
               ))}
-            </ClassicDots>
-          </ClassicCarouselRow>
+            </UspList>
 
-          {/* Mobile: Touch-Karussell (einfach, fullwidth, vertikal) */}
-          <ClassicMobileCarousel>
-            <ClassicMobileSlide
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              <ClassicMobileImage>
-                <img src={CLASSIC_ALL_CARDS[activeCard].image} alt={CLASSIC_ALL_CARDS[activeCard].title} loading="lazy" />
-              </ClassicMobileImage>
-              <ClassicMobileBody>
-                <ClassicCardNum>0{activeCard + 1}</ClassicCardNum>
-                <ClassicCardTitle>{CLASSIC_ALL_CARDS[activeCard].title}</ClassicCardTitle>
-                <ClassicCardDesc>{CLASSIC_ALL_CARDS[activeCard].desc}</ClassicCardDesc>
-              </ClassicMobileBody>
-            </ClassicMobileSlide>
-            <ClassicMobileNav>
-              <ClassicMobileBtn
-                onClick={() => setActiveCard(prev => Math.max(prev - 1, 0))}
-                disabled={activeCard === 0}
-                aria-label="Vorherige"
-              >←</ClassicMobileBtn>
-              <ClassicMobileCounter>{activeCard + 1} / {cardCount}</ClassicMobileCounter>
-              <ClassicMobileBtn
-                onClick={() => setActiveCard(prev => Math.min(prev + 1, cardCount - 1))}
-                disabled={activeCard === cardCount - 1}
-                aria-label="Nächste"
-              >→</ClassicMobileBtn>
-            </ClassicMobileNav>
-          </ClassicMobileCarousel>
+            <FunctionBlock>
+              <p>Alles, was eure Gäste brauchen:</p>
+              <ul>
+                {FUNCTION_LIST.map(f => <li key={f}>{f}</li>)}
+              </ul>
+            </FunctionBlock>
 
-          <CTABox>
-            <CTAHeadline style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, color: '#555' }}>
-              {CTA_TEXT.headline}
-            </CTAHeadline>
-            <CTAButton
-              onClick={scrollToThemes}
-              style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, letterSpacing: '0.2em', color: '#FFFFFF', background: '#1A1A1A', border: 'none' }}
-            >
-              {CTA_TEXT.button}
-            </CTAButton>
-            <CTASubline style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, color: '#999' }}>
-              {CTA_TEXT.subline}
-            </CTASubline>
-          </CTABox>
-        </ClassicContainer>
-      </ClassicSection>
+          </UspCopy>
+        </UspInner>
+      </UspSection>
     );
   }
 
-  // ==========================================
-  // EDITORIAL - Magazin-Style
-  // ==========================================
   if (currentTheme === 'editorial') {
     return (
       <EditorialSection id="features">
