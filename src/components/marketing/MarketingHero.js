@@ -8,7 +8,7 @@ import {
   phoneCardUrl, demoUrl, videoPosterUrl, setStyleChoice, trackDemoClick,
 } from './demoData';
 import {
-  brand, font, type, leading, layout, motion, images,
+  brand, font, type, leading, layout, images,
   eyebrowStyle, buttonPrimary, buttonSecondary, scriptNote,
 } from '../../styles/brand';
 
@@ -1002,11 +1002,12 @@ const stagger = (delay) => css`
 
 const BrandHero = styled.section`
   position: relative;
+  z-index: 2; /* das überstehende Phone liegt über der nächsten Section */
   min-height: clamp(640px, 82vh, 820px);
   display: flex;
   align-items: center;
   background: ${brand.ivory};
-  overflow: hidden;
+  /* bewusst kein overflow: hidden — sonst würde das Phone abgeschnitten */
 `;
 
 // Foto läuft von rechts ein und verliert sich weich im Ivory — keine harte
@@ -1147,125 +1148,75 @@ const HeroNote = styled.span`
   @media (max-width: 1100px) { display: none; }
 `;
 
-// ── PRODUKT: Laptop (primär) + Phone (sekundär) ─────────────────────────
+// ── PRODUKT: Geräterahmen mit transparenten Displays ────────────────────
+// Gleiches System wie in der Produkt-Section: Inhalte liegen hinter dem
+// Rahmen und scheinen durch die Aussparungen.
 const Devices = styled.div`
   position: relative;
+  z-index: 4;
+  align-self: end;
+  /* Laptop steht optisch auf der Unterkante des Hero-Bildes, das Phone ragt
+     in die nächste Section hinein. Negatives margin, damit die Hero-Höhe
+     dadurch nicht wächst. */
+  margin-bottom: clamp(-7rem, -9vh, -3.5rem);
   ${stagger(380)}
+
+  @media (max-width: 900px) {
+    align-self: center;
+    margin-bottom: clamp(-4rem, -6vh, -2rem);
+  }
 `;
 
-// Laptop: Deckel mit Screenshot, darunter eine angedeutete Basis.
-const Laptop = styled.a`
-  display: block;
+const DeviceStage = styled.div`
   position: relative;
   width: 100%;
-  text-decoration: none;
-  cursor: pointer;
+  aspect-ratio: ${images.productMockupScreens.aspect};
 `;
 
-const LaptopLid = styled.div`
-  position: relative;
-  background: #1b1b1b;
-  border-radius: 10px 10px 4px 4px;
-  padding: 10px 10px 12px;
-  box-shadow: 0 26px 60px rgba(34, 34, 34, 0.18);
-  transition: transform 500ms ${motion.ease}, box-shadow 500ms ${motion.ease};
-
-  ${Laptop}:hover & {
-    transform: translateY(-4px);
-    box-shadow: 0 32px 72px rgba(34, 34, 34, 0.22);
-  }
-`;
-
-const LaptopScreen = styled.div`
-  position: relative;
-  aspect-ratio: 16 / 10;
-  border-radius: 3px;
-  overflow: hidden;
-  background: ${brand.sand};
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-  }
-`;
-
-// Gleiche Logik wie in den Theme-Karten: loopende Bildschirmaufnahme der
-// echten Demo, Screenshot nur als Fallback. Im Hero läuft das Video von
-// selbst (kein Hover nötig), weil es das zentrale Produktvisual ist.
-const LaptopVideo = styled.video`
+const DeviceFrame = styled.img`
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  z-index: 2;
+  pointer-events: none;
 `;
 
-// Gehäusefuß: schmaler Streifen, dezent statt 3D-Rendering
-const LaptopBase = styled.div`
-  height: 12px;
-  margin: 0 auto;
-  width: 108%;
-  transform: translateX(-3.7%);
-  background: linear-gradient(to bottom, #2a2a2a 0%, #171717 55%, #0f0f0f 100%);
-  border-radius: 0 0 10px 10px;
-
-  &::after {
-    content: '';
-    display: block;
-    width: 14%;
-    height: 4px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.10);
-    border-radius: 0 0 4px 4px;
-  }
-`;
-
-// Phone: klein, überlappt die linke untere Laptopkante, verdeckt den
-// Bildschirm aber nicht.
-const HeroPhone = styled.a`
+const DeviceSlot = styled.a`
   position: absolute;
-  left: -4%;
-  bottom: -9%;
-  width: 19%;
-  min-width: 96px;
-  display: block;
-  background: #0d0d0d;
-  border-radius: 18px;
-  padding: 5px;
-  box-shadow: 0 18px 44px rgba(34, 34, 34, 0.26);
-  transition: transform 500ms ${motion.ease};
-  cursor: pointer;
-  z-index: 3;
-
-  &:hover { transform: translateY(-4px); }
-
-  @media (max-width: 900px) {
-    left: auto;
-    right: 4%;
-    bottom: -12%;
-    width: 26%;
-  }
-`;
-
-const HeroPhoneScreen = styled.div`
-  aspect-ratio: 9 / 19;
-  border-radius: 14px;
   overflow: hidden;
+  display: block;
   background: ${brand.sand};
+  z-index: 1;
+  cursor: pointer;
 
-  img {
+  left: ${p => p.$rect.left};
+  top: ${p => p.$rect.top};
+  width: ${p => p.$rect.width};
+  height: ${p => p.$rect.height};
+
+  img, video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top center;
     display: block;
-    transition: opacity 700ms ease;
   }
 `;
+
+// Laptop: Deckel mit Screenshot, darunter eine angedeutete Basis.
+
+
+
+// Gleiche Logik wie in den Theme-Karten: loopende Bildschirmaufnahme der
+// echten Demo, Screenshot nur als Fallback. Im Hero läuft das Video von
+// selbst (kein Hover nötig), weil es das zentrale Produktvisual ist.
+
+// Gehäusefuß: schmaler Streifen, dezent statt 3D-Rendering
+
+// Phone: klein, überlappt die linke untere Laptopkante, verdeckt den
+// Bildschirm aber nicht.
+
 
 // ============================================
 // MAIN COMPONENT
@@ -1367,52 +1318,56 @@ const MarketingHero = () => {
           </HeroCopy>
 
           <Devices>
-            <Laptop
-              href={activeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Live-Demo ${active.name} öffnen`}
-              onClick={() => openDemo('hero_laptop')}
-            >
-              <LaptopLid>
-                <LaptopScreen>
-                  {THEME_VIDEO_PREVIEWS[active.id] ? (
-                    <LaptopVideo
-                      key={active.id}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      poster={videoPosterUrl(active.id) || THEME_SCREENSHOTS[active.id]}
-                      src={THEME_VIDEO_PREVIEWS[active.id]}
-                      aria-label={`Vorschau der Hochzeitswebsite ${active.name}`}
-                    />
-                  ) : (
-                    <img
-                      src={THEME_SCREENSHOTS[active.id] || THEME_SCREENSHOTS.classic}
-                      alt={`S&I. Hochzeitswebsite im Design ${active.name}`}
-                    />
-                  )}
-                </LaptopScreen>
-              </LaptopLid>
-              <LaptopBase />
-            </Laptop>
+            <DeviceStage>
+              {/* Laptop: loopendes Demo-Video, Poster = erster Frame */}
+              <DeviceSlot
+                $rect={images.productMockupScreens.laptop}
+                href={activeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Live-Demo ${active.name} öffnen`}
+                onClick={() => openDemo('hero_laptop')}
+              >
+                {THEME_VIDEO_PREVIEWS[active.id] ? (
+                  <video
+                    key={active.id}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster={videoPosterUrl(active.id) || THEME_SCREENSHOTS[active.id]}
+                    src={THEME_VIDEO_PREVIEWS[active.id]}
+                    aria-label={`Vorschau der Hochzeitswebsite ${active.name}`}
+                  />
+                ) : (
+                  <img
+                    src={videoPosterUrl(active.id) || THEME_SCREENSHOTS[active.id]}
+                    alt={`S&I. Hochzeitswebsite im Design ${active.name}`}
+                  />
+                )}
+              </DeviceSlot>
 
-            <HeroPhone
-              href={activeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Mobile-Ansicht ${active.name} öffnen`}
-              onClick={() => openDemo('hero_phone')}
-            >
-              <HeroPhoneScreen>
+              <DeviceSlot
+                $rect={images.productMockupScreens.phone}
+                href={activeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Mobile-Ansicht ${active.name} öffnen`}
+                onClick={() => openDemo('hero_phone')}
+              >
                 <img
                   src={THEME_MOBILE_SCREENS[active.id] || phoneCardUrl(active.id)}
                   alt={`Mobile-Ansicht der Hochzeitswebsite ${active.name}`}
                 />
-              </HeroPhoneScreen>
-            </HeroPhone>
+              </DeviceSlot>
+
+              <DeviceFrame
+                src={images.productMockup}
+                alt=""
+                aria-hidden="true"
+              />
+            </DeviceStage>
           </Devices>
         </HeroInner>
       </BrandHero>
