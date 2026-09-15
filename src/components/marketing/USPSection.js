@@ -10,9 +10,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import {
   brand, font, type, leading, layout, motion,
-  eyebrowStyle, buttonSecondary,
+  eyebrowStyle, buttonPrimary,
 } from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
+import {
+  THEME_SCREENSHOTS, THEME_MOBILE_SCREENS, videoPosterUrl,
+  demoUrl, setStyleChoice, trackDemoClick,
+} from './demoData';
 
 // ============================================
 // CONTENT DATA
@@ -1285,9 +1289,29 @@ const CTASubline = styled.p`
 // BRAND USP — vier Aussagen statt Feature-Karussell
 // Die Karussell-Variante bleibt für die übrigen Themes erhalten.
 // ════════════════════════════════════════════════════════════════════════
+
+
+// Großes Produktvisual links — der Beweis, nicht die Dekoration
+
+
+
+
+
+
+
+// ════════════════════════════════════════════════════════════════════════
+// PRODUKT-SECTION „Alles an einem Ort"
+// Laptop als zentrales Produktvisual, Phone als Beleg für Mobile.
+// Beide zeigen eine echte Demo aus demoData — keine Fake-UI.
+// ════════════════════════════════════════════════════════════════════════
+
+// Das Theme, das hier gezeigt wird. Editorial, weil es Hochzeitsfotografie
+// und die wichtigsten Websitebereiche im Screenshot sichtbar macht.
+const PRODUCT_THEME = 'editorial';
+
 const UspSection = styled.section`
-  padding: ${layout.sectionY} 0;
-  background: #FFFFFF;
+  background: ${brand.ivory};
+  padding: clamp(3.5rem, 8vh, 6.5rem) 0;
 `;
 
 const UspInner = styled.div`
@@ -1295,30 +1319,121 @@ const UspInner = styled.div`
   margin: 0 auto;
   padding: 0 ${layout.gutter};
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: clamp(2.5rem, 5vw, 5rem);
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5.5rem);
   align-items: center;
 
-  @media (max-width: 980px) { grid-template-columns: 1fr; }
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 `;
 
-// Großes Produktvisual links — der Beweis, nicht die Dekoration
-const UspVisual = styled.div`
+// ── Produktvisual ───────────────────────────────────────────────────────
+const Stage = styled.div`
   position: relative;
-  aspect-ratio: 16 / 11;
-  background: url(${p => p.$src}) center / cover no-repeat ${brand.sand};
-  border-radius: 3px;
-  box-shadow: 0 30px 80px rgba(34, 34, 34, 0.16);
-  overflow: hidden;
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 700ms ${motion.ease}, transform 700ms ${motion.ease};
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 900ms ${motion.ease};
+  ${p => p.$visible && `opacity: 1; transform: translateY(0);`}
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
-  &:hover img { transform: scale(1.03); }
+  @media (max-width: 1000px) { order: 2; }
+`;
+
+const Laptop = styled.a`
+  display: block;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+`;
+
+const LaptopLid = styled.div`
+  background: #1b1b1b;
+  border-radius: 10px 10px 4px 4px;
+  padding: 10px 10px 12px;
+  box-shadow: 0 28px 64px rgba(34, 34, 34, 0.18);
+  transition: transform 420ms ${motion.ease}, box-shadow 420ms ${motion.ease};
+
+  ${Laptop}:hover &, ${Laptop}:focus-visible & {
+    transform: scale(1.012);
+    box-shadow: 0 34px 76px rgba(34, 34, 34, 0.22);
+  }
+`;
+
+const LaptopScreen = styled.div`
+  aspect-ratio: 16 / 10;
+  border-radius: 3px;
+  overflow: hidden;
+  background: ${brand.sand};
+
+  img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+`;
+
+const LaptopBase = styled.div`
+  height: 12px;
+  width: 108%;
+  transform: translateX(-3.7%);
+  background: linear-gradient(to bottom, #2a2a2a 0%, #171717 55%, #0f0f0f 100%);
+  border-radius: 0 0 10px 10px;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 14%;
+    height: 4px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 4px 4px;
+  }
+`;
+
+const ProductPhone = styled.a`
+  position: absolute;
+  right: -3%;
+  bottom: -10%;
+  width: 17%;
+  min-width: 92px;
+  display: block;
+  background: #0d0d0d;
+  border-radius: 18px;
+  padding: 5px;
+  box-shadow: 0 20px 48px rgba(34, 34, 34, 0.26);
+  z-index: 3;
+  cursor: pointer;
+  transition: transform 420ms ${motion.ease} 120ms, opacity 500ms ${motion.ease} 120ms;
+  opacity: ${p => (p.$visible ? 1 : 0)};
+  transform: translateY(${p => (p.$visible ? '0' : '18px')});
+
+  &:hover { transform: translateY(-5px); }
+
+  @media (max-width: 1000px) {
+    right: 4%;
+    bottom: -8%;
+    width: 24%;
+  }
+
+  @media (prefers-reduced-motion: reduce) { opacity: 1; transform: none; }
+`;
+
+const PhoneScreen = styled.div`
+  aspect-ratio: 9 / 19;
+  border-radius: 14px;
+  overflow: hidden;
+  background: ${brand.sand};
+
+  img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+`;
+
+// ── Text ────────────────────────────────────────────────────────────────
+const UspCopy = styled.div`
+  @media (max-width: 1000px) { order: 1; }
 `;
 
 const UspEyebrow = styled.p`
@@ -1344,45 +1459,91 @@ const UspLead = styled.p`
   font-size: ${type.body};
   line-height: ${leading.body};
   color: ${brand.inkSoft};
+  max-width: 44ch;
   margin: 0 0 2.5rem;
-  max-width: 46ch;
 `;
 
+// Kompakte Liste statt Feature-Kacheln
 const UspList = styled.div`
   display: grid;
-  gap: 1.75rem;
+  gap: 1.4rem;
   margin-bottom: 2.5rem;
 `;
 
 const UspItem = styled.div`
-  padding-left: 1.5rem;
-  border-left: 2px solid ${brand.taupe};
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.9rem;
+  align-items: start;
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.2rem;
+    stroke: ${brand.olive};
+    fill: none;
+    stroke-width: 1.2;
+  }
 
   h3 {
-    font-family: ${font.serif};
-    font-weight: 400;
-    font-size: 1.35rem;
+    font-family: ${font.sans};
+    font-size: 0.98rem;
+    font-weight: 600;
     color: ${brand.charcoal};
-    margin: 0 0 0.35rem;
+    margin: 0 0 0.2rem;
   }
+
   p {
     font-family: ${font.sans};
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    line-height: 1.55;
     color: ${brand.inkSoft};
     margin: 0;
   }
 `;
 
-const UspCTA = styled.button`${buttonSecondary} border-color: ${brand.charcoal};`;
+const UspCTA = styled.a`${buttonPrimary}`;
 
-const BRAND_USPS = [
-  { title: 'Euer Stil', desc: 'Wir besprechen gemeinsam Design, Farben und Aufbau.' },
-  { title: 'Eure Inhalte', desc: 'Ihr entscheidet, was eure Gäste sehen und erfahren.' },
-  { title: 'Eure Gäste', desc: 'Alle wichtigen Informationen an einem Ort.' },
+// Vier Kernfunktionen. Icons als schlichte Inline-SVGs — keine neue Library.
+const CORE_FEATURES = [
+  {
+    title: 'RSVP',
+    desc: 'Eure Gäste sagen direkt online zu oder ab.',
+    icon: <path d="M3 5h18v14H3z M3 5l9 7 9-7" />,
+  },
+  {
+    title: 'Zeitplan',
+    desc: 'Alle Programmpunkte des Tages auf einen Blick.',
+    icon: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
+  },
+  {
+    title: 'Location',
+    desc: 'Anfahrt, Ort und alles, was eure Gäste wissen müssen.',
+    icon: <><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></>,
+  },
+  {
+    title: 'Galerie',
+    desc: 'Eure Geschichte und eure schönsten Bilder an einem Ort.',
+    icon: <><path d="M3 5h18v14H3z" /><path d="M3 16l5-5 4 4 3-3 6 6" /><circle cx="8.5" cy="9" r="1.5" /></>,
+  },
 ];
 
+
 const USPSection = () => {
+  // Produktvisual erscheint beim Scrollen: opacity + translateY, Phone leicht
+  // verzögert. Kein Parallax, keine Rotation.
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { setVisible(true); return undefined; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) { setVisible(true); io.disconnect(); }
+    }, { threshold: 0.25 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const { currentTheme } = useTheme();
   const [openItem, setOpenItem] = useState(0);
   const [activeCard, setActiveCard] = useState(0);
@@ -1440,33 +1601,91 @@ const USPSection = () => {
   // CLASSIC — vier Aussagen + ein großes Produktvisual.
   // Das Tiefenkarussell mit sechs Karten wirkte als Feature-Liste; die
   // Karussell-Variante bleibt für die übrigen Themes unverändert erhalten.
+  // CLASSIC — Produkt-Section „Alles an einem Ort".
+  // Laptop + Phone zeigen eine echte Demo; die vier Kernfunktionen stehen
+  // kompakt daneben, statt als Feature-Kacheln. Ein CTA: die Live-Demo.
   if (currentTheme === 'classic' || currentTheme === 'modern') {
+    const demoHref = demoUrl(PRODUCT_THEME, { placement: 'product_section' });
+    const openDemo = () => {
+      setStyleChoice(PRODUCT_THEME, 'product_section');
+      trackDemoClick(PRODUCT_THEME, demoHref, 'product_section');
+    };
+
     return (
-      <UspSection id="features">
+      <UspSection id="features" ref={sectionRef}>
         <UspInner>
-          <UspVisual $src={USPS[0].image} aria-hidden="true" />
-          <div>
-            <UspEyebrow>Individuell gestaltet</UspEyebrow>
+          <Stage $visible={visible}>
+            <Laptop
+              href={demoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Live-Demo der Hochzeitswebsite ansehen"
+              onClick={openDemo}
+            >
+              <LaptopLid>
+                <LaptopScreen>
+                  <img
+                    src={videoPosterUrl(PRODUCT_THEME) || THEME_SCREENSHOTS[PRODUCT_THEME]}
+                    alt="S&I. Hochzeitswebsite auf dem Laptop"
+                    loading="lazy"
+                  />
+                </LaptopScreen>
+              </LaptopLid>
+              <LaptopBase />
+            </Laptop>
+
+            <ProductPhone
+              $visible={visible}
+              href={demoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mobile-Ansicht der Hochzeitswebsite ansehen"
+              onClick={openDemo}
+            >
+              <PhoneScreen>
+                <img
+                  src={THEME_MOBILE_SCREENS[PRODUCT_THEME]}
+                  alt="Dieselbe Hochzeitswebsite auf dem Smartphone"
+                  loading="lazy"
+                />
+              </PhoneScreen>
+            </ProductPhone>
+          </Stage>
+
+          <UspCopy>
+            <UspEyebrow>Alles an einem Ort</UspEyebrow>
             <UspTitle>
-              Eine Website,<br /><em>die nach euch aussieht.</em>
+              Eine Website,<br /><em>die mehr kann als nur informieren.</em>
             </UspTitle>
             <UspLead>
-              Euer Stil, eure Farben, eure Geschichte — gemeinsam entwickeln wir
-              eine Website, die zu eurer Hochzeit passt.
+              Von der Einladung bis zum großen Tag finden eure Gäste alles
+              Wichtige an einem Ort — und eure Geschichte bekommt einen Platz,
+              der genauso persönlich ist wie eure Hochzeit.
             </UspLead>
+
             <UspList>
-              {BRAND_USPS.map(item => (
-                <UspItem key={item.title}>
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
+              {CORE_FEATURES.map(f => (
+                <UspItem key={f.title}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" strokeLinecap="round" strokeLinejoin="round">
+                    {f.icon}
+                  </svg>
+                  <div>
+                    <h3>{f.title}</h3>
+                    <p>{f.desc}</p>
+                  </div>
                 </UspItem>
               ))}
             </UspList>
-            {/* Die Demo ist der WOW-Moment, nicht eine Feature-Seite */}
-            <UspCTA type="button" onClick={scrollToThemes}>
+
+            <UspCTA
+              href={demoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={openDemo}
+            >
               Live-Demo ansehen →
             </UspCTA>
-          </div>
+          </UspCopy>
         </UspInner>
       </UspSection>
     );
