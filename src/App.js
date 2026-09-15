@@ -15,18 +15,17 @@ import MarketingHero from './components/marketing/MarketingHero';
 import MarketingFooter from './components/marketing/MarketingFooter';
 import PricingSection from './components/marketing/PricingSection';
 import ThemeShowcase from './components/marketing/ThemeShowcase';
-import ComponentsShowcase from './components/marketing/ComponentsShowcase';
 import ContactSection from './components/marketing/ContactSection';
 import HowItWorksSection from './components/marketing/HowItWorksSection';
-import AboutSection from './components/marketing/AboutSection';
-import WhyUsSection from './components/marketing/WhyUsSection';
 import USPSection from './components/marketing/USPSection';
-import CooperationSection from './components/marketing/CooperationSection';
+import DemoWedding from './components/marketing/DemoWedding';
+// FoundersIntro, AboutSection, WhyUsSection und ComponentsShowcase sind
+// bewusst nicht mehr auf der Homepage — siehe Kommentar bei den Sections.
+import FinalCTA from './components/marketing/FinalCTA';
 import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
 import StickyDemoBar from './components/marketing/StickyDemoBar';
-import FoundersIntro from './components/marketing/FoundersIntro';
 import CTABand from './components/marketing/CTABand';
 import FAQSection from './components/marketing/FAQSection';
 
@@ -51,6 +50,7 @@ const BlogPage = React.lazy(() => import('./components/blog/BlogPage'));
 const BlogArticle = React.lazy(() => import('./components/blog/BlogArticle'));
 const ImpressumPage = React.lazy(() => import('./components/shared/ImpressumPage'));
 const DatenschutzPage = React.lazy(() => import('./components/shared/DatenschutzPage'));
+const KooperationenPage = React.lazy(() => import('./pages/KooperationenPage'));
 const HochzeitsdatumFinder = React.lazy(() => import('./components/tools/HochzeitsdatumFinder'));
 const BudgetRechner = React.lazy(() => import('./components/tools/BudgetRechner'));
 const QuizGenerator = React.lazy(() => import('./components/tools/QuizGenerator'));
@@ -193,8 +193,8 @@ function MarketingPage() {
   return (
     <AppWrapper>
       <SEOHead
-        title="S&I. — Premium Hochzeitswebsites ab 990 €"
-        description="Individuelle Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 990 €. Aus Hamburg."
+        title="Hochzeitswebsite erstellen lassen | S&I."
+        description="Eure individuelle Hochzeitswebsite — stilvoll gestaltet, persönlich begleitet und genau auf eure Hochzeit abgestimmt. Acht Designs von S&I. ab 990 €."
         path="/"
         schema={productSchema}
         keywords={['Hochzeitswebsite', 'Hochzeitswebsite erstellen', 'Wedding Website', 'digitale Hochzeitseinladung', 'RSVP Hochzeit', 'Premium Hochzeitswebsite', 'Hochzeitswebsite Hamburg']}
@@ -214,46 +214,43 @@ function MarketingPage() {
       ) : (
         <>
           {/* ═══════════════════════════════════════════════════════════
-              HOMEPAGE-DRAMATURGIE (Sep 2026)
-              01 Emotion → 02 Stil → 03 Individualität → 04 Service
-              → 05 Vertrauen → 06 Prozess → 07 Funktionen → 08 FAQ → 09 Anfrage
+              ZIELARCHITEKTUR DER LANDINGPAGE (Sep 2026)
 
-              Vorher stand ComponentsShowcase mitten im Funnel und Pricing
-              hinter drei Erklärsektionen. Die Seite verkaufte damit
-              Funktionen, bevor sie das Ergebnis gezeigt hatte.
+              01 Hero · 02 Design Collection · 03 Produkt · 04 Pricing
+              05 Echte Geschichten · 06 Prozess · 07 FAQ · 08 Anfrage
+              09 Final CTA · Footer
+
+              Bewusst entfernt bzw. integriert:
+              - FoundersIntro + AboutSection → nicht mehr auf der Homepage
+              - WhyUsSection → die USPs stecken in Produkt und Prozess
+              - ComponentsShowcase → Funktionen gehören in den Produktkontext,
+                nicht in einen eigenen Feature-Trichter
+              Die Komponenten bleiben im Repo, nur nicht mehr auf der Homepage.
               ═══════════════════════════════════════════════════════════ */}
 
           {/* 01 EMOTION */}
           <MarketingHero />
 
-          {/* 02 STIL — der Filmstrip mit allen acht Demos, direkt nach dem
-              Hero: das Produkt zeigen, bevor irgendetwas erklärt wird */}
+          {/* 02 STIL — acht Designwelten */}
           <AnimatedSection>
             <ThemeShowcase />
           </AnimatedSection>
 
-          {/* 03 INDIVIDUALITÄT */}
+          {/* 03 PRODUKT — großes Mockup, Funktionen im Kontext */}
           <AnimatedSection delay={100}>
             <USPSection />
           </AnimatedSection>
           <CTABand />
 
-          {/* 04 SERVICE — "Wie viel möchtet ihr selbst übernehmen?"
-              Pricing jetzt weit vorn, weil es die zentrale Frage beantwortet */}
+          {/* 04 PREIS */}
           <AnimatedSection delay={100}>
             <PromoBanner />
             <PricingSection />
           </AnimatedSection>
 
-          {/* 05 VERTRAUEN */}
+          {/* 05 DEMO-HOCHZEIT — Lea & Ben, ausdrücklich als Demo-Paar */}
           <AnimatedSection delay={50}>
-            <FoundersIntro />
-          </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <AboutSection />
-          </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <WhyUsSection />
+            <DemoWedding />
           </AnimatedSection>
 
           {/* 06 PROZESS */}
@@ -261,23 +258,21 @@ function MarketingPage() {
             <HowItWorksSection />
           </AnimatedSection>
 
-          {/* 07 FUNKTIONEN — bewusst nachgelagert: sekundär, nicht führend */}
-          <AnimatedSection delay={100}>
-            <ComponentsShowcase />
-          </AnimatedSection>
-
-          {/* 08 FAQ */}
+          {/* 07 FAQ */}
           <AnimatedSection delay={50}>
             <FAQSection />
           </AnimatedSection>
 
-          {/* 09 ANFRAGE */}
+          {/* 08 ANFRAGE */}
           <AnimatedSection delay={100}>
             <ContactSection />
           </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <CooperationSection />
-          </AnimatedSection>
+          {/* Kooperationen stand hier zwischen Formular und Abschluss und
+              richtete sich an Dienstleister statt an Paare — jetzt unter
+              /kooperationen, verlinkt im Footer. */}
+
+          {/* 09 ABSCHLUSS */}
+          <FinalCTA />
           <MarketingFooter />
           <StickyDemoBar />
         </>
@@ -382,6 +377,13 @@ function App() {
               <Route path="/brautpaar-quiz" element={
                 <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
                   <QuizGenerator />
+                </Suspense>
+              } />
+
+              {/* Kooperationen — bewusst eigene Seite, nicht im Homepage-Funnel */}
+              <Route path="/kooperationen" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <KooperationenPage />
                 </Suspense>
               } />
 

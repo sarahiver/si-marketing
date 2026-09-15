@@ -185,7 +185,7 @@ function homeBodyHtml(allPosts) {
   return `
     <div style="${ROOT_STYLE}">
       <h1>S&amp;I. — Premium Hochzeitswebsites</h1>
-      <p>Premium Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 1.290&nbsp;€. Aus Hamburg.</p>
+      <p>Individuelle Hochzeitswebsites aus Hamburg: eigenes Design, eigene Adresse, digitales RSVP, Tagesablauf, Location, Galerie und Foto-Upload. Acht Designs, persönlich begleitet, ab 990&nbsp;€.</p>
       <nav aria-label="Hauptnavigation">
         <ul>
           <li><a href="/blog">Hochzeitswebsite Ratgeber</a></li>
@@ -270,8 +270,23 @@ function generateHtml(template, route) {
   }
 
   // Statischer Inhalt in <div id="root"> — React ersetzt ihn beim Mount.
+  //
+  // Damit Besucher ihn nicht kurz aufblitzen sehen: Das Inline-Skript im
+  // <head> setzt sofort die Klasse js-enabled auf <html>. Die zugehörige
+  // Regel blendet den statischen Block dann aus, BEVOR der Browser das
+  // erste Mal zeichnet. Ohne JavaScript (Crawler ohne JS-Rendering) bleibt
+  // er sichtbar — dafür ist er ja da.
   if (route.bodyHtml) {
-    html = html.replace(/<div id="root">\s*<\/div>/, `<div id="root">${route.bodyHtml}</div>`);
+    html = html.replace(
+      /<div id="root">\s*<\/div>/,
+      `<div id="root"><div data-prerender="1">${route.bodyHtml}</div></div>`
+    );
+    html = html.replace(
+      '</head>',
+      '    <style>.js-enabled [data-prerender="1"]{display:none}</style>\n'
+      + '    <script>document.documentElement.className+=" js-enabled";</script>\n'
+      + '  </head>'
+    );
   }
 
   return html;
@@ -301,8 +316,8 @@ async function main() {
   const routes = [
     {
       path: '/',
-      title: 'S&I. — Premium Hochzeitswebsites',
-      description: 'S&I. — Premium Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. 8 einzigartige Themes. Ab 1.290€. Aus Hamburg.',
+      title: 'Hochzeitswebsite erstellen lassen | S&I.',
+      description: 'Eure individuelle Hochzeitswebsite — stilvoll gestaltet, persönlich begleitet und genau auf eure Hochzeit abgestimmt. Acht Designs von S&I. ab 990 €.',
       schema: {
         '@context': 'https://schema.org',
         '@graph': [
@@ -463,6 +478,19 @@ async function main() {
       noIndex: true,
     },
     {
+      // Kooperationen: eigene Seite, indexierbar — richtet sich an
+      // Dienstleister, nicht an Paare.
+      path: '/kooperationen',
+      title: 'Kooperationen & Partner | S&I.',
+      description: 'Ihr seid Hochzeitsdienstleister, Fotografin, Location oder Planerin? Lasst uns über eine Zusammenarbeit mit S&I. sprechen.',
+      bodyHtml: '<h1>Kooperationen &amp; Partner</h1>'
+        + '<p>S&amp;I. gestaltet individuelle Hochzeitswebsites aus Hamburg. '
+        + 'Für Fotografinnen und Fotografen, Locations, Planerinnen, Papeterie '
+        + 'und andere Hochzeitsdienstleister bieten wir Kooperationen an — '
+        + 'schreibt uns, dann besprechen wir, was zusammenpasst.</p>'
+        + '<p><a href="/">Zur Startseite</a> · <a href="/blog">Ratgeber</a></p>',
+    },
+    {
       path: '/impressum',
       title: 'Impressum | S&I.',
       description: 'Impressum von S&I. — Premium Hochzeitswebsites aus Hamburg: Anbieterkennzeichnung, Kontakt und rechtliche Hinweise gemäß § 5 TMG.',
@@ -553,7 +581,7 @@ async function main() {
 
 ## Angebot
 
-- [Startseite mit Themes und Preisen](${BASE_URL}/): Premium-Hochzeitswebsites ab 1.290 €, komplett eingerichtet und in wenigen Tagen live
+- [Startseite mit Designs und Preisen](${BASE_URL}/): individuelle Hochzeitswebsites ab 990 €, persönlich begleitet und in wenigen Tagen live
 
 ## Kostenlose Hochzeits-Tools
 
