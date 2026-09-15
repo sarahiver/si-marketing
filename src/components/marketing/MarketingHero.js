@@ -1005,7 +1005,9 @@ const BrandHero = styled.section`
   z-index: 2; /* das überstehende Phone liegt über der nächsten Section */
   min-height: clamp(640px, 82vh, 820px);
   display: flex;
-  align-items: center;
+  /* stretch statt center: sonst zentriert der Flex-Container den Inhalt und
+     unter dem Laptop bleibt Leerraum bis zur Sektionskante. */
+  align-items: stretch;
   background: ${brand.ivory};
   /* bewusst kein overflow: hidden — sonst würde das Phone abgeschnitten */
 `;
@@ -1055,7 +1057,8 @@ const HeroInner = styled.div`
   width: 100%;
   max-width: ${layout.maxWidth};
   margin: 0 auto;
-  padding: clamp(5.5rem, 12vh, 8rem) ${layout.gutter} clamp(3rem, 7vh, 4.5rem);
+  /* unten kein Padding: der Laptop soll bündig auf der Unterkante stehen */
+  padding: clamp(5.5rem, 12vh, 8rem) ${layout.gutter} 0;
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   gap: clamp(1.5rem, 3vw, 3rem);
@@ -1064,6 +1067,7 @@ const HeroInner = styled.div`
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+    padding-bottom: clamp(2rem, 5vh, 3.5rem);
   }
 `;
 

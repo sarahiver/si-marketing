@@ -1262,7 +1262,8 @@ const Sheet = styled.div`
     top: 0;
     bottom: 0;
     width: clamp(220px, 26%, 420px);
-    background: url(${images.pricingDetail}) center / cover no-repeat;
+    /* rechter Bildausschnitt: links liegt im Motiv nur Beiwerk */
+    background: url(${images.pricingDetail}) right center / cover no-repeat;
   }
 
   &::after {
