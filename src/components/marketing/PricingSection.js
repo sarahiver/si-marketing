@@ -6,7 +6,7 @@ import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { PUBLIC_PACKAGES, ADDON_LIST, isFeatureIncluded } from '../../lib/pricing';
 import {
-  brand, font, type, leading, layout,
+  brand, font, type, leading, layout, images,
   eyebrowStyle, buttonPrimary, buttonSecondary, scriptNote,
 } from '../../styles/brand';
 
@@ -1237,10 +1237,68 @@ const VideoCTA = styled.button`
 // BRAND PRICING (Classic-Basis) — Editorial Pricing Sheet, kein SaaS-Grid
 // Warme Sandfläche, große Zahlen, zwei Wege statt Feature-Matrix.
 // ════════════════════════════════════════════════════════════════════════
+// Die Sandfläche ist eine eigene, abgerundete Karte im Ivory — nicht mehr
+// eine randlose Vollflächen-Section. Links läuft ein warmes Detailmotiv ein.
 const BrandPricingSection = styled.section`
   position: relative;
-  padding: ${layout.sectionY} 0;
+  padding: clamp(2rem, 5vh, 4rem) ${layout.gutter};
+  background: ${brand.ivory};
+`;
+
+const Sheet = styled.div`
+  position: relative;
+  max-width: ${layout.wide};
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem);
   background: ${brand.sand};
+  border-radius: 20px;
+  overflow: hidden;
+
+  /* Hochzeitsmotiv links, weich in die Sandfläche auslaufend */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: clamp(220px, 26%, 420px);
+    background: url(${images.pricingDetail}) center / cover no-repeat;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: clamp(220px, 30%, 480px);
+    background: linear-gradient(
+      to right,
+      rgba(232, 225, 217, 0) 0%,
+      rgba(232, 225, 217, 0.55) 48%,
+      ${brand.sand} 100%
+    );
+  }
+
+  > * { position: relative; z-index: 2; }
+
+  @media (max-width: 860px) {
+    padding-top: clamp(11rem, 26vh, 15rem);
+
+    &::before, &::after {
+      right: 0;
+      bottom: auto;
+      width: auto;
+      height: clamp(9rem, 22vh, 13rem);
+    }
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(232, 225, 217, 0) 40%,
+        ${brand.sand} 100%
+      );
+    }
+  }
 `;
 
 const BrandContainer = styled.div`
@@ -1293,22 +1351,25 @@ const BrandGrid = styled.div`
 
 const BrandCard = styled.div`
   position: relative;
-  background: ${p => (p.$pop ? '#FFFFFF' : 'rgba(255,255,255,0.62)')};
-  border: 1px solid ${p => (p.$pop ? brand.olive : brand.line)};
-  border-radius: 3px;
+  background: ${p => (p.$pop ? '#FFFFFF' : 'rgba(255,255,255,0.72)')};
+  border: 1px solid ${p => (p.$pop ? 'rgba(104,111,92,0.45)' : brand.line)};
+  border-radius: 18px;
+  ${p => p.$pop && 'margin-top: 1.4rem;'}
   padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.75rem, 3vw, 3rem)
            clamp(2.5rem, 4vw, 3.25rem);
   ${p => p.$pop && `box-shadow: 0 24px 60px rgba(34,34,34,0.10);`}
 `;
 
+// Reiter, der oben aus der Karte herauswächst — wie im Mockup
 const PopBadge = styled.span`
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0.4rem 1.1rem;
+  transform: translate(-50%, -100%);
+  padding: 0.45rem 1.4rem;
   background: ${brand.olive};
   color: ${brand.ivory};
+  border-radius: 10px 10px 0 0;
   ${eyebrowStyle}
   font-size: 0.62rem;
   white-space: nowrap;
@@ -1368,14 +1429,18 @@ const BrandCardCTA = styled.button`
   ${p => (p.$pop ? buttonPrimary : buttonSecondary)}
   width: 100%;
   justify-content: center;
-  ${p => !p.$pop && `border-color: ${brand.charcoal};`}
+  border-radius: 999px;
+  ${p => (p.$pop
+    ? `background: ${brand.olive}; border-color: ${brand.olive};
+       &:hover { background: ${brand.charcoal}; border-color: ${brand.charcoal}; }`
+    : `border-color: ${brand.charcoal};`)}
 `;
 
 // Add-ons: dritte, ruhigere Spalte — nie die Hauptaufmerksamkeit
 const AddonPanel = styled.aside`
-  background: rgba(255,255,255,0.42);
+  background: rgba(255,255,255,0.55);
   border: 1px solid ${brand.line};
-  border-radius: 3px;
+  border-radius: 18px;
   padding: clamp(1.5rem, 2.2vw, 2rem);
 
   @media (max-width: 1100px) { grid-column: 1 / -1; }
@@ -1609,6 +1674,7 @@ const PricingSection = () => {
 
     return (
       <BrandPricingSection id="pricing">
+        <Sheet>
         <BrandContainer>
           <PricingNote>Zwei Wege.<br />Ein Ergebnis.</PricingNote>
           <BrandHeader>
@@ -1668,6 +1734,7 @@ const PricingSection = () => {
 
           {renderVoucher()}
         </BrandContainer>
+        </Sheet>
       </BrandPricingSection>
     );
   }

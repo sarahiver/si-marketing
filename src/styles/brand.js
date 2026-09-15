@@ -131,6 +131,9 @@ export const images = {
     phone:  { left: '76.24%', top: '31.15%', width: '18.36%', height: '60.06%' },
   },
 
+  // Pricing: warmes Papeterie-/Blumenmotiv links in der Sandfläche
+  pricingDetail: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&q=80&w=1200',
+
   // Abschluss-CTA — ruhiges Detailmotiv statt Brautpaar-Porträt
   finalCta: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000',
 };
