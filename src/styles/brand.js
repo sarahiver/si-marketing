@@ -106,10 +106,21 @@ export const images = {
   // stehen statt auf leerem Ivory.
   productBackdrop: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1600',
 
-  // Produkt-Section: fertiges Mockup mit Laptop UND Phone in einem Bild.
-  // Dadurch wird nichts mehr zugeschnitten und beide Geräte zeigen dasselbe
-  // Design. Nach dem Upload zu Cloudinary hier die neue URL eintragen.
-  productMockup: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1800/v1789463857/product_screen_erq5y5.png',
+  // Produkt-Section: leerer Geräterahmen (Laptop + Phone) mit transparenten
+  // Displays und transparentem Hintergrund. Die Inhalte liegen DAHINTER und
+  // scheinen durch die Aussparungen — dadurch lassen sich die echten Demos
+  // zeigen, ohne etwas zuzuschneiden.
+  // Nach dem Upload zu Cloudinary hier die URL eintragen (PNG, nicht JPG —
+  // sonst geht die Transparenz verloren).
+  productMockup: 'REPLACE_ME_CLOUDINARY_URL.png',
+
+  // Displaykoordinaten, ausgemessen aus dem Mockup (1536 × 1024).
+  // Bei einem anderen Rahmenbild müssen diese Werte neu bestimmt werden.
+  productMockupScreens: {
+    aspect: 1.5,
+    laptop: { left: '12.83%', top: '13.18%', width: '68.10%', height: '62.01%' },
+    phone:  { left: '76.24%', top: '31.15%', width: '18.36%', height: '60.06%' },
+  },
 
   // Abschluss-CTA — ruhiges Detailmotiv statt Brautpaar-Porträt
   finalCta: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000',

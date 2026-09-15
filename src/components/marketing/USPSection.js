@@ -13,6 +13,7 @@ import {
   eyebrowStyle,
 } from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
+import { THEME_SCREENSHOTS, THEME_HEROES, THEME_MOBILE_SCREENS } from './demoData';
 
 // ============================================
 // CONTENT DATA
@@ -1301,6 +1302,10 @@ const CTASubline = styled.p`
 // Beide zeigen eine echte Demo aus demoData — keine Fake-UI.
 // ════════════════════════════════════════════════════════════════════════
 
+// Design, das in beiden Displays gezeigt wird. Editorial passt zum
+// Mockup-Rahmen; Theme wechseln = nur diese Zeile.
+const PRODUCT_THEME = 'editorial';
+
 const UspSection = styled.section`
   position: relative;
   overflow: hidden;
@@ -1392,14 +1397,13 @@ const Stage = styled.div`
 
 
 // ── Text ────────────────────────────────────────────────────────────────
-// Fertiges Mockup: nichts wird beschnitten, das Seitenverhältnis kommt vom
-// Bild selbst. multiply blendet den hellen Bildhintergrund in die florale
-// Fläche, damit kein weißer Kasten darauf liegt.
-const Mockup = styled.img`
-  display: block;
+// Geräterahmen mit transparenten Displays. Die Screenshots liegen darunter
+// und scheinen durch die Aussparungen — kein Zuschnitt, kein Blend-Mode,
+// und der florale Hintergrund bleibt rundherum sichtbar.
+const Mockup = styled.div`
+  position: relative;
   width: 100%;
-  height: auto;
-  mix-blend-mode: multiply;
+  aspect-ratio: ${images.productMockupScreens.aspect};
   transition: transform 500ms ${motion.ease};
 
   &:hover { transform: scale(1.012); }
@@ -1407,6 +1411,36 @@ const Mockup = styled.img`
   @media (prefers-reduced-motion: reduce) {
     transition: none;
     &:hover { transform: none; }
+  }
+`;
+
+// liegt ÜBER den Screens und stanzt sie optisch aus
+const MockupFrame = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+`;
+
+const ScreenSlot = styled.div`
+  position: absolute;
+  overflow: hidden;
+  background: ${brand.sand};
+  z-index: 1;
+
+  left: ${p => p.$rect.left};
+  top: ${p => p.$rect.top};
+  width: ${p => p.$rect.width};
+  height: ${p => p.$rect.height};
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
 `;
 
@@ -1589,11 +1623,28 @@ const USPSection = () => {
       <UspSection id="features" ref={sectionRef}>
         <UspInner>
           <Stage $visible={visible}>
-            <Mockup
-              src={images.productMockup}
-              alt="S&I. Hochzeitswebsite auf Laptop und Smartphone"
-              loading="lazy"
-            />
+            <Mockup>
+              <ScreenSlot $rect={images.productMockupScreens.laptop}>
+                <img
+                  src={THEME_SCREENSHOTS[PRODUCT_THEME] || THEME_HEROES[PRODUCT_THEME]}
+                  alt={`S&I. Hochzeitswebsite im Design ${PRODUCT_THEME}`}
+                  loading="lazy"
+                />
+              </ScreenSlot>
+              <ScreenSlot $rect={images.productMockupScreens.phone}>
+                <img
+                  src={THEME_MOBILE_SCREENS[PRODUCT_THEME]}
+                  alt="Dieselbe Hochzeitswebsite auf dem Smartphone"
+                  loading="lazy"
+                />
+              </ScreenSlot>
+              <MockupFrame
+                src={images.productMockup}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+            </Mockup>
           </Stage>
 
           <UspCopy>
