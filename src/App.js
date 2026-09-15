@@ -18,7 +18,6 @@ import ThemeShowcase from './components/marketing/ThemeShowcase';
 import ContactSection from './components/marketing/ContactSection';
 import HowItWorksSection from './components/marketing/HowItWorksSection';
 import USPSection from './components/marketing/USPSection';
-import CooperationSection from './components/marketing/CooperationSection';
 import DemoWedding from './components/marketing/DemoWedding';
 // FoundersIntro, AboutSection, WhyUsSection und ComponentsShowcase sind
 // bewusst nicht mehr auf der Homepage — siehe Kommentar bei den Sections.
@@ -51,6 +50,7 @@ const BlogPage = React.lazy(() => import('./components/blog/BlogPage'));
 const BlogArticle = React.lazy(() => import('./components/blog/BlogArticle'));
 const ImpressumPage = React.lazy(() => import('./components/shared/ImpressumPage'));
 const DatenschutzPage = React.lazy(() => import('./components/shared/DatenschutzPage'));
+const KooperationenPage = React.lazy(() => import('./pages/KooperationenPage'));
 const HochzeitsdatumFinder = React.lazy(() => import('./components/tools/HochzeitsdatumFinder'));
 const BudgetRechner = React.lazy(() => import('./components/tools/BudgetRechner'));
 const QuizGenerator = React.lazy(() => import('./components/tools/QuizGenerator'));
@@ -267,9 +267,9 @@ function MarketingPage() {
           <AnimatedSection delay={100}>
             <ContactSection />
           </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <CooperationSection />
-          </AnimatedSection>
+          {/* Kooperationen stand hier zwischen Formular und Abschluss und
+              richtete sich an Dienstleister statt an Paare — jetzt unter
+              /kooperationen, verlinkt im Footer. */}
 
           {/* 09 ABSCHLUSS */}
           <FinalCTA />
@@ -377,6 +377,13 @@ function App() {
               <Route path="/brautpaar-quiz" element={
                 <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAF6EF' }} />}>
                   <QuizGenerator />
+                </Suspense>
+              } />
+
+              {/* Kooperationen — bewusst eigene Seite, nicht im Homepage-Funnel */}
+              <Route path="/kooperationen" element={
+                <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+                  <KooperationenPage />
                 </Suspense>
               } />
 

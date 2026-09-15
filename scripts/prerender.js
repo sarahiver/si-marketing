@@ -478,6 +478,19 @@ async function main() {
       noIndex: true,
     },
     {
+      // Kooperationen: eigene Seite, indexierbar — richtet sich an
+      // Dienstleister, nicht an Paare.
+      path: '/kooperationen',
+      title: 'Kooperationen & Partner | S&I.',
+      description: 'Ihr seid Hochzeitsdienstleister, Fotografin, Location oder Planerin? Lasst uns über eine Zusammenarbeit mit S&I. sprechen.',
+      bodyHtml: '<h1>Kooperationen &amp; Partner</h1>'
+        + '<p>S&amp;I. gestaltet individuelle Hochzeitswebsites aus Hamburg. '
+        + 'Für Fotografinnen und Fotografen, Locations, Planerinnen, Papeterie '
+        + 'und andere Hochzeitsdienstleister bieten wir Kooperationen an — '
+        + 'schreibt uns, dann besprechen wir, was zusammenpasst.</p>'
+        + '<p><a href="/">Zur Startseite</a> · <a href="/blog">Ratgeber</a></p>',
+    },
+    {
       path: '/impressum',
       title: 'Impressum | S&I.',
       description: 'Impressum von S&I. — Premium Hochzeitswebsites aus Hamburg: Anbieterkennzeichnung, Kontakt und rechtliche Hinweise gemäß § 5 TMG.',

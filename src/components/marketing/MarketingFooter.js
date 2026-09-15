@@ -691,12 +691,13 @@ const MarketingFooter = () => {
   const year = new Date().getFullYear();
 
   const navItems = [
-    { id: 'features', label: 'Features' },
     { id: 'themes', label: 'Designs' },
+    { id: 'howitworks', label: 'Ablauf' },
     { id: 'pricing', label: 'Preise' },
     { id: 'blog', label: 'Ratgeber', isRoute: true },
-    { id: 'about', label: 'Über uns' },
     { id: 'contact', label: 'Kontakt' },
+    // Angebot für Dienstleister — hier statt im Homepage-Funnel
+    { id: 'kooperationen', label: 'Kooperationen', isRoute: true },
   ];
 
   const handleLinkClick = (e, targetId, isRoute) => {
