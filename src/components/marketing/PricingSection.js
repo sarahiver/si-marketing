@@ -1272,7 +1272,7 @@ const SheetPhoto = styled.div`
   bottom: 0;
   width: min(62%, 900px);
   z-index: 0;
-  background: url(${images.pricingDetail}) right center / cover no-repeat;
+  background: url(${images.pricingDetail}) center / cover no-repeat;
 
   -webkit-mask-image: linear-gradient(
     to right,
