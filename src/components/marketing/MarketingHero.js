@@ -5,7 +5,7 @@ import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import {
   ALL_DEMOS, THEME_SCREENSHOTS, THEME_MOBILE_SCREENS, THEME_VIDEO_PREVIEWS,
-  phoneCardUrl, demoUrl, setStyleChoice, trackDemoClick,
+  phoneCardUrl, demoUrl, videoPosterUrl, setStyleChoice, trackDemoClick,
 } from './demoData';
 import {
   brand, font, type, leading, layout, motion, images,
@@ -1384,7 +1384,7 @@ const MarketingHero = () => {
                       loop
                       playsInline
                       preload="metadata"
-                      poster={THEME_SCREENSHOTS[active.id]}
+                      poster={videoPosterUrl(active.id) || THEME_SCREENSHOTS[active.id]}
                       src={THEME_VIDEO_PREVIEWS[active.id]}
                       aria-label={`Vorschau der Hochzeitswebsite ${active.name}`}
                     />

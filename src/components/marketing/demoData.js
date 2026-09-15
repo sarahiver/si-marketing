@@ -114,6 +114,21 @@ export const THEME_VIDEO_PREVIEWS = {
 // Themes, deren Demo horizontal scrollt — die Desktop-Preview scrollt dann
 // von links nach rechts statt von oben nach unten. Der Full-Page-Screenshot
 // muss dafür QUER sein (ein hoher, breiter Streifen der ganzen Seite).
+// Poster aus dem Video selbst: Cloudinary schneidet mit so_<sekunde> einen
+// Frame heraus und liefert ihn als Bild aus.
+//
+// Warum nicht THEME_SCREENSHOTS als Poster: Die Videos zeigen durchgehend die
+// aktuellen Lea-&-Ben-Demos (Jul 2026), die Desktop-Screenshots stammen aus
+// drei älteren Aufnahmen — teils noch Feb 2026. Als Standbild vor dem Video
+// gäbe das einen sichtbaren Bruch beim Hover.
+export const videoPosterUrl = (id, second = 2) => {
+  const url = THEME_VIDEO_PREVIEWS[id];
+  if (!url) return undefined;
+  return url
+    .replace('/video/upload/q_auto/', `/video/upload/q_auto,so_${second}/`)
+    .replace(/\.mp4$/, '.jpg');
+};
+
 export const HORIZONTAL_THEMES = ['video'];
 
 // Thumbnail-Crop vom oberen Seitenbereich (für Grids/Karten)

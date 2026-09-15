@@ -12,13 +12,15 @@ import {
 } from '../../styles/brand';
 import {
   ALL_DEMOS, THEME_SCREENSHOTS, THEME_HEROES, THEME_VIDEO_PREVIEWS,
-  HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl,
+  HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl, videoPosterUrl,
   setStyleChoice, trackDemoClick,
 } from './demoData';
 
-// Für 'modern' existiert kein Desktop-Screenshot — ohne Fallback bliebe die
-// Karte statisch leer, seit das Video erst bei Hover einblendet.
-const posterFor = (id) => THEME_SCREENSHOTS[id] || THEME_HEROES[id];
+// Poster = Standbild aus demselben Video. So zeigen Ruhezustand und Hover
+// dieselbe Demo; die älteren THEME_SCREENSHOTS dienen nur noch als Fallback
+// (und THEME_HEROES für 'modern', wo kein Desktop-Screenshot existiert).
+const posterFor = (id) =>
+  videoPosterUrl(id) || THEME_SCREENSHOTS[id] || THEME_HEROES[id];
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
