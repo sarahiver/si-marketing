@@ -90,10 +90,16 @@ const cld = (id, w) =>
   `https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_${w}/${id}`;
 
 export const images = {
-  // vorhandenes Asset, bisher schon im Hero
-  heroDesktop: cld('v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg', 2000),
-  heroTablet: cld('v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg', 1200),
-  heroMobile: cld('v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg', 800),
+  // Hero: Editorial Wedding, natürliches Licht, ruhige rechte Bildhälfte für
+  // die Produktvisualisierung. Im Projekt lag kein eigenes Hochzeitsfoto in
+  // Hero-Qualität — das bisherige Luxe-Motiv wirkte eher Fashion als Wedding.
+  // Ersetzen: nur diese drei Zeilen, das Layout bleibt unverändert.
+  heroDesktop: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=2000',
+  heroTablet: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200',
+  heroMobile: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800',
+
+  // bisheriges Motiv, falls ihr zurückwechseln wollt
+  heroLuxeLegacy: cld('v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg', 2000),
 
   // Abschluss-CTA — ruhiges Detailmotiv statt Brautpaar-Porträt
   finalCta: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000',
