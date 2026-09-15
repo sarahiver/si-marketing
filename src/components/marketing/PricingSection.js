@@ -1489,12 +1489,15 @@ const AddonRowItem = styled.div`
   }
 `;
 
+// Liegt jetzt auf dem Foto statt auf der Sandfläche — helle Schrift mit
+// weichem Schatten, sonst verschwindet sie im dunklen Bildbereich.
 const PricingNote = styled.span`
   ${scriptNote}
   position: absolute;
   left: clamp(1rem, 4vw, 3rem);
   top: -1.5rem;
-  color: ${brand.olive};
+  color: rgba(250, 249, 246, 0.92);
+  text-shadow: 0 2px 18px rgba(34, 34, 34, 0.45);
 
   @media (max-width: 1200px) { display: none; }
 `;
