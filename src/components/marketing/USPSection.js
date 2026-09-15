@@ -13,7 +13,6 @@ import {
   eyebrowStyle,
 } from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
-import { THEME_MOBILE_SCREENS } from './demoData';
 
 // ============================================
 // CONTENT DATA
@@ -1302,10 +1301,6 @@ const CTASubline = styled.p`
 // Beide zeigen eine echte Demo aus demoData — keine Fake-UI.
 // ════════════════════════════════════════════════════════════════════════
 
-// Der Laptop zeigt ein festes Produktbild (brand.js → images.productScreen).
-// PRODUCT_THEME steuert nur noch den Mobile-Screenshot im Phone.
-const PRODUCT_THEME = 'classic';
-
 const UspSection = styled.section`
   position: relative;
   overflow: hidden;
@@ -1390,87 +1385,31 @@ const Stage = styled.div`
   @media (max-width: 1000px) { order: 2; }
 `;
 
-const Laptop = styled.div`
-  position: relative;
-`;
 
-const LaptopLid = styled.div`
-  background: #1b1b1b;
-  border-radius: 10px 10px 4px 4px;
-  padding: 10px 10px 12px;
-  box-shadow: 0 28px 64px rgba(34, 34, 34, 0.18);
-  transition: transform 420ms ${motion.ease}, box-shadow 420ms ${motion.ease};
 
-  ${Laptop}:hover & {
-    transform: scale(1.012);
-    box-shadow: 0 34px 76px rgba(34, 34, 34, 0.22);
-  }
-`;
 
-const LaptopScreen = styled.div`
-  aspect-ratio: 16 / 10;
-  border-radius: 3px;
-  overflow: hidden;
-  background: ${brand.sand};
 
-  img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-`;
 
-const LaptopBase = styled.div`
-  height: 12px;
-  width: 108%;
-  transform: translateX(-3.7%);
-  background: linear-gradient(to bottom, #2a2a2a 0%, #171717 55%, #0f0f0f 100%);
-  border-radius: 0 0 10px 10px;
-
-  &::after {
-    content: '';
-    display: block;
-    width: 14%;
-    height: 4px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 0 0 4px 4px;
-  }
-`;
-
-const ProductPhone = styled.div`
-  position: absolute;
-  right: -3%;
-  bottom: -10%;
-  width: 17%;
-  min-width: 92px;
-  display: block;
-  background: #0d0d0d;
-  border-radius: 18px;
-  padding: 5px;
-  box-shadow: 0 20px 48px rgba(34, 34, 34, 0.26);
-  z-index: 3;
-  transition: transform 420ms ${motion.ease} 120ms, opacity 500ms ${motion.ease} 120ms;
-  opacity: ${p => (p.$visible ? 1 : 0)};
-  transform: translateY(${p => (p.$visible ? '0' : '18px')});
-
-  &:hover { transform: translateY(-5px); }
-
-  @media (max-width: 1000px) {
-    right: 4%;
-    bottom: -8%;
-    width: 24%;
-  }
-
-  @media (prefers-reduced-motion: reduce) { opacity: 1; transform: none; }
-`;
-
-const PhoneScreen = styled.div`
-  aspect-ratio: 9 / 19;
-  border-radius: 14px;
-  overflow: hidden;
-  background: ${brand.sand};
-
-  img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-`;
 
 // ── Text ────────────────────────────────────────────────────────────────
+// Fertiges Mockup: nichts wird beschnitten, das Seitenverhältnis kommt vom
+// Bild selbst. multiply blendet den hellen Bildhintergrund in die florale
+// Fläche, damit kein weißer Kasten darauf liegt.
+const Mockup = styled.img`
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  transition: transform 500ms ${motion.ease};
+
+  &:hover { transform: scale(1.012); }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:hover { transform: none; }
+  }
+`;
+
 const UspCopy = styled.div`
   @media (max-width: 1000px) { order: 1; }
 `;
@@ -1650,28 +1589,11 @@ const USPSection = () => {
       <UspSection id="features" ref={sectionRef}>
         <UspInner>
           <Stage $visible={visible}>
-            <Laptop>
-              <LaptopLid>
-                <LaptopScreen>
-                  <img
-                    src={images.productScreen}
-                    alt="S&I. Hochzeitswebsite auf dem Laptop"
-                    loading="lazy"
-                  />
-                </LaptopScreen>
-              </LaptopLid>
-              <LaptopBase />
-            </Laptop>
-
-            <ProductPhone $visible={visible}>
-              <PhoneScreen>
-                <img
-                  src={THEME_MOBILE_SCREENS[PRODUCT_THEME]}
-                  alt="Dieselbe Hochzeitswebsite auf dem Smartphone"
-                  loading="lazy"
-                />
-              </PhoneScreen>
-            </ProductPhone>
+            <Mockup
+              src={images.productMockup}
+              alt="S&I. Hochzeitswebsite auf Laptop und Smartphone"
+              loading="lazy"
+            />
           </Stage>
 
           <UspCopy>
