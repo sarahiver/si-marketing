@@ -19,7 +19,7 @@ import ContactSection from './components/marketing/ContactSection';
 import HowItWorksSection from './components/marketing/HowItWorksSection';
 import USPSection from './components/marketing/USPSection';
 import CooperationSection from './components/marketing/CooperationSection';
-import CaseStudy from './components/marketing/CaseStudy';
+import DemoWedding from './components/marketing/DemoWedding';
 // FoundersIntro, AboutSection, WhyUsSection und ComponentsShowcase sind
 // bewusst nicht mehr auf der Homepage — siehe Kommentar bei den Sections.
 import FinalCTA from './components/marketing/FinalCTA';
@@ -221,7 +221,7 @@ function MarketingPage() {
               09 Final CTA · Footer
 
               Bewusst entfernt bzw. integriert:
-              - FoundersIntro + AboutSection → als Zeile in CaseStudy
+              - FoundersIntro + AboutSection → nicht mehr auf der Homepage
               - WhyUsSection → die USPs stecken in Produkt und Prozess
               - ComponentsShowcase → Funktionen gehören in den Produktkontext,
                 nicht in einen eigenen Feature-Trichter
@@ -248,9 +248,9 @@ function MarketingPage() {
             <PricingSection />
           </AnimatedSection>
 
-          {/* 05 VERTRAUEN — Case Study inkl. Sarah & Iver */}
+          {/* 05 DEMO-HOCHZEIT — Lea & Ben, ausdrücklich als Demo-Paar */}
           <AnimatedSection delay={50}>
-            <CaseStudy />
+            <DemoWedding />
           </AnimatedSection>
 
           {/* 06 PROZESS */}
