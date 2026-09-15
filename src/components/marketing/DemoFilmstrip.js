@@ -339,12 +339,6 @@ const StyleWords = styled.span`
 // Zweiter, leiserer CTA unter jeder Karte: der Weg von "gefällt mir"
 // zur Anfrage, ohne dass die Demo selbst verlassen werden muss.
 
-const Footer = styled.div`
-  text-align: center;
-  margin-top: 1.5rem;
-  ${eyebrowStyle}
-  color: ${brand.inkMuted};
-`;
 
 // Einzelkarte — hält den Video-Ref, damit die Preview erst bei Hover abspielt
 const DemoCard = ({ demo, isMobile, CardComp }) => {
@@ -355,11 +349,19 @@ const DemoCard = ({ demo, isMobile, CardComp }) => {
 
   const handleEnter = () => {
     setPlaying(true);
-    videoRef.current?.play().catch(() => {});
+    if (videoRef.current) {
+      // immer von vorn: sonst läuft das Video dort weiter, wo es beim
+      // letzten Hover stehengeblieben ist, und der Hero fehlt
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
   };
   const handleLeave = () => {
     setPlaying(false);
-    videoRef.current?.pause();
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
   };
 
   return (
@@ -463,7 +465,6 @@ const DemoFilmstrip = () => {
           />
         ))}
       </TrackComp>
-      <Footer>Alle Designs sind live erlebbar</Footer>
     </Section>
   );
 };

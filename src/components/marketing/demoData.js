@@ -121,7 +121,9 @@ export const THEME_VIDEO_PREVIEWS = {
 // aktuellen Lea-&-Ben-Demos (Jul 2026), die Desktop-Screenshots stammen aus
 // drei älteren Aufnahmen — teils noch Feb 2026. Als Standbild vor dem Video
 // gäbe das einen sichtbaren Bruch beim Hover.
-export const videoPosterUrl = (id, second = 2) => {
+// second = 0: der erste Frame zeigt den Hero der jeweiligen Demo — genau das,
+// was in den Vorschaufenstern zu sehen sein soll.
+export const videoPosterUrl = (id, second = 0) => {
   const url = THEME_VIDEO_PREVIEWS[id];
   if (!url) return undefined;
   return url
