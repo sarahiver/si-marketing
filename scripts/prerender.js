@@ -270,8 +270,23 @@ function generateHtml(template, route) {
   }
 
   // Statischer Inhalt in <div id="root"> — React ersetzt ihn beim Mount.
+  //
+  // Damit Besucher ihn nicht kurz aufblitzen sehen: Das Inline-Skript im
+  // <head> setzt sofort die Klasse js-enabled auf <html>. Die zugehörige
+  // Regel blendet den statischen Block dann aus, BEVOR der Browser das
+  // erste Mal zeichnet. Ohne JavaScript (Crawler ohne JS-Rendering) bleibt
+  // er sichtbar — dafür ist er ja da.
   if (route.bodyHtml) {
-    html = html.replace(/<div id="root">\s*<\/div>/, `<div id="root">${route.bodyHtml}</div>`);
+    html = html.replace(
+      /<div id="root">\s*<\/div>/,
+      `<div id="root"><div data-prerender="1">${route.bodyHtml}</div></div>`
+    );
+    html = html.replace(
+      '</head>',
+      '    <style>.js-enabled [data-prerender="1"]{display:none}</style>\n'
+      + '    <script>document.documentElement.className+=" js-enabled";</script>\n'
+      + '  </head>'
+    );
   }
 
   return html;
