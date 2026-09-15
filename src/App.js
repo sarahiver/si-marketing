@@ -15,19 +15,18 @@ import MarketingHero from './components/marketing/MarketingHero';
 import MarketingFooter from './components/marketing/MarketingFooter';
 import PricingSection from './components/marketing/PricingSection';
 import ThemeShowcase from './components/marketing/ThemeShowcase';
-import ComponentsShowcase from './components/marketing/ComponentsShowcase';
 import ContactSection from './components/marketing/ContactSection';
 import HowItWorksSection from './components/marketing/HowItWorksSection';
-import AboutSection from './components/marketing/AboutSection';
-import WhyUsSection from './components/marketing/WhyUsSection';
 import USPSection from './components/marketing/USPSection';
 import CooperationSection from './components/marketing/CooperationSection';
+import CaseStudy from './components/marketing/CaseStudy';
+// FoundersIntro, AboutSection, WhyUsSection und ComponentsShowcase sind
+// bewusst nicht mehr auf der Homepage — siehe Kommentar bei den Sections.
 import FinalCTA from './components/marketing/FinalCTA';
 import PromoBanner from './components/marketing/PromoBanner';
 import BotanicalLeaves from './components/marketing/BotanicalLeaves';
 import AnimatedSection from './components/marketing/AnimatedSection';
 import StickyDemoBar from './components/marketing/StickyDemoBar';
-import FoundersIntro from './components/marketing/FoundersIntro';
 import CTABand from './components/marketing/CTABand';
 import FAQSection from './components/marketing/FAQSection';
 
@@ -215,46 +214,43 @@ function MarketingPage() {
       ) : (
         <>
           {/* ═══════════════════════════════════════════════════════════
-              HOMEPAGE-DRAMATURGIE (Sep 2026)
-              01 Emotion → 02 Stil → 03 Individualität → 04 Service
-              → 05 Vertrauen → 06 Prozess → 07 Funktionen → 08 FAQ → 09 Anfrage
+              ZIELARCHITEKTUR DER LANDINGPAGE (Sep 2026)
 
-              Vorher stand ComponentsShowcase mitten im Funnel und Pricing
-              hinter drei Erklärsektionen. Die Seite verkaufte damit
-              Funktionen, bevor sie das Ergebnis gezeigt hatte.
+              01 Hero · 02 Design Collection · 03 Produkt · 04 Pricing
+              05 Echte Geschichten · 06 Prozess · 07 FAQ · 08 Anfrage
+              09 Final CTA · Footer
+
+              Bewusst entfernt bzw. integriert:
+              - FoundersIntro + AboutSection → als Zeile in CaseStudy
+              - WhyUsSection → die USPs stecken in Produkt und Prozess
+              - ComponentsShowcase → Funktionen gehören in den Produktkontext,
+                nicht in einen eigenen Feature-Trichter
+              Die Komponenten bleiben im Repo, nur nicht mehr auf der Homepage.
               ═══════════════════════════════════════════════════════════ */}
 
           {/* 01 EMOTION */}
           <MarketingHero />
 
-          {/* 02 STIL — der Filmstrip mit allen acht Demos, direkt nach dem
-              Hero: das Produkt zeigen, bevor irgendetwas erklärt wird */}
+          {/* 02 STIL — acht Designwelten */}
           <AnimatedSection>
             <ThemeShowcase />
           </AnimatedSection>
 
-          {/* 03 INDIVIDUALITÄT */}
+          {/* 03 PRODUKT — großes Mockup, Funktionen im Kontext */}
           <AnimatedSection delay={100}>
             <USPSection />
           </AnimatedSection>
           <CTABand />
 
-          {/* 04 SERVICE — "Wie viel möchtet ihr selbst übernehmen?"
-              Pricing jetzt weit vorn, weil es die zentrale Frage beantwortet */}
+          {/* 04 PREIS */}
           <AnimatedSection delay={100}>
             <PromoBanner />
             <PricingSection />
           </AnimatedSection>
 
-          {/* 05 VERTRAUEN */}
+          {/* 05 VERTRAUEN — Case Study inkl. Sarah & Iver */}
           <AnimatedSection delay={50}>
-            <FoundersIntro />
-          </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <AboutSection />
-          </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <WhyUsSection />
+            <CaseStudy />
           </AnimatedSection>
 
           {/* 06 PROZESS */}
@@ -262,17 +258,12 @@ function MarketingPage() {
             <HowItWorksSection />
           </AnimatedSection>
 
-          {/* 07 FUNKTIONEN — bewusst nachgelagert: sekundär, nicht führend */}
-          <AnimatedSection delay={100}>
-            <ComponentsShowcase />
-          </AnimatedSection>
-
-          {/* 08 FAQ */}
+          {/* 07 FAQ */}
           <AnimatedSection delay={50}>
             <FAQSection />
           </AnimatedSection>
 
-          {/* 09 ANFRAGE */}
+          {/* 08 ANFRAGE */}
           <AnimatedSection delay={100}>
             <ContactSection />
           </AnimatedSection>
@@ -280,7 +271,7 @@ function MarketingPage() {
             <CooperationSection />
           </AnimatedSection>
 
-          {/* 10 ABSCHLUSS — emotionaler Conversion-Moment vor dem Footer */}
+          {/* 09 ABSCHLUSS */}
           <FinalCTA />
           <MarketingFooter />
           <StickyDemoBar />

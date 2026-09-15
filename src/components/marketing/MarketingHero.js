@@ -1254,13 +1254,13 @@ const MarketingHero = () => {
           <BrandHeroCopy>
             <BrandEyebrow>Premium Hochzeitswebsites</BrandEyebrow>
             <BrandH1>
-              Mehr als eine Website.
-              <em>Eure Geschichte.</em>
+              Eure Geschichte.
+              <em>Für immer online.</em>
             </BrandH1>
             <BrandLead>
-              Eure Hochzeitswebsite wird individuell gestaltet — passend zu euch,
-              eurer Hochzeit und eurem Stil. Von uns begleitet, von der ersten
-              Idee bis zum letzten Foto danach.
+              Stilvoll. Persönlich. Unvergesslich. Wir gestalten gemeinsam eure
+              Hochzeitswebsite — modern, emotional und mit allem, was eure Gäste
+              wirklich brauchen.
             </BrandLead>
             <BrandCTAs>
               <BrandPrimary
@@ -1277,7 +1277,7 @@ const MarketingHero = () => {
                   scrollToSection('themes');
                 }}
               >
-                Designs ansehen →
+                Demo ansehen →
               </BrandPrimary>
               <BrandSecondary
                 type="button"
@@ -1296,7 +1296,7 @@ const MarketingHero = () => {
               </BrandSecondary>
             </BrandCTAs>
             <BrandTrust>
-              8 Designwelten · Individuell gestaltet · Persönlich begleitet
+              8 Designwelten · Individuell gestaltet · Persönlich begleitet von S&I.
             </BrandTrust>
           </BrandHeroCopy>
 
