@@ -1309,14 +1309,18 @@ const MarketingHero = () => {
         <HeroInner>
           <HeroCopy>
             <HeroEyebrow>Premium Hochzeitswebsites</HeroEyebrow>
+            {/* "Für immer online" bewusst entfernt: Das Hosting endet drei
+                Monate nach der Hochzeit, der Claim wäre ein falsches
+                Versprechen. */}
             <HeroH1>
               Eure Geschichte.
-              <em>Für immer online.</em>
+              <em>Für eure Hochzeit online.</em>
             </HeroH1>
             <HeroLead>
-              <strong>Stilvoll. Persönlich. Unvergesslich.</strong>
-              Wir gestalten eure Hochzeitswebsite — modern, emotional und mit
-              allem, was eure Gäste wirklich brauchen.
+              <strong>Stilvoll. Persönlich. Unverwechselbar.</strong>
+              Wir gestalten gemeinsam mit euch eine Hochzeitswebsite, die modern
+              aussieht, zu euch passt und alles zusammenbringt, was eure Gäste
+              wissen müssen.
             </HeroLead>
             <BrandCTAs>
               <BrandPrimary
@@ -1333,7 +1337,7 @@ const MarketingHero = () => {
                   scrollToSection('themes');
                 }}
               >
-                Demo ansehen →
+                Designs ansehen →
               </BrandPrimary>
               <BrandSecondary
                 type="button"

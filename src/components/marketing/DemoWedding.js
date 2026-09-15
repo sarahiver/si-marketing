@@ -24,7 +24,7 @@ const DEMO_WEDDING = {
   date: '25. Juni 2027',
   headline: 'Eine Hochzeit. Ein ganz eigener Stil.',
   text:
-    'Lea & Ben zeigen, wie persönlich eine S&I. Website werden kann. Save the Date, Ablauf, Location, RSVP, Galerie und alles, was eure Gäste wissen möchten — auf einer Seite, die sich nach euch anfühlt.',
+    'Lea & Ben stehen stellvertretend für ein Paar, das seine Hochzeit persönlich, modern und mit viel Liebe zum Detail plant. Vom ersten Stilgefühl bis zur fertigen Website lässt sich alles auf das Paar abstimmen — von Farben und Bildern bis zu Struktur und Inhalten.',
   // Verbindung zurück zur Theme Collection darüber
   bridge: 'Eine Geschichte. Acht Möglichkeiten, sie zu erzählen.',
   // Bewusst Alltagsbilder statt Hochzeitsszene: die Hochzeit kommt noch.
@@ -33,9 +33,9 @@ const DEMO_WEDDING = {
   photoSecond: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1789471181/lea-ben-berge_cnionc.jpg',
   photoSecondAlt: 'Lea und Ben in den Bergen',
   // Theme, dessen Demo der CTA öffnet und dessen Vorschau rechts erscheint
-  theme: 'botanical',
+  theme: 'editorial',
   note: 'Lea & Ben sind unser Demo-Paar — ihre Hochzeit steht noch bevor.',
-  cta: 'Website ansehen',
+  cta: 'Lea & Ben ansehen',
 };
 
 // ── LAYOUT ──────────────────────────────────────────────────────────────

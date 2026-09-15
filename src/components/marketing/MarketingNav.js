@@ -446,7 +446,7 @@ const MarketingNav = () => {
   // Feature-Section mehr gibt; "Kontakt" ebenfalls, weil jede Section einen
   // Anfrage-CTA hat und die Nav den Demo-Weg betonen soll.
   const navItems = [
-    { id: 'themes', label: 'Themen' },
+    { id: 'themes', label: 'Designs' },
     { id: 'howitworks', label: 'Ablauf' },
     { id: 'pricing', label: 'Preise' },
     { id: 'blog', label: 'Ratgeber', isRoute: true },

@@ -451,7 +451,8 @@ const DemoFilmstrip = () => {
           Nicht einfach eine Vorlage.<br /><em>Sondern euer Stil.</em>
         </Title>
         <Sub>
-          Acht Designwelten — findet den Stil, der zu euch passt.
+          Acht Designwelten — von zeitlos bis modern. Findet den Stil,
+          der zu euch passt.
         </Sub>
       </Header>
       <TrackComp>

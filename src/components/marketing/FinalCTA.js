@@ -168,10 +168,10 @@ const FinalCTA = () => {
             rel="noopener noreferrer"
             onClick={() => trackDemoClick('classic', href, 'final_cta')}
           >
-            Demo ansehen →
+            Designs ansehen →
           </Primary>
           <Secondary type="button" onClick={scrollToContact}>
-            Anfrage starten
+            Anfrage starten →
           </Secondary>
         </Actions>
       </Inner>

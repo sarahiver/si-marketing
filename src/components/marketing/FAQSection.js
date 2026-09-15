@@ -38,6 +38,14 @@ const FAQS = [
     a: 'Ja. Beim Website-Paket jederzeit selbst über euer Dashboard. Beim All-In-Paket sagt ihr uns Bescheid und wir übernehmen die Änderung für euch.',
   },
   {
+    q: 'Können wir eine eigene Domain verwenden?',
+    a: 'Ja. Eure Website läuft unter einer eigenen Adresse. Wenn ihr bereits eine Wunschdomain habt, richten wir sie ein — ansonsten schlagen wir euch passende vor.',
+  },
+  {
+    q: 'Was ist im Preis enthalten?',
+    a: 'Alle Website-Komponenten, die gemeinsame Design-Abstimmung, die technische Einrichtung, der QR-Code für eure Papeterie und das Hosting bis drei Monate nach der Hochzeit. Beim All-In-Paket zusätzlich Save the Date, Wedding Archive und der komplette Aufbau durch uns.',
+  },
+  {
     q: 'Wie lange bleibt die Website online?',
     a: 'Bis drei Monate nach eurer Hochzeit. Das deckt die gesamte Planungsphase ab und gibt euren Gästen danach noch Zeit, ihre Fotos hochzuladen.',
   },

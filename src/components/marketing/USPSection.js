@@ -1484,20 +1484,55 @@ const UspList = styled.div`
   margin-bottom: 2.5rem;
 `;
 
+const Num = styled.span`
+  font-family: ${font.serif};
+  font-size: 1.05rem;
+  color: ${brand.olive};
+  line-height: 1.4;
+`;
+
+// Kompakte Funktionsliste — ersetzt die frühere Components-Section
+const FunctionBlock = styled.div`
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid ${brand.line};
+
+  p {
+    ${eyebrowStyle}
+    color: ${brand.inkMuted};
+    margin-bottom: 0.9rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+  }
+
+  li {
+    position: relative;
+    padding-left: 0.85rem;
+    font-family: ${font.sans};
+    font-size: 0.85rem;
+    color: ${brand.inkSoft};
+
+    &::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: ${brand.taupe};
+    }
+  }
+`;
+
 const UspItem = styled.div`
   display: grid;
-  grid-template-columns: 1.5rem 1fr;
+  grid-template-columns: 1.6rem 1fr;
   gap: 0.9rem;
   align-items: start;
-
-  svg {
-    width: 1.1rem;
-    height: 1.1rem;
-    margin-top: 0.2rem;
-    stroke: ${brand.olive};
-    fill: none;
-    stroke-width: 1.2;
-  }
 
   h3 {
     font-family: ${font.sans};
@@ -1518,27 +1553,36 @@ const UspItem = styled.div`
 
 
 // Vier Kernfunktionen. Icons als schlichte Inline-SVGs — keine neue Library.
+// Die drei Argumente beantworten: Warum S&I. statt Baukasten?
+// Bewusst keine Funktionen — die stehen kompakt in FUNCTION_LIST darunter.
 const CORE_FEATURES = [
   {
-    title: 'RSVP',
-    desc: 'Eure Gäste sagen direkt online zu oder ab.',
-    icon: <path d="M3 5h18v14H3z M3 5l9 7 9-7" />,
+    num: '01',
+    title: 'Individuell gestaltet',
+    desc: 'Euer Design entsteht gemeinsam mit euch — mit den Farben, Bildern und Details, die zu eurer Hochzeit passen.',
   },
   {
-    title: 'Zeitplan',
-    desc: 'Alle Programmpunkte des Tages auf einen Blick.',
-    icon: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
+    num: '02',
+    title: 'Persönlich begleitet',
+    desc: 'Ihr habt nicht einfach ein Tool vor euch. Wir schauen mit drauf, geben Empfehlungen und verfeinern eure Website, bis sie sich richtig anfühlt.',
   },
   {
-    title: 'Location',
-    desc: 'Anfahrt, Ort und alles, was eure Gäste wissen müssen.',
-    icon: <><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></>,
+    num: '03',
+    title: 'Hochwertig umgesetzt',
+    desc: 'Typografie, Bildsprache, Abstände und die Ansicht auf dem Handy werden aufeinander abgestimmt — damit eure Website nicht nach Baukasten aussieht.',
   },
-  {
-    title: 'Galerie',
-    desc: 'Eure Geschichte und eure schönsten Bilder an einem Ort.',
-    icon: <><path d="M3 5h18v14H3z" /><path d="M3 16l5-5 4 4 3-3 6 6" /><circle cx="8.5" cy="9" r="1.5" /></>,
-  },
+];
+
+// Kompakte Übersicht statt eigener Komponenten-Section
+const FUNCTION_LIST = [
+  'RSVP & Zu-/Absagen',
+  'Tagesablauf & Countdown',
+  'Location & Anfahrt',
+  'Unterkünfte & Empfehlungen',
+  'Galerie & Foto-Upload',
+  'Gästebuch & Wunschliste',
+  'Wichtige Kontakte',
+  'weitere Bereiche für eure Hochzeit',
 ];
 
 
@@ -1663,9 +1707,7 @@ const USPSection = () => {
             <UspList>
               {CORE_FEATURES.map(f => (
                 <UspItem key={f.title}>
-                  <svg viewBox="0 0 24 24" aria-hidden="true" strokeLinecap="round" strokeLinejoin="round">
-                    {f.icon}
-                  </svg>
+                  <Num>{f.num}</Num>
                   <div>
                     <h3>{f.title}</h3>
                     <p>{f.desc}</p>
@@ -1673,6 +1715,13 @@ const USPSection = () => {
                 </UspItem>
               ))}
             </UspList>
+
+            <FunctionBlock>
+              <p>Alles, was eure Gäste brauchen:</p>
+              <ul>
+                {FUNCTION_LIST.map(f => <li key={f}>{f}</li>)}
+              </ul>
+            </FunctionBlock>
 
           </UspCopy>
         </UspInner>

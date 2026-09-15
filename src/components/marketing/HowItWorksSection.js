@@ -1042,6 +1042,15 @@ const ProcessTitle = styled.h2`
 `;
 
 // Vier Spalten mit durchlaufender Linie — 01 ── 02 ── 03 ── 04
+const ProcessSub = styled.p`
+  font-family: ${font.sans};
+  font-size: ${type.body};
+  line-height: ${leading.body};
+  color: ${brand.inkSoft};
+  margin: 1.1rem auto 0;
+  max-width: 44ch;
+`;
+
 const Steps = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1147,23 +1156,23 @@ const BRAND_STEPS = [
   {
     num: '01',
     title: 'Gemeinsam besprechen',
-    desc: 'Wir lernen euch und eure Pläne kennen und sprechen über Stil, Farben und Aufbau.',
+    desc: 'Wir lernen euch kennen und finden heraus, welcher Stil zu euch und eurer Hochzeit passt.',
   },
   {
     num: '02',
     title: 'Gestalten & umsetzen',
-    desc: 'Hier entscheidet euer Paket, wie viel Arbeit bei euch bleibt.',
+    desc: 'Wir setzen euer Design und eure Inhalte in eine persönliche Website um.',
     split: true,
   },
   {
     num: '03',
     title: 'Prüfen & verfeinern',
-    desc: 'Wir gehen Design, Inhalte und die mobile Darstellung durch, bis alles sitzt.',
+    desc: 'Wir prüfen Inhalte, Darstellung und die Ansicht auf dem Handy und geben den letzten Feinschliff.',
   },
   {
     num: '04',
     title: 'Go Live',
-    desc: 'Nach eurer Freigabe geht eure Hochzeitswebsite online.',
+    desc: 'Ihr gebt frei — wir bringen eure Hochzeitswebsite online.',
   },
 ];
 
@@ -1188,6 +1197,7 @@ const HowItWorksSection = () => {
           <ProcessHeader>
             <ProcessEyebrow>So einfach geht's</ProcessEyebrow>
             <ProcessTitle>Von der Idee bis zur fertigen Website.</ProcessTitle>
+            <ProcessSub>Einfach, persönlich und ohne Technikstress.</ProcessSub>
           </ProcessHeader>
 
           <Steps>
