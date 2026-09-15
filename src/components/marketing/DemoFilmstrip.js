@@ -6,12 +6,11 @@
 //   4:3-Hero-Bilder (THEME_HEROES in demoData.js — Fallback: Crop aus Full-Page).
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import {
   brand, font, type, leading, layout, motion,
-  eyebrowStyle, buttonPrimary, scriptNote,
+  eyebrowStyle, scriptNote,
 } from '../../styles/brand';
-import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl, trackDemoClick, trackStyleInquiry } from './demoData';
+import { ALL_DEMOS, THEME_SCREENSHOTS, THEME_VIDEO_PREVIEWS, HORIZONTAL_THEMES, STYLE_WORDS, phoneCardUrl, demoUrl, setStyleChoice, trackDemoClick } from './demoData';
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() =>
@@ -88,44 +87,28 @@ const Sub = styled.p`
 // halbe Breite (großes Preview), die übrigen sechs je ein Drittel.
 // Alle acht bleiben sichtbar — sie müssen nur nicht gleich viel Gewicht haben.
 const Grid = styled.div`
-  max-width: ${layout.wide};
+  max-width: ${layout.maxWidth};
   margin: 0 auto;
   padding: 0 ${layout.gutter};
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(2rem, 3vw, 3.5rem);
+  /* Kompakte Kollektion: acht gleichwertige Karten in 4 × 2.
+     Bewusst kleiner als im vorigen Stand — die Collection soll als Ganzes
+     lesbar sein, der WOW-Moment passiert in der Demo, nicht in der Kachel. */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2rem);
 
-  /* Zwei Designs halbbreit, sechs zu je einem Drittel — deutlich größere
-     Previews als im 4er-Raster, damit die Websites beurteilbar sind. */
-  > *:nth-child(-n + 2) { grid-column: span 3; }
-  > *:nth-child(n + 3)  { grid-column: span 2; }
-
-  @media (max-width: 1280px) {
-    > *:nth-child(n + 3) { grid-column: span 3; }
-  }
-  @media (max-width: 780px) {
-    grid-template-columns: 1fr;
-    > *:nth-child(-n + 2), > *:nth-child(n + 3) { grid-column: span 1; }
-  }
+  @media (max-width: 1000px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 `;
 
-const AllDemosRow = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(2.5rem, 5vh, 4rem);
-`;
 
-const AllDemosLink = styled.a`${buttonPrimary}`;
 
 const Frame = styled.div`
   background: #FFFFFF;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(34, 34, 34, 0.14);
+  box-shadow: 0 14px 40px rgba(34, 34, 34, 0.12);
   border: 1px solid ${brand.lineSoft};
   transition: box-shadow ${motion.hover} ${motion.ease};
-
-  ${'' /* Hover verstärkt die Tiefe, nicht die Skalierung */}
 `;
 
 const FrameBar = styled.div`
@@ -273,7 +256,10 @@ const CardGroup = styled.div`
   transition: box-shadow ${motion.hover} ${motion.ease},
               transform ${motion.hover} ${motion.ease};
 
-  &:hover { transform: translateY(-6px); }
+  &:hover {
+    transform: translateY(-4px);
+    ${Frame} { box-shadow: 0 22px 56px rgba(34, 34, 34, 0.18); }
+  }
 `;
 
 const SwipeCardGroup = styled(CardGroup)`
@@ -294,7 +280,7 @@ const CardMeta = styled.div`
 
 const CardName = styled.span`
   font-family: ${font.serif};
-  font-size: clamp(1.5rem, 1.8vw, 1.9rem);
+  font-size: 1.25rem;
   color: ${brand.charcoal};
 `;
 
@@ -318,26 +304,6 @@ const StyleWords = styled.span`
 
 // Zweiter, leiserer CTA unter jeder Karte: der Weg von "gefällt mir"
 // zur Anfrage, ohne dass die Demo selbst verlassen werden muss.
-const StyleInquiry = styled.button`
-  display: block;
-  width: 100%;
-  margin-top: 0.65rem;
-  padding: 0.65rem 0;
-  background: none;
-  border: none;
-  border-top: 1px solid ${brand.line};
-  font-family: ${font.sans};
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: ${brand.inkMuted};
-  cursor: pointer;
-  transition: color ${motion.hover} ${motion.ease};
-
-  &:hover { color: ${brand.olive}; }
-  ${CardGroup}:hover & { color: ${brand.charcoal}; }
-`;
 
 const Footer = styled.div`
   text-align: center;
@@ -371,7 +337,13 @@ const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
       $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
       onMouseEnter={videoSrc ? handleEnter : undefined}
       onMouseLeave={videoSrc ? handleLeave : undefined}
-      onClick={() => trackDemoClick(demo.id, demo.url, isMobile ? 'filmstrip_mobile' : 'filmstrip')}
+      onClick={() => {
+        const placement = isMobile ? 'filmstrip_mobile' : 'filmstrip';
+        // merkt den Stil in der Session: kommt das Paar aus der Demo zurück,
+        // ist er im Anfrageformular vorausgewählt
+        setStyleChoice(demo.id, placement);
+        trackDemoClick(demo.id, demoUrl(demo.id, { placement }), placement);
+      }}
       aria-label={`${demo.name} Live-Demo ansehen`}
     >
       {isMobile ? (
@@ -416,29 +388,15 @@ const DemoCard = ({ demo, isMobile, CardComp, onInquire }) => {
   );
 };
 
-// Karte + Anfrage-CTA als Einheit
-const DemoCardGroup = ({ demo, isMobile, CardComp, Wrapper, onInquire }) => (
+const DemoCardGroup = ({ demo, isMobile, CardComp, Wrapper }) => (
   <Wrapper>
     <DemoCard demo={demo} isMobile={isMobile} CardComp={CardComp} />
-    <StyleInquiry
-      type="button"
-      onClick={() => onInquire(demo.id)}
-      aria-label={`Stil ${demo.name} anfragen`}
-    >
-      Diesen Stil anfragen
-    </StyleInquiry>
   </Wrapper>
 );
 
 const DemoFilmstrip = () => {
   const isMobile = useIsMobile();
-  const navigate = useNavigate();
 
-  // Theme entdecken → Demo ansehen → Stil gefällt → diesen Stil anfragen
-  const handleInquire = (themeId) => {
-    trackStyleInquiry(themeId, isMobile ? 'filmstrip_mobile' : 'filmstrip');
-    navigate(`/#contact?theme=${themeId}`);
-  };
 
   // Desktop zeigt die Kollektion einmal im Grid, mobil bleibt der Swipe-Track
   const demos = ALL_DEMOS;
@@ -454,8 +412,7 @@ const DemoFilmstrip = () => {
           Nicht einfach eine Vorlage.<br /><em>Sondern euer Stil.</em>
         </Title>
         <Sub>
-          Acht Designwelten. Findet den Stil, der zu euch und eurer Hochzeit
-          passt — jede davon eine vollständige Live-Demo.
+          Acht Designwelten — findet den Stil, der zu euch passt.
         </Sub>
       </Header>
       <TrackComp>
@@ -466,20 +423,9 @@ const DemoFilmstrip = () => {
             isMobile={isMobile}
             CardComp={CardComp}
             Wrapper={isMobile ? SwipeCardGroup : CardGroup}
-            onInquire={handleInquire}
           />
         ))}
       </TrackComp>
-      <AllDemosRow>
-        <AllDemosLink
-          href={demoUrl('classic', { placement: 'themes_all' })}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackDemoClick('classic', demoUrl('classic', { placement: 'themes_all' }), 'themes_all')}
-        >
-          Alle Designs entdecken →
-        </AllDemosLink>
-      </AllDemosRow>
       <Footer>
         {isMobile ? 'Wischen zum Entdecken' : 'Klick öffnet die Live-Demo'}
       </Footer>

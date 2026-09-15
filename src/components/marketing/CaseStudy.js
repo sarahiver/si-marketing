@@ -261,7 +261,7 @@ const CaseStudy = () => {
               rel="noopener noreferrer"
               onClick={() => trackDemoClick(c.previewTheme, href, 'case_study')}
             >
-              Diese Website ansehen →
+              Zur Website →
             </Primary>
             <Secondary type="button" onClick={toContact}>
               Anfrage starten

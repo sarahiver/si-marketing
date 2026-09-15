@@ -1462,8 +1462,9 @@ const USPSection = () => {
                 </UspItem>
               ))}
             </UspList>
+            {/* Die Demo ist der WOW-Moment, nicht eine Feature-Seite */}
             <UspCTA type="button" onClick={scrollToThemes}>
-              Designs entdecken →
+              Live-Demo ansehen →
             </UspCTA>
           </div>
         </UspInner>

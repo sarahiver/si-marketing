@@ -442,12 +442,14 @@ const MarketingNav = () => {
     setTimeout(scrollAfterNav, 150);
   };
 
+  // Reduzierte Hauptnavigation. "Features" ist raus, seit es keine eigene
+  // Feature-Section mehr gibt; "Kontakt" ebenfalls, weil jede Section einen
+  // Anfrage-CTA hat und die Nav den Demo-Weg betonen soll.
   const navItems = [
-    { id: 'features', label: 'Features' },
-    { id: 'themes', label: 'Designs' },
+    { id: 'themes', label: 'Themen' },
+    { id: 'howitworks', label: 'Ablauf' },
     { id: 'pricing', label: 'Preise' },
     { id: 'blog', label: 'Ratgeber', isRoute: true },
-    { id: 'contact', label: 'Kontakt' },
   ];
 
 
