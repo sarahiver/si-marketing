@@ -9,14 +9,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import {
-  brand, font, type, leading, layout, motion,
-  eyebrowStyle, buttonPrimary,
+  brand, font, type, leading, layout, motion, images,
+  eyebrowStyle,
 } from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
-import {
-  THEME_SCREENSHOTS, THEME_MOBILE_SCREENS, videoPosterUrl,
-  demoUrl, setStyleChoice, trackDemoClick,
-} from './demoData';
+import { THEME_SCREENSHOTS, THEME_HEROES, THEME_MOBILE_SCREENS } from './demoData';
 
 // ============================================
 // CONTENT DATA
@@ -1305,9 +1302,12 @@ const CTASubline = styled.p`
 // Beide zeigen eine echte Demo aus demoData — keine Fake-UI.
 // ════════════════════════════════════════════════════════════════════════
 
-// Das Theme, das hier gezeigt wird. Editorial, weil es Hochzeitsfotografie
-// und die wichtigsten Websitebereiche im Screenshot sichtbar macht.
-const PRODUCT_THEME = 'editorial';
+// Das Theme, das hier gezeigt wird. Classic: helle, warme Bildsprache, die
+// zur Brandwelt passt. Gezeigt wird der HERO des Themes (THEME_HEROES),
+// nicht das Video-Standbild — dort erwischte man je nach Theme einen
+// dunklen Zwischenframe.
+// Theme wechseln = nur diese Zeile.
+const PRODUCT_THEME = 'classic';
 
 const UspSection = styled.section`
   background: ${brand.ivory};
@@ -1332,6 +1332,40 @@ const UspInner = styled.div`
 // ── Produktvisual ───────────────────────────────────────────────────────
 const Stage = styled.div`
   position: relative;
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 2.5vw, 2.5rem)
+           clamp(3rem, 5vw, 4rem);
+
+  /* Warme Bildfläche hinter Laptop und Phone — die Geräte stehen nicht mehr
+     auf leerem Ivory. Motiv zentral in brand.js (images.productBackdrop). */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 -8%;
+    width: 86%;
+    background: url(${images.productBackdrop}) center / cover no-repeat;
+    border-radius: 3px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 -8%;
+    width: 86%;
+    border-radius: 3px;
+    /* nach rechts auslaufend, damit der Laptop frei steht */
+    background: linear-gradient(
+      100deg,
+      rgba(250, 249, 246, 0.30) 0%,
+      rgba(250, 249, 246, 0.55) 45%,
+      rgba(250, 249, 246, 0.92) 100%
+    );
+  }
+
+  > * { position: relative; z-index: 2; }
+
+  @media (max-width: 1000px) {
+    &::before, &::after { inset: 0 -4% 0 -4%; width: auto; }
+  }
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 700ms ${motion.ease}, transform 700ms ${motion.ease};
@@ -1347,11 +1381,8 @@ const Stage = styled.div`
   @media (max-width: 1000px) { order: 2; }
 `;
 
-const Laptop = styled.a`
-  display: block;
+const Laptop = styled.div`
   position: relative;
-  text-decoration: none;
-  cursor: pointer;
 `;
 
 const LaptopLid = styled.div`
@@ -1361,7 +1392,7 @@ const LaptopLid = styled.div`
   box-shadow: 0 28px 64px rgba(34, 34, 34, 0.18);
   transition: transform 420ms ${motion.ease}, box-shadow 420ms ${motion.ease};
 
-  ${Laptop}:hover &, ${Laptop}:focus-visible & {
+  ${Laptop}:hover & {
     transform: scale(1.012);
     box-shadow: 0 34px 76px rgba(34, 34, 34, 0.22);
   }
@@ -1394,7 +1425,7 @@ const LaptopBase = styled.div`
   }
 `;
 
-const ProductPhone = styled.a`
+const ProductPhone = styled.div`
   position: absolute;
   right: -3%;
   bottom: -10%;
@@ -1406,7 +1437,6 @@ const ProductPhone = styled.a`
   padding: 5px;
   box-shadow: 0 20px 48px rgba(34, 34, 34, 0.26);
   z-index: 3;
-  cursor: pointer;
   transition: transform 420ms ${motion.ease} 120ms, opacity 500ms ${motion.ease} 120ms;
   opacity: ${p => (p.$visible ? 1 : 0)};
   transform: translateY(${p => (p.$visible ? '0' : '18px')});
@@ -1502,7 +1532,6 @@ const UspItem = styled.div`
   }
 `;
 
-const UspCTA = styled.a`${buttonPrimary}`;
 
 // Vier Kernfunktionen. Icons als schlichte Inline-SVGs — keine neue Library.
 const CORE_FEATURES = [
@@ -1605,27 +1634,18 @@ const USPSection = () => {
   // Laptop + Phone zeigen eine echte Demo; die vier Kernfunktionen stehen
   // kompakt daneben, statt als Feature-Kacheln. Ein CTA: die Live-Demo.
   if (currentTheme === 'classic' || currentTheme === 'modern') {
-    const demoHref = demoUrl(PRODUCT_THEME, { placement: 'product_section' });
-    const openDemo = () => {
-      setStyleChoice(PRODUCT_THEME, 'product_section');
-      trackDemoClick(PRODUCT_THEME, demoHref, 'product_section');
-    };
+    // Bewusst kein Demo-Link in dieser Section: er würde alle Besucher in ein
+    // einziges Theme schicken. Die Auswahl passiert in der Theme Collection.
 
     return (
       <UspSection id="features" ref={sectionRef}>
         <UspInner>
           <Stage $visible={visible}>
-            <Laptop
-              href={demoHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Live-Demo der Hochzeitswebsite ansehen"
-              onClick={openDemo}
-            >
+            <Laptop>
               <LaptopLid>
                 <LaptopScreen>
                   <img
-                    src={videoPosterUrl(PRODUCT_THEME) || THEME_SCREENSHOTS[PRODUCT_THEME]}
+                    src={THEME_HEROES[PRODUCT_THEME] || THEME_SCREENSHOTS[PRODUCT_THEME]}
                     alt="S&I. Hochzeitswebsite auf dem Laptop"
                     loading="lazy"
                   />
@@ -1634,14 +1654,7 @@ const USPSection = () => {
               <LaptopBase />
             </Laptop>
 
-            <ProductPhone
-              $visible={visible}
-              href={demoHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Mobile-Ansicht der Hochzeitswebsite ansehen"
-              onClick={openDemo}
-            >
+            <ProductPhone $visible={visible}>
               <PhoneScreen>
                 <img
                   src={THEME_MOBILE_SCREENS[PRODUCT_THEME]}
@@ -1677,14 +1690,6 @@ const USPSection = () => {
               ))}
             </UspList>
 
-            <UspCTA
-              href={demoHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={openDemo}
-            >
-              Live-Demo ansehen →
-            </UspCTA>
           </UspCopy>
         </UspInner>
       </UspSection>

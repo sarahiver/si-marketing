@@ -101,6 +101,11 @@ export const images = {
   // bisheriges Motiv, falls ihr zurückwechseln wollt
   heroLuxeLegacy: cld('v1769072318/si_cooming_soon_luxe_hero_wowu9v.jpg', 2000),
 
+  // Hintergrundfläche hinter dem Produktvisual (Produkt-Section).
+  // Ruhiges florales Detail, damit Laptop und Phone auf einer warmen Fläche
+  // stehen statt auf leerem Ivory.
+  productBackdrop: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1600',
+
   // Abschluss-CTA — ruhiges Detailmotiv statt Brautpaar-Porträt
   finalCta: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000',
 };
