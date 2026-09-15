@@ -1254,53 +1254,49 @@ const Sheet = styled.div`
   border-radius: 20px;
   overflow: hidden;
 
-  /* Hochzeitsmotiv links, weich in die Sandfläche auslaufend */
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: clamp(220px, 26%, 420px);
-    /* rechter Bildausschnitt: links liegt im Motiv nur Beiwerk */
-    background: url(${images.pricingDetail}) right center / cover no-repeat;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: clamp(280px, 46%, 720px);
-    /* Fade beginnt erst spät: das Motiv läuft weit hinter die Karten */
-    background: linear-gradient(
-      to right,
-      rgba(232, 225, 217, 0) 0%,
-      rgba(232, 225, 217, 0.18) 58%,
-      rgba(232, 225, 217, 0.72) 84%,
-      ${brand.sand} 100%
-    );
-  }
-
-  > * { position: relative; z-index: 2; }
+  /* alles außer der Bildfläche liegt darüber */
+  > *:not(:first-child) { position: relative; z-index: 2; }
 
   @media (max-width: 860px) {
     padding-top: clamp(11rem, 26vh, 15rem);
+  }
+`;
 
-    &::before, &::after {
-      right: 0;
-      bottom: auto;
-      width: auto;
-      height: clamp(9rem, 22vh, 13rem);
-    }
-    &::after {
-      background: linear-gradient(
-        to bottom,
-        rgba(232, 225, 217, 0) 40%,
-        ${brand.sand} 100%
-      );
-    }
+// Eigenes Element statt Pseudo-Element: Breite und Weichzeichnung sind so
+// direkt ablesbar. Die Maske blendet das Bild nach rechts aus — dadurch
+// braucht es keinen Farbverlauf, der exakt zur Sandfläche passen muss.
+const SheetPhoto = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: min(62%, 900px);
+  z-index: 0;
+  background: url(${images.pricingDetail}) right center / cover no-repeat;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.55) 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.55) 82%,
+    transparent 100%
+  );
+
+  @media (max-width: 860px) {
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: clamp(9rem, 22vh, 13rem);
+    background-position: center;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
   }
 `;
 
@@ -1686,6 +1682,7 @@ const PricingSection = () => {
     return (
       <BrandPricingSection id="pricing">
         <Sheet>
+          <SheetPhoto aria-hidden="true" />
         <BrandContainer>
           <PricingNote>Zwei Wege.<br />Ein Ergebnis.</PricingNote>
           <BrandHeader>

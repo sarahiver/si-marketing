@@ -8,7 +8,7 @@ import {
   phoneCardUrl, demoUrl, videoPosterUrl, setStyleChoice, trackDemoClick,
 } from './demoData';
 import {
-  brand, font, type, leading, layout, images,
+  brand, font, type, leading, layout, motion, images,
   eyebrowStyle, buttonPrimary, buttonSecondary, scriptNote,
 } from '../../styles/brand';
 
@@ -1057,20 +1057,16 @@ const HeroInner = styled.div`
   width: 100%;
   max-width: ${layout.maxWidth};
   margin: 0 auto;
-  /* unten kein Padding: der Laptop soll bündig auf der Unterkante stehen */
   padding: clamp(5.5rem, 12vh, 8rem) ${layout.gutter} 0;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  /* Zeile füllt die volle Höhe. Ohne das ist die Zeile nur inhaltshoch und
-     align-self: end richtet den Rahmen innerhalb der Zeile aus — er landet
-     dann oberhalb der Sektionskante. */
-  grid-template-rows: minmax(0, 1fr);
+  /* nur noch eine Spalte: das Produktvisual liegt absolut darüber */
+  grid-template-columns: minmax(0, 0.92fr);
   gap: clamp(1.5rem, 3vw, 3rem);
   align-items: center;
+  padding-bottom: clamp(3rem, 8vh, 6rem);
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
     gap: 2.5rem;
     padding-bottom: clamp(2rem, 5vh, 3.5rem);
   }
@@ -1160,10 +1156,20 @@ const HeroNote = styled.span`
 // ── PRODUKT: Geräterahmen mit transparenten Displays ────────────────────
 // Gleiches System wie in der Produkt-Section: Inhalte liegen hinter dem
 // Rahmen und scheinen durch die Aussparungen.
+// Absolut am unteren Rand des Hero verankert statt über Grid-Ausrichtung.
+// Grund: align-self/align-items hingen von Zeilenhöhe, Flex-Ausrichtung und
+// Padding ab — drei Stellschrauben, die sich gegenseitig ausgehebelt haben.
+// bottom: 0 ist eindeutig, translateY rechnet gegen die EIGENE Höhe und
+// trifft damit den Überstand exakt.
 const Devices = styled.div`
-  position: relative;
+  position: absolute;
+  right: ${layout.gutter};
+  bottom: 0;
+  width: min(48%, 680px);
   z-index: 4;
-  align-self: end;
+  transform: translateY(${(
+    images.productMockupScreens.phoneBottom - images.productMockupScreens.laptopBottom
+  ).toFixed(2)}%);
   /* Der Rahmen enthält unterhalb der Laptop-Kante nur noch das überstehende
      Phone. Genau um diesen Anteil wird nach unten geschoben, damit der
      Laptop bündig auf der Fotokante steht und nur das Phone übersteht. */
@@ -1171,15 +1177,12 @@ const Devices = styled.div`
      nicht auf die Höhe. Der Überstand ist aber in % der Bildhöhe gemessen —
      also durch das Seitenverhältnis teilen, sonst fällt der Versatz zu klein
      aus und der Laptop schwebt über der Kante. */
-  margin-bottom: -${(
-    (images.productMockupScreens.phoneBottom - images.productMockupScreens.laptopBottom)
-    / images.productMockupScreens.aspect
-  ).toFixed(3)}%;
-  ${stagger(380)}
 
   @media (max-width: 900px) {
-    align-self: center;
-    margin-bottom: clamp(-4rem, -6vh, -2rem);
+    position: static;
+    width: 100%;
+    transform: none;
+    margin-top: 1rem;
   }
 `;
 
@@ -1187,6 +1190,14 @@ const DeviceStage = styled.div`
   position: relative;
   width: 100%;
   aspect-ratio: ${images.productMockupScreens.aspect};
+  animation: deviceIn 700ms ${motion.ease} 380ms both;
+
+  @keyframes deviceIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { animation: none; }
 `;
 
 const DeviceFrame = styled.img`
