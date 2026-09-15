@@ -13,7 +13,7 @@ import {
   eyebrowStyle,
 } from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
-import { THEME_SCREENSHOTS, THEME_HEROES, THEME_MOBILE_SCREENS } from './demoData';
+import { THEME_MOBILE_SCREENS } from './demoData';
 
 // ============================================
 // CONTENT DATA
@@ -1302,14 +1302,13 @@ const CTASubline = styled.p`
 // Beide zeigen eine echte Demo aus demoData — keine Fake-UI.
 // ════════════════════════════════════════════════════════════════════════
 
-// Das Theme, das hier gezeigt wird. Classic: helle, warme Bildsprache, die
-// zur Brandwelt passt. Gezeigt wird der HERO des Themes (THEME_HEROES),
-// nicht das Video-Standbild — dort erwischte man je nach Theme einen
-// dunklen Zwischenframe.
-// Theme wechseln = nur diese Zeile.
+// Der Laptop zeigt ein festes Produktbild (brand.js → images.productScreen).
+// PRODUCT_THEME steuert nur noch den Mobile-Screenshot im Phone.
 const PRODUCT_THEME = 'classic';
 
 const UspSection = styled.section`
+  position: relative;
+  overflow: hidden;
   background: ${brand.ivory};
   padding: clamp(3.5rem, 8vh, 6.5rem) 0;
 `;
@@ -1335,36 +1334,46 @@ const Stage = styled.div`
   padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 2.5vw, 2.5rem)
            clamp(3rem, 5vw, 4rem);
 
-  /* Warme Bildfläche hinter Laptop und Phone — die Geräte stehen nicht mehr
-     auf leerem Ivory. Motiv zentral in brand.js (images.productBackdrop). */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0 auto 0 -8%;
-    width: 86%;
-    background: url(${images.productBackdrop}) center / cover no-repeat;
-    border-radius: 3px;
-  }
-
+  /* Warme Bildfläche hinter Laptop UND Phone. Sie ist am rechten Rand des
+     Visuals verankert und 100vw breit — damit läuft sie in jedem Viewport
+     bis an die linke Kante, ohne feste Pixelwerte.
+     Die Section hat overflow: hidden, sonst entstünde seitliches Scrollen. */
+  &::before,
   &::after {
     content: '';
     position: absolute;
-    inset: 0 auto 0 -8%;
-    width: 86%;
-    border-radius: 3px;
-    /* nach rechts auslaufend, damit der Laptop frei steht */
+    top: 0;
+    bottom: 0;
+    right: -10%;
+    left: auto;
+    width: 100vw;
+  }
+
+  &::before {
+    background: url(${images.productBackdrop}) right center / cover no-repeat;
+  }
+
+  /* Fade nach rechts: das Bild löst sich zum Text hin in Ivory auf */
+  &::after {
     background: linear-gradient(
-      100deg,
-      rgba(250, 249, 246, 0.30) 0%,
-      rgba(250, 249, 246, 0.55) 45%,
-      rgba(250, 249, 246, 0.92) 100%
+      to right,
+      rgba(250, 249, 246, 0) 55%,
+      rgba(250, 249, 246, 0.65) 82%,
+      ${brand.ivory} 100%
     );
   }
 
   > * { position: relative; z-index: 2; }
 
   @media (max-width: 1000px) {
-    &::before, &::after { inset: 0 -4% 0 -4%; width: auto; }
+    &::before, &::after { right: -4%; }
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(250, 249, 246, 0) 60%,
+        ${brand.ivory} 100%
+      );
+    }
   }
   opacity: 0;
   transform: translateY(26px);
@@ -1645,7 +1654,7 @@ const USPSection = () => {
               <LaptopLid>
                 <LaptopScreen>
                   <img
-                    src={THEME_HEROES[PRODUCT_THEME] || THEME_SCREENSHOTS[PRODUCT_THEME]}
+                    src={images.productScreen}
                     alt="S&I. Hochzeitswebsite auf dem Laptop"
                     loading="lazy"
                   />

@@ -106,6 +106,9 @@ export const images = {
   // stehen statt auf leerem Ivory.
   productBackdrop: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1600',
 
+  // Screen-Inhalt für den Laptop in der Produkt-Section
+  productScreen: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1600/v1789463857/product_screen_erq5y5.png',
+
   // Abschluss-CTA — ruhiges Detailmotiv statt Brautpaar-Porträt
   finalCta: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000',
 };
