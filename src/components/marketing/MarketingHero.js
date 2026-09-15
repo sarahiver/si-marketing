@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import {
-  ALL_DEMOS, THEME_SCREENSHOTS, THEME_MOBILE_SCREENS,
+  ALL_DEMOS, THEME_SCREENSHOTS, THEME_MOBILE_SCREENS, THEME_VIDEO_PREVIEWS,
   phoneCardUrl, demoUrl, setStyleChoice, trackDemoClick,
 } from './demoData';
 import {
@@ -1177,6 +1177,7 @@ const LaptopLid = styled.div`
 `;
 
 const LaptopScreen = styled.div`
+  position: relative;
   aspect-ratio: 16 / 10;
   border-radius: 3px;
   overflow: hidden;
@@ -1189,6 +1190,18 @@ const LaptopScreen = styled.div`
     object-position: top center;
     display: block;
   }
+`;
+
+// Gleiche Logik wie in den Theme-Karten: loopende Bildschirmaufnahme der
+// echten Demo, Screenshot nur als Fallback. Im Hero läuft das Video von
+// selbst (kein Hover nötig), weil es das zentrale Produktvisual ist.
+const LaptopVideo = styled.video`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 `;
 
 // Gehäusefuß: schmaler Streifen, dezent statt 3D-Rendering
@@ -1264,7 +1277,7 @@ const MarketingHero = () => {
   const [heroIndex, setHeroIndex] = useState(0);
   useEffect(() => {
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
-    const t = setInterval(() => setHeroIndex(i => (i + 1) % ALL_DEMOS.length), 6000);
+    const t = setInterval(() => setHeroIndex(i => (i + 1) % ALL_DEMOS.length), 9000);
     return () => clearInterval(t);
   }, []);
 
@@ -1363,10 +1376,24 @@ const MarketingHero = () => {
             >
               <LaptopLid>
                 <LaptopScreen>
-                  <img
-                    src={THEME_SCREENSHOTS[active.id] || THEME_SCREENSHOTS.classic}
-                    alt={`S&I. Hochzeitswebsite im Design ${active.name}`}
-                  />
+                  {THEME_VIDEO_PREVIEWS[active.id] ? (
+                    <LaptopVideo
+                      key={active.id}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      poster={THEME_SCREENSHOTS[active.id]}
+                      src={THEME_VIDEO_PREVIEWS[active.id]}
+                      aria-label={`Vorschau der Hochzeitswebsite ${active.name}`}
+                    />
+                  ) : (
+                    <img
+                      src={THEME_SCREENSHOTS[active.id] || THEME_SCREENSHOTS.classic}
+                      alt={`S&I. Hochzeitswebsite im Design ${active.name}`}
+                    />
+                  )}
                 </LaptopScreen>
               </LaptopLid>
               <LaptopBase />
