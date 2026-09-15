@@ -1155,10 +1155,13 @@ const Devices = styled.div`
   position: relative;
   z-index: 4;
   align-self: end;
-  /* Laptop steht optisch auf der Unterkante des Hero-Bildes, das Phone ragt
-     in die nächste Section hinein. Negatives margin, damit die Hero-Höhe
-     dadurch nicht wächst. */
-  margin-bottom: clamp(-7rem, -9vh, -3.5rem);
+  /* Der Rahmen enthält unterhalb der Laptop-Kante nur noch das überstehende
+     Phone. Genau um diesen Anteil wird nach unten geschoben, damit der
+     Laptop bündig auf der Fotokante steht und nur das Phone übersteht. */
+  margin-bottom: calc(
+    ${images.productMockupScreens.phoneBottom - images.productMockupScreens.laptopBottom}%
+    * -1
+  );
   ${stagger(380)}
 
   @media (max-width: 900px) {

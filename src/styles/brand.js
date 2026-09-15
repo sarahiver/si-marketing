@@ -116,8 +116,17 @@ export const images = {
 
   // Displaykoordinaten, ausgemessen aus dem Mockup (1536 × 1024).
   // Bei einem anderen Rahmenbild müssen diese Werte neu bestimmt werden.
+  // Screen-Inhalt für den Laptop in der Produkt-Section (festes Produktbild
+  // statt Demo-Screenshot).
+  productScreen: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1600/v1789463857/product_screen_erq5y5.png',
+
   productMockupScreens: {
     aspect: 1.5,
+    // Unterkanten der Geräte, in % der Bildhöhe — gemessen am Rahmenbild.
+    // Gebraucht, um den Laptop bündig auf eine Kante zu stellen, während das
+    // Phone darüber hinausragen darf.
+    laptopBottom: 90.43,
+    phoneBottom: 93.26,
     laptop: { left: '12.83%', top: '13.18%', width: '68.10%', height: '62.01%' },
     phone:  { left: '76.24%', top: '31.15%', width: '18.36%', height: '60.06%' },
   },

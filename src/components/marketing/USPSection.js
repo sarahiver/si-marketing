@@ -13,7 +13,7 @@ import {
   eyebrowStyle,
 } from '../../styles/brand';
 import { useTheme } from '../../context/ThemeContext';
-import { THEME_SCREENSHOTS, THEME_HEROES, THEME_MOBILE_SCREENS, videoPosterUrl } from './demoData';
+import { THEME_MOBILE_SCREENS } from './demoData';
 
 // ============================================
 // CONTENT DATA
@@ -1308,7 +1308,7 @@ const PRODUCT_THEME = 'editorial';
 
 const UspSection = styled.section`
   position: relative;
-  overflow: hidden;
+  /* kein overflow: hidden — das Phone ragt unten aus der Bildfläche heraus */
   background: ${brand.ivory};
   padding: clamp(3.5rem, 8vh, 6.5rem) 0;
 `;
@@ -1331,8 +1331,8 @@ const UspInner = styled.div`
 // ── Produktvisual ───────────────────────────────────────────────────────
 const Stage = styled.div`
   position: relative;
-  padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 2.5vw, 2.5rem)
-           clamp(3rem, 5vw, 4rem);
+  /* unten kein Padding: der Laptop soll bündig auf der Bildkante stehen */
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(1rem, 2.5vw, 2.5rem) 0;
 
   /* Warme Bildfläche hinter Laptop UND Phone. Sie ist am rechten Rand des
      Visuals verankert und 100vw breit — damit läuft sie in jedem Viewport
@@ -1343,7 +1343,9 @@ const Stage = styled.div`
     content: '';
     position: absolute;
     top: 0;
-    bottom: 0;
+    /* endet an der Laptop-Unterkante: alles darunter im Rahmenbild ist
+       ausschließlich das überstehende Phone */
+    bottom: ${100 - images.productMockupScreens.laptopBottom}%;
     right: -10%;
     left: auto;
     width: 100vw;
@@ -1625,12 +1627,9 @@ const USPSection = () => {
           <Stage $visible={visible}>
             <Mockup>
               <ScreenSlot $rect={images.productMockupScreens.laptop}>
-                {/* Video-Standbild statt THEME_SCREENSHOTS: nur so zeigen
-                    Laptop und Phone dieselbe Demo — die alten Desktop-
-                    Screenshots stammen aus anderen Aufnahmen. */}
                 <img
-                  src={videoPosterUrl(PRODUCT_THEME) || THEME_SCREENSHOTS[PRODUCT_THEME] || THEME_HEROES[PRODUCT_THEME]}
-                  alt={`S&I. Hochzeitswebsite im Design ${PRODUCT_THEME}`}
+                  src={images.productScreen}
+                  alt="S&I. Hochzeitswebsite auf dem Laptop"
                   loading="lazy"
                 />
               </ScreenSlot>
