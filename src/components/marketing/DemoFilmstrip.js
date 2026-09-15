@@ -451,8 +451,8 @@ const DemoFilmstrip = () => {
           Nicht einfach eine Vorlage.<br /><em>Sondern euer Stil.</em>
         </Title>
         <Sub>
-          Acht Designwelten — von zeitlos bis modern. Findet den Stil,
-          der zu euch passt.
+          Acht Designwelten für eure individuelle Hochzeitswebsite — von
+          klassisch und elegant bis modern und außergewöhnlich.
         </Sub>
       </Header>
       <TrackComp>

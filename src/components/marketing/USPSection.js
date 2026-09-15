@@ -1673,14 +1673,14 @@ const USPSection = () => {
               <ScreenSlot $rect={images.productMockupScreens.laptop}>
                 <img
                   src={images.productScreen}
-                  alt="S&I. Hochzeitswebsite auf dem Laptop"
+                  alt="Individuelle Hochzeitswebsite von S&I. auf Laptop und Smartphone"
                   loading="lazy"
                 />
               </ScreenSlot>
               <ScreenSlot $rect={images.productMockupScreens.phone}>
                 <img
                   src={THEME_MOBILE_SCREENS[PRODUCT_THEME]}
-                  alt="Dieselbe Hochzeitswebsite auf dem Smartphone"
+                  alt="Hochzeitswebsite in der mobilen Ansicht"
                   loading="lazy"
                 />
               </ScreenSlot>
@@ -1696,7 +1696,7 @@ const USPSection = () => {
           <UspCopy>
             <UspEyebrow>Alles an einem Ort</UspEyebrow>
             <UspTitle>
-              Eine Website,<br /><em>die mehr kann als nur informieren.</em>
+              Eine Hochzeitswebsite,<br /><em>die mehr kann als nur informieren.</em>
             </UspTitle>
             <UspLead>
               Von der Einladung bis zum großen Tag finden eure Gäste alles

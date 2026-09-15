@@ -1318,9 +1318,9 @@ const MarketingHero = () => {
             </HeroH1>
             <HeroLead>
               <strong>Stilvoll. Persönlich. Unverwechselbar.</strong>
-              Wir gestalten gemeinsam mit euch eine Hochzeitswebsite, die modern
-              aussieht, zu euch passt und alles zusammenbringt, was eure Gäste
-              wissen müssen.
+              Wir gestalten individuelle Hochzeitswebsites für Paare, die ihre
+              Geschichte, alle wichtigen Informationen und ihre Gäste an einem
+              stilvollen Ort zusammenbringen möchten.
             </HeroLead>
             <BrandCTAs>
               <BrandPrimary
@@ -1386,7 +1386,7 @@ const MarketingHero = () => {
                 ) : (
                   <img
                     src={videoPosterUrl(active.id) || THEME_SCREENSHOTS[active.id]}
-                    alt={`S&I. Hochzeitswebsite im Design ${active.name}`}
+                    alt={`Individuelle Hochzeitswebsite im Design ${active.name} auf dem Laptop`}
                   />
                 )}
               </DeviceSlot>
@@ -1401,7 +1401,7 @@ const MarketingHero = () => {
               >
                 <img
                   src={THEME_MOBILE_SCREENS[active.id] || phoneCardUrl(active.id)}
-                  alt={`Mobile-Ansicht der Hochzeitswebsite ${active.name}`}
+                  alt={`Dieselbe Hochzeitswebsite im Design ${active.name} auf dem Smartphone`}
                 />
               </DeviceSlot>
 

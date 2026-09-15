@@ -1712,7 +1712,7 @@ const PricingSection = () => {
         <BrandContainer>
           <PricingNote>Zwei Wege.<br />Ein Ergebnis.</PricingNote>
           <BrandHeader $visible={visible}>
-            <BrandEyebrow>Unsere Pakete</BrandEyebrow>
+            <BrandEyebrow>Zwei Wege zu eurer Hochzeitswebsite</BrandEyebrow>
             <BrandH2>Wie viel möchtet ihr selbst übernehmen?</BrandH2>
             <BrandSub>
               Zwei Wege. Das gleiche Ziel: eine Hochzeitswebsite, die wirklich

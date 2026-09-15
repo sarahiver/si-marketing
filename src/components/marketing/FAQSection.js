@@ -14,6 +14,10 @@ import {
 // was Paare vor einer Anfrage wirklich wissen wollen.
 const FAQS = [
   {
+    q: 'Was ist eine Hochzeitswebsite?',
+    a: 'Eine eigene Seite für eure Hochzeit, auf der eure Gäste alles Wichtige finden: Datum und Ort, den Tagesablauf, Anfahrt und Unterkünfte, eure Geschichte, die Galerie — und über die sie direkt zu- oder absagen können. Statt Informationen auf Karten, Mails und Chatgruppen zu verteilen, steht alles an einem Ort.',
+  },
+  {
     q: 'Wann sollten wir unsere Hochzeitswebsite erstellen?',
     a: 'Sobald Datum und Location stehen — meist 9 bis 12 Monate vor der Hochzeit. Dann könnt ihr die Adresse schon auf die Save-the-Date-Karten drucken und eure Gäste finden von Anfang an alles an einem Ort.',
   },
@@ -208,8 +212,26 @@ const FAQSection = () => {
     document.getElementById('themes')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // FAQPage-Schema aus genau den Fragen, die auch sichtbar auf der Seite
+  // stehen. Keine zusätzlichen, keine erfundenen Einträge.
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+
   return (
     <Section id="faq" aria-label="Häufige Fragen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       <Inner>
         <div>
           <Eyebrow>Häufige Fragen</Eyebrow>

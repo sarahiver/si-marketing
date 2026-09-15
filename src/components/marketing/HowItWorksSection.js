@@ -1196,7 +1196,7 @@ const HowItWorksSection = () => {
         <ProcessInner>
           <ProcessHeader>
             <ProcessEyebrow>So einfach geht's</ProcessEyebrow>
-            <ProcessTitle>Von der Idee bis zur fertigen Website.</ProcessTitle>
+            <ProcessTitle>Von der ersten Idee bis zu eurer fertigen Hochzeitswebsite.</ProcessTitle>
             <ProcessSub>Einfach, persönlich und ohne Technikstress.</ProcessSub>
           </ProcessHeader>
 

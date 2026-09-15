@@ -29,9 +29,9 @@ const DEMO_WEDDING = {
   bridge: 'Eine Geschichte. Acht Möglichkeiten, sie zu erzählen.',
   // Bewusst Alltagsbilder statt Hochzeitsszene: die Hochzeit kommt noch.
   photoMain: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1400/v1789471183/lea-ben-park_jxbsrm.jpg',
-  photoMainAlt: 'Lea und Ben im Park',
+  photoMainAlt: 'Lea und Ben, das Beispielpaar der S&I. Demo-Hochzeitswebsite, im Park',
   photoSecond: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_600/v1789471181/lea-ben-berge_cnionc.jpg',
-  photoSecondAlt: 'Lea und Ben in den Bergen',
+  photoSecondAlt: 'Lea und Ben in den Bergen — zweites Motiv der Demo-Hochzeit',
   // Theme, dessen Demo der CTA öffnet und dessen Vorschau rechts erscheint
   theme: 'editorial',
   note: 'Lea & Ben sind unser Demo-Paar — ihre Hochzeit steht noch bevor.',
@@ -290,7 +290,7 @@ const DemoWedding = () => {
           <Preview>
             <img
               src={THEME_MOBILE_SCREENS[d.theme]}
-              alt={`Ausschnitt der Demo-Website von ${d.couple}`}
+              alt={`Ausschnitt der Hochzeitswebsite von ${d.couple} in der mobilen Ansicht`}
               loading="lazy"
             />
             <p>

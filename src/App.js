@@ -193,8 +193,8 @@ function MarketingPage() {
   return (
     <AppWrapper>
       <SEOHead
-        title="S&I. — Premium Hochzeitswebsites ab 990 €"
-        description="Individuelle Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 990 €. Aus Hamburg."
+        title="Hochzeitswebsite erstellen lassen | S&I."
+        description="Eure individuelle Hochzeitswebsite — stilvoll gestaltet, persönlich begleitet und genau auf eure Hochzeit abgestimmt. Acht Designs von S&I. ab 990 €."
         path="/"
         schema={productSchema}
         keywords={['Hochzeitswebsite', 'Hochzeitswebsite erstellen', 'Wedding Website', 'digitale Hochzeitseinladung', 'RSVP Hochzeit', 'Premium Hochzeitswebsite', 'Hochzeitswebsite Hamburg']}

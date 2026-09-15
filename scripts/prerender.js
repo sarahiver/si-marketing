@@ -185,7 +185,7 @@ function homeBodyHtml(allPosts) {
   return `
     <div style="${ROOT_STYLE}">
       <h1>S&amp;I. — Premium Hochzeitswebsites</h1>
-      <p>Premium Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. Einzigartige Themes. Ab 1.290&nbsp;€. Aus Hamburg.</p>
+      <p>Individuelle Hochzeitswebsites aus Hamburg: eigenes Design, eigene Adresse, digitales RSVP, Tagesablauf, Location, Galerie und Foto-Upload. Acht Designs, persönlich begleitet, ab 990&nbsp;€.</p>
       <nav aria-label="Hauptnavigation">
         <ul>
           <li><a href="/blog">Hochzeitswebsite Ratgeber</a></li>
@@ -316,8 +316,8 @@ async function main() {
   const routes = [
     {
       path: '/',
-      title: 'S&I. — Premium Hochzeitswebsites',
-      description: 'S&I. — Premium Hochzeitswebsites mit eigenem Design, eigener Domain, digitalem RSVP und Foto-Upload. 8 einzigartige Themes. Ab 1.290€. Aus Hamburg.',
+      title: 'Hochzeitswebsite erstellen lassen | S&I.',
+      description: 'Eure individuelle Hochzeitswebsite — stilvoll gestaltet, persönlich begleitet und genau auf eure Hochzeit abgestimmt. Acht Designs von S&I. ab 990 €.',
       schema: {
         '@context': 'https://schema.org',
         '@graph': [
@@ -568,7 +568,7 @@ async function main() {
 
 ## Angebot
 
-- [Startseite mit Themes und Preisen](${BASE_URL}/): Premium-Hochzeitswebsites ab 1.290 €, komplett eingerichtet und in wenigen Tagen live
+- [Startseite mit Designs und Preisen](${BASE_URL}/): individuelle Hochzeitswebsites ab 990 €, persönlich begleitet und in wenigen Tagen live
 
 ## Kostenlose Hochzeits-Tools
 
