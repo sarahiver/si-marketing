@@ -132,7 +132,7 @@ export const images = {
   },
 
   // Pricing: warmes Papeterie-/Blumenmotiv links in der Sandfläche
-  pricingDetail: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&q=80&w=1200',
+  pricingDetail: 'https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_1200/v1784625057/S_I_6_okuok1.jpg',
 
   // Abschluss-CTA — ruhiges Detailmotiv statt Brautpaar-Porträt
   finalCta: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000',

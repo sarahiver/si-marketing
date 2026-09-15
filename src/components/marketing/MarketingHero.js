@@ -1158,10 +1158,14 @@ const Devices = styled.div`
   /* Der Rahmen enthält unterhalb der Laptop-Kante nur noch das überstehende
      Phone. Genau um diesen Anteil wird nach unten geschoben, damit der
      Laptop bündig auf der Fotokante steht und nur das Phone übersteht. */
-  margin-bottom: calc(
-    ${images.productMockupScreens.phoneBottom - images.productMockupScreens.laptopBottom}%
-    * -1
-  );
+  /* ACHTUNG: margin-Prozente beziehen sich auf die BREITE des Elternelements,
+     nicht auf die Höhe. Der Überstand ist aber in % der Bildhöhe gemessen —
+     also durch das Seitenverhältnis teilen, sonst fällt der Versatz zu klein
+     aus und der Laptop schwebt über der Kante. */
+  margin-bottom: -${(
+    (images.productMockupScreens.phoneBottom - images.productMockupScreens.laptopBottom)
+    / images.productMockupScreens.aspect
+  ).toFixed(3)}%;
   ${stagger(380)}
 
   @media (max-width: 900px) {

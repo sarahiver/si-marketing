@@ -1343,7 +1343,11 @@ const BrandGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 0.72fr;
   gap: clamp(1.25rem, 2.2vw, 2rem);
-  align-items: start;
+  /* stretch statt start: alle drei Spalten gleich hoch. Der Reiter der
+     All-In-Karte sitzt darüber, deshalb bekommen alle denselben Abstand
+     nach oben — sonst startet die hervorgehobene Karte tiefer. */
+  align-items: stretch;
+  padding-top: 1.4rem;
 
   @media (max-width: 1100px) { grid-template-columns: 1fr 1fr; }
   @media (max-width: 760px)  { grid-template-columns: 1fr; }
@@ -1354,7 +1358,8 @@ const BrandCard = styled.div`
   background: ${p => (p.$pop ? '#FFFFFF' : 'rgba(255,255,255,0.72)')};
   border: 1px solid ${p => (p.$pop ? 'rgba(104,111,92,0.45)' : brand.line)};
   border-radius: 18px;
-  ${p => p.$pop && 'margin-top: 1.4rem;'}
+  display: flex;
+  flex-direction: column;
   padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.75rem, 3vw, 3rem)
            clamp(2.5rem, 4vw, 3.25rem);
   ${p => p.$pop && `box-shadow: 0 24px 60px rgba(34,34,34,0.10);`}
@@ -1403,8 +1408,10 @@ const BrandPitch = styled.p`
 
 const BrandList = styled.ul`
   list-style: none;
-  margin: 0 0 2rem;
-  padding: 0;
+  /* auto schiebt den CTA an den unteren Kartenrand — dadurch stehen beide
+     Buttons trotz unterschiedlich langer Listen auf einer Linie */
+  margin: 0 0 auto;
+  padding: 0 0 2rem;
 `;
 
 const BrandListItem = styled.li`
@@ -1438,6 +1445,7 @@ const BrandCardCTA = styled.button`
 
 // Add-ons: dritte, ruhigere Spalte — nie die Hauptaufmerksamkeit
 const AddonPanel = styled.aside`
+  align-self: start;
   background: rgba(255,255,255,0.55);
   border: 1px solid ${brand.line};
   border-radius: 18px;
