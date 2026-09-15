@@ -1,12 +1,12 @@
 // src/components/marketing/PricingSection.js
 // Erweiterte Pricing Section mit Addons/Zusatzoptionen
 // Theme-spezifische Layouts
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { PUBLIC_PACKAGES, ADDON_LIST, isFeatureIncluded } from '../../lib/pricing';
 import {
-  brand, font, type, leading, layout, images,
+  brand, font, type, leading, layout, motion,
   eyebrowStyle, buttonPrimary, buttonSecondary, scriptNote,
 } from '../../styles/brand';
 
@@ -1237,67 +1237,14 @@ const VideoCTA = styled.button`
 // BRAND PRICING (Classic-Basis) — Editorial Pricing Sheet, kein SaaS-Grid
 // Warme Sandfläche, große Zahlen, zwei Wege statt Feature-Matrix.
 // ════════════════════════════════════════════════════════════════════════
-// Die Sandfläche ist eine eigene, abgerundete Karte im Ivory — nicht mehr
-// eine randlose Vollflächen-Section. Links läuft ein warmes Detailmotiv ein.
+
+
+// Warme Sandfläche über die volle Breite, keine Container-Karte, kein Foto.
+// Premium entsteht hier durch Ruhe, nicht durch Fläche.
 const BrandPricingSection = styled.section`
   position: relative;
-  padding: clamp(2rem, 5vh, 4rem) ${layout.gutter};
-  background: ${brand.ivory};
-`;
-
-const Sheet = styled.div`
-  position: relative;
-  max-width: ${layout.wide};
-  margin: 0 auto;
-  padding: clamp(2.5rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem);
+  padding: clamp(4rem, 9vh, 7rem) 0 clamp(3.5rem, 7vh, 5rem);
   background: ${brand.sand};
-  border-radius: 20px;
-  overflow: hidden;
-
-  /* alles außer der Bildfläche liegt darüber */
-  > *:not(:first-child) { position: relative; z-index: 2; }
-
-  @media (max-width: 860px) {
-    padding-top: clamp(11rem, 26vh, 15rem);
-  }
-`;
-
-// Eigenes Element statt Pseudo-Element: Breite und Weichzeichnung sind so
-// direkt ablesbar. Die Maske blendet das Bild nach rechts aus — dadurch
-// braucht es keinen Farbverlauf, der exakt zur Sandfläche passen muss.
-const SheetPhoto = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: min(62%, 900px);
-  z-index: 0;
-  background: url(${images.pricingDetail}) center / cover no-repeat;
-
-  -webkit-mask-image: linear-gradient(
-    to right,
-    #000 0%,
-    #000 62%,
-    rgba(0, 0, 0, 0.55) 82%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    #000 0%,
-    #000 62%,
-    rgba(0, 0, 0, 0.55) 82%,
-    transparent 100%
-  );
-
-  @media (max-width: 860px) {
-    right: 0;
-    bottom: auto;
-    width: auto;
-    height: clamp(9rem, 22vh, 13rem);
-    background-position: center;
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
-  }
 `;
 
 const BrandContainer = styled.div`
@@ -1309,13 +1256,22 @@ const BrandContainer = styled.div`
 
 const BrandHeader = styled.div`
   text-align: center;
-  margin-bottom: clamp(3rem, 6vh, 4.5rem);
+  margin-bottom: clamp(3rem, 5vh, 4.25rem);
+
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 600ms ${motion.ease}, transform 600ms ${motion.ease};
+  ${p => p.$visible && 'opacity: 1; transform: translateY(0);'}
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1; transform: none; transition: none;
+  }
 `;
 
 const BrandEyebrow = styled.p`
   ${eyebrowStyle}
   color: ${brand.olive};
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.1rem;
 `;
 
 const BrandH2 = styled.h2`
@@ -1340,13 +1296,9 @@ const BrandSub = styled.p`
 // Zwei Pakete + schmale Add-on-Spalte — bewusst ungleich gewichtet
 const BrandGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 0.72fr;
-  gap: clamp(1.25rem, 2.2vw, 2rem);
-  /* stretch statt start: alle drei Spalten gleich hoch. Der Reiter der
-     All-In-Karte sitzt darüber, deshalb bekommen alle denselben Abstand
-     nach oben — sonst startet die hervorgehobene Karte tiefer. */
+  grid-template-columns: 1fr 1fr 0.66fr;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
   align-items: stretch;
-  padding-top: 1.4rem;
 
   @media (max-width: 1100px) { grid-template-columns: 1fr 1fr; }
   @media (max-width: 760px)  { grid-template-columns: 1fr; }
@@ -1354,29 +1306,45 @@ const BrandGrid = styled.div`
 
 const BrandCard = styled.div`
   position: relative;
-  background: ${p => (p.$pop ? '#FFFFFF' : 'rgba(255,255,255,0.72)')};
-  border: 1px solid ${p => (p.$pop ? 'rgba(104,111,92,0.45)' : brand.line)};
-  border-radius: 18px;
+  overflow: hidden;
+  background: ${p => (p.$pop ? '#FFFFFF' : '#FDFCFA')};
+  border: 1px solid ${p => (p.$pop ? 'rgba(104,111,92,0.35)' : brand.line)};
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.75rem, 3vw, 3rem)
-           clamp(2.5rem, 4vw, 3.25rem);
+  transition: transform 260ms ${motion.ease}, box-shadow 260ms ${motion.ease};
+
+  opacity: 0;
+  ${p => p.$visible && 'opacity: 1;'}
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px rgba(34, 34, 34, 0.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transition: none;
+    &:hover { transform: none; }
+  }
+  padding: clamp(2.25rem, 3.2vw, 3rem) clamp(1.75rem, 2.6vw, 2.5rem)
+           clamp(2.25rem, 3.2vw, 2.75rem);
+  ${p => p.$pop && 'padding-top: clamp(3rem, 4.2vw, 3.75rem);'}
   ${p => p.$pop && `box-shadow: 0 24px 60px rgba(34,34,34,0.10);`}
 `;
 
-// Reiter, der oben aus der Karte herauswächst — wie im Mockup
+// Schmale Leiste am oberen Kartenrand statt großer Badge-Box
 const PopBadge = styled.span`
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  padding: 0.45rem 1.4rem;
+  left: 0;
+  right: 0;
+  padding: 0.4rem 0;
+  text-align: center;
   background: ${brand.olive};
   color: ${brand.ivory};
-  border-radius: 10px 10px 0 0;
   ${eyebrowStyle}
-  font-size: 0.62rem;
-  white-space: nowrap;
+  font-size: 0.6rem;
 `;
 
 const BrandPkgName = styled.h3`
@@ -1389,7 +1357,7 @@ const BrandPkgName = styled.h3`
 const BrandPrice = styled.div`
   font-family: ${font.serif};
   font-weight: 400;
-  font-size: clamp(3rem, 5.5vw, 5rem);
+  font-size: clamp(2.6rem, 4.2vw, 3.9rem);
   line-height: 1;
   color: ${brand.charcoal};
   margin-bottom: 1.1rem;
@@ -1445,9 +1413,9 @@ const BrandCardCTA = styled.button`
 // Add-ons: dritte, ruhigere Spalte — nie die Hauptaufmerksamkeit
 const AddonPanel = styled.aside`
   align-self: start;
-  background: rgba(255,255,255,0.55);
-  border: 1px solid ${brand.line};
-  border-radius: 18px;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid ${brand.lineSoft};
+  border-radius: 12px;
   padding: clamp(1.5rem, 2.2vw, 2rem);
 
   @media (max-width: 1100px) { grid-column: 1 / -1; }
@@ -1491,6 +1459,36 @@ const AddonRowItem = styled.div`
 
 // Liegt jetzt auf dem Foto statt auf der Sandfläche — helle Schrift mit
 // weichem Schatten, sonst verschwindet sie im dunklen Bildbereich.
+const VoucherLine = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: clamp(1.25rem, 2.5vh, 1.75rem) auto 0;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid ${brand.line};
+  border-radius: 10px;
+
+  span { font-size: 1.1rem; flex-shrink: 0; }
+
+  p {
+    margin: 0;
+    font-family: ${font.sans};
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: ${brand.inkMuted};
+
+    strong {
+      display: block;
+      font-weight: 600;
+      color: ${brand.ink};
+      margin-bottom: 0.15rem;
+    }
+  }
+
+  a { color: ${brand.olive}; text-decoration: underline; }
+`;
+
 const PricingNote = styled.span`
   ${scriptNote}
   position: absolute;
@@ -1503,6 +1501,19 @@ const PricingNote = styled.span`
 `;
 
 const PricingSection = () => {
+  // Sanftes Erscheinen beim Scrollen — nur opacity und translateY.
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { setVisible(true); return undefined; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) { setVisible(true); io.disconnect(); }
+    }, { threshold: 0.2 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const { currentTheme } = useTheme();
   
   const scrollToContact = (packageId) => {
@@ -1656,7 +1667,21 @@ const PricingSection = () => {
     );
   };
 
-  // CLASSIC
+  // Zurückgenommene Variante des Gutschein-Hinweises: gleiche Information,
+  // aber ohne orange Fläche, die mit dem All-In-CTA konkurriert.
+  const renderBrandVoucher = () => (
+    <VoucherLine>
+      <span aria-hidden="true">🎁</span>
+      <p>
+        <strong>15 € Gutschein auf Karten</strong>
+        Exklusiv für S&I.-Paare · ohne Mindestbestellwert · einlösbar bei{' '}
+        <a href="https://www.hochzeitsplaza.de" target="_blank" rel="noopener noreferrer">
+          hochzeitsplaza.de
+        </a>
+      </p>
+    </VoucherLine>
+  );
+
   // CLASSIC — Brand Pricing Sheet (visuelles Redesign Sep 2026).
   // Die Frage lautet nicht "welche Funktionen", sondern "wie viel übernehmt
   // ihr selbst". Deshalb zwei Wege statt Feature-Matrix, Add-ons daneben.
@@ -1683,12 +1708,10 @@ const PricingSection = () => {
     };
 
     return (
-      <BrandPricingSection id="pricing">
-        <Sheet>
-          <SheetPhoto aria-hidden="true" />
+      <BrandPricingSection id="pricing" ref={sectionRef}>
         <BrandContainer>
           <PricingNote>Zwei Wege.<br />Ein Ergebnis.</PricingNote>
-          <BrandHeader>
+          <BrandHeader $visible={visible}>
             <BrandEyebrow>Unsere Pakete</BrandEyebrow>
             <BrandH2>Wie viel möchtet ihr selbst übernehmen?</BrandH2>
             <BrandSub>
@@ -1700,7 +1723,7 @@ const PricingSection = () => {
 
           <BrandGrid>
             {PACKAGES.map(pkg => (
-              <BrandCard key={pkg.id} $pop={pkg.popular}>
+              <BrandCard key={pkg.id} $pop={pkg.popular} $visible={visible}>
                 {pkg.popular && <PopBadge>Beliebteste Wahl</PopBadge>}
                 <BrandPkgName>{pkg.name}</BrandPkgName>
                 <BrandPrice>{pkg.price} €</BrandPrice>
@@ -1743,9 +1766,8 @@ const PricingSection = () => {
             </AddonPanel>
           </BrandGrid>
 
-          {renderVoucher()}
+          {renderBrandVoucher()}
         </BrandContainer>
-        </Sheet>
       </BrandPricingSection>
     );
   }
