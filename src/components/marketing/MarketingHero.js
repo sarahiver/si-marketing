@@ -1061,11 +1061,16 @@ const HeroInner = styled.div`
   padding: clamp(5.5rem, 12vh, 8rem) ${layout.gutter} 0;
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  /* Zeile füllt die volle Höhe. Ohne das ist die Zeile nur inhaltshoch und
+     align-self: end richtet den Rahmen innerhalb der Zeile aus — er landet
+     dann oberhalb der Sektionskante. */
+  grid-template-rows: minmax(0, 1fr);
   gap: clamp(1.5rem, 3vw, 3rem);
   align-items: center;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
     gap: 2.5rem;
     padding-bottom: clamp(2rem, 5vh, 3.5rem);
   }

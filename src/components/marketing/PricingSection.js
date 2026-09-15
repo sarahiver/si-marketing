@@ -1272,11 +1272,13 @@ const Sheet = styled.div`
     left: 0;
     top: 0;
     bottom: 0;
-    width: clamp(220px, 30%, 480px);
+    width: clamp(280px, 46%, 720px);
+    /* Fade beginnt erst spät: das Motiv läuft weit hinter die Karten */
     background: linear-gradient(
       to right,
       rgba(232, 225, 217, 0) 0%,
-      rgba(232, 225, 217, 0.55) 48%,
+      rgba(232, 225, 217, 0.18) 58%,
+      rgba(232, 225, 217, 0.72) 84%,
       ${brand.sand} 100%
     );
   }
