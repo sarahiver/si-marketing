@@ -155,48 +155,52 @@ function MarketingPage() {
 
   const isModern = currentTheme === 'modern';
 
-  const productSchema = {
-    '@type': 'Product',
-    name: 'Premium Hochzeitswebsite von S&I.',
-    description: 'Individuelle Hochzeitswebsite mit eigenem Design, eigener Domain, digitalem RSVP, Foto-Upload und Gästeverwaltung. Einzigartige Themes.',
-    brand: { '@type': 'Brand', name: 'S&I.' },
-    url: 'https://www.sarahiver.com',
+  // Service statt Product: S&I. verkauft kein Self-Service-Tool, sondern die
+  // persönliche Erstellung einer Hochzeitswebsite. Product mit Versand- und
+  // Rückgaberichtlinie war für eine Dienstleistung semantisch falsch und stand
+  // im Widerspruch zur Positionierung.
+  // Preise kommen aus PUBLIC_PACKAGES (lib/pricing.js) — keine zweite
+  // Preiswahrheit im Schema.
+  const serviceSchema = {
+    '@type': 'Service',
+    '@id': 'https://www.sarahiver.com/#service',
+    name: 'Individuelle Premium-Hochzeitswebsite',
+    serviceType: 'Individuelle Erstellung einer Hochzeitswebsite',
+    description: 'S&I. gestaltet und erstellt individuelle Hochzeitswebsites als persönliche Dienstleistung: gemeinsame Designabstimmung, Einrichtung, Prüfung und Go-Live. Auf Wunsch übernehmen wir den kompletten Aufbau inklusive Inhaltspflege.',
+    url: 'https://www.sarahiver.com/',
     image: 'https://res.cloudinary.com/si-weddings/image/upload/v1770798416/si_og_image_nx5blq.png',
+    // referenziert die Organization aus dem Prerender-Graph statt eine
+    // zweite Entität anzulegen
+    provider: { '@id': 'https://www.sarahiver.com/#organization' },
+    areaServed: [
+      { '@type': 'Country', name: 'Deutschland' },
+      { '@type': 'Country', name: 'Österreich' },
+      { '@type': 'Country', name: 'Schweiz' },
+    ],
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: 'https://www.sarahiver.com/#contact',
+    },
     offers: PUBLIC_PACKAGES.map(pkg => ({
       '@type': 'Offer',
-      name: `${pkg.name} Paket`,
+      name: pkg.name,
+      description: pkg.tagline,
       price: String(pkg.price),
       priceCurrency: 'EUR',
       priceValidUntil: '2027-12-31',
       availability: 'https://schema.org/InStock',
-      url: 'https://www.sarahiver.com/#preise',
-      seller: { '@type': 'Organization', name: 'S&I.' },
-      hasMerchantReturnPolicy: {
-        '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'DE',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
-        merchantReturnDays: 0,
-      },
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'EUR' },
-        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
-          transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
-        },
-      },
+      url: 'https://www.sarahiver.com/#pricing',
+      seller: { '@id': 'https://www.sarahiver.com/#organization' },
     })),
   };
 
   return (
     <AppWrapper>
       <SEOHead
-        title="Hochzeitswebsite erstellen lassen | S&I."
-        description="Eure individuelle Hochzeitswebsite — stilvoll gestaltet, persönlich begleitet und genau auf eure Hochzeit abgestimmt. Acht Designs von S&I. ab 990 €."
+        title="Premium-Hochzeitswebsite individuell erstellen lassen | S&I."
+        description="Individuelle Hochzeitswebsites mit persönlicher Betreuung. S&I. gestaltet und erstellt eure Hochzeitswebsite als Premium-Service ab 990 €."
         path="/"
-        schema={productSchema}
+        schema={serviceSchema}
         keywords={['Hochzeitswebsite', 'Hochzeitswebsite erstellen', 'Wedding Website', 'digitale Hochzeitseinladung', 'RSVP Hochzeit', 'Premium Hochzeitswebsite', 'Hochzeitswebsite Hamburg']}
       />
       <LoadingOverlay $show={isLoading} $theme={currentTheme}>

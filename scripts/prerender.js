@@ -180,12 +180,35 @@ function blogIndexBodyHtml(allPosts) {
     </div>`;
 }
 
+// Preise aus src/lib/pricing.js lesen statt hier zu wiederholen.
+// Der Prerender läuft als CommonJS-Skript und kann das ESM-Modul nicht
+// importieren; deshalb der Umweg über den Dateiinhalt. Ändert sich ein Preis
+// in pricing.js, zieht das Schema automatisch mit.
+const PACKAGE_PRICES = (() => {
+  const src = fs.readFileSync(path.join(__dirname, '..', 'src', 'lib', 'pricing.js'), 'utf8');
+  const out = [];
+  const re = /name: '([^']+)',[\s\S]*?price: (\d+),[\s\S]*?tagline: '([^']*)'/g;
+  let m;
+  while ((m = re.exec(src)) !== null) {
+    if (Number(m[2]) > 0) out.push({ name: m[1], price: Number(m[2]), tagline: m[3] });
+  }
+  return out;
+})();
+
 function homeBodyHtml(allPosts) {
   const latest = [...allPosts].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
   return `
     <div style="${ROOT_STYLE}">
-      <h1>S&amp;I. — Premium Hochzeitswebsites</h1>
-      <p>Individuelle Hochzeitswebsites aus Hamburg: eigenes Design, eigene Adresse, digitales RSVP, Tagesablauf, Location, Galerie und Foto-Upload. Acht Designs, persönlich begleitet, ab 990&nbsp;€.</p>
+      <h1>Premium-Hochzeitswebsite individuell erstellen lassen</h1>
+      <p>S&amp;I. erstellt individuelle Premium-Hochzeitswebsites als persönliche Dienstleistung — kein Baukasten und kein Abo. Wir stimmen Design, Farben und Aufbau gemeinsam mit euch ab, richten die Website ein und begleiten euch bis zum Go-Live. Aus Hamburg, für Paare in Deutschland, Österreich und der Schweiz.</p>
+      <h2>Zwei Wege zu eurer Hochzeitswebsite</h2>
+      <ul>
+        <li><strong>Website — ${PACKAGE_PRICES[0] ? PACKAGE_PRICES[0].price : 990}&nbsp;€:</strong> Wir gestalten das Design gemeinsam, ihr pflegt eure Inhalte über euer Dashboard ein, wir prüfen alles und geben den letzten Feinschliff.</li>
+        <li><strong>All In — ${PACKAGE_PRICES[1] ? PACKAGE_PRICES[1].price : 1490}&nbsp;€:</strong> Ihr liefert Texte und Bilder, wir übernehmen Aufbau, Inhaltspflege, Bildplatzierung und Feinschliff vollständig. Save the Date und Wedding Archive sind enthalten.</li>
+      </ul>
+      <p>In beiden Paketen sind alle Website-Bereiche enthalten: digitales RSVP, Tagesablauf, Location und Anfahrt, Unterkünfte, Galerie mit Foto-Upload, Gästebuch und QR-Code. Die Website ist bis drei Monate nach der Hochzeit online.</p>
+      <h2>Acht Designs, alle live erlebbar</h2>
+      <p>Classic, Botanical, Contemporary, Editorial, Luxe, Modern, Neon und Video — jedes Design ist eine vollständige Live-Demo, die ihr vor der Anfrage durchklicken könnt.</p>
       <nav aria-label="Hauptnavigation">
         <ul>
           <li><a href="/blog">Hochzeitswebsite Ratgeber</a></li>
@@ -316,8 +339,8 @@ async function main() {
   const routes = [
     {
       path: '/',
-      title: 'Hochzeitswebsite erstellen lassen | S&I.',
-      description: 'Eure individuelle Hochzeitswebsite — stilvoll gestaltet, persönlich begleitet und genau auf eure Hochzeit abgestimmt. Acht Designs von S&I. ab 990 €.',
+      title: 'Premium-Hochzeitswebsite individuell erstellen lassen | S&I.',
+      description: 'Individuelle Hochzeitswebsites mit persönlicher Betreuung. S&I. gestaltet und erstellt eure Hochzeitswebsite als Premium-Service ab 990 €.',
       schema: {
         '@context': 'https://schema.org',
         '@graph': [
@@ -356,6 +379,38 @@ async function main() {
             name: 'S&I. — Premium Hochzeitswebsites',
             inLanguage: 'de',
             publisher: { '@id': `${BASE_URL}/#organization` },
+          },
+          {
+            // Hauptentität der Startseite: eine Dienstleistung, kein Produkt.
+            // Preise stammen aus lib/pricing.js (siehe PACKAGE_PRICES unten),
+            // damit es keine zweite Preiswahrheit gibt.
+            '@type': 'Service',
+            '@id': `${BASE_URL}/#service`,
+            name: 'Individuelle Premium-Hochzeitswebsite',
+            serviceType: 'Individuelle Erstellung einer Hochzeitswebsite',
+            description: 'S&I. gestaltet und erstellt individuelle Hochzeitswebsites als persönliche Dienstleistung: gemeinsame Designabstimmung, Einrichtung, Prüfung und Go-Live. Auf Wunsch übernehmen wir den kompletten Aufbau inklusive Inhaltspflege.',
+            url: `${BASE_URL}/`,
+            provider: { '@id': `${BASE_URL}/#organization` },
+            areaServed: [
+              { '@type': 'Country', name: 'Deutschland' },
+              { '@type': 'Country', name: 'Österreich' },
+              { '@type': 'Country', name: 'Schweiz' },
+            ],
+            availableChannel: {
+              '@type': 'ServiceChannel',
+              serviceUrl: `${BASE_URL}/#contact`,
+            },
+            offers: PACKAGE_PRICES.map(pkg => ({
+              '@type': 'Offer',
+              name: pkg.name,
+              description: pkg.tagline,
+              price: String(pkg.price),
+              priceCurrency: 'EUR',
+              priceValidUntil: '2027-12-31',
+              availability: 'https://schema.org/InStock',
+              url: `${BASE_URL}/#pricing`,
+              seller: { '@id': `${BASE_URL}/#organization` },
+            })),
           },
         ],
       },
