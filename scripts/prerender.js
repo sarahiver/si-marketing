@@ -199,7 +199,7 @@ function homeBodyHtml(allPosts) {
   const latest = [...allPosts].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
   return `
     <div style="${ROOT_STYLE}">
-      <h1>Premium-Hochzeitswebsite individuell erstellen lassen</h1>
+      <h1>Individuelle Hochzeitswebsites mit pers&ouml;nlicher Betreuung</h1>
       <p>S&amp;I. erstellt individuelle Premium-Hochzeitswebsites als persönliche Dienstleistung — kein Baukasten und kein Abo. Wir stimmen Design, Farben und Aufbau gemeinsam mit euch ab, richten die Website ein und begleiten euch bis zum Go-Live. Aus Hamburg, für Paare in Deutschland, Österreich und der Schweiz.</p>
       <h2>Zwei Wege zu eurer Hochzeitswebsite</h2>
       <ul>
@@ -339,7 +339,7 @@ async function main() {
   const routes = [
     {
       path: '/',
-      title: 'Premium-Hochzeitswebsite individuell erstellen lassen | S&I.',
+      title: 'Individuelle Hochzeitswebsite – Premium-Design | S&I.',
       description: 'Individuelle Hochzeitswebsites mit persönlicher Betreuung. S&I. gestaltet und erstellt eure Hochzeitswebsite als Premium-Service ab 990 €.',
       schema: {
         '@context': 'https://schema.org',

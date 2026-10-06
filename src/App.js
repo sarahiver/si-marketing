@@ -197,7 +197,7 @@ function MarketingPage() {
   return (
     <AppWrapper>
       <SEOHead
-        title="Premium-Hochzeitswebsite individuell erstellen lassen | S&I."
+        title="Individuelle Hochzeitswebsite – Premium-Design | S&I."
         description="Individuelle Hochzeitswebsites mit persönlicher Betreuung. S&I. gestaltet und erstellt eure Hochzeitswebsite als Premium-Service ab 990 €."
         path="/"
         schema={serviceSchema}

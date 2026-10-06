@@ -217,6 +217,20 @@ const originParams = () => {
 // ============================================
 // WEDDING-WEBSITE-CTA EVENTS (SEO → Demo → Anfrage)
 // ============================================
+// Interner Wechsel von einem Artikel zu einem kaufnahen Inhalt oder zur
+// Produktseite. Zeigt in GA4, welcher Blogartikel tatsächlich in Richtung
+// Angebot weiterleitet — bisher endete die Messung am CTA-Block.
+export const trackProductIntentClick = ({ sourcePath, destinationPath, placement = 'article_body', intentType = 'commercial' }) => {
+  trackEvent('product_intent_click', {
+    event_category: 'navigation',
+    event_label: destinationPath,
+    source_path: sourcePath,
+    destination_path: destinationPath,
+    placement,
+    intent_type: intentType,
+  });
+};
+
 export const trackWeddingCTAView = ({ article, variant, placement }) => {
   trackEvent('wedding_cta_view', {
     event_category: 'conversion',

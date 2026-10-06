@@ -14,7 +14,7 @@ import {
   getBackground, getTextColor, getSecondaryText, getAccent,
   getCardBg, getCardBorder, getHeadlineFont, getBodyFont,
 } from './blogTheme';
-import { trackBlogArticleView, trackBlogScrollDepth } from '../../utils/analytics';
+import { trackBlogArticleView, trackBlogScrollDepth, trackProductIntentClick } from '../../utils/analytics';
 
 // THEME HELPERS liegen jetzt zentral in blogTheme.js (siehe Import oben),
 // damit Artikel und WeddingWebsiteCTA garantiert dasselbe Design benutzen.
@@ -484,6 +484,35 @@ const BlogArticle = () => {
     return d.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
   };
 
+  // Pfad des Ziels bestimmen und melden, wenn er in den kaufnahen Bereich
+  // oder auf die Produktseite führt.
+  const handleContentClick = (e) => {
+    const a = e.target.closest?.('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    const isHome = /^https?:\/\/(www\.)?sarahiver\.com\/?$/.test(href);
+    const isBlog = href.startsWith('/blog/');
+    if (!isHome && !isBlog) return;
+
+    const COMMERCIAL = [
+      'hochzeitswebsite-vergleich-2026', 'hochzeitswebsite-kosten-was-kostet',
+      'hochzeitswebsite-erstellen-lassen', 'hochzeitswebsite-ki-baukasten-oder-persoenlich',
+      'hochzeits-app-vs-hochzeitswebsite', 'kostenlose-hochzeitswebsite-haken',
+      'hochzeitswebsite-eigene-domain-passwortschutz', 'wann-hochzeitswebsite-erstellen-zeitpunkt',
+    ];
+    const target = href.replace(/^https?:\/\/(www\.)?sarahiver\.com/, '') || '/';
+    const slugPart = target.replace('/blog/', '');
+    const intentType = isHome ? 'product' : (COMMERCIAL.includes(slugPart) ? 'commercial' : null);
+    if (!intentType) return;
+
+    trackProductIntentClick({
+      sourcePath: `/blog/${post.slug}`,
+      destinationPath: target,
+      placement: 'article_body',
+      intentType,
+    });
+  };
+
   return (
     <PageWrapper $theme={currentTheme}>
       <SEOHead
@@ -513,7 +542,11 @@ const BlogArticle = () => {
         </ArticleMeta>
       </ArticleHero>
 
-      <ArticleContent>
+      {/* Klicks auf interne Links im Artikeltext per Delegation erfassen.
+          Die Links entstehen aus Markdown und haben keine eigenen Handler;
+          ein Listener am Container reicht und erzeugt keine zweite
+          Tracking-Architektur. */}
+      <ArticleContent onClick={handleContentClick}>
         {renderMarkdown(post.content, currentTheme, post.slug)}
       </ArticleContent>
 
