@@ -96,6 +96,9 @@ const ThemePreview = ({ theme, fallbackText, demoUrl, aspect, bg, borderRadius, 
             event_category: 'engagement',
             event_label: theme,
             demo_url: demoUrl,
+            demo: theme,
+            cta_placement: 'theme_showcase',
+            source_page: window.location.pathname,
           });
         }
         window.open(demoUrl, '_blank');
@@ -1452,7 +1455,7 @@ const ThemeShowcase = () => {
               <EditorialFeature>Magazin-Layout</EditorialFeature>
               <EditorialFeature>Roter Akzent</EditorialFeature>
             </EditorialFeatures>
-            <EditorialCTA href="https://siwedding.de/demo-editorial" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", event_label: "editorial" })}>
+            <EditorialCTA href="https://siwedding.de/demo-editorial" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", cta_placement: "theme_showcase_cta", event_label: "editorial" })}>
               Demo ansehen <ArrowIcon />
             </EditorialCTA>
 
@@ -1519,7 +1522,7 @@ const ThemeShowcase = () => {
               <BotanicalFeature>Organische Formen</BotanicalFeature>
               <BotanicalFeature>Sanfte Animationen</BotanicalFeature>
             </BotanicalFeatures>
-            <BotanicalCTA href="https://siwedding.de/demo-botanical" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", event_label: "botanical" })}>
+            <BotanicalCTA href="https://siwedding.de/demo-botanical" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", cta_placement: "theme_showcase_cta", event_label: "botanical" })}>
               Demo ansehen
             </BotanicalCTA>
 
@@ -1571,7 +1574,7 @@ const ThemeShowcase = () => {
               <ContemporaryDesc>
                 Kräftige Rahmen, verspielte Farben und kompromissloses Design. Für Paare, die anders sein wollen.
               </ContemporaryDesc>
-              <ContemporaryCTA href="https://siwedding.de/demo-contemporary" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", event_label: "contemporary" })}>
+              <ContemporaryCTA href="https://siwedding.de/demo-contemporary" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", cta_placement: "theme_showcase_cta", event_label: "contemporary" })}>
                 Demo ansehen →
               </ContemporaryCTA>
             </ContemporaryMainCard>
@@ -1637,7 +1640,7 @@ const ThemeShowcase = () => {
               <LuxeFeature>Filmische Typo</LuxeFeature>
               <LuxeFeature>Minimales Design</LuxeFeature>
             </LuxeFeatures>
-            <LuxeCTA href="https://siwedding.de/demo-luxe" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", event_label: "luxe" })}>
+            <LuxeCTA href="https://siwedding.de/demo-luxe" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", cta_placement: "theme_showcase_cta", event_label: "luxe" })}>
               Demo ansehen
             </LuxeCTA>
 
@@ -1702,7 +1705,7 @@ const ThemeShowcase = () => {
                 <NeonFeature>Terminal UI</NeonFeature>
                 <NeonFeature>Cyberpunk Vibes</NeonFeature>
               </NeonFeatures>
-              <NeonCTA href="https://siwedding.de/demo-neon" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", event_label: "neon" })}>
+              <NeonCTA href="https://siwedding.de/demo-neon" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", cta_placement: "theme_showcase_cta", event_label: "neon" })}>
                 [ DEMO STARTEN ]
               </NeonCTA>
 
@@ -1748,7 +1751,7 @@ const ThemeShowcase = () => {
               <ModernShowFeature>Parallax-Effekte</ModernShowFeature>
               <ModernShowFeature>DM Sans Typografie</ModernShowFeature>
             </ModernShowFeatures>
-            <ModernShowCTA href="https://siwedding.de/demo-parallax" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", event_label: "modern" })}>
+            <ModernShowCTA href="https://siwedding.de/demo-parallax" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", cta_placement: "theme_showcase_cta", event_label: "modern" })}>
               Demo ansehen <ArrowIcon />
             </ModernShowCTA>
           </ModernShowContent>
@@ -1801,7 +1804,7 @@ const ThemeShowcase = () => {
             <VideoLabel>Filmisches Theme</VideoLabel>
             <VideoTitle>Video</VideoTitle>
           </VideoTitleBlock>
-          <VideoCTA href="https://siwedding.de/demo-video" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", event_label: "video" })}>
+          <VideoCTA href="https://siwedding.de/demo-video" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag && window.gtag("event", "demo_click", { event_category: "engagement", cta_placement: "theme_showcase_cta", event_label: "video" })}>
             Demo ansehen <ArrowIcon />
           </VideoCTA>
         </VideoHeader>

@@ -36,13 +36,17 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-const track = (label, url, source) => {
+// Parameter heißt cta_placement, NICHT source: GA4 liest 'source' als
+// manuelle Sitzungsquelle (siehe demoData.js → trackDemoClick).
+const track = (label, url, placement) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'demo_click', {
       event_category: 'engagement',
       event_label: label,
       demo_url: url,
-      source,
+      demo: label,
+      cta_placement: placement,
+      source_page: window.location.pathname,
     });
   }
 };
