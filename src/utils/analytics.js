@@ -118,14 +118,17 @@ export const initConsentMode = () => {
   window.gtag('set', 'url_passthrough', true);
   window.gtag('set', 'ads_data_redaction', true);
 
-  configGA();
-
-  // Bestehende Einwilligung aus früherem Besuch direkt anwenden
+  // Bestehende Einwilligung aus früherem Besuch VOR der Konfiguration
+  // anwenden. Vorher kam sie danach — der Seitenaufruf, den config auslöst,
+  // ging dann ohne Einwilligung raus und fehlte in den Berichten.
   try {
     if (localStorage.getItem('cookie_consent') === 'accepted') {
       window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      window.__siConsentGranted = true;
     }
   } catch { /* localStorage nicht verfügbar */ }
+
+  configGA();
 };
 
 // Wird von CookieConsent bei "Akzeptieren" aufgerufen:
@@ -134,7 +137,20 @@ export const loadGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
   if (isNotrack) return;
   if (!window.__siGtagInit) initConsentMode();
+  const alreadyGranted = !!window.__siConsentGranted;
   window.gtag('consent', 'update', { analytics_storage: 'granted' });
+  window.__siConsentGranted = true;
+
+  // Erstmalige Zustimmung im Banner: Der Seitenaufruf beim Laden lief noch
+  // ohne Einwilligung und zählt nicht — deshalb hier einmal nachsenden.
+  // Bei wiederkehrenden Besuchern (Einwilligung schon gespeichert) nicht,
+  // sonst würde jeder Aufruf doppelt gezählt.
+  if (!alreadyGranted) {
+    window.gtag('event', 'page_view', {
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  }
 };
 
 const configGA = () => {
@@ -164,6 +180,7 @@ const configGA = () => {
 // Kein ga-disable mehr: das würde auch die erlaubten anonymen Pings stoppen.
 export const removeGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
+  window.__siConsentGranted = false;
   if (window.gtag) {
     window.gtag('consent', 'update', { analytics_storage: 'denied' });
   }
