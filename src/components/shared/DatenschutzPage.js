@@ -73,7 +73,7 @@ const DatenschutzPage = () => {
             </Text>
             <Text>
               S&I.<br />
-              Iver Gentz<br />
+              Iver Bohnes geb. Gentz<br />
               Große Freiheit 82<br />
               22767 Hamburg<br /><br />
               E-Mail: <EmailLink href="mailto:wedding@sarahiver.de">wedding@sarahiver.de</EmailLink>

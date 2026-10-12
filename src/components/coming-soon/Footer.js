@@ -92,10 +92,9 @@ const Footer = () => {
               </ModalSection>
               
               <ModalSection>
-                <SectionTitle $theme={currentTheme}>Umsatzsteuer-ID</SectionTitle>
+                <SectionTitle $theme={currentTheme}>Umsatzsteuer</SectionTitle>
                 <SectionText $theme={currentTheme}>
-                  Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-                  [wird nach Gewerbeanmeldung ergänzt]
+                  Kleinunternehmer gemäß § 19 UStG. Es wird keine Umsatzsteuer berechnet und ausgewiesen.
                 </SectionText>
               </ModalSection>
               

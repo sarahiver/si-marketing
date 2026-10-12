@@ -37,7 +37,7 @@ const ImpressumPage = () => {
             <SectionTitle>Angaben gemäß § 5 TMG</SectionTitle>
             <Text>
               S&I.<br />
-              Iver Gentz<br />
+              Iver Bohnes geb. Gentz<br />
               Große Freiheit 82<br />
               22767 Hamburg
             </Text>
@@ -53,7 +53,7 @@ const ImpressumPage = () => {
           <Section>
             <SectionTitle>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</SectionTitle>
             <Text>
-              Iver Gentz<br />
+              Iver Bohnes geb. Gentz<br />
               Große Freiheit 82<br />
               22767 Hamburg
             </Text>
@@ -62,10 +62,18 @@ const ImpressumPage = () => {
           <Section>
             <SectionTitle>Bankverbindung</SectionTitle>
             <Text>
-              Iver Gentz<br />
-              IBAN: DE06 1001 8000 0625 2723 20<br />
-              BIC: FNOMDEB2<br />
-              Bank: Finom Payments
+              Kontoinhaber: Iver Bohnes<br />
+              IBAN: DE76 1001 1001 2623 8509 68<br />
+              BIC: NTSBDEB1XXX<br />
+              Bank: N26
+            </Text>
+          </Section>
+
+          <Section>
+            <SectionTitle>Umsatzsteuer</SectionTitle>
+            <Text>
+              Kleinunternehmer gemäß § 19 UStG. Es wird keine Umsatzsteuer berechnet und
+              ausgewiesen.
             </Text>
           </Section>
 

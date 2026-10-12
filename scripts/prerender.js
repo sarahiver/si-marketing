@@ -553,9 +553,10 @@ async function main() {
       bodyHtml: legalBodyHtml({
         h1: 'Impressum',
         paragraphs: [
-          '<strong>Angaben gemäß § 5 TMG</strong><br />S&amp;I.<br />Iver Gentz<br />Große Freiheit 82<br />22767 Hamburg',
+          '<strong>Angaben gemäß § 5 TMG</strong><br />S&amp;I.<br />Iver Bohnes geb. Gentz<br />Große Freiheit 82<br />22767 Hamburg',
           '<strong>Kontakt</strong><br />E-Mail: wedding@sarahiver.de',
-          '<strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</strong><br />Iver Gentz, Große Freiheit 82, 22767 Hamburg',
+          '<strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</strong><br />Iver Bohnes geb. Gentz, Große Freiheit 82, 22767 Hamburg',
+          '<strong>Umsatzsteuer</strong><br />Kleinunternehmer gemäß § 19 UStG. Es wird keine Umsatzsteuer berechnet und ausgewiesen.',
           'Vollständige Angaben zu Streitschlichtung, Haftung für Inhalte und Links sowie Urheberrecht findet ihr auf dieser Seite.',
         ],
       }),
@@ -570,7 +571,7 @@ async function main() {
         paragraphs: [
           'Diese Datenschutzerklärung informiert darüber, was mit personenbezogenen Daten passiert, wenn ihr diese Website besucht: welche Daten erhoben werden, wie wir sie nutzen und welche Rechte ihr habt.',
           'Themen auf dieser Seite: Datenschutz auf einen Blick, Hosting, allgemeine Hinweise und Pflichtinformationen, Datenerfassung auf dieser Website (Cookies, Kontaktanfragen), Analyse-Tools sowie eure Rechte auf Auskunft, Berichtigung und Löschung.',
-          '<strong>Verantwortlicher</strong><br />Iver Gentz, Große Freiheit 82, 22767 Hamburg<br />E-Mail: wedding@sarahiver.de',
+          '<strong>Verantwortlicher</strong><br />Iver Bohnes geb. Gentz, Große Freiheit 82, 22767 Hamburg<br />E-Mail: wedding@sarahiver.de',
         ],
       }),
     },
