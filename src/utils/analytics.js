@@ -155,19 +155,18 @@ export const loadGoogleAnalytics = () => {
 
 const configGA = () => {
   window.gtag('js', new Date());
-  // A/B-Test Variante als Custom Dimension setzen
-  // Diese muss in GA4 unter Admin > Custom Definitions angelegt werden:
-  // Name: ab_variant, Scope: User, Parameter: ab_variant
-  const abVariant = (() => { try { return localStorage.getItem('si_ab_variant') || 'unknown'; } catch { return 'unknown'; } })();
-  
+  // Der A/B-Test (Theme-Modal) ist beendet: keine ab_variant-Nutzereigenschaft
+  // mehr, und die alten Zuteilungen werden aus dem Browser entfernt.
+  try {
+    localStorage.removeItem('si_ab_variant');
+    localStorage.removeItem('si_ab_modal_shown');
+    sessionStorage.removeItem('si_ab_tracked');
+  } catch { /* Storage nicht verfügbar */ }
+
   window.gtag('config', GA_MEASUREMENT_ID, {
     anonymize_ip: true,
     cookie_flags: 'SameSite=None;Secure',
     send_page_view: true,
-    // Custom User Properties für A/B-Segmentierung
-    user_properties: {
-      ab_variant: abVariant,
-    },
   });
 
   // Google Ads im selben Tag. ad_storage bleibt "denied" (Default oben) —
@@ -445,30 +444,6 @@ export const trackSectionView = (sectionName) => {
   });
 };
 
-
-// ============================================
-// A/B TEST EVENTS
-// ============================================
-export const trackABConversion = (variant, theme, packageName) => {
-  trackEvent('ab_conversion', {
-    event_category: 'ab_test',
-    ab_variant: variant,
-    theme: theme || 'unknown',
-    package: packageName || 'unknown',
-  });
-};
-
-export const trackEngagementScrollDepth = (percent, variant, theme) => {
-  // Nur bei 25%, 50%, 75%, 90% feuern
-  const milestones = [25, 50, 75, 90];
-  if (!milestones.includes(percent)) return;
-  trackEvent('scroll_depth_milestone', {
-    event_category: 'engagement',
-    ab_variant: variant,
-    percent_scrolled: percent,
-    theme: theme || 'unknown',
-  });
-};
 
 export default {
   trackPageView,

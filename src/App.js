@@ -36,7 +36,6 @@ import ModernOverride from './components/marketing/ModernOverride';
 // SHARED / STANDALONE PAGES
 // ============================================
 import CookieConsent from './components/shared/CookieConsent';
-import { ABTestProvider } from './context/ABTestContext';
 import useScrollDepth from './hooks/useScrollDepth';
 import SEOHead from './components/shared/SEOHead';
 
@@ -146,7 +145,7 @@ const GlobalStyles = createGlobalStyle`
 function MarketingPage() {
   const { currentTheme, isLoading } = useTheme();
   
-  // Scroll-Tiefe für A/B-Test tracken
+  // Scroll-Tiefe tracken (scroll_depth)
   useScrollDepth();
   
   useEffect(() => {
@@ -332,8 +331,7 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <ABTestProvider>
-          <Router>
+        <Router>
             <GlobalStyles />
             <ScrollToHashHandler />
             <Routes>
@@ -409,7 +407,6 @@ function App() {
               {/* DSGVO Cookie Banner */}
               <CookieConsent />
             </Router>
-          </ABTestProvider>
         </ThemeProvider>
       </ErrorBoundary>
   );

@@ -1,22 +1,22 @@
 // src/hooks/useScrollDepth.js
-// Misst Scroll-Tiefe und fired GA4-Events bei Meilensteinen (25%, 50%, 75%, 90%)
-// Berücksichtigt den A/B-Test-Kontext
+// Misst Scroll-Tiefe und feuert GA4-Events bei Meilensteinen (25%, 50%, 75%, 90%).
+// Event-Name bleibt 'scroll_depth' wie bisher, damit Berichte weiter passen.
+// Der Parameter ab_variant ist entfallen — der A/B-Test (Theme-Modal) ist beendet.
 
 import { useEffect, useRef } from 'react';
-import { useABTest } from '../context/ABTestContext';
 import { useTheme } from '../context/ThemeContext';
+import { trackEvent } from '../utils/analytics';
 
 const MILESTONES = [25, 50, 75, 90];
 
 const useScrollDepth = () => {
-  const { trackScrollDepth, variant } = useABTest();
   const { currentTheme } = useTheme();
   const reached = useRef(new Set());
   const themeRef = useRef(currentTheme);
 
   // Theme-Ref aktuell halten
   useEffect(() => { themeRef.current = currentTheme; }, [currentTheme]);
-  
+
   // Bei Theme-Wechsel: Meilensteine zurücksetzen
   useEffect(() => { reached.current = new Set(); }, [currentTheme]);
 
@@ -30,12 +30,16 @@ const useScrollDepth = () => {
       for (const milestone of MILESTONES) {
         if (scrollPercent >= milestone && !reached.current.has(milestone)) {
           reached.current.add(milestone);
-          trackScrollDepth(milestone, themeRef.current);
+          trackEvent('scroll_depth', {
+            event_category: 'engagement',
+            percent_scrolled: milestone,
+            theme: themeRef.current,
+          });
         }
       }
     };
 
-    // Throttle: max einmal alle 200ms
+    // Throttle: max einmal pro Frame
     let ticking = false;
     const throttledScroll = () => {
       if (!ticking) {
@@ -49,7 +53,7 @@ const useScrollDepth = () => {
 
     window.addEventListener('scroll', throttledScroll, { passive: true });
     return () => window.removeEventListener('scroll', throttledScroll);
-  }, [trackScrollDepth, variant]);
+  }, []);
 };
 
 export default useScrollDepth;
