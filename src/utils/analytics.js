@@ -10,6 +10,9 @@ import { getPackage } from '../lib/pricing';
 // Merkt sich die Einstellung per localStorage. Aufheben mit ?notrack=0
 
 const GA_MEASUREMENT_ID = 'G-G9DKBTJRJJ';
+// Google Ads — vorher als festes Snippet in public/index.html, jetzt hier,
+// damit es hinter dem Consent-Default läuft
+const GOOGLE_ADS_ID = 'AW-18486364190';
 const NOTRACK_KEY = 'si_notrack';
 
 // ============================================
@@ -78,22 +81,30 @@ export const trackEvent = (eventName, params = {}) => {
 // Nach "Akzeptieren" wird per Consent-Update auf volles Tracking hochgestuft.
 
 const injectGtag = () => {
-  if (window.gtag) return;
-  const script = document.createElement('script');
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  script.async = true;
-  document.head.appendChild(script);
-
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function () {
-    window.dataLayer.push(arguments);
-  };
+  // Vorhandenes gtag (z. B. von einem fremden Snippet) weiterverwenden —
+  // beide schreiben in denselben dataLayer
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+  }
+  if (!document.querySelector(`script[src*="gtag/js?id=${GA_MEASUREMENT_ID}"]`)) {
+    const script = document.createElement('script');
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    script.async = true;
+    document.head.appendChild(script);
+  }
 };
 
 export const initConsentMode = () => {
   if (typeof window === 'undefined') return;
   if (isNotrack) return; // Dev-Modus: nichts laden
-  if (window.gtag) return; // bereits initialisiert
+  // Eigenes Merkmal statt "gibt es window.gtag?": Ein Google-Ads-Snippet in
+  // index.html hatte gtag schon angelegt — dann wurde GA4 nie konfiguriert
+  // und es kamen keine Besucher mehr in GA4 an.
+  if (window.__siGtagInit) return;
+  window.__siGtagInit = true;
 
   injectGtag();
 
@@ -122,7 +133,7 @@ export const initConsentMode = () => {
 export const loadGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
   if (isNotrack) return;
-  if (!window.gtag) initConsentMode();
+  if (!window.__siGtagInit) initConsentMode();
   window.gtag('consent', 'update', { analytics_storage: 'granted' });
 };
 
@@ -142,6 +153,10 @@ const configGA = () => {
       ab_variant: abVariant,
     },
   });
+
+  // Google Ads im selben Tag. ad_storage bleibt "denied" (Default oben) —
+  // der Cookie-Banner fragt nur nach Analyse-Cookies, nicht nach Werbung.
+  window.gtag('config', GOOGLE_ADS_ID);
 };
 
 // Bei "Ablehnen": Consent-Update auf denied (cookielose Pings laufen weiter —

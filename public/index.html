@@ -12,8 +12,10 @@
     <meta name="google-site-verification" content="ARVxRP_SNAYlow8kgqCZZxDeVIg2zUhMoQcziXt1HDM" />
     <meta name="p:domain_verify" content="799bc3933d5bcf53008288a5a2fa2d1d"/>
     
-    <!-- Google tag (gtag.js) --> 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18486364190"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-18486364190'); </script>
+    <!-- Google-Tag (GA4 + Google Ads) wird in src/utils/analytics.js geladen —
+         NICHT hier einfügen. Ein Snippet an dieser Stelle legt window.gtag vor
+         der App an; dann übersprang analytics.js die GA4-Einrichtung komplett
+         (keine Besucher in GA4) und Ads lief ohne Consent-Default. -->
     
     <!-- Open Graph -->
     <meta property="og:title" content="S&I. — Premium Hochzeitswebsites" />
