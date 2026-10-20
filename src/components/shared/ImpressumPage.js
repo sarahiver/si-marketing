@@ -37,7 +37,7 @@ const ImpressumPage = () => {
             <SectionTitle>Angaben gemäß § 5 TMG</SectionTitle>
             <Text>
               S&I.<br />
-              Iver Bohnes geb. Gentz<br />
+              Iver Bohnes<br />
               Große Freiheit 82<br />
               22767 Hamburg
             </Text>
@@ -53,7 +53,7 @@ const ImpressumPage = () => {
           <Section>
             <SectionTitle>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</SectionTitle>
             <Text>
-              Iver Bohnes geb. Gentz<br />
+              Iver Bohnes<br />
               Große Freiheit 82<br />
               22767 Hamburg
             </Text>
