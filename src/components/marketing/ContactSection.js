@@ -711,12 +711,17 @@ const StyleBadge = styled.div`
 
 const THEME_OPTIONS = [
   { id: '', label: 'Bitte wählen...' },
+  // Classic und Modern fehlten: Wer aus diesen Demos kam (oder sie im
+  // Filmstrip anfragte), landete ohne Design-Vorauswahl im Formular, und die
+  // Anfrage enthielt kein Design.
+  { id: 'classic', label: 'Classic' },
   { id: 'editorial', label: 'Editorial' },
   { id: 'botanical', label: 'Botanical' },
   { id: 'contemporary', label: 'Contemporary' },
   { id: 'luxe', label: 'Luxe' },
   { id: 'neon', label: 'Neon' },
   { id: 'video', label: 'Video' },
+  { id: 'modern', label: 'Modern' },
 ];
 
 const ContactSection = () => {
@@ -956,9 +961,11 @@ const ContactSection = () => {
       
       setSubmitStatus('success');
       
-      trackFormSubmit(currentTheme, formData.interestedPackage);
+      // theme = vom Paar gewähltes Design (nicht das Seiten-Theme der
+      // Marketingseite — das ist fest "classic" und stand vorher in JEDEM Lead)
+      trackFormSubmit(formData.interestedTheme || 'none', formData.interestedPackage);
       // Funnel-Abschluss inkl. Herkunftsartikel (si_blog_origin aus der Session)
-      trackInquirySubmit(currentTheme, formData.interestedPackage);
+      trackInquirySubmit(formData.interestedTheme || 'none', formData.interestedPackage);
       
       // Reset captcha
       if (window.hcaptcha && captchaWidgetId.current !== null) {

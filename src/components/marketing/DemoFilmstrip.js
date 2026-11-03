@@ -368,7 +368,7 @@ const DemoCard = ({ demo, isMobile, CardComp }) => {
     <CardComp
       href={demoUrl(demo.id, { placement: isMobile ? 'filmstrip_mobile' : 'filmstrip' })}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       $static={isMobile}
       $horizontal={HORIZONTAL_THEMES.includes(demo.id)}
       onMouseEnter={videoSrc ? handleEnter : undefined}

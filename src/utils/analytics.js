@@ -3,8 +3,9 @@ import { getPackage } from '../lib/pricing';
 // Zentrales Analytics-Modul für S&I Marketing
 // Alle Event-Tracking-Funktionen an einem Ort
 //
-// GA4 Events werden nur gefeuert, wenn der User Cookies akzeptiert hat.
-// Alle Funktionen prüfen ob gtag verfügbar ist, bevor sie feuern.
+// GA4 (und das Google-Ads-Tag) werden erst NACH Einwilligung geladen.
+// Vorher existiert kein gtag — alle track*-Funktionen sind dann wirkungslos,
+// es gehen keinerlei Anfragen an Google (auch keine cookielosen Pings).
 //
 // DEV-MODUS: ?notrack=1 an die URL hängen → GA4 + Vercel Analytics deaktiviert.
 // Merkt sich die Einstellung per localStorage. Aufheben mit ?notrack=0
@@ -40,9 +41,10 @@ const initNotrack = () => {
 
 export const isNotrack = initNotrack();
 
-// Consent Mode sofort initialisieren (cookielose Pings ab dem ersten Pageview)
+// Wiederkehrende Besucher mit gespeicherter Einwilligung: GA sofort starten
+// (nach der Modul-Auswertung, damit initConsentMode definiert ist).
+// Ohne Einwilligung passiert hier nichts.
 if (typeof window !== 'undefined') {
-  // nach der Modul-Auswertung, damit initConsentMode definiert ist
   setTimeout(() => { try { initConsentMode(); } catch { /* noop */ } }, 0);
 }
 
@@ -57,7 +59,12 @@ if (isNotrack && typeof window !== 'undefined') {
 // ============================================
 const isAnalyticsReady = () => {
   if (isNotrack) return false;
-  return typeof window !== 'undefined' && typeof window.gtag === 'function';
+  // Nur mit Einwilligung: gtag kann auch von einem fremden Snippet stammen
+  return typeof window !== 'undefined' && typeof window.gtag === 'function' && !!window.__siConsentGranted;
+};
+
+const hasStoredConsent = () => {
+  try { return localStorage.getItem('cookie_consent') === 'accepted'; } catch { return false; }
 };
 
 export const trackEvent = (eventName, params = {}) => {
@@ -71,14 +78,19 @@ export const trackEvent = (eventName, params = {}) => {
 };
 
 // ============================================
-// LOAD / REMOVE GA — Consent Mode v2
+// LOAD / REMOVE GA — erst nach Einwilligung (Consent Mode "basic")
 // ============================================
-// GA lädt für ALLE Besucher sofort, aber mit analytics_storage: 'denied'
-// als Default (Consent Mode v2). Ohne Einwilligung sendet GA nur cookielose,
-// anonyme Pings — DSGVO-konform, aber zählbar (GA modelliert die Lücken).
-// url_passthrough hält zusätzlich den Cross-Domain-Linker (_gl) am Leben,
-// damit der Funnel sarahiver.com → siwedding.de auch ohne Cookies verknüpft.
-// Nach "Akzeptieren" wird per Consent-Update auf volles Tracking hochgestuft.
+// Vorher (bis Nov 2026) lud GA für ALLE Besucher sofort im Modus
+// analytics_storage: 'denied' und schickte cookielose Pings. Das widerspricht
+// der Vorgabe "keine GA4-Anfragen ohne Einwilligung" — und brachte für die
+// Berichte nichts: Ohne Einwilligung gesendete Ereignisse erscheinen in GA4
+// erst ab ~1.000 Ereignissen/Tag (Verhaltensmodellierung), also bei uns nie.
+//
+// Jetzt: gtag.js wird erst geladen, wenn eine Einwilligung vorliegt
+// (gespeichert oder per Klick im Banner). Der erste page_view geht beim
+// config-Aufruf raus — zum Zeitpunkt der Einwilligung, nicht rückdatiert.
+// Google Ads (ad_storage) bleibt verweigert: Der Banner fragt nur nach
+// Analyse-Cookies. Lead-Conversions kommen über den GA4-Import nach Ads.
 
 const injectGtag = () => {
   window.dataLayer = window.dataLayer || [];
@@ -97,60 +109,44 @@ const injectGtag = () => {
   }
 };
 
+// Startet GA genau einmal — und nur mit Einwilligung.
 export const initConsentMode = () => {
   if (typeof window === 'undefined') return;
   if (isNotrack) return; // Dev-Modus: nichts laden
-  // Eigenes Merkmal statt "gibt es window.gtag?": Ein Google-Ads-Snippet in
-  // index.html hatte gtag schon angelegt — dann wurde GA4 nie konfiguriert
-  // und es kamen keine Besucher mehr in GA4 an.
+  if (!hasStoredConsent()) return; // ohne Einwilligung: gar nichts laden
+  // Eigenes Merkmal statt "gibt es window.gtag?": Ein fremdes Snippet könnte
+  // gtag schon angelegt haben — GA4 muss trotzdem konfiguriert werden.
   if (window.__siGtagInit) return;
   window.__siGtagInit = true;
 
   injectGtag();
-
-  // MUSS vor js/config stehen: Default = alles verweigert
+  // Reihenfolge wichtig: consent → js → config
   window.gtag('consent', 'default', {
-    analytics_storage: 'denied',
+    analytics_storage: 'granted',
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
   });
-  window.gtag('set', 'url_passthrough', true);
   window.gtag('set', 'ads_data_redaction', true);
-
-  // Bestehende Einwilligung aus früherem Besuch VOR der Konfiguration
-  // anwenden. Vorher kam sie danach — der Seitenaufruf, den config auslöst,
-  // ging dann ohne Einwilligung raus und fehlte in den Berichten.
-  try {
-    if (localStorage.getItem('cookie_consent') === 'accepted') {
-      window.gtag('consent', 'update', { analytics_storage: 'granted' });
-      window.__siConsentGranted = true;
-    }
-  } catch { /* localStorage nicht verfügbar */ }
-
+  window['ga-disable-' + GA_MEASUREMENT_ID] = false;
+  window.__siConsentGranted = true;
   configGA();
 };
 
-// Wird von CookieConsent bei "Akzeptieren" aufgerufen:
-// stellt sicher, dass GA läuft, und stuft auf volles Tracking hoch.
+// Wird von CookieConsent bei "Akzeptieren" (und beim Laden mit gespeicherter
+// Einwilligung) aufgerufen. Der Banner speichert die Einwilligung VOR dem
+// Aufruf; initConsentMode startet GA dann einmalig — inklusive page_view.
 export const loadGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
   if (isNotrack) return;
-  if (!window.__siGtagInit) initConsentMode();
-  const alreadyGranted = !!window.__siConsentGranted;
+  if (!window.__siGtagInit) {
+    initConsentMode();
+    return;
+  }
+  // GA lief schon (z. B. Widerruf und erneute Zustimmung im selben Aufruf)
+  window['ga-disable-' + GA_MEASUREMENT_ID] = false;
   window.gtag('consent', 'update', { analytics_storage: 'granted' });
   window.__siConsentGranted = true;
-
-  // Erstmalige Zustimmung im Banner: Der Seitenaufruf beim Laden lief noch
-  // ohne Einwilligung und zählt nicht — deshalb hier einmal nachsenden.
-  // Bei wiederkehrenden Besuchern (Einwilligung schon gespeichert) nicht,
-  // sonst würde jeder Aufruf doppelt gezählt.
-  if (!alreadyGranted) {
-    window.gtag('event', 'page_view', {
-      page_location: window.location.href,
-      page_title: document.title,
-    });
-  }
 };
 
 const configGA = () => {
@@ -174,13 +170,14 @@ const configGA = () => {
   window.gtag('config', GOOGLE_ADS_ID);
 };
 
-// Bei "Ablehnen": Consent-Update auf denied (cookielose Pings laufen weiter —
-// genau das erlaubt Consent Mode v2), vorhandene GA-Cookies aufräumen.
-// Kein ga-disable mehr: das würde auch die erlaubten anonymen Pings stoppen.
+// Bei "Ablehnen"/Widerruf: GA sofort stummschalten (keine weiteren Anfragen)
+// und vorhandene GA-Cookies aufräumen. Wurde GA nie geladen, gibt es nichts
+// zu tun.
 export const removeGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
   window.__siConsentGranted = false;
-  if (window.gtag) {
+  window['ga-disable-' + GA_MEASUREMENT_ID] = true;
+  if (window.__siGtagInit && window.gtag) {
     window.gtag('consent', 'update', { analytics_storage: 'denied' });
   }
 

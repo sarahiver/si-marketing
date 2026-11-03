@@ -258,7 +258,7 @@ const CaseStudy = () => {
             <Primary
               href={href}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               onClick={() => trackDemoClick(c.previewTheme, href, 'case_study')}
             >
               Zur Website →

@@ -165,7 +165,7 @@ const FinalCTA = () => {
           <Primary
             href={href}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             onClick={() => trackDemoClick('classic', href, 'final_cta')}
           >
             Designs ansehen →

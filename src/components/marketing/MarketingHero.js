@@ -1367,7 +1367,7 @@ const MarketingHero = () => {
                 $rect={images.productMockupScreens.laptop}
                 href={activeUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 aria-label={`Live-Demo ${active.name} öffnen`}
                 onClick={() => openDemo('hero_laptop')}
               >
@@ -1395,7 +1395,7 @@ const MarketingHero = () => {
                 $rect={images.productMockupScreens.phone}
                 href={activeUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 aria-label={`Mobile-Ansicht ${active.name} öffnen`}
                 onClick={() => openDemo('hero_phone')}
               >

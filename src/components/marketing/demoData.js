@@ -152,6 +152,10 @@ export const mobileCardUrl = (id) =>
 // eine neue Sitzung/Attribution erzwingen und den Funnel zerschneiden.
 // ?src / ?article sind neutral, landen aber in page_location und sind damit
 // in GA4 (Landingpage) und in Server-Logs auswertbar.
+// Demo-Links öffnen mit rel="noopener" (ohne "noreferrer"): Der Referrer
+// (wegen Referrer-Policy nur die Origin "https://sarahiver.com/") ist nötig,
+// damit der Report Demo-Besuche der Website zuordnen kann. Mit "noreferrer"
+// kam auf siwedding.de kein Referrer an → "Demo besucht: 0".
 export const demoUrl = (id, { placement, article } = {}) => {
   const base = ALL_DEMOS.find(d => d.id === id)?.url || ALL_DEMOS[0].url;
   const params = new URLSearchParams();

@@ -284,7 +284,7 @@ const WeddingWebsiteCTA = ({ slug, theme, placement = 'mid' }) => {
   };
 
   const externalProps = (action) =>
-    action.target === 'demo' ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+    action.target === 'demo' ? { target: '_blank', rel: 'noopener' } : {};
 
   // --- Platzierung A: kurzer Hinweis nach dem ersten Abschnitt ---
   if (placement === 'hint') {

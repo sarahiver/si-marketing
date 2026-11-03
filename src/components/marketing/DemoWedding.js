@@ -307,7 +307,7 @@ const DemoWedding = () => {
           <CTA
             href={href}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             onClick={openDemo}
           >
             {d.cta} →

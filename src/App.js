@@ -305,7 +305,9 @@ function ScrollToHashHandler() {
   const location = useLocation();
   useEffect(() => {
     if (!location.hash) return;
-    const id = location.hash.replace('#', '');
+    // "#contact?theme=editorial" (Rückweg aus der Demo): Die ID endet vor dem "?"
+    // — vorher suchte der Handler nach "contact?theme=editorial" und scrollte nie.
+    const id = location.hash.replace('#', '').split('?')[0];
     let attempts = 0;
     let cancelled = false;
     const tryScroll = () => {

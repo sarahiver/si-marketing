@@ -174,7 +174,7 @@ const StickyDemoBar = () => {
               key={demo.id}
               href={demoUrl(demo.id, { placement: 'sticky_bar' })}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               onClick={() => handleSelect(demo)}
             >
               <ThemeRowName>{demo.name}</ThemeRowName>
