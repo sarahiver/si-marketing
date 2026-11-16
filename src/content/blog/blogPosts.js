@@ -63,7 +63,7 @@ Das ist besonders wichtig für Paare, die Wert auf Datenschutz legen oder eine i
 
 Stellt euch vor, eure Hochzeitsgäste tippen einfach **eurenamen.de** in ihren Browser – und landen auf einer wunderschön gestalteten Website, die eure gemeinsame Geschichte erzählt. Das ist persönlicher als jede Papiereinladung, eleganter als jede WhatsApp-Nachricht und moderner als jedes Hochzeitsportal.
 
-**Eine eigene Domain für eure Hochzeitswebsite** ist nicht nur praktisch, sondern auch ein echtes Statement. Sie zeigt euren Gästen, dass ihr euch Gedanken gemacht habt und eure Hochzeit bis ins Detail durchgeplant ist. Und nach der Hochzeit? Bleibt die Website als digitale Erinnerung bestehen – mit allen Fotos, Gästebucheinträgen und Erinnerungen an euren schönsten Tag.
+**Eine eigene Domain für eure Hochzeitswebsite** ist nicht nur praktisch, sondern auch ein echtes Statement. Sie zeigt euren Gästen, dass ihr euch Gedanken gemacht habt und eure Hochzeit bis ins Detail durchgeplant ist. Ob und wie lange eure Website nach der Hochzeit verfügbar bleibt, richtet sich nach dem gebuchten Leistungsumfang; die Archivoption könnt ihr bei Bedarf gesondert besprechen.
 
 Tipp: Sichert euch eure Wunschdomain frühzeitig. Beliebte Kombinationen wie vorname-und-vorname.de sind schnell vergriffen.
 
@@ -79,13 +79,13 @@ Dazu kommt ein digitales Gästebuch: Eure Gäste können persönliche Glückwün
 
 Nachhaltigkeit ist vielen modernen Brautpaaren wichtig – und eine Hochzeitswebsite ist ein einfacher, konkreter Schritt in die richtige Richtung. Rechnet mal nach: Für 100 Gäste braucht ihr normalerweise Papiereinladungen (Druck + Design), Rückumschläge mit Porto, eventuell Save-the-Date-Karten, Tischkarten mit Menüinformationen und Programmhefte für den Tagesablauf.
 
-**Die Kosten dafür liegen schnell bei 500–1.000 Euro** – und das für Papier, das nach der Hochzeit meist in der Schublade verschwindet. Eine Hochzeitswebsite ersetzt all das digital, produziert keinen Abfall und ist jederzeit aktualisierbar. Wenn sich der Ablauf ändert oder eine Location kurzfristig wechselt, aktualisiert ihr einfach die Website – statt neue Karten nachdrucken zu lassen.
+**Je nach Auflage, Papier, Gestaltung und Porto können gedruckte Einladungen mehrere Hundert Euro kosten** – und das für Papier, das nach der Hochzeit meist in der Schublade verschwindet. Eine Hochzeitswebsite kann gedruckte Informationsteile und zusätzliche Versandwege reduzieren und ist jederzeit aktualisierbar. Wenn sich der Ablauf ändert oder eine Location kurzfristig wechselt, aktualisiert ihr einfach die Website – statt neue Karten nachdrucken zu lassen.
 
 ## 7. Professionelles Design, das zu euch als Paar passt
 
 Eure Hochzeit hat einen eigenen Stil – eure Hochzeitswebsite sollte diesen Stil widerspiegeln. Moderne Hochzeitswebsites sind längst keine langweiligen Online-Formulare mehr. Mit professionell gestalteten [Themes](/blog/hochzeitswebsite-design-beispiele-inspiration) wird eure Website zu einem echten Hingucker.
 
-**Bei S&I. stehen euch sechs einzigartige Hochzeitsthemes zur Wahl:** Das minimalistische Editorial-Design mit klarer Typografie für moderne Paare. Das Botanical-Theme mit organischen Formen für Naturliebhaber und Gartenfreunde. Das Contemporary-Design mit mutigen Farben für kreative Köpfe. Das elegante Luxe-Theme in dunklem Gold für stilbewusste Paare. Das Neon-Theme mit leuchtenden Akzenten für Paare, die das Besondere lieben. Und das Video-Theme für Paare, die mit bewegten Bildern ihre Geschichte erzählen wollen.
+**Bei S&I. könnt ihr verschiedene eigenständig gestaltete Hochzeitsthemes ansehen:** Das minimalistische Editorial-Design mit klarer Typografie für moderne Paare. Das Botanical-Theme mit organischen Formen für Naturliebhaber und Gartenfreunde. Das Contemporary-Design mit mutigen Farben für kreative Köpfe. Das elegante Luxe-Theme in dunklem Gold für stilbewusste Paare. Das Neon-Theme mit leuchtenden Akzenten für Paare, die das Besondere lieben. Und das Video-Theme für Paare, die mit bewegten Bildern ihre Geschichte erzählen wollen.
 
 ![Stilvolle Hochzeitsdekoration mit Blumen und Kerzen](https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80)
 
@@ -234,15 +234,15 @@ Bei S&I. ist das digitale RSVP-System nahtlos in eure Hochzeitswebsite integrier
       "datePublished": "2024-10-28",
     },
     content: `
-## Hochzeitswebsite Vergleich 2026: Wer liefert wirklich was?
+## Hochzeitswebsite Vergleich 2027: Welches Modell passt zu euch?
 
 Ihr habt Ja gesagt – und jetzt beginnt die Planung. Eine eigene Hochzeitswebsite steht auf fast jeder To-do-Liste weit oben: Sie ersetzt hundert WhatsApp-Nachrichten, beantwortet die immer gleichen Fragen eurer Gäste automatisch und ist für viele Paare der erste sichtbare Schritt in die gemeinsame Zukunft.
 
 Aber welcher Anbieter ist der richtige? Das Angebot ist groß, die Marketing-Versprechen klingen überall ähnlich gut – und die Unterschiede zeigen sich erst wenn es zu spät ist, um zu wechseln.
 
-**Dieser Vergleich ist ehrlich. Auch gegenüber uns selbst.** Wir zeigen euch, wer was kann, was es wirklich kostet und für wen welcher Anbieter tatsächlich Sinn ergibt. Am Ende werden wir nicht verschweigen, warum wir glauben dass S&I. für die meisten Paare die beste Wahl ist – aber wir werden es euch zeigen, nicht einfach behaupten.
+**Dieser Vergleich ist ehrlich. Auch gegenüber uns selbst.** Wir zeigen euch, wer was kann, was es wirklich kostet und für wen welcher Anbieter tatsächlich Sinn ergibt. S&I. bietet selbst eine kostenpflichtige Premium-Lösung an. Deshalb benennen wir auch Situationen, in denen ein günstiger Baukasten oder ein kostenloses Angebot sinnvoller ist.
 
-![Editorial Theme – eine der sechs Hochzeitswebsite-Designs von S&I.](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410204/editorial-demo_uzzasb.png)
+![Editorial Theme – eine der S&I.-Design-Demos von S&I.](https://res.cloudinary.com/si-weddings/image/upload/q_auto,f_auto,w_900/v1771410204/editorial-demo_uzzasb.png)
 
 ---
 
@@ -294,9 +294,9 @@ Aus den USA kommen einige Anbieter mit beeindruckendem Funktionsumfang: RSVP, Ge
 
 **Was stimmt:** Der Funktionsumfang ist stark. RSVP-Systeme sind ausgereift, App-Integrationen für Gäste sind durchdacht.
 
-**Was nicht passt:** Diese Plattformen sind für den amerikanischen Markt gemacht. Viele Texte sind auf Englisch oder lückenhaft übersetzt. Die Designs wirken amerikanisch – was für eine deutsche Hochzeit oft nicht passt. Und: Gästedaten liegen auf US-Servern. DSGVO ist ein echtes Thema, kein bürokratisches Detail.
+**Was ihr prüfen solltet:** Sprachunterstützung, Preise, Exportmöglichkeiten und die Datenschutzinformationen des konkreten Anbieters. Aus einem US-Firmensitz allein lässt sich weder der Speicherort der Daten noch die DSGVO-Konformität zuverlässig ableiten.
 
-**Fazit:** Technisch stark – aber für deutschsprachige Paare mit dem Wunsch nach echtem Design und Datenschutz keine Empfehlung.
+**Fazit:** Eine solche Plattform kann passen, wenn Funktionsumfang und Bedienung überzeugen. Prüft im Einzelfall Sprache, Vertragsbedingungen und Datenschutz.
 
 ---
 
@@ -324,7 +324,7 @@ S&I. ist kein Baukasten. Kein Portal. Kein Template-System wo ihr selbst herumba
 
 **Foto-Upload für Gäste** – alle Hochzeitsfotos eurer Gäste an einem Ort. Nach der Feier direkt verfügbar, kein Google Drive-Chaos, keine geteilten Dropbox-Links.
 
-**Eigene Domain** – eure Seite läuft unter anna-und-max.de. Nicht unter anna-und-max.irgendeinportal.de.
+**Eigene Domain als Option** – auf Wunsch lässt sich eine eigene Domain vereinbaren; sie ist nicht im Standardpreis enthalten.
 
 **Passwortschutz** – eure Website ist nur für eingeladene Gäste zugänglich. Vollständige Kontrolle über eure Privatsphäre. Details: [Eigene Domain und Passwortschutz](/blog/hochzeitswebsite-eigene-domain-passwortschutz).
 
@@ -344,9 +344,9 @@ Wir vergleichen bewusst **Kategorien statt einzelner Marken**. Innerhalb jeder K
 |---|---|---|---|---|
 | Preis | 0 € (mit Werbung oder Limits) | ca. 60–250 € pro Jahr | ca. 0–200 €, teils Abo | ab 990 € einmalig |
 | Eigener Aufwand | Hoch | Hoch | Mittel | Gering |
-| Individualisierbarkeit | Sehr gering | Mittel (Vorlagen) | Gering | Vollständig |
+| Individualisierbarkeit | Tarifabhängig | Abhängig vom Baukasten | App-abhängig | Abstimmung im Rahmen des Pakets |
 | Designfreiheit | Vorlage | Vorlage mit Optionen | App-Layout | Frei gestaltet |
-| Eigene Domain | Meist kostenpflichtig | Ja | Selten | Ja |
+| Eigene Domain | Je nach Anbieter/Tarif | Je nach Tarif | Je nach Anbieter | Bei S&I. optional (+39 €) |
 | Technische Einrichtung | Selbst | Selbst | Selbst | Übernommen |
 | Persönliche Betreuung | Nein | Support-Ticket | Support-Ticket | Ja, direkt |
 | RSVP | Basis | Basis bis gut | Gut | Vollständig |
@@ -360,6 +360,16 @@ Die Preisangaben sind Spannen, die sich aus den üblichen Modellen der jeweilige
 Eine individuell erstellte Lösung wie S&I. richtet sich an Paare, die Gestaltung und Technik nicht selbst übernehmen und eine Website passend zum Hochzeitsdesign erhalten möchten. Wer gern selbst baut und Freude am Ausprobieren hat, ist mit einem Baukasten besser und günstiger bedient.
 
 ---
+
+## Drei Fragen vor der Entscheidung
+
+**1. Wie viel Arbeit wollt ihr selbst übernehmen?** Bei einem Baukasten seid ihr für Inhalte, Gestaltung und viele Einstellungen verantwortlich. Bei S&I. übernehmt ihr im 990-€-Paket die Inhaltspflege selbst; im 1.490-€-Paket werden Aufbau und Inhaltspflege vom Team übernommen.
+
+**2. Welche Funktionen braucht ihr wirklich?** Prüft RSVP, Menüwahl, Datenschutz, die Darstellung auf Smartphones und die Verwaltung der Gästedaten anhand einer echten Demo. Fragt konkret nach, wenn eine Funktion für euch unverzichtbar ist.
+
+**3. Wie lange soll die Seite verfügbar sein?** Vergleicht nicht nur den Einstiegspreis. Bei S&I. ist ein Jahr Hosting vorgesehen; Domain und bestimmte Extras sind optional. Bei anderen Anbietern können Abo, Verlängerung oder Export entscheidend sein.
+
+**Unser transparenter Hinweis:** Dies ist ein Vergleich von Angebotsmodellen, kein unabhängig getestetes Ranking einzelner Anbieter. Preise und Funktionen anderer Dienste variieren und sollten vor der Entscheidung auf deren Websites geprüft werden.
 
 ## Ist der Preis gerechtfertigt?
 
@@ -621,9 +631,9 @@ Spezialisierte Hochzeitswebsite-Portale bieten kostenpflichtige Pakete mit mehr 
 
 Hier gibt es zwei Varianten: Zum einen Agenturen und Freelancer, die eine komplett individuelle Hochzeitswebsite programmieren (ab ca. 2.000–5.000 €). Zum anderen spezialisierte Premium-Anbieter wie S&I., die professionell gestaltete Themes mit umfassenden Funktionen als Paket anbieten.
 
-**Was ihr bekommt:** Bei S&I. zum Beispiel: sechs handgefertigte Hochzeitsthemes, eigene Domain inklusive, vollwertiges RSVP-System mit Gästemanagement, Foto-Upload, Gästebuch, Passwortschutz und persönlichen Support aus Hamburg – alles zu einem Einmalpreis ab 990 €.
+**Was ihr bekommt:** Bei S&I. zum Beispiel: mehrere eigenständig gestaltete Hochzeitsthemes; eine eigene Domain ist optional, vollwertiges RSVP-System mit Gästemanagement, Foto-Upload, Gästebuch, Passwortschutz und persönlichen Support aus Hamburg – alles zu einem Einmalpreis ab 990 €.
 
-**Der entscheidende Unterschied:** Eine Einmalzahlung statt monatlicher Kosten. Kein Ablaufdatum, kein Abo, keine versteckten Gebühren. Eure Hochzeitswebsite bleibt online, so lange ihr wollt.
+**Der entscheidende Unterschied:** Eine Einmalzahlung statt monatlicher Kosten. Die einmalige Zahlung umfasst die vereinbarte Hostinglaufzeit. Eine eigene Domain und zusätzliche Leistungen können Aufpreise verursachen; klärt Laufzeit und spätere Verlängerung vor der Buchung.
 
 **Geeignet für:** Paare, die eine Website wollen, die so durchdacht ist wie ihre Hochzeit – individuell, hochwertig und ohne Kompromisse.
 
@@ -637,11 +647,25 @@ Bei der Kalkulation der Kosten für eure Hochzeitswebsite werden einige Posten l
 
 Bevor ihr über die Kosten einer Hochzeitswebsite nachdenkt, rechnet gegen, was die Alternative kostet. Für 100 Gäste kalkuliert man in etwa: Papiereinladungen (Design + Druck) 300–600 €, Rückumschläge mit Porto 80–120 €, Save-the-Date-Karten 100–200 €, Programmhefte 50–100 €. Zusammen also 530–1.020 € – für einmalig gedruckte Karten, die nicht aktualisiert werden können.
 
-Eine Hochzeitswebsite ersetzt all das digital, ist jederzeit aktualisierbar und bleibt als Erinnerung bestehen. So betrachtet ist selbst eine Premium-Hochzeitswebsite eine sinnvolle Investition in euer Hochzeitsbudget.
+Eine Hochzeitswebsite kann gedruckte Informationsseiten ergänzen oder teilweise ersetzen. Papeterie, die euch wichtig ist, könnt ihr trotzdem beibehalten; ein späteres Archiv ist abhängig vom Paket. So betrachtet ist selbst eine Premium-Hochzeitswebsite eine sinnvolle Investition in euer Hochzeitsbudget.
 
 Einen vollständigen [Vergleich aller Anbieter in Deutschland 2026](/blog/hochzeitswebsite-vergleich-2026) haben wir in einem eigenen Artikel zusammengestellt.
 
 **💡 Übrigens:** Wie sich euer Gesamtbudget realistisch auf Location, Foto, Musik & Co. verteilt, zeigt euch unser kostenloser [Hochzeitsbudget-Rechner](/hochzeitsbudget-rechner) in 30 Sekunden.
+
+## S&I.-Preise konkret: Was ist im Paket enthalten?
+
+Bei S&I. ist eine Website mit persönlicher Gestaltung und Feinschliff für **990 € einmalig** erhältlich. Dabei pflegt ihr eure Inhalte selbst im Dashboard ein. Das **All-in-Paket kostet 1.490 € einmalig**: Ihr liefert die Informationen, wir übernehmen die Inhaltspflege und den Aufbau. Save-the-Date und Archiv sind in diesem Paket enthalten.
+
+Bei Bedarf sind eine **eigene Domain (+39 €)**, **Save-the-Date (+150 €)**, **Archiv (+150 €)** oder **Einladungsdesign (+400 €)** als Zusatzleistung möglich, soweit nicht bereits im Paket enthalten. Der vereinbarte Hostingzeitraum beträgt **ein Jahr**. Prüft bei der Angebotsentscheidung immer die konkreten Leistungen und die Anschlussbedingungen.
+
+### Beispielrechnung für ein Paar
+
+- Ihr wollt selbst Inhalte einpflegen und nutzt die Standard-URL: **990 €**.
+- Ihr wollt dieselbe Variante mit eigener Domain: **1.029 €**.
+- Ihr wollt, dass das Team alles einpflegt, einschließlich Save-the-Date und Archiv: **1.490 €**.
+
+Das sind Beispielkonfigurationen von S&I., keine branchenweiten Durchschnittspreise. Für die Entscheidung sind neben dem Preis vor allem euer eigener Zeitaufwand, die Gestaltung und der benötigte Funktionsumfang relevant.
 
 ## Unser Fazit: Was lohnt sich für wen?
 
@@ -649,7 +673,7 @@ Die kostenlose Hochzeitswebsite reicht, wenn ihr nur eine einfache Infoseite bra
 
 **Eure Hochzeit ist einmalig. Eure Website sollte es auch sein.**
 
-**Lieber einmal richtig statt monatlich zahlen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit individuellem Design, eigener Domain, [RSVP](/blog/digitales-rsvp-hochzeit) und Foto-Upload – zum einmaligen Festpreis ohne Abo. Ab 990 €.
+**Lieber einmal richtig statt monatlich zahlen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eure Premium-Hochzeitswebsite mit auf euch abgestimmtem Design, optionaler eigener Domain, [RSVP](/blog/digitales-rsvp-hochzeit) und Foto-Upload – zum einmaligen Festpreis ohne Abo. Ab 990 €.
 
 👉 **[Jetzt eure Hochzeitswebsite entdecken](https://www.sarahiver.com)**
 
@@ -880,7 +904,7 @@ Der Moment in dem ihr den Link zu eurer Hochzeitshomepage zum ersten Mal verschi
 
 **Eure Hochzeitswebsite ist das erste visuelle Statement eurer Hochzeit.** Egal ob ihr sie Hochzeitshomepage, Hochzeitsseite oder Wedding Website nennt – der erste Eindruck zählt.
 
-Wir zeigen euch sieben echte Beispiele für Hochzeitshomepages – alle live, alle anklickbar, alle von S&I. Schaut sie euch in Ruhe an. Zeigt sie eurer Partnerin, eurem Partner, eurer besten Freundin. Der richtige Stil ist der bei dem ihr sagt: Das sind wir.
+Wir zeigen euch sieben Design-Demos von S&I. – zum Anklicken und Vergleichen. Die Demos illustrieren mögliche Gestaltungen und sind keine sieben unabhängigen Kundenreferenzen. Schaut sie euch in Ruhe an. Zeigt sie eurer Partnerin, eurem Partner, eurer besten Freundin. Der richtige Stil ist der bei dem ihr sagt: Das sind wir.
 
 ---
 
@@ -1539,7 +1563,7 @@ Die FAQ-Komponente unterstützt Aufklapp-Elemente (Akkordeons), sodass eure Gäs
     slug: 'hochzeitswebsite-faq-haeufige-fragen',
     title: 'Hochzeitswebsite FAQ: Die 15 häufigsten Fragen beantwortet',
     seoTitle: 'Hochzeitswebsite FAQ: 15 häufige Fragen',
-    description: 'Kosten, Funktionen, Datenschutz, Dauer der Erstellung: Die 15 häufigsten Fragen zur Hochzeitswebsite – ehrliche Antworten, direkt aus 5+ Jahren Erfahrung.',
+    description: 'Kosten, Funktionen, Datenschutz, Dauer der Erstellung: Die 15 häufigsten Fragen zur Hochzeitswebsite – ehrliche Antworten, mit praktischen Hinweisen für eure Planung.',
     date: '2025-02-03',
     category: 'Inhalte',
     tags: ['Ratgeber', 'Features'],
@@ -1810,7 +1834,7 @@ Das Reservierungssystem ist diskret: Andere Gäste sehen nur, dass ein Geschenk 
 
 ## Premium-Themes: Design auf Agentur-Niveau
 
-Keine vorgefertigten Templates von der Stange. Bei S&I. stehen euch **sechs handdesignte Premium-Themes** zur Wahl, die von professionellen Designern entwickelt wurden:
+Keine vorgefertigten Templates von der Stange. Bei S&I. stehen euch **mehrere eigenständig gestaltete Premium-Themes** zur Wahl, die von professionellen Designern entwickelt wurden:
 
 **Editorial** – Klare Linien, große Typografie, Magazin-Ästhetik. Für Paare, die es modern und reduziert mögen.
 
@@ -1838,7 +1862,7 @@ Das klingt nach einem kleinen Feature, macht aber im Alltag einen riesigen Unter
 
 Nach der Hochzeit wird eure Website nicht einfach abgeschaltet. **S&I. bietet einen Archiv-Modus**, der eure Seite in eine permanente Erinnerung verwandelt. Alle Fotos, Gästebucheinträge, Musikwünsche und Inhalte bleiben erhalten – als digitales Hochzeitsalbum, das ihr jederzeit aufrufen könnt.
 
-Der Archiv-Modus deaktiviert interaktive Funktionen wie [RSVP](/blog/digitales-rsvp-hochzeit) (die nach der Hochzeit keinen Sinn mehr ergeben) und bewahrt alles andere. **Eure Hochzeitswebsite wird zum digitalen Andenken – für immer.**
+Der Archiv-Modus deaktiviert interaktive Funktionen wie [RSVP](/blog/digitales-rsvp-hochzeit) (die nach der Hochzeit keinen Sinn mehr ergeben) und bewahrt alles andere. **Für Erinnerungen nach der Feier gibt es eine Archivoption; Verfügbarkeit und Laufzeit hängen vom vereinbarten Paket ab.**
 
 ## Passwortschutz: Privatsphäre als Standard
 
@@ -2436,7 +2460,7 @@ Wir machen den ehrlichen Vergleich – mit echten Preisen, echtem Zeitaufwand un
 
 **Kosten:** Bei Agenturen 2.000–10.000 €. Bei spezialisierten Hochzeitswebsite-Services wie S&I. ab 990 €.
 
-**Zeitaufwand für euch:** 1–2 Stunden. Ihr füllt einen kurzen Fragebogen aus, schickt eure Fotos und Texte – und bekommt eine fertige, professionelle Hochzeitswebsite mit allem, was dazugehört.
+**Zeitaufwand für euch:** Das hängt vom gebuchten Paket, den vorhandenen Texten und der Abstimmung ab. Im All-in-Paket übernehmt ihr vor allem die Bereitstellung der Daten und das Feedback; im 990-€-Paket pflegt ihr eure Inhalte selbst ein.
 
 **Was ihr euch spart:** Abende am Laptop mit Template-Frust. Technische Probleme. Die Suche nach dem richtigen Plugin. Die Frage „Warum sieht das auf dem Handy anders aus?" Und das ungute Gefühl, dass eure Hochzeitswebsite aussieht wie die von tausend anderen Paaren.
 
@@ -2448,11 +2472,11 @@ Wir machen den ehrlichen Vergleich – mit echten Preisen, echtem Zeitaufwand un
 
 **Funktionsumfang:** Kostenlose Baukästen begrenzen RSVP, Gästebuch und [Fotoupload](/blog/hochzeitswebsite-foto-upload-gaeste) hinter Paywalls. Eine professionelle Lösung beinhaltet von Anfang an alles: [digitales RSVP](/blog/digitales-rsvp-hochzeit) mit automatischer Gästeliste, Passwortschutz, interaktive Anfahrtskarte, Musikwünsche, Foto-Upload für Gäste, digitales Gästebuch und eigene Domain.
 
-**Zeitersparnis:** Ein Baukasten kostet euch 8–20 Stunden eurer Freizeit. WordPress 20–40 Stunden. Eine professionelle Hochzeitswebsite erstellen zu lassen kostet euch 1–2 Stunden – den Rest übernehmen Profis. In der stressigen Hochzeitsplanung ist Zeit euer wertvollstes Gut.
+**Zeitersparnis:** Ein Baukasten kostet euch 8–20 Stunden eurer Freizeit. WordPress 20–40 Stunden. Bei einer professionell betreuten Website spart ihr euch technische Einrichtung und Designarbeit. Wie viel Inhaltspflege ihr übernehmt, hängt vom gewählten Paket ab. In der stressigen Hochzeitsplanung ist Zeit euer wertvollstes Gut.
 
 **Support:** Bei Baukästen schreibt ihr ein Ticket und wartet. Bei WordPress seid ihr auf euch selbst gestellt. Bei S&I. habt ihr einen persönlichen Ansprechpartner, der euch durch den gesamten Prozess begleitet und auch kurzfristige Änderungen vor der Hochzeit umsetzt.
 
-**Langfristigkeit:** Baukasten-Seiten verschwinden, wenn das Abo endet. WordPress-Seiten brauchen permanente Wartung. Eine professionelle Hochzeitswebsite bleibt als Archiv erhalten – mit allen Fotos, Gästebucheinträgen und Erinnerungen.
+**Langfristigkeit:** Baukasten-Seiten verschwinden, wenn das Abo endet. WordPress-Seiten brauchen permanente Wartung. Ob eine professionell erstellte Website nach der Hochzeit als Archiv weiterläuft, hängt vom gebuchten Paket und der vereinbarten Laufzeit ab.
 
 ## Wann lohnt es sich, die Hochzeitswebsite erstellen zu lassen?
 
@@ -2464,17 +2488,31 @@ Ihr wenig Zeit habt, weil beide berufstätig seid und die Hochzeitsplanung neben
 
 ![Brautpaar schaut sich gemeinsam die Hochzeitswebsite an](https://images.unsplash.com/photo-1525258946800-98cbbe049ecd?w=900&q=80)
 
+## Welches S&I.-Paket passt zu euch?
+
+| | Website (990 €) | All-in (1.490 €) |
+|---|---|---|
+| Design und technischer Aufbau | S&I. | S&I. |
+| Texte und Bilder bereitstellen | Ihr | Ihr |
+| Inhalte ins Dashboard einpflegen | Ihr | S&I. |
+| Feinschliff | S&I. | S&I. |
+| Save-the-Date und Archiv | Optional (+150 € je Leistung) | Enthalten |
+| Hosting | Ein Jahr | Ein Jahr |
+| Eigene Domain | Optional (+39 €) | Optional (+39 €) |
+
+**Beispiel:** Habt ihr eure Texte bereits fertig und möchtet sie selbst eintragen, ist das 990-€-Paket naheliegend. Wenn ihr den operativen Aufbau komplett abgeben möchtet, ist All-in die passendere Wahl. Einladungsdesign ist auf Wunsch für 400 € ergänzbar.
+
 ## Wie läuft das bei S&I. ab?
 
 Bei S&I. haben wir den Prozess so gestaltet, dass ihr möglichst wenig Aufwand habt und trotzdem eine individuelle Hochzeitswebsite bekommt, die eure Gäste begeistert:
 
 **Schritt 1 – Theme wählen:** Ihr wählt aus 8 handgefertigten [Hochzeitswebsite-Designs](/blog/hochzeitswebsite-design-beispiele-inspiration) euer Lieblingstheme. Von minimalistisch-elegant über romantisch-botanisch bis hin zu modern und mutig – für jeden Geschmack ist etwas dabei.
 
-**Schritt 2 – Inhalte liefern:** Ihr schickt uns eure Fotos, Texte und alle Details zu eurer Hochzeit (Location, Ablauf, Dresscode, Hotelempfehlungen). Wir helfen euch gerne bei den Texten, wenn ihr nicht sicher seid, was ihr schreiben sollt.
+**Schritt 2 – Inhalte vorbereiten:** Ihr stellt Fotos, Texte und Hochzeitsdetails zusammen. Im 990-€-Paket pflegt ihr sie über euer Dashboard selbst ein; beim 1.490-€-All-in-Paket übernimmt S&I. die Inhaltspflege.
 
-**Schritt 3 – Wir bauen eure Website:** Innerhalb weniger Tage steht eure individuelle Hochzeitswebsite – komplett eingerichtet mit eigener Domain, Passwortschutz, RSVP-System, interaktiver Karte, Gästebuch, Musikwunsch-Funktion und Foto-Upload.
+**Schritt 3 – Wir gestalten eure Website:** S&I. stimmt die Gestaltung mit euch ab und setzt eure Website technisch um. Den konkreten Liefertermin vereinbaren wir abhängig von Umfang, Material und Freigaben. Eine eigene Domain ist optional (+39 €).
 
-**Schritt 4 – Feedback und Feinschliff:** Ihr schaut euch die Vorschau an, gebt Feedback, wir passen an. Erst wenn ihr 100% zufrieden seid, geht die Seite live.
+**Schritt 4 – Feedback und Feinschliff:** Ihr prüft die Vorschau, gebt gesammelt Rückmeldung und wir stimmen den vereinbarten Feinschliff mit euch ab. Die Veröffentlichung erfolgt nach Freigabe.
 
 **Schritt 5 – Live und begleitet:** Eure Hochzeitswebsite ist online, eure Gäste können sich anmelden, und ihr habt jederzeit Zugriff auf euer Admin-Dashboard. Fragen oder Änderungswünsche? Wir sind für euch da.
 
@@ -2484,7 +2522,7 @@ Eine Hochzeitswebsite erstellen zu lassen ist keine Luxus-Entscheidung – es is
 
 Für Paare, die Wert auf Design, Funktionalität und persönlichen Service legen, ist eine professionelle Hochzeitswebsite die klügste Entscheidung der gesamten Hochzeitsplanung. Und mit S&I. bekommt ihr genau das – zu einem fairen Preis, mit persönlichem Service und einem Ergebnis, das eure Gäste garantiert beeindruckt.
 
-**Bereit, eure Hochzeitswebsite erstellen zu lassen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite mit eigener Domain, RSVP-System, Foto-Upload, Gästebuch und individuellem Design – alles aus einer Hand, ab 990 €.
+**Bereit, eure Hochzeitswebsite erstellen zu lassen?** Bei [S&I.](https://www.sarahiver.com) bekommt ihr eine Premium-Hochzeitswebsite mit RSVP-System, Foto-Upload, Gästebuch und abgestimmtem Design ab 990 €; eine eigene Domain ist optional.
 
 **[Jetzt unverbindlich anfragen](https://www.sarahiver.com)** – und die Hochzeitsplanung genießen statt stundenlang an Templates zu schrauben.
     \n\n**Weiterlesen:** Wie sich dieser Weg gegenüber Baukästen und Apps schlägt, zeigt der [Anbietervergleich](/blog/hochzeitswebsite-vergleich-2026). Die Preisfrage beantwortet die [Kostenübersicht](/blog/hochzeitswebsite-kosten-was-kostet).`,
@@ -3318,7 +3356,7 @@ Ein gutes Brautpaar-Quiz ist eines der zuverlässigsten Stimmungs-Highlights fü
 
 Jedes Jahr werden im Januar die "Top 50 Hochzeitstrends" durch die Bridal-Blogs gejagt. Die Hälfte davon sind Mood-Boards ohne praktische Relevanz, die andere Hälfte sind Trends, die schon seit 5 Jahren existieren.
 
-Wir machen das anders. **Hier sind die 9 Hochzeitstrends 2027, die wirklich Substanz haben** – basierend auf dem, was wir bei S&I. an Brautpaar-Wünschen sehen, was Locations und Caterer melden, und was sich in den Hochzeits-Communities tatsächlich verändert.
+Wir machen das anders. **Hier sind die 9 Hochzeitstrends 2027, die wirklich Substanz haben** – als redaktionelle Einschätzung für eure Hochzeitsplanung, nicht als Ergebnis einer repräsentativen Umfrage.
 
 Spoiler: Es geht 2027 weniger um Deko-Farben und mehr um **wie ihr eure Hochzeit organisiert**.
 
@@ -3326,7 +3364,7 @@ Spoiler: Es geht 2027 weniger um Deko-Farben und mehr um **wie ihr eure Hochzeit
 
 ## Trend 1: Die "Mid-Size Wedding" als neue Normalität
 
-Vorbei sind die Zeiten der Riesen-Hochzeit mit 200 Gästen – aber auch Mikro-Hochzeiten mit 15 Gästen sind ihren Höhepunkt überschritten. **Die neue Normalität 2027: 40–80 Gäste.**
+Vorbei sind die Zeiten der Riesen-Hochzeit mit 200 Gästen – aber auch Mikro-Hochzeiten mit 15 Gästen sind ihren Höhepunkt überschritten. **Eine Feier mit 40–80 Gästen kann ein guter Mittelweg sein.**
 
 Warum? Weil dieser Bereich der **Sweet Spot** ist:
 - Persönlich genug für echte Gespräche mit jedem Gast
@@ -3510,7 +3548,7 @@ Eure Hochzeitsfarben sind die unsichtbare Klammer um euren gesamten Tag. Sie ent
 
 Genau deshalb lohnt es sich, die **Hochzeitsfarben 2027** nicht einfach von einem Pinterest-Board abzuschreiben, sondern zu verstehen, *warum* sich die Farbwelt gerade verschiebt – und welche Palette wirklich zu euch passt.
 
-Wir haben die großen Farb-Reports, die Wünsche unserer Brautpaare und die Rückmeldungen von Floristen und Locations im DACH-Raum zusammengetragen. Das Ergebnis: **6 komplette Farbpaletten für 2027** – jeweils mit konkreten Kombinationen für Deko, Blumen, Papeterie und eure [Hochzeitswebsite](/blog/warum-hochzeitswebsite).
+Die folgenden Farbkombinationen sind eine redaktionelle Auswahl zur Inspiration, keine repräsentative Trendstudie oder eigene Befragung. Unsere Vorschläge: **6 komplette Farbpaletten für 2027** – jeweils mit konkreten Kombinationen für Deko, Blumen, Papeterie und eure [Hochzeitswebsite](/blog/warum-hochzeitswebsite).
 
 ![Hochzeitstafel mit warmen Erdtönen, Kerzen und Trockenblumen](https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80)
 
@@ -3782,7 +3820,7 @@ Ihr habt euch verlobt und wollt 2027 heiraten? Dann kommt hier die gute Nachrich
 
 Die weniger gute Nachricht: Die begehrtesten Termine und Locations für 2027 werden **jetzt** vergeben. Wer bis Anfang 2027 wartet, plant mit dem, was übrig bleibt.
 
-Damit ihr nichts dem Zufall überlasst, kommt hier die **komplette Planungs-Checkliste für eure Hochzeit 2027** – Monat für Monat, von der ersten Budget-Frage bis zum Sektglas am großen Tag. Realistisch, ohne Panik-Mache, und mit den Erfahrungswerten aus hunderten Brautpaar-Gesprächen.
+Damit ihr nichts dem Zufall überlasst, kommt hier die **komplette Planungs-Checkliste für eure Hochzeit 2027** – Monat für Monat, von der ersten Budget-Frage bis zum Sektglas am großen Tag. Realistisch, ohne Panik-Mache, und mit praxisnahen Hinweisen zu typischen Planungsaufgaben.
 
 ![Brautpaar plant die Hochzeit mit Laptop und Notizen](https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80)
 
@@ -4005,7 +4043,7 @@ Was das kosten darf, haben wir im großen [Kosten-Vergleich für Hochzeitswebsit
 
 ## Unser Modell – transparent gemacht
 
-Weil dieser Artikel ehrlich sein soll, legen wir auch unsere Karten auf den Tisch: Bei [S&I.](https://www.sarahiver.com) bauen wir Hochzeitswebsites **persönlich für euch** – kein Baukasten, keine Gratis-Version, einmaliger Preis statt Abo. Ihr liefert Texte und Fotos, wir übernehmen Design, Einrichtung, Technik und Betreuung, eure Seite läuft unter eurer eigenen Domain und ist in etwa 7 Tagen live.
+Weil dieser Artikel ehrlich sein soll, legen wir auch unsere Karten auf den Tisch: Bei [S&I.](https://www.sarahiver.com) bauen wir Hochzeitswebsites **persönlich für euch** – kein Baukasten, keine Gratis-Version, einmaliger Preis statt Abo. Ihr liefert Texte und Fotos, wir übernehmen Design, Einrichtung, Technik und Betreuung, eine eigene Domain ist optional. Den konkreten Zeitpunkt der Veröffentlichung stimmen wir anhand der Inhalte und Rückmeldungen mit euch ab.
 
 Das ist bewusst nicht der günstigste Weg zu einer Hochzeitswebsite – es ist der Weg für Paare, die eine besondere Seite wollen, ohne selbst zu basteln. Ob euch das gefällt, seht ihr am besten selbst: **Alle unsere Designs gibt es als [echte Live-Demos zum Durchklicken](https://www.sarahiver.com/#themes)** – keine Screenshots, sondern vollständige Hochzeitswebsites, wie eure Gäste sie erleben würden.
 
@@ -4013,7 +4051,7 @@ Das ist bewusst nicht der günstigste Weg zu einer Hochzeitswebsite – es ist d
 
 Die Frage ist nicht "kostenlos oder teuer?", sondern: **Was soll eure Hochzeitswebsite leisten – und wer soll die Arbeit machen?** Für den digitalen Infozettel reicht gratis. Für eine persönliche Seite, die Orga abnimmt und zu eurer Hochzeit gehört wie die Einladungen, lohnt sich die Investition – in welcher Preisklasse auch immer.
 
-Wenn ihr wissen wollt, wie eure eigene Seite aussehen könnte: Schaut euch die [Beispiele an](https://www.sarahiver.com/#themes) oder schreibt uns unverbindlich – wir antworten persönlich, innerhalb von 24 Stunden.
+Wenn ihr wissen wollt, wie eure eigene Seite aussehen könnte: Schaut euch die [Beispiele an](https://www.sarahiver.com/#themes) oder schreibt uns unverbindlich – wir melden uns persönlich zurück.
 
 **[Unverbindlich anfragen](https://www.sarahiver.com/#contact)**
 
@@ -4457,7 +4495,7 @@ Das Beste: Ein Hochzeitsquiz kostet fast nichts, braucht wenig Vorbereitung – 
 
 **Preise:** Kleine, humorvolle Preise funktionieren besser als teure – eine Flasche Sekt, ein \\"Experten-Diplom\\", das letzte Stück Hochzeitstorte.
 
-**Antworten einsammeln:** Klassisch auf Papier – oder digital über eure Hochzeitswebsite. Bei S&I. könnt ihr das Quiz direkt auf eurer Website einbinden: Gäste antworten am Handy, die Auswertung läuft automatisch, und ihr seht die Ergebnisse live. Kein Zettelchaos, keine Auszählpause.
+**Antworten einsammeln:** Klassisch auf Papier – oder digital über eure Hochzeitswebsite. Für ein digitales Quiz benötigt ihr ein separates Quiz-Tool oder eine individuell vereinbarte Integration. Das hier beschriebene Standardangebot umfasst kein automatisches Live-Quiz.. Kein Zettelchaos, keine Auszählpause.
 
 ## Hochzeitsquiz-Vorlage: In 3 Schritten fertig
 
